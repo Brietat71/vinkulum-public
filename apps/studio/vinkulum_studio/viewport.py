@@ -1,0 +1,419 @@
+"""Qt/VTK viewport. Rendering and mouse previews never mutate a Project."""
+
+import numpy as np
+from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QVBoxLayout, QWidget
+
+from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
+from vtkmodules.vtkCommonMath import vtkMatrix4x4
+from vtkmodules.vtkCommonTransforms import vtkTransform
+from vtkmodules.vtkFiltersGeneral import vtkTransformFilter
+from vtkmodules.vtkFiltersSources import (
+    vtkArrowSource,
+    vtkCubeSource,
+    vtkCylinderSource,
+    vtkLineSource,
+    vtkSphereSource,
+)
+from vtkmodules.vtkInteractionWidgets import vtkBoxRepresentation, vtkBoxWidget2
+from vtkmodules.vtkRenderingAnnotation import vtkAxesActor
+from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkCellPicker,
+    vtkPolyDataMapper,
+    vtkRenderer,
+    vtkWindowToImageFilter,
+)
+from vtkmodules.vtkIOImage import vtkPNGWriter
+import vtkmodules.vtkInteractionStyle  # Registers trackball interaction.
+import vtkmodules.vtkRenderingOpenGL2  # noqa: F401 — registers the platform render window.
+
+
+def vtk_matrix(position, orientation):
+    matrix = vtkMatrix4x4()
+    R = np.array(orientation).reshape(3, 3)
+    for i in range(3):
+        for j in range(3):
+            matrix.SetElement(i, j, R[i, j])
+        matrix.SetElement(i, 3, position[i])
+    return matrix
+
+
+def numpy_pose(matrix):
+    return (
+        tuple(matrix.GetElement(i, 3) for i in range(3)),
+        tuple(matrix.GetElement(i, j) for i in range(3) for j in range(3)),
+    )
+
+
+class Viewport(QWidget):
+    selected = Signal(object)
+    pose_committed = Signal(str, object, object)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setMinimumSize(400, 300)
+        self.setAccessibleName("Scène mécanique 3D")
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        self.view = QVTKRenderWindowInteractor(self)
+        layout.addWidget(self.view)
+        self.renderer = vtkRenderer()
+        self.renderer.SetBackground(0.075, 0.10, 0.14)
+        self.renderer.SetBackground2(0.16, 0.21, 0.27)
+        self.renderer.GradientBackgroundOn()
+        self.view.GetRenderWindow().AddRenderer(self.renderer)
+        self.view.GetRenderWindow().SetMultiSamples(4)
+        self.view.SetInteractorStyle(
+            vtkmodules.vtkInteractionStyle.vtkInteractorStyleTrackballCamera()
+        )
+        self.view.Initialize()
+        self._actors = {}
+        self._colors = {}
+        self._bounds = {}
+        self._body_ids = set()
+        self._joint_parts = []
+        self._load_glyphs = []
+        self._time = 0.0
+        self._local_axes = None
+        self._selected = None
+        self._editable = True
+        self.dragging = False
+        self._closed = False
+        self._project = None
+        self._poses = {}
+        self._sources = []
+        self.box = vtkBoxWidget2()
+        self.box.SetInteractor(self.view.GetRenderWindow().GetInteractor())
+        self.box.ScalingEnabledOff()
+        self.box.MoveFacesEnabledOff()
+        self.box.TranslationEnabledOn()
+        self.box.RotationEnabledOn()
+        self.box_rep = vtkBoxRepresentation()
+        self.box_rep.SetPlaceFactor(1.15)
+        self.box.SetRepresentation(self.box_rep)
+        self.box.AddObserver("InteractionEvent", self._preview_pose)
+        self.box.AddObserver(
+            "StartInteractionEvent", lambda *_: setattr(self, "dragging", True)
+        )
+        self.box.AddObserver("EndInteractionEvent", self._commit_pose)
+        self.view.AddObserver("LeftButtonPressEvent", self._pick, 0.1)
+
+    def _add(self, source, color, identifier=None, width=2.0):
+        mapper = vtkPolyDataMapper()
+        mapper.SetInputConnection(source.GetOutputPort())
+        actor = vtkActor()
+        actor.SetMapper(mapper)
+        actor.GetProperty().SetColor(*color)
+        actor.GetProperty().SetLineWidth(width)
+        actor.GetProperty().SetSpecular(0.2)
+        self.renderer.AddActor(actor)
+        if identifier is not None:
+            self._actors.setdefault(identifier, []).append(actor)
+            self._colors.setdefault(identifier, []).append(color)
+        else:
+            actor.PickableOff()
+        self._sources.append(source)
+        return actor
+
+    def set_project(self, project, *, fit=False):
+        selection = self._selected
+        self.box.Off()
+        self.renderer.RemoveAllViewProps()
+        self._actors.clear()
+        self._colors.clear()
+        self._bounds.clear()
+        self._sources.clear()
+        self._joint_parts.clear()
+        self._load_glyphs.clear()
+        self._time = 0.0
+        self._project = project
+        self._body_ids = {b.id for b in project.bodies}
+        self._poses = {b.id: (b.position, b.orientation) for b in project.bodies}
+        for body in project.bodies:
+            if body.shape == "box":
+                source = vtkCubeSource()
+                source.SetXLength(body.dimensions[0])
+                source.SetYLength(body.dimensions[1])
+                source.SetZLength(body.dimensions[2])
+            elif body.shape == "sphere":
+                source = vtkSphereSource()
+                source.SetRadius(body.dimensions[0])
+                source.SetThetaResolution(32)
+                source.SetPhiResolution(24)
+            else:
+                cylinder = vtkCylinderSource()
+                cylinder.SetRadius(body.dimensions[0])
+                cylinder.SetHeight(body.dimensions[1])
+                cylinder.SetResolution(32)
+                transform = vtkTransform()
+                transform.RotateX(90)
+                source = vtkTransformFilter()
+                source.SetInputConnection(cylinder.GetOutputPort())
+                source.SetTransform(transform)
+            source.Update()
+            self._bounds[body.id] = source.GetOutput().GetBounds()
+            actor = self._add(source, (0.20, 0.65, 0.72), body.id)
+            actor.SetUserMatrix(vtk_matrix(body.position, body.orientation))
+        extent = max(
+            (np.linalg.norm(b.position) + max(b.dimensions) for b in project.bodies),
+            default=1.0,
+        )
+        self._extent = max(0.1, float(extent))
+        self._draw_grid()
+        axes = vtkAxesActor()
+        axes.SetTotalLength(*([self._extent * 0.18] * 3))
+        axes.PickableOff()
+        for caption in (
+            axes.GetXAxisCaptionActor2D(),
+            axes.GetYAxisCaptionActor2D(),
+            axes.GetZAxisCaptionActor2D(),
+        ):
+            caption.GetTextActor().SetTextScaleModeToNone()
+            caption.GetCaptionTextProperty().SetFontSize(14)
+        self.renderer.AddActor(axes)
+        self._local_axes = vtkAxesActor()
+        self._local_axes.AxisLabelsOff()
+        self._local_axes.PickableOff()
+        self._local_axes.VisibilityOff()
+        self.renderer.AddActor(self._local_axes)
+        invalid = {d.object_id for d in project.diagnostics()}
+        for joint in project.joints:
+            if any(
+                ref is not None and ref not in self._body_ids
+                for ref in (joint.a, joint.b)
+            ):
+                continue
+            color = (0.95, 0.35, 0.3) if joint.id in invalid else (0.96, 0.72, 0.28)
+            # Each attachment is drawn separately, so mismatched anchors remain visible.
+            for ref, point, frame in (
+                (joint.a, joint.pa, joint.ra),
+                (joint.b, joint.pb, joint.rb),
+            ):
+                sphere = vtkSphereSource()
+                sphere.SetRadius(self._extent * 0.015)
+                actor = self._add(sphere, color, joint.id)
+                self._joint_parts.append((actor, ref, point, frame, False))
+                if joint.kind in {"pivot", "glissiere"}:
+                    axis = vtkLineSource()
+                    axis.SetPoint1(0.0, 0.0, -0.08 * self._extent)
+                    axis.SetPoint2(0.0, 0.0, 0.08 * self._extent)
+                    actor = self._add(axis, color, joint.id, 4.0)
+                    self._joint_parts.append((actor, ref, point, frame, True))
+            # Link body centre to anchor as a visual attachment, not a mass-bearing rod.
+            for ref, point in ((joint.a, joint.pa), (joint.b, joint.pb)):
+                if ref is not None:
+                    line = vtkLineSource()
+                    line.SetPoint1(0.0, 0.0, 0.0)
+                    line.SetPoint2(*point)
+                    actor = self._add(line, color, joint.id)
+                    self._joint_parts.append(
+                        (
+                            actor,
+                            ref,
+                            (0.0, 0.0, 0.0),
+                            (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0),
+                            True,
+                        )
+                    )
+        for load in project.loads:
+            if load.body not in self._body_ids:
+                continue
+            sphere = vtkSphereSource()
+            sphere.SetRadius(self._extent * 0.018)
+            actor = self._add(sphere, (0.86, 0.46, 0.9), load.id)
+            self._joint_parts.append(
+                (
+                    actor,
+                    load.body,
+                    load.point,
+                    (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0),
+                    False,
+                )
+            )
+            for field, color in (
+                ("force", (0.98, 0.50, 0.25)),
+                ("moment", (0.80, 0.40, 0.95)),
+            ):
+                arrow = vtkArrowSource()
+                arrow.SetTipResolution(20)
+                arrow.SetShaftResolution(16)
+                glyph = self._add(arrow, color, load.id)
+                self._load_glyphs.append((glyph, load, field))
+        self._update_attachments()
+        self.select(selection if selection in self._actors else None)
+        if fit:
+            self.camera("iso")
+        self.render()
+
+    def _draw_grid(self):
+        extent = self._extent
+        for i in range(-5, 6):
+            for transpose in (False, True):
+                a = [i * extent / 5, -extent, 0.0]
+                b = [i * extent / 5, extent, 0.0]
+                if transpose:
+                    a[:2] = reversed(a[:2])
+                    b[:2] = reversed(b[:2])
+                line = vtkLineSource()
+                line.SetPoint1(*a)
+                line.SetPoint2(*b)
+                self._add(line, (0.25, 0.29, 0.34), width=1.0)
+
+    def _update_attachments(self):
+        for actor, reference, point, frame, oriented in self._joint_parts:
+            if reference is None:
+                position, R = np.zeros(3), np.eye(3)
+            else:
+                position, rotation = self._poses[reference]
+                position, R = np.array(position), np.array(rotation).reshape(3, 3)
+            orientation = R @ np.array(frame).reshape(3, 3) if oriented else np.eye(3)
+            actor.SetUserMatrix(vtk_matrix(position + R @ point, orientation.flat))
+        for actor, load, field in self._load_glyphs:
+            values = np.array([law.value(self._time) for law in getattr(load, field)])
+            norm = np.linalg.norm(values)
+            if not np.isfinite(norm) or norm < 1e-14:
+                actor.VisibilityOff()
+                continue
+            actor.VisibilityOn()
+            x = values / norm
+            seed = np.eye(3)[int(np.argmin(abs(x)))]
+            z = np.cross(x, seed)
+            z /= np.linalg.norm(z)
+            y = np.cross(z, x)
+            position, R = self._poses[load.body]
+            R = np.array(R).reshape(3, 3)
+            world = np.array(position) + R @ load.point
+            frame = np.column_stack((x, y, z)) * (self._extent * 0.22)
+            actor.SetUserMatrix(vtk_matrix(world, frame.flat))
+        if self._local_axes is not None and self._selected in self._body_ids:
+            self._local_axes.SetUserMatrix(vtk_matrix(*self._poses[self._selected]))
+
+    def set_poses(self, poses, time=0.0):
+        """Update result transforms without reconstructing actors or touching input data."""
+        self._poses = dict(poses)
+        self._time = float(time)
+        for identifier, (position, orientation) in poses.items():
+            if identifier in self._body_ids:
+                self._actors[identifier][0].SetUserMatrix(
+                    vtk_matrix(position, orientation)
+                )
+        self._update_attachments()
+        self.render()
+
+    def set_editable(self, editable):
+        self._editable = editable
+        self.select(self._selected)
+
+    def select(self, identifier):
+        self.box.Off()
+        self._selected = identifier
+        if self._local_axes is not None:
+            self._local_axes.SetVisibility(identifier in self._body_ids)
+            if identifier in self._body_ids:
+                body = next(b for b in self._project.bodies if b.id == identifier)
+                self._local_axes.SetTotalLength(*([max(body.dimensions) * 0.8] * 3))
+                self._local_axes.SetUserMatrix(vtk_matrix(*self._poses[identifier]))
+        for key, actors in self._actors.items():
+            if key in self._body_ids:
+                actors[0].GetProperty().SetColor(
+                    *((0.96, 0.70, 0.25) if key == identifier else (0.20, 0.65, 0.72))
+                )
+            else:
+                for actor, color in zip(actors, self._colors[key]):
+                    actor.GetProperty().SetColor(
+                        *((1.0, 0.85, 0.3) if key == identifier else color)
+                    )
+        if identifier in self._body_ids and self._editable:
+            self.box_rep.PlaceWidget(self._bounds[identifier])
+            transform = vtkTransform()
+            transform.SetMatrix(self._actors[identifier][0].GetMatrix())
+            self.box_rep.SetTransform(transform)
+            self.box.On()
+        self.render()
+
+    def _pick(self, interactor, event):
+        picker = vtkCellPicker()
+        picker.SetTolerance(0.005)
+        x, y = self.view.GetEventPosition()
+        picker.Pick(x, y, 0, self.renderer)
+        actor = picker.GetActor()
+        for identifier, actors in self._actors.items():
+            if actor in actors:
+                if identifier != self._selected:
+                    self.select(identifier)
+                    self.selected.emit(identifier)
+                return
+
+    def _preview_pose(self, widget, event):
+        if self._selected not in self._body_ids or not self._editable:
+            return
+        transform = vtkTransform()
+        self.box_rep.GetTransform(transform)
+        pose = numpy_pose(transform.GetMatrix())
+        self._poses[self._selected] = pose
+        self._actors[self._selected][0].SetUserMatrix(transform.GetMatrix())
+        self._update_attachments()
+        self.render()
+
+    def _commit_pose(self, widget, event):
+        self.dragging = False
+        if self._selected in self._body_ids and self._editable:
+            transform = vtkTransform()
+            self.box_rep.GetTransform(transform)
+            position, orientation = numpy_pose(transform.GetMatrix())
+            self.pose_committed.emit(self._selected, position, orientation)
+
+    def camera(self, direction="iso", selection=False):
+        camera = self.renderer.GetActiveCamera()
+        vectors = {
+            "iso": (1.0, -1.0, 0.8),
+            "front": (0.0, -1.0, 0.0),
+            "side": (1.0, 0.0, 0.0),
+            "top": (0.0, 0.0, 1.0),
+        }
+        vector = vectors[direction]
+        camera.SetFocalPoint(0.0, 0.0, 0.0)
+        camera.SetPosition(*vector)
+        camera.SetViewUp(*((0.0, 1.0, 0.0) if direction == "top" else (0.0, 0.0, 1.0)))
+        camera.SetParallelProjection(direction != "iso")
+        if selection and self._selected in self._actors:
+            self.renderer.ResetCamera(self._actors[self._selected][0].GetBounds())
+        elif self._body_ids:
+            bounds = [
+                self._actors[identifier][0].GetBounds() for identifier in self._body_ids
+            ]
+            scene_bounds = tuple(
+                (min if index % 2 == 0 else max)(b[index] for b in bounds)
+                for index in range(6)
+            )
+            self.renderer.ResetCamera(scene_bounds)
+        else:
+            self.renderer.ResetCamera()
+        self.renderer.ResetCameraClippingRange()
+        self.render()
+
+    def render(self):
+        if not self._closed and self.isVisible():
+            self.view.GetRenderWindow().Render()
+
+    def screenshot(self, path):
+        self.view.GetRenderWindow().Render()
+        capture = vtkWindowToImageFilter()
+        capture.SetInput(self.view.GetRenderWindow())
+        capture.ReadFrontBufferOff()
+        capture.Update()
+        writer = vtkPNGWriter()
+        writer.SetFileName(str(path))
+        writer.SetInputConnection(capture.GetOutputPort())
+        writer.Write()
+
+    def shutdown(self):
+        if not self._closed:
+            self.box.Off()
+            self.view.Finalize()
+            self._closed = True
+
+    def closeEvent(self, event):
+        self.shutdown()
+        event.accept()

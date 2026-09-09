@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "vinkulum"
-version = "0.18.1"
+version = "0.19.0"
 description = "Vinkulum — noyau multicorps (Rust) : intégrateur α-généralisé sur SO(3), liaisons, poutres géométriquement exactes, contact, analyse modale et Floquet, sensibilités adjointes"
 readme = "README.md"
 license = "Apache-2.0"

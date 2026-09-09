@@ -5,10 +5,13 @@ import sys
 import tempfile
 from pathlib import Path
 import uuid
+import zipfile
 
 from PySide6.QtCore import QObject, QProcess, QProcessEnvironment, QTimer, Signal
 
 from .model import MAX_RESULT_BYTES, Result, read_json, write_json
+from .document import Project
+from .mechanism import MechanicalResult
 
 
 class Controller(QObject):
@@ -27,13 +30,24 @@ class Controller(QObject):
     def start(self, parameters):
         if self.process is not None:
             raise RuntimeError("Un calcul est déjà en cours.")
+        if isinstance(parameters, Project) and parameters.diagnostics():
+            raise ValueError("\n".join(d.message for d in parameters.diagnostics()))
         self._temporary = tempfile.TemporaryDirectory(prefix="vinkulum-run-")
         directory = Path(self._temporary.name)
         self._run_id = str(uuid.uuid4())
         self._parameters = parameters
         self._output = directory / "result.json"
         try:
-            write_json(directory / "input.json", {"run_id": self._run_id, "parameters": asdict(parameters)})
+            write_json(
+                directory / "input.json",
+                {
+                    "run_id": self._run_id,
+                    "parameters": asdict(parameters),
+                    "kind": "mechanism"
+                    if isinstance(parameters, Project)
+                    else "pendulum",
+                },
+            )
         except Exception:
             self._temporary.cleanup()
             self._temporary = None
@@ -43,21 +57,37 @@ class Controller(QObject):
         self._cancelled = False
         self._log = b""
         environment = QProcessEnvironment.systemEnvironment()
-        for key, value in {"RAYON_NUM_THREADS": "2", "OPENBLAS_NUM_THREADS": "1",
-                           "OMP_NUM_THREADS": "1", "PYTHONUNBUFFERED": "1"}.items():
+        for key, value in {
+            "RAYON_NUM_THREADS": "2",
+            "OPENBLAS_NUM_THREADS": "1",
+            "OMP_NUM_THREADS": "1",
+            "PYTHONUNBUFFERED": "1",
+        }.items():
             environment.insert(key, value)
         process.setProcessEnvironment(environment)
         process.setProcessChannelMode(QProcess.ProcessChannelMode.MergedChannels)
         process.readyReadStandardOutput.connect(lambda: self._drain(process))
-        process.finished.connect(lambda code, status: self._finish(process, code, status))
+        process.finished.connect(
+            lambda code, status: self._finish(process, code, status)
+        )
         process.errorOccurred.connect(lambda error: self._error(process, error))
         self.busy_changed.emit(True)
         program, arguments = self._worker_command(directory)
         process.start(program, arguments)
 
     def _worker_command(self, directory):
-        return sys.executable, ["-m", "vinkulum_studio.worker",
-                                str(directory / "input.json"), str(self._output)]
+        if getattr(sys, "frozen", False):
+            return sys.executable, [
+                "--worker",
+                str(directory / "input.json"),
+                str(self._output),
+            ]
+        return sys.executable, [
+            "-m",
+            "vinkulum_studio.worker",
+            str(directory / "input.json"),
+            str(self._output),
+        ]
 
     def _drain(self, process):
         if process is self.process:
@@ -69,7 +99,9 @@ class Controller(QObject):
             return
         self._cancelled = True
         process.terminate()
-        QTimer.singleShot(1000, lambda: process.kill() if self.process is process else None)
+        QTimer.singleShot(
+            1000, lambda: process.kill() if self.process is process else None
+        )
 
     def _error(self, process, error):
         if process is self.process and error == QProcess.ProcessError.FailedToStart:
@@ -94,8 +126,22 @@ class Controller(QObject):
                     detail = str(data.get("message", "Erreur sans diagnostic"))[:2000]
                     message = f"Échec du calcul : {detail}"
                 else:
-                    result = Result.from_dict(data, self._run_id, self._parameters)
-        except (OSError, ValueError, TypeError, KeyError, AttributeError) as exc:
+                    result = (
+                        MechanicalResult.read(
+                            data, self._run_id, self._parameters, self._output.parent
+                        )
+                        if isinstance(self._parameters, Project)
+                        else Result.from_dict(data, self._run_id, self._parameters)
+                    )
+        except (
+            OSError,
+            ValueError,
+            TypeError,
+            KeyError,
+            AttributeError,
+            EOFError,
+            zipfile.BadZipFile,
+        ) as exc:
             message = f"Sortie du worker refusée : {exc}"
         self._cleanup(process)
         if result is not None:

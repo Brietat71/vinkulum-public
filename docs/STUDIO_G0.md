@@ -12,7 +12,7 @@ n'est pas réécrite : la présente recette identifie le socle effectivement uti
 
 ## Livrable
 
-Le [guide de lancement](../apps/studio/README.md) décrit l'installation. Le
+Le [guide historique de lancement](https://github.com/Brietat71/vinkulum-public/blob/d2191b4c2fa4862a7a50462c44af8933464da1a6/apps/studio/README.md) décrit l'installation G0. Le
 paquet `vinkulum-studio` possède sa propre version **0.1.0** et une roue Python
 sans binaires Qt intégrés. Il dépend de Vinkulum 0.18.1 et PySide6 6.11.2.
 Le numéro du noyau reste inchangé puisque son paquet et son API ne changent pas.

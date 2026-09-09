@@ -5,6 +5,7 @@ from dataclasses import asdict
 import json
 import math
 import time
+from importlib.metadata import version
 
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtWidgets import (QDialog, QDialogButtonBox, QDoubleSpinBox, QFileDialog,
@@ -36,7 +37,7 @@ class MainWindow(QMainWindow):
         title = QLabel("VINKULUM  /  STUDIO")
         title.setStyleSheet("font-size: 23px; font-weight: 700; color: #17314a;")
         layout.addWidget(title)
-        layout.addWidget(QLabel("Prototype G0 · Un pendule calculé par le noyau Vinkulum 0.18.1"))
+        layout.addWidget(QLabel(f"Prototype G0 · Un pendule calculé par le noyau Vinkulum {version('vinkulum')}"))
         columns = QHBoxLayout()
         layout.addLayout(columns, 1)
         panel = QWidget()

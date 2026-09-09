@@ -2839,6 +2839,21 @@ impl Modele {
             }
         }
         // ── couples à loi : r_b −= τ, r_a += τ  →  ∂r_b = −∂τ, ∂r_a = +∂τ
+        for charge in &self.efforts_temporels {
+            let i = charge.corps;
+            if self.gele(i) {
+                continue;
+            }
+            let d = -charge.tangente_moment(&self.corps, pas.t1) * jls[i];
+            for p in 0..3 {
+                for q in 0..3 {
+                    trip.push(t(6 * i + 3 + p, 6 * i + 3 + q, d[(p, q)] * kq));
+                    if garde_kq {
+                        kqt.push((6 * i + 3 + p, 6 * i + 3 + q, d[(p, q)]));
+                    }
+                }
+            }
+        }
         for cp in &self.couples {
             if [cp.a, cp.b].iter().flatten().all(|&i| gel(i)) {
                 continue;

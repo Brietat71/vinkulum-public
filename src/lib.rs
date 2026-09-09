@@ -57,6 +57,7 @@ mod analyse;
 mod assemblage;
 mod certificat;
 mod certificat_vitesse;
+pub mod charges_temporelles;
 mod contraintes;
 mod equilibrage;
 mod initialisation;
@@ -1554,6 +1555,7 @@ pub struct Modele {
     pub lam: DVector<f64>,
     /// efforts extérieurs constants au CdM, en repère monde : (corps, F, M)
     pub efforts: Vec<(usize, V3, V3)>,
+    pub efforts_temporels: Vec<charges_temporelles::EffortTemporel>,
     /// couples à loi (servos, gouverneur, ressorts)
     pub couples: Vec<Couple>,
     pub pales: Vec<Pale>,
@@ -1723,6 +1725,7 @@ impl Modele {
             t: 0.0,
             lam: DVector::zeros(0),
             efforts: vec![],
+            efforts_temporels: vec![],
             couples: vec![],
             pales: vec![],
             contacts: vec![],
@@ -1893,6 +1896,13 @@ impl Modele {
             for k in 0..3 {
                 f[6 * i + k] += fo[k];
                 f[6 * i + 3 + k] += mo[k];
+            }
+        }
+        for charge in &self.efforts_temporels {
+            let (fo, mo) = charge.valeur(&self.corps, t);
+            for k in 0..3 {
+                f[6 * charge.corps + k] += fo[k];
+                f[6 * charge.corps + 3 + k] += mo[k];
             }
         }
         for c in &self.couples {
@@ -2649,7 +2659,7 @@ impl Modele {
         if self.g.norm() > 0.0 {
             return Some("gravité non nulle".into());
         }
-        if !self.efforts.is_empty() {
+        if !self.efforts.is_empty() || !self.efforts_temporels.is_empty() {
             return Some("efforts extérieurs imposés".into());
         }
         if !self.pales.is_empty() {
@@ -2718,7 +2728,7 @@ impl Modele {
         if !self.contacts.is_empty() {
             return Some("contacts (dissipatifs)".into());
         }
-        if !self.efforts.is_empty() {
+        if !self.efforts.is_empty() || !self.efforts_temporels.is_empty() {
             return Some("efforts extérieurs imposés".into());
         }
         for e in &self.elems {
@@ -5458,6 +5468,13 @@ impl Modele {
                 r[6 * i + 3 + a] -= mo[a];
             }
         }
+        for charge in &me.efforts_temporels {
+            let (fo, mo) = charge.valeur(&me.corps, t);
+            for a in 0..3 {
+                r[6 * charge.corps + a] -= fo[a];
+                r[6 * charge.corps + 3 + a] -= mo[a];
+            }
+        }
         for c in &me.couples {
             if !me.gel.is_empty() && [c.a, c.b].iter().flatten().all(|&i| me.gele(i)) {
                 continue;
@@ -5951,6 +5968,44 @@ impl Noyau {
         Ok(self.mo.elems.len() - 1)
     }
 
+    /// Liaison définie par DEUX repères locaux indépendants. Contrairement à
+    /// `liaison`, cette méthode ne recale pas implicitement le repère B.
+    /// Une pose incompatible reste incompatible et doit être diagnostiquée.
+    #[pyo3(signature = (nom, a, b, pa, ra, pb, rb,
+                        bloque_t = vec![0, 1, 2], bloque_r = vec![0, 1, 2],
+                        cible_t = None, cible_r = None, nh = false))]
+    fn liaison_reperes(
+        &mut self,
+        nom: String,
+        a: Option<usize>,
+        b: Option<usize>,
+        pa: [f64; 3],
+        ra: [f64; 9],
+        pb: [f64; 3],
+        rb: [f64; 9],
+        bloque_t: Vec<usize>,
+        bloque_r: Vec<usize>,
+        cible_t: Option<([f64; 3], (String, Vec<f64>))>,
+        cible_r: Option<([f64; 3], (String, Vec<f64>))>,
+        nh: bool,
+    ) -> PyResult<usize> {
+        valide(&pb, "point de liaison B")?;
+        valide(&rb, "repère de liaison B")?;
+        let r = m3(rb);
+        if (r.transpose() * r - M3::identity()).norm() > 1e-9 || (r.determinant() - 1.).abs() > 1e-9
+        {
+            return Err(pyo3::exceptions::PyValueError::new_err(
+                "repère de liaison B hors SO(3)",
+            ));
+        }
+        let index = self.liaison(nom, a, b, pa, ra, bloque_t, bloque_r, cible_t, cible_r, nh)?;
+        if let Elem::L(liaison) = &mut self.mo.elems[index] {
+            liaison.pb = v3(pb);
+            liaison.rb = r;
+        }
+        Ok(index)
+    }
+
     /// Bielle à deux rotules ; `l` None = longueur initiale.
     #[pyo3(signature = (nom, a, b, pa, pb, l = None))]
     fn distance(
@@ -6343,6 +6398,31 @@ impl Noyau {
                 .map(|(i, f, m)| (*i, f.as_slice().to_vec(), m.as_slice().to_vec()))
                 .collect::<Vec<_>>(),
         )?;
+        let mut charges = Vec::new();
+        for charge in &self.mo.efforts_temporels {
+            let item = PyDict::new(py);
+            item.set_item("nom", &charge.nom)?;
+            item.set_item("corps", charge.corps)?;
+            item.set_item("point_local", charge.point.as_slice())?;
+            item.set_item(
+                "force",
+                charge
+                    .force
+                    .iter()
+                    .map(charges_temporelles::loi_info)
+                    .collect::<Vec<_>>(),
+            )?;
+            item.set_item(
+                "moment",
+                charge
+                    .moment
+                    .iter()
+                    .map(charges_temporelles::loi_info)
+                    .collect::<Vec<_>>(),
+            )?;
+            charges.push(item);
+        }
+        etat.set_item("efforts_temporels", charges)?;
         let mut contraintes = Vec::with_capacity(self.mo.elems.len());
         let mut row = 0;
         for e in &self.mo.elems {
@@ -7990,6 +8070,36 @@ impl Noyau {
         Ok(())
     }
 
+    /// Effort temporel au point `point` local au corps. F et M sont mondiaux ;
+    /// le moment au CdM inclut (R point) × F. Chaque composante est une loi
+    /// constante, linéaire ou tabulée au format des commandes de liaison.
+    #[pyo3(signature = (nom, corps, f, m, point = [0.0; 3]))]
+    fn effort_temporel(
+        &mut self,
+        nom: String,
+        corps: usize,
+        f: [(String, Vec<f64>); 3],
+        m: [(String, Vec<f64>); 3],
+        point: [f64; 3],
+    ) -> PyResult<usize> {
+        self._ref1("effort temporel", corps)?;
+        let [fx, fy, fz] = f;
+        let [mx, my, mz] = m;
+        let charge = charges_temporelles::EffortTemporel {
+            nom,
+            corps,
+            point: v3(point),
+            force: [loi_de(fx)?, loi_de(fy)?, loi_de(fz)?],
+            moment: [loi_de(mx)?, loi_de(my)?, loi_de(mz)?],
+        };
+        charge
+            .verifie(&self.mo.corps)
+            .map_err(pyo3::exceptions::PyValueError::new_err)?;
+        let index = self.mo.efforts_temporels.len();
+        self.mo.efforts_temporels.push(charge);
+        Ok(index)
+    }
+
     /// Intègre jusqu'à `t_end` au pas `h`. `adaptatif` = tolérance RELATIVE du
     /// résidu de demi-pas (None = pas FIXE, le défaut) ; `bornes` = (min, max)
     /// en multiples de `h`. Rend la trajectoire échantillonnée
@@ -8635,6 +8745,11 @@ impl Noyau {
         strict: bool,
     ) -> PyResult<(f64, usize)> {
         self.bilan_statique = None;
+        if !self.mo.efforts_temporels.is_empty() {
+            return Err(pyo3::exceptions::PyValueError::new_err(
+                "statique : continuation des efforts temporels non prise en charge ; utilisez la dynamique",
+            ));
+        }
         reglages(t, t, 1.0, tol, iters).map_err(pyo3::exceptions::PyValueError::new_err)?;
         if paliers_max == 0 {
             return Err(pyo3::exceptions::PyValueError::new_err(
@@ -8892,6 +9007,9 @@ impl Noyau {
         }
         for &(i, _, _) in &self.mo.efforts {
             vus[i] = true;
+        }
+        for charge in &self.mo.efforts_temporels {
+            vus[charge.corps] = true;
         }
         for p in &self.mo.pales {
             vus[p.corps] = true;

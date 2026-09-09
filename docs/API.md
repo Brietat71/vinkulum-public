@@ -4,7 +4,7 @@
 Toute édition à la main est écrasée et fait rougir la CI — une
 documentation recopiée finit par décrire une autre bibliothèque.
 
-Version : `0.18.1`
+Version : `0.19.0`
 
 ## Le noyau — `vinkulum.Noyau`
 
@@ -34,6 +34,7 @@ Le modèle vu de Python : on déclare, on simule, on lit
 | `distance` | Bielle à deux rotules ; `l` None = longueur initiale |
 | `distance_maillage` | Distance d'un point MONDE au maillage `i`, et le point le plus proche |
 | `effort` | Effort constant (F, M) au CdM du corps, repère monde |
+| `effort_temporel` | Effort temporel au point `point` local au corps. F et M sont mondiaux ; |
 | `energie` | Énergie mécanique totale : cinétique (translation + rotation, tenseur |
 | `engrenage` | Engrenage θ_a = rapport·θ_b, axes `axe_a`/`axe_b` dans le repère du |
 | `enregistre_schema` | Arme (ou désarme) l'HISTORIQUE DU SCHÉMA : (u̇, a, λ) à l'état initial |
@@ -50,6 +51,7 @@ Le modèle vu de Python : on déclare, on simule, on lit
 | `k_c_m_z` | (K, C, M, Z, G) autour de l'état courant : raideur tangente, |
 | `k_m_z` | (K, M, base admissible Z) autour de l'état courant, en ligne — de quoi |
 | `liaison` | LIAISON GÉNÉRIQUE — six degrés à la carte, entre `a` et `b` |
+| `liaison_reperes` | Liaison définie par DEUX repères locaux indépendants. Contrairement à |
 | `maillage` | MAILLAGE TRIANGULAIRE porté par un corps — la géométrie quelconque |
 | `modes` | Modes propres du système contraint autour de l'état courant : |
 | `modes_complexes` | Modes oscillants COMPLEXES : [(fréquence Hz, amortissement réduit ζ, σ)] |

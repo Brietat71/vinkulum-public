@@ -202,6 +202,9 @@ impl Modele {
                 self.efforts.len()
             ));
         }
+        if !self.efforts_temporels.is_empty() {
+            out.push("efforts temporels et bras de levier hors des facteurs de poutres".into());
+        }
         for (type_, noms) in [
             (
                 "couples à loi",
@@ -317,6 +320,21 @@ impl Modele {
             }
         }
         // Pesanteur et efforts constants au CdM : tangentes nulles.
+        if pose {
+            for charge in &self.efforts_temporels {
+                let d = charge.tangente_moment(&self.corps, t);
+                for p in 0..3 {
+                    for q in 0..3 {
+                        ajoute(
+                            &mut k,
+                            6 * charge.corps + 3 + p,
+                            6 * charge.corps + 3 + q,
+                            -d[(p, q)],
+                        );
+                    }
+                }
+            }
+        }
         for cp in &self.couples {
             let d = cp.tangentes(&self.corps, t);
             for (target, sg) in [(cp.a, 1.0), (cp.b, -1.0)] {

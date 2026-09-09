@@ -181,6 +181,9 @@ impl Modele {
             fini(f.as_slice(), "effort")?;
             fini(m.as_slice(), "moment")?;
         }
+        for charge in &self.efforts_temporels {
+            charge.verifie(&self.corps)?;
+        }
         for i in &self.inflows {
             fini(
                 &[i.v_i, i.v1s, i.v1c, i.poussee, i.m_roul, i.m_tang],

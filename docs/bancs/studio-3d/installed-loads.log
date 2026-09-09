@@ -1,0 +1,13 @@
+test_explicit_frames_do_not_reanchor_or_accept_invalid_rotations (vinkulum.test_charges_temporelles.ExplicitFrames.test_explicit_frames_do_not_reanchor_or_accept_invalid_rotations) ... ok
+test_two_frames_reproduce_existing_joint (vinkulum.test_charges_temporelles.ExplicitFrames.test_two_frames_reproduce_existing_joint) ... ok
+test_conservation_and_unsupported_static_are_refused (vinkulum.test_charges_temporelles.TemporalLoads.test_conservation_and_unsupported_static_are_refused) ... ok
+test_constant_matches_existing_force (vinkulum.test_charges_temporelles.TemporalLoads.test_constant_matches_existing_force) ... ok
+test_linear_force_against_polynomial_solution (vinkulum.test_charges_temporelles.TemporalLoads.test_linear_force_against_polynomial_solution) ... ok
+test_offset_force_tangent_and_refinement (vinkulum.test_charges_temporelles.TemporalLoads.test_offset_force_tangent_and_refinement) ... ok
+test_table_values_endpoints_and_rejections (vinkulum.test_charges_temporelles.TemporalLoads.test_table_values_endpoints_and_rejections) ... ok
+test_torque_against_axis_rotation (vinkulum.test_charges_temporelles.TemporalLoads.test_torque_against_axis_rotation) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.019s
+
+OK

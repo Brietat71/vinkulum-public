@@ -9,14 +9,14 @@ industrielles, structures et mécanismes aéronautiques. FRELON, un projet
 d'hélicoptère nano-UAV, est son premier cas d'application ; les modèles
 aérodynamiques prolongent ce socle mécanique.
 
-**Version courante : 0.18.1** · Python **3.14 ou plus** · Phase **alpha** ·
+**Version courante : 0.19.0** · Python **3.14 ou plus** · Phase **alpha** ·
 [Apache-2.0](LICENSE), avec [licences tierces distinctes](THIRD_PARTY_NOTICES.md).
 
 Première publication publique des sources : voir le [dossier d'ouverture](docs/PUBLICATION_PUBLIQUE.md).
 Le noyau entier n'est pas certifié ; les garanties et limites sont précisées
 ci-dessous. Aucun paquet n'est publié sur PyPI.
 
-[Notes de version](docs/VERSION_0.18.1.md) ·
+[Notes de version](docs/VERSION_0.19.0.md) ·
 [Certification : garanties et obligations](docs/CERTIFICATION_NOYAU.md) ·
 [Référence d'API](docs/API.md) ·
 [Objectif et travaux du noyau](docs/OBJECTIF_MBDYN.md) ·
@@ -24,11 +24,12 @@ ci-dessous. Aucun paquet n'est publié sur PyPI.
 
 ## Démarrer
 
-Une [interface graphique expérimentale G0](apps/studio/README.md) est disponible
-dans le paquet optionnel **Vinkulum Studio 0.1.0** : pendule, paramètres,
-calcul séparé, animation, courbe et export. Voir sa [recette et ses limites](docs/STUDIO_G0.md).
+Un [éditeur de mécanismes rigides 3D](apps/studio/README.md) est disponible
+dans le paquet optionnel **Vinkulum Studio 0.2.0** : primitives, liaisons,
+manipulation et saisie numérique, charges temporelles, calcul séparé, animation,
+courbes et export. Voir sa [qualification et ses limites](docs/STUDIO_3D.md).
 Le [cahier des charges v1.1](outputs/Cahier_des_charges_suite_ingenierie_Vinkulum.md)
-décrit aussi les lots futurs de la suite généraliste ; ils ne sont pas livrés par G0.
+décrit aussi les lots futurs de la suite généraliste ; ils ne sont pas tous livrés par Studio.
 
 Les commandes suivantes s'exécutent dans un clone du dépôt, sous un shell
 Bash, avec **Python 3.14+, Rust/Cargo, un compilateur C++17 et un éditeur de liens
@@ -48,7 +49,7 @@ python -m vinkulum.verification
 
 Cette installation de développement utilise les modules Python du dépôt.
 Après une modification du Rust, relancer la commande `maturin develop`.
-Le tag Git annoté `v0.18.1` identifie les sources de la livraison ; les commits
+Le tag Git annoté `v0.18.1` identifie la première publication ; les commits
 et tags de version restent distincts des publications de paquets.
 
 Pour construire une roue installable indépendamment du dépôt :

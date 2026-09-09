@@ -1,0 +1,88 @@
+Building wheel...
+running egg_info
+creating vinkulum_studio.egg-info
+writing vinkulum_studio.egg-info/PKG-INFO
+writing dependency_links to vinkulum_studio.egg-info/dependency_links.txt
+writing entry points to vinkulum_studio.egg-info/entry_points.txt
+writing requirements to vinkulum_studio.egg-info/requires.txt
+writing top-level names to vinkulum_studio.egg-info/top_level.txt
+writing manifest file 'vinkulum_studio.egg-info/SOURCES.txt'
+reading manifest file 'vinkulum_studio.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+adding license file 'NOTICE'
+writing manifest file 'vinkulum_studio.egg-info/SOURCES.txt'
+running bdist_wheel
+running build
+running build_py
+creating build/lib/vinkulum_studio
+copying vinkulum_studio/dialogs.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/model.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/controller.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/__init__.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/series_view.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/worker.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/views.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/__main__.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/window.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/editor.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/examples3d.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/mechanism.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/document.py -> build/lib/vinkulum_studio
+copying vinkulum_studio/viewport.py -> build/lib/vinkulum_studio
+running egg_info
+writing vinkulum_studio.egg-info/PKG-INFO
+writing dependency_links to vinkulum_studio.egg-info/dependency_links.txt
+writing entry points to vinkulum_studio.egg-info/entry_points.txt
+writing requirements to vinkulum_studio.egg-info/requires.txt
+writing top-level names to vinkulum_studio.egg-info/top_level.txt
+reading manifest file 'vinkulum_studio.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+adding license file 'NOTICE'
+writing manifest file 'vinkulum_studio.egg-info/SOURCES.txt'
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/vinkulum_studio
+copying build/lib/vinkulum_studio/dialogs.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/model.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/controller.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/__init__.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/series_view.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/worker.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/views.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/__main__.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/window.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/editor.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/examples3d.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/mechanism.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/document.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+copying build/lib/vinkulum_studio/viewport.py -> build/bdist.linux-x86_64/wheel/./vinkulum_studio
+running install_egg_info
+Copying vinkulum_studio.egg-info to build/bdist.linux-x86_64/wheel/./vinkulum_studio-0.2.0-py3.14.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/vinkulum_studio-0.2.0.dist-info/WHEEL
+creating '/tmp/vinkulum-studio3d-archive-check/wheels/.tmp-v7jtes87/vinkulum_studio-0.2.0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'vinkulum_studio/__init__.py'
+adding 'vinkulum_studio/__main__.py'
+adding 'vinkulum_studio/controller.py'
+adding 'vinkulum_studio/dialogs.py'
+adding 'vinkulum_studio/document.py'
+adding 'vinkulum_studio/editor.py'
+adding 'vinkulum_studio/examples3d.py'
+adding 'vinkulum_studio/mechanism.py'
+adding 'vinkulum_studio/model.py'
+adding 'vinkulum_studio/series_view.py'
+adding 'vinkulum_studio/viewport.py'
+adding 'vinkulum_studio/views.py'
+adding 'vinkulum_studio/window.py'
+adding 'vinkulum_studio/worker.py'
+adding 'vinkulum_studio-0.2.0.dist-info/licenses/LICENSE'
+adding 'vinkulum_studio-0.2.0.dist-info/licenses/NOTICE'
+adding 'vinkulum_studio-0.2.0.dist-info/METADATA'
+adding 'vinkulum_studio-0.2.0.dist-info/WHEEL'
+adding 'vinkulum_studio-0.2.0.dist-info/entry_points.txt'
+adding 'vinkulum_studio-0.2.0.dist-info/top_level.txt'
+adding 'vinkulum_studio-0.2.0.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+Successfully built /tmp/vinkulum-studio3d-archive-check/wheels/vinkulum_studio-0.2.0-py3-none-any.whl

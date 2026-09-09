@@ -1,0 +1,9 @@
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /tmp/vinkulum-studio3d-installed/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+   Compiling pyo3-ffi v0.29.2
+   Compiling pyo3 v0.29.2
+   Compiling vinkulum v0.19.0 (/tmp/vinkulum-studio3d-archive-check/vinkulum-studio-0.2.0)
+    Finished `release` profile [optimized] target(s) in 25.60s
+📦 Built wheel for CPython 3.14 to /tmp/vinkulum-studio3d-archive-check/wheels/vinkulum-0.19.0-cp314-cp314-manylinux_2_39_x86_64.whl
