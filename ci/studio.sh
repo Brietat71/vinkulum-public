@@ -10,6 +10,9 @@ export OMP_NUM_THREADS=1
 case "$(uname -s)" in
   Linux)
     export QT_QPA_PLATFORM=xcb
+    # Probe a fresh process: another library must not mask missing Qt/X11
+    # dependencies by loading its own bundled copies before QApplication.
+    xvfb-run -a "$PY" -c 'from PySide6.QtWidgets import QApplication; app = QApplication([]); print("Qt/X11 startup OK before importing CAD or VTK")'
     xvfb-run -a -s '-screen 0 1600x1100x24' "$PY" -X faulthandler -m unittest discover -s "$VINKULUM_SOURCE_ROOT/apps/studio/tests" -v
     ;;
   Darwin)

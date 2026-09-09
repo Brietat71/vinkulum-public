@@ -62,6 +62,11 @@ this table are not part of the current desktop binary.
 
 ## Get started
 
+**Try the desktop without compiling:**
+[Studio 0.4.1 Linux preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.4.1-linux)
+includes the standalone archive, checksums and extracted-binary qualification.
+It targets Linux x86-64 / Ubuntu 24.04 / glibc 2.39 / X11.
+
 For development, use **Python 3.14**, Rust/Cargo, a C++17 compiler, a system
 linker and [uv](https://docs.astral.sh/uv/). Linux desktop prerequisites and the
 standalone packaging recipe are in the [Studio guide](apps/studio/README.md).

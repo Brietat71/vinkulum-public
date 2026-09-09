@@ -14,8 +14,11 @@ OpenGL. Consult check/bundle-check.json and build-info.json for this build's
 qualification. Older glibc, Linux ARM64 and native Wayland are not qualified.
 A Wayland session must provide XWayland. The system supplies its graphics
 libraries and OpenGL driver. Ubuntu 24.04 Qt/X11 dependencies include:
-  libegl1 libgl1 libgl1-mesa-dri libxkbcommon-x11-0 libxcb-cursor0
-  libxcb-icccm4 libxcb-keysyms1 libxcb-image0 libxcb-render-util0 libxcb-util1
+  libegl1 libgl1 libgl1-mesa-dri libfontconfig1 libfreetype6 libdbus-1-3
+  libglib2.0-0t64 libx11-6 libx11-xcb1 libxkbcommon0 libxkbcommon-x11-0
+  libxcb1 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0
+  libxcb-randr0 libxcb-render0 libxcb-render-util0 libxcb-shape0
+  libxcb-shm0 libxcb-sync1 libxcb-util1 libxcb-xfixes0 libxcb-xkb1
 To select XWayland explicitly:
   QT_QPA_PLATFORM=xcb ./Vinkulum\ Studio/Vinkulum\ Studio
 

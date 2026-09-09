@@ -39,9 +39,12 @@ A kernel **0.19.0** wheel matching your Python and platform can replace
 On Ubuntu 24.04, install the desktop prerequisites with:
 
 ```sh
-sudo apt-get install libegl1 libgl1 libgl1-mesa-dri libxkbcommon-x11-0 \
-  libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0 \
-  libxcb-render-util0 libxcb-util1
+sudo apt-get install libegl1 libgl1 libgl1-mesa-dri \
+  libfontconfig1 libfreetype6 libdbus-1-3 libglib2.0-0t64 \
+  libx11-6 libx11-xcb1 libxkbcommon0 libxkbcommon-x11-0 \
+  libxcb1 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0 \
+  libxcb-randr0 libxcb-render0 libxcb-render-util0 libxcb-shape0 \
+  libxcb-shm0 libxcb-sync1 libxcb-util1 libxcb-xfixes0 libxcb-xkb1
 # Automated desktop tests also require:
 sudo apt-get install xvfb xauth
 ```
