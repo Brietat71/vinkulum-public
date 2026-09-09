@@ -1,3 +1,12 @@
 #!/usr/bin/env bash
-# pre-push : la CI locale juge ce qui part (cf. ci/local.sh)
-exec "$(git rev-parse --show-toplevel)/ci/local.sh"
+# Run the complete local CI, including Git operations in Lean dependencies.
+set -euo pipefail
+VINKULUM_HOOK_ROOT=$(git rev-parse --show-toplevel)
+# Linked worktrees export GIT_DIR into hooks. Leaving it set makes Lake's
+# nested Git commands inspect this repository instead of Mathlib's repository.
+# https://git-scm.com/docs/githooks#_description
+VINKULUM_HOOK_GIT_VARS=$(git rev-parse --local-env-vars)
+while IFS= read -r VINKULUM_HOOK_GIT_VAR; do
+  unset "$VINKULUM_HOOK_GIT_VAR"
+done <<< "$VINKULUM_HOOK_GIT_VARS"
+exec "$VINKULUM_HOOK_ROOT/ci/local.sh"

@@ -43,6 +43,9 @@ elif ! "$PY" -c 'import pip' >/dev/null 2>&1; then
 fi
 etape() { printf '\n══ %s\n' "$*"; }
 
+etape "isolation du hook Git : checkout et worktree"
+"$PY" ci/test_pre_push.py
+
 etape "format et lint"
 cargo fmt --check
 cargo clippy --release --all-targets -- -D warnings

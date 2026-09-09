@@ -62,6 +62,40 @@ a workflow; it does not establish general solver accuracy.
 These are draft introductions for maintainers and community members to adapt.
 This document does not mean they have been posted or sent anywhere.
 
+## First technical audiences
+
+Reviewed on 10 September 2026:
+
+- **build123d users and contributors:** its
+  [Show and tell category](https://github.com/gumyr/build123d/discussions/categories/show-and-tell)
+  is a relevant place for the CAD demonstration and a request for regression
+  parts. Upstream [OCCT 8 support is already being worked on](https://github.com/gumyr/build123d/discussions/1439).
+  Present Vinkulum's patches as a local adaptation and share the qualification
+  evidence; do not imply upstream endorsement or a replacement for that work.
+- **Show HN:** introduce the overall project with a downloadable application
+  and runnable example when the maintainer can answer questions. Its
+  [guidelines](https://news.ycombinator.com/showhn.html) call for something people
+  can try, discourage fundraising pages and prohibit soliciting votes. Use a
+  project introduction rather than a routine version announcement.
+
+Suggested build123d title: **Vinkulum Studio: OCCT 8 solids and SI mass properties
+in an open multibody workbench**.
+
+> We have added a small build123d/OCCT 8 workflow to Vinkulum Studio, a Qt/VTK
+> engineering workbench. The included example creates a plate, cuts an offset
+> hole and fillets its edges. The resulting BREP supplies the body's SI mass
+> and inertia, while a separate mesh is used for display.
+>
+> Our build123d 0.11.1 and ocpsvg adaptations are explicit, versioned patches.
+> We checked 96 targeted upstream tests and added independent volume/inertia,
+> frame and STEP-unit checks. This is a limited qualification corpus, not a
+> claim of compatibility with the entire API. We know upstream OCCT 8 work is
+> underway and would welcome guidance on making useful fixes upstreamable.
+>
+> We would especially value small redistributable STEP parts with known mass
+> properties or a reproducible failure. Source, limits and the demonstration:
+> https://github.com/Brietat71/vinkulum-public
+
 ## Make an introduction useful
 
 - For CAD users: share a reproducible part and ask for a difficult STEP example
