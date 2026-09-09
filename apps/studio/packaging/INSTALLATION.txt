@@ -1,19 +1,20 @@
-Vinkulum Studio 0.4.0 — Apple Silicon, macOS 14 ou ultérieur
+Vinkulum Studio 0.4.1 — Apple Silicon, macOS 14 or later
 
-Glisser Vinkulum Studio dans Applications, puis lancer l’application.
-Python, Rust, Qt et VTK sont embarqués : aucune compilation locale nécessaire.
-Version expérimentale ; le noyau n’est pas certifié dans son ensemble.
+Drag Vinkulum Studio into Applications, then launch it. Python, the native
+kernel, Qt and VTK are bundled; no local compilation is needed. This is
+experimental software; the complete mechanics kernel is not certified.
+Consult the accompanying macOS qualification report for the actual build.
+Linux qualification does not establish macOS compatibility.
 
-Cette construction utilise une signature ad hoc, sans certificat Developer ID
-ni notarisation Apple. macOS peut donc refuser l’ouverture automatique et demander
-une autorisation explicite dans Réglages Système > Confidentialité et sécurité.
-Aucun réglage global de sécurité ne doit être désactivé.
+The build uses ad-hoc signing, without a Developer ID certificate or Apple
+notarisation. macOS may refuse automatic opening and require explicit approval
+in System Settings > Privacy & Security. Do not disable global security settings.
 
-Sources et licences : https://github.com/Brietat71/vinkulum-public
-Code original Apache-2.0. Les dépendances gardent leurs licences distinctes.
-Les notices de distribution sont embarquées dans Contents/Resources.
-Qt/PySide6 : https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.11.2-src/
-Qt 6.11.2 : https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/
-VTK 9.7.0 : https://gitlab.kitware.com/vtk/vtk/-/tree/v9.7.0
-Les bibliothèques partagées sont accessibles dans le bundle pour remplacement,
-avec les opérations de signature requises par macOS après modification.
+Source and licences: https://github.com/Brietat71/vinkulum-public
+Original code is Apache-2.0; dependencies retain their own licences.
+Distribution notices are included in Contents/Resources.
+Qt/PySide6: https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.11.2-src/
+Qt 6.11.2: https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/
+VTK 9.7.0: https://gitlab.kitware.com/vtk/vtk/-/tree/v9.7.0
+Shared libraries are accessible in the bundle for replacement, subject to
+macOS signing requirements after modification.

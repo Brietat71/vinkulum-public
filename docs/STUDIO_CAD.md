@@ -1,98 +1,95 @@
 # Studio CAD — OCCT 8 minimum
 
-Studio **0.4.0** ajoute une première chaîne de conception solide à l'éditeur
-multicorps. Le noyau mécanique reste **Vinkulum 0.19.0**.
+Studio 0.4.0 introduced solid modelling in the multibody editor; 0.4.1 translates
+the interface into English. The mechanics kernel remains **Vinkulum 0.19.0**.
 
-## Périmètre livré
+## Available workflow
 
-Le bouton **CAD** et **Créer → Conception CAD…** ouvrent les opérations suivantes :
-boîte, cylindre, sphère, extrusion de rectangle ou de disque XY, soustraction,
-union, intersection, congés sur toutes les arêtes, import et export STEP.
-Les modifications sont intégrées au document mécanique et à son annuler/rétablir.
-Les opérations booléennes conservent le corps outil B : il reste un corps du
-mécanisme tant que l'utilisateur ne le supprime pas.
+The **CAD** button and the Create menu open boxes, cylinders, spheres, XY
+rectangle/disc extrusions, subtraction, union, intersection, all-edge fillets
+and STEP import/export. Changes participate in document undo/redo. Boolean
+operations retain tool body B; it remains a mechanical body until removed.
 
-Il s'agit de conception solide avec paramètres d'opération. Le journal conservé
-est une provenance, pas encore un arbre de fonctions régénérable. L'esquisse
-contrainte interactive, la sélection de faces/arêtes et les assemblages STEP
-multi-pièces sont des étapes ultérieures. Le dialogue reste modal, avec le calcul
-CAD exécuté dans un processus distinct, annulable et limité à 60 secondes.
+Operations accept numerical parameters. Their journal records provenance;
+it is not yet a regenerating feature tree. Interactive constrained sketches,
+face/edge selection and multi-part STEP assemblies are future work. The dialog
+is modal; CAD runs in a separate process with cancellation and a 60-second limit.
 
-## Installation reproductible
+## Reproducible installation
 
-Dans l'environnement Studio Python 3.14 avec son noyau natif installé :
+In the Python 3.14 Studio environment with its native kernel installed:
 
 ```sh
 python ci/prepare_cad.py build/cad-sources
 uv pip install build/cad-sources/build123d-0.11.1 \
-  build/cad-sources/ocpsvg-0.6.0 './apps/studio[cad,test]'
+  build/cad-sources/ocpsvg-0.6.0 -e './apps/studio[cad,test]'
 python -m vinkulum_studio
 ```
 
-Les distributions sources sont vérifiées par SHA-256 avant extraction. Les
-patches sont conservés dans [ci/patches](../ci/patches). Aucun `--ignore-requires-python`,
-aucune contrainte de dépendance ignorée et aucun repli vers OCCT 7 ne sont utilisés.
-Les adaptations locales ont des versions distinctes :
+Source distributions are checked by SHA-256 before extraction. The explicit
+[compatibility patches](../ci/patches) have distinct local package versions.
+Dependency constraints remain enforced and OCCT 7 is rejected.
 
-| Composant | Version utilisée | Adaptation |
+| Component | Version | Adaptation |
 |---|---|---|
-| OCCT via cadquery-ocp-novtk | 8.0.1 / 8.0.1.0.0 | Bibliothèque amont, sans recompilation ni modification |
-| build123d | 0.11.1+vinkulum.occt8 | Imports des collections OCCT 8, limites de Bnd_Box, dépendances |
-| ocpsvg | 0.6.0+vinkulum.occt8 | Collection de points et dépendance OCCT 8 |
-| ocp_gordon | 0.3.1 | Version amont compatible OCCT 8 |
+| OCCT through cadquery-ocp-novtk | 8.0.1 / 8.0.1.0.0 | Unmodified upstream binary |
+| build123d | 0.11.1+vinkulum.occt8 | OCCT 8 collection imports, Bnd_Box bounds, dependencies |
+| ocpsvg | 0.6.0+vinkulum.occt8 | Point collection and OCCT 8 dependency |
+| ocp_gordon | 0.3.1 | Upstream version compatible with OCCT 8 |
 
-Les anciens alias TopTools/TColgp/TColStd sont remplacés par les types concrets
-correspondants de `OCP.collections`. `Bnd_Box.Get()` renvoie désormais un type
-non enregistré dans le binding ; les coins min/max fournissent les mêmes six
-coordonnées. Les bibliothèques partagées restent séparées et remplaçables dans
-le paquet. Les sources et licences amont restent identifiées dans
-[THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
+Old TopTools/TColgp/TColStd aliases are replaced with corresponding concrete
+`OCP.collections` types. `Bnd_Box.Get()` now returns an unregistered binding type;
+minimum and maximum corners provide the same six coordinates. Shared libraries
+remain separate and replaceable in the bundle. Sources and licences are
+identified in [third-party notices](../THIRD_PARTY_NOTICES.md).
 
-## Géométrie et mécanique
+## Geometry and mechanics
 
-- Le BREP est conservé en millimètres. OCCT lit les unités déclarées dans STEP.
-- Le repère du corps mécanique est recentré sur son centre de masse volumique.
-  Les positions et le maillage de visualisation sont convertis en mètres.
-- Avec une densité homogène ρ, `m = ρ V_mm³ × 10⁻⁹` et
-  `I_kg·m² = (I_mm⁵ / V_mm³) × 10⁻⁶ × m`, autour du centre de masse.
-  Les propriétés de masse viennent du BREP, indépendamment de la tessellation.
-- Lors d'une modification CAD, les ancrages, repères de liaison et points de
-  charge sont rebasés pour conserver leur position/orientation dans le monde.
-- Le worker mécanique consomme le document capturé, la masse et le tenseur SI.
-  Il ne charge ni OCCT ni build123d et ne calcule pas les inerties sur un maillage.
-- Les projets CAD utilisent le schéma 2. Les projets antérieurs restent lisibles ;
-  les projets sans CAD restent sauvegardés en schéma 1.
+- BREP is stored in millimetres. OCCT reads the units declared in STEP.
+- The mechanical body frame is recentered at the solid's centre of mass.
+  Positions and display mesh coordinates are converted to metres.
+- For homogeneous density ρ, `m = ρ V_mm³ × 10⁻⁹` and
+  `I_kg·m² = (I_mm⁵ / V_mm³) × 10⁻⁶ × m`, about the centre of mass.
+  Mass properties come from the BREP, independently of tessellation.
+- A CAD edit rebases anchors, joint frames and load points to preserve their
+  world positions and orientations.
+- The mechanical worker consumes the captured document, mass and SI tensor.
+  It loads neither OCCT nor build123d and does not derive inertia from a mesh.
+- CAD projects use schema 2. Earlier projects remain readable; projects without
+  CAD continue to save as schema 1.
 
-Un import accepte un seul solide valide, jusqu'à 8 Mo de STEP. Les données
-capturées sont limitées à 2 Mo de BREP et 30 000 sommets/triangles par pièce,
-4 Mo de BREP et 100 000 éléments de maillage par document. Un refus conserve
-le document précédent. Ces bornes limitent cette première intégration ; elles
-ne constituent pas une promesse de prise en charge de grands assemblages.
+Import accepts one valid solid, with at most 8 MB of STEP input. Captured data
+is limited to 2 MB of BREP and 30,000 vertices/triangles per part, and 4 MB of
+BREP and 100,000 mesh elements per document. Rejection preserves the previous
+document. These bounds define the initial integration's scope.
 
 ## Qualification
 
-La qualification locale courante compte **48 tests Studio réussis**, dont les
-parcours CAD et les contrôles de précision de l'inspecteur. Les journaux,
-versions et mesures de la recette sont conservés dans
-[le dossier Studio CAD 0.4.0](bancs/studio-cad-040/README.md).
+The 0.4.0 qualification baseline passed **48 Studio tests**, including CAD
+workflows and Inspector precision. Its versions, logs and recipe measurements
+are in [the Studio CAD 0.4.0 record](bancs/studio-cad-040/README.md).
+The English interface adds a compatibility check for displayed joint/law labels
+and their saved identifiers. The [0.4.1 local record](bancs/studio-041/README.md)
+contains the 49-test log and English demo recipe. Run the current suite with
+`bash ci/studio.sh` in the installed Studio CAD environment.
 
-La recette propre à Studio confronte volumes et inerties à des formules
-analytiques indépendantes, vérifie rotations et centres de masse, booleans,
-congés, conversions STEP mètres/millimètres, sauvegarde BREP, rebasage des
-attaches, échec du worker et chaîne CAD → calcul mécanique → rendu Qt/VTK.
+Studio tests compare volumes and inertias with independent analytic formulas,
+check rotations and centres of mass, booleans, fillets, STEP metre/millimetre
+conversion, BREP persistence, attachment rebasing, worker failure and the
+CAD → mechanics → Qt/VTK rendering workflow.
 
-**96 tests amont ciblés** passent pour `test_bound_box`, `test_mass_properties`,
-`test_location` et `test_build_part` de build123d 0.11.1. Cela qualifie les
-parcours testés, pas l'intégralité de l'API build123d ou d'OCCT.
-`uv pip check` confirme la cohérence du graphe installé. Le contrôle du paquet
-exécute aussi son propre worker CAD, vérifie une pièce percée et son aller-retour
-STEP avant de lancer le double pendule et le contrôle de rendu.
+**96 targeted upstream tests** pass for build123d 0.11.1's `test_bound_box`,
+`test_mass_properties`, `test_location` and `test_build_part`. This qualifies
+the tested paths rather than the whole build123d or OCCT API. `uv pip check`
+checks the installed dependency graph. Bundle checks run their own CAD worker,
+verify a perforated part and STEP round-trip, then run a double pendulum and
+check rendering.
 
-Les propriétés intégrales sont numériques et restent soumises aux tolérances
-géométriques d'OCCT. La validation topologique et les références analytiques ne
-sont pas une certification générale des trajectoires mécaniques.
+Integral properties are numerical and subject to OCCT's geometric tolerances.
+Topological checks and analytic references do not certify arbitrary mechanical
+trajectories.
 
-Sources amont : [OCCT 8.0.1](https://github.com/Open-Cascade-SAS/OCCT/tree/V8_0_1),
+Upstream: [OCCT 8.0.1](https://github.com/Open-Cascade-SAS/OCCT/tree/V8_0_1),
 [build123d](https://github.com/gumyr/build123d),
 [OCP](https://github.com/CadQuery/OCP),
 [ocpsvg](https://pypi.org/project/ocpsvg/0.6.0/),

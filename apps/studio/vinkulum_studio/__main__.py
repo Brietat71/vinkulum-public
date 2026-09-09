@@ -16,10 +16,14 @@ def main():
         from .bundle_check import main as check_main
 
         return check_main(sys.argv[2])
+    from PySide6.QtCore import QLocale
     from PySide6.QtWidgets import QApplication
 
     from .editor import EditorWindow
 
+    QLocale.setDefault(
+        QLocale(QLocale.Language.English, QLocale.Territory.UnitedKingdom)
+    )
     app = QApplication(sys.argv)
     app.setApplicationName("Vinkulum Studio")
     app.setStyle("Fusion")

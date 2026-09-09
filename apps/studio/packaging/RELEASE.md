@@ -1,33 +1,33 @@
-Vinkulum Studio 0.4.0 — conception CAD et mécanismes 3D.
+Vinkulum Studio 0.4.1 — an English CAD and multibody workbench.
 
-Cette version ajoute OCCT 8.0.1 et build123d 0.11.1 adapté : primitives,
-extrusions, opérations booléennes, congés sur toutes les arêtes et échange STEP
-pour une pièce solide. Masse, centre de masse et inertie sont calculés sur le
-BREP ; les projets conservent la géométrie exacte et une représentation de rendu.
-Une opération CAD s'exécute dans un processus séparé et son échec conserve le
-document. Les esquisses contraintes interactives et l'arbre de fonctions
-régénérable ne sont pas encore disponibles.
+The interface, installation guides and contribution guide are now in English.
+Saved joint and law identifiers remain compatible with existing projects.
+Compact numerical fields preserve unedited values at full precision.
 
-L'interface propose les ateliers Modéliser / Simuler / Examiner, un inspecteur
-plus dense, des nombres compacts conservant leur valeur exacte, les champs
-X/Y/Z et les outils de sélection / déplacement / rotation. L'examen conserve
-les entrées des calculs comparés et les grilles temporelles natives.
+The CAD workflow introduced in 0.4.0 uses OCCT 8.0.1 and adapted build123d
+0.11.1: primitives, extrusions, booleans, all-edge fillets and single-solid
+STEP exchange. Mass, centre of mass and inertia come from the BREP. Projects
+retain exact geometry and a separate display mesh. CAD runs in a separate
+process; a failed operation preserves the document. Interactive constrained
+sketches and a regenerating feature tree are future work.
 
-Le noyau reste Vinkulum 0.19.0. Python 3.14, Qt/PySide6 et VTK sont embarqués
-avec le moteur CAD. Les versions et conditions d'installation sont précisées
-dans les notices de la plateforme. Chaque distribution doit passer les tests
-de son propre exécutable extrait : opération CAD, aller-retour STEP, double
-pendule, rendu OpenGL et identification des versions. Le rapport joint décrit
-la plateforme effectivement testée ; ce n'est pas une certification générale.
+Model, Simulate and Inspect workspaces provide a dense Inspector, X/Y/Z fields,
+selection/move/rotate tools, a command palette and comparison of captured runs
+on their native time grids. The kernel remains Vinkulum 0.19.0.
 
-La première qualification de cette version est locale sous Linux x86-64,
-Ubuntu 24.04 / glibc 2.39 / X11. La recette Apple Silicon est préparée ; une
-qualification Linux ne vaut pas qualification macOS. Si un DMG est joint à
-cette release, consulter son rapport macOS, sa signature et ses instructions
-spécifiques. La signature prévue est ad hoc, sans notarisation Apple.
+Standalone builds include Python 3.14, Qt/PySide6, VTK and CAD. Every distributed
+package must pass checks on its own extracted executable: CAD operations,
+STEP round-trip, native double-pendulum simulation, OpenGL rendering and version
+identification. Read the accompanying report for the actual tested platform;
+these checks do not establish general scientific certification.
 
-Pinocchio et les futurs connecteurs de solveurs sont décrits dans la feuille
-de route ; ils ne sont pas embarqués dans cette version.
+Linux x86-64 on Ubuntu 24.04 / glibc 2.39 / X11 is the current packaging target.
+The Apple Silicon recipe is prepared; Linux qualification does not qualify
+macOS. Any attached DMG needs its own macOS report and instructions. Planned
+signing is ad hoc, without Apple notarisation.
 
-Code original Apache-2.0 ; licences et adaptations tierces incluses. Sources
-exactes : commit ou tag associé à la distribution et provenance de construction.
+Pinocchio and future solver connectors remain roadmap work and are not bundled
+in this release. Several technical research reports remain in French.
+
+Original code is Apache-2.0; third-party licences and adaptation notices are
+included. The tag, commit and build provenance identify the distributed source.

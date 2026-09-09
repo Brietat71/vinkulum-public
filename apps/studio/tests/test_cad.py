@@ -287,7 +287,7 @@ class CadDesktopRecipe(unittest.TestCase):
             QTest.qWait(10)
         self.assertIsNone(dialog.result_data)
         self.assertEqual(dialog.project, p)
-        self.assertIn("Sélectionnez", dialog.status.text())
+        self.assertIn("Select", dialog.status.text())
 
 
 if __name__ == "__main__":

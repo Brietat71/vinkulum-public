@@ -23,7 +23,7 @@ from .cad_data import CadGeometry
 from .document import IDENTITY, Body, new_id
 
 if int(OCP.__version__.split(".")[0]) < 8:
-    raise RuntimeError("OCCT 8 minimum requis ; aucun repli vers OCCT 7.")
+    raise RuntimeError("OCCT 8 or later is required; OCCT 7 is not supported.")
 
 
 def location(rotation=IDENTITY, position_m=(0, 0, 0)):
@@ -39,7 +39,7 @@ def read_brep(text):
     shape = TopoDS_Shape()
     BRepTools.Read_s(shape, BytesIO(text.encode("ascii")), BRep_Builder())
     if shape.IsNull():
-        raise ValueError("BREP vide ou illisible.")
+        raise ValueError("Empty or unreadable BREP.")
     return bd.Compound.cast(shape)
 
 
@@ -67,23 +67,23 @@ def capture_shape(
     solids = shape.solids()
     if len(solids) != 1 or not shape.is_valid:
         raise ValueError(
-            "Une pièce doit être un solide fermé valide et connexe. Importez les pièces séparément."
+            "A part must be one valid, closed, connected solid. Import separate parts individually."
         )
     solid = solids[0]
     volume = solid.volume
     if not math.isfinite(volume) or volume <= 1e-9:
-        raise ValueError("Solide vide ou de volume trop petit.")
+        raise ValueError("Empty solid or volume too small.")
     if not math.isfinite(density) or not 0 < density <= 1e6:
-        raise ValueError("Masse volumique positive requise, au plus 10⁶ kg/m³.")
+        raise ValueError("Density must be positive and at most 10⁶ kg/m³.")
     centre = np.array(tuple(solid.center(bd.CenterOf.MASS)))
     tensor = np.array(solid.matrix_of_inertia) / volume * 1e-6
     centered = solid.moved(bd.Location(tuple(-centre)))
     buffer = BytesIO()
     if not bd.export_brep(centered, buffer):
-        raise ValueError("Échec de capture BREP.")
+        raise ValueError("BREP capture failed.")
     size = tuple(centered.bounding_box().size)
     if min(size) <= 1e-6 or max(size) > 1e6:
-        raise ValueError("Dimensions CAD hors plage (1 nm à 1 km).")
+        raise ValueError("CAD dimensions out of range (1 nm to 1 km).")
     # Deflection is a display tolerance in mm, never the source of mass properties.
     vertices, triangles = centered.tessellate(max(0.02, max(size) * 0.001), 0.15)
     data = CadGeometry(
@@ -119,7 +119,7 @@ def execute(request):
         if not shape.is_valid or not math.isclose(
             shape.volume, expected, rel_tol=1e-10
         ):
-            raise ValueError("Contrôle CAD : volume de la pièce percée incorrect.")
+            raise ValueError("CAD check: incorrect perforated-part volume.")
         with tempfile.TemporaryDirectory(prefix="vinkulum-cad-check-") as directory:
             path = Path(directory) / "check.step"
             bd.export_step(shape, path, unit=bd.Unit.MM)
@@ -127,8 +127,8 @@ def execute(request):
             if not restored.is_valid or not math.isclose(
                 restored.volume, expected, rel_tol=1e-10
             ):
-                raise ValueError("Contrôle CAD : aller-retour STEP incorrect.")
-        body = capture_shape(shape, name="Contrôle CAD", density=7800)
+                raise ValueError("CAD check: STEP round-trip failed.")
+        body = capture_shape(shape, name="CAD check", density=7800)
         return {
             "cad_check": {
                 "occt_version": OCP.__version__,
@@ -140,23 +140,23 @@ def execute(request):
             }
         }
     density = float(request.get("density", 7800))
-    name = request.get("name", "Pièce CAD")
+    name = request.get("name", "CAD part")
     a = Body.from_dict(request["a"]) if request.get("a") is not None else None
     if operation == "export_step":
         if a is None:
-            raise ValueError("Sélectionnez un corps à exporter.")
+            raise ValueError("Select a body to export.")
         shape = body_shape(a).moved(location(a.orientation, a.position))
         shape.label = a.name
         with tempfile.TemporaryDirectory(prefix="vinkulum-step-") as directory:
             path = Path(directory) / "part.step"
             if not bd.export_step(shape, path, unit=bd.Unit.MM):
-                raise ValueError("Échec de l’export STEP.")
+                raise ValueError("STEP export failed.")
             return {"step": path.read_text(), "occt_version": OCP.__version__}
     position, orientation, identifier, operations = (0, 0, 0), IDENTITY, None, ()
     if operation == "import_step":
         path = Path(request["path"])
         if path.stat().st_size > 8 * 1024 * 1024:
-            raise ValueError("Import STEP limité à 8 Mo pour cette version.")
+            raise ValueError("STEP import is limited to 8 MB in this version.")
         shape = bd.import_step(path)
     elif operation in (
         "box",
@@ -176,7 +176,7 @@ def execute(request):
         if len(values) != expected or not all(
             math.isfinite(v) and 0.001 <= v <= 1e6 for v in values
         ):
-            raise ValueError("Dimensions positives de 0,001 à 10⁶ mm requises.")
+            raise ValueError("Positive dimensions from 0.001 to 10⁶ mm are required.")
         if operation == "box":
             shape = bd.Box(*values)
         elif operation == "cylinder":
@@ -192,7 +192,7 @@ def execute(request):
         )
     elif operation in ("cut", "fuse", "common", "fillet"):
         if a is None:
-            raise ValueError("Sélectionnez le corps à modifier.")
+            raise ValueError("Select the body to modify.")
         shape = body_shape(a)
         position, orientation, identifier, name = (
             a.position,
@@ -204,12 +204,12 @@ def execute(request):
         if operation == "fillet":
             radius = float(request["radius_mm"])
             if not math.isfinite(radius) or radius <= 0:
-                raise ValueError("Rayon de congé strictement positif requis.")
+                raise ValueError("Fillet radius must be positive.")
             shape = bd.fillet(shape.edges(), radius)
         else:
             b = Body.from_dict(request["b"])
             if b.id == a.id:
-                raise ValueError("Deux corps distincts sont requis.")
+                raise ValueError("Two distinct bodies are required.")
             R = np.array(a.orientation).reshape(3, 3)
             relative_r = R.T @ np.array(b.orientation).reshape(3, 3)
             relative_p = R.T @ (np.array(b.position) - a.position)
@@ -222,7 +222,7 @@ def execute(request):
                 "common": lambda: shape & tool,
             }[operation]()
     else:
-        raise ValueError("Opération CAD inconnue.")
+        raise ValueError("Unknown CAD operation.")
     record = {k: v for k, v in request.items() if k not in ("a", "b", "path")}
     if request.get("b"):
         record["tool_id"] = request["b"]["id"]

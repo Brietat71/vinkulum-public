@@ -1,5 +1,6 @@
 """Typed authoring dialogs. Inputs are numbers and tables, never executable code."""
 
+import numpy as np
 from PySide6.QtWidgets import (
     QComboBox,
     QDialog,
@@ -11,9 +12,9 @@ from PySide6.QtWidgets import (
     QPushButton,
     QVBoxLayout,
 )
-import numpy as np
 
 from .document import Law, joint_at
+from .labels import JOINT_LABELS, LAW_LABELS
 from .model import finite_number
 from .series_view import SeriesView
 
@@ -22,13 +23,13 @@ def numbers(text, count=None):
     try:
         values = tuple(float(v.strip()) for v in text.replace(";", ",").split(","))
     except ValueError as exc:
-        raise ValueError("Saisir des nombres séparés par des virgules.") from exc
+        raise ValueError("Enter numbers separated by commas.") from exc
     if (
         not all(finite_number(v) for v in values)
         or count is not None
         and len(values) != count
     ):
-        raise ValueError(f"{count or 'Des'} valeurs finies requises.")
+        raise ValueError(f"{count or 'Expected'} finite values required.")
     return values
 
 
@@ -39,14 +40,15 @@ def numeric_text(values):
 class LawDialog(QDialog):
     def __init__(self, law=Law(), unit="", duration=2.0, parent=None):
         super().__init__(parent)
-        self.setWindowTitle(f"Loi temporelle [{unit}]")
+        self.setWindowTitle(f"Time law [{unit}]")
         self.resize(560, 480)
         self.law = law
         self.duration = duration
         self.unit = unit
         layout = QVBoxLayout(self)
         self.kind = QComboBox()
-        self.kind.addItems(["constante", "lineaire", "table"])
+        for value, label in LAW_LABELS.items():
+            self.kind.addItem(label, value)
         layout.addWidget(self.kind)
         self.hint = QLabel()
         self.hint.setWordWrap(True)
@@ -64,12 +66,14 @@ class LawDialog(QDialog):
         )
         buttons.accepted.connect(self._accept)
         buttons.rejected.connect(self.reject)
-        preview = QPushButton("Actualiser l'aperçu")
+        preview = QPushButton("Update preview")
         preview.clicked.connect(self.preview)
         layout.addWidget(preview)
         layout.addWidget(buttons)
-        self.kind.currentTextChanged.connect(self._type_changed)
-        self.kind.setCurrentText(law.kind)
+        self.kind.currentIndexChanged.connect(
+            lambda _: self._type_changed(self.kind.currentData())
+        )
+        self.kind.setCurrentIndex(self.kind.findData(law.kind))
         self._type_changed(law.kind)
         self.input.setPlainText(
             "\n".join(
@@ -84,9 +88,9 @@ class LawDialog(QDialog):
     def _type_changed(self, kind):
         self.hint.setText(
             {
-                "constante": f"Valeur [{self.unit}]",
-                "lineaire": f"Valeur initiale [{self.unit}], pente [{self.unit}/s]",
-                "table": f"Une paire temps [s], valeur [{self.unit}] par ligne. Interpolation linéaire, valeurs maintenues hors table.",
+                "constante": f"Value [{self.unit}]",
+                "lineaire": f"Initial value [{self.unit}], slope [{self.unit}/s]",
+                "table": f"One time [s], value [{self.unit}] pair per line. Linear interpolation; endpoint values are held outside the table.",
             }[kind]
         )
         self.input.setPlainText(
@@ -99,13 +103,13 @@ class LawDialog(QDialog):
 
     def read(self):
         text = self.input.toPlainText()
-        if self.kind.currentText() == "table":
+        if self.kind.currentData() == "table":
             values = tuple(
                 v for row in text.splitlines() if row.strip() for v in numbers(row, 2)
             )
         else:
-            values = numbers(text, 1 if self.kind.currentText() == "constante" else 2)
-        return Law(self.kind.currentText(), values)
+            values = numbers(text, 1 if self.kind.currentData() == "constante" else 2)
+        return Law(self.kind.currentData(), values)
 
     def preview(self):
         try:
@@ -114,9 +118,9 @@ class LawDialog(QDialog):
             values = np.array([law.value(t) for t in times])
             if not np.isfinite(values).all():
                 raise ValueError(
-                    "La loi dépasse le domaine des nombres finis sur cette durée."
+                    "The law exceeds the finite-number range over this duration."
                 )
-            self.plot.set_series(times, values, "Consigne", self.unit)
+            self.plot.set_series(times, values, "Prescribed value", self.unit)
             self.error.setText("")
             return law
         except ValueError as exc:
@@ -133,30 +137,31 @@ class LawDialog(QDialog):
 class JointDialog(QDialog):
     def __init__(self, project, selected=None, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("Créer une liaison")
+        self.setWindowTitle("Create joint")
         self.project = project
         self.joint = None
         layout = QVBoxLayout(self)
         form = QFormLayout()
         layout.addLayout(form)
         self.kind = QComboBox()
-        self.kind.addItems(["pivot", "rotule", "glissiere", "encastrement"])
+        for value, label in JOINT_LABELS.items():
+            self.kind.addItem(label, value)
         form.addRow("Type", self.kind)
         self.a = QComboBox()
         self.b = QComboBox()
         for combo in (self.a, self.b):
-            combo.addItem("Bâti", None)
+            combo.addItem("Ground", None)
             for body in project.bodies:
                 combo.addItem(body.name, body.id)
         self.b.setCurrentIndex(max(1, self.b.findData(selected)))
-        form.addRow("Corps A", self.a)
-        form.addRow("Corps B", self.b)
+        form.addRow("Body A", self.a)
+        form.addRow("Body B", self.b)
         self.point = QLineEdit("0, 0, 0")
         self.axis = QLineEdit("0, 0, 1")
-        form.addRow("Point monde X,Y,Z [m]", self.point)
-        form.addRow("Axe monde X,Y,Z", self.axis)
+        form.addRow("World point X,Y,Z [m]", self.point)
+        form.addRow("World axis X,Y,Z", self.axis)
         note = QLabel(
-            "Les deux ancrages locaux sont définis au point choisi. Leur placement reste explicite après toute modification des corps."
+            "Both local anchors are defined at the chosen point. Their placement remains explicit after any body modification."
         )
         note.setWordWrap(True)
         layout.addWidget(note)
@@ -174,7 +179,7 @@ class JointDialog(QDialog):
         try:
             self.joint = joint_at(
                 self.project,
-                self.kind.currentText(),
+                self.kind.currentData(),
                 self.a.currentData(),
                 self.b.currentData(),
                 numbers(self.point.text(), 3),

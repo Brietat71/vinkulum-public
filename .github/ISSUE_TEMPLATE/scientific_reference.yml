@@ -1,0 +1,24 @@
+name: Scientific reference or counterexample
+description: Propose an independently checkable physical or numerical case.
+body:
+  - type: textarea
+    id: model
+    attributes:
+      label: Model and assumptions
+      description: Geometry, materials, constraints, loads, frames and units. Include a small reproducible input if available.
+    validations:
+      required: true
+  - type: textarea
+    id: reference
+    attributes:
+      label: Independent reference
+      description: Analytic derivation, publication, measured data or external solver procedure, including its limitations and licence.
+    validations:
+      required: true
+  - type: textarea
+    id: comparison
+    attributes:
+      label: Comparison and acceptance criteria
+      description: Observables, tolerances, convergence study, and the claim this case supports or challenges.
+    validations:
+      required: true

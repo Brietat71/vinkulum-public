@@ -1,0 +1,24 @@
+name: Reproducible bug
+description: Report a failure in Studio, CAD or the mechanics kernel.
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Version and environment
+      description: Commit or release, operating system, Python version, and installation method.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Steps or a small model others may legally reproduce. Remove private data.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Observed and expected results
+      description: Include the full error. For numerical results, state units, time steps, tolerances and your reference.
+    validations:
+      required: true

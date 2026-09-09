@@ -3,12 +3,12 @@
   "schema_version": 2,
   "project": {
     "id": "315f83ea-aeca-4779-855f-86c9d0668d49",
-    "name": "Mécanisme",
+    "name": "Mechanism",
     "revision": 5,
     "bodies": [
       {
         "id": "c5c44446-e71c-46da-8ad8-1194ab2eaaec",
-        "name": "Platine percée",
+        "name": "Machined plate",
         "shape": "cad",
         "dimensions": [
           0.12,
@@ -92173,7 +92173,7 @@
             ]
           ],
           "operations": [
-            "{\"operation\": \"box\", \"name\": \"Platine percée\", \"density\": 7800.0, \"dimensions_mm\": [120.0, 75.0, 20.0], \"position_mm\": [0.0, 0.0, 0.0], \"radius_mm\": 2.0}",
+            "{\"operation\": \"box\", \"name\": \"Machined plate\", \"density\": 7800.0, \"dimensions_mm\": [120.0, 75.0, 20.0], \"position_mm\": [0.0, 0.0, 0.0], \"radius_mm\": 2.0}",
             "{\"operation\": \"cut\", \"name\": \"Outil de perçage\", \"density\": 7800.0, \"dimensions_mm\": [], \"position_mm\": [0.0, 0.0, 0.0], \"radius_mm\": 2.0, \"tool_id\": \"a93529d2-f820-4a4c-b835-ecdab4bec54b\"}",
             "{\"operation\": \"fillet\", \"name\": \"Outil de perçage\", \"density\": 7800.0, \"dimensions_mm\": [], \"position_mm\": [0.0, 0.0, 0.0], \"radius_mm\": 2.0, \"tool_id\": \"c5c44446-e71c-46da-8ad8-1194ab2eaaec\"}"
           ],

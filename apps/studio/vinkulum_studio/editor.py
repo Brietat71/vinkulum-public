@@ -42,6 +42,7 @@ from .document import (
     save_project,
 )
 from .examples3d import EXAMPLES
+from .labels import JOINT_LABELS, LAW_LABELS
 from .run_archive import RunArchive, series_keys
 from .workspace import Workspace
 
@@ -89,7 +90,7 @@ def matrix_euler(values):
 class EditorWindow(Workspace, QMainWindow):
     def __init__(self, settings=None):
         super().__init__()
-        self.setWindowTitle(f"Vinkulum Studio {__version__} · Mécanismes 3D")
+        self.setWindowTitle(f"Vinkulum Studio {__version__} · 3D mechanisms")
         self.resize(1440, 950)
         self.settings = settings
         self.history = History(pendulum())
@@ -130,11 +131,11 @@ class EditorWindow(Workspace, QMainWindow):
 
         try:
             if int(version("cadquery-ocp-novtk").split(".")[0]) < 8:
-                raise ValueError("OCCT 8 minimum requis.")
+                raise ValueError("OCCT 8 or later is required.")
             version("build123d")
         except PackageNotFoundError, ValueError:
             self.status.setText(
-                "Module CAD indisponible : installez l’environnement Studio CAD (OCCT 8 minimum)."
+                "CAD module unavailable: install the Studio CAD environment (OCCT 8 or later)."
             )
             return
         from .cad_dialog import CadDialog
@@ -149,18 +150,18 @@ class EditorWindow(Workspace, QMainWindow):
             if "step" in dialog.result_data:
                 atomic_text(dialog.output_path, dialog.result_data["step"])
                 self.status.setText(
-                    "Pièce exportée en STEP, pose du monde et unités millimétriques incluses."
+                    "Part exported to STEP with its world pose and millimetre units."
                 )
             else:
                 if self.project != captured:
                     raise ValueError(
-                        "Le document a changé pendant l’opération CAD ; résultat non appliqué."
+                        "The document changed during the CAD operation; result not applied."
                     )
                 body = Body.from_dict(dialog.result_data["body"])
                 self._commit(replace_cad_body(self.project, body), fit=True)
                 self.select_object(body.id)
                 self.status.setText(
-                    "Solide CAD ajouté · masse et inertie calculées sur le BREP, en unités SI."
+                    "CAD solid added · mass and inertia computed from BREP in SI units."
                 )
         except (ValueError, OSError) as error:
             self.status.setText(str(error))
@@ -192,24 +193,24 @@ class EditorWindow(Workspace, QMainWindow):
             self.tree.clear()
             shown = self.display_project
             for label, objects in (
-                ("Corps", shown.bodies),
-                ("Liaisons", shown.joints),
-                ("Charges", shown.loads),
+                ("Bodies", shown.bodies),
+                ("Joints", shown.joints),
+                ("Loads", shown.loads),
             ):
                 group = QTreeWidgetItem([label])
                 self.tree.addTopLevelItem(group)
                 for obj in objects:
                     kind = (
                         {
-                            "box": "Boîte",
-                            "sphere": "Sphère",
-                            "cylinder": "Cylindre",
-                            "cad": "Solide CAD",
+                            "box": "Box",
+                            "sphere": "Sphere",
+                            "cylinder": "Cylinder",
+                            "cad": "CAD solid",
                         }[obj.shape]
                         if isinstance(obj, Body)
-                        else obj.kind
+                        else JOINT_LABELS[obj.kind]
                         if isinstance(obj, Joint)
-                        else "Charge"
+                        else "Load"
                     )
                     item = QTreeWidgetItem([obj.name, kind])
                     item.setToolTip(0, f"{obj.name} · {obj.id}")
@@ -303,7 +304,7 @@ class EditorWindow(Workspace, QMainWindow):
             self.apply_button.setEnabled(True)
             self._workspace_state()
             self.status.setText(
-                "Champs modifiés, non encore appliqués au document. Cliquez Appliquer ou lancez le calcul pour les valider."
+                "Properties changed but not applied. Click Apply or run a calculation to validate them."
             )
 
     def _section(self, title):
@@ -319,57 +320,57 @@ class EditorWindow(Workspace, QMainWindow):
         self.dirty_fields = False
         obj = self.object(display=True)
         if obj is None:
-            self._text("gravity", "Gravité X,Y,Z [m/s²]", self.display_project.gravity)
+            self._text("gravity", "Gravity X,Y,Z [m/s²]", self.display_project.gravity)
         else:
-            self._text("name", "Nom", obj.name)
-            self.fields["name"].setToolTip(f"Identité stable : {obj.id}")
+            self._text("name", "Name", obj.name)
+            self.fields["name"].setToolTip(f"Stable identity: {obj.id}")
             if isinstance(obj, Body):
-                self._section("Géométrie & masse")
+                self._section("Geometry & mass")
                 self._text(
                     "dimensions",
                     {
                         "box": "Dimensions [m]",
-                        "sphere": "Rayon [m]",
-                        "cylinder": "Rayon, hauteur [m]",
-                        "cad": "Encombrement BREP [m]",
+                        "sphere": "Radius [m]",
+                        "cylinder": "Radius, height [m]",
+                        "cad": "BREP extents [m]",
                     }[obj.shape],
                     obj.dimensions,
                 )
                 if obj.cad:
                     self.fields["dimensions"].setEnabled(False)
                     summary = QLabel(
-                        f"Volume : {obj.cad.volume_m3:.6g} m³ · Repère au centre de masse"
+                        f"Volume: {obj.cad.volume_m3:.6g} m³ · Frame at centre of mass"
                     )
                     summary.setToolTip(
-                        f"Géométrie exacte BREP · OCCT {obj.cad.occt_version}\n"
+                        f"Exact BREP geometry · OCCT {obj.cad.occt_version}\n"
                         f"build123d {obj.cad.build123d_version}\nVolume exact : {obj.cad.volume_m3!r} m³"
                     )
                     summary.setWordWrap(True)
                     summary.setObjectName("muted")
                     self.form.addRow(summary)
-                self._text("mass", "Masse [kg]", obj.mass)
-                self._section("Transformation · monde")
+                self._text("mass", "Mass [kg]", obj.mass)
+                self._section("Transform · world")
                 self._text("position", "Position [m]", obj.position)
                 self._text(
                     "orientation",
                     "Orientation [°] · Rz Ry Rx",
                     matrix_euler(obj.orientation),
                 )
-                self._section("Inertie · repère local")
+                self._section("Inertia · local frame")
                 self._combo(
                     "inertia_mode",
-                    "Inertie",
-                    [("Homogène", "homogeneous"), ("Explicite", "explicit")],
+                    "Inertia",
+                    [("Homogeneous", "homogeneous"), ("Explicit", "explicit")],
                     obj.inertia_mode,
                 )
                 self._text(
                     "explicit_inertia",
-                    "Tenseur 3×3, par lignes [kg·m²]",
+                    "3×3 tensor, row-major [kg·m²]",
                     obj.explicit_inertia,
                 )
                 diagonal = np.diag(np.array(obj.inertia()).reshape(3, 3))
                 label = QLabel(
-                    "Diagonale utilisée : "
+                    "Active diagonal: "
                     + ", ".join(format(v, ".6g") for v in diagonal)
                     + " kg·m²"
                 )
@@ -386,51 +387,51 @@ class EditorWindow(Workspace, QMainWindow):
                     )
                 )
             elif isinstance(obj, Joint):
-                self.form.addRow(QLabel(obj.kind.capitalize()))
-                options = [("Bâti", None)] + [
+                self.form.addRow(QLabel(JOINT_LABELS[obj.kind]))
+                options = [("Ground", None)] + [
                     (b.name, b.id) for b in self.display_project.bodies
                 ]
-                for key, label in (("a", "Corps A"), ("b", "Corps B")):
+                for key, label in (("a", "Body A"), ("b", "Body B")):
                     opts = list(options)
                     value = getattr(obj, key)
                     if value is not None and not any(v == value for _, v in opts):
-                        opts.append(("Corps manquant", value))
+                        opts.append(("Missing body", value))
                     self._combo(key, label, opts, value)
-                self._text("pa", "Ancrage A local X,Y,Z [m]", obj.pa)
-                self._text("pb", "Ancrage B local X,Y,Z [m]", obj.pb)
-                self._text("ra", "Repère A · angles X,Y,Z [°]", matrix_euler(obj.ra))
-                self._text("rb", "Repère B · angles X,Y,Z [°]", matrix_euler(obj.rb))
+                self._text("pa", "Local anchor A X,Y,Z [m]", obj.pa)
+                self._text("pb", "Local anchor B X,Y,Z [m]", obj.pb)
+                self._text("ra", "Frame A · angles X,Y,Z [°]", matrix_euler(obj.ra))
+                self._text("rb", "Frame B · angles X,Y,Z [°]", matrix_euler(obj.rb))
                 if obj.kind in {"pivot", "glissiere"}:
                     button = QPushButton(
-                        "Configurer le mouvement imposé"
+                        "Configure prescribed motion"
                         if obj.motion is None
-                        else f"Mouvement : {obj.motion.kind}"
+                        else f"Motion: {LAW_LABELS[obj.motion.kind]}"
                     )
                     button.clicked.connect(self.edit_motion)
                     self.form.addRow(button)
-                    button = QPushButton("Libérer le mouvement")
+                    button = QPushButton("Release motion")
                     button.clicked.connect(lambda: self.set_motion(None))
                     self.form.addRow(button)
             else:
                 self._combo(
                     "body",
-                    "Corps",
+                    "Bodies",
                     [(b.name, b.id) for b in self.display_project.bodies]
                     + (
                         []
                         if any(b.id == obj.body for b in self.display_project.bodies)
-                        else [("Corps manquant", obj.body)]
+                        else [("Missing body", obj.body)]
                     ),
                     obj.body,
                 )
-                self._text("point", "Point local X,Y,Z [m]", obj.point)
+                self._text("point", "Local point X,Y,Z [m]", obj.point)
                 for field, unit, label in (
                     ("force", "N", "Force"),
                     ("moment", "N·m", "Moment"),
                 ):
                     for index, axis in enumerate("XYZ"):
                         button = QPushButton(
-                            f"{label} {axis} [{unit}] : {getattr(obj, field)[index].kind}"
+                            f"{label} {axis} [{unit}]: {LAW_LABELS[getattr(obj, field)[index].kind]}"
                         )
                         button.clicked.connect(
                             lambda checked=False, f=field, i=index, u=unit: (
@@ -438,7 +439,7 @@ class EditorWindow(Workspace, QMainWindow):
                             )
                         )
                         self.form.addRow(button)
-        button = QPushButton("Appliquer les propriétés")
+        button = QPushButton("Apply properties")
         button.setObjectName("primary")
         button.clicked.connect(self.apply_properties)
         self.apply_button = button
@@ -504,7 +505,7 @@ class EditorWindow(Workspace, QMainWindow):
                 project = self.project.replace_object(replace(obj, **values))
             self.history.commit(project)
             self._refresh()
-            self.status.setText("Propriétés appliquées au document.")
+            self.status.setText("Properties applied to the document.")
             return True
         except (ValueError, TypeError) as exc:
             self.status.setText(str(exc))
@@ -544,9 +545,7 @@ class EditorWindow(Workspace, QMainWindow):
         dimensions = {"box": (0.2, 0.2, 0.2), "sphere": (0.1,), "cylinder": (0.1, 0.4)}[
             shape
         ]
-        body = Body(
-            new_id(), f"Corps {len(self.project.bodies) + 1}", shape, dimensions
-        )
+        body = Body(new_id(), f"Body {len(self.project.bodies) + 1}", shape, dimensions)
         try:
             self._commit(self.project.replace_object(body), body.id, True)
         except ValueError as exc:
@@ -566,9 +565,9 @@ class EditorWindow(Workspace, QMainWindow):
             return
         body = self.object()
         if not isinstance(body, Body):
-            self.status.setText("Sélectionnez le corps auquel appliquer une charge.")
+            self.status.setText("Select the body to apply a load to.")
             return
-        load = Load(new_id(), f"Charge {len(self.project.loads) + 1}", body.id)
+        load = Load(new_id(), f"Load {len(self.project.loads) + 1}", body.id)
         self._commit(self.project.replace_object(load), load.id)
 
     def edit_motion(self):
@@ -638,7 +637,7 @@ class EditorWindow(Workspace, QMainWindow):
             return
         obj = self.object()
         if obj:
-            duplicate = replace(obj, id=new_id(), name=(obj.name + " copie")[:128])
+            duplicate = replace(obj, id=new_id(), name=(obj.name + " copy")[:128])
             self._commit(self.project.replace_object(duplicate), duplicate.id)
 
     @report_edit_errors
@@ -667,16 +666,14 @@ class EditorWindow(Workspace, QMainWindow):
             self.history.commit(project)
             self._refresh()
             self.controller.start(self.project)
-            self.status.setText(
-                "Calcul en cours sur un instantané. La conception reste éditable."
-            )
+            self.status.setText("Running on a snapshot. The design remains editable.")
         except (ValueError, RuntimeError, OSError) as exc:
             self._problem(str(exc))
 
     def stop(self):
         self.controller.cancel()
         self.stop_button.setEnabled(False)
-        self.status.setText("Arrêt demandé…")
+        self.status.setText("Stopping…")
 
     def _busy(self, busy):
         allowed = not busy and not self.project.diagnostics()
@@ -685,7 +682,7 @@ class EditorWindow(Workspace, QMainWindow):
         self.commands["run"].setEnabled(allowed)
         self.commands["stop"].setEnabled(busy)
         self.run_state.setText(
-            "Calcul en cours · instantané capturé" if busy else "Prêt à calculer"
+            "Running · captured snapshot" if busy else "Ready to run"
         )
 
     def _completed(self, result):
@@ -695,7 +692,7 @@ class EditorWindow(Workspace, QMainWindow):
         if removed:
             self.status.setText(
                 self.status.text()
-                + " Les plus anciens résultats ont quitté l’historique mémoire."
+                + " The oldest results have left the session history."
             )
 
     def _display_result(self, result):
@@ -735,12 +732,12 @@ class EditorWindow(Workspace, QMainWindow):
             self.docks["results"].show()
             self.docks["results"].raise_()
         self.status.setText(
-            f"Calcul terminé · {len(result.time)} échantillons · erreur de trajectoire non évaluée."
+            f"Calculation completed · {len(result.time)} samples · trajectory error not assessed."
         )
 
     def _problem(self, message):
         self.status.setText(
-            message + (" Le résultat précédent est conservé." if self.result else "")
+            message + (" The previous result is preserved." if self.result else "")
         )
         self._caption(previous=True)
 
@@ -748,12 +745,12 @@ class EditorWindow(Workspace, QMainWindow):
         if self.result:
             p = self.result.project
             state = (
-                "Résultat précédent conservé"
+                "Previous result preserved"
                 if previous or p != self.project
-                else "Résultat calculé"
+                else "Computed result"
             )
             self.result_label.setText(
-                f"{state} · {self.result.run_id[:8]} · {p.name}, révision {p.revision} · {len(p.bodies)} corps · durée {p.duration:g} s, pas {p.step:g} s"
+                f"{state} · {self.result.run_id[:8]} · {p.name}, revision {p.revision} · {len(p.bodies)} bodies · duration {p.duration:g} s, step {p.step:g} s"
             )
 
     def _show_scene(self, fit=False):
@@ -787,7 +784,7 @@ class EditorWindow(Workspace, QMainWindow):
         if self.result is not None and 0 <= index < len(self._series):
             label, unit, values = self._series[index]
             kind = series_keys(self.result.project)[index][1]
-            label += " · monde" if kind in {"position", "velocity"} else " · liaison"
+            label += " · world" if kind in {"position", "velocity"} else " · joint"
             self.curve.set_series(self.result.time, values, label, unit)
             self.sample_model.set_series(self.result.time, values, label, unit)
             self.update_comparison()
@@ -828,7 +825,7 @@ class EditorWindow(Workspace, QMainWindow):
 
     def pause(self):
         self.timer.stop()
-        self.play_button.setText("Lecture")
+        self.play_button.setText("Play")
 
     def _tick(self):
         elapsed = (time.monotonic() - self._play_origin) * self.speed.currentData()
@@ -852,7 +849,7 @@ class EditorWindow(Workspace, QMainWindow):
         self._saved = self.project
         self._path = path
         self._workspace_state()
-        self.status.setText("Projet enregistré.")
+        self.status.setText("Project saved.")
         return True
 
     def load(self, path, legacy=False):
@@ -878,8 +875,8 @@ class EditorWindow(Workspace, QMainWindow):
             return True
         answer = QMessageBox.question(
             self,
-            "Projet modifié",
-            "Enregistrer les modifications avant de continuer ?",
+            "Modified project",
+            "Save changes before continuing?",
             QMessageBox.StandardButton.Save
             | QMessageBox.StandardButton.Discard
             | QMessageBox.StandardButton.Cancel,
@@ -921,18 +918,18 @@ class EditorWindow(Workspace, QMainWindow):
         return False
 
     def save_dialog(self):
-        return self._file(True, "Enregistrer le projet", "Projet (*.json)", self.save)
+        return self._file(True, "Save project", "Project (*.json)", self.save)
 
     def open_dialog(self):
         if self._discard_allowed():
-            self._file(False, "Ouvrir le projet", "Projet (*.json)", self.load)
+            self._file(False, "Open project", "Project (*.json)", self.load)
 
     def import_dialog(self):
         if self._discard_allowed():
             self._file(
                 False,
-                "Importer un pendule G0",
-                "Paramètres G0 (*.json)",
+                "Import G0 pendulum",
+                "G0 parameters (*.json)",
                 lambda path: self.load(path, True),
             )
 
@@ -940,7 +937,7 @@ class EditorWindow(Workspace, QMainWindow):
         if self.result:
             self._file(
                 True,
-                "Exporter le résultat affiché",
+                "Export displayed result",
                 "CSV (*.csv)",
                 self.result.export_csv,
             )
@@ -949,7 +946,7 @@ class EditorWindow(Workspace, QMainWindow):
         if self.result is None:
             return
         dialog = QDialog(self)
-        dialog.setWindowTitle("Provenance du résultat")
+        dialog.setWindowTitle("Result provenance")
         dialog.resize(720, 600)
         layout = QVBoxLayout(dialog)
         text = QTextEdit()

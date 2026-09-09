@@ -68,7 +68,7 @@ def main(directory):
         )
         if completed.returncode != 0 or not response.exists():
             raise RuntimeError(
-                "Le worker CAD du paquet a échoué : "
+                "The bundled CAD worker failed: "
                 + completed.stderr.decode(errors="replace")[-2048:]
             )
         cad_report = json.loads(response.read_text())

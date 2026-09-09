@@ -1,11 +1,10 @@
 import json
-from dataclasses import FrozenInstanceError, replace
-from pathlib import Path
 import tempfile
 import unittest
+from dataclasses import FrozenInstanceError, replace
+from pathlib import Path
 
 import numpy as np
-
 from vinkulum_studio.document import (
     Body,
     History,
@@ -32,7 +31,7 @@ class MechanicalDocument(unittest.TestCase):
                 Law("table", values)
 
     def test_homogeneous_inertias_and_physical_custom_tensor(self):
-        b = Body(new_id(), "Boîte", dimensions=(2.0, 3.0, 4.0), mass=12.0)
+        b = Body(new_id(), "Box", dimensions=(2.0, 3.0, 4.0), mass=12.0)
         np.testing.assert_allclose(
             np.diag(np.array(b.inertia()).reshape(3, 3)), (25, 20, 13)
         )
@@ -49,7 +48,7 @@ class MechanicalDocument(unittest.TestCase):
 
     def test_inputs_are_deeply_immutable(self):
         position = [1.0, 2.0, 3.0]
-        b = Body(new_id(), "Corps", position=position)
+        b = Body(new_id(), "Bodies", position=position)
         position[0] = 100
         self.assertEqual(b.position, (1.0, 2.0, 3.0))
         with self.assertRaises(FrozenInstanceError):
@@ -65,7 +64,7 @@ class MechanicalDocument(unittest.TestCase):
         self.assertEqual(p.joints[0].b, b.id)
         deleted = p.remove(b.id)
         self.assertEqual(deleted.joints, p.joints)
-        self.assertIn("supprimé", deleted.diagnostics()[0].message)
+        self.assertIn("deleted", deleted.diagnostics()[0].message)
 
     def test_move_invalidates_joint_undo_restores_with_new_revision(self):
         p = pendulum()
@@ -84,7 +83,7 @@ class MechanicalDocument(unittest.TestCase):
         self.assertEqual(history.current.revision, 3)
 
     def test_joint_frames_and_allowed_free_translation(self):
-        body = Body(new_id(), "Coulisseau")
+        body = Body(new_id(), "Slider")
         p = Project(new_id(), bodies=(body,))
         j = joint_at(p, "glissiere", None, body.id, axis=(1.0, 0.0, 0.0))
         p = p.replace_object(j)

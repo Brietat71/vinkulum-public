@@ -34,7 +34,7 @@ class NumberField(QLineEdit):
     def _capture(self, text):
         self._raw = text
         self._edited = True
-        self.setToolTip("Valeur saisie : " + text)
+        self.setToolTip("Entered value: " + text)
 
     def setText(self, text):
         # Programmatic edits have the same numeric semantics as keyboard edits.
@@ -72,7 +72,7 @@ class NumberField(QLineEdit):
                         break
         super().setText(text)
         self.setCursorPosition(0)
-        self.setToolTip("Valeur exacte : " + self._raw)
+        self.setToolTip("Exact value: " + self._raw)
 
     def focusInEvent(self, event):
         super().focusInEvent(event)
@@ -126,7 +126,7 @@ class VectorField(QWidget):
     def setText(self, text):
         values = text.split(",")
         if len(values) != len(self.components):
-            raise ValueError("Nombre de composantes incorrect.")
+            raise ValueError("Incorrect number of components.")
         for field, value in zip(self.components, values):
             field.setText(value.strip())
 

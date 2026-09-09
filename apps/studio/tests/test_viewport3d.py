@@ -4,10 +4,9 @@ import os
 import unittest
 
 from PySide6.QtCore import QPoint, Qt
-from PySide6.QtTest import QTest
 from PySide6.QtGui import QPaintEvent
+from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication
-
 from vinkulum_studio.document import Body, new_id, pendulum
 
 
@@ -21,17 +20,17 @@ class ViewportTests(unittest.TestCase):
         cls.app = QApplication.instance() or QApplication([])
 
     def test_scene_picking_manipulation_result_and_shutdown(self):
-        from vtkmodules.vtkCommonTransforms import vtkTransform
         from vinkulum_studio.viewport import Viewport, numpy_pose, vtk_matrix
+        from vtkmodules.vtkCommonTransforms import vtkTransform
 
         project = pendulum()
         project = project.replace_object(
-            Body(new_id(), "Boîte", position=(-0.4, 0.0, 0.0))
+            Body(new_id(), "Box", position=(-0.4, 0.0, 0.0))
         )
         project = project.replace_object(
             Body(
                 new_id(),
-                "Cylindre",
+                "Cylinder",
                 shape="cylinder",
                 dimensions=(0.08, 0.4),
                 position=(0.8, 0.0, 0.0),

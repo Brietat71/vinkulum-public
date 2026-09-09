@@ -70,8 +70,8 @@ class WorkspaceRecipe(unittest.TestCase):
         self.assertTrue(window.apply_properties())
         palette = CommandPalette(window.commands.values(), window)
         palette.show()
-        palette.query.setText("arreter")
-        self.assertIn("indisponible", palette.results.item(0).text())
+        palette.query.setText("stop")
+        self.assertIn("unavailable", palette.results.item(0).text())
         with patch.object(window.controller, "cancel") as cancel:
             QTest.keyClick(palette.query, Qt.Key.Key_Return)
             cancel.assert_not_called()
@@ -156,6 +156,28 @@ class WorkspaceRecipe(unittest.TestCase):
         self.assertEqual(field.value(), -2.123456789123456e-19)
         self.assertTrue(window.apply_properties())
         self.assertEqual(window.project.bodies[0].position[1], -2.123456789123456e-19)
+
+    def test_english_labels_preserve_saved_joint_and_law_types(self):
+        from vinkulum_studio.dialogs import JointDialog, LawDialog
+        from vinkulum_studio.document import Law
+        from vinkulum_studio.labels import JOINT_LABELS, LAW_LABELS
+
+        window = self.make_window()
+        window.new_project()
+        window.add_body("box")
+        for value, label in JOINT_LABELS.items():
+            dialog = JointDialog(window.project, window.selection, window)
+            dialog.kind.setCurrentIndex(dialog.kind.findData(value))
+            self.assertEqual(dialog.kind.currentText(), label)
+            dialog._accept()
+            self.assertEqual(dialog.joint.kind, value)
+            self.assertEqual(dialog.joint.name, label)
+            dialog.deleteLater()
+        for law in (Law(), Law("lineaire", (0, 1)), Law("table", (0, 0, 1, 2))):
+            dialog = LawDialog(law, parent=window)
+            self.assertEqual(dialog.kind.currentText(), LAW_LABELS[law.kind])
+            self.assertEqual(dialog.read(), law)
+            dialog.deleteLater()
 
     def test_search_visibility_isolation_and_transform_are_view_state(self):
         window = self.make_window()
@@ -255,8 +277,8 @@ class WorkspaceRecipe(unittest.TestCase):
         self.assertIsNotNone(window.curve.reference)
         self.assertIs(window.curve.reference[0], first.time)
         self.assertIs(window.curve.times, second.time)
-        self.assertIn("masse", window.comparison_label.text())
-        self.assertIn("pas de temps", window.comparison_label.text())
+        self.assertIn("mass", window.comparison_label.text())
+        self.assertIn("time step", window.comparison_label.text())
         self.assertIn(first.run_id[:8], window.comparison_label.text())
         self.assertIn(second.run_id[:8], window.comparison_label.text())
         window.run_combo.setCurrentIndex(window.run_combo.findData(first.run_id))

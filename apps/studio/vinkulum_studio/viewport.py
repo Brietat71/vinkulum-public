@@ -11,7 +11,7 @@ from vtkmodules.vtkCommonCore import vtkPoints, vtkUnsignedCharArray
 from vtkmodules.vtkCommonDataModel import vtkCellArray, vtkPolyData
 from vtkmodules.vtkCommonMath import vtkMatrix4x4
 from vtkmodules.vtkCommonTransforms import vtkTransform
-from vtkmodules.vtkFiltersCore import vtkTubeFilter, vtkPolyDataNormals
+from vtkmodules.vtkFiltersCore import vtkPolyDataNormals, vtkTubeFilter
 from vtkmodules.vtkFiltersGeneral import vtkTransformFilter
 from vtkmodules.vtkFiltersSources import (
     vtkArrowSource,
@@ -64,7 +64,7 @@ class Viewport(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setMinimumSize(400, 300)
-        self.setAccessibleName("Scène mécanique 3D")
+        self.setAccessibleName("3D mechanical scene")
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         self.view = RenderInteractor(self)

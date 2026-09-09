@@ -13,7 +13,7 @@ class SampleTableModel(QAbstractTableModel):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.times, self.values = (), ()
-        self.label, self.unit = "Valeur", ""
+        self.label, self.unit = "Value", ""
 
     def set_series(self, times, values, label, unit):
         self.beginResetModel()
@@ -47,7 +47,7 @@ class SampleTableModel(QAbstractTableModel):
             role == Qt.ItemDataRole.DisplayRole
             and orientation == Qt.Orientation.Horizontal
         ):
-            return ("Échantillon", "Temps [s]", f"{self.label} [{self.unit}]")[section]
+            return ("Sample", "Time [s]", f"{self.label} [{self.unit}]")[section]
         return super().headerData(section, orientation, role)
 
 
@@ -58,13 +58,13 @@ class SeriesView(QWidget):
         super().__init__(parent)
         self.setMinimumHeight(145)
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
-        self.setAccessibleName("Courbe des échantillons natifs")
+        self.setAccessibleName("Native-sample curve")
         self.setAccessibleDescription(
-            "Cliquer pour sélectionner un temps. Molette pour zoomer, Maj-glisser pour déplacer, double clic pour cadrer. Flèches pour parcourir les échantillons."
+            "Click to select a time. Scroll to zoom, Shift-drag to pan, double-click to fit. Arrow keys move between samples."
         )
         self.setToolTip(self.accessibleDescription())
         self.times, self.values = (), ()
-        self.label, self.unit = "Aucun résultat", ""
+        self.label, self.unit = "No result", ""
         self.index = 0
         self.domain = (0.0, 1.0)
         self._cache = None
@@ -249,7 +249,7 @@ class SeriesView(QWidget):
                 p.drawText(
                     self.rect(),
                     Qt.AlignmentFlag.AlignCenter,
-                    "Les courbes apparaîtront après le premier calcul.",
+                    "Curves will appear after the first calculation.",
                 )
                 return
             rect, low, high, path, reference_path = self._geometry()

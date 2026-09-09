@@ -10,6 +10,7 @@ mechanics kernel, a Python API and a native 3D desktop application — with the
 ambition of becoming a home for the open solvers engineers and researchers rely on.
 
 [Get started](#get-started) · [Contribute](docs/CONTRIBUTOR_PROJECTS.md) ·
+[Share Vinkulum](docs/SHARE_VINKULUM.md) ·
 [Scientific guarantees](docs/CERTIFICATION_NOYAU.md) ·
 [Support the project](docs/FUNDING.md) · [Documentation technique en français](README.fr.md)
 
@@ -32,7 +33,7 @@ then obtain mass and inertia from the exact solid. The
 | **Examine** | Animate results, inspect curves and samples, compare captured runs on their native time grids, and export with units and provenance. |
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
-**Kernel 0.19.0 · Studio 0.4.0 · Research software under active development.**
+**Kernel 0.19.0 · Studio 0.4.1 · Research software under active development.**
 Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
 workflow; interactive constrained sketches and a regenerating feature tree are
 future work. The complete kernel is not certified. Each guarantee has a stated
@@ -91,6 +92,10 @@ No Vinkulum package is currently published on PyPI. Check version and platform
 in the [public releases](https://github.com/Brietat71/vinkulum-public/releases):
 older binaries may predate the features shown in this source tree.
 
+Studio's interface, installation guide and contribution guide are in English.
+The technical archive and several research reports are still in French;
+translations with careful preservation of scientific claims are welcome.
+
 ## Evidence you can inspect
 
 Vinkulum publishes the assumptions behind its results: units and frames,
@@ -117,10 +122,13 @@ The [contributor projects](docs/CONTRIBUTOR_PROJECTS.md) describe concrete first
 deliverables across dynamics, CAD, Pinocchio, other solver connectors, Rust
 performance, Qt and teaching. Read [CONTRIBUTING.md](CONTRIBUTING.md), then
 [propose a scoped project](https://github.com/Brietat71/vinkulum-public/issues/new)
-or submit a reproducible fix.
+or submit a reproducible fix. The issue forms help describe a bug, a scientific
+reference or a first contribution without needing to know the whole codebase.
 
 If this direction matters to you, **star the repository**, share a real use case,
-or help reproduce a benchmark. For labs and organisations interested in funding
+or help reproduce a benchmark. The [share kit](docs/SHARE_VINKULUM.md) includes
+a runnable demonstration and short introductions you can adapt.
+For labs and organisations interested in funding
 maintenance or a public milestone, see [Support Vinkulum](docs/FUNDING.md).
 
 ## Licence

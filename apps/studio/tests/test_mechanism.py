@@ -1,16 +1,15 @@
-from dataclasses import replace
-import json
 import hashlib
 import io
+import json
 import math
-from pathlib import Path
 import tempfile
 import unittest
 import zipfile
+from dataclasses import replace
+from pathlib import Path
 
 import numpy as np
 from scipy.integrate import solve_ivp
-
 from vinkulum_studio.document import (
     Body,
     Law,
@@ -30,8 +29,8 @@ class MechanismAdapter(unittest.TestCase):
             return MechanicalResult.read(metadata, "test", project, directory)
 
     def test_pendulum_adapter_and_immutable_arrays(self):
-        from vinkulum_studio.worker import simulate
         from vinkulum_studio.model import Parameters
+        from vinkulum_studio.worker import simulate
 
         params = Parameters(duration=0.2)
         project = pendulum(params)
@@ -116,7 +115,7 @@ class MechanismAdapter(unittest.TestCase):
                 for name, payload in members.items():
                     output.writestr(name, payload)
             data["archive_sha256"] = hashlib.sha256(archive.read_bytes()).hexdigest()
-            with self.assertRaisesRegex(ValueError, "déclaré"):
+            with self.assertRaisesRegex(ValueError, "declared"):
                 MechanicalResult.read(data, "correct", p, directory)
 
     def test_double_pendulum_against_independent_lagrange_equations(self):

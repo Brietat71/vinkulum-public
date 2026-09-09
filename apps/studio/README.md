@@ -1,195 +1,187 @@
-# Vinkulum Studio 0.4.0 — conception et analyse de mécanismes 3D
+# Vinkulum Studio 0.4.1 — CAD and 3D mechanism analysis
 
-Application locale PySide6 / VTK : création de corps et de liaisons, déplacement
-à la souris, propriétés numériques, lois de mouvement et charges temporelles.
-Le noyau Vinkulum 0.19.0 calcule dans un processus séparé ; Studio affiche ses
-positions, orientations, vitesses et coordonnées de liaison.
+A local PySide6/VTK application for creating bodies and joints, manipulating
+geometry, editing numerical properties, and defining motion laws and time-varying
+loads. Vinkulum 0.19.0 runs in a separate process; Studio displays its positions,
+orientations, velocities and joint coordinates.
 
-## Installer et lancer
+Studio 0.4.1 introduces an English interface and preserves the precision of
+numerical fields and compatibility with existing project files. The CAD workflow
+introduced in 0.4.0 uses **OCCT 8.0.1** and an explicit adaptation of **build123d**.
 
-Studio **0.4.0** ajoute la conception CAD avec **OCCT 8.0.1** (version 8 minimum) et une
-adaptation de **build123d**. Le bouton **CAD** ouvre primitives, extrusions,
-opérations booléennes, congés et échanges STEP. La procédure d'installation des
-composants adaptés, leurs versions et les limites sont dans
-[Studio CAD](../../docs/STUDIO_CAD.md).
+## Install and run
 
-Depuis la racine du dépôt, avec Python **3.14**, Rust/Cargo, un compilateur C++17
-et un éditeur de liens système :
+From the repository root, with **Python 3.14**, Rust/Cargo, a C++17 compiler and
+a system linker:
 
 ```sh
 python3.14 -m venv .venv-studio
 . .venv-studio/bin/activate
 python -m pip install .
-python -m pip install './apps/studio[test]'
-vinkulum-studio
+python -m pip install -e './apps/studio[test]'
+python -m vinkulum_studio
 ```
 
-Pour activer la CAD dans ce même environnement :
+Enable CAD in the same environment:
 
 ```sh
 python ci/prepare_cad.py build/cad-sources
 python -m pip install build/cad-sources/build123d-0.11.1 \
-  build/cad-sources/ocpsvg-0.6.0 './apps/studio[cad,test]'
+  build/cad-sources/ocpsvg-0.6.0 -e './apps/studio[cad,test]'
 python -m vinkulum_studio
 ```
 
-Une roue du noyau **0.19.0 compatible avec Python et la plateforme** peut remplacer
-la compilation `pip install .`. Une roue Linux ne fonctionne pas sur macOS.
-PySide6 **6.11.2** et VTK **9.7.0** sont des dépendances séparées avec leurs propres
-licences ; le code original de Studio est sous Apache-2.0. Un DMG autonome Apple Silicon d’une version antérieure est proposé dans les
-[releases publiques](https://github.com/Brietat71/vinkulum-public/releases) ;
-il embarque Python, le noyau, Qt et VTK, et exige macOS 14 minimum. La signature
-est ad hoc, sans notarisation Apple. Après installation, Studio fonctionne sans réseau.
+The CAD source preparation requires `patch`. Versions, adaptations and limits
+are documented in [Studio CAD](../../docs/STUDIO_CAD.md).
+A kernel **0.19.0** wheel matching your Python and platform can replace
+`pip install .`. Linux wheels do not work on macOS.
 
-Sous Linux, Qt/X11 exige notamment `libegl1`, `libgl1`, `libxkbcommon-x11-0`, `libxcb-cursor0`, `libxcb-icccm4`,
-`libxcb-keysyms1`, `libxcb-image0`, `libxcb-render-util0`, `libxcb-util1` et un
-pilote OpenGL. Les tests automatisés utilisent également `xvfb` et `xauth`.
-La qualification de Studio 0.4.0 CAD sur macOS ARM64 reste à effectuer.
+On Ubuntu 24.04, install the desktop prerequisites with:
 
-### Binaire Linux et construction locale
+```sh
+sudo apt-get install libegl1 libgl1 libgl1-mesa-dri libxkbcommon-x11-0 \
+  libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0 \
+  libxcb-render-util0 libxcb-util1
+# Automated desktop tests also require:
+sudo apt-get install xvfb xauth
+```
 
-La livraison prioritaire de Studio 0.4.0 est une archive autonome
-`Vinkulum-Studio-0.4.0-linux-x86_64.tar.gz`. Extraire puis lancer
-`./Vinkulum\ Studio/Vinkulum\ Studio` ; conserver `_internal` avec l'exécutable.
-La plateforme testée est Linux x86-64 avec glibc 2.39, X11 et Mesa OpenGL
-(Ubuntu 24.04). Les versions antérieures de glibc et Wayland natif ne sont pas
-qualifiés. Voir les [instructions Linux](packaging/INSTALLATION-LINUX.txt).
+An OpenGL driver is required. PySide6 **6.11.2** and VTK **9.7.0** have their own
+licences; original Studio code is Apache-2.0. Check the platform and version in
+[public releases](https://github.com/Brietat71/vinkulum-public/releases).
+An older Apple Silicon DMG predates the current CAD/UI changes. It requires
+macOS 14 and uses ad-hoc signing without Apple notarisation. Qualification of
+the current CAD release on macOS ARM64 is still pending.
 
-Pour construire depuis l'environnement Python ci-dessus, avec le noyau natif
-et Studio CAD installés à leurs versions courantes :
+### Local development and Linux packaging
+
+Restart Studio after a Python/UI edit. The editable installation uses the updated
+sources and reuses the compiled native kernel. Rebuild the extension after Rust
+changes; package an archive when preparing a delivery.
+
+To build a Linux archive from an environment containing the current native
+kernel, Studio CAD and PyInstaller:
 
 ```sh
 python -m pip install 'pyinstaller==6.22.2'
 PY=$(command -v python) bash ci/linux_bundle.sh
 ```
 
-Cette commande travaille localement, sans déclencher GitHub Actions. Elle
-construit l'application, crée puis extrait l'archive et teste cet exécutable
-hors du dépôt : calcul réel avec le worker embarqué, rendu 3D et versions.
-Sans écran, elle utilise Xvfb. `dist/linux/` reçoit l'archive vérifiée,
-`SHA256SUMS`, la provenance de construction et le rapport `check/`.
-`VINKULUM_LINUX_OUT` permet de choisir un autre dossier de livraison.
-Le paquet dépend toujours des bibliothèques graphiques du système ; il ne
-constitue pas une qualification sur toutes les distributions Linux.
+This runs locally. It builds, archives and extracts the application, then tests
+the extracted executable outside the repository: real CAD, STEP round-trip,
+native simulation, OpenGL rendering and version checks. Without a display it
+uses Xvfb. `dist/linux/` receives the verified archive, `SHA256SUMS`, build
+provenance and the `check/` report. Set `VINKULUM_LINUX_OUT` for another destination.
 
-Pour itérer sur l'interface, installer Studio en mode éditable
-(`python -m pip install -e './apps/studio[test]'`) puis lancer
-`python -m vinkulum_studio`. Relancer le processus après une modification Python
-suffit ; le noyau natif déjà compilé est réutilisé. La fabrication de l'archive
-est réservée aux versions à livrer, après les essais depuis les sources.
+Extract `Vinkulum-Studio-0.4.1-linux-x86_64.tar.gz`, then run
+`./Vinkulum\ Studio/Vinkulum\ Studio`. Keep `_internal` beside the executable.
+The qualified 0.4.0 baseline used Linux x86-64, glibc 2.39, X11 and Mesa OpenGL
+on Ubuntu 24.04; each new package must pass its own extracted-binary checks.
+Older glibc, Linux ARM64 and native Wayland are not qualified. The system still
+provides graphics libraries and its OpenGL driver. See
+[Linux installation](packaging/INSTALLATION-LINUX.txt).
 
-## Nouvelle interface 0.4.0
+## Workbench
 
-Trois ateliers structurent le travail : **Modéliser**, **Simuler** et **Examiner**.
-La vue 3D occupe l’espace principal ; l’explorateur, l’inspecteur, les diagnostics
-et les résultats sont redimensionnables, détachables et accessibles dans
-**Affichage → Panneaux**. Le thème et la disposition sont conservés par le lanceur.
-**Restaurer la disposition** rétablit les panneaux de l’atelier actif.
+Three workspaces organise the interface: **Model**, **Simulate** and **Inspect**.
+The viewport occupies the main area. Browser, Inspector, diagnostics and results
+panels can be resized, detached and toggled in **View → Panels**. The launcher
+preserves the theme and layout. **Restore layout** restores the active workspace.
 
-- **Ctrl/Cmd+K** : rechercher une commande ; **S** : outils pour la sélection.
-  Les raccourcis de fichier et d’édition suivent la plateforme.
-- La grille de référence XY s'atténue vers ses limites et peut être masquée.
-  Le menu **Vues** propose les projections perspective et orthographique.
-  Les anneaux et axes des pivots sont des symboles de liaison, sans volume
-  mécanique ajouté ; les traits d'attachement apparaissent à leur sélection.
-- L’explorateur filtre par nom, type ou identifiant. Son menu contextuel permet
-  d’isoler ou de masquer un objet ; ces actions n’affectent pas le calcul.
-- L’inspecteur présente les composantes X/Y/Z séparément. Les valeurs compactes
-  affichées ne remplacent jamais les composantes originales non modifiées.
-- Les outils **Sélectionner**, **Déplacer** et **Orienter** règlent le manipulateur.
-  Le repère de caméra permet de choisir une orientation directement dans la scène.
-- **Examiner** conserve jusqu’à huit calculs en mémoire, dans un budget de 128 Mio
-  pour leurs tableaux. Choisir un calcul affiche son propre instantané en lecture seule.
-- Cliquer dans une courbe sélectionne un échantillon ; molette pour zoomer,
-  Maj-glisser pour déplacer et double clic pour cadrer. Les flèches parcourent
-  les échantillons. Le temps, la scène et le tableau restent synchronisés.
-- **Comparer à** superpose une référence en pointillés et décrit les différences
-  de modèle et de réglages. Les séries gardent leurs temps natifs ; les objets
-  sont associés par identité stable, jamais par leur position dans une liste.
+- **Ctrl/Cmd+K** searches commands; **S** opens tools for the selection. File
+  and editing shortcuts follow the platform.
+- The XY reference grid fades towards its edges and can be hidden. **Views**
+  provides perspective and orthographic projections. Joint rings and axes are
+  symbols, not added mechanical volume; attachment lines appear on selection.
+- The Browser filters names, types and IDs. Its context menu can isolate or
+  hide objects without changing the simulation.
+- The Inspector separates X/Y/Z fields. Compact displayed numbers preserve the
+  complete unedited values; focusing a field exposes its full precision.
+- **Select**, **Move** and **Rotate** control the manipulator. The camera widget
+  selects orientations directly in the viewport.
+- **Inspect** retains up to eight runs within a 128 MiB array budget. Selecting
+  a run displays its own captured, read-only model.
+- Click a curve to select a sample; use the wheel to zoom, Shift-drag to pan,
+  double-click to fit, and arrow keys to step. Time, scene and table stay aligned.
+- **Compare with** overlays a dashed reference and describes differences in
+  models and settings. Series keep native time grids; objects are associated
+  by stable identity rather than list position.
 
-Cette version est une première itération de la refonte, avec ses
-[critères et références](../../docs/STUDIO_GUI_2026.md). Elle ne constitue pas une
-revendication de parité générale avec Abaqus, NX ou une suite CAO.
+The interface is an early workbench iteration. Its
+[design criteria and references](../../docs/STUDIO_GUI_2026.md) do not imply
+feature parity with a mature CAD/CAE suite.
 
-## Construire et calculer
+## Build and simulate
 
-1. Choisir **Nouveau** ou un exemple : pendule G0, double pendule, bielle-manivelle,
-   corps soumis à une force temporelle.
-2. Ajouter une boîte, un cylindre ou une sphère. Sélectionner un corps dans
-   l'arbre ou la scène, saisir ses dimensions, sa masse et sa pose dans les
-   propriétés, puis appliquer. L'inertie homogène est calculée ; une matrice
-   explicite peut être fournie.
-3. Déplacer ou orienter le corps avec le manipulateur. Une opération terminée
-   crée une entrée d'historique ; annuler/rétablir restaure le document.
-4. Ajouter un pivot, une rotule, une glissière ou un encastrement entre deux
-   corps, ou entre un corps et le sol. Le point et l'axe mondiaux initialisent
-   deux repères locaux indépendants, ensuite éditables.
-5. Configurer éventuellement la loi du pivot/de la glissière, ou une charge
-   appliquée à un corps. Le dialogue propose constante, linéaire et table.
-6. Corriger les diagnostics, régler durée et pas, puis **Calculer la conception**.
-7. En mode **Résultat**, lire l'animation, déplacer le curseur temporel, choisir
-   une courbe et exporter le CSV avec sa provenance. Revenir à **Conception**
-   pour modifier le document.
+1. Start a new project or load an example: G0 pendulum, double pendulum,
+   slider-crank, or a body under a time-varying force.
+2. Add a box, cylinder or sphere, or use **CAD** for exact solid modelling.
+   Select a body, edit dimensions, mass and pose, then apply its properties.
+   Homogeneous inertia is calculated; an explicit matrix can be supplied.
+3. Move or rotate it with the manipulator. A completed operation creates one
+   history entry; undo/redo restores the document.
+4. Add a revolute, spherical, prismatic or fixed joint between bodies or to
+   ground. A world point and axis initialise two independently editable frames.
+5. Optionally configure a revolute/prismatic motion law or a body load.
+   Dialogs support constant, linear and tabulated laws.
+6. Resolve diagnostics, set duration and time step, then run the design.
+7. Inspect the result animation, time slider and curves; export CSV with
+   provenance. Return to the design to edit its model.
 
-La caméra permet l'orbite, le zoom, le cadrage et les vues orthographiques.
-Les unités sont SI : m, kg, s, N, N·m, kg·m². Les champs d'orientation utilisent
-les degrés avec la convention `Rz × Ry × Rx` ; le document stocke des matrices.
-Les lois angulaires utilisent les radians. Le cylindre a son axe local Z.
+Units are SI: m, kg, s, N, N·m and kg·m². Orientation fields use degrees with
+`Rz × Ry × Rx`; documents store rotation matrices. Angular laws use radians.
+A cylinder's axis is local Z.
 
-**Déplacer un corps ne résout pas les contraintes.** Les ancrages incohérents
-restent visibles et bloquent le lancement ; l'initialisation native refuse de
-déplacer silencieusement les corps. Elle peut initialiser les vitesses imposées
-par les lois de mouvement. La grille ne représente pas un contact avec le sol.
+**Moving a body does not solve its constraints.** Inconsistent anchors remain
+visible and prevent a run; native initialisation rejects silently relocating
+bodies. It can initialise velocities prescribed by motion laws. The grid does
+not represent ground contact.
 
-Les composantes de force et de moment sont exprimées dans le repère mondial.
-Le point d'application est local au corps : son bras de levier tourne avec lui.
-Les flèches orange (force) et violettes (moment) donnent une direction, leur
-longueur est symbolique. Une table interpole linéairement et prolonge les
-valeurs aux extrémités. Aucune expression Python n'est exécutée.
+Force and moment components are in the world frame. The application point is
+body-local, so its lever arm rotates with the body. Orange force and purple
+moment arrows indicate direction; length is symbolic. Tabulated laws interpolate
+linearly and extend endpoint values. No Python expression is evaluated.
 
-## Documents et résultats
+## Documents and results
 
-Les objets ont des UUID persistants. Le JSON utilise
-`format: vinkulum-studio-project` et un projet immuable. Les projets sans CAD
-restent en schéma 1 ; les projets contenant un BREP utilisent le schéma 2.
-Les fichiers G0 restent importables. Supprimer un corps conserve les références
-cassées des liaisons/charges afin de pouvoir les diagnostiquer et les réparer.
-La sauvegarde et les exports remplacent le fichier après écriture complète et
-`fsync` du temporaire ; ils ne garantissent pas la résistance universelle à une
-perte d'alimentation.
+Objects have persistent UUIDs. JSON uses `format: vinkulum-studio-project` and
+an immutable project. Projects without CAD use schema 1; those with BREP use
+schema 2. G0 files remain importable. English labels preserve existing joint
+and law identifiers in saved files. Deleting a body retains broken joint/load
+references so they can be diagnosed and repaired.
 
-Chaque calcul capture son propre projet. Le document reste éditable pendant
-l'exécution ; les propriétés et la scène du résultat restent celles du projet
-capturé, en lecture seule. Une erreur, un crash ou une annulation conserve le
-résultat précédent. Un seul worker est autorisé ; la fermeture le termine.
+Saves and exports replace a destination after the temporary file has been fully
+written and `fsync` completed; this is not a universal power-loss guarantee.
+Each run captures its own project. The design remains editable while it runs;
+result properties and geometry belong to the captured, read-only project.
+Failure, crash or cancellation preserves the previous result. One simulation
+worker is allowed; closing the application terminates it.
 
-Le résultat temporaire est un NPZ borné et validé sans pickle : empreinte,
-identité du projet, en-têtes avant allocation, dimensions, finitude, chronologie
-et matrices de rotation. La provenance contient les versions et l'empreinte du
-binaire natif. Le CSV exporte les échantillons natifs, avec l'état initial,
-les unités et le projet capturé. Les pivots sont affichés en angle principal
-`[-π, π]`, pas en compteur de tours. La lecture choisit les échantillons sans
-interpolation dynamique. Les résultats de l’historique restent en mémoire pour la session, dans la limite du budget ;
-le JSON sauvegarde la conception, le CSV permet de conserver les données.
+Temporary results are bounded NPZ archives validated without pickle: digest,
+project identity, headers before allocation, shapes, finite values, chronology
+and rotation matrices. Provenance contains versions and the native binary hash.
+CSV exports native samples, including the initial state, units and captured
+project. Revolute angles use the principal range `[-π, π]`, not a turn counter.
+Playback selects samples without dynamic interpolation. History remains in
+session memory within its budget; JSON saves the design and CSV retains data.
 
-## Domaine et qualification
+## Domain and qualification
 
-32 corps, 64 liaisons, 128 charges, 20 000 pas demandés et 100 000 couples
-corps/échantillon au maximum ; archive de résultat limitée à 64 Mio. Ces budgets
-ne garantissent ni la convergence ni une limite de mémoire imposée par l'OS.
-Le worker n'est pas un bac à sable de sécurité. Contact, flexibles, import
-URDF, collaboration et synthèse automatique de mécanismes ne sont pas inclus.
-L'import CAD est limité à une pièce solide STEP dans le contrat OCCT 8 décrit plus haut.
+Limits: 32 bodies, 64 joints, 128 loads, 20,000 requested steps, 100,000
+body/sample pairs and 64 MiB per result archive. These budgets do not guarantee
+convergence or impose an OS memory limit. Workers are not security sandboxes.
+Contact, flexible bodies, URDF import, collaboration and automatic mechanism
+synthesis are not exposed by this Studio workflow. STEP import accepts one
+solid as specified in the CAD contract.
 
-Le statut scientifique d'une trajectoire reste **`NotAssessed`** : les contrôles
-d'intégrité et les références physiques testées ne constituent pas une borne
-d'erreur pour tout modèle saisi. Voir la [recette et ses preuves](../../docs/STUDIO_3D.md).
+A trajectory's scientific status remains **`NotAssessed`**. Integrity checks
+and tested physical references are not error bounds for arbitrary models.
+See the [3D qualification record](../../docs/STUDIO_3D.md).
 
 ```sh
 PY="$VIRTUAL_ENV/bin/python" bash ci/studio.sh
 ```
 
-Sous Linux, cette commande utilise un vrai contexte Qt/X11/OpenGL sous Xvfb.
-Sous macOS, la lancer depuis une session de bureau avec les droits d'accès à
-l'écran. Une recette humaine reste nécessaire pour le confort, les raccourcis
-et les gestes propres aux périphériques de chaque plateforme.
+Linux tests use a real Qt/X11/OpenGL context under Xvfb. On macOS, run from a
+desktop session with screen access. Human qualification is still needed for
+comfort, shortcuts and device-specific gestures on each platform.

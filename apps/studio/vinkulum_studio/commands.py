@@ -24,19 +24,19 @@ def search_key(text):
 class CommandPalette(QDialog):
     def __init__(self, actions, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("Rechercher une commande")
+        self.setWindowTitle("Find a command")
         self.resize(620, 440)
         self.actions = list(actions)
         layout = QVBoxLayout(self)
         self.query = QLineEdit()
-        self.query.setPlaceholderText("Que souhaitez-vous faire ?")
-        self.query.setAccessibleName("Rechercher une commande")
+        self.query.setPlaceholderText("What would you like to do?")
+        self.query.setAccessibleName("Find a command")
         self.query.installEventFilter(self)
         layout.addWidget(self.query)
         self.results = QListWidget()
-        self.results.setAccessibleName("Commandes disponibles")
+        self.results.setAccessibleName("Available commands")
         layout.addWidget(self.results)
-        self.hint = QLabel("↑ ↓ Choisir    Entrée Exécuter    Échap Fermer")
+        self.hint = QLabel("↑ ↓ Choose    Enter Run    Esc Close")
         self.hint.setObjectName("muted")
         layout.addWidget(self.hint)
         self.query.textChanged.connect(self._filter)
@@ -60,7 +60,7 @@ class CommandPalette(QDialog):
             item.setData(Qt.ItemDataRole.UserRole, action)
             item.setToolTip(action.toolTip())
             if not action.isEnabled():
-                item.setText(item.text() + " — indisponible")
+                item.setText(item.text() + " — unavailable")
                 item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEnabled)
             self.results.addItem(item)
         for i in range(self.results.count()):
@@ -68,9 +68,9 @@ class CommandPalette(QDialog):
                 self.results.setCurrentRow(i)
                 break
         self.hint.setText(
-            "↑ ↓ Choisir    Entrée Exécuter    Échap Fermer"
+            "↑ ↓ Choose    Enter Run    Esc Close"
             if self.results.count()
-            else "Aucune commande correspondante. Essayez un autre mot."
+            else "No matching command. Try another word."
         )
 
     def _execute(self, *_):

@@ -66,30 +66,30 @@ class Workspace:
         font.setPointSizeF(max(10.0, font.pointSizeF()))
         self.setFont(font)
         self.setMinimumSize(1000, 700)
-        files = self.menuBar().addMenu("&Fichier")
-        edit = self.menuBar().addMenu("&Édition")
-        create = self.menuBar().addMenu("&Créer")
-        view = self.menuBar().addMenu("&Affichage")
-        analysis = self.menuBar().addMenu("&Calcul")
-        help_menu = self.menuBar().addMenu("&Aide")
+        files = self.menuBar().addMenu("&File")
+        edit = self.menuBar().addMenu("&Edit")
+        create = self.menuBar().addMenu("&Create")
+        view = self.menuBar().addMenu("&View")
+        analysis = self.menuBar().addMenu("&Run")
+        help_menu = self.menuBar().addMenu("&Help")
         for key, label, slot, shortcut in (
-            ("new", "Nouveau projet", self.new_project, QKeySequence.StandardKey.New),
+            ("new", "New project", self.new_project, QKeySequence.StandardKey.New),
             (
                 "open",
-                "Ouvrir un projet…",
+                "Open project…",
                 self.open_dialog,
                 QKeySequence.StandardKey.Open,
             ),
             (
                 "save",
-                "Enregistrer le projet…",
+                "Save project…",
                 self.save_dialog,
                 QKeySequence.StandardKey.Save,
             ),
-            ("import", "Importer un pendule G0…", self.import_dialog, None),
+            ("import", "Import G0 pendulum…", self.import_dialog, None),
         ):
             files.addAction(self._action(key, label, slot, shortcut))
-        examples = files.addMenu("Ouvrir un exemple")
+        examples = files.addMenu("Open example")
         for i, name in enumerate(EXAMPLES):
             examples.addAction(
                 self._action(
@@ -99,23 +99,21 @@ class Workspace:
                 )
             )
         for key, label, slot, shortcut in (
-            ("undo", "Annuler", self.undo, QKeySequence.StandardKey.Undo),
-            ("redo", "Rétablir", self.redo, QKeySequence.StandardKey.Redo),
-            ("duplicate", "Dupliquer la sélection", self.duplicate, "Ctrl+D"),
-            ("delete", "Supprimer la sélection", self.delete, "Ctrl+Delete"),
+            ("undo", "Undo", self.undo, QKeySequence.StandardKey.Undo),
+            ("redo", "Redo", self.redo, QKeySequence.StandardKey.Redo),
+            ("duplicate", "Duplicate selection", self.duplicate, "Ctrl+D"),
+            ("delete", "Delete selection", self.delete, "Ctrl+Delete"),
         ):
             edit.addAction(self._action(key, label, slot, shortcut, design=True))
         for shape, label, shortcut in (
-            ("box", "Boîte", "Alt+B"),
-            ("cylinder", "Cylindre", "Alt+C"),
-            ("sphere", "Sphère", "Alt+S"),
+            ("box", "Box", "Alt+B"),
+            ("cylinder", "Cylinder", "Alt+C"),
+            ("sphere", "Sphere", "Alt+S"),
         ):
             create.addAction(
                 self._action(
                     shape,
-                    f"Ajouter une {label.lower()}"
-                    if shape != "cylinder"
-                    else "Ajouter un cylindre",
+                    f"Add {label.lower()}" if shape != "cylinder" else "Add cylinder",
                     lambda checked=False, s=shape: self.add_body(s),
                     shortcut,
                     design=True,
@@ -123,24 +121,22 @@ class Workspace:
             )
         create.addSeparator()
         create.addAction(
-            self._action("cad", "Conception CAD…", self.open_cad, "Alt+G", design=True)
+            self._action("cad", "CAD design…", self.open_cad, "Alt+G", design=True)
         )
         create.addSeparator()
         create.addAction(
             self._action(
                 "joint",
-                "Ajouter une liaison…",
+                "Add joint…",
                 self.add_joint_dialog,
                 "Alt+L",
                 design=True,
             )
         )
         create.addAction(
-            self._action(
-                "load", "Ajouter une charge", self.add_load, "Alt+F", design=True
-            )
+            self._action("load", "Add load", self.add_load, "Alt+F", design=True)
         )
-        toolbar = self.addToolBar("Outils principaux")
+        toolbar = self.addToolBar("Main tools")
         toolbar.setObjectName("main_tools")
         toolbar.setMovable(False)
         brand = QLabel("Vinkulum  Studio")
@@ -148,8 +144,8 @@ class Workspace:
         toolbar.addWidget(brand)
         toolbar.addSeparator()
         self.workspace_tabs = QTabBar()
-        self.workspace_tabs.setAccessibleName("Atelier")
-        for label in ("Modéliser", "Simuler", "Examiner"):
+        self.workspace_tabs.setAccessibleName("Workspace")
+        for label in ("Model", "Simulate", "Inspect"):
             self.workspace_tabs.addTab(label)
         self.workspace_tabs.setTabEnabled(2, False)
         toolbar.addWidget(self.workspace_tabs)
@@ -160,18 +156,18 @@ class Workspace:
             toolbar.addAction(self.commands[key])
         toolbar.addSeparator()
         add = QToolButton()
-        add.setText("+ Créer")
+        add.setText("+ Create")
         add.setMenu(create)
         add.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
         toolbar.addWidget(add)
         cad_button = QToolButton()
-        cad_button.setToolTip("Conception de solides · Alt+G")
+        cad_button.setToolTip("Solid modelling · Alt+G")
         cad_button.setDefaultAction(self.commands["cad"])
         cad_button.setText("CAD")
         cad_button.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
         toolbar.addWidget(cad_button)
         example_button = QToolButton()
-        example_button.setText("Exemples")
+        example_button.setText("Examples")
         example_button.setMenu(examples)
         example_button.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
         toolbar.addWidget(example_button)
@@ -183,14 +179,12 @@ class Workspace:
         )
         toolbar.addWidget(stretch)
         palette_action = self._action(
-            "commands", "Rechercher une commande…", self.show_commands, "Ctrl+K"
+            "commands", "Find a command…", self.show_commands, "Ctrl+K"
         )
         palette_action.setIcon(line_icon("search"))
         toolbar.addAction(palette_action)
         help_menu.addAction(palette_action)
-        self._action(
-            "context_tools", "Outils pour la sélection…", self.show_context_tools, "S"
-        )
+        self._action("context_tools", "Selection tools…", self.show_context_tools, "S")
 
         objects = QWidget()
         objects_layout = QVBoxLayout(objects)
@@ -200,16 +194,14 @@ class Workspace:
         self.project_label.setWordWrap(True)
         objects_layout.addWidget(self.project_label)
         self.tree_search = QLineEdit()
-        self.tree_search.setPlaceholderText("Filtrer les objets…")
-        self.tree_search.setAccessibleName(
-            "Filtrer les objets par nom, type ou identité"
-        )
+        self.tree_search.setPlaceholderText("Filter objects…")
+        self.tree_search.setAccessibleName("Filter objects by name, type or identity")
         self.tree_search.setClearButtonEnabled(True)
         self.tree_search.textChanged.connect(self._filter_tree)
         objects_layout.addWidget(self.tree_search)
         self.tree = QTreeWidget()
-        self.tree.setHeaderLabels(["MÉCANISME", "Type"])
-        self.tree.setAccessibleName("Explorateur du mécanisme")
+        self.tree.setHeaderLabels(["MECHANISM", "Type"])
+        self.tree.setAccessibleName("Mechanism browser")
         self.tree.setUniformRowHeights(True)
         self.tree.setIndentation(16)
         self.tree.setHeaderHidden(True)
@@ -229,14 +221,14 @@ class Workspace:
         self.object_count.setObjectName("muted")
         objects_layout.addWidget(self.object_count)
         self._dock(
-            "objects", "Explorateur", objects, Qt.DockWidgetArea.LeftDockWidgetArea
+            "objects", "Browser", objects, Qt.DockWidgetArea.LeftDockWidgetArea
         ).setMinimumWidth(220)
 
         inspector = QWidget()
         inspector_layout = QVBoxLayout(inspector)
         inspector_layout.setContentsMargins(8, 8, 8, 6)
         inspector_layout.setSpacing(4)
-        self.inspector_title = QLabel("Paramètres du projet")
+        self.inspector_title = QLabel("Project settings")
         self.inspector_title.setObjectName("inspector_title")
         inspector_layout.addWidget(self.inspector_title)
         self.inspector_hint = QLabel()
@@ -258,7 +250,7 @@ class Workspace:
         inspector_layout.addWidget(scroll, 1)
         self._dock(
             "inspector",
-            "Inspecteur · SI",
+            "Inspector · SI",
             inspector,
             Qt.DockWidgetArea.RightDockWidgetArea,
         ).setMinimumWidth(280)
@@ -271,21 +263,21 @@ class Workspace:
         top.setSpacing(4)
         layout.addLayout(top)
         self.mode = QComboBox()
-        self.mode.setAccessibleName("Espace de travail")
-        self.mode.addItems(["Conception", "Résultat du calcul"])
+        self.mode.setAccessibleName("Workspace")
+        self.mode.addItems(["Design", "Calculation result"])
         self.mode.model().item(1).setEnabled(False)
         self.mode.currentIndexChanged.connect(self._mode_changed)
         top.addWidget(self.mode)
-        self.scene_label = QLabel("Scène 3D · mètres")
+        self.scene_label = QLabel("3D scene · metres")
         self.scene_label.setObjectName("muted")
         top.addWidget(self.scene_label)
         top.addStretch()
         camera_menu = QMenu(self)
         for direction, label, shortcut in (
-            ("iso", "Vue isométrique", "0"),
-            ("front", "Vue de face", "1"),
-            ("side", "Vue de côté", "3"),
-            ("top", "Vue de dessus", "7"),
+            ("iso", "Isometric view", "0"),
+            ("front", "Front view", "1"),
+            ("side", "Side view", "3"),
+            ("top", "Top view", "7"),
         ):
             action = self._action(
                 "camera_" + direction,
@@ -297,22 +289,22 @@ class Workspace:
             view.addAction(action)
         fit = self._action(
             "fit",
-            "Cadrer la sélection",
+            "Fit selection",
             lambda: self.viewport.camera("iso", selection=True),
             "F",
         )
         camera_menu.addAction(fit)
         view.addAction(fit)
         camera_button = QToolButton()
-        camera_button.setText("Vues")
+        camera_button.setText("Views")
         camera_button.setMenu(camera_menu)
         camera_button.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
         top.addWidget(camera_button)
         self.viewport = Viewport()
         camera_menu.addSeparator()
         for key, label, parallel in (
-            ("orthographic", "Projection orthographique", True),
-            ("perspective", "Projection perspective", False),
+            ("orthographic", "Orthographic projection", True),
+            ("perspective", "Perspective projection", False),
         ):
             action = self._action(
                 key,
@@ -323,9 +315,7 @@ class Workspace:
             )
             camera_menu.addAction(action)
             view.addAction(action)
-        grid = self._action(
-            "grid", "Grille de référence XY", self.viewport.set_grid_visible
-        )
+        grid = self._action("grid", "XY reference grid", self.viewport.set_grid_visible)
         grid.setCheckable(True)
         grid.setChecked(True)
         grid.setIcon(line_icon("grid"))
@@ -335,16 +325,14 @@ class Workspace:
         top.addWidget(grid_button)
         layout.addWidget(self.viewport, 1)
         self.navigation_hint = QLabel(
-            "Orbite : glisser · Panoramique : Maj + glisser · Zoom : molette · F : cadrer"
+            "Orbit: drag · Pan: Shift + drag · Zoom: scroll · F: fit"
         )
         self.navigation_hint.setObjectName("muted")
         self.navigation_hint.setWordWrap(True)
         layout.addWidget(self.navigation_hint)
         self.transform_mode = QComboBox()
-        self.transform_mode.setAccessibleName("Mode de manipulation 3D")
-        self.transform_mode.addItems(
-            ["Sélection", "Déplacer", "Orienter", "Déplacer et orienter"]
-        )
+        self.transform_mode.setAccessibleName("3D manipulation mode")
+        self.transform_mode.addItems(["Select", "Move", "Rotate", "Move and rotate"])
         self.transform_mode.setCurrentIndex(0)
         self.transform_mode.currentIndexChanged.connect(
             self.viewport.set_transform_mode
@@ -355,7 +343,7 @@ class Workspace:
 
         self.transform_group = QButtonGroup(self)
         for i, (name, label) in enumerate(
-            (("select", "Sélectionner"), ("move", "Déplacer"), ("rotate", "Orienter"))
+            (("select", "Select"), ("move", "Move"), ("rotate", "Rotate"))
         ):
             button = QToolButton()
             button.setIcon(line_icon(name))
@@ -370,9 +358,9 @@ class Workspace:
         self.transform_group.idClicked.connect(self.transform_mode.setCurrentIndex)
         self.viewport.set_transform_mode(0)
         for key, label, slot in (
-            ("hide", "Masquer / afficher la sélection", self.toggle_visibility),
-            ("isolate", "Isoler la sélection", self.isolate_selection),
-            ("show_all", "Afficher tous les objets", self.show_all_objects),
+            ("hide", "Toggle selection visibility", self.toggle_visibility),
+            ("isolate", "Isolate selection", self.isolate_selection),
+            ("show_all", "Show all objects", self.show_all_objects),
         ):
             view.addAction(self._action(key, label, slot))
 
@@ -386,63 +374,61 @@ class Workspace:
         setup_layout.addLayout(settings_form)
         self.duration = QLineEdit("2.0")
         self.step = QLineEdit("0.005")
-        self.duration.setAccessibleName("Durée du calcul en secondes")
-        self.step.setAccessibleName("Pas du calcul en secondes")
-        settings_form.addRow("Durée [s]", self.duration)
-        settings_form.addRow("Pas [s]", self.step)
+        self.duration.setAccessibleName("Calculation duration in seconds")
+        self.step.setAccessibleName("Calculation time step in seconds")
+        settings_form.addRow("Duration [s]", self.duration)
+        settings_form.addRow("Time step [s]", self.step)
         for field in (self.duration, self.step):
             field.textEdited.connect(self._workspace_state)
         row = QHBoxLayout()
         setup_layout.addLayout(row)
-        self.run_button = QPushButton("Calculer")
+        self.run_button = QPushButton("Run")
         self.run_button.setObjectName("primary")
         self.run_button.clicked.connect(self.run)
-        self.stop_button = QPushButton("Arrêter")
+        self.stop_button = QPushButton("Stop")
         self.stop_button.clicked.connect(self.stop)
         self.stop_button.setEnabled(False)
         row.addWidget(self.run_button, 1)
         row.addWidget(self.stop_button)
-        self.run_state = QLabel("Prêt à calculer")
+        self.run_state = QLabel("Ready to run")
         self.run_state.setObjectName("muted")
         self.run_state.setWordWrap(True)
         setup_layout.addWidget(self.run_state)
         setup_layout.addStretch()
         self._dock(
             "analysis",
-            "Calcul · dynamique",
+            "Run · dynamics",
             setup,
             Qt.DockWidgetArea.LeftDockWidgetArea,
         )
-        analysis.addAction(
-            self._action("run", "Calculer la conception", self.run, "Ctrl+Return")
-        )
-        analysis.addAction(self._action("stop", "Arrêter le calcul", self.stop))
+        analysis.addAction(self._action("run", "Run design", self.run, "Ctrl+Return"))
+        analysis.addAction(self._action("stop", "Stop calculation", self.stop))
 
         results = QWidget()
         results_layout = QVBoxLayout(results)
         run_row = QHBoxLayout()
         results_layout.addLayout(run_row)
         self.run_combo = QComboBox()
-        self.run_combo.setAccessibleName("Calcul affiché")
+        self.run_combo.setAccessibleName("Displayed run")
         self.run_combo.setMinimumContentsLength(15)
         self.run_combo.setSizeAdjustPolicy(
             QComboBox.SizeAdjustPolicy.AdjustToMinimumContentsLengthWithIcon
         )
         self.run_combo.currentIndexChanged.connect(self.choose_run)
-        run_row.addWidget(QLabel("Calcul"))
+        run_row.addWidget(QLabel("Run"))
         run_row.addWidget(self.run_combo, 1)
         self.compare_combo = QComboBox()
-        self.compare_combo.setAccessibleName("Calcul de référence pour la comparaison")
+        self.compare_combo.setAccessibleName("Reference run for comparison")
         self.compare_combo.setMinimumContentsLength(15)
         self.compare_combo.setSizeAdjustPolicy(
             QComboBox.SizeAdjustPolicy.AdjustToMinimumContentsLengthWithIcon
         )
-        self.compare_combo.addItem("Sans comparaison", None)
+        self.compare_combo.addItem("No comparison", None)
         self.compare_combo.currentIndexChanged.connect(self.update_comparison)
-        run_row.addWidget(QLabel("Comparer à"))
+        run_row.addWidget(QLabel("Compare with"))
         run_row.addWidget(self.compare_combo, 1)
         self.result_label = QLabel(
-            "Aucun résultat. Lancez un calcul pour examiner le mouvement."
+            "No result. Run a calculation to inspect the motion."
         )
         self.result_label.setWordWrap(True)
         self.result_label.setTextFormat(Qt.TextFormat.PlainText)
@@ -460,10 +446,10 @@ class Workspace:
         self.series_combo.setSizeAdjustPolicy(
             QComboBox.SizeAdjustPolicy.AdjustToMinimumContentsLengthWithIcon
         )
-        self.series_combo.setAccessibleName("Grandeur physique affichée")
+        self.series_combo.setAccessibleName("Displayed physical quantity")
         self.series_combo.currentIndexChanged.connect(self._select_series)
         tools.addWidget(self.series_combo, 1)
-        self.export_button = QPushButton("Exporter CSV")
+        self.export_button = QPushButton("Export CSV")
         self.export_button.clicked.connect(self.export_dialog)
         self.provenance_button = QPushButton("Provenance")
         self.provenance_button.clicked.connect(self.provenance)
@@ -473,11 +459,9 @@ class Workspace:
         self.result_tabs = QTabWidget()
         self.curve = SeriesView()
         self.curve.sample_selected.connect(self.seek_sample)
-        self.result_tabs.addTab(self.curve, "Courbe")
+        self.result_tabs.addTab(self.curve, "Curve")
         self.sample_table = QTableView()
-        self.sample_table.setAccessibleName(
-            "Échantillons natifs de la grandeur affichée"
-        )
+        self.sample_table.setAccessibleName("Native samples of the displayed quantity")
         self.sample_table.setSelectionBehavior(
             QAbstractItemView.SelectionBehavior.SelectRows
         )
@@ -493,30 +477,30 @@ class Workspace:
                 self.seek_sample(current.row()) if current.isValid() else None
             )
         )
-        self.result_tabs.addTab(self.sample_table, "Échantillons")
+        self.result_tabs.addTab(self.sample_table, "Samples")
         results_layout.addWidget(self.result_tabs, 1)
         playback = QHBoxLayout()
         results_layout.addLayout(playback)
-        self.play_button = QPushButton("Lecture")
+        self.play_button = QPushButton("Play")
         self.play_button.clicked.connect(self.toggle_play)
         self.play_button.setEnabled(False)
         playback.addWidget(self.play_button)
         self.slider = QSlider(Qt.Orientation.Horizontal)
-        self.slider.setAccessibleName("Échantillon temporel")
+        self.slider.setAccessibleName("Time sample")
         self.slider.setEnabled(False)
         self.slider.valueChanged.connect(self._frame)
         self.slider.sliderPressed.connect(self.pause)
         self.slider.actionTriggered.connect(lambda _: self.pause())
         playback.addWidget(self.slider, 1)
         self.speed = QComboBox()
-        self.speed.setAccessibleName("Vitesse de lecture")
+        self.speed.setAccessibleName("Playback speed")
         for rate in (0.25, 0.5, 1.0, 2.0, 4.0):
             self.speed.addItem(f"×{rate:g}", rate)
         self.speed.setCurrentIndex(2)
         self.speed.currentIndexChanged.connect(self._speed_changed)
         playback.addWidget(self.speed)
         self.time_input = QDoubleSpinBox()
-        self.time_input.setAccessibleName("Temps affiché en secondes")
+        self.time_input.setAccessibleName("Displayed time in seconds")
         self.time_input.setDecimals(6)
         self.time_input.setSuffix(" s")
         self.time_input.setKeyboardTracking(False)
@@ -528,14 +512,14 @@ class Workspace:
         playback.addWidget(self.time_label)
         self._dock(
             "results",
-            "Résultats · échantillons natifs",
+            "Results · native samples",
             results,
             Qt.DockWidgetArea.BottomDockWidgetArea,
         )
 
         self.diagnostics = QTreeWidget()
-        self.diagnostics.setHeaderLabels(["Objet", "Diagnostic et action attendue"])
-        self.diagnostics.setAccessibleName("Diagnostics du modèle")
+        self.diagnostics.setHeaderLabels(["Object", "Diagnostic and required action"])
+        self.diagnostics.setAccessibleName("Model diagnostics")
         self.diagnostics.itemActivated.connect(self._activate_diagnostic)
         self._dock(
             "diagnostics",
@@ -545,22 +529,20 @@ class Workspace:
         )
         self.tabifyDockWidget(self.docks["results"], self.docks["diagnostics"])
         self.docks["results"].raise_()
-        panels = view.addMenu("Panneaux")
+        panels = view.addMenu("Panels")
         for key, dock in self.docks.items():
             action = dock.toggleViewAction()
             panels.addAction(action)
             self.commands["panel_" + key] = action
         view.addAction(
-            self._action(
-                "reset_layout", "Restaurer la disposition", self.reset_workspace
-            )
+            self._action("reset_layout", "Restore layout", self.reset_workspace)
         )
-        themes = view.addMenu("Thème")
+        themes = view.addMenu("Theme")
         self.theme_actions = QActionGroup(self)
-        for name, label in (("dark", "Sombre"), ("light", "Clair")):
+        for name, label in (("dark", "Dark"), ("light", "Light")):
             action = self._action(
                 "theme_" + name,
-                f"Thème {label.lower()}",
+                f"Theme {label.lower()}",
                 lambda checked=False, n=name: self.set_theme(n),
             )
             action.setCheckable(True)
@@ -568,10 +550,10 @@ class Workspace:
             themes.addAction(action)
         help_menu.addAction(
             self._action(
-                "navigation_help", "Aide à la navigation 3D", self.navigation_help, "F1"
+                "navigation_help", "3D navigation help", self.navigation_help, "F1"
             )
         )
-        self.status = QLabel("Prêt. Sélectionnez un objet pour le modifier.")
+        self.status = QLabel("Ready. Select an object to edit.")
         self.status.setTextFormat(Qt.TextFormat.PlainText)
         self.status.setWordWrap(True)
         self.statusBar().addWidget(self.status, 1)
@@ -628,7 +610,7 @@ class Workspace:
             else ("box", "cylinder", "sphere", "show_all")
         )
         palette = CommandPalette([self.commands[key] for key in keys], self)
-        palette.setWindowTitle("Outils pour la sélection")
+        palette.setWindowTitle("Selection tools")
         palette.exec()
 
     def set_theme(self, name):
@@ -694,7 +676,9 @@ class Workspace:
                 children_visible += show
             group.setHidden(bool(terms) and not children_visible)
             visible += children_visible
-        self.object_count.setText(f"{visible} objets affichés dans l’explorateur")
+        self.object_count.setText(
+            f"{visible} object{'s' if visible != 1 else ''} shown in the browser"
+        )
 
     def _tree_menu(self, point):
         item = self.tree.itemAt(point)
@@ -736,21 +720,21 @@ class Workspace:
         pending = self.dirty_fields or settings_pending
         issues = self.project.diagnostics()
         self.validation_label.setText(
-            "Brouillon · champs non appliqués"
+            "Draft · unapplied properties"
             if pending
-            else f"Modèle invalide · {len(issues)} diagnostics"
+            else f"Invalid model · {len(issues)} diagnostics"
             if issues
-            else "Entrées contrôlées · prêtes au calcul"
+            else "Inputs checked · ready to run"
         )
         self.project_label.setText(
-            f"{self.project.name}\nRévision {self.project.revision}"
+            f"{self.project.name}\nRevision {self.project.revision}"
         )
         modified = self.project != self._saved or pending
         self.setWindowModified(modified)
         self.setWindowTitle(f"{self.project.name}[*] — Vinkulum Studio")
         result_mode = self.mode.currentIndex() == 1
         self.scene_label.setText(
-            "Résultat · lecture seule" if result_mode else "Conception · mètres"
+            "Result · read only" if result_mode else "Design · metres"
         )
         self.transform_mode.setEnabled(not result_mode)
         for button in self.transform_buttons:
@@ -761,13 +745,13 @@ class Workspace:
         elif not result_mode and self.workspace_tabs.currentIndex() == 2:
             self.workspace_tabs.setCurrentIndex(0)
         obj = self.object(display=True)
-        self.inspector_title.setText(obj.name if obj else "Paramètres du projet")
+        self.inspector_title.setText(obj.name if obj else "Project settings")
         self.inspector_hint.setText(
-            "Instantané du calcul · lecture seule"
+            "Run snapshot · read only"
             if result_mode
-            else "Modifications en attente d’application"
+            else "Pending property changes"
             if self.dirty_fields
-            else "Propriétés du document · unités SI"
+            else "Document properties · SI units"
         )
         self.commands["undo"].setEnabled(not result_mode and bool(self.history.past))
         self.commands["redo"].setEnabled(not result_mode and bool(self.history.future))
@@ -783,7 +767,7 @@ class Workspace:
         for combo in (self.run_combo, self.compare_combo):
             combo.blockSignals(True)
             combo.clear()
-        self.compare_combo.addItem("Sans comparaison", None)
+        self.compare_combo.addItem("No comparison", None)
         for number, result in enumerate(self.run_archive.results, 1):
             label = f"{result.project.name} · r{result.project.revision} · {result.run_id[:8]}"
             self.run_combo.addItem(label, result.run_id)
@@ -825,40 +809,38 @@ class Workspace:
             json.loads(reference.manifest_json),
         )
         for field, label in (
-            ("method", "méthode numérique"),
-            ("rho_infinity", "dissipation numérique"),
-            ("kernel_sha256", "binaire du noyau"),
+            ("method", "numerical method"),
+            ("rho_infinity", "numerical dissipation"),
+            ("kernel_sha256", "kernel binary"),
         ):
             if current_manifest.get(field) != reference_manifest.get(field):
                 differences.append(label)
         description = (
-            "Différences : " + "; ".join(differences)
+            "Differences: " + "; ".join(differences)
             if differences
-            else "Même modèle et mêmes paramètres numériques."
+            else "Same model and numerical settings."
         )
         key = series_keys(current.project)[index]
         reference_keys = series_keys(reference.project)
         if key not in reference_keys:
             self.comparison_label.setText(
                 description
-                + " · Grandeur absente de la référence : identité d’objet différente."
+                + " · Quantity missing from the reference: different object identity."
             )
             return
         label, unit, values = reference.series()[reference_keys.index(key)]
         if unit != self._series[index][1]:
-            self.comparison_label.setText(
-                "Comparaison indisponible : unités incompatibles."
-            )
+            self.comparison_label.setText("Comparison unavailable: incompatible units.")
             return
         self.curve.set_reference((reference.time, values, reference.run_id[:8]))
         frame = (
-            "Repère mondial"
+            "World frame"
             if key[1] in {"position", "velocity"}
-            else "Coordonnée relative de liaison"
+            else "Relative joint coordinate"
         )
         self.comparison_label.setText(
             description
-            + f" · Trait plein : {current.run_id[:8]} ; pointillés : {reference.run_id[:8]}. {frame} ; temps propres à chaque calcul."
+            + f" · Solid line: {current.run_id[:8]}; dashed line: {reference.run_id[:8]}. {frame}; each run keeps its own timestamps."
         )
 
     def seek_sample(self, index):
@@ -894,13 +876,6 @@ class Workspace:
 
         QMessageBox.information(
             self,
-            "Navigation et édition",
-            "Glisser : orbite autour du modèle.\n"
-            "Maj + glisser : déplacement de la caméra. Molette : zoom.\n"
-            "0 / 1 / 3 / 7 : vues isométrique / face / côté / dessus. F : cadrer la sélection.\n"
-            "Choisissez Sélection, Déplacer ou Orienter pour régler le manipulateur.\n"
-            "Les positions se règlent aussi dans l’inspecteur, en mètres et degrés.\n\n"
-            "Déplacer un corps ne résout pas les contraintes. La grille n’est pas un contact.\n"
-            "Forces orange et moments violets : directions mondiales, longueurs symboliques.\n"
-            "Le résultat affiche les échantillons natifs ; sa précision n’est pas certifiée.",
+            "Navigation and editing",
+            "Drag: orbit around the model.\nShift + drag: pan the camera. Scroll: zoom.\n0 / 1 / 3 / 7: isometric / front / side / top views. F: fit selection.\nChoose Select, Move or Rotate to set the manipulator.\nPositions are also editable in the inspector, in metres and degrees.\n\nMoving a body does not solve constraints. The grid is not a contact surface.\nOrange forces and purple moments: world directions, symbolic lengths.\nResults display native samples; their accuracy is not certified.",
         )

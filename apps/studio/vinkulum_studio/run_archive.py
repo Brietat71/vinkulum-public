@@ -24,9 +24,7 @@ class RunArchive:
 
     def add(self, result):
         if result_bytes(result) > self.max_bytes:
-            raise ValueError(
-                "Le résultat dépasse le budget de l’historique de session."
-            )
+            raise ValueError("Result exceeds the session history budget.")
         self.results = [r for r in self.results if r.run_id != result.run_id]
         self.results.append(result)
         removed = []
@@ -61,22 +59,22 @@ def model_differences(a, b):
     """Human-readable summary; full captured inputs remain in provenance."""
     changes = []
     for key, label in (
-        ("id", "identité du projet"),
-        ("gravity", "gravité"),
-        ("duration", "durée"),
-        ("step", "pas de temps"),
+        ("id", "project identity"),
+        ("gravity", "gravity"),
+        ("duration", "duration"),
+        ("step", "time step"),
     ):
         if getattr(a, key) != getattr(b, key):
             changes.append(label)
     for category, label in (
-        ("bodies", "corps"),
-        ("joints", "liaisons"),
-        ("loads", "charges"),
+        ("bodies", "bodies"),
+        ("joints", "joints"),
+        ("loads", "loads"),
     ):
         left = {o.id: o for o in getattr(a, category)}
         right = {o.id: o for o in getattr(b, category)}
         if left.keys() != right.keys():
-            changes.append(f"ensemble des {label}")
+            changes.append(f"set of {label}")
         for key in left.keys() & right.keys():
             different = [
                 f.name
@@ -85,17 +83,17 @@ def model_differences(a, b):
             ]
             if different:
                 names = {
-                    "name": "nom",
-                    "mass": "masse",
+                    "name": "name",
+                    "mass": "mass",
                     "dimensions": "dimensions",
                     "position": "position",
                     "orientation": "orientation",
-                    "inertia_mode": "mode d’inertie",
-                    "explicit_inertia": "inertie",
-                    "motion": "mouvement imposé",
+                    "inertia_mode": "inertia mode",
+                    "explicit_inertia": "inertia",
+                    "motion": "prescribed motion",
                     "force": "force",
                     "moment": "moment",
-                    "point": "point d’application",
+                    "point": "application point",
                 }
                 changes.append(
                     f"{left[key].name} : "

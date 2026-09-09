@@ -1,15 +1,15 @@
 """Captured-project adapter and versioned scientific result, without Qt."""
 
-from dataclasses import asdict, dataclass
-from datetime import datetime, timezone
 import csv
 import hashlib
 import io
 import json
 import math
-from pathlib import Path
 import platform
 import zipfile
+from dataclasses import asdict, dataclass
+from datetime import datetime, timezone
+from pathlib import Path
 
 import numpy as np
 
@@ -126,7 +126,7 @@ def simulate_project(project, run_id, directory):
         before[2], initial[2], rtol=0.0, atol=1e-10
     ):
         raise ValueError(
-            "L'initialisation déplacerait les corps : corrigez les ancrages du document."
+            "Initialisation would move the bodies: correct the document anchors."
         )
     trajectory = [initial, *solver.simule(project.duration, project.step, rho=0.9)]
     arrays = {
@@ -143,7 +143,7 @@ def simulate_project(project, run_id, directory):
     path = Path(directory) / "trajectory.npz"
     np.savez(path, **arrays)
     if path.stat().st_size > MAX_ARCHIVE_BYTES:
-        raise ValueError("Budget du résultat dépassé.")
+        raise ValueError("Result budget exceeded.")
     metadata = {
         "schema_version": 2,
         "status": "completed",
@@ -214,18 +214,18 @@ class MechanicalResult:
             or Project.from_dict(data.get("project")) != project
             or data.get("body_ids") != [b.id for b in project.bodies]
         ):
-            raise ValueError("Résultat incompatible avec le projet capturé.")
+            raise ValueError("Result is incompatible with the captured project.")
         manifest = data.get("manifest")
         if (
             not isinstance(manifest, dict)
             or manifest.get("scientific_status") != "NotAssessed"
         ):
-            raise ValueError("Manifeste scientifique incorrect.")
+            raise ValueError("Invalid scientific manifest.")
         path = Path(directory) / "trajectory.npz"
         if path.stat().st_size > MAX_ARCHIVE_BYTES:
-            raise ValueError("Archive de résultat trop volumineuse.")
+            raise ValueError("Result archive is too large.")
         if hashlib.sha256(path.read_bytes()).hexdigest() != data.get("archive_sha256"):
-            raise ValueError("Empreinte de résultat incorrecte.")
+            raise ValueError("Invalid result hash.")
         with zipfile.ZipFile(path) as archive:
             infos = archive.infolist()
             if (
@@ -233,9 +233,7 @@ class MechanicalResult:
                 or {i.filename for i in infos} != {n + ".npy" for n in ARRAY_NAMES}
                 or sum(i.file_size for i in infos) > MAX_ARCHIVE_BYTES
             ):
-                raise ValueError(
-                    "Contenu ou taille décompressée du résultat incorrects."
-                )
+                raise ValueError("Invalid result content or uncompressed size.")
             for info in infos:
                 with archive.open(info) as stream:
                     version = np.lib.format.read_magic(stream)
@@ -244,40 +242,38 @@ class MechanicalResult:
                     elif version == (2, 0):
                         shape, _, dtype = np.lib.format.read_array_header_2_0(stream)
                     else:
-                        raise ValueError("Format de tableau non pris en charge.")
+                        raise ValueError("Unsupported array format.")
                     size = math.prod(shape) * dtype.itemsize
                     if (
                         dtype != np.dtype("float64")
                         or size != info.file_size - stream.tell()
                         or size > MAX_ARCHIVE_BYTES
                     ):
-                        raise ValueError(
-                            "Taille ou type déclaré du tableau incohérent."
-                        )
+                        raise ValueError("Inconsistent declared array size or type.")
         with np.load(path, allow_pickle=False) as source:
             arrays = {name: source[name] for name in ARRAY_NAMES}
         times = arrays["time"]
         bodies = len(project.bodies)
         if times.ndim != 1 or len(times) < 2 or len(times) * bodies > MAX_BODY_SAMPLES:
-            raise ValueError("Nombre d'échantillons incorrect.")
+            raise ValueError("Incorrect sample count.")
         for name, array in arrays.items():
             if array.dtype != np.float64 or not np.isfinite(array).all():
-                raise ValueError("Données scientifiques non finies ou type incorrect.")
+                raise ValueError("Nonfinite scientific data or incorrect type.")
             if name in {"position", "rotation", "velocity", "angular_velocity"}:
                 if array.shape != (len(times), bodies, 9 if name == "rotation" else 3):
-                    raise ValueError("Dimensions des données incorrectes.")
+                    raise ValueError("Incorrect data dimensions.")
         if (
             times[0] != 0
             or not np.all(np.diff(times) > 0)
             or not math.isclose(times[-1], project.duration, abs_tol=1e-9)
         ):
-            raise ValueError("Trajectoire incomplète ou temps incohérents.")
+            raise ValueError("Incomplete trajectory or inconsistent times.")
         rotations = arrays["rotation"].reshape(-1, 3, 3)
         if (
             np.max(np.abs(rotations.transpose(0, 2, 1) @ rotations - np.eye(3))) > 1e-8
             or np.max(np.abs(np.linalg.det(rotations) - 1)) > 1e-8
         ):
-            raise ValueError("Rotations hors SO(3).")
+            raise ValueError("Rotations outside SO(3).")
         if not np.allclose(
             arrays["position"][0],
             [b.position for b in project.bodies],
@@ -289,12 +285,12 @@ class MechanicalResult:
             rtol=0.0,
             atol=1e-10,
         ):
-            raise ValueError("État initial différent du projet capturé.")
+            raise ValueError("Initial state differs from the captured project.")
         expected = joint_coordinates(project, arrays["position"], arrays["rotation"])
         if arrays["joint_coordinate"].shape != expected.shape or not np.allclose(
             arrays["joint_coordinate"], expected, atol=1e-10, rtol=0.0
         ):
-            raise ValueError("Coordonnées de liaison incohérentes.")
+            raise ValueError("Inconsistent joint coordinates.")
         return cls(
             run_id,
             project,
@@ -322,7 +318,7 @@ class MechanicalResult:
                 )
                 output.append(
                     (
-                        f"{body.name} [{body.id[:8]}] · vitesse {name}",
+                        f"{body.name} [{body.id[:8]}] · velocity {name}",
                         "m/s",
                         self.velocity[:, index, axis],
                     )
@@ -330,7 +326,7 @@ class MechanicalResult:
         index = 0
         for joint in self.project.joints:
             if joint.kind in {"pivot", "glissiere"}:
-                suffix = "angle principal" if joint.kind == "pivot" else "déplacement"
+                suffix = "angle principal" if joint.kind == "pivot" else "displacement"
                 output.append(
                     (
                         f"{joint.name} [{joint.id[:8]}] · {suffix}",

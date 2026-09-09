@@ -1,17 +1,17 @@
 """Qt process supervision. A subprocess is isolation, not a security sandbox."""
 
-from dataclasses import asdict
 import sys
 import tempfile
-from pathlib import Path
 import uuid
 import zipfile
+from dataclasses import asdict
+from pathlib import Path
 
 from PySide6.QtCore import QObject, QProcess, QProcessEnvironment, QTimer, Signal
 
-from .model import MAX_RESULT_BYTES, Result, read_json, write_json
 from .document import MAX_PROJECT_BYTES, Project
 from .mechanism import MechanicalResult
+from .model import MAX_RESULT_BYTES, Result, read_json, write_json
 
 
 class Controller(QObject):
@@ -29,7 +29,7 @@ class Controller(QObject):
 
     def start(self, parameters):
         if self.process is not None:
-            raise RuntimeError("Un calcul est déjà en cours.")
+            raise RuntimeError("A calculation is already running.")
         if isinstance(parameters, Project) and parameters.diagnostics():
             raise ValueError("\n".join(d.message for d in parameters.diagnostics()))
         self._temporary = tempfile.TemporaryDirectory(prefix="vinkulum-run-")
@@ -107,7 +107,7 @@ class Controller(QObject):
         if process is self.process and error == QProcess.ProcessError.FailedToStart:
             message = process.errorString()
             self._cleanup(process)
-            self.problem.emit(f"Démarrage du worker impossible : {message}")
+            self.problem.emit(f"Could not start worker: {message}")
 
     def _finish(self, process, code, status):
         if process is not self.process:
@@ -117,16 +117,16 @@ class Controller(QObject):
         message = None
         try:
             if self._cancelled:
-                message = "Calcul arrêté. Aucun nouveau résultat publié."
+                message = "Calculation stopped. No new result published."
             elif status == QProcess.ExitStatus.CrashExit:
-                message = f"Le processus de calcul s'est interrompu anormalement (code {code})."
+                message = f"The calculation process exited abnormally (code {code})."
             else:
                 data = read_json(
                     self._output, max(MAX_RESULT_BYTES, MAX_PROJECT_BYTES * 2)
                 )
                 if code != 0:
-                    detail = str(data.get("message", "Erreur sans diagnostic"))[:2000]
-                    message = f"Échec du calcul : {detail}"
+                    detail = str(data.get("message", "Error without diagnostic"))[:2000]
+                    message = f"Calculation failed: {detail}"
                 else:
                     result = (
                         MechanicalResult.read(
@@ -144,13 +144,13 @@ class Controller(QObject):
             EOFError,
             zipfile.BadZipFile,
         ) as exc:
-            message = f"Sortie du worker refusée : {exc}"
+            message = f"Worker output rejected: {exc}"
         self._cleanup(process)
         if result is not None:
             self.last_result = result
             self.completed.emit(result)
         else:
-            self.problem.emit(message or "Échec du calcul.")
+            self.problem.emit(message or "Calculation failed.")
 
     def _cleanup(self, process):
         self.process = None

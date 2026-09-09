@@ -1,20 +1,20 @@
 """One immutable input, one fresh native solver, one atomic result file."""
 
-from dataclasses import asdict
-from datetime import datetime, timezone
 import hashlib
 import math
-from pathlib import Path
 import platform
 import sys
+from dataclasses import asdict
+from datetime import datetime, timezone
+from pathlib import Path
 
 from . import __version__
 from .model import (
-    G,
     INERTIA,
-    RHO,
     PARAMETER_UNITS,
+    RHO,
     UNITS,
+    G,
     Parameters,
     read_json,
     write_json,
@@ -43,7 +43,7 @@ def simulate(parameters, run_id):
         t, positions = frame[:2]
         x, y, z = positions[0]
         if abs(y) > 1e-7 * max(1, p.length):
-            raise ValueError("Le mouvement sort du plan du cas G0.")
+            raise ValueError("Motion leaves the plane of the G0 case.")
         samples.append([t, x, z, math.atan2(x, -z)])
     return {
         "schema_version": 1,

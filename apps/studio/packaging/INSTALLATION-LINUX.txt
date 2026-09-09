@@ -1,40 +1,38 @@
-Vinkulum Studio 0.4.0 — Linux x86-64
+Vinkulum Studio 0.4.1 — Linux x86-64
 
-Extraire l'archive, ouvrir un terminal dans le dossier extrait puis lancer :
+Extract the archive, open a terminal in the extracted directory and run:
   ./Vinkulum\ Studio/Vinkulum\ Studio
 
-Conserver l'exécutable et son dossier _internal ensemble. Python, le noyau
-Vinkulum 0.19.0, Qt et VTK sont embarqués ; aucun environnement Python ni aucune
-compilation ne sont nécessaires sur la machine de destination.
-La conception CAD embarque OCCT 8.0.1 et build123d 0.11.1+vinkulum.occt8.
-Bouton CAD : primitives, extrusions, booleans, congés et import/export STEP.
-Un solide par pièce ; les projets CAD conservent le BREP et ses propriétés SI.
+Keep the executable and _internal directory together. Python, Vinkulum 0.19.0,
+Qt and VTK are bundled; no Python environment or compilation is needed on the
+destination machine. CAD includes OCCT 8.0.1 and build123d 0.11.1+vinkulum.occt8.
+The CAD button opens primitives, extrusions, booleans, fillets and STEP exchange.
+One solid per part; CAD projects retain the BREP and SI mass properties.
 
-Plateforme testée : Linux x86-64, glibc 2.39 (Ubuntu 24.04), X11 et Mesa OpenGL.
-Ce paquet n'est pas qualifié sur les distributions à glibc antérieure, sur
-Linux ARM64 ni sur Wayland natif. Une session Wayland doit fournir XWayland.
-Le système doit fournir ses bibliothèques graphiques et son pilote OpenGL.
-Sur Ubuntu 24.04, les dépendances Qt/X11 comprennent notamment :
-  libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0
-  libxcb-render-util0 libxcb-util1 libxkbcommon-x11-0 libgl1
-Pour sélectionner XWayland explicitement :
+The target platform is Linux x86-64, glibc 2.39 (Ubuntu 24.04), X11 and Mesa
+OpenGL. Consult check/bundle-check.json and build-info.json for this build's
+qualification. Older glibc, Linux ARM64 and native Wayland are not qualified.
+A Wayland session must provide XWayland. The system supplies its graphics
+libraries and OpenGL driver. Ubuntu 24.04 Qt/X11 dependencies include:
+  libegl1 libgl1 libgl1-mesa-dri libxkbcommon-x11-0 libxcb-cursor0
+  libxcb-icccm4 libxcb-keysyms1 libxcb-image0 libxcb-render-util0 libxcb-util1
+To select XWayland explicitly:
   QT_QPA_PLATFORM=xcb ./Vinkulum\ Studio/Vinkulum\ Studio
 
-Contrôle autonome facultatif, depuis une session graphique :
+Optional standalone check, from a graphical session:
   ./Vinkulum\ Studio/Vinkulum\ Studio --bundle-check ./verification
-Il lance un calcul du double pendule et produit un rapport et une capture 3D.
-Il vérifie aussi une pièce CAD percée et son aller-retour STEP avec OCCT 8.
-Ce contrôle de distribution ne certifie pas les trajectoires en général.
+This runs a double pendulum and generates a report and 3D capture. It also
+checks a perforated CAD part and its STEP round-trip with OCCT 8. This
+packaging check does not certify arbitrary mechanical trajectories.
 
-La nouvelle interface propose les ateliers Modéliser, Simuler et Examiner,
-des thèmes clair et graphite, une palette de commandes (Ctrl+K), ainsi que
-la comparaison de calculs et leurs échantillons natifs. Version expérimentale.
+The English interface offers Model, Simulate and Inspect workspaces, light
+and graphite themes, a command palette (Ctrl+K), and comparisons of captured
+runs on their native samples. This is experimental research software.
 
-Sources du projet : https://github.com/Brietat71/vinkulum-public
-La version locale peut précéder la publication ; build-info.json indique
-le commit de base et la présence de modifications locales lors du build.
-Code original Apache-2.0. Voir Licences/ et _internal/ pour les notices et
-licences des dépendances. Les bibliothèques partagées restent remplaçables.
-Qt/PySide6 : https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.11.2-src/
-Qt 6.11.2 : https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/
-VTK 9.7.0 : https://gitlab.kitware.com/vtk/vtk/-/tree/v9.7.0
+Project source: https://github.com/Brietat71/vinkulum-public
+build-info.json identifies the source commit and whether the build used local
+changes. Original code is Apache-2.0. See Licences/ and _internal/ for dependency
+notices and licences. Shared libraries remain replaceable.
+Qt/PySide6: https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.11.2-src/
+Qt 6.11.2: https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/
+VTK 9.7.0: https://gitlab.kitware.com/vtk/vtk/-/tree/v9.7.0

@@ -35,7 +35,7 @@ def main(directory, width=1440, height=950):
         if tool:
             dialog.b.setCurrentIndex(dialog.b.findData(tool))
         dialog.radius.setValue(2)
-        dialog.name.setText("Platine percée" if kind == "box" else "Outil de perçage")
+        dialog.name.setText("Machined plate" if kind == "box" else "Hole tool")
         dialog.show()
         start = time.perf_counter()
         dialog.start()

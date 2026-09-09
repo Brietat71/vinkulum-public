@@ -4,14 +4,14 @@ All lengths are metres, rotations are row-major body-to-world matrices,
 and joint coordinates are expressed in each body's own frame. None is ground.
 """
 
-from dataclasses import asdict, dataclass, replace
 import math
 import uuid
+from dataclasses import asdict, dataclass, replace
 
 import numpy as np
 
 from .cad_data import CadGeometry
-
+from .labels import JOINT_LABELS
 from .model import Parameters, finite_number, load_parameters, read_json, write_json
 
 IDENTITY = (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)
@@ -35,7 +35,7 @@ def vector(value, size, name):
         or len(value) != size
         or not all(finite_number(v) for v in value)
     ):
-        raise ValueError(f"{name} : {size} composantes finies requises.")
+        raise ValueError(f"{name} : {size} finite components required.")
     return tuple(float(v) for v in value)
 
 
@@ -46,22 +46,22 @@ def rotation(value):
         np.linalg.norm(matrix.T @ matrix - np.eye(3)) > 1e-9
         or abs(np.linalg.det(matrix) - 1) > 1e-9
     ):
-        raise ValueError("Rotation hors SO(3).")
+        raise ValueError("Rotation outside SO(3).")
     return values
 
 
 def named(identifier, name):
     if not isinstance(identifier, str) or str(uuid.UUID(identifier)) != identifier:
-        raise ValueError("Identité UUID invalide.")
+        raise ValueError("Invalid UUID.")
     if not isinstance(name, str) or not name.strip() or len(name) > 128:
-        raise ValueError("Nom requis, limité à 128 caractères.")
+        raise ValueError("A name is required, at most 128 characters.")
 
 
 def strict(data, cls):
     from dataclasses import fields
 
     if not isinstance(data, dict) or set(data) != {f.name for f in fields(cls)}:
-        raise ValueError(f"Champs inconnus ou manquants pour {cls.__name__}.")
+        raise ValueError(f"Unknown or missing fields for {cls.__name__}.")
     return data
 
 
@@ -73,7 +73,7 @@ class Law:
     def __post_init__(self):
         values = self.values
         if not isinstance(values, tuple) or not all(finite_number(v) for v in values):
-            raise ValueError("Loi : coefficients finis requis.")
+            raise ValueError("Law coefficients must be finite.")
         if self.kind == "constante" and len(values) == 1:
             return
         if self.kind == "lineaire" and len(values) == 2:
@@ -82,7 +82,7 @@ class Law:
             if all(a < b for a, b in zip(values[::2], values[2::2])):
                 return
         raise ValueError(
-            "Loi invalide : constante, linéaire ou table à temps strictement croissants requise."
+            "Invalid law: use constant, linear or a table with strictly increasing times."
         )
 
     def value(self, t):
@@ -117,7 +117,7 @@ class Body:
     def __post_init__(self):
         named(self.id, self.name)
         if self.shape not in {"box", "cylinder", "sphere", "cad"}:
-            raise ValueError("Primitive inconnue.")
+            raise ValueError("Unknown primitive.")
         object.__setattr__(
             self,
             "dimensions",
@@ -128,32 +128,30 @@ class Body:
             ),
         )
         if any(v <= 0 or v > 1000 for v in self.dimensions):
-            raise ValueError("Dimensions strictement positives, au plus 1000 m.")
+            raise ValueError("Dimensions must be positive and at most 1000 m.")
         if not finite_number(self.mass) or not 0 < self.mass <= 1e9:
-            raise ValueError("Masse strictement positive, au plus 10⁹ kg.")
+            raise ValueError("Mass must be positive and at most 10⁹ kg.")
         object.__setattr__(self, "position", vector(self.position, 3, "Position"))
         object.__setattr__(self, "orientation", rotation(self.orientation))
         object.__setattr__(
-            self, "explicit_inertia", vector(self.explicit_inertia, 9, "Inertie")
+            self, "explicit_inertia", vector(self.explicit_inertia, 9, "Inertia")
         )
         if self.inertia_mode not in {"homogeneous", "explicit"}:
-            raise ValueError("Mode d'inertie inconnu.")
+            raise ValueError("Unknown inertia mode.")
         if (self.shape == "cad" and not isinstance(self.cad, CadGeometry)) or (
             self.shape != "cad" and self.cad is not None
         ):
-            raise ValueError("Géométrie CAD incohérente avec le corps.")
+            raise ValueError("CAD geometry is inconsistent with the body.")
         if self.inertia_mode == "explicit":
             j = np.array(self.explicit_inertia).reshape(3, 3)
             if (
                 not np.allclose(j, j.T, atol=1e-14, rtol=1e-12)
                 or np.linalg.eigvalsh(j).min() <= 0
             ):
-                raise ValueError("Inertie symétrique définie positive requise.")
+                raise ValueError("Inertia must be symmetric positive definite.")
             eigen = np.linalg.eigvalsh(j)
             if eigen[-1] > sum(eigen[:2]) + 1e-12 * eigen[-1]:
-                raise ValueError(
-                    "Inertie non physique : inégalité triangulaire violée."
-                )
+                raise ValueError("Nonphysical inertia: triangle inequality violated.")
 
     def inertia(self):
         if self.inertia_mode == "explicit":
@@ -205,20 +203,22 @@ class Joint:
     def __post_init__(self):
         named(self.id, self.name)
         if self.kind not in {"pivot", "rotule", "glissiere", "encastrement"}:
-            raise ValueError("Type de liaison inconnu.")
+            raise ValueError("Unknown joint type.")
         if self.a == self.b:
-            raise ValueError("La liaison doit relier deux objets distincts.")
+            raise ValueError("A joint must connect two distinct objects.")
         for reference in (self.a, self.b):
             if reference is not None:
-                named(reference, "référence")
-        object.__setattr__(self, "pa", vector(self.pa, 3, "Ancrage A"))
-        object.__setattr__(self, "pb", vector(self.pb, 3, "Ancrage B"))
+                named(reference, "reference")
+        object.__setattr__(self, "pa", vector(self.pa, 3, "Anchor A"))
+        object.__setattr__(self, "pb", vector(self.pb, 3, "Anchor B"))
         object.__setattr__(self, "ra", rotation(self.ra))
         object.__setattr__(self, "rb", rotation(self.rb))
         if self.motion is not None and (
             not isinstance(self.motion, Law) or self.kind not in {"pivot", "glissiere"}
         ):
-            raise ValueError("Mouvement imposé réservé au pivot et à la glissière.")
+            raise ValueError(
+                "Prescribed motion is only supported for revolute and prismatic joints."
+            )
 
     @classmethod
     def from_dict(cls, data):
@@ -242,15 +242,15 @@ class Load:
 
     def __post_init__(self):
         named(self.id, self.name)
-        named(self.body, "référence")
-        object.__setattr__(self, "point", vector(self.point, 3, "Point d'application"))
+        named(self.body, "reference")
+        object.__setattr__(self, "point", vector(self.point, 3, "Application point"))
         for laws in (self.force, self.moment):
             if (
                 not isinstance(laws, tuple)
                 or len(laws) != 3
                 or not all(isinstance(v, Law) for v in laws)
             ):
-                raise ValueError("Trois lois scalaires requises par vecteur de charge.")
+                raise ValueError("Three scalar laws are required per load vector.")
 
     @classmethod
     def from_dict(cls, data):
@@ -270,7 +270,7 @@ class Diagnostic:
 @dataclass(frozen=True)
 class Project:
     id: str
-    name: str = "Mécanisme"
+    name: str = "Mechanism"
     revision: int = 0
     bodies: tuple = ()
     joints: tuple = ()
@@ -283,8 +283,8 @@ class Project:
     def __post_init__(self):
         named(self.id, self.name)
         if type(self.revision) is not int or self.revision < 0:
-            raise ValueError("Révision entière positive ou nulle requise.")
-        object.__setattr__(self, "gravity", vector(self.gravity, 3, "Gravité"))
+            raise ValueError("Revision must be a nonnegative integer.")
+        object.__setattr__(self, "gravity", vector(self.gravity, 3, "Gravity"))
         Parameters(duration=self.duration, step=self.step)
         for objects, kind, limit in (
             (self.bodies, Body, MAX_BODIES),
@@ -297,7 +297,7 @@ class Project:
                 or not all(isinstance(v, kind) for v in objects)
             ):
                 raise ValueError(
-                    f"Collection {kind.__name__} invalide ou limite {limit} dépassée."
+                    f"Collection {kind.__name__} invalide ou limite {limit} exceeded."
                 )
         ids = [o.id for o in (*self.bodies, *self.joints, *self.loads)]
         cad_parts = [b.cad for b in self.bodies if b.cad is not None]
@@ -306,24 +306,24 @@ class Project:
             or sum(len(c.triangles) + len(c.vertices_m) for c in cad_parts) > 100_000
         ):
             raise ValueError(
-                "Budget CAD du document dépassé (4 Mo BREP, 100 000 éléments de maillage)."
+                "Document CAD budget exceeded (4 MB BREP, 100,000 mesh elements)."
             )
         if len(ids) != len(set(ids)):
-            raise ValueError("Identités dupliquées.")
+            raise ValueError("Duplicate identities.")
         if not isinstance(self.deleted, tuple) or len(set(self.deleted)) != len(
             self.deleted
         ):
-            raise ValueError("Liste des objets supprimés invalide.")
+            raise ValueError("Invalid deleted-object list.")
         for identifier in self.deleted:
-            named(identifier, "objet supprimé")
+            named(identifier, "deleted object")
             if identifier in ids:
-                raise ValueError("Un objet ne peut être présent et supprimé.")
+                raise ValueError("An object cannot be both present and deleted.")
         if (
             len(self.bodies) * (math.ceil(self.duration / self.step) + 1)
             > MAX_BODY_SAMPLES
         ):
             raise ValueError(
-                f"Budget dépassé : {MAX_BODY_SAMPLES} échantillons-corps au maximum."
+                f"Budget exceeded: {MAX_BODY_SAMPLES} body-samples maximum."
             )
 
     def pose(self, identifier):
@@ -336,13 +336,13 @@ class Project:
         issues = []
         ids = {body.id for body in self.bodies}
         if not ids:
-            issues.append(Diagnostic(self.id, "Ajoutez au moins un corps."))
+            issues.append(Diagnostic(self.id, "Add at least one body."))
         for obj in (*self.joints, *self.loads):
             references = (obj.a, obj.b) if isinstance(obj, Joint) else (obj.body,)
             missing = [r for r in references if r is not None and r not in ids]
             for r in missing:
-                state = "supprimé" if r in self.deleted else "introuvable"
-                issues.append(Diagnostic(obj.id, f"Corps {state} : {r}."))
+                state = "deleted" if r in self.deleted else "introuvable"
+                issues.append(Diagnostic(obj.id, f"Body {state} : {r}."))
             if missing or isinstance(obj, Load):
                 continue
             a, A = self.pose(obj.a)
@@ -358,7 +358,7 @@ class Project:
                 issues.append(
                     Diagnostic(
                         obj.id,
-                        "Ancrages incompatibles : corrigez le placement ou les repères.",
+                        "Incompatible anchors: correct placement or frames.",
                     )
                 )
             rotational_error = 0.0
@@ -368,7 +368,7 @@ class Project:
                 rotational_error = np.linalg.norm(QA - QB)
             if rotational_error > 1e-8:
                 issues.append(
-                    Diagnostic(obj.id, "Axes ou orientations de liaison incompatibles.")
+                    Diagnostic(obj.id, "Incompatible joint axes or orientations.")
                 )
             if obj.motion is not None:
                 relative = QA.T @ QB
@@ -380,7 +380,8 @@ class Project:
                 if abs(coordinate - obj.motion.value(0)) > 1e-8:
                     issues.append(
                         Diagnostic(
-                            obj.id, "La consigne initiale ne correspond pas à la pose."
+                            obj.id,
+                            "The initial prescribed value does not match the pose.",
                         )
                     )
         return tuple(issues)
@@ -404,7 +405,7 @@ class Project:
         if not any(
             o.id == identifier for o in (*self.bodies, *self.joints, *self.loads)
         ):
-            raise ValueError("Objet absent.")
+            raise ValueError("Object not found.")
         return replace(
             self,
             bodies=tuple(b for b in self.bodies if b.id != identifier),
@@ -425,10 +426,10 @@ class Project:
 
 def joint_at(project, kind, a, b, point=ZERO, axis=(0.0, 0.0, 1.0)):
     point = np.array(vector(point, 3, "Point"))
-    z = np.array(vector(axis, 3, "Axe"))
+    z = np.array(vector(axis, 3, "Axis"))
     norm = np.linalg.norm(z)
     if not math.isfinite(norm) or norm < 1e-12:
-        raise ValueError("Axe non nul requis.")
+        raise ValueError("A nonzero axis is required.")
     z /= norm
     seed = np.eye(3)[int(np.argmin(abs(z)))]
     x = np.cross(seed, z)
@@ -438,7 +439,7 @@ def joint_at(project, kind, a, b, point=ZERO, axis=(0.0, 0.0, 1.0)):
     br, B = project.pose(b)
     return Joint(
         new_id(),
-        kind.capitalize(),
+        JOINT_LABELS.get(kind, kind),
         kind,
         a,
         b,
@@ -502,9 +503,7 @@ def load_project(path):
         or type(data["schema_version"]) is not int
         or data["schema_version"] not in (1, 2)
     ):
-        raise ValueError(
-            "Format de projet inconnu. Utilisez l'import G0 pour un ancien pendule."
-        )
+        raise ValueError("Unknown project format. Use G0 import for an older pendulum.")
     return Project.from_dict(data["project"])
 
 
@@ -512,7 +511,7 @@ def pendulum(parameters=Parameters()):
     angle = math.radians(parameters.angle_deg)
     body = Body(
         new_id(),
-        "Masse du pendule",
+        "Pendulum mass",
         "sphere",
         (0.06,),
         parameters.mass,
@@ -526,7 +525,7 @@ def pendulum(parameters=Parameters()):
     )
     project = Project(
         new_id(),
-        "Pendule G0",
+        "G0 pendulum",
         bodies=(body,),
         duration=parameters.duration,
         step=parameters.step,

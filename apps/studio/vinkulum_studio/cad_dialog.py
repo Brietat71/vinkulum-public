@@ -28,7 +28,7 @@ class CadDialog(QDialog):
 
     def __init__(self, project, selection, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("Conception CAD · OCCT 8 / build123d")
+        self.setWindowTitle("CAD design · OCCT 8 / build123d")
         self.setMinimumWidth(430)
         self.project = project
         self.process = None
@@ -38,29 +38,29 @@ class CadDialog(QDialog):
         self.output_path = None
         self.result_data = None
         layout = QVBoxLayout(self)
-        title = QLabel("Créer une pièce ou modifier un solide")
+        title = QLabel("Create a part or modify a solid")
         title.setObjectName("section_title")
         layout.addWidget(title)
         self.form = QFormLayout()
         layout.addLayout(self.form)
         self.operation = QComboBox()
         for label, key in (
-            ("Boîte", "box"),
-            ("Cylindre", "cylinder"),
-            ("Sphère", "sphere"),
-            ("Extrusion · rectangle XY", "extrude_rectangle"),
-            ("Extrusion · disque XY", "extrude_circle"),
-            ("Soustraction A − B", "cut"),
+            ("Box", "box"),
+            ("Cylinder", "cylinder"),
+            ("Sphere", "sphere"),
+            ("Extrude · XY rectangle", "extrude_rectangle"),
+            ("Extrude · XY disk", "extrude_circle"),
+            ("Subtract A − B", "cut"),
             ("Union A + B", "fuse"),
-            ("Intersection A ∩ B", "common"),
-            ("Congés · toutes les arêtes", "fillet"),
-            ("Importer une pièce STEP", "import_step"),
-            ("Exporter A en STEP", "export_step"),
+            ("Intersect A ∩ B", "common"),
+            ("Fillet · all edges", "fillet"),
+            ("Import STEP part", "import_step"),
+            ("Export A to STEP", "export_step"),
         ):
             self.operation.addItem(label, key)
-        self.form.addRow("Opération", self.operation)
-        self.name = QLineEdit("Pièce CAD")
-        self.form.addRow("Nom", self.name)
+        self.form.addRow("Operation", self.operation)
+        self.name = QLineEdit("CAD part")
+        self.form.addRow("Name", self.name)
         self.a, self.b = QComboBox(), QComboBox()
         for body in project.bodies:
             self.a.addItem(body.name, body.id)
@@ -70,18 +70,18 @@ class CadDialog(QDialog):
             self.a.setCurrentIndex(index)
         if self.b.count() > 1:
             self.b.setCurrentIndex((self.a.currentIndex() + 1) % self.b.count())
-        self.form.addRow("Corps A · modifié", self.a)
-        self.form.addRow("Corps B · conservé", self.b)
+        self.form.addRow("Body A · modified", self.a)
+        self.form.addRow("Body B · retained", self.b)
         self.dimensions = [self.number(v, 0.001, 1e6, " mm") for v in (100, 60, 20)]
-        for label, field in zip(("Longueur", "Largeur", "Hauteur"), self.dimensions):
+        for label, field in zip(("Length", "Width", "Height"), self.dimensions):
             self.form.addRow(label, field)
         self.position = [self.number(0, -1e6, 1e6, " mm") for _ in range(3)]
         for axis, field in zip("XYZ", self.position):
             self.form.addRow("Position " + axis, field)
         self.density = self.number(7800, 0.001, 1e6, " kg/m³")
-        self.form.addRow("Masse volumique", self.density)
+        self.form.addRow("Density", self.density)
         self.radius = self.number(1, 0.001, 1e6, " mm")
-        self.form.addRow("Rayon de congé", self.radius)
+        self.form.addRow("Fillet radius", self.radius)
         self.explanation = QLabel("")
         self.explanation.setWordWrap(True)
         self.explanation.setObjectName("muted")
@@ -90,7 +90,7 @@ class CadDialog(QDialog):
         self.status.setWordWrap(True)
         layout.addWidget(self.status)
         self.buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Cancel)
-        self.apply_button = QPushButton("Créer la pièce")
+        self.apply_button = QPushButton("Create part")
         self.apply_button.setObjectName("primary")
         self.buttons.addButton(
             self.apply_button, QDialogButtonBox.ButtonRole.ActionRole
@@ -133,9 +133,9 @@ class CadDialog(QDialog):
             "extrude_circle",
         )
         labels = (
-            ("Rayon", "Hauteur")
+            ("Radius", "Height")
             if operation in ("sphere", "cylinder", "extrude_circle")
-            else ("Longueur", "Largeur", "Hauteur")
+            else ("Length", "Width", "Height")
         )
         count = {
             "box": 3,
@@ -156,23 +156,22 @@ class CadDialog(QDialog):
         self.form.setRowVisible(self.radius, operation == "fillet")
         self.form.setRowVisible(self.density, operation != "export_step")
         self.apply_button.setText(
-            "Exporter…"
+            "Export…"
             if operation == "export_step"
-            else "Importer…"
+            else "Import…"
             if operation == "import_step"
-            else "Appliquer à A"
+            else "Apply to A"
             if edit
-            else "Créer la pièce"
+            else "Create part"
         )
         self.explanation.setText(
-            "Le corps B est conservé. Le résultat doit former un seul solide. "
-            "Les attaches restent à leur position dans le monde."
+            "Body B is retained. The result must be a single solid. Attachments keep their world positions."
             if operation in ("cut", "fuse", "common")
-            else "Profil XY extrudé vers +Z. La position désigne le centre du profil de départ."
+            else "XY profile extruded toward +Z. Position specifies the centre of the starting profile."
             if operation.startswith("extrude")
-            else "Les unités STEP sont lues par OCCT. Import limité à une pièce solide de 8 Mo."
+            else "OCCT reads STEP units. Import is limited to one solid part and 8 MB."
             if operation == "import_step"
-            else "La géométrie est conservée en BREP ; la masse et l’inertie sont calculées sur le volume exact, puis converties en SI."
+            else "Geometry is stored as BREP; mass and inertia are computed from the exact volume, then converted to SI."
         )
         if edit:
             self._density_from_body()
@@ -213,14 +212,14 @@ class CadDialog(QDialog):
         operation = request["operation"]
         if operation == "import_step":
             path, _ = QFileDialog.getOpenFileName(
-                self, "Importer une pièce STEP", "", "STEP (*.step *.stp)"
+                self, "Import STEP part", "", "STEP (*.step *.stp)"
             )
             if not path:
                 return
             request["path"] = path
         elif operation == "export_step":
             path, _ = QFileDialog.getSaveFileName(
-                self, "Exporter la pièce STEP", "", "STEP (*.step *.stp)"
+                self, "Export STEP part", "", "STEP (*.step *.stp)"
             )
             if not path:
                 return
@@ -240,7 +239,7 @@ class CadDialog(QDialog):
         )
         self.apply_button.setEnabled(False)
         self.operation.setEnabled(False)
-        self.status.setText("Opération CAD en cours…")
+        self.status.setText("CAD operation in progress…")
         self.timer.start(60000)
         process.start(
             sys.executable,
@@ -259,7 +258,7 @@ class CadDialog(QDialog):
 
     def _timeout(self):
         if self.process:
-            self.status.setText("Délai CAD dépassé (60 s). Document conservé.")
+            self.status.setText("CAD timeout (60 s). Document preserved.")
             self.process.kill()
 
     def _finish(self, code, status):
@@ -277,7 +276,7 @@ class CadDialog(QDialog):
             ):
                 raise ValueError(
                     result.get("error")
-                    or "Opération CAD interrompue. Document conservé."
+                    or "CAD operation interrupted. Document preserved."
                 )
             self.result_data = result
             self.completed.emit(result)

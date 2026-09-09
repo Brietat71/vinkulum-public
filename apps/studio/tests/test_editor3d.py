@@ -1,9 +1,9 @@
-from dataclasses import replace
 import os
-from pathlib import Path
 import tempfile
 import time
 import unittest
+from dataclasses import replace
+from pathlib import Path
 from unittest.mock import patch
 
 from PySide6.QtCore import QTimer
@@ -88,7 +88,7 @@ class EditorRecipe(unittest.TestCase):
             self.assertEqual(window.display_project.bodies[0].mass, 2.0)
             self.assertFalse(window.properties.isEnabled())
             self.assertEqual(window.result.project.duration, 0.2)
-            self.assertIn("précédent", window.result_label.text())
+            self.assertIn("Previous", window.result_label.text())
             window.toggle_play()
             QTest.qWait(80)
             self.assertGreater(window.slider.value(), 0)
@@ -109,7 +109,7 @@ class EditorRecipe(unittest.TestCase):
             window.stop()
             self.wait(lambda: window.controller.process is None)
             self.assertIs(window.result, previous)
-            self.assertIn("précédent", window.status.text())
+            self.assertIn("previous", window.status.text())
             screenshot = os.environ.get("VINKULUM_EDITOR_SCREENSHOT")
             if screenshot:
                 window.mode.setCurrentIndex(1)
@@ -124,8 +124,8 @@ class EditorRecipe(unittest.TestCase):
             window.close()
 
     def test_double_pendulum_authored_through_properties_and_joint_dialogs(self):
-        from vinkulum_studio.editor import EditorWindow, matrix_euler
         from vinkulum_studio.dialogs import numeric_text
+        from vinkulum_studio.editor import EditorWindow, matrix_euler
         from vinkulum_studio.examples3d import double_pendulum
 
         reference = double_pendulum()
@@ -153,7 +153,7 @@ class EditorRecipe(unittest.TestCase):
             ):
 
                 def fill(dialog):
-                    dialog.kind.setCurrentText("pivot")
+                    dialog.kind.setCurrentIndex(dialog.kind.findData("pivot"))
                     dialog.a.setCurrentIndex(dialog.a.findData(a))
                     dialog.b.setCurrentIndex(dialog.b.findData(b))
                     dialog.point.setText(numeric_text(point))
@@ -172,7 +172,7 @@ class EditorRecipe(unittest.TestCase):
             window.add_load()
 
             def force_law(dialog):
-                dialog.kind.setCurrentText("lineaire")
+                dialog.kind.setCurrentIndex(dialog.kind.findData("lineaire"))
                 dialog.input.setPlainText("0, 1")
 
             self.dialog(lambda: window.edit_load_law("force", 0, "N"), force_law)
@@ -184,8 +184,8 @@ class EditorRecipe(unittest.TestCase):
             window.close()
 
     def test_pending_fields_selection_and_drag_survive_completion(self):
-        from vinkulum_studio.editor import EditorWindow
         from vinkulum_studio.document import IDENTITY
+        from vinkulum_studio.editor import EditorWindow
 
         window = EditorWindow()
         window._discard_allowed = lambda: True
@@ -227,7 +227,7 @@ class EditorRecipe(unittest.TestCase):
     def test_replacing_visible_result_updates_scene_before_slider_signals(self):
         from vinkulum_studio.editor import EditorWindow
         from vinkulum_studio.examples3d import double_pendulum, slider_crank
-        from vinkulum_studio.mechanism import simulate_project, MechanicalResult
+        from vinkulum_studio.mechanism import MechanicalResult, simulate_project
 
         window = EditorWindow()
         window._discard_allowed = lambda: True

@@ -1,0 +1,29 @@
+name: Scoped contribution
+description: Propose a first project, improvement or solver adapter.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and intended result
+      description: What would someone be able to do after this change?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: First deliverable
+      description: Keep the first result small enough to run and review. Link to any related work.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: How to verify it
+      description: Reference, acceptance criteria, supported domain, and provenance of any third-party material.
+    validations:
+      required: true
+  - type: textarea
+    id: participation
+    attributes:
+      label: Your involvement
+      description: Are you proposing an idea, offering an implementation, or looking for help getting started?

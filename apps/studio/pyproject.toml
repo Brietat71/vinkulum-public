@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vinkulum-studio"
-version = "0.4.0"
-description = "Éditeur de mécanismes rigides 3D pour le noyau Vinkulum"
+version = "0.4.1"
+description = "Open 3D CAD and multibody workbench for the Vinkulum kernel"
 readme = "README.md"
 requires-python = ">=3.14"
 license = "Apache-2.0"

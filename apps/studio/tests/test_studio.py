@@ -1,17 +1,17 @@
 """G0 requirements: real solver recipe, independent reference, supervised faults."""
 
 import csv
-from dataclasses import FrozenInstanceError, asdict, replace
 import io
 import json
 import math
 import os
-from pathlib import Path
 import sys
 import tempfile
 import time
-import unittest
 import unicodedata
+import unittest
+from dataclasses import FrozenInstanceError, asdict, replace
+from pathlib import Path
 from unittest.mock import patch
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
@@ -22,20 +22,31 @@ from PySide6.QtCore import Qt, QTimer
 from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication
 from scipy.integrate import solve_ivp
-
 from vinkulum_studio.controller import Controller
-from vinkulum_studio.model import (G, INERTIA, Parameters, Result,
-                                    load_parameters, read_json,
-                                    save_parameters, write_json)
-from vinkulum_studio.worker import simulate
+from vinkulum_studio.model import (
+    INERTIA,
+    G,
+    Parameters,
+    Result,
+    load_parameters,
+    read_json,
+    save_parameters,
+    write_json,
+)
 from vinkulum_studio.window import MainWindow
+from vinkulum_studio.worker import simulate
 
 
 class Contracts(unittest.TestCase):
     def test_GUI02_GUI07_strict_inputs_and_version(self):
-        for change in ({"mass": True}, {"length": float("nan")}, {"step": 0.},
-                       {"duration": 600., "step": .000001}, {"length": "1"},
-                       {"mass": 10**400}):
+        for change in (
+            {"mass": True},
+            {"length": float("nan")},
+            {"step": 0.0},
+            {"duration": 600.0, "step": 0.000001},
+            {"length": "1"},
+            {"mass": 10**400},
+        ):
             with self.subTest(change=change), self.assertRaises(ValueError):
                 Parameters(**(asdict(Parameters()) | change))
         with self.assertRaises(FrozenInstanceError):
@@ -45,14 +56,22 @@ class Contracts(unittest.TestCase):
             save_parameters(path, Parameters())
             self.assertEqual(load_parameters(path), Parameters())
             original = read_json(path)
-            for data in (original | {"schema_version": 2}, original | {"schema_version": True},
-                         original | {"extra": "code"},
-                         original | {"parameters": asdict(Parameters()) | {"script": "exit()"}}):
+            for data in (
+                original | {"schema_version": 2},
+                original | {"schema_version": True},
+                original | {"extra": "code"},
+                original | {"parameters": asdict(Parameters()) | {"script": "exit()"}},
+            ):
                 write_json(path, data)
                 with self.assertRaises(ValueError):
                     load_parameters(path)
-            for content in ('{"x": 1, "x": 2}', '{"x": NaN}', '[' * 2000,
-                            ' ' * 16_385, '{"x": Infinity}'):
+            for content in (
+                '{"x": 1, "x": 2}',
+                '{"x": NaN}',
+                "[" * 2000,
+                " " * 16_385,
+                '{"x": Infinity}',
+            ):
                 path.write_text(content)
                 with self.assertRaises(ValueError):
                     load_parameters(path)
@@ -62,9 +81,11 @@ class Contracts(unittest.TestCase):
             path = Path(directory) / "params.json"
             save_parameters(path, Parameters())
             before = path.read_bytes()
-            with patch("vinkulum_studio.model.os.replace", side_effect=OSError("disk failure")):
+            with patch(
+                "vinkulum_studio.model.os.replace", side_effect=OSError("disk failure")
+            ):
                 with self.assertRaises(OSError):
-                    save_parameters(path, Parameters(length=2.))
+                    save_parameters(path, Parameters(length=2.0))
             self.assertEqual(path.read_bytes(), before)
             self.assertEqual(list(Path(directory).iterdir()), [path])
 
@@ -73,15 +94,25 @@ class Contracts(unittest.TestCase):
         # refinement ratio > 3.5 on each pair (second order expected).
         p = Parameters()
         coefficient = p.mass * G * p.length / (p.mass * p.length**2 + INERTIA)
-        reference = solve_ivp(lambda t, y: (y[1], -coefficient * math.sin(y[0])),
-                              (0, p.duration), (math.radians(p.angle_deg), 0),
-                              method="DOP853", rtol=1e-12, atol=1e-14, dense_output=True)
+        reference = solve_ivp(
+            lambda t, y: (y[1], -coefficient * math.sin(y[0])),
+            (0, p.duration),
+            (math.radians(p.angle_deg), 0),
+            method="DOP853",
+            rtol=1e-12,
+            atol=1e-14,
+            dense_output=True,
+        )
         self.assertTrue(reference.success)
         errors = []
-        for h in (.02, .01, .005):
+        for h in (0.02, 0.01, 0.005):
             parameters = replace(p, step=h)
-            result = Result.from_dict(simulate(parameters, "reference"), "reference", parameters)
-            error = max(abs(row[3] - reference.sol(row[0])[0]) for row in result.samples)
+            result = Result.from_dict(
+                simulate(parameters, "reference"), "reference", parameters
+            )
+            error = max(
+                abs(row[3] - reference.sol(row[0])[0]) for row in result.samples
+            )
             errors.append(float(error))
         ratios = [errors[i] / errors[i + 1] for i in range(2)]
         print("\nT07 errors(rad):", errors, "ratios:", ratios, flush=True)
@@ -89,20 +120,22 @@ class Contracts(unittest.TestCase):
         self.assertGreater(min(ratios), 3.5)
 
     def test_GUI05_reject_mismatched_corrupt_and_partial_result(self):
-        p = Parameters(duration=.1)
+        p = Parameters(duration=0.1)
         data = simulate(p, "expected")
-        for mutate in (lambda d: d.update(run_id="wrong"),
-                       lambda d: d["samples"].pop(),
-                       lambda d: d["samples"][-1].__setitem__(1, float("nan")),
-                       lambda d: d["samples"][-1].__setitem__(3, 2.0),
-                       lambda d: d["samples"][1].__setitem__(0, 0.)):
+        for mutate in (
+            lambda d: d.update(run_id="wrong"),
+            lambda d: d["samples"].pop(),
+            lambda d: d["samples"][-1].__setitem__(1, float("nan")),
+            lambda d: d["samples"][-1].__setitem__(3, 2.0),
+            lambda d: d["samples"][1].__setitem__(0, 0.0),
+        ):
             copy = json.loads(json.dumps(data))
             mutate(copy)
             with self.assertRaises(ValueError):
                 Result.from_dict(copy, "expected", p)
 
     def test_GUI07_export_records_captured_inputs_and_units(self):
-        p = Parameters(duration=.1)
+        p = Parameters(duration=0.1)
         result = Result.from_dict(simulate(p, "export"), "export", p)
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "samples.csv"
@@ -118,7 +151,7 @@ class Contracts(unittest.TestCase):
 
 # A controlled child makes cancellation/failure ordering reproducible. It announces
 # readiness only after installing its signal handler; the tests then release it.
-FAULT_WORKER = r'''
+FAULT_WORKER = r"""
 import json, os, signal, sys, time
 from pathlib import Path
 directory = Path(sys.argv[1])
@@ -135,7 +168,7 @@ if mode == "bad":
     sys.exit(0)
 (directory / "result.json").write_text(json.dumps({"status": "failed", "message": "Non-convergence simulée"}))
 sys.exit(1)
-'''
+"""
 
 
 class ControlledController(Controller):
@@ -166,12 +199,14 @@ class GuiRecipe(unittest.TestCase):
             QTest.mouseClick(window.run_button, Qt.MouseButton.LeftButton)
             self.assertFalse(window.run_button.isEnabled())
             self.assertTrue(window.stop_button.isEnabled())
-            window.fields["length"].setValue(1.5)  # edit after capture, before collection
+            window.fields["length"].setValue(
+                1.5
+            )  # edit after capture, before collection
             self.wait_until(lambda: window.controller.process is None)
             self.assertIsNotNone(window.result, window.status.text())
-            self.assertEqual(window.result.parameters.length, 1.)
-            self.assertEqual(window.pendulum.length, 1.)
-            self.assertIn("différents", window.result_label.text())
+            self.assertEqual(window.result.parameters.length, 1.0)
+            self.assertEqual(window.pendulum.length, 1.0)
+            self.assertIn("differ", window.result_label.text())
             QTest.mouseClick(window.play_button, Qt.MouseButton.LeftButton)
             QTest.qWait(120)
             self.assertGreater(window.slider.value(), 0)
@@ -189,21 +224,27 @@ class GuiRecipe(unittest.TestCase):
             QTest.mouseClick(window.stop_button, Qt.MouseButton.LeftButton)
             self.wait_until(lambda: window.controller.process is None)
             self.assertIs(window.result, previous)
-            self.assertIn("précédent", window.result_label.text())
+            self.assertIn("Previous", window.result_label.text())
             with tempfile.TemporaryDirectory() as directory:
                 path = Path(directory) / "params.json"
                 window.save(path)
-                window.fields["length"].setValue(2.)
+                window.fields["length"].setValue(2.0)
                 window.load(path)
                 self.assertEqual(window.parameters().length, 1.5)
-                write_json(path, {"format": "vinkulum-studio-parameters", "schema_version": 1,
-                                   "parameters": asdict(Parameters(length=1.000001))})
+                write_json(
+                    path,
+                    {
+                        "format": "vinkulum-studio-parameters",
+                        "schema_version": 1,
+                        "parameters": asdict(Parameters(length=1.000001)),
+                    },
+                )
                 with self.assertRaises(ValueError):
                     window.load(path)
                 self.assertEqual(window.parameters().length, 1.5)
             screenshot = os.environ.get("VINKULUM_STUDIO_SCREENSHOT")
             if screenshot:
-                window.fields["length"].setValue(1.)
+                window.fields["length"].setValue(1.0)
                 window.run()
                 self.wait_until(lambda: window.controller.process is None)
                 window.slider.setValue(80)
@@ -213,10 +254,13 @@ class GuiRecipe(unittest.TestCase):
             window.close()
 
     def test_GUI05_controlled_failure_cancel_and_crash_keep_result(self):
-        p = Parameters(duration=.1)
+        p = Parameters(duration=0.1)
         previous = Result.from_dict(simulate(p, "previous"), "previous", p)
         for mode in ("failed", "bad", "crash", "cancel", "close"):
-            with self.subTest(mode=mode), patch("vinkulum_studio.window.Controller", ControlledController):
+            with (
+                self.subTest(mode=mode),
+                patch("vinkulum_studio.window.Controller", ControlledController),
+            ):
                 window = MainWindow()
                 try:
                     window.show()
@@ -230,7 +274,7 @@ class GuiRecipe(unittest.TestCase):
                     window.run()
                     directory = window.controller.test_directory
                     self.wait_until(lambda: (directory / "ready").exists())
-                    window.fields["mass"].setValue(.5)
+                    window.fields["mass"].setValue(0.5)
                     QTest.qWait(50)
                     if mode == "cancel":
                         window.stop()
@@ -243,13 +287,15 @@ class GuiRecipe(unittest.TestCase):
                     self.wait_until(lambda: window.controller.process is None)
                     self.assertIs(window.result, previous)
                     self.assertIs(window.controller.last_result, previous)
-                    self.assertIn("précédent", window.result_label.text())
+                    self.assertIn("Previous", window.result_label.text())
                     self.assertGreaterEqual(len(ticks), 3)
                     self.assertLessEqual(len(window.controller._log), 32_768)
                     self.assertFalse(directory.exists())
                     if mode == "failed":
-                        self.assertIn("Non-convergence simulée",
-                                      unicodedata.normalize("NFC", window.status.text()))
+                        self.assertIn(
+                            "Non-convergence simulée",
+                            unicodedata.normalize("NFC", window.status.text()),
+                        )
                 finally:
                     window.close()
 
@@ -257,12 +303,13 @@ class GuiRecipe(unittest.TestCase):
         class MissingController(Controller):
             def _worker_command(self, directory):
                 return "/nonexistent/vinkulum-python", []
+
         with patch("vinkulum_studio.window.Controller", MissingController):
             window = MainWindow()
             try:
                 window.run()
                 self.wait_until(lambda: window.controller.process is None)
-                self.assertIn("impossible", window.status.text())
+                self.assertIn("Could not start worker", window.status.text())
                 self.assertTrue(window.run_button.isEnabled())
                 self.assertIsNone(window.result)
             finally:

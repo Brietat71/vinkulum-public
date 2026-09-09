@@ -104,6 +104,8 @@ jobs:
       - name: Construire et vérifier Studio 3D hors du dépôt
         env:
           RAYON_NUM_THREADS: "2"
+          # Preserve the actual loader error if a platform plugin cannot start.
+          QT_DEBUG_PLUGINS: "1"
           VINKULUM_STUDIO_SCREENSHOT: ${{ runner.temp }}/studio-g0.png
           VINKULUM_EDITOR_SCREENSHOT: ${{ runner.temp }}/studio-3d.png
           VINKULUM_3D_SCREENSHOT: ${{ runner.temp }}/viewport-3d.png

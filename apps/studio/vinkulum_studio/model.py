@@ -5,9 +5,9 @@ import io
 import json
 import math
 import os
+import tempfile
 from dataclasses import asdict, dataclass, fields
 from pathlib import Path
-import tempfile
 
 MAX_STEPS = 20_000
 MAX_RESULT_BYTES = 16 * 1024 * 1024
@@ -15,8 +15,13 @@ G = 9.80665
 INERTIA = 1e-8
 RHO = 0.9
 UNITS = {"time": "s", "x": "m", "z": "m", "angle": "rad"}
-PARAMETER_UNITS = {"length": "m", "mass": "kg", "angle_deg": "deg",
-                   "duration": "s", "step": "s"}
+PARAMETER_UNITS = {
+    "length": "m",
+    "mass": "kg",
+    "angle_deg": "deg",
+    "duration": "s",
+    "step": "s",
+}
 
 
 def finite_number(value):
@@ -37,24 +42,30 @@ class Parameters:
     step: float = 0.005
 
     def __post_init__(self):
-        bounds = {"length": (0.05, 20), "mass": (0.01, 100),
-                  "angle_deg": (-170, 170), "duration": (0.001, 600),
-                  "step": (0.000001, 1)}
+        bounds = {
+            "length": (0.05, 20),
+            "mass": (0.01, 100),
+            "angle_deg": (-170, 170),
+            "duration": (0.001, 600),
+            "step": (0.000001, 1),
+        }
         for name, (low, high) in bounds.items():
             value = getattr(self, name)
             if not finite_number(value):
-                raise ValueError(f"{name} : nombre fini requis.")
+                raise ValueError(f"{name}: a finite number is required.")
             if not low <= value <= high:
-                raise ValueError(f"{name} : valeur attendue entre {low} et {high}.")
+                raise ValueError(f"{name}: expected a value between {low} and {high}.")
         if self.step > self.duration:
-            raise ValueError("Le pas doit être inférieur ou égal à la durée.")
+            raise ValueError("Time step must not exceed duration.")
         if self.duration / self.step > MAX_STEPS:
-            raise ValueError(f"Limite G0 : {MAX_STEPS:,} pas par calcul. Augmentez le pas.")
+            raise ValueError(
+                f"G0 limit: {MAX_STEPS:,} steps per run. Increase the time step."
+            )
 
     @classmethod
     def from_dict(cls, data):
         if not isinstance(data, dict) or set(data) != {f.name for f in fields(cls)}:
-            raise ValueError("Liste de paramètres absente, inconnue ou incomplète.")
+            raise ValueError("Missing, unknown or incomplete parameter list.")
         return cls(**data)
 
 
@@ -62,7 +73,7 @@ def _unique_object(pairs):
     data = {}
     for key, value in pairs:
         if key in data:
-            raise ValueError(f"Clé JSON dupliquée : {key}")
+            raise ValueError(f"Duplicate JSON key: {key}")
         data[key] = value
     return data
 
@@ -71,13 +82,15 @@ def read_json(path, max_bytes=16_384):
     with open(path, "rb") as stream:
         raw = stream.read(max_bytes + 1)
     if len(raw) > max_bytes:
-        raise ValueError("Fichier trop volumineux.")
+        raise ValueError("File is too large.")
+
     def invalid(value):
-        raise ValueError(f"Nombre JSON interdit : {value}")
+        raise ValueError(f"Invalid JSON number: {value}")
+
     try:
         return json.loads(raw, object_pairs_hook=_unique_object, parse_constant=invalid)
     except (UnicodeError, json.JSONDecodeError, RecursionError) as exc:
-        raise ValueError("Fichier JSON illisible.") from exc
+        raise ValueError("Unreadable JSON file.") from exc
 
 
 def atomic_text(path, content):
@@ -85,8 +98,9 @@ def atomic_text(path, content):
     target = Path(path)
     temporary = None
     try:
-        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", newline="",
-                                         dir=target.parent, delete=False) as stream:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", newline="", dir=target.parent, delete=False
+        ) as stream:
             temporary = Path(stream.name)
             stream.write(content)
             stream.flush()
@@ -98,21 +112,34 @@ def atomic_text(path, content):
 
 
 def write_json(path, data):
-    atomic_text(path, json.dumps(data, ensure_ascii=False, allow_nan=False, indent=2) + "\n")
+    atomic_text(
+        path, json.dumps(data, ensure_ascii=False, allow_nan=False, indent=2) + "\n"
+    )
 
 
 def save_parameters(path, parameters):
-    write_json(path, {"format": "vinkulum-studio-parameters", "schema_version": 1,
-                      "parameters": asdict(parameters)})
+    write_json(
+        path,
+        {
+            "format": "vinkulum-studio-parameters",
+            "schema_version": 1,
+            "parameters": asdict(parameters),
+        },
+    )
 
 
 def load_parameters(path):
     data = read_json(path)
-    if (not isinstance(data, dict)
-            or set(data) != {"format", "schema_version", "parameters"}
-            or data["format"] != "vinkulum-studio-parameters"
-            or type(data["schema_version"]) is not int or data["schema_version"] != 1):
-        raise ValueError("Format ou version de paramètres non pris en charge (version 1 requise).")
+    if (
+        not isinstance(data, dict)
+        or set(data) != {"format", "schema_version", "parameters"}
+        or data["format"] != "vinkulum-studio-parameters"
+        or type(data["schema_version"]) is not int
+        or data["schema_version"] != 1
+    ):
+        raise ValueError(
+            "Unsupported parameter format or version (version 1 required)."
+        )
     return Parameters.from_dict(data["parameters"])
 
 
@@ -125,49 +152,82 @@ class Result:
 
     @classmethod
     def from_dict(cls, data, run_id, parameters):
-        if (not isinstance(data, dict) or type(data.get("schema_version")) is not int
-                or data["schema_version"] != 1):
-            raise ValueError("Version de résultat incorrecte.")
-        if data.get("run_id") != run_id or Parameters.from_dict(data.get("parameters")) != parameters:
-            raise ValueError("Le résultat ne correspond pas aux entrées capturées.")
+        if (
+            not isinstance(data, dict)
+            or type(data.get("schema_version")) is not int
+            or data["schema_version"] != 1
+        ):
+            raise ValueError("Incorrect result version.")
+        if (
+            data.get("run_id") != run_id
+            or Parameters.from_dict(data.get("parameters")) != parameters
+        ):
+            raise ValueError("Result does not match the captured inputs.")
         if data.get("status") != "completed":
-            raise ValueError("Le worker n'a pas terminé le calcul.")
+            raise ValueError("The worker did not complete the calculation.")
         rows = data.get("samples")
         if not isinstance(rows, list) or not 2 <= len(rows) <= MAX_STEPS + 2:
-            raise ValueError("Nombre d'échantillons incorrect.")
+            raise ValueError("Incorrect sample count.")
         previous = -1.0
         for row in rows:
-            if (not isinstance(row, list) or len(row) != 4
-                    or any(not finite_number(v) for v in row)):
-                raise ValueError("Échantillon non fini ou mal formé.")
+            if (
+                not isinstance(row, list)
+                or len(row) != 4
+                or any(not finite_number(v) for v in row)
+            ):
+                raise ValueError("Nonfinite or malformed sample.")
             t, x, z, angle = row
             if t <= previous or t < 0 or t > parameters.duration + 1e-9:
-                raise ValueError("Temps des échantillons incohérents.")
-            if abs(math.hypot(x, z) - parameters.length) > 1e-5 * max(1, parameters.length):
-                raise ValueError("Géométrie de pendule incohérente.")
-            if abs(math.atan2(math.sin(angle - math.atan2(x, -z)),
-                              math.cos(angle - math.atan2(x, -z)))) > 1e-8:
-                raise ValueError("Angle et position incohérents.")
+                raise ValueError("Inconsistent sample times.")
+            if abs(math.hypot(x, z) - parameters.length) > 1e-5 * max(
+                1, parameters.length
+            ):
+                raise ValueError("Inconsistent pendulum geometry.")
+            if (
+                abs(
+                    math.atan2(
+                        math.sin(angle - math.atan2(x, -z)),
+                        math.cos(angle - math.atan2(x, -z)),
+                    )
+                )
+                > 1e-8
+            ):
+                raise ValueError("Inconsistent angle and position.")
             previous = t
-        if rows[0][0] != 0 or not math.isclose(rows[-1][0], parameters.duration, abs_tol=1e-9):
-            raise ValueError("Trajectoire incomplète.")
+        if rows[0][0] != 0 or not math.isclose(
+            rows[-1][0], parameters.duration, abs_tol=1e-9
+        ):
+            raise ValueError("Incomplete trajectory.")
         initial = math.radians(parameters.angle_deg)
         if abs(rows[0][3] - initial) > 1e-12:
-            raise ValueError("État initial incohérent.")
+            raise ValueError("Inconsistent initial state.")
         manifest = data.get("manifest")
-        if (not isinstance(manifest, dict) or manifest.get("units") != UNITS
-                or manifest.get("parameter_units") != PARAMETER_UNITS
-                or manifest.get("scientific_status") != "NotAssessed"):
-            raise ValueError("Manifeste de provenance absent ou incorrect.")
-        return cls(run_id, parameters, tuple(tuple(r) for r in rows),
-                   json.dumps(manifest, ensure_ascii=False, allow_nan=False))
+        if (
+            not isinstance(manifest, dict)
+            or manifest.get("units") != UNITS
+            or manifest.get("parameter_units") != PARAMETER_UNITS
+            or manifest.get("scientific_status") != "NotAssessed"
+        ):
+            raise ValueError("Missing or invalid provenance manifest.")
+        return cls(
+            run_id,
+            parameters,
+            tuple(tuple(r) for r in rows),
+            json.dumps(manifest, ensure_ascii=False, allow_nan=False),
+        )
 
     def export_csv(self, path):
         buffer = io.StringIO(newline="")
-        metadata = {"format": "vinkulum-studio-samples", "schema_version": 1,
-                    "run_id": self.run_id, "parameters": asdict(self.parameters),
-                    "manifest": json.loads(self.manifest_json)}
-        buffer.write("# " + json.dumps(metadata, ensure_ascii=False, allow_nan=False) + "\n")
+        metadata = {
+            "format": "vinkulum-studio-samples",
+            "schema_version": 1,
+            "run_id": self.run_id,
+            "parameters": asdict(self.parameters),
+            "manifest": json.loads(self.manifest_json),
+        }
+        buffer.write(
+            "# " + json.dumps(metadata, ensure_ascii=False, allow_nan=False) + "\n"
+        )
         writer = csv.writer(buffer)
         writer.writerow(["time [s]", "x [m]", "z [m]", "angle [rad]"])
         writer.writerows(self.samples)
