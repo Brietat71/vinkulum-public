@@ -15,6 +15,10 @@ from .examples3d import double_pendulum
 
 
 def main(directory):
+    import faulthandler
+
+    # Covers Cocoa initialization too, before the Qt timer can run.
+    faulthandler.dump_traceback_later(90, exit=True)
     output = Path(directory)
     output.mkdir(parents=True, exist_ok=True)
     app = QApplication.instance() or QApplication([])

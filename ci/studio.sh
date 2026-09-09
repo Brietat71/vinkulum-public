@@ -14,7 +14,10 @@ case "$(uname -s)" in
     ;;
   Darwin)
     export QT_QPA_PLATFORM=cocoa
-    "$PY" -X faulthandler -m unittest discover -s "$VINKULUM_SOURCE_ROOT/apps/studio/tests" -v
+    # The test interpreter is not an app bundle; do not ask LaunchServices to
+    # transform the CI shell process into a foreground application.
+    export QT_MAC_DISABLE_FOREGROUND_APPLICATION_TRANSFORM=1
+    "$PY" -X faulthandler -c 'import faulthandler, runpy; faulthandler.dump_traceback_later(120, exit=True); runpy.run_module("unittest", run_name="__main__")' discover -s "$VINKULUM_SOURCE_ROOT/apps/studio/tests" -v
     ;;
   *) echo "Plateforme Studio non qualifiée." >&2; exit 1 ;;
 esac

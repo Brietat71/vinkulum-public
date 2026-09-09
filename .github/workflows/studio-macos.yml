@@ -11,6 +11,8 @@ concurrency:
 jobs:
   dmg:
     if: github.repository == 'Brietat71/vinkulum-public'
+    permissions:
+      contents: write
     runs-on: macos-14
     timeout-minutes: 40
     env:
@@ -36,20 +38,15 @@ jobs:
           maturin build --release --locked --interpreter python --out dist/wheels
           python -m pip install dist/wheels/*.whl './apps/studio[test]'
       - name: Test native mechanics and desktop
+        timeout-minutes: 5
         run: |
           python -m unittest vinkulum.test_charges_temporelles -v
           PY=$(command -v python) bash ci/studio.sh
       - name: Package and test standalone application
         run: bash ci/macos_dmg.sh
-      - name: Retain DMG and bundle evidence
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: Vinkulum-Studio-0.2.0-apple-silicon
-          path: |
-            dist/macos/*.dmg
-            dist/macos/SHA256SUMS
-            dist/macos/check/
-          if-no-files-found: warn
-          retention-days: 7
-          compression-level: 0
+      - name: Publish tested DMG as a public prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="studio-v0.2.0-macos-${GITHUB_RUN_NUMBER}"
+          gh release create "$tag" dist/macos/*.dmg dist/macos/SHA256SUMS dist/macos/check/bundle-check.json dist/macos/check/scene.png --target "$GITHUB_SHA" --prerelease --title "Vinkulum Studio 0.2.0 — Apple Silicon preview ${GITHUB_RUN_NUMBER}" --notes-file apps/studio/packaging/RELEASE.md
