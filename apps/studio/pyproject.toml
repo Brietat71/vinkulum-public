@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vinkulum-studio"
-version = "0.2.0"
+version = "0.3.0"
 description = "Éditeur de mécanismes rigides 3D pour le noyau Vinkulum"
 readme = "README.md"
 requires-python = ">=3.14"

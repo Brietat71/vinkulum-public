@@ -15,5 +15,5 @@ exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name='Vinkulum Studio',
           console=False, target_arch='arm64', codesign_identity=None)
 coll = COLLECT(exe, a.binaries, a.datas, name='Vinkulum Studio')
 app = BUNDLE(coll, name='Vinkulum Studio.app', bundle_identifier='org.vinkulum.studio',
-             version='0.2.0', info_plist={'NSHighResolutionCapable': True,
-             'LSMinimumSystemVersion': '14.0', 'CFBundleShortVersionString': '0.2.0'})
+             version='0.3.0', info_plist={'NSHighResolutionCapable': True,
+             'LSMinimumSystemVersion': '14.0', 'CFBundleShortVersionString': '0.3.0'})

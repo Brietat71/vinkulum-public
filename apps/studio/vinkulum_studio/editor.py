@@ -1,40 +1,33 @@
 """Rigid-mechanism editor: document transactions, 3D authoring and captured runs."""
 
-from bisect import bisect_right
-from dataclasses import asdict, replace
-from functools import wraps
 import json
 import math
 import time
+from bisect import bisect_right
+from dataclasses import asdict, replace
+from functools import wraps
 
 import numpy as np
 from PySide6.QtCore import Qt, QTimer
-from PySide6.QtGui import QAction, QKeySequence
 from PySide6.QtWidgets import (
     QComboBox,
     QDialog,
     QDialogButtonBox,
-    QDockWidget,
     QFileDialog,
-    QFormLayout,
-    QHBoxLayout,
     QLabel,
     QLineEdit,
     QMainWindow,
     QMessageBox,
     QPushButton,
-    QScrollArea,
-    QSlider,
     QTextEdit,
-    QTreeWidget,
     QTreeWidgetItem,
     QVBoxLayout,
-    QWidget,
 )
 
 from . import __version__
 from .controller import Controller
-from .dialogs import JointDialog, LawDialog, numbers, numeric_text
+from .controls import VectorField, line_icon
+from .dialogs import JointDialog, LawDialog, numbers
 from .document import (
     Body,
     History,
@@ -48,9 +41,9 @@ from .document import (
     pendulum,
     save_project,
 )
-from .series_view import SeriesView
-from .viewport import Viewport
 from .examples3d import EXAMPLES
+from .run_archive import RunArchive, series_keys
+from .workspace import Workspace
 
 
 def report_edit_errors(method):
@@ -93,14 +86,16 @@ def matrix_euler(values):
     return tuple(math.degrees(v) for v in (roll, pitch, yaw))
 
 
-class EditorWindow(QMainWindow):
-    def __init__(self):
+class EditorWindow(Workspace, QMainWindow):
+    def __init__(self, settings=None):
         super().__init__()
         self.setWindowTitle(f"Vinkulum Studio {__version__} · Mécanismes 3D")
         self.resize(1440, 950)
+        self.settings = settings
         self.history = History(pendulum())
         self.controller = Controller(self)
         self.result = None
+        self.run_archive = RunArchive()
         self.selection = None
         self.fields = {}
         self.original_fields = {}
@@ -120,6 +115,7 @@ class EditorWindow(QMainWindow):
         self.viewport.selected.connect(self.select_object)
         self.viewport.pose_committed.connect(self.move_body)
         self._refresh(fit=True)
+        QTimer.singleShot(0, self.viewport.fit_scene)
 
     @property
     def project(self):
@@ -132,184 +128,6 @@ class EditorWindow(QMainWindow):
             if self.result is not None and self.mode.currentIndex() == 1
             else self.project
         )
-
-    def _make_layout(self):
-        self._design_actions = []
-        toolbar = self.addToolBar("Conception")
-        toolbar.setMovable(False)
-        for label, slot, shortcut in (
-            ("Nouveau", self.new_project, "Ctrl+N"),
-            ("Ouvrir", self.open_dialog, "Ctrl+O"),
-            ("Enregistrer", self.save_dialog, "Ctrl+S"),
-            ("Importer G0", self.import_dialog, None),
-            ("Annuler", self.undo, "Ctrl+Z"),
-            ("Rétablir", self.redo, "Ctrl+Shift+Z"),
-        ):
-            action = QAction(label, self)
-            action.triggered.connect(slot)
-            if shortcut:
-                action.setShortcut(QKeySequence(shortcut))
-            toolbar.addAction(action)
-            if label in {"Annuler", "Rétablir"}:
-                self._design_actions.append(action)
-        toolbar.addSeparator()
-        examples = QComboBox()
-        examples.addItem("Exemples…")
-        examples.addItems(EXAMPLES)
-        examples.activated.connect(
-            lambda index: self.load_example(examples.itemText(index)) if index else None
-        )
-        toolbar.addWidget(examples)
-        for shape, label in (
-            ("box", "Boîte"),
-            ("cylinder", "Cylindre"),
-            ("sphere", "Sphère"),
-        ):
-            action = QAction(label, self)
-            action.triggered.connect(lambda checked=False, s=shape: self.add_body(s))
-            action.setShortcut(
-                {"box": "Alt+B", "cylinder": "Alt+C", "sphere": "Alt+S"}[shape]
-            )
-            toolbar.addAction(action)
-            self._design_actions.append(action)
-        for label, slot in (
-            ("Liaison", self.add_joint_dialog),
-            ("Charge", self.add_load),
-            ("Dupliquer", self.duplicate),
-            ("Supprimer", self.delete),
-        ):
-            action = QAction(label, self)
-            action.triggered.connect(slot)
-            action.setShortcut(
-                {
-                    "Liaison": "Alt+L",
-                    "Charge": "Alt+F",
-                    "Dupliquer": "Ctrl+D",
-                    "Supprimer": "Ctrl+Delete",
-                }[label]
-            )
-            toolbar.addAction(action)
-            self._design_actions.append(action)
-        self.tree = QTreeWidget()
-        self.tree.setHeaderLabel("MÉCANISME")
-        self.tree.currentItemChanged.connect(
-            lambda current, previous: (
-                self.select_object(current.data(0, Qt.ItemDataRole.UserRole))
-                if current
-                else None
-            )
-        )
-        dock = QDockWidget("Objets", self)
-        dock.setWidget(self.tree)
-        self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, dock)
-        dock.setMinimumWidth(210)
-        self.properties = QWidget()
-        self.form = QFormLayout(self.properties)
-        self.form.setFieldGrowthPolicy(
-            QFormLayout.FieldGrowthPolicy.AllNonFixedFieldsGrow
-        )
-        scroll = QScrollArea()
-        scroll.setWidgetResizable(True)
-        scroll.setWidget(self.properties)
-        dock = QDockWidget("Propriétés · unités SI", self)
-        dock.setWidget(scroll)
-        dock.setMinimumWidth(360)
-        self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, dock)
-        central = QWidget()
-        layout = QVBoxLayout(central)
-        self.setCentralWidget(central)
-        top = QHBoxLayout()
-        layout.addLayout(top)
-        self.mode = QComboBox()
-        self.mode.addItems(["Conception", "Résultat du calcul"])
-        self.mode.model().item(1).setEnabled(False)
-        self.mode.currentIndexChanged.connect(self._mode_changed)
-        top.addWidget(self.mode)
-        for direction, label in (
-            ("iso", "Isométrique"),
-            ("front", "Face"),
-            ("side", "Côté"),
-            ("top", "Dessus"),
-        ):
-            button = QPushButton(label)
-            button.clicked.connect(
-                lambda checked=False, d=direction: self.viewport.camera(d)
-            )
-            top.addWidget(button)
-        button = QPushButton("Cadrer sélection")
-        button.clicked.connect(lambda: self.viewport.camera("iso", selection=True))
-        top.addWidget(button)
-        top.addStretch()
-        self.viewport = Viewport()
-        layout.addWidget(self.viewport, 1)
-        self.result_label = QLabel("Aucun résultat calculé.")
-        self.result_label.setWordWrap(True)
-        layout.addWidget(self.result_label)
-        runbar = QHBoxLayout()
-        layout.addLayout(runbar)
-        self.duration = QLineEdit("2.0")
-        self.step = QLineEdit("0.005")
-        self.duration.setMaximumWidth(85)
-        self.step.setMaximumWidth(90)
-        runbar.addWidget(QLabel("Durée [s]"))
-        runbar.addWidget(self.duration)
-        runbar.addWidget(QLabel("Pas [s]"))
-        runbar.addWidget(self.step)
-        self.run_button = QPushButton("Calculer la conception")
-        self.run_button.clicked.connect(self.run)
-        self.run_button.setShortcut("Ctrl+Return")
-        runbar.addWidget(self.run_button)
-        self.stop_button = QPushButton("Arrêter")
-        self.stop_button.setEnabled(False)
-        self.stop_button.clicked.connect(self.stop)
-        runbar.addWidget(self.stop_button)
-        self.export_button = QPushButton("Exporter CSV")
-        self.export_button.setEnabled(False)
-        self.export_button.clicked.connect(self.export_dialog)
-        runbar.addWidget(self.export_button)
-        self.provenance_button = QPushButton("Provenance")
-        self.provenance_button.setEnabled(False)
-        self.provenance_button.clicked.connect(self.provenance)
-        runbar.addWidget(self.provenance_button)
-        self.series_combo = QComboBox()
-        self.series_combo.currentIndexChanged.connect(self._select_series)
-        layout.addWidget(self.series_combo)
-        self.curve = SeriesView()
-        self.curve.setMaximumHeight(220)
-        layout.addWidget(self.curve)
-        playback = QHBoxLayout()
-        layout.addLayout(playback)
-        self.play_button = QPushButton("Lecture")
-        self.play_button.clicked.connect(self.toggle_play)
-        self.play_button.setEnabled(False)
-        playback.addWidget(self.play_button)
-        self.slider = QSlider(Qt.Orientation.Horizontal)
-        self.slider.setEnabled(False)
-        self.slider.valueChanged.connect(self._frame)
-        self.slider.sliderPressed.connect(self.pause)
-        self.slider.actionTriggered.connect(lambda _: self.pause())
-        playback.addWidget(self.slider, 1)
-        self.time_label = QLabel("t = —")
-        playback.addWidget(self.time_label)
-        self.status = QLabel("Prêt. Sélectionnez un corps pour le modifier.")
-        self.status.setWordWrap(True)
-        self.status.setTextFormat(Qt.TextFormat.PlainText)
-        layout.addWidget(self.status)
-        self.diagnostics = QTreeWidget()
-        self.diagnostics.setHeaderLabels(["Objet", "Diagnostic"])
-        self.diagnostics.itemActivated.connect(
-            lambda item, column: self.select_object(
-                item.data(0, Qt.ItemDataRole.UserRole)
-            )
-        )
-        self.diagnostics.setMaximumHeight(130)
-        layout.addWidget(self.diagnostics)
-        note = QLabel(
-            "Conception : déplacer ne résout pas les liaisons. Résultats : précision non certifiée. Flèches orange = forces, violettes = moments ; longueur symbolique, directions mondiales."
-        )
-        note.setWordWrap(True)
-        note.setStyleSheet("color:#657487;font-size:11px")
-        layout.addWidget(note)
 
     def object(self, identifier=None, display=False):
         identifier = self.selection if identifier is None else identifier
@@ -337,7 +155,28 @@ class EditorWindow(QMainWindow):
                 group = QTreeWidgetItem([label])
                 self.tree.addTopLevelItem(group)
                 for obj in objects:
-                    item = QTreeWidgetItem([obj.name])
+                    kind = (
+                        {"box": "Boîte", "sphere": "Sphère", "cylinder": "Cylindre"}[
+                            obj.shape
+                        ]
+                        if isinstance(obj, Body)
+                        else obj.kind
+                        if isinstance(obj, Joint)
+                        else "Charge"
+                    )
+                    item = QTreeWidgetItem([obj.name, kind])
+                    item.setToolTip(0, f"{obj.name} · {obj.id}")
+                    item.setIcon(
+                        0,
+                        line_icon(
+                            obj.shape
+                            if isinstance(obj, Body)
+                            else "joint"
+                            if isinstance(obj, Joint)
+                            else "load",
+                            self.palette().text().color().name(),
+                        ),
+                    )
                     item.setData(0, Qt.ItemDataRole.UserRole, obj.id)
                     group.addChild(item)
                     if obj.id == self.selection:
@@ -364,6 +203,8 @@ class EditorWindow(QMainWindow):
             self._show_scene(fit)
             self._busy(self.controller.process is not None)
             self._caption()
+            self._filter_tree()
+            self._workspace_state()
         finally:
             self._refreshing = False
 
@@ -371,11 +212,22 @@ class EditorWindow(QMainWindow):
         text = (
             value
             if isinstance(value, str)
-            else numeric_text(value)
+            else ", ".join(format(v, ".12g") for v in value)
             if isinstance(value, tuple)
             else repr(value)
         )
-        field = QLineEdit(text)
+        if isinstance(value, tuple) and len(value) > 1:
+            axes = (
+                tuple("XYZ")
+                if len(value) == 3
+                else ("R", "H")
+                if len(value) == 2
+                else tuple(str(i + 1) for i in range(len(value)))
+            )
+            field = VectorField(value, axes)
+            text = field.text()
+        else:
+            field = QLineEdit(text)
         field.setAccessibleName(label)
         field.textEdited.connect(self._pending)
         self.form.addRow(label, field)
@@ -396,9 +248,16 @@ class EditorWindow(QMainWindow):
     def _pending(self, *args):
         if not self._refreshing:
             self.dirty_fields = True
+            self.apply_button.setEnabled(True)
+            self._workspace_state()
             self.status.setText(
                 "Champs modifiés, non encore appliqués au document. Cliquez Appliquer ou lancez le calcul pour les valider."
             )
+
+    def _section(self, title):
+        label = QLabel(title)
+        label.setObjectName("section")
+        self.form.addRow(label)
 
     def _properties(self):
         while self.form.rowCount():
@@ -411,33 +270,27 @@ class EditorWindow(QMainWindow):
             self._text("gravity", "Gravité X,Y,Z [m/s²]", self.display_project.gravity)
         else:
             self._text("name", "Nom", obj.name)
-            self.form.addRow(QLabel(f"Identité : {obj.id[:8]}"))
+            self.fields["name"].setToolTip(f"Identité stable : {obj.id}")
             if isinstance(obj, Body):
-                self.form.addRow(
-                    QLabel(
-                        {
-                            "box": "Boîte",
-                            "sphere": "Sphère",
-                            "cylinder": "Cylindre · axe local Z",
-                        }[obj.shape]
-                    )
-                )
+                self._section("Géométrie & masse")
                 self._text(
                     "dimensions",
                     {
-                        "box": "Dimensions X,Y,Z [m]",
+                        "box": "Dimensions [m]",
                         "sphere": "Rayon [m]",
                         "cylinder": "Rayon, hauteur [m]",
                     }[obj.shape],
                     obj.dimensions,
                 )
                 self._text("mass", "Masse [kg]", obj.mass)
-                self._text("position", "Position X,Y,Z [m]", obj.position)
+                self._section("Transformation · monde")
+                self._text("position", "Position [m]", obj.position)
                 self._text(
                     "orientation",
-                    "Angles X,Y,Z [°] · Rz Ry Rx",
+                    "Orientation [°] · Rz Ry Rx",
                     matrix_euler(obj.orientation),
                 )
+                self._section("Inertie · repère local")
                 self._combo(
                     "inertia_mode",
                     "Inertie",
@@ -451,10 +304,22 @@ class EditorWindow(QMainWindow):
                 )
                 diagonal = np.diag(np.array(obj.inertia()).reshape(3, 3))
                 label = QLabel(
-                    "Diagonale utilisée : " + numeric_text(tuple(diagonal)) + " kg·m²"
+                    "Diagonale utilisée : "
+                    + ", ".join(format(v, ".6g") for v in diagonal)
+                    + " kg·m²"
                 )
                 label.setWordWrap(True)
+                label.setObjectName("muted")
                 self.form.addRow(label)
+                self.form.setRowVisible(
+                    self.fields["explicit_inertia"], obj.inertia_mode == "explicit"
+                )
+                self.fields["inertia_mode"].currentIndexChanged.connect(
+                    lambda _: self.form.setRowVisible(
+                        self.fields["explicit_inertia"],
+                        self.fields["inertia_mode"].currentData() == "explicit",
+                    )
+                )
             elif isinstance(obj, Joint):
                 self.form.addRow(QLabel(obj.kind.capitalize()))
                 options = [("Bâti", None)] + [
@@ -509,13 +374,18 @@ class EditorWindow(QMainWindow):
                         )
                         self.form.addRow(button)
         button = QPushButton("Appliquer les propriétés")
+        button.setObjectName("primary")
         button.clicked.connect(self.apply_properties)
+        self.apply_button = button
+        self.apply_button.setEnabled(False)
         self.form.addRow(button)
 
     def _value(self, key, count=None):
         field = self.fields[key]
         if isinstance(field, QComboBox):
             return field.currentData()
+        if isinstance(field, VectorField):
+            return field.values()
         text = field.text()
         if text == self.original_fields[key][0]:
             return self.original_fields[key][1]
@@ -742,10 +612,26 @@ class EditorWindow(QMainWindow):
         self.status.setText("Arrêt demandé…")
 
     def _busy(self, busy):
-        self.run_button.setEnabled(not busy and not self.project.diagnostics())
+        allowed = not busy and not self.project.diagnostics()
+        self.run_button.setEnabled(allowed)
         self.stop_button.setEnabled(busy)
+        self.commands["run"].setEnabled(allowed)
+        self.commands["stop"].setEnabled(busy)
+        self.run_state.setText(
+            "Calcul en cours · instantané capturé" if busy else "Prêt à calculer"
+        )
 
     def _completed(self, result):
+        removed = self.run_archive.add(result)
+        self._update_run_choices(result.run_id)
+        self._display_result(result)
+        if removed:
+            self.status.setText(
+                self.status.text()
+                + " Les plus anciens résultats ont quitté l’historique mémoire."
+            )
+
+    def _display_result(self, result):
         self.pause()
         self.result = result
         self.mode.model().item(1).setEnabled(True)
@@ -753,6 +639,11 @@ class EditorWindow(QMainWindow):
         self.slider.setRange(0, len(result.time) - 1)
         self.slider.setValue(0)
         self.slider.blockSignals(False)
+        self.time_input.blockSignals(True)
+        self.time_input.setRange(float(result.time[0]), float(result.time[-1]))
+        self.time_input.setSingleStep(float(result.project.step))
+        self.time_input.blockSignals(False)
+        self.time_input.setEnabled(True)
         self._series = result.series()
         self.series_combo.clear()
         self.series_combo.addItems([label for label, unit, values in self._series])
@@ -773,6 +664,9 @@ class EditorWindow(QMainWindow):
             self._refresh()
         self._frame(0)
         self._caption()
+        if self.mode.currentIndex() == 1:
+            self.docks["results"].show()
+            self.docks["results"].raise_()
         self.status.setText(
             f"Calcul terminé · {len(result.time)} échantillons · erreur de trajectoire non évaluée."
         )
@@ -825,13 +719,24 @@ class EditorWindow(QMainWindow):
     def _select_series(self, index):
         if self.result is not None and 0 <= index < len(self._series):
             label, unit, values = self._series[index]
+            kind = series_keys(self.result.project)[index][1]
+            label += " · monde" if kind in {"position", "velocity"} else " · liaison"
             self.curve.set_series(self.result.time, values, label, unit)
+            self.sample_model.set_series(self.result.time, values, label, unit)
+            self.update_comparison()
 
     def _frame(self, index):
         if self.result is None:
             return
         if self.mode.currentIndex() == 1:
             self.viewport.set_poses(self.result.poses(index), self.result.time[index])
+        self.time_input.blockSignals(True)
+        self.time_input.setValue(float(self.result.time[index]))
+        self.time_input.blockSignals(False)
+        selection = self.sample_table.selectionModel()
+        selection.blockSignals(True)
+        self.sample_table.selectRow(index)
+        selection.blockSignals(False)
         self.curve.index = index
         self.curve.update()
         self.time_label.setText(f"t = {self.result.time[index]:.5f} s")
@@ -845,8 +750,11 @@ class EditorWindow(QMainWindow):
         if self.slider.value() == self.slider.maximum():
             self.slider.setValue(0)
         self.mode.setCurrentIndex(1)
-        self._play_origin = time.monotonic() - float(
-            self.result.time[self.slider.value()]
+        if self.mode.currentIndex() != 1:
+            return
+        self._play_origin = (
+            time.monotonic()
+            - float(self.result.time[self.slider.value()]) / self.speed.currentData()
         )
         self.timer.start()
         self.play_button.setText("Pause")
@@ -856,7 +764,7 @@ class EditorWindow(QMainWindow):
         self.play_button.setText("Lecture")
 
     def _tick(self):
-        elapsed = time.monotonic() - self._play_origin
+        elapsed = (time.monotonic() - self._play_origin) * self.speed.currentData()
         index = min(
             len(self.result.time) - 1,
             max(0, bisect_right(self.result.time, elapsed) - 1),
@@ -876,6 +784,7 @@ class EditorWindow(QMainWindow):
         self.history.commit(project)
         self._saved = self.project
         self._path = path
+        self._workspace_state()
         self.status.setText("Projet enregistré.")
         return True
 
@@ -903,10 +812,14 @@ class EditorWindow(QMainWindow):
         answer = QMessageBox.question(
             self,
             "Projet modifié",
-            "Abandonner les modifications non enregistrées ?",
-            QMessageBox.StandardButton.Discard | QMessageBox.StandardButton.Cancel,
-            QMessageBox.StandardButton.Cancel,
+            "Enregistrer les modifications avant de continuer ?",
+            QMessageBox.StandardButton.Save
+            | QMessageBox.StandardButton.Discard
+            | QMessageBox.StandardButton.Cancel,
+            QMessageBox.StandardButton.Save,
         )
+        if answer == QMessageBox.StandardButton.Save:
+            return bool(self.save_dialog())
         return answer == QMessageBox.StandardButton.Discard
 
     def new_project(self):
@@ -934,12 +847,14 @@ class EditorWindow(QMainWindow):
         path, _ = picker(self, caption, str(self._path or ""), pattern)
         if path:
             try:
-                action(path)
+                result = action(path)
+                return result is not False
             except (OSError, ValueError, TypeError, KeyError) as exc:
                 self.status.setText(str(exc))
+        return False
 
     def save_dialog(self):
-        self._file(True, "Enregistrer le projet", "Projet (*.json)", self.save)
+        return self._file(True, "Enregistrer le projet", "Projet (*.json)", self.save)
 
     def open_dialog(self):
         if self._discard_allowed():
@@ -994,6 +909,7 @@ class EditorWindow(QMainWindow):
             event.ignore()
             return
         self.pause()
+        self.save_workspace()
         self.controller.shutdown()
         self.viewport.shutdown()
         event.accept()

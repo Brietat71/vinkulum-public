@@ -12,12 +12,15 @@ def main():
 
         return check_main(sys.argv[2])
     from PySide6.QtWidgets import QApplication
+
     from .editor import EditorWindow
 
     app = QApplication(sys.argv)
     app.setApplicationName("Vinkulum Studio")
     app.setStyle("Fusion")
-    window = EditorWindow()
+    from PySide6.QtCore import QSettings
+
+    window = EditorWindow(QSettings("Vinkulum", "Studio"))
     window.show()
     return app.exec()
 

@@ -25,7 +25,7 @@ ci-dessous. Aucun paquet n'est publié sur PyPI.
 ## Démarrer
 
 Un [éditeur de mécanismes rigides 3D](apps/studio/README.md) est disponible
-dans le paquet optionnel **Vinkulum Studio 0.2.0** : primitives, liaisons,
+dans le paquet optionnel **Vinkulum Studio 0.3.0** : primitives, liaisons,
 manipulation et saisie numérique, charges temporelles, calcul séparé, animation,
 courbes et export. Voir sa [qualification et ses limites](docs/STUDIO_3D.md).
 Le [cahier des charges v1.1](outputs/Cahier_des_charges_suite_ingenierie_Vinkulum.md)

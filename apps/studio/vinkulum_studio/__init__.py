@@ -1,3 +1,3 @@
 """Optional desktop application; the solver remains an independent package."""
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"

@@ -1,4 +1,4 @@
-# Vinkulum Studio 0.2.0 — éditeur de mécanismes rigides 3D
+# Vinkulum Studio 0.3.0 — conception et analyse de mécanismes 3D
 
 Application locale PySide6 / VTK : création de corps et de liaisons, déplacement
 à la souris, propriétés numériques, lois de mouvement et charges temporelles.
@@ -21,13 +21,44 @@ vinkulum-studio
 Une roue du noyau **0.19.0 compatible avec Python et la plateforme** peut remplacer
 la compilation `pip install .`. Une roue Linux ne fonctionne pas sur macOS.
 PySide6 **6.11.2** et VTK **9.7.0** sont des dépendances séparées avec leurs propres
-licences ; le code original de Studio est sous Apache-2.0. Aucun installateur
-embarquant Qt/VTK n'est livré. Après installation, Studio fonctionne sans réseau.
+licences ; le code original de Studio est sous Apache-2.0. Un DMG autonome Apple Silicon est proposé dans les
+[releases publiques](https://github.com/Brietat71/vinkulum-public/releases) ;
+il embarque Python, le noyau, Qt et VTK, et exige macOS 14 minimum. La signature
+est ad hoc, sans notarisation Apple. Après installation, Studio fonctionne sans réseau.
 
 Sous Linux, Qt/X11 exige notamment `libxcb-cursor0`, `libxcb-icccm4`,
 `libxcb-keysyms1`, `libxcb-image0`, `libxcb-render-util0`, `libxcb-util1` et un
 pilote OpenGL. Les tests automatisés utilisent également `xvfb` et `xauth`.
 La qualification macOS ARM64 sur un bureau réel reste à effectuer.
+
+## Nouvelle interface 0.3.0
+
+Trois ateliers structurent le travail : **Modéliser**, **Simuler** et **Examiner**.
+La vue 3D occupe l’espace principal ; l’explorateur, l’inspecteur, les diagnostics
+et les résultats sont redimensionnables, détachables et accessibles dans
+**Affichage → Panneaux**. Le thème et la disposition sont conservés par le lanceur.
+**Restaurer la disposition** rétablit les panneaux de l’atelier actif.
+
+- **Ctrl/Cmd+K** : rechercher une commande ; **S** : outils pour la sélection.
+  Les raccourcis de fichier et d’édition suivent la plateforme.
+- L’explorateur filtre par nom, type ou identifiant. Son menu contextuel permet
+  d’isoler ou de masquer un objet ; ces actions n’affectent pas le calcul.
+- L’inspecteur présente les composantes X/Y/Z séparément. Les valeurs compactes
+  affichées ne remplacent jamais les composantes originales non modifiées.
+- Les outils **Sélectionner**, **Déplacer** et **Orienter** règlent le manipulateur.
+  Le repère de caméra permet de choisir une orientation directement dans la scène.
+- **Examiner** conserve jusqu’à huit calculs en mémoire, dans un budget de 128 Mio
+  pour leurs tableaux. Choisir un calcul affiche son propre instantané en lecture seule.
+- Cliquer dans une courbe sélectionne un échantillon ; molette pour zoomer,
+  Maj-glisser pour déplacer et double clic pour cadrer. Les flèches parcourent
+  les échantillons. Le temps, la scène et le tableau restent synchronisés.
+- **Comparer à** superpose une référence en pointillés et décrit les différences
+  de modèle et de réglages. Les séries gardent leurs temps natifs ; les objets
+  sont associés par identité stable, jamais par leur position dans une liste.
+
+Cette version est une première itération de la refonte, avec ses
+[critères et références](../../docs/STUDIO_GUI_2026.md). Elle ne constitue pas une
+revendication de parité générale avec Abaqus, NX ou une suite CAO.
 
 ## Construire et calculer
 
@@ -86,7 +117,7 @@ et matrices de rotation. La provenance contient les versions et l'empreinte du
 binaire natif. Le CSV exporte les échantillons natifs, avec l'état initial,
 les unités et le projet capturé. Les pivots sont affichés en angle principal
 `[-π, π]`, pas en compteur de tours. La lecture choisit les échantillons sans
-interpolation dynamique. Les résultats restent en mémoire pour la session ;
+interpolation dynamique. Les résultats de l’historique restent en mémoire pour la session, dans la limite du budget ;
 le JSON sauvegarde la conception, le CSV permet de conserver les données.
 
 ## Domaine et qualification

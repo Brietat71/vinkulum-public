@@ -47,6 +47,12 @@ class EditorRecipe(unittest.TestCase):
             raise failures[0]
 
     def type_field(self, field, text):
+        from vinkulum_studio.controls import VectorField
+
+        if isinstance(field, VectorField):
+            for component, value in zip(field.components, text.split(","), strict=True):
+                self.type_field(component, value.strip())
+            return
         field.setFocus()
         field.selectAll()
         QTest.keyClicks(field, text)

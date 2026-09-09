@@ -1,10 +1,10 @@
 """Qt/VTK viewport. Rendering and mouse previews never mutate a Project."""
 
 import numpy as np
+import vtkmodules.vtkInteractionStyle  # Registers trackball interaction.
+import vtkmodules.vtkRenderingOpenGL2
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QVBoxLayout, QWidget
-
-from .render_interactor import RenderInteractor
 from vtkmodules.vtkCommonMath import vtkMatrix4x4
 from vtkmodules.vtkCommonTransforms import vtkTransform
 from vtkmodules.vtkFiltersGeneral import vtkTransformFilter
@@ -15,18 +15,23 @@ from vtkmodules.vtkFiltersSources import (
     vtkLineSource,
     vtkSphereSource,
 )
-from vtkmodules.vtkInteractionWidgets import vtkBoxRepresentation, vtkBoxWidget2
+from vtkmodules.vtkInteractionWidgets import (
+    vtkBoxRepresentation,
+    vtkBoxWidget2,
+    vtkCameraOrientationWidget,
+)
+from vtkmodules.vtkIOImage import vtkPNGWriter
 from vtkmodules.vtkRenderingAnnotation import vtkAxesActor
 from vtkmodules.vtkRenderingCore import (
     vtkActor,
     vtkCellPicker,
+    vtkLightKit,
     vtkPolyDataMapper,
     vtkRenderer,
     vtkWindowToImageFilter,
 )
-from vtkmodules.vtkIOImage import vtkPNGWriter
-import vtkmodules.vtkInteractionStyle  # Registers trackball interaction.
-import vtkmodules.vtkRenderingOpenGL2  # noqa: F401 — registers the platform render window.
+
+from .render_interactor import RenderInteractor
 
 
 def vtk_matrix(position, orientation):
@@ -59,8 +64,8 @@ class Viewport(QWidget):
         self.view = RenderInteractor(self)
         layout.addWidget(self.view)
         self.renderer = vtkRenderer()
-        self.renderer.SetBackground(0.075, 0.10, 0.14)
-        self.renderer.SetBackground2(0.16, 0.21, 0.27)
+        self.renderer.SetBackground(0.095, 0.105, 0.13)
+        self.renderer.SetBackground2(0.20, 0.22, 0.26)
         self.renderer.GradientBackgroundOn()
         self.view.GetRenderWindow().AddRenderer(self.renderer)
         self.view.GetRenderWindow().SetMultiSamples(4)
@@ -68,6 +73,13 @@ class Viewport(QWidget):
             vtkmodules.vtkInteractionStyle.vtkInteractorStyleTrackballCamera()
         )
         self.view.Initialize()
+        self.lights = vtkLightKit()
+        self.lights.SetKeyLightIntensity(0.6)
+        self.lights.AddLightsToRenderer(self.renderer)
+        self.orientation_widget = vtkCameraOrientationWidget()
+        self.orientation_widget.SetParentRenderer(self.renderer)
+        self.orientation_widget.AnimateOff()
+        self.orientation_widget.On()
         self._actors = {}
         self._colors = {}
         self._bounds = {}
@@ -78,6 +90,8 @@ class Viewport(QWidget):
         self._local_axes = None
         self._selected = None
         self._editable = True
+        self.transform_mode = 3
+        self.hidden_objects = set()
         self.dragging = False
         self._closed = False
         self._project = None
@@ -117,6 +131,10 @@ class Viewport(QWidget):
         return actor
 
     def set_project(self, project, *, fit=False):
+        if project == self._project:
+            if fit:
+                self.camera("iso")
+            return
         selection = self._selected
         self.box.Off()
         self.renderer.RemoveAllViewProps()
@@ -153,7 +171,14 @@ class Viewport(QWidget):
                 source.SetTransform(transform)
             source.Update()
             self._bounds[body.id] = source.GetOutput().GetBounds()
-            actor = self._add(source, (0.20, 0.65, 0.72), body.id)
+            color = ((0.58, 0.66, 0.80), (0.78, 0.81, 0.86), (0.42, 0.62, 0.67))[
+                len(self._bounds) % 3
+            ]
+            actor = self._add(source, color, body.id)
+            actor.GetProperty().SetSpecular(0.25)
+            actor.GetProperty().SetSpecularPower(40)
+            actor.GetProperty().SetEdgeColor(0.15, 0.20, 0.28)
+            actor.GetProperty().EdgeVisibilityOn()
             actor.SetUserMatrix(vtk_matrix(body.position, body.orientation))
         extent = max(
             (np.linalg.norm(b.position) + max(b.dimensions) for b in project.bodies),
@@ -161,17 +186,6 @@ class Viewport(QWidget):
         )
         self._extent = max(0.1, float(extent))
         self._draw_grid()
-        axes = vtkAxesActor()
-        axes.SetTotalLength(*([self._extent * 0.18] * 3))
-        axes.PickableOff()
-        for caption in (
-            axes.GetXAxisCaptionActor2D(),
-            axes.GetYAxisCaptionActor2D(),
-            axes.GetZAxisCaptionActor2D(),
-        ):
-            caption.GetTextActor().SetTextScaleModeToNone()
-            caption.GetCaptionTextProperty().SetFontSize(14)
-        self.renderer.AddActor(axes)
         self._local_axes = vtkAxesActor()
         self._local_axes.AxisLabelsOff()
         self._local_axes.PickableOff()
@@ -240,7 +254,9 @@ class Viewport(QWidget):
                 arrow.SetShaftResolution(16)
                 glyph = self._add(arrow, color, load.id)
                 self._load_glyphs.append((glyph, load, field))
+        self.hidden_objects.intersection_update(self._actors)
         self._update_attachments()
+        self._apply_visibility()
         self.select(selection if selection in self._actors else None)
         if fit:
             self.camera("iso")
@@ -299,6 +315,7 @@ class Viewport(QWidget):
                     vtk_matrix(position, orientation)
                 )
         self._update_attachments()
+        self._apply_visibility()
         self.render()
 
     def set_editable(self, editable):
@@ -309,28 +326,76 @@ class Viewport(QWidget):
         self.box.Off()
         self._selected = identifier
         if self._local_axes is not None:
-            self._local_axes.SetVisibility(identifier in self._body_ids)
+            self._local_axes.SetVisibility(
+                identifier in self._body_ids
+                and identifier not in self.hidden_objects
+                and self._editable
+                and self.transform_mode
+            )
             if identifier in self._body_ids:
                 body = next(b for b in self._project.bodies if b.id == identifier)
-                self._local_axes.SetTotalLength(*([max(body.dimensions) * 0.8] * 3))
+                self._local_axes.SetTotalLength(*([max(body.dimensions) * 0.25] * 3))
                 self._local_axes.SetUserMatrix(vtk_matrix(*self._poses[identifier]))
         for key, actors in self._actors.items():
             if key in self._body_ids:
-                actors[0].GetProperty().SetColor(
-                    *((0.96, 0.70, 0.25) if key == identifier else (0.20, 0.65, 0.72))
+                actors[0].GetProperty().SetColor(*self._colors[key][0])
+                actors[0].GetProperty().SetEdgeColor(
+                    *((0.6, 0.73, 1.0) if key == identifier else (0.15, 0.20, 0.28))
                 )
+                actors[0].GetProperty().SetLineWidth(2.0 if key == identifier else 1.0)
             else:
                 for actor, color in zip(actors, self._colors[key]):
                     actor.GetProperty().SetColor(
                         *((1.0, 0.85, 0.3) if key == identifier else color)
                     )
-        if identifier in self._body_ids and self._editable:
+        if (
+            identifier in self._body_ids
+            and self._editable
+            and self.transform_mode
+            and identifier not in self.hidden_objects
+        ):
             self.box_rep.PlaceWidget(self._bounds[identifier])
             transform = vtkTransform()
             transform.SetMatrix(self._actors[identifier][0].GetMatrix())
             self.box_rep.SetTransform(transform)
             self.box.On()
         self.render()
+
+    def set_transform_mode(self, mode):
+        self.transform_mode = mode
+        self.box.SetTranslationEnabled(mode in (1, 3))
+        self.box.SetRotationEnabled(mode in (2, 3))
+        self.select(self._selected)
+
+    def _apply_visibility(self):
+        glyphs = {actor for actor, _, _ in self._load_glyphs}
+        for identifier, actors in self._actors.items():
+            for actor in actors:
+                if identifier in self.hidden_objects:
+                    actor.VisibilityOff()
+                elif actor not in glyphs:
+                    actor.VisibilityOn()
+
+    def set_object_visible(self, identifier, visible):
+        if visible:
+            self.hidden_objects.discard(identifier)
+        else:
+            self.hidden_objects.add(identifier)
+        self._update_attachments()
+        self._apply_visibility()
+        self.select(self._selected)
+
+    def isolate(self, identifier):
+        self.hidden_objects = set(self._actors) - {identifier}
+        self._update_attachments()
+        self._apply_visibility()
+        self.select(self._selected)
+
+    def show_all(self):
+        self.hidden_objects.clear()
+        self._update_attachments()
+        self._apply_visibility()
+        self.select(self._selected)
 
     def _pick(self, interactor, event):
         picker = vtkCellPicker()
@@ -354,6 +419,7 @@ class Viewport(QWidget):
         self._poses[self._selected] = pose
         self._actors[self._selected][0].SetUserMatrix(transform.GetMatrix())
         self._update_attachments()
+        self._apply_visibility()
         self.render()
 
     def _commit_pose(self, widget, event):
@@ -377,6 +443,12 @@ class Viewport(QWidget):
         camera.SetPosition(*vector)
         camera.SetViewUp(*((0.0, 1.0, 0.0) if direction == "top" else (0.0, 0.0, 1.0)))
         camera.SetParallelProjection(direction != "iso")
+        self.fit_scene(selection)
+
+    def fit_scene(self, selection=False):
+        if self._closed or self.dragging:
+            return
+        camera = self.renderer.GetActiveCamera()
         if selection and self._selected in self._actors:
             self.renderer.ResetCamera(self._actors[self._selected][0].GetBounds())
         elif self._body_ids:
@@ -390,6 +462,7 @@ class Viewport(QWidget):
             self.renderer.ResetCamera(scene_bounds)
         else:
             self.renderer.ResetCamera()
+        camera.Zoom(0.82)
         self.renderer.ResetCameraClippingRange()
         self.render()
 
@@ -411,6 +484,7 @@ class Viewport(QWidget):
     def shutdown(self):
         if not self._closed:
             self.box.Off()
+            self.orientation_widget.Off()
             self.view.Finalize()
             self._closed = True
 
