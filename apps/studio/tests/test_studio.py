@@ -11,6 +11,7 @@ import sys
 import tempfile
 import time
 import unittest
+import unicodedata
 from unittest.mock import patch
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
@@ -247,7 +248,8 @@ class GuiRecipe(unittest.TestCase):
                     self.assertLessEqual(len(window.controller._log), 32_768)
                     self.assertFalse(directory.exists())
                     if mode == "failed":
-                        self.assertIn("Non-convergence simulée", window.status.text())
+                        self.assertIn("Non-convergence simulée",
+                                      unicodedata.normalize("NFC", window.status.text()))
                 finally:
                     window.close()
 
