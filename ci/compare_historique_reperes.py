@@ -5,7 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 
-import numpy as np
+from observations_reperes_archivees import ecarts,norme
 
 
 def comparer(traces,archive):
@@ -22,14 +22,12 @@ def comparer(traces,archive):
         base=read('initial')['trace']['echantillons']
         for record in experiment['mesures']:
             frame=record['cadre'];data=read(frame)
-            world,material=np.asarray(data['monde']),np.asarray(data['matiere'])
             values=[]
             for i in range(stride,len(base),stride):
                 b=data['trace']['echantillons'][i];a=base[i]
-                dr=world.T@np.asarray(b[2][0]).reshape(3,3)@material.T-np.asarray(a[2][0]).reshape(3,3)
-                dw=world.T@np.asarray(b[3][0])-np.asarray(a[3][0])
-                values.append([float(np.linalg.norm(dr)),float(np.linalg.norm(dw))])
-            maxima=np.max(values,axis=0).tolist()
+                dr,dw=ecarts(a,b,data['monde'],data['matiere'])
+                values.append([norme(dr),norme(dw)])
+            maxima=[max(row[k] for row in values) for k in (0,1)]
             old=record['ecarts_max']
             # Les maxima historiques sont des valeurs observées, pas des seuils
             # d'acceptation physique. Conserver toute différence, sans tolérance.

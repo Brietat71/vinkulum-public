@@ -41,7 +41,7 @@ licences ; le code original de Studio est sous Apache-2.0. Un DMG autonome Apple
 il embarque Python, le noyau, Qt et VTK, et exige macOS 14 minimum. La signature
 est ad hoc, sans notarisation Apple. Après installation, Studio fonctionne sans réseau.
 
-Sous Linux, Qt/X11 exige notamment `libxcb-cursor0`, `libxcb-icccm4`,
+Sous Linux, Qt/X11 exige notamment `libegl1`, `libgl1`, `libxkbcommon-x11-0`, `libxcb-cursor0`, `libxcb-icccm4`,
 `libxcb-keysyms1`, `libxcb-image0`, `libxcb-render-util0`, `libxcb-util1` et un
 pilote OpenGL. Les tests automatisés utilisent également `xvfb` et `xauth`.
 La qualification de Studio 0.4.0 CAD sur macOS ARM64 reste à effectuer.
@@ -150,7 +150,8 @@ valeurs aux extrémités. Aucune expression Python n'est exécutée.
 ## Documents et résultats
 
 Les objets ont des UUID persistants. Le JSON utilise
-`format: vinkulum-studio-project`, `schema_version: 1` et un projet immuable.
+`format: vinkulum-studio-project` et un projet immuable. Les projets sans CAD
+restent en schéma 1 ; les projets contenant un BREP utilisent le schéma 2.
 Les fichiers G0 restent importables. Supprimer un corps conserve les références
 cassées des liaisons/charges afin de pouvoir les diagnostiquer et les réparer.
 La sauvegarde et les exports remplacent le fichier après écriture complète et
@@ -176,8 +177,9 @@ le JSON sauvegarde la conception, le CSV permet de conserver les données.
 32 corps, 64 liaisons, 128 charges, 20 000 pas demandés et 100 000 couples
 corps/échantillon au maximum ; archive de résultat limitée à 64 Mio. Ces budgets
 ne garantissent ni la convergence ni une limite de mémoire imposée par l'OS.
-Le worker n'est pas un bac à sable de sécurité. Contact, flexibles, import CAO,
+Le worker n'est pas un bac à sable de sécurité. Contact, flexibles, import
 URDF, collaboration et synthèse automatique de mécanismes ne sont pas inclus.
+L'import CAD est limité à une pièce solide STEP dans le contrat OCCT 8 décrit plus haut.
 
 Le statut scientifique d'une trajectoire reste **`NotAssessed`** : les contrôles
 d'intégrité et les références physiques testées ne constituent pas une borne

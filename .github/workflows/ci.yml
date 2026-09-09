@@ -100,7 +100,7 @@ jobs:
       - name: Préparer le bureau de test Qt et OpenGL
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb xauth libgl1-mesa-dri libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0 libxcb-render-util0 libxcb-util1
+          sudo apt-get install -y xvfb xauth libegl1 libgl1 libgl1-mesa-dri libxkbcommon-x11-0 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0 libxcb-render-util0 libxcb-util1
       - name: Construire et vérifier Studio 3D hors du dépôt
         env:
           RAYON_NUM_THREADS: "2"
