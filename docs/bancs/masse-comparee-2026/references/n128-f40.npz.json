@@ -1,0 +1,53 @@
+{
+  "n": 128,
+  "max_hz": 40.0,
+  "nombre_frequences": 257,
+  "charges": 6,
+  "modele": {
+    "n": 128,
+    "longueur_m": 1.0,
+    "largeur_y_m": 0.04,
+    "hauteur_z_m": 0.006,
+    "young_pa": 70000000000.0,
+    "poisson": 0.3,
+    "rho_kg_m3": 2700.0,
+    "facteur_cisaillement": 0.8333333333333334,
+    "pas_m": 0.0078125,
+    "ea_n": 16800000.0,
+    "gay_n": 5384615.384615385,
+    "gaz_n": 5384615.384615385,
+    "gj_nm2": 70.21138310307693,
+    "eiy_nm2": 50.4,
+    "eiz_nm2": 2240.0,
+    "masse_totale_avant_encastrement_kg": 0.648,
+    "force_port_physique": [
+      0.0,
+      0.0,
+      0.1,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "masse_discrete": "Masse consistante P1 des vitesses de section ; voir masse et formule cinétique."
+  },
+  "vinkulum": "0.10.0",
+  "entree_sha256": "e6457a842fa2218e78e7042612973c1e6df76d42417dbcfa96952df2ac226d25",
+  "extension_sha256": "725237fce98bb62a6f6853c375abf1eb2250418b3eaab3dbcdad8a8d274aa024",
+  "masse": {
+    "type": "vitesses_sections_P1",
+    "masse_segment_kg": 0.0050625,
+    "moments_quadratiques_section_m2": [
+      0.00013633333333333333,
+      3e-06,
+      0.00013333333333333334
+    ],
+    "coefficients_segment": "[[2,1],[1,2]]/6",
+    "couplages_conserves": true,
+    "inertie_longitudinale_segment_exclue": true
+  },
+  "source_rigidite": {
+    "fichier": "/tmp/vinkulum-confrontation-ports-0.10.0-corrigee/n128-f40.npz",
+    "sha256": "a1549264160cd4210d2e3e60ee31ebc0bd32e214b0925ce03ee1edb1741c740a"
+  },
+  "type_modele": "poutre_masse_consistante_P1"
+}

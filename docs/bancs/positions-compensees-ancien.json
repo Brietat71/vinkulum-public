@@ -1,0 +1,329 @@
+{
+  "python": "3.14.7",
+  "numpy": "2.5.2",
+  "extension_sha256": "a7c78411e52b8d82634fd336c0ce911a773de2e502a3e619d23738c4010b7991",
+  "worktree_lanceur_sha256": {
+    "src/lib.rs": "4f8d6e9472dcfe6f2680b3aab1942018cb9b2a5a73093dfc012ae60fd841319e",
+    "src/tangent.rs": "020738449a39ca685273025a68a13e4f1f88aa4c211e53e588a52c489098f09e",
+    "src/numerique.rs": "6872219a7265400e069e8fa2317315376ee648ba08d83fbb97bb96410f79ffba",
+    "src/robustesse.rs": "07929bc565c2f7cde18bd2b05e68c1bcb0e50d0f754e9d6921924418f88c76e0",
+    "src/superelement.rs": "2769e6ac826754da3d8b9dc4d183d9f88f9c8c5b4acc3440e564d6c93f6385d3",
+    "ci/diagnostic_positions_compensees.py": "777b728c325b5974f703090ab77e5778a0c5660aace15830d334c32eae572a52",
+    "ci/confronte_mbdyn.py": "5b335dc114daad7e1739ec66ea2426245373123c559079c9eb8a3d6872e3a31c",
+    "ci/diagnostic_statut_statique.py": "531344cff7942e5016a29ed014f4b42ca0564145814978abea900036d1312e23",
+    "ci/diagnostic_precision_statique.py": "8f76484b4ef1d687933c065506b98119037b4d6aa7288c1c54de5f4139b215a0"
+  },
+  "etat_precis_disponible": false,
+  "barres": [
+    {
+      "rapport": {
+        "statut": "echec",
+        "tol": 1e-14,
+        "strict": true,
+        "residu_libre": 9.313225746154785e-10,
+        "contraintes": 0.0,
+        "echelle_force": 1.0,
+        "residu_relatif": 9.313225746154785e-10,
+        "tolerance_finale_atteinte": false,
+        "evaluations": 51,
+        "tentatives": 2,
+        "paliers": 1,
+        "palier": 1,
+        "paliers_stagnation": 0,
+        "etat_restaure": true,
+        "message": "ValueError: statique : pas convergé en 40 itérations, ‖r‖ = 9.313e-10 pour une échelle de force de 1.000e0 (9.3e-10 en relatif)"
+      },
+      "erreur": "ValueError: statique : pas convergé en 40 itérations, ‖r‖ = 9.313e-10 pour une échelle de force de 1.000e0 (9.3e-10 en relatif)",
+      "etat_restaure_verifie": true,
+      "avertissements": [],
+      "element": "milieu",
+      "etat": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        []
+      ],
+      "residu_courant": [
+        -0.0,
+        -0.0,
+        -0.0,
+        0.0,
+        0.0,
+        0.0,
+        -9.313225746154785e-10,
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "restauration_precise_verifiee": true,
+      "allongement_reference_m": 8.673617379884035e-19
+    },
+    {
+      "rapport": {
+        "statut": "echec",
+        "tol": 1e-14,
+        "strict": true,
+        "residu_libre": 9.313225746154785e-10,
+        "contraintes": 0.0,
+        "echelle_force": 1.0,
+        "residu_relatif": 9.313225746154785e-10,
+        "tolerance_finale_atteinte": false,
+        "evaluations": 51,
+        "tentatives": 2,
+        "paliers": 1,
+        "palier": 1,
+        "paliers_stagnation": 0,
+        "etat_restaure": true,
+        "message": "ValueError: statique : pas convergé en 40 itérations, ‖r‖ = 9.313e-10 pour une échelle de force de 1.000e0 (9.3e-10 en relatif)"
+      },
+      "erreur": "ValueError: statique : pas convergé en 40 itérations, ‖r‖ = 9.313e-10 pour une échelle de force de 1.000e0 (9.3e-10 en relatif)",
+      "etat_restaure_verifie": true,
+      "avertissements": [],
+      "element": "integree",
+      "etat": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        []
+      ],
+      "residu_courant": [
+        -0.0,
+        -0.0,
+        -0.0,
+        0.0,
+        0.0,
+        0.0,
+        -9.313225746154785e-10,
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "restauration_precise_verifiee": true,
+      "allongement_reference_m": 8.673617379884035e-19
+    },
+    {
+      "rapport": {
+        "statut": "echec",
+        "tol": 1e-14,
+        "strict": true,
+        "residu_libre": 9.313225746154785e-10,
+        "contraintes": 0.0,
+        "echelle_force": 1.0,
+        "residu_relatif": 9.313225746154785e-10,
+        "tolerance_finale_atteinte": false,
+        "evaluations": 51,
+        "tentatives": 2,
+        "paliers": 1,
+        "palier": 1,
+        "paliers_stagnation": 0,
+        "etat_restaure": true,
+        "message": "ValueError: statique : pas convergé en 40 itérations, ‖r‖ = 9.313e-10 pour une échelle de force de 1.000e0 (9.3e-10 en relatif)"
+      },
+      "erreur": "ValueError: statique : pas convergé en 40 itérations, ‖r‖ = 9.313e-10 pour une échelle de force de 1.000e0 (9.3e-10 en relatif)",
+      "etat_restaure_verifie": true,
+      "avertissements": [],
+      "element": "super",
+      "etat": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        []
+      ],
+      "residu_courant": [
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0,
+        -9.313225746154785e-10,
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "restauration_precise_verifiee": true,
+      "allongement_reference_m": 8.673617379884035e-19
+    }
+  ],
+  "princeton": []
+}

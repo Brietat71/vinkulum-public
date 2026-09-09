@@ -1,0 +1,4777 @@
+{
+  "schema": 1,
+  "date": "2026-09-07T16:06:26.889741+00:00",
+  "cas": [
+    [
+      "chaine",
+      257
+    ],
+    [
+      "chaine",
+      1025
+    ],
+    [
+      "chaine",
+      2049
+    ],
+    [
+      "cascade",
+      4
+    ],
+    [
+      "cascade",
+      20
+    ],
+    [
+      "cascade",
+      60
+    ],
+    [
+      "cascade_tournee",
+      4
+    ],
+    [
+      "cascade_tournee",
+      20
+    ],
+    [
+      "cascade_tournee",
+      60
+    ],
+    [
+      "couplages",
+      129
+    ],
+    [
+      "couplages",
+      513
+    ]
+  ],
+  "variantes": [
+    "local",
+    "qr_dense"
+  ],
+  "programme_sha256": "5e7330cf5b5212383cc7aa29f2ea5eb5f7ee5f34cf312ac21f9b1b96b3ee9184",
+  "prototype_sha256": "068b2ea18e8eae413445b3b56da010ce4c28b3a8843fee99fa1413781ab698af",
+  "cpu_info": "AMD EPYC 7543 32-Core Processor",
+  "budget_coefficients_transformes": 2000000,
+  "repetitions": 4,
+  "essais": [
+    {
+      "famille": "chaine",
+      "taille": 257,
+      "variante": "local",
+      "forme": [
+        384,
+        257
+      ],
+      "nnz": 768,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.012636295985430479,
+      "projection_s": 0.00314190611243248,
+      "reactions_s": 0.002130986889824271,
+      "total_s": 0.01790918898768723,
+      "diagnostic": {
+        "lignes": 384,
+        "colonnes": 257,
+        "rang": 256,
+        "seuil": 5.4569682106375694e-12,
+        "nnz_entree": 768,
+        "nnz_actifs_max": 768,
+        "nnz_facteur": 894,
+        "coefficients_reflexions": 512,
+        "support_max": 2,
+        "coefficients_transformes": 1788,
+        "lignes_supprimees": 128,
+        "norme_residus_supprimes": 2.1642230995786356e-15,
+        "pivot_min": 0.7084865030471645,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 62464,
+      "controles": {
+        "erreur_projection": 3.802513859341161e-15,
+        "erreur_force": 1.6209256159527285e-14,
+        "fermeture": 6.245004513516506e-16,
+        "idempotence": 3.3306690738754696e-16,
+        "rang_attendu": 256,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-257-local-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "4629ced213959ce896f51ee57ac7c22d54ad855f8991a1c7e85fac08ff0ae075"
+    },
+    {
+      "famille": "chaine",
+      "taille": 257,
+      "variante": "qr_dense",
+      "forme": [
+        384,
+        257
+      ],
+      "nnz": 768,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.008189138025045395,
+      "projection_s": 0.0002215229906141758,
+      "reactions_s": 0.0005088911857455969,
+      "total_s": 0.008919552201405168,
+      "diagnostic": {
+        "rang": 256,
+        "coefficients_base_normales": 65792,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 65536,
+      "controles": {
+        "erreur_projection": 3.164135620181696e-15,
+        "erreur_force": 1.432187701766452e-14,
+        "fermeture": 2.095545958979983e-15,
+        "idempotence": 1.9845236565174673e-15,
+        "rang_attendu": 256,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-257-qr_dense-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "29670f525c62fc36fe630c726affdad0c9bb3636b4f2af217af8650c18b36832"
+    },
+    {
+      "famille": "chaine",
+      "taille": 257,
+      "variante": "qr_dense",
+      "forme": [
+        384,
+        257
+      ],
+      "nnz": 768,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.008133812807500362,
+      "projection_s": 0.00021311710588634014,
+      "reactions_s": 0.0005122870206832886,
+      "total_s": 0.008859216934069991,
+      "diagnostic": {
+        "rang": 256,
+        "coefficients_base_normales": 65792,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 65536,
+      "controles": {
+        "erreur_projection": 3.164135620181696e-15,
+        "erreur_force": 1.432187701766452e-14,
+        "fermeture": 2.095545958979983e-15,
+        "idempotence": 1.9845236565174673e-15,
+        "rang_attendu": 256,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-257-qr_dense-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "3f61262469f773c26677b35438ab807d2ae269a207eddd496d7426f81dd65cd5"
+    },
+    {
+      "famille": "chaine",
+      "taille": 257,
+      "variante": "local",
+      "forme": [
+        384,
+        257
+      ],
+      "nnz": 768,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.012753118062391877,
+      "projection_s": 0.0031045149080455303,
+      "reactions_s": 0.002085540210828185,
+      "total_s": 0.017943173181265593,
+      "diagnostic": {
+        "lignes": 384,
+        "colonnes": 257,
+        "rang": 256,
+        "seuil": 5.4569682106375694e-12,
+        "nnz_entree": 768,
+        "nnz_actifs_max": 768,
+        "nnz_facteur": 894,
+        "coefficients_reflexions": 512,
+        "support_max": 2,
+        "coefficients_transformes": 1788,
+        "lignes_supprimees": 128,
+        "norme_residus_supprimes": 2.1642230995786356e-15,
+        "pivot_min": 0.7084865030471645,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 62464,
+      "controles": {
+        "erreur_projection": 3.802513859341161e-15,
+        "erreur_force": 1.6209256159527285e-14,
+        "fermeture": 6.245004513516506e-16,
+        "idempotence": 3.3306690738754696e-16,
+        "rang_attendu": 256,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-257-local-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "59abae24280ff3998981bd6206f3ab719811ad730ea3f65b91b352398b2af21f"
+    },
+    {
+      "famille": "chaine",
+      "taille": 257,
+      "variante": "local",
+      "forme": [
+        384,
+        257
+      ],
+      "nnz": 768,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.012550943065434694,
+      "projection_s": 0.0030696080066263676,
+      "reactions_s": 0.0020426278933882713,
+      "total_s": 0.017663178965449333,
+      "diagnostic": {
+        "lignes": 384,
+        "colonnes": 257,
+        "rang": 256,
+        "seuil": 5.4569682106375694e-12,
+        "nnz_entree": 768,
+        "nnz_actifs_max": 768,
+        "nnz_facteur": 894,
+        "coefficients_reflexions": 512,
+        "support_max": 2,
+        "coefficients_transformes": 1788,
+        "lignes_supprimees": 128,
+        "norme_residus_supprimes": 2.1642230995786356e-15,
+        "pivot_min": 0.7084865030471645,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 62464,
+      "controles": {
+        "erreur_projection": 3.802513859341161e-15,
+        "erreur_force": 1.6209256159527285e-14,
+        "fermeture": 6.245004513516506e-16,
+        "idempotence": 3.3306690738754696e-16,
+        "rang_attendu": 256,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-257-local-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "452a2c88334236e7522b76c424d22cccaa885df5118730e9fc17eb42cb980edf"
+    },
+    {
+      "famille": "chaine",
+      "taille": 257,
+      "variante": "qr_dense",
+      "forme": [
+        384,
+        257
+      ],
+      "nnz": 768,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.008378358790650964,
+      "projection_s": 0.0002059331163764,
+      "reactions_s": 0.0005175380501896143,
+      "total_s": 0.009101829957216978,
+      "diagnostic": {
+        "rang": 256,
+        "coefficients_base_normales": 65792,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 65536,
+      "controles": {
+        "erreur_projection": 3.164135620181696e-15,
+        "erreur_force": 1.432187701766452e-14,
+        "fermeture": 2.095545958979983e-15,
+        "idempotence": 1.9845236565174673e-15,
+        "rang_attendu": 256,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-257-qr_dense-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "f7f9097001a7b2d233d74f55b046abe9b751a1404ab4d631a899931d92264eec"
+    },
+    {
+      "famille": "chaine",
+      "taille": 257,
+      "variante": "qr_dense",
+      "forme": [
+        384,
+        257
+      ],
+      "nnz": 768,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.008146818028762937,
+      "projection_s": 0.00021631293930113316,
+      "reactions_s": 0.0005119370762258768,
+      "total_s": 0.008875068044289947,
+      "diagnostic": {
+        "rang": 256,
+        "coefficients_base_normales": 65792,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 65536,
+      "controles": {
+        "erreur_projection": 3.164135620181696e-15,
+        "erreur_force": 1.432187701766452e-14,
+        "fermeture": 2.095545958979983e-15,
+        "idempotence": 1.9845236565174673e-15,
+        "rang_attendu": 256,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-257-qr_dense-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "4667243157927e050825995df39557ad5075f74cb791233095d605f092809ab5"
+    },
+    {
+      "famille": "chaine",
+      "taille": 257,
+      "variante": "local",
+      "forme": [
+        384,
+        257
+      ],
+      "nnz": 768,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.012506878934800625,
+      "projection_s": 0.0030909490305930376,
+      "reactions_s": 0.002075189957395196,
+      "total_s": 0.01767301792278886,
+      "diagnostic": {
+        "lignes": 384,
+        "colonnes": 257,
+        "rang": 256,
+        "seuil": 5.4569682106375694e-12,
+        "nnz_entree": 768,
+        "nnz_actifs_max": 768,
+        "nnz_facteur": 894,
+        "coefficients_reflexions": 512,
+        "support_max": 2,
+        "coefficients_transformes": 1788,
+        "lignes_supprimees": 128,
+        "norme_residus_supprimes": 2.1642230995786356e-15,
+        "pivot_min": 0.7084865030471645,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 62464,
+      "controles": {
+        "erreur_projection": 3.802513859341161e-15,
+        "erreur_force": 1.6209256159527285e-14,
+        "fermeture": 6.245004513516506e-16,
+        "idempotence": 3.3306690738754696e-16,
+        "rang_attendu": 256,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-257-local-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "cd1789ddf892b3a20caa2b048050ce20a93fa0eabacf00eabf273515d73f5ece"
+    },
+    {
+      "famille": "chaine",
+      "taille": 1025,
+      "variante": "local",
+      "forme": [
+        1536,
+        1025
+      ],
+      "nnz": 3072,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.044462623074650764,
+      "projection_s": 0.012114370008930564,
+      "reactions_s": 0.0067427270114421844,
+      "total_s": 0.06331972009502351,
+      "diagnostic": {
+        "lignes": 1536,
+        "colonnes": 1025,
+        "rang": 1024,
+        "seuil": 2.1827872842550278e-11,
+        "nnz_entree": 3072,
+        "nnz_actifs_max": 3072,
+        "nnz_facteur": 3582,
+        "coefficients_reflexions": 2048,
+        "support_max": 2,
+        "coefficients_transformes": 7164,
+        "lignes_supprimees": 512,
+        "norme_residus_supprimes": 4.231974449219393e-15,
+        "pivot_min": 0.7074519639169855,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 63488,
+      "controles": {
+        "erreur_projection": 5.8729063279194804e-15,
+        "erreur_force": 2.8754776337791554e-14,
+        "fermeture": 1.960237527853792e-16,
+        "idempotence": 2.7755575615628914e-16,
+        "rang_attendu": 1024,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-1025-local-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "922928d79cb625d2bace1a2144af6525545b47c584132095bf3fee238acb86ed"
+    },
+    {
+      "famille": "chaine",
+      "taille": 1025,
+      "variante": "qr_dense",
+      "forme": [
+        1536,
+        1025
+      ],
+      "nnz": 3072,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.29524973197840154,
+      "projection_s": 0.0019914701115339994,
+      "reactions_s": 0.005073401844128966,
+      "total_s": 0.3023146039340645,
+      "diagnostic": {
+        "rang": 1024,
+        "coefficients_base_normales": 1049600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 104520,
+      "controles": {
+        "erreur_projection": 5.457440055423035e-15,
+        "erreur_force": 2.0095036745715333e-14,
+        "fermeture": 4.717634703027551e-15,
+        "idempotence": 5.287437154777308e-15,
+        "rang_attendu": 1024,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-1025-qr_dense-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "b2cb07ffe5096f1da1414834833f6a730fdc2c835f763afee2ed463328525c2a"
+    },
+    {
+      "famille": "chaine",
+      "taille": 1025,
+      "variante": "qr_dense",
+      "forme": [
+        1536,
+        1025
+      ],
+      "nnz": 3072,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.2921766759827733,
+      "projection_s": 0.002018972998484969,
+      "reactions_s": 0.0046396448742598295,
+      "total_s": 0.2988352938555181,
+      "diagnostic": {
+        "rang": 1024,
+        "coefficients_base_normales": 1049600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 102476,
+      "controles": {
+        "erreur_projection": 5.457440055423035e-15,
+        "erreur_force": 2.0095036745715333e-14,
+        "fermeture": 4.717634703027551e-15,
+        "idempotence": 5.287437154777308e-15,
+        "rang_attendu": 1024,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-1025-qr_dense-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "d39f9e0f2a08f0bbbb5d3dc12313cbba1bcac21d8b8b5b8f45302192805e453e"
+    },
+    {
+      "famille": "chaine",
+      "taille": 1025,
+      "variante": "local",
+      "forme": [
+        1536,
+        1025
+      ],
+      "nnz": 3072,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.044007824966683984,
+      "projection_s": 0.012207437073811889,
+      "reactions_s": 0.0067533880937844515,
+      "total_s": 0.06296865013428032,
+      "diagnostic": {
+        "lignes": 1536,
+        "colonnes": 1025,
+        "rang": 1024,
+        "seuil": 2.1827872842550278e-11,
+        "nnz_entree": 3072,
+        "nnz_actifs_max": 3072,
+        "nnz_facteur": 3582,
+        "coefficients_reflexions": 2048,
+        "support_max": 2,
+        "coefficients_transformes": 7164,
+        "lignes_supprimees": 512,
+        "norme_residus_supprimes": 4.231974449219393e-15,
+        "pivot_min": 0.7074519639169855,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 64000,
+      "controles": {
+        "erreur_projection": 5.8729063279194804e-15,
+        "erreur_force": 2.8754776337791554e-14,
+        "fermeture": 1.960237527853792e-16,
+        "idempotence": 2.7755575615628914e-16,
+        "rang_attendu": 1024,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-1025-local-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "663b017381590643fa10c4332377517604aa3d8991d76ad29080bc50d42b6bd7"
+    },
+    {
+      "famille": "chaine",
+      "taille": 1025,
+      "variante": "local",
+      "forme": [
+        1536,
+        1025
+      ],
+      "nnz": 3072,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.04481080803088844,
+      "projection_s": 0.012135709868744016,
+      "reactions_s": 0.006756945047527552,
+      "total_s": 0.06370346294716,
+      "diagnostic": {
+        "lignes": 1536,
+        "colonnes": 1025,
+        "rang": 1024,
+        "seuil": 2.1827872842550278e-11,
+        "nnz_entree": 3072,
+        "nnz_actifs_max": 3072,
+        "nnz_facteur": 3582,
+        "coefficients_reflexions": 2048,
+        "support_max": 2,
+        "coefficients_transformes": 7164,
+        "lignes_supprimees": 512,
+        "norme_residus_supprimes": 4.231974449219393e-15,
+        "pivot_min": 0.7074519639169855,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 63488,
+      "controles": {
+        "erreur_projection": 5.8729063279194804e-15,
+        "erreur_force": 2.8754776337791554e-14,
+        "fermeture": 1.960237527853792e-16,
+        "idempotence": 2.7755575615628914e-16,
+        "rang_attendu": 1024,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-1025-local-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "871062653893a05117d88673a8d9fbda6d1e58a4c292fb0151f741734751ddca"
+    },
+    {
+      "famille": "chaine",
+      "taille": 1025,
+      "variante": "qr_dense",
+      "forme": [
+        1536,
+        1025
+      ],
+      "nnz": 3072,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.29453222220763564,
+      "projection_s": 0.001987883821129799,
+      "reactions_s": 0.00461962609551847,
+      "total_s": 0.3011397321242839,
+      "diagnostic": {
+        "rang": 1024,
+        "coefficients_base_normales": 1049600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 102476,
+      "controles": {
+        "erreur_projection": 5.457440055423035e-15,
+        "erreur_force": 2.0095036745715333e-14,
+        "fermeture": 4.717634703027551e-15,
+        "idempotence": 5.287437154777308e-15,
+        "rang_attendu": 1024,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-1025-qr_dense-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "3302ae686707559d882716fbed50e0d2fc61d15f7b432d598a1abb24f6dcb693"
+    },
+    {
+      "famille": "chaine",
+      "taille": 1025,
+      "variante": "qr_dense",
+      "forme": [
+        1536,
+        1025
+      ],
+      "nnz": 3072,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.2954661841504276,
+      "projection_s": 0.0019806898199021816,
+      "reactions_s": 0.0045279820915311575,
+      "total_s": 0.3019748560618609,
+      "diagnostic": {
+        "rang": 1024,
+        "coefficients_base_normales": 1049600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 102488,
+      "controles": {
+        "erreur_projection": 5.457440055423035e-15,
+        "erreur_force": 2.0095036745715333e-14,
+        "fermeture": 4.717634703027551e-15,
+        "idempotence": 5.287437154777308e-15,
+        "rang_attendu": 1024,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-1025-qr_dense-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "8104c9bae92c2cc734a89510aafd66e2ea82a15c04e282eaf0fa1c7e307b2633"
+    },
+    {
+      "famille": "chaine",
+      "taille": 1025,
+      "variante": "local",
+      "forme": [
+        1536,
+        1025
+      ],
+      "nnz": 3072,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.045586138032376766,
+      "projection_s": 0.012188199907541275,
+      "reactions_s": 0.006764679914340377,
+      "total_s": 0.06453901785425842,
+      "diagnostic": {
+        "lignes": 1536,
+        "colonnes": 1025,
+        "rang": 1024,
+        "seuil": 2.1827872842550278e-11,
+        "nnz_entree": 3072,
+        "nnz_actifs_max": 3072,
+        "nnz_facteur": 3582,
+        "coefficients_reflexions": 2048,
+        "support_max": 2,
+        "coefficients_transformes": 7164,
+        "lignes_supprimees": 512,
+        "norme_residus_supprimes": 4.231974449219393e-15,
+        "pivot_min": 0.7074519639169855,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 63488,
+      "controles": {
+        "erreur_projection": 5.8729063279194804e-15,
+        "erreur_force": 2.8754776337791554e-14,
+        "fermeture": 1.960237527853792e-16,
+        "idempotence": 2.7755575615628914e-16,
+        "rang_attendu": 1024,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-1025-local-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "1430129abe2955b7a38a8157ff85524d810fc71bc9e5a1e7752e9115a532000d"
+    },
+    {
+      "famille": "chaine",
+      "taille": 2049,
+      "variante": "local",
+      "forme": [
+        3072,
+        2049
+      ],
+      "nnz": 6144,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.08613824914209545,
+      "projection_s": 0.02462577586993575,
+      "reactions_s": 0.013161267153918743,
+      "total_s": 0.12392529216594994,
+      "diagnostic": {
+        "lignes": 3072,
+        "colonnes": 2049,
+        "rang": 2048,
+        "seuil": 4.3655745685100555e-11,
+        "nnz_entree": 6144,
+        "nnz_actifs_max": 6144,
+        "nnz_facteur": 7166,
+        "coefficients_reflexions": 4096,
+        "support_max": 2,
+        "coefficients_transformes": 14332,
+        "lignes_supprimees": 1024,
+        "norme_residus_supprimes": 6.1404467328717665e-15,
+        "pivot_min": 0.7072793936097669,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 65536,
+      "controles": {
+        "erreur_projection": 1.3235940121703038e-14,
+        "erreur_force": 2.5868196473766147e-14,
+        "fermeture": 3.920475055707584e-16,
+        "idempotence": 8.881784197001252e-16,
+        "rang_attendu": 2048,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-2049-local-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "6471e9f5c687209c05ee9f08c514037a57062ec9259c4b42a63fed88d15b4350"
+    },
+    {
+      "famille": "chaine",
+      "taille": 2049,
+      "variante": "qr_dense",
+      "forme": [
+        3072,
+        2049
+      ],
+      "nnz": 6144,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 2.5213523691054434,
+      "projection_s": 0.008850801037624478,
+      "reactions_s": 0.01655205781571567,
+      "total_s": 2.5467552279587835,
+      "diagnostic": {
+        "rang": 2048,
+        "coefficients_base_normales": 4196352,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 207300,
+      "controles": {
+        "erreur_projection": 6.637052019087264e-15,
+        "erreur_force": 3.530509218307998e-14,
+        "fermeture": 5.9657140338842396e-15,
+        "idempotence": 6.116634976294222e-15,
+        "rang_attendu": 2048,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-2049-qr_dense-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "837c409248cec2f1be424fe21349982b5e31783661f6d94a6752e1e3eec5c4a0"
+    },
+    {
+      "famille": "chaine",
+      "taille": 2049,
+      "variante": "qr_dense",
+      "forme": [
+        3072,
+        2049
+      ],
+      "nnz": 6144,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 2.5370918980333954,
+      "projection_s": 0.008833918953314424,
+      "reactions_s": 0.016863943077623844,
+      "total_s": 2.5627897600643337,
+      "diagnostic": {
+        "rang": 2048,
+        "coefficients_base_normales": 4196352,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 207300,
+      "controles": {
+        "erreur_projection": 6.637052019087264e-15,
+        "erreur_force": 3.530509218307998e-14,
+        "fermeture": 5.9657140338842396e-15,
+        "idempotence": 6.116634976294222e-15,
+        "rang_attendu": 2048,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-2049-qr_dense-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "bce48359b31ad99ae33457754ad1300c5275e7bc5887cc947d164a601f48ffd6"
+    },
+    {
+      "famille": "chaine",
+      "taille": 2049,
+      "variante": "local",
+      "forme": [
+        3072,
+        2049
+      ],
+      "nnz": 6144,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.08782280283048749,
+      "projection_s": 0.024325373116880655,
+      "reactions_s": 0.013053752016276121,
+      "total_s": 0.12520192796364427,
+      "diagnostic": {
+        "lignes": 3072,
+        "colonnes": 2049,
+        "rang": 2048,
+        "seuil": 4.3655745685100555e-11,
+        "nnz_entree": 6144,
+        "nnz_actifs_max": 6144,
+        "nnz_facteur": 7166,
+        "coefficients_reflexions": 4096,
+        "support_max": 2,
+        "coefficients_transformes": 14332,
+        "lignes_supprimees": 1024,
+        "norme_residus_supprimes": 6.1404467328717665e-15,
+        "pivot_min": 0.7072793936097669,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 65536,
+      "controles": {
+        "erreur_projection": 1.3235940121703038e-14,
+        "erreur_force": 2.5868196473766147e-14,
+        "fermeture": 3.920475055707584e-16,
+        "idempotence": 8.881784197001252e-16,
+        "rang_attendu": 2048,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-2049-local-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "892b3224f0d0493aa71956b37d82480b3261acd4d25fc0aa9401c34529c53fdf"
+    },
+    {
+      "famille": "chaine",
+      "taille": 2049,
+      "variante": "local",
+      "forme": [
+        3072,
+        2049
+      ],
+      "nnz": 6144,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.08490594592876732,
+      "projection_s": 0.02454683603718877,
+      "reactions_s": 0.01315473485738039,
+      "total_s": 0.12260751682333648,
+      "diagnostic": {
+        "lignes": 3072,
+        "colonnes": 2049,
+        "rang": 2048,
+        "seuil": 4.3655745685100555e-11,
+        "nnz_entree": 6144,
+        "nnz_actifs_max": 6144,
+        "nnz_facteur": 7166,
+        "coefficients_reflexions": 4096,
+        "support_max": 2,
+        "coefficients_transformes": 14332,
+        "lignes_supprimees": 1024,
+        "norme_residus_supprimes": 6.1404467328717665e-15,
+        "pivot_min": 0.7072793936097669,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 65536,
+      "controles": {
+        "erreur_projection": 1.3235940121703038e-14,
+        "erreur_force": 2.5868196473766147e-14,
+        "fermeture": 3.920475055707584e-16,
+        "idempotence": 8.881784197001252e-16,
+        "rang_attendu": 2048,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-2049-local-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "7c3e8a4861aee7e126d3c30fc2db02c54d67ca91fb674653ffff3abadcac2988"
+    },
+    {
+      "famille": "chaine",
+      "taille": 2049,
+      "variante": "qr_dense",
+      "forme": [
+        3072,
+        2049
+      ],
+      "nnz": 6144,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 2.5277959580998868,
+      "projection_s": 0.008878804976120591,
+      "reactions_s": 0.01663404400460422,
+      "total_s": 2.5533088070806116,
+      "diagnostic": {
+        "rang": 2048,
+        "coefficients_base_normales": 4196352,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 207300,
+      "controles": {
+        "erreur_projection": 6.637052019087264e-15,
+        "erreur_force": 3.530509218307998e-14,
+        "fermeture": 5.9657140338842396e-15,
+        "idempotence": 6.116634976294222e-15,
+        "rang_attendu": 2048,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-2049-qr_dense-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "ad6d33598ee7b8e0f4c2ed11c2903af1dd29860a533242b9b8387064b6f08348"
+    },
+    {
+      "famille": "chaine",
+      "taille": 2049,
+      "variante": "qr_dense",
+      "forme": [
+        3072,
+        2049
+      ],
+      "nnz": 6144,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 2.5232995781116188,
+      "projection_s": 0.008739318000152707,
+      "reactions_s": 0.01735506090335548,
+      "total_s": 2.549393957015127,
+      "diagnostic": {
+        "rang": 2048,
+        "coefficients_base_normales": 4196352,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 207292,
+      "controles": {
+        "erreur_projection": 6.637052019087264e-15,
+        "erreur_force": 3.530509218307998e-14,
+        "fermeture": 5.9657140338842396e-15,
+        "idempotence": 6.116634976294222e-15,
+        "rang_attendu": 2048,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-2049-qr_dense-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "9e0519e2bce7258c0846badd382605096fabc0ea1af36cb8dff1d3b6771f15b6"
+    },
+    {
+      "famille": "chaine",
+      "taille": 2049,
+      "variante": "local",
+      "forme": [
+        3072,
+        2049
+      ],
+      "nnz": 6144,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.08684399491176009,
+      "projection_s": 0.024473306024447083,
+      "reactions_s": 0.013128835009410977,
+      "total_s": 0.12444613594561815,
+      "diagnostic": {
+        "lignes": 3072,
+        "colonnes": 2049,
+        "rang": 2048,
+        "seuil": 4.3655745685100555e-11,
+        "nnz_entree": 6144,
+        "nnz_actifs_max": 6144,
+        "nnz_facteur": 7166,
+        "coefficients_reflexions": 4096,
+        "support_max": 2,
+        "coefficients_transformes": 14332,
+        "lignes_supprimees": 1024,
+        "norme_residus_supprimes": 6.1404467328717665e-15,
+        "pivot_min": 0.7072793936097669,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 65536,
+      "controles": {
+        "erreur_projection": 1.3235940121703038e-14,
+        "erreur_force": 2.5868196473766147e-14,
+        "fermeture": 3.920475055707584e-16,
+        "idempotence": 8.881784197001252e-16,
+        "rang_attendu": 2048,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "chaine-2049-local-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "5da28fb6cf40d32436a36cc8ddcbaa198055d6e74cde55740c17a6ef3b3ee578"
+    },
+    {
+      "famille": "cascade",
+      "taille": 4,
+      "variante": "local",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 244,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.004720679018646479,
+      "projection_s": 0.0008951989002525806,
+      "reactions_s": 0.001023814082145691,
+      "total_s": 0.00663969200104475,
+      "diagnostic": {
+        "lignes": 80,
+        "colonnes": 72,
+        "rang": 68,
+        "seuil": 1.1368683772161603e-12,
+        "nnz_entree": 244,
+        "nnz_actifs_max": 244,
+        "nnz_facteur": 321,
+        "coefficients_reflexions": 163,
+        "support_max": 7,
+        "coefficients_transformes": 882,
+        "lignes_supprimees": 12,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.1695327959608993,
+        "orthogonalite_locale_max": 3.3306690738754696e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 79872,
+      "controles": {
+        "erreur_projection": 5.10702591327572e-15,
+        "erreur_force": 5.773159728050814e-15,
+        "fermeture": 3.885780586188048e-16,
+        "idempotence": 1.7763568394002505e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-4-local-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "d12432132350124a399aaba0e374371d6d7dd265811289cce9fa5db92ca78c75"
+    },
+    {
+      "famille": "cascade",
+      "taille": 4,
+      "variante": "qr_dense",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 244,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.0009027731139212847,
+      "projection_s": 7.630488835275173e-05,
+      "reactions_s": 0.00021074200049042702,
+      "total_s": 0.0011898200027644634,
+      "diagnostic": {
+        "rang": 68,
+        "coefficients_base_normales": 4896,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 79872,
+      "controles": {
+        "erreur_projection": 6.661338147750939e-15,
+        "erreur_force": 6.661338147750939e-15,
+        "fermeture": 2.064726837769092e-15,
+        "idempotence": 2.192690473634684e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-4-qr_dense-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "358764f53c7f7b32430d8d07e1b55c0efea24b86380f7c9c34b97f0a483c389e"
+    },
+    {
+      "famille": "cascade",
+      "taille": 4,
+      "variante": "qr_dense",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 244,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.0008972531650215387,
+      "projection_s": 8.149491623044014e-05,
+      "reactions_s": 0.00021507102064788342,
+      "total_s": 0.0011938191018998623,
+      "diagnostic": {
+        "rang": 68,
+        "coefficients_base_normales": 4896,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 79872,
+      "controles": {
+        "erreur_projection": 6.661338147750939e-15,
+        "erreur_force": 6.661338147750939e-15,
+        "fermeture": 2.064726837769092e-15,
+        "idempotence": 2.192690473634684e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-4-qr_dense-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "540b88ac20c93fc449a84cab0063d3fc516e5bf168fad21a29744c1673d3e25c"
+    },
+    {
+      "famille": "cascade",
+      "taille": 4,
+      "variante": "local",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 244,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.004605198046192527,
+      "projection_s": 0.0008827049750834703,
+      "reactions_s": 0.0010166398715227842,
+      "total_s": 0.006504542892798781,
+      "diagnostic": {
+        "lignes": 80,
+        "colonnes": 72,
+        "rang": 68,
+        "seuil": 1.1368683772161603e-12,
+        "nnz_entree": 244,
+        "nnz_actifs_max": 244,
+        "nnz_facteur": 321,
+        "coefficients_reflexions": 163,
+        "support_max": 7,
+        "coefficients_transformes": 882,
+        "lignes_supprimees": 12,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.1695327959608993,
+        "orthogonalite_locale_max": 3.3306690738754696e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 80384,
+      "controles": {
+        "erreur_projection": 5.10702591327572e-15,
+        "erreur_force": 5.773159728050814e-15,
+        "fermeture": 3.885780586188048e-16,
+        "idempotence": 1.7763568394002505e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-4-local-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "ecccf024ab45d869a0c1be6758cf07ce3ba8760dfe1661acf2d86cfc676428d8"
+    },
+    {
+      "famille": "cascade",
+      "taille": 4,
+      "variante": "local",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 244,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.0045552130322903395,
+      "projection_s": 0.0008873338811099529,
+      "reactions_s": 0.0010063801892101765,
+      "total_s": 0.006448927102610469,
+      "diagnostic": {
+        "lignes": 80,
+        "colonnes": 72,
+        "rang": 68,
+        "seuil": 1.1368683772161603e-12,
+        "nnz_entree": 244,
+        "nnz_actifs_max": 244,
+        "nnz_facteur": 321,
+        "coefficients_reflexions": 163,
+        "support_max": 7,
+        "coefficients_transformes": 882,
+        "lignes_supprimees": 12,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.1695327959608993,
+        "orthogonalite_locale_max": 3.3306690738754696e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 80384,
+      "controles": {
+        "erreur_projection": 5.10702591327572e-15,
+        "erreur_force": 5.773159728050814e-15,
+        "fermeture": 3.885780586188048e-16,
+        "idempotence": 1.7763568394002505e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-4-local-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "2323bed3e3140ba8edb286c7865463d48f9ee82dbba98b5c1372a362330f43ee"
+    },
+    {
+      "famille": "cascade",
+      "taille": 4,
+      "variante": "qr_dense",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 244,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.000890790019184351,
+      "projection_s": 7.369089871644974e-05,
+      "reactions_s": 0.00022460892796516418,
+      "total_s": 0.0011890898458659649,
+      "diagnostic": {
+        "rang": 68,
+        "coefficients_base_normales": 4896,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 79872,
+      "controles": {
+        "erreur_projection": 6.661338147750939e-15,
+        "erreur_force": 6.661338147750939e-15,
+        "fermeture": 2.064726837769092e-15,
+        "idempotence": 2.192690473634684e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-4-qr_dense-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "dc058d13388f7f88cdeb7e2fd018a23c7e3641f2062a894cd550a23003597b56"
+    },
+    {
+      "famille": "cascade",
+      "taille": 4,
+      "variante": "qr_dense",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 244,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.000889006070792675,
+      "projection_s": 7.986300624907017e-05,
+      "reactions_s": 0.0002112130168825388,
+      "total_s": 0.001180082093924284,
+      "diagnostic": {
+        "rang": 68,
+        "coefficients_base_normales": 4896,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 79872,
+      "controles": {
+        "erreur_projection": 6.661338147750939e-15,
+        "erreur_force": 6.661338147750939e-15,
+        "fermeture": 2.064726837769092e-15,
+        "idempotence": 2.192690473634684e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-4-qr_dense-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "af3008adae31b177e9ec731a79f6c60431f757b702d42273ca2aeb0e6250f576"
+    },
+    {
+      "famille": "cascade",
+      "taille": 4,
+      "variante": "local",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 244,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.00452343188226223,
+      "projection_s": 0.0008824239484965801,
+      "reactions_s": 0.0010043270885944366,
+      "total_s": 0.006410182919353247,
+      "diagnostic": {
+        "lignes": 80,
+        "colonnes": 72,
+        "rang": 68,
+        "seuil": 1.1368683772161603e-12,
+        "nnz_entree": 244,
+        "nnz_actifs_max": 244,
+        "nnz_facteur": 321,
+        "coefficients_reflexions": 163,
+        "support_max": 7,
+        "coefficients_transformes": 882,
+        "lignes_supprimees": 12,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.1695327959608993,
+        "orthogonalite_locale_max": 3.3306690738754696e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 80384,
+      "controles": {
+        "erreur_projection": 5.10702591327572e-15,
+        "erreur_force": 5.773159728050814e-15,
+        "fermeture": 3.885780586188048e-16,
+        "idempotence": 1.7763568394002505e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-4-local-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "707de361ad47ed11b4039defea976b48f2abf6d62e3f45beff9cf74eff664953"
+    },
+    {
+      "famille": "cascade",
+      "taille": 20,
+      "variante": "local",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 1268,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.025057250168174505,
+      "projection_s": 0.0042172078974545,
+      "reactions_s": 0.002713447902351618,
+      "total_s": 0.03198790596798062,
+      "diagnostic": {
+        "lignes": 400,
+        "colonnes": 360,
+        "rang": 340,
+        "seuil": 5.6843418860808015e-12,
+        "nnz_entree": 1268,
+        "nnz_actifs_max": 1268,
+        "nnz_facteur": 2097,
+        "coefficients_reflexions": 1327,
+        "support_max": 24,
+        "coefficients_transformes": 10691,
+        "lignes_supprimees": 60,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.04059171438152105,
+        "orthogonalite_locale_max": 7.771561172376096e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 84480,
+      "controles": {
+        "erreur_projection": 9.103828801926284e-15,
+        "erreur_force": 1.4654943925052066e-14,
+        "fermeture": 7.979727989493313e-16,
+        "idempotence": 2.4424906541753444e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-20-local-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "85018a00aec4320c6c7d5df827ffb525c0d6548b128eaff9928bb2499ec6f312"
+    },
+    {
+      "famille": "cascade",
+      "taille": 20,
+      "variante": "qr_dense",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 1268,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.009141135029494762,
+      "projection_s": 0.0002458689268678427,
+      "reactions_s": 0.00040076510049402714,
+      "total_s": 0.009787769056856632,
+      "diagnostic": {
+        "rang": 340,
+        "coefficients_base_normales": 122400,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 84480,
+      "controles": {
+        "erreur_projection": 9.769962616701378e-15,
+        "erreur_force": 3.197442310920451e-14,
+        "fermeture": 2.6081567461311295e-15,
+        "idempotence": 3.497202527569243e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-20-qr_dense-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "acc4e4e797671eb168b0f9ba03c37a6f38a4afa36115c2cd60a4dfed42d7cab1"
+    },
+    {
+      "famille": "cascade",
+      "taille": 20,
+      "variante": "qr_dense",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 1268,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.009213302982971072,
+      "projection_s": 0.0002551071811467409,
+      "reactions_s": 0.00040052388794720173,
+      "total_s": 0.009868934052065015,
+      "diagnostic": {
+        "rang": 340,
+        "coefficients_base_normales": 122400,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 83968,
+      "controles": {
+        "erreur_projection": 9.769962616701378e-15,
+        "erreur_force": 3.197442310920451e-14,
+        "fermeture": 2.6081567461311295e-15,
+        "idempotence": 3.497202527569243e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-20-qr_dense-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "a04468678e1f6901cefaf06ecc9f53bcd4df15b201ccd3452775c58cc4acc4b4"
+    },
+    {
+      "famille": "cascade",
+      "taille": 20,
+      "variante": "local",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 1268,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.025377842132002115,
+      "projection_s": 0.004167983774095774,
+      "reactions_s": 0.002708870219066739,
+      "total_s": 0.03225469612516463,
+      "diagnostic": {
+        "lignes": 400,
+        "colonnes": 360,
+        "rang": 340,
+        "seuil": 5.6843418860808015e-12,
+        "nnz_entree": 1268,
+        "nnz_actifs_max": 1268,
+        "nnz_facteur": 2097,
+        "coefficients_reflexions": 1327,
+        "support_max": 24,
+        "coefficients_transformes": 10691,
+        "lignes_supprimees": 60,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.04059171438152105,
+        "orthogonalite_locale_max": 7.771561172376096e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 84480,
+      "controles": {
+        "erreur_projection": 9.103828801926284e-15,
+        "erreur_force": 1.4654943925052066e-14,
+        "fermeture": 7.979727989493313e-16,
+        "idempotence": 2.4424906541753444e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-20-local-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "1dfc112db9c8060abd06c0b4c803584e7faef2d7269ebc346e71e597686b3f47"
+    },
+    {
+      "famille": "cascade",
+      "taille": 20,
+      "variante": "local",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 1268,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.024887716863304377,
+      "projection_s": 0.004173224093392491,
+      "reactions_s": 0.0026946619618684053,
+      "total_s": 0.03175560291856527,
+      "diagnostic": {
+        "lignes": 400,
+        "colonnes": 360,
+        "rang": 340,
+        "seuil": 5.6843418860808015e-12,
+        "nnz_entree": 1268,
+        "nnz_actifs_max": 1268,
+        "nnz_facteur": 2097,
+        "coefficients_reflexions": 1327,
+        "support_max": 24,
+        "coefficients_transformes": 10691,
+        "lignes_supprimees": 60,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.04059171438152105,
+        "orthogonalite_locale_max": 7.771561172376096e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 83968,
+      "controles": {
+        "erreur_projection": 9.103828801926284e-15,
+        "erreur_force": 1.4654943925052066e-14,
+        "fermeture": 7.979727989493313e-16,
+        "idempotence": 2.4424906541753444e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-20-local-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "07d50a5ec5bc06bdf0a1e423aafe950e31892c671e950959e0fb3ef6713c6837"
+    },
+    {
+      "famille": "cascade",
+      "taille": 20,
+      "variante": "qr_dense",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 1268,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.009075409965589643,
+      "projection_s": 0.0002372520975768566,
+      "reactions_s": 0.0003667899873107672,
+      "total_s": 0.009679452050477266,
+      "diagnostic": {
+        "rang": 340,
+        "coefficients_base_normales": 122400,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 83968,
+      "controles": {
+        "erreur_projection": 9.769962616701378e-15,
+        "erreur_force": 3.197442310920451e-14,
+        "fermeture": 2.6081567461311295e-15,
+        "idempotence": 3.497202527569243e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-20-qr_dense-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "1bda8e0559bfdfb90c6e606061bd91fd08f4c513a89dab78ab070e560e86d2d8"
+    },
+    {
+      "famille": "cascade",
+      "taille": 20,
+      "variante": "qr_dense",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 1268,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.009194327052682638,
+      "projection_s": 0.0002457890659570694,
+      "reactions_s": 0.0003997029270976782,
+      "total_s": 0.009839819045737386,
+      "diagnostic": {
+        "rang": 340,
+        "coefficients_base_normales": 122400,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 84480,
+      "controles": {
+        "erreur_projection": 9.769962616701378e-15,
+        "erreur_force": 3.197442310920451e-14,
+        "fermeture": 2.6081567461311295e-15,
+        "idempotence": 3.497202527569243e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-20-qr_dense-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "9c04f429d54201d9cc2d309543df3cb430f98028f376f882cb0ea0ccef341b34"
+    },
+    {
+      "famille": "cascade",
+      "taille": 20,
+      "variante": "local",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 1268,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.024820327991619706,
+      "projection_s": 0.0041909480933099985,
+      "reactions_s": 0.0027235678862780333,
+      "total_s": 0.03173484397120774,
+      "diagnostic": {
+        "lignes": 400,
+        "colonnes": 360,
+        "rang": 340,
+        "seuil": 5.6843418860808015e-12,
+        "nnz_entree": 1268,
+        "nnz_actifs_max": 1268,
+        "nnz_facteur": 2097,
+        "coefficients_reflexions": 1327,
+        "support_max": 24,
+        "coefficients_transformes": 10691,
+        "lignes_supprimees": 60,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.04059171438152105,
+        "orthogonalite_locale_max": 7.771561172376096e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 83968,
+      "controles": {
+        "erreur_projection": 9.103828801926284e-15,
+        "erreur_force": 1.4654943925052066e-14,
+        "fermeture": 7.979727989493313e-16,
+        "idempotence": 2.4424906541753444e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-20-local-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "37d70714dc4ed8740658c4f6dc9713cda59525c9773c1b369118223df12f9516"
+    },
+    {
+      "famille": "cascade",
+      "taille": 60,
+      "variante": "local",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 3928,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.08819626620970666,
+      "projection_s": 0.012497970834374428,
+      "reactions_s": 0.006992224138230085,
+      "total_s": 0.10768646118231118,
+      "diagnostic": {
+        "lignes": 1200,
+        "colonnes": 1080,
+        "rang": 1020,
+        "seuil": 1.7053025658242404e-11,
+        "nnz_entree": 3928,
+        "nnz_actifs_max": 3928,
+        "nnz_facteur": 6909,
+        "coefficients_reflexions": 5260,
+        "support_max": 69,
+        "coefficients_transformes": 51786,
+        "lignes_supprimees": 180,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.01436365962514508,
+        "orthogonalite_locale_max": 6.661338147750939e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 183296,
+      "controles": {
+        "erreur_projection": 2.3092638912203256e-14,
+        "erreur_force": 1.3944401189291966e-13,
+        "fermeture": 4.510281037539698e-16,
+        "idempotence": 3.3306690738754696e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-60-local-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "71d9010ed6a176f2ce144d9125d320ba1a1b6f1eb61757659861b2a6ae8bbb65"
+    },
+    {
+      "famille": "cascade",
+      "taille": 60,
+      "variante": "qr_dense",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 3928,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.16052040201611817,
+      "projection_s": 0.0031916110310703516,
+      "reactions_s": 0.0036581610329449177,
+      "total_s": 0.16737017408013344,
+      "diagnostic": {
+        "rang": 1020,
+        "coefficients_base_normales": 1101600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 183296,
+      "controles": {
+        "erreur_projection": 4.5574655160862676e-14,
+        "erreur_force": 5.306866057708248e-14,
+        "fermeture": 3.925231146709438e-15,
+        "idempotence": 5.218048215738236e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-60-qr_dense-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "1e8517bc9a92524af394cc65d786f805562cc8f4d4b3d7b3e1ed7d954f5dcf6d"
+    },
+    {
+      "famille": "cascade",
+      "taille": 60,
+      "variante": "qr_dense",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 3928,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.15268643107265234,
+      "projection_s": 0.00264660082757473,
+      "reactions_s": 0.0033789181616157293,
+      "total_s": 0.1587119500618428,
+      "diagnostic": {
+        "rang": 1020,
+        "coefficients_base_normales": 1101600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 183296,
+      "controles": {
+        "erreur_projection": 4.5574655160862676e-14,
+        "erreur_force": 5.306866057708248e-14,
+        "fermeture": 3.925231146709438e-15,
+        "idempotence": 5.218048215738236e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-60-qr_dense-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "dfd4902f6b46cc1ca2e4453c0c30a319059ec4610e7d9892e843cac74fd3d442"
+    },
+    {
+      "famille": "cascade",
+      "taille": 60,
+      "variante": "local",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 3928,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.08793821302242577,
+      "projection_s": 0.012361450819298625,
+      "reactions_s": 0.006932981079444289,
+      "total_s": 0.10723264492116868,
+      "diagnostic": {
+        "lignes": 1200,
+        "colonnes": 1080,
+        "rang": 1020,
+        "seuil": 1.7053025658242404e-11,
+        "nnz_entree": 3928,
+        "nnz_actifs_max": 3928,
+        "nnz_facteur": 6909,
+        "coefficients_reflexions": 5260,
+        "support_max": 69,
+        "coefficients_transformes": 51786,
+        "lignes_supprimees": 180,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.01436365962514508,
+        "orthogonalite_locale_max": 6.661338147750939e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 183808,
+      "controles": {
+        "erreur_projection": 2.3092638912203256e-14,
+        "erreur_force": 1.3944401189291966e-13,
+        "fermeture": 4.510281037539698e-16,
+        "idempotence": 3.3306690738754696e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-60-local-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "8794f6e5ead3f43420b4bb6987b131092dfdf41fb1d8b0ae2b770c6d6579fd9e"
+    },
+    {
+      "famille": "cascade",
+      "taille": 60,
+      "variante": "local",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 3928,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.08723703608848155,
+      "projection_s": 0.01233955891802907,
+      "reactions_s": 0.006890028947964311,
+      "total_s": 0.10646662395447493,
+      "diagnostic": {
+        "lignes": 1200,
+        "colonnes": 1080,
+        "rang": 1020,
+        "seuil": 1.7053025658242404e-11,
+        "nnz_entree": 3928,
+        "nnz_actifs_max": 3928,
+        "nnz_facteur": 6909,
+        "coefficients_reflexions": 5260,
+        "support_max": 69,
+        "coefficients_transformes": 51786,
+        "lignes_supprimees": 180,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.01436365962514508,
+        "orthogonalite_locale_max": 6.661338147750939e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 183296,
+      "controles": {
+        "erreur_projection": 2.3092638912203256e-14,
+        "erreur_force": 1.3944401189291966e-13,
+        "fermeture": 4.510281037539698e-16,
+        "idempotence": 3.3306690738754696e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-60-local-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "8ac5e370c50786571d5ae147796d6b79b5fc7310b7a144be7940a37fc6c89781"
+    },
+    {
+      "famille": "cascade",
+      "taille": 60,
+      "variante": "qr_dense",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 3928,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.1523213041946292,
+      "projection_s": 0.002681707963347435,
+      "reactions_s": 0.0033628179226070642,
+      "total_s": 0.1583658300805837,
+      "diagnostic": {
+        "rang": 1020,
+        "coefficients_base_normales": 1101600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 183808,
+      "controles": {
+        "erreur_projection": 4.5574655160862676e-14,
+        "erreur_force": 5.306866057708248e-14,
+        "fermeture": 3.925231146709438e-15,
+        "idempotence": 5.218048215738236e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-60-qr_dense-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "83bffe82d779fe4ac772254fba6f9178c4f65113c36ad974824c0b1d1c34ca92"
+    },
+    {
+      "famille": "cascade",
+      "taille": 60,
+      "variante": "qr_dense",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 3928,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.15276260720565915,
+      "projection_s": 0.002694551832973957,
+      "reactions_s": 0.0034976850729435682,
+      "total_s": 0.15895484411157668,
+      "diagnostic": {
+        "rang": 1020,
+        "coefficients_base_normales": 1101600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 183808,
+      "controles": {
+        "erreur_projection": 4.5574655160862676e-14,
+        "erreur_force": 5.306866057708248e-14,
+        "fermeture": 3.925231146709438e-15,
+        "idempotence": 5.218048215738236e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-60-qr_dense-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "62aa2b7177e86feca714bfab4753c75294edceed9890335d885a599e97547600"
+    },
+    {
+      "famille": "cascade",
+      "taille": 60,
+      "variante": "local",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 3928,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.0876081339083612,
+      "projection_s": 0.012383844004943967,
+      "reactions_s": 0.006969209993258119,
+      "total_s": 0.10696118790656328,
+      "diagnostic": {
+        "lignes": 1200,
+        "colonnes": 1080,
+        "rang": 1020,
+        "seuil": 1.7053025658242404e-11,
+        "nnz_entree": 3928,
+        "nnz_actifs_max": 3928,
+        "nnz_facteur": 6909,
+        "coefficients_reflexions": 5260,
+        "support_max": 69,
+        "coefficients_transformes": 51786,
+        "lignes_supprimees": 180,
+        "norme_residus_supprimes": 0.0,
+        "pivot_min": 0.01436365962514508,
+        "orthogonalite_locale_max": 6.661338147750939e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 183296,
+      "controles": {
+        "erreur_projection": 2.3092638912203256e-14,
+        "erreur_force": 1.3944401189291966e-13,
+        "fermeture": 4.510281037539698e-16,
+        "idempotence": 3.3306690738754696e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade-60-local-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "8735d8c053ba559a549dff23904260cbd8c00286f3a5ad76c918e47601bac4ce"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 4,
+      "variante": "local",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 694,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.007735743187367916,
+      "projection_s": 0.0009280918166041374,
+      "reactions_s": 0.0010412971023470163,
+      "total_s": 0.00970513210631907,
+      "diagnostic": {
+        "lignes": 80,
+        "colonnes": 72,
+        "rang": 68,
+        "seuil": 1.1368683772161603e-12,
+        "nnz_entree": 694,
+        "nnz_actifs_max": 694,
+        "nnz_facteur": 629,
+        "coefficients_reflexions": 304,
+        "support_max": 10,
+        "coefficients_transformes": 2981,
+        "lignes_supprimees": 12,
+        "norme_residus_supprimes": 4.4183742279707897e-16,
+        "pivot_min": 0.16961359783114763,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 80384,
+      "controles": {
+        "erreur_projection": 1.942890293094024e-15,
+        "erreur_force": 5.134781488891349e-15,
+        "fermeture": 4.0759484381663394e-16,
+        "idempotence": 6.661338147750939e-16,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-4-local-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "5d25bbcffb740884b75783d0ac939df486f9ff8c0b49bd4a69ab6844ab57df35"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 4,
+      "variante": "qr_dense",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 694,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.0009327400475740433,
+      "projection_s": 8.436106145381927e-05,
+      "reactions_s": 0.00023140199482440948,
+      "total_s": 0.001248503103852272,
+      "diagnostic": {
+        "rang": 68,
+        "coefficients_base_normales": 4896,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 80384,
+      "controles": {
+        "erreur_projection": 3.3861802251067274e-15,
+        "erreur_force": 5.995204332975845e-15,
+        "fermeture": 1.891596040911827e-15,
+        "idempotence": 2.0539125955565396e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-4-qr_dense-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "00dc2d96c11fc8fffc9ea69e747a7d02d497dd91945a46fdc1e59c04db0ccf10"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 4,
+      "variante": "qr_dense",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 694,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.0008989749476313591,
+      "projection_s": 7.526413537561893e-05,
+      "reactions_s": 0.00021220487542450428,
+      "total_s": 0.0011864439584314823,
+      "diagnostic": {
+        "rang": 68,
+        "coefficients_base_normales": 4896,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 80896,
+      "controles": {
+        "erreur_projection": 3.3861802251067274e-15,
+        "erreur_force": 5.995204332975845e-15,
+        "fermeture": 1.891596040911827e-15,
+        "idempotence": 2.0539125955565396e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-4-qr_dense-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "dbcf69eef0bbf149fee1579a60aa45dd164fb99d57f36101dab2aac6a19cc317"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 4,
+      "variante": "local",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 694,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.007727787829935551,
+      "projection_s": 0.0009090141393244267,
+      "reactions_s": 0.0010576089844107628,
+      "total_s": 0.00969441095367074,
+      "diagnostic": {
+        "lignes": 80,
+        "colonnes": 72,
+        "rang": 68,
+        "seuil": 1.1368683772161603e-12,
+        "nnz_entree": 694,
+        "nnz_actifs_max": 694,
+        "nnz_facteur": 629,
+        "coefficients_reflexions": 304,
+        "support_max": 10,
+        "coefficients_transformes": 2981,
+        "lignes_supprimees": 12,
+        "norme_residus_supprimes": 4.4183742279707897e-16,
+        "pivot_min": 0.16961359783114763,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 80384,
+      "controles": {
+        "erreur_projection": 1.942890293094024e-15,
+        "erreur_force": 5.134781488891349e-15,
+        "fermeture": 4.0759484381663394e-16,
+        "idempotence": 6.661338147750939e-16,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-4-local-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "2cc827001af7b7fbf02f79b3f8950d1b88be63ca0d439d126ed825c229393ab0"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 4,
+      "variante": "local",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 694,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.007622977951541543,
+      "projection_s": 0.0009284620173275471,
+      "reactions_s": 0.0010406160727143288,
+      "total_s": 0.009592056041583419,
+      "diagnostic": {
+        "lignes": 80,
+        "colonnes": 72,
+        "rang": 68,
+        "seuil": 1.1368683772161603e-12,
+        "nnz_entree": 694,
+        "nnz_actifs_max": 694,
+        "nnz_facteur": 629,
+        "coefficients_reflexions": 304,
+        "support_max": 10,
+        "coefficients_transformes": 2981,
+        "lignes_supprimees": 12,
+        "norme_residus_supprimes": 4.4183742279707897e-16,
+        "pivot_min": 0.16961359783114763,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 80384,
+      "controles": {
+        "erreur_projection": 1.942890293094024e-15,
+        "erreur_force": 5.134781488891349e-15,
+        "fermeture": 4.0759484381663394e-16,
+        "idempotence": 6.661338147750939e-16,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-4-local-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "29ba533d8f6be6aac66502d5c37be45375bd8d0ccf46e86dc133e7084276d25b"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 4,
+      "variante": "qr_dense",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 694,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.0009019619319587946,
+      "projection_s": 7.429206743836403e-05,
+      "reactions_s": 0.0002107319887727499,
+      "total_s": 0.0011869859881699085,
+      "diagnostic": {
+        "rang": 68,
+        "coefficients_base_normales": 4896,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 80384,
+      "controles": {
+        "erreur_projection": 3.3861802251067274e-15,
+        "erreur_force": 5.995204332975845e-15,
+        "fermeture": 1.891596040911827e-15,
+        "idempotence": 2.0539125955565396e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-4-qr_dense-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "d483cffe32318f2df9e562966b018e7f2330c38f2d387692bcc4de85beae025f"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 4,
+      "variante": "qr_dense",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 694,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.000921828905120492,
+      "projection_s": 7.801898755133152e-05,
+      "reactions_s": 0.00023260409943759441,
+      "total_s": 0.001232451992109418,
+      "diagnostic": {
+        "rang": 68,
+        "coefficients_base_normales": 4896,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 80384,
+      "controles": {
+        "erreur_projection": 3.3861802251067274e-15,
+        "erreur_force": 5.995204332975845e-15,
+        "fermeture": 1.891596040911827e-15,
+        "idempotence": 2.0539125955565396e-15,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-4-qr_dense-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "e2225a185f4cc69036cdb3f9d7615e635d768563048174a33cea9e3a172980ca"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 4,
+      "variante": "local",
+      "forme": [
+        80,
+        72
+      ],
+      "nnz": 694,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.007698952918872237,
+      "projection_s": 0.0009141149930655956,
+      "reactions_s": 0.0010302660521119833,
+      "total_s": 0.009643333964049816,
+      "diagnostic": {
+        "lignes": 80,
+        "colonnes": 72,
+        "rang": 68,
+        "seuil": 1.1368683772161603e-12,
+        "nnz_entree": 694,
+        "nnz_actifs_max": 694,
+        "nnz_facteur": 629,
+        "coefficients_reflexions": 304,
+        "support_max": 10,
+        "coefficients_transformes": 2981,
+        "lignes_supprimees": 12,
+        "norme_residus_supprimes": 4.4183742279707897e-16,
+        "pivot_min": 0.16961359783114763,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 80384,
+      "controles": {
+        "erreur_projection": 1.942890293094024e-15,
+        "erreur_force": 5.134781488891349e-15,
+        "fermeture": 4.0759484381663394e-16,
+        "idempotence": 6.661338147750939e-16,
+        "rang_attendu": 68,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-4-local-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "d6732051b2888524f586fe2b9926dbdd4e7205ca7e3aa6118ced108d907a3a0e"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 20,
+      "variante": "local",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 3613,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.04621730209328234,
+      "projection_s": 0.0043849588837474585,
+      "reactions_s": 0.002830031095072627,
+      "total_s": 0.05343229207210243,
+      "diagnostic": {
+        "lignes": 400,
+        "colonnes": 360,
+        "rang": 340,
+        "seuil": 5.6843418860808015e-12,
+        "nnz_entree": 3613,
+        "nnz_actifs_max": 3613,
+        "nnz_facteur": 3991,
+        "coefficients_reflexions": 2211,
+        "support_max": 25,
+        "coefficients_transformes": 27851,
+        "lignes_supprimees": 60,
+        "norme_residus_supprimes": 9.652245285985893e-16,
+        "pivot_min": 0.042870848400268086,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 84992,
+      "controles": {
+        "erreur_projection": 8.81239525796218e-15,
+        "erreur_force": 2.525757381022231e-14,
+        "fermeture": 4.180683577104105e-16,
+        "idempotence": 1.7763568394002505e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-20-local-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "d52658b6f12a09e55b5c74860d0e673192a431aefee8818ef5f13f176b8debf8"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 20,
+      "variante": "qr_dense",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 3613,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.009107590885832906,
+      "projection_s": 0.0002458400558680296,
+      "reactions_s": 0.000388219952583313,
+      "total_s": 0.009741650894284248,
+      "diagnostic": {
+        "rang": 340,
+        "coefficients_base_normales": 122400,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 84992,
+      "controles": {
+        "erreur_projection": 8.770761894538737e-15,
+        "erreur_force": 2.173261570703744e-14,
+        "fermeture": 2.7716544337419435e-15,
+        "idempotence": 3.0773994463828558e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-20-qr_dense-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "a53badb1cae6631f8c7b60b70820a4c09e9db39b34a1cdf55fcefd2f58faab04"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 20,
+      "variante": "qr_dense",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 3613,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.00935035408474505,
+      "projection_s": 0.0002469019964337349,
+      "reactions_s": 0.00039516412653028965,
+      "total_s": 0.009992420207709074,
+      "diagnostic": {
+        "rang": 340,
+        "coefficients_base_normales": 122400,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 84992,
+      "controles": {
+        "erreur_projection": 8.770761894538737e-15,
+        "erreur_force": 2.173261570703744e-14,
+        "fermeture": 2.7716544337419435e-15,
+        "idempotence": 3.0773994463828558e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-20-qr_dense-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "02103f524b2da1d249c8e1c0657aab0ee5876dee16e31cdedb7a656de8459acd"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 20,
+      "variante": "local",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 3613,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.047129783080890775,
+      "projection_s": 0.00435833795927465,
+      "reactions_s": 0.0028601379599422216,
+      "total_s": 0.054348259000107646,
+      "diagnostic": {
+        "lignes": 400,
+        "colonnes": 360,
+        "rang": 340,
+        "seuil": 5.6843418860808015e-12,
+        "nnz_entree": 3613,
+        "nnz_actifs_max": 3613,
+        "nnz_facteur": 3991,
+        "coefficients_reflexions": 2211,
+        "support_max": 25,
+        "coefficients_transformes": 27851,
+        "lignes_supprimees": 60,
+        "norme_residus_supprimes": 9.652245285985893e-16,
+        "pivot_min": 0.042870848400268086,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 84480,
+      "controles": {
+        "erreur_projection": 8.81239525796218e-15,
+        "erreur_force": 2.525757381022231e-14,
+        "fermeture": 4.180683577104105e-16,
+        "idempotence": 1.7763568394002505e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-20-local-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "f988d33c9c2e7f95339aff21ee2e7ee494df4bd6cb2da037892b6ca7392b8583"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 20,
+      "variante": "local",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 3613,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.04709143005311489,
+      "projection_s": 0.004374478943645954,
+      "reactions_s": 0.002809822093695402,
+      "total_s": 0.05427573109045625,
+      "diagnostic": {
+        "lignes": 400,
+        "colonnes": 360,
+        "rang": 340,
+        "seuil": 5.6843418860808015e-12,
+        "nnz_entree": 3613,
+        "nnz_actifs_max": 3613,
+        "nnz_facteur": 3991,
+        "coefficients_reflexions": 2211,
+        "support_max": 25,
+        "coefficients_transformes": 27851,
+        "lignes_supprimees": 60,
+        "norme_residus_supprimes": 9.652245285985893e-16,
+        "pivot_min": 0.042870848400268086,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 84992,
+      "controles": {
+        "erreur_projection": 8.81239525796218e-15,
+        "erreur_force": 2.525757381022231e-14,
+        "fermeture": 4.180683577104105e-16,
+        "idempotence": 1.7763568394002505e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-20-local-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "728d1ac1794fb33888bae79b60419bc2873c4ce3eb29d9a686860ed7a6ac2cbd"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 20,
+      "variante": "qr_dense",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 3613,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.009138409979641438,
+      "projection_s": 0.00024315412156283855,
+      "reactions_s": 0.00040297885425388813,
+      "total_s": 0.009784542955458164,
+      "diagnostic": {
+        "rang": 340,
+        "coefficients_base_normales": 122400,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 84992,
+      "controles": {
+        "erreur_projection": 8.770761894538737e-15,
+        "erreur_force": 2.173261570703744e-14,
+        "fermeture": 2.7716544337419435e-15,
+        "idempotence": 3.0773994463828558e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-20-qr_dense-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "13c474118cad4d78c50511913fd897aa242100e9b7af484f3fa006b8f86ef460"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 20,
+      "variante": "qr_dense",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 3613,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.00922978506423533,
+      "projection_s": 0.0002563190646469593,
+      "reactions_s": 0.0003919978626072407,
+      "total_s": 0.00987810199148953,
+      "diagnostic": {
+        "rang": 340,
+        "coefficients_base_normales": 122400,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 84992,
+      "controles": {
+        "erreur_projection": 8.770761894538737e-15,
+        "erreur_force": 2.173261570703744e-14,
+        "fermeture": 2.7716544337419435e-15,
+        "idempotence": 3.0773994463828558e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-20-qr_dense-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "3ea3c989e1c30de167d8bf1812cb947d991d61c9ee25ba5af4f0ea204a1aab65"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 20,
+      "variante": "local",
+      "forme": [
+        400,
+        360
+      ],
+      "nnz": 3613,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.046273799845948815,
+      "projection_s": 0.0043411951046437025,
+      "reactions_s": 0.002802327973768115,
+      "total_s": 0.05341732292436063,
+      "diagnostic": {
+        "lignes": 400,
+        "colonnes": 360,
+        "rang": 340,
+        "seuil": 5.6843418860808015e-12,
+        "nnz_entree": 3613,
+        "nnz_actifs_max": 3613,
+        "nnz_facteur": 3991,
+        "coefficients_reflexions": 2211,
+        "support_max": 25,
+        "coefficients_transformes": 27851,
+        "lignes_supprimees": 60,
+        "norme_residus_supprimes": 9.652245285985893e-16,
+        "pivot_min": 0.042870848400268086,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 84992,
+      "controles": {
+        "erreur_projection": 8.81239525796218e-15,
+        "erreur_force": 2.525757381022231e-14,
+        "fermeture": 4.180683577104105e-16,
+        "idempotence": 1.7763568394002505e-15,
+        "rang_attendu": 340,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-20-local-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "8b06957dbe918ec11d1e3781c7b1f0354d560bf8f884bc68e5faa27bd68bd82f"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 60,
+      "variante": "local",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 10927,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.15354667301289737,
+      "projection_s": 0.012976133963093162,
+      "reactions_s": 0.0072982581332325935,
+      "total_s": 0.17382106510922313,
+      "diagnostic": {
+        "lignes": 1200,
+        "colonnes": 1080,
+        "rang": 1020,
+        "seuil": 1.7053025658242404e-11,
+        "nnz_entree": 10927,
+        "nnz_actifs_max": 10927,
+        "nnz_facteur": 12829,
+        "coefficients_reflexions": 7561,
+        "support_max": 65,
+        "coefficients_transformes": 101882,
+        "lignes_supprimees": 180,
+        "norme_residus_supprimes": 1.5767977478788488e-15,
+        "pivot_min": 0.014383374652319437,
+        "orthogonalite_locale_max": 6.661338147750939e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 184320,
+      "controles": {
+        "erreur_projection": 2.2870594307278225e-14,
+        "erreur_force": 6.88338275267597e-14,
+        "fermeture": 5.495820812329022e-16,
+        "idempotence": 8.881784197001252e-16,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-60-local-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "6dac3a508ed30e994e8c3196e599c8b57e6fca03fcad662cc204401ce90bb161"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 60,
+      "variante": "qr_dense",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 10927,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.1599043058231473,
+      "projection_s": 0.0030394901987165213,
+      "reactions_s": 0.0035362388007342815,
+      "total_s": 0.1664800348225981,
+      "diagnostic": {
+        "rang": 1020,
+        "coefficients_base_normales": 1101600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 184320,
+      "controles": {
+        "erreur_projection": 3.552713678800501e-14,
+        "erreur_force": 9.059419880941277e-14,
+        "fermeture": 3.251739155718525e-15,
+        "idempotence": 4.274358644806853e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-60-qr_dense-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "80d6ae5f347f236e85d30d34119dd538b4e613f5685813da5f2ed47e86b01c32"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 60,
+      "variante": "qr_dense",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 10927,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.15357870399020612,
+      "projection_s": 0.0027062438894063234,
+      "reactions_s": 0.003428243100643158,
+      "total_s": 0.1597131909802556,
+      "diagnostic": {
+        "rang": 1020,
+        "coefficients_base_normales": 1101600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 184320,
+      "controles": {
+        "erreur_projection": 3.552713678800501e-14,
+        "erreur_force": 9.059419880941277e-14,
+        "fermeture": 3.251739155718525e-15,
+        "idempotence": 4.274358644806853e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-60-qr_dense-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "b5c2a94da9defeb38768e116d1371ce85905a0cc304aeb869333ec683e4ebaa9"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 60,
+      "variante": "local",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 10927,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.1518301370088011,
+      "projection_s": 0.012885892065241933,
+      "reactions_s": 0.007258071098476648,
+      "total_s": 0.17197410017251968,
+      "diagnostic": {
+        "lignes": 1200,
+        "colonnes": 1080,
+        "rang": 1020,
+        "seuil": 1.7053025658242404e-11,
+        "nnz_entree": 10927,
+        "nnz_actifs_max": 10927,
+        "nnz_facteur": 12829,
+        "coefficients_reflexions": 7561,
+        "support_max": 65,
+        "coefficients_transformes": 101882,
+        "lignes_supprimees": 180,
+        "norme_residus_supprimes": 1.5767977478788488e-15,
+        "pivot_min": 0.014383374652319437,
+        "orthogonalite_locale_max": 6.661338147750939e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 184320,
+      "controles": {
+        "erreur_projection": 2.2870594307278225e-14,
+        "erreur_force": 6.88338275267597e-14,
+        "fermeture": 5.495820812329022e-16,
+        "idempotence": 8.881784197001252e-16,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-60-local-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "8fc2e32d23ce54b79835c5282920e9245777885814e8b72e8b5d573f761a89d2"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 60,
+      "variante": "local",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 10927,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.15358369308523834,
+      "projection_s": 0.012907943921163678,
+      "reactions_s": 0.00726339197717607,
+      "total_s": 0.17375502898357809,
+      "diagnostic": {
+        "lignes": 1200,
+        "colonnes": 1080,
+        "rang": 1020,
+        "seuil": 1.7053025658242404e-11,
+        "nnz_entree": 10927,
+        "nnz_actifs_max": 10927,
+        "nnz_facteur": 12829,
+        "coefficients_reflexions": 7561,
+        "support_max": 65,
+        "coefficients_transformes": 101882,
+        "lignes_supprimees": 180,
+        "norme_residus_supprimes": 1.5767977478788488e-15,
+        "pivot_min": 0.014383374652319437,
+        "orthogonalite_locale_max": 6.661338147750939e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 184320,
+      "controles": {
+        "erreur_projection": 2.2870594307278225e-14,
+        "erreur_force": 6.88338275267597e-14,
+        "fermeture": 5.495820812329022e-16,
+        "idempotence": 8.881784197001252e-16,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-60-local-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "c58a4dc9e2ea045b5db56e4a749ebbb205278a4f1846bc88d19cecde72bf320b"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 60,
+      "variante": "qr_dense",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 10927,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.15342615195550025,
+      "projection_s": 0.0023526200093328953,
+      "reactions_s": 0.0028400099836289883,
+      "total_s": 0.15861878194846213,
+      "diagnostic": {
+        "rang": 1020,
+        "coefficients_base_normales": 1101600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 184320,
+      "controles": {
+        "erreur_projection": 3.552713678800501e-14,
+        "erreur_force": 9.059419880941277e-14,
+        "fermeture": 3.251739155718525e-15,
+        "idempotence": 4.274358644806853e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-60-qr_dense-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "5113c27fb92605841d4ba59f7c11e718a8afbff6c9d7eaa41edb82a5a266447e"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 60,
+      "variante": "qr_dense",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 10927,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.15347557701170444,
+      "projection_s": 0.0026743640191853046,
+      "reactions_s": 0.0033673259895294905,
+      "total_s": 0.15951726702041924,
+      "diagnostic": {
+        "rang": 1020,
+        "coefficients_base_normales": 1101600,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 184320,
+      "controles": {
+        "erreur_projection": 3.552713678800501e-14,
+        "erreur_force": 9.059419880941277e-14,
+        "fermeture": 3.251739155718525e-15,
+        "idempotence": 4.274358644806853e-15,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-60-qr_dense-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "3ec7a24951342d1f504c20f3954cd1aaec6917fe4a678839ebab8ff153d44e46"
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 60,
+      "variante": "local",
+      "forme": [
+        1200,
+        1080
+      ],
+      "nnz": 10927,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+      "statut": "calcule",
+      "factorisation_s": 0.15864769788458943,
+      "projection_s": 0.012958641164004803,
+      "reactions_s": 0.007275725016370416,
+      "total_s": 0.17888206406496465,
+      "diagnostic": {
+        "lignes": 1200,
+        "colonnes": 1080,
+        "rang": 1020,
+        "seuil": 1.7053025658242404e-11,
+        "nnz_entree": 10927,
+        "nnz_actifs_max": 10927,
+        "nnz_facteur": 12829,
+        "coefficients_reflexions": 7561,
+        "support_max": 65,
+        "coefficients_transformes": 101882,
+        "lignes_supprimees": 180,
+        "norme_residus_supprimes": 1.5767977478788488e-15,
+        "pivot_min": 0.014383374652319437,
+        "orthogonalite_locale_max": 6.661338147750939e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 184320,
+      "controles": {
+        "erreur_projection": 2.2870594307278225e-14,
+        "erreur_force": 6.88338275267597e-14,
+        "fermeture": 5.495820812329022e-16,
+        "idempotence": 8.881784197001252e-16,
+        "rang_attendu": 1020,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "cascade_tournee-60-local-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "e77ae425f35b9cfaedca911aa533dde4d83abf766b31c14db15489c14fda05f3"
+    },
+    {
+      "famille": "couplages",
+      "taille": 129,
+      "variante": "local",
+      "forme": [
+        257,
+        129
+      ],
+      "nnz": 643,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.06464811693876982,
+      "projection_s": 0.0015535550191998482,
+      "reactions_s": 0.0013109510764479637,
+      "total_s": 0.06751262303441763,
+      "diagnostic": {
+        "lignes": 257,
+        "colonnes": 129,
+        "rang": 128,
+        "seuil": 3.652189661806915e-12,
+        "nnz_entree": 643,
+        "nnz_actifs_max": 643,
+        "nnz_facteur": 8879,
+        "coefficients_reflexions": 256,
+        "support_max": 2,
+        "coefficients_transformes": 17758,
+        "lignes_supprimees": 129,
+        "norme_residus_supprimes": 5.992007091804802e-16,
+        "pivot_min": 0.7098635432250341,
+        "orthogonalite_locale_max": 3.3306690738754696e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 64000,
+      "controles": {
+        "erreur_projection": 3.3306690738754696e-16,
+        "erreur_force": 8.049116928532385e-15,
+        "fermeture": 3.469446951953614e-16,
+        "idempotence": 1.1102230246251565e-16,
+        "rang_attendu": 128,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-129-local-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "17d5258d73247885401b4bd6b9779be3045f2a9576663bc9abf475b69c4951f7"
+    },
+    {
+      "famille": "couplages",
+      "taille": 129,
+      "variante": "qr_dense",
+      "forme": [
+        257,
+        129
+      ],
+      "nnz": 643,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.002995627000927925,
+      "projection_s": 0.00010840711183845997,
+      "reactions_s": 0.0002133469097316265,
+      "total_s": 0.0033173810224980116,
+      "diagnostic": {
+        "rang": 128,
+        "coefficients_base_normales": 16512,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 64000,
+      "controles": {
+        "erreur_projection": 2.435551760271437e-15,
+        "erreur_force": 3.6637359812630166e-15,
+        "fermeture": 2.040034807748725e-15,
+        "idempotence": 2.4771851236948805e-15,
+        "rang_attendu": 128,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-129-qr_dense-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "2eecd22623d038a80bbd9fe7560eb8fb266ee2693707aeddf4729efdb565add3"
+    },
+    {
+      "famille": "couplages",
+      "taille": 129,
+      "variante": "qr_dense",
+      "forme": [
+        257,
+        129
+      ],
+      "nnz": 643,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.002979715820401907,
+      "projection_s": 0.00010986998677253723,
+      "reactions_s": 0.0002175250556319952,
+      "total_s": 0.0033071108628064394,
+      "diagnostic": {
+        "rang": 128,
+        "coefficients_base_normales": 16512,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 63488,
+      "controles": {
+        "erreur_projection": 2.435551760271437e-15,
+        "erreur_force": 3.6637359812630166e-15,
+        "fermeture": 2.040034807748725e-15,
+        "idempotence": 2.4771851236948805e-15,
+        "rang_attendu": 128,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-129-qr_dense-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "7e6897419259e2a75f51d90a08da31ecbac4b1b6237a207813ed294fa2625922"
+    },
+    {
+      "famille": "couplages",
+      "taille": 129,
+      "variante": "local",
+      "forme": [
+        257,
+        129
+      ],
+      "nnz": 643,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.06354464101605117,
+      "projection_s": 0.00158612709492445,
+      "reactions_s": 0.0013398269657045603,
+      "total_s": 0.06647059507668018,
+      "diagnostic": {
+        "lignes": 257,
+        "colonnes": 129,
+        "rang": 128,
+        "seuil": 3.652189661806915e-12,
+        "nnz_entree": 643,
+        "nnz_actifs_max": 643,
+        "nnz_facteur": 8879,
+        "coefficients_reflexions": 256,
+        "support_max": 2,
+        "coefficients_transformes": 17758,
+        "lignes_supprimees": 129,
+        "norme_residus_supprimes": 5.992007091804802e-16,
+        "pivot_min": 0.7098635432250341,
+        "orthogonalite_locale_max": 3.3306690738754696e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 64000,
+      "controles": {
+        "erreur_projection": 3.3306690738754696e-16,
+        "erreur_force": 8.049116928532385e-15,
+        "fermeture": 3.469446951953614e-16,
+        "idempotence": 1.1102230246251565e-16,
+        "rang_attendu": 128,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-129-local-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "84005ebf22e4328e06fa291fa173a4bbb9b621be0d924ff9ae9354cf4e51a3cd"
+    },
+    {
+      "famille": "couplages",
+      "taille": 129,
+      "variante": "local",
+      "forme": [
+        257,
+        129
+      ],
+      "nnz": 643,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.06266596307978034,
+      "projection_s": 0.0015951339155435562,
+      "reactions_s": 0.0013234361540526152,
+      "total_s": 0.06558453314937651,
+      "diagnostic": {
+        "lignes": 257,
+        "colonnes": 129,
+        "rang": 128,
+        "seuil": 3.652189661806915e-12,
+        "nnz_entree": 643,
+        "nnz_actifs_max": 643,
+        "nnz_facteur": 8879,
+        "coefficients_reflexions": 256,
+        "support_max": 2,
+        "coefficients_transformes": 17758,
+        "lignes_supprimees": 129,
+        "norme_residus_supprimes": 5.992007091804802e-16,
+        "pivot_min": 0.7098635432250341,
+        "orthogonalite_locale_max": 3.3306690738754696e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 64000,
+      "controles": {
+        "erreur_projection": 3.3306690738754696e-16,
+        "erreur_force": 8.049116928532385e-15,
+        "fermeture": 3.469446951953614e-16,
+        "idempotence": 1.1102230246251565e-16,
+        "rang_attendu": 128,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-129-local-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "85502a2a3dc56c0504160f19c3f1164a3d2db5fcd8a266d0618f9fdfa58f3d7d"
+    },
+    {
+      "famille": "couplages",
+      "taille": 129,
+      "variante": "qr_dense",
+      "forme": [
+        257,
+        129
+      ],
+      "nnz": 643,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.0029254239052534103,
+      "projection_s": 0.00010956893675029278,
+      "reactions_s": 0.00022080098278820515,
+      "total_s": 0.0032557938247919083,
+      "diagnostic": {
+        "rang": 128,
+        "coefficients_base_normales": 16512,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 63488,
+      "controles": {
+        "erreur_projection": 2.435551760271437e-15,
+        "erreur_force": 3.6637359812630166e-15,
+        "fermeture": 2.040034807748725e-15,
+        "idempotence": 2.4771851236948805e-15,
+        "rang_attendu": 128,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-129-qr_dense-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "0038bd845387322ded2cb9226ddb59b9ad4b73c34c6fd92280a3b7e781e857d6"
+    },
+    {
+      "famille": "couplages",
+      "taille": 129,
+      "variante": "qr_dense",
+      "forme": [
+        257,
+        129
+      ],
+      "nnz": 643,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.0029264651238918304,
+      "projection_s": 0.00011063087731599808,
+      "reactions_s": 0.00021877698600292206,
+      "total_s": 0.0032558729872107506,
+      "diagnostic": {
+        "rang": 128,
+        "coefficients_base_normales": 16512,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 63488,
+      "controles": {
+        "erreur_projection": 2.435551760271437e-15,
+        "erreur_force": 3.6637359812630166e-15,
+        "fermeture": 2.040034807748725e-15,
+        "idempotence": 2.4771851236948805e-15,
+        "rang_attendu": 128,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-129-qr_dense-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "cf644086ba448e6f0af47035ed157e1b09d2212562a684ef8423421828d41c5d"
+    },
+    {
+      "famille": "couplages",
+      "taille": 129,
+      "variante": "local",
+      "forme": [
+        257,
+        129
+      ],
+      "nnz": 643,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.06451085396111012,
+      "projection_s": 0.001577882096171379,
+      "reactions_s": 0.0013256499078124762,
+      "total_s": 0.06741438596509397,
+      "diagnostic": {
+        "lignes": 257,
+        "colonnes": 129,
+        "rang": 128,
+        "seuil": 3.652189661806915e-12,
+        "nnz_entree": 643,
+        "nnz_actifs_max": 643,
+        "nnz_facteur": 8879,
+        "coefficients_reflexions": 256,
+        "support_max": 2,
+        "coefficients_transformes": 17758,
+        "lignes_supprimees": 129,
+        "norme_residus_supprimes": 5.992007091804802e-16,
+        "pivot_min": 0.7098635432250341,
+        "orthogonalite_locale_max": 3.3306690738754696e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 64512,
+      "controles": {
+        "erreur_projection": 3.3306690738754696e-16,
+        "erreur_force": 8.049116928532385e-15,
+        "fermeture": 3.469446951953614e-16,
+        "idempotence": 1.1102230246251565e-16,
+        "rang_attendu": 128,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-129-local-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "75d8f88171cbcdda5db8a46a9debf1dc0a37d007fb051dc0a35d3641d8b824ac"
+    },
+    {
+      "famille": "couplages",
+      "taille": 513,
+      "variante": "local",
+      "forme": [
+        1025,
+        513
+      ],
+      "nnz": 2563,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.9123637909069657,
+      "projection_s": 0.006124468985944986,
+      "reactions_s": 0.0037137370090931654,
+      "total_s": 0.9222019969020039,
+      "diagnostic": {
+        "lignes": 1025,
+        "colonnes": 513,
+        "rang": 512,
+        "seuil": 1.4566126083082054e-11,
+        "nnz_entree": 2563,
+        "nnz_actifs_max": 2563,
+        "nnz_facteur": 131890,
+        "coefficients_reflexions": 1024,
+        "support_max": 2,
+        "coefficients_transformes": 263780,
+        "lignes_supprimees": 513,
+        "norme_residus_supprimes": 8.3239255860297845e-16,
+        "pivot_min": 0.7077969783066327,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 87236,
+      "controles": {
+        "erreur_projection": 1.3877787807814457e-16,
+        "erreur_force": 2.1316282072803006e-14,
+        "fermeture": 1.7694179454963432e-16,
+        "idempotence": 5.551115123125783e-17,
+        "rang_attendu": 512,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-513-local-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "c21f72a3e91c9e8a57444f94532ab29271c280d42c4b49c5bc06e303921900c1"
+    },
+    {
+      "famille": "couplages",
+      "taille": 513,
+      "variante": "qr_dense",
+      "forme": [
+        1025,
+        513
+      ],
+      "nnz": 2563,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.045108916936442256,
+      "projection_s": 0.0007176501676440239,
+      "reactions_s": 0.0016939218621701002,
+      "total_s": 0.04752048896625638,
+      "diagnostic": {
+        "rang": 512,
+        "coefficients_base_normales": 262656,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 78136,
+      "controles": {
+        "erreur_projection": 4.246603069191224e-15,
+        "erreur_force": 7.16093850883226e-15,
+        "fermeture": 4.147181729974303e-15,
+        "idempotence": 4.3298697960381105e-15,
+        "rang_attendu": 512,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-513-qr_dense-0.json",
+      "repetition": 0,
+      "echauffement": true,
+      "sha256": "ec34dbad80d430c5b73607d615dab0192f07846201af8d24ae4fdafc6c3acbd5"
+    },
+    {
+      "famille": "couplages",
+      "taille": 513,
+      "variante": "qr_dense",
+      "forme": [
+        1025,
+        513
+      ],
+      "nnz": 2563,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.047185540897771716,
+      "projection_s": 0.0007117779459804296,
+      "reactions_s": 0.0017200731672346592,
+      "total_s": 0.049617392010986805,
+      "diagnostic": {
+        "rang": 512,
+        "coefficients_base_normales": 262656,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 77624,
+      "controles": {
+        "erreur_projection": 4.246603069191224e-15,
+        "erreur_force": 7.16093850883226e-15,
+        "fermeture": 4.147181729974303e-15,
+        "idempotence": 4.3298697960381105e-15,
+        "rang_attendu": 512,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-513-qr_dense-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "809cf83ad37bdd70c7c8cd03110488d6e295c8f15c3be6817a05b5181f5134c6"
+    },
+    {
+      "famille": "couplages",
+      "taille": 513,
+      "variante": "local",
+      "forme": [
+        1025,
+        513
+      ],
+      "nnz": 2563,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.9013694389723241,
+      "projection_s": 0.006041749846190214,
+      "reactions_s": 0.003691575024276972,
+      "total_s": 0.9111027638427913,
+      "diagnostic": {
+        "lignes": 1025,
+        "colonnes": 513,
+        "rang": 512,
+        "seuil": 1.4566126083082054e-11,
+        "nnz_entree": 2563,
+        "nnz_actifs_max": 2563,
+        "nnz_facteur": 131890,
+        "coefficients_reflexions": 1024,
+        "support_max": 2,
+        "coefficients_transformes": 263780,
+        "lignes_supprimees": 513,
+        "norme_residus_supprimes": 8.3239255860297845e-16,
+        "pivot_min": 0.7077969783066327,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 87400,
+      "controles": {
+        "erreur_projection": 1.3877787807814457e-16,
+        "erreur_force": 2.1316282072803006e-14,
+        "fermeture": 1.7694179454963432e-16,
+        "idempotence": 5.551115123125783e-17,
+        "rang_attendu": 512,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-513-local-1.json",
+      "repetition": 1,
+      "echauffement": false,
+      "sha256": "7ca789033d959ebaa2ae556f058b754e259b378b455e08e89d2f60b042b2c796"
+    },
+    {
+      "famille": "couplages",
+      "taille": 513,
+      "variante": "local",
+      "forme": [
+        1025,
+        513
+      ],
+      "nnz": 2563,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.9069690760225058,
+      "projection_s": 0.0060597138945013285,
+      "reactions_s": 0.0037026770878583193,
+      "total_s": 0.9167314670048654,
+      "diagnostic": {
+        "lignes": 1025,
+        "colonnes": 513,
+        "rang": 512,
+        "seuil": 1.4566126083082054e-11,
+        "nnz_entree": 2563,
+        "nnz_actifs_max": 2563,
+        "nnz_facteur": 131890,
+        "coefficients_reflexions": 1024,
+        "support_max": 2,
+        "coefficients_transformes": 263780,
+        "lignes_supprimees": 513,
+        "norme_residus_supprimes": 8.3239255860297845e-16,
+        "pivot_min": 0.7077969783066327,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 87632,
+      "controles": {
+        "erreur_projection": 1.3877787807814457e-16,
+        "erreur_force": 2.1316282072803006e-14,
+        "fermeture": 1.7694179454963432e-16,
+        "idempotence": 5.551115123125783e-17,
+        "rang_attendu": 512,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-513-local-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "aaa8290ea01b09d3039dd4bb632c287f577644a8d3e27cbc180de1403c12101b"
+    },
+    {
+      "famille": "couplages",
+      "taille": 513,
+      "variante": "qr_dense",
+      "forme": [
+        1025,
+        513
+      ],
+      "nnz": 2563,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.04799439385533333,
+      "projection_s": 0.0008364659734070301,
+      "reactions_s": 0.0017812491860240698,
+      "total_s": 0.05061210901476443,
+      "diagnostic": {
+        "rang": 512,
+        "coefficients_base_normales": 262656,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 78144,
+      "controles": {
+        "erreur_projection": 4.246603069191224e-15,
+        "erreur_force": 7.16093850883226e-15,
+        "fermeture": 4.147181729974303e-15,
+        "idempotence": 4.3298697960381105e-15,
+        "rang_attendu": 512,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-513-qr_dense-2.json",
+      "repetition": 2,
+      "echauffement": false,
+      "sha256": "901774a022f337cac5df684a12fa59415c90319fdd920ddf33be488c93c64bdf"
+    },
+    {
+      "famille": "couplages",
+      "taille": 513,
+      "variante": "qr_dense",
+      "forme": [
+        1025,
+        513
+      ],
+      "nnz": 2563,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.04751257388852537,
+      "projection_s": 0.0007341611199080944,
+      "reactions_s": 0.0018275280017405748,
+      "total_s": 0.050074263010174036,
+      "diagnostic": {
+        "rang": 512,
+        "coefficients_base_normales": 262656,
+        "base_dense": true
+      },
+      "rss_avant_oracle_kib": 78136,
+      "controles": {
+        "erreur_projection": 4.246603069191224e-15,
+        "erreur_force": 7.16093850883226e-15,
+        "fermeture": 4.147181729974303e-15,
+        "idempotence": 4.3298697960381105e-15,
+        "rang_attendu": 512,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-513-qr_dense-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "3e39cc6e0e981603cd56add42da8facbe6359c61e8edb7bd2333e8ca79a5dce1"
+    },
+    {
+      "famille": "couplages",
+      "taille": 513,
+      "variante": "local",
+      "forme": [
+        1025,
+        513
+      ],
+      "nnz": 2563,
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "cpu": [
+        8
+      ],
+      "fils": {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "RAYON_NUM_THREADS": "1"
+      },
+      "statut": "calcule",
+      "factorisation_s": 0.9168175510130823,
+      "projection_s": 0.006079602986574173,
+      "reactions_s": 0.003696613945066929,
+      "total_s": 0.9265937679447234,
+      "diagnostic": {
+        "lignes": 1025,
+        "colonnes": 513,
+        "rang": 512,
+        "seuil": 1.4566126083082054e-11,
+        "nnz_entree": 2563,
+        "nnz_actifs_max": 2563,
+        "nnz_facteur": 131890,
+        "coefficients_reflexions": 1024,
+        "support_max": 2,
+        "coefficients_transformes": 263780,
+        "lignes_supprimees": 513,
+        "norme_residus_supprimes": 8.3239255860297845e-16,
+        "pivot_min": 0.7077969783066327,
+        "orthogonalite_locale_max": 4.440892098500626e-16,
+        "base_dense": false,
+        "gram_forme": false
+      },
+      "rss_avant_oracle_kib": 87248,
+      "controles": {
+        "erreur_projection": 1.3877787807814457e-16,
+        "erreur_force": 2.1316282072803006e-14,
+        "fermeture": 1.7694179454963432e-16,
+        "idempotence": 5.551115123125783e-17,
+        "rang_attendu": 512,
+        "rang_correct": true
+      },
+      "accepte": true,
+      "fichier": "couplages-513-local-3.json",
+      "repetition": 3,
+      "echauffement": false,
+      "sha256": "cd78da21421e8af88e18f53107c694b7d17c7b096051c618c917bd45359408dc"
+    }
+  ]
+}

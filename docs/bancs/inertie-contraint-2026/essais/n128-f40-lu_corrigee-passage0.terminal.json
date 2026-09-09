@@ -1,0 +1,17 @@
+{
+  "pid": 72,
+  "retour": 0,
+  "attente_terminee": true,
+  "date_utc": "2026-09-08T12:51:59.102544+00:00",
+  "processus_s": 0.8446050498168916,
+  "commande": [
+    "/tmp/vinkulum-release-0.11.0-final/venv/bin/python",
+    "/tmp/vinkulum-campagne-inertie-contrainte-2026/sources/experience_inertie_contrainte.py",
+    "--worker",
+    "/tmp/vinkulum-campagne-inertie-contrainte-2026/entrees/n128-f40.npz",
+    "/tmp/vinkulum-confrontation-ports-0.10.0-corrigee/n128-f40.ref.npy",
+    "lu_corrigee",
+    "128",
+    "/tmp/vinkulum-campagne-inertie-contrainte-2026/essais/n128-f40-lu_corrigee-passage0"
+  ]
+}

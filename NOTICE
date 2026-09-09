@@ -1,0 +1,13 @@
+Vinkulum — general-purpose multibody dynamics kernel
+Copyright 2026 Paul Brintet and Vinkulum contributors
+
+The original Vinkulum code and documentation in this public distribution
+are licensed under the Apache License, Version 2.0; see LICENSE.
+Historical snapshots of original Vinkulum sources included as scientific
+evidence are covered by this grant as well. Their frozen package metadata
+records the licensing declaration at the time of the original experiment.
+
+Third-party models, dependency notices and quoted material retain their
+respective rights. See THIRD_PARTY_NOTICES.md and python/vinkulum/licences/.
+Names of reference solvers and robot manufacturers identify sources and
+benchmarks; they do not imply endorsement.

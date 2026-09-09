@@ -1,0 +1,24 @@
+{
+  "n": 128,
+  "source_sha256": "e6457a842fa2218e78e7042612973c1e6df76d42417dbcfa96952df2ac226d25",
+  "source": "/tmp/vinkulum-modeles-masse-consistante-2026-v2/n128-f40.npz",
+  "modele": "trois branches linéaires encastrées, jonction rigide avec bras de levier",
+  "facteurs_D": [
+    1.0,
+    1.125,
+    1.25
+  ],
+  "facteurs_M": [
+    1.0,
+    0.875,
+    1.125
+  ],
+  "comptabilite": "énergie de chaque branche plus énergie de jonction ajoutée une fois",
+  "metrique": "somme A_j.T H_j A_j, évaluée puis stockée en binary64",
+  "fichiers_sha256": {
+    "piece0.npz": "e6457a842fa2218e78e7042612973c1e6df76d42417dbcfa96952df2ac226d25",
+    "piece2.npz": "609c01c0a19a3941d43853497023aacf6bd32d5a9b68de95dab87abf073c84c8",
+    "jonction.npz": "75ae81c904d79c5f70e218ff42113a408d4ea6f7555917fb66ead2c891760f35",
+    "piece1.npz": "626cdbe965d21f2b269f40247b421326e21b34c2031df203d2ba724a4000f915"
+  }
+}

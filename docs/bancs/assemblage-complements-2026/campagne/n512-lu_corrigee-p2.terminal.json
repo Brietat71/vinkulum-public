@@ -1,0 +1,16 @@
+{
+  "code": 0,
+  "commande": [
+    "/tmp/vinkulum-release-0.11.0-final/venv/bin/python",
+    "/tmp/vinkulum-energie-native-travail/ci/experience_assemblage_complements.py",
+    "worker",
+    "/tmp/vinkulum-references-assemblage-complements-v1",
+    "/tmp/vinkulum-assemblage-complements-2026/n512-lu_corrigee-p2",
+    "--n",
+    "512",
+    "--variante",
+    "lu_corrigee",
+    "--bibliotheque",
+    "/tmp/vinkulum-assemblage-complements-2026/build/comparaison_masse.so"
+  ]
+}

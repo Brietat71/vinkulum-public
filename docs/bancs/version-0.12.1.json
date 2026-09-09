@@ -1,0 +1,446 @@
+{
+  "schema": 1,
+  "version": "0.12.1",
+  "parent_git": "157a008c74d870fcac594ac230b63c958bed9da3",
+  "roue": {
+    "nom": "vinkulum-0.12.1-cp314-cp314-linux_x86_64.whl",
+    "sha256": "20c8d5cddd2401b9bc8291d64b55c509709636fea1ab832ca7e7860fd2f4d50d",
+    "fichiers_vinkulum_sha256": {
+      "vinkulum/__init__.py": "5dab7cc1f9dcfc41d1bac5b0057ce4d5442eae9d0361b0ccbf1c65653ad71189",
+      "vinkulum/_banc_multirythme.py": "c7f80c0208a5f3838baead7ee557914f8010e7391085882135b5b9de21e95c4e",
+      "vinkulum/_campagnes.py": "bf64e3df9b0b33b60d6e713b639852cf0e87afcb4b25b019db5ade30e511c1f1",
+      "vinkulum/_ports/__init__.py": "8addfc6575d89a65839440d942f710eaac9b0071ef4fa6eff3261c6dcc5a843f",
+      "vinkulum/_ports/assemblage_complements.py": "7228a25c7223e71bf0b8ec15fb287c9cf17b7edeea635d331b721fd086f707a0",
+      "vinkulum/_ports/certificat_spectral.py": "5385bb6ca3322a32e24ee5fc738a39cef178f9b344a1339659e11bf8669d434a",
+      "vinkulum/_ports/champ_interieur.py": "fc06e6517ed3cdddf798b7a5a48cacf437fabd83bfe043091236a230a790065b",
+      "vinkulum/_ports/comparaison_masse.py": "34c8fd5ef938b74b0d9be7e2bbc2fcc5373456ae2bdf94fb41a3f446110e907f",
+      "vinkulum/_ports/condensation_energie.py": "8cf95400d746f439ece96a6a984c2a6680ea3f4a4a444dffd500047969cac691",
+      "vinkulum/_ports/condensation_energie_lu.py": "f1138f92e1deea9681730166facbe0e71be8534768c504b9a347904239c385a4",
+      "vinkulum/_ports/construction_certificat.py": "66a28e04c85027d746758735b8cce9916fe2f57c90a8de3368f6dc0939812dc3",
+      "vinkulum/_ports/controle_complement.py": "04854873b669920eaed13368802fa3803151d8bffa18570a753a7c9bc3ceb568",
+      "vinkulum/_ports/controle_facteurs.py": "ffcfb50d7d5694dd6396715c0cecc6bc688436bcd406286047da3e720e3de930",
+      "vinkulum/_ports/controle_masse_comparee.py": "bca0d663b35490a9b93fc41facf2507c0cbf13f0d9578756f46599d3364a4f31",
+      "vinkulum/_ports/inertie_binaire_compile.py": "2b74e077395f34c469b628175e87212cd950e921a42920b409c06288f631fbd1",
+      "vinkulum/_ports/inverse_contrainte_energie.py": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "vinkulum/_ports/inverse_selectionnee.py": "6658d460bfdcaf08d499da40f58cb87333f658ca69f138631c4c1f3d2ffbc65d",
+      "vinkulum/_ports/krylov_contraint.py": "088ada69850eebdfa51aa5eee80a8e4a864cab4a3d76fccbad8554b0c56a15bf",
+      "vinkulum/_ports/matrices_certificat.py": "1c239e1e0416261cc159cb962142fc9c1e56692543d404feb25347f85991466d",
+      "vinkulum/_ports/ordre_separateurs.py": "a81c39b472567ef86c448ca5c67285f35b035dbf53b07495ab3626cd18d54d53",
+      "vinkulum/_ports/ports_krylov.py": "06f6c53478dce24e3103f84957a46dcbc09e0828505e321f8c585e22f977a5ad",
+      "vinkulum/_ports/ports_releves.py": "3269dd2d79a1c61289045b152f306c3b76b46f7bbb77d3bc44224bdc51f68953",
+      "vinkulum/_ports/racine_masse_blocs.py": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "vinkulum/_ports/validation_certificat.py": "010aae903d98bef36fe4159308b60c3286a66150f5b8516ff689c5d257bef5de",
+      "vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so": "79217f631942cdd765fe1c55fce9df786c5b66ad42e7094891fa2f4a8b37fee6",
+      "vinkulum/adjoint_temps.py": "bec0890fb847d55e0ce5cab487a6871a7e757150e3889689179b4a35ffb8ed05",
+      "vinkulum/andrews.py": "fb8c9773184d0b4a2cba2b82c9df49c5536fc9cbe6568ccadc0cb027d4a89e96",
+      "vinkulum/bancs.py": "d394b4e45f070b86e96364ddff572de6c602f166d76c419fc33974271376439a",
+      "vinkulum/campagne.py": "6490de1d767df6262785311bbb0a9a8bb88b36153d12dd6178079aaa7cf7cd8e",
+      "vinkulum/contact.py": "577fda6044b06a2ee71e5094c72703a391eaf7d7d0007670c0e652d92f7ffb7a",
+      "vinkulum/convergence.py": "c484f244f993d093aaa33e883d3ee4ef3fbdaa566c34adf60b5cb8946c331005",
+      "vinkulum/coque.py": "960069c2222d439368d577cb1a6603902ac30ff15ca06114b88302a69822a403",
+      "vinkulum/doc.py": "40b5ef53c5c1ebca3d9fba7c2c9613493b4150e5f821d33a50316e636f99caf7",
+      "vinkulum/domaines.py": "30ec38823433b87b8b424f8396e8b5d37e2a11509cf68418d1f08f7918f371c1",
+      "vinkulum/donnees/acrobot.xml": "e203285c5779113bace0d9e1c6a1b1c7246dc019df6ded9790a99b8185ec5ed8",
+      "vinkulum/donnees/fourbar.json": "cfee83b06b923164e7f5ead944d637be30b6cbf9ba93e4a924516a29fe1a0666",
+      "vinkulum/donnees/go1.xml": "d5a7466784c8e72fd174cc7fa5a92754a1a0a6d458a1dec79e7ca0abc9525c4a",
+      "vinkulum/donnees/humanoid.xml": "acc9167550bf20580717a551467e6e8d0d03d1916d24bbe4b734ce11afb99406",
+      "vinkulum/donnees/kuka_iiwa.urdf": "5c13c5b4bb88b5265223e0ec9a7706cbf81e9bb21cc0e18534273755a041788c",
+      "vinkulum/donnees/menagerie/2f85.xml": "d48aca5f9151798ffd38111ce4e8b2081f3ec2d4f525161b33643451580010de",
+      "vinkulum/donnees/menagerie/a1.xml": "492978cb7700b0064bcefbc2b93dba651a828cf9212df91d56e951666890807c",
+      "vinkulum/donnees/menagerie/aloha.xml": "68430b29719bda1b75e63f540953f81991bc3fd136bdf0a43bbe3e04393b78d3",
+      "vinkulum/donnees/menagerie/anymal_c.xml": "25dfeab8913aff6f69877a85faa5f2dfa15c56a0d553cd99dbd46a4584067d8b",
+      "vinkulum/donnees/menagerie/barkour_v0.xml": "73b4f298420acf81a91c39f0ec735ce65946a3e6a747f45931383b3db583d1c3",
+      "vinkulum/donnees/menagerie/cassie.xml": "92ec84d23a0f62a848b4d646fc9197cad3b0c518bb6cb1aafe241b3db88dd885",
+      "vinkulum/donnees/menagerie/cf2.xml": "c1260dd47cded49edd5c1c02226529a5452a73f70000515f83bf223814037933",
+      "vinkulum/donnees/menagerie/fruitfly.xml": "35541d5312f71e7c96156c345cd90918867513a2b3dafbb07b8684ee59b6f4dc",
+      "vinkulum/donnees/menagerie/g1.xml": "3c2616550a31f33e84d3c80b8e913ac5618c8888019b0c9490dae93493e647f3",
+      "vinkulum/donnees/menagerie/h1.xml": "4d15bc381ee8113722fe514a6fc0059988cd114c2bedfadf2e6279b41ef0810d",
+      "vinkulum/donnees/menagerie/iiwa14.xml": "ee7e6d796a9f8642de6097f95077281d15f43678dc5285beafeda99b84cf9ef5",
+      "vinkulum/donnees/menagerie/op3.xml": "02e07fe80bb0352a0987e14e41be496d045a070dd70444a8277b9272105e44ac",
+      "vinkulum/donnees/menagerie/panda.xml": "96ad67da03710f17f798c9478fd9e9efdf24a3bf8359f05e456dd9fb158ea273",
+      "vinkulum/donnees/menagerie/right_hand.xml": "ac14d09dd12b62c3ca62233d0ac646101cc718146dda76e26d0b993a91abf399",
+      "vinkulum/donnees/menagerie/sawyer.xml": "82bb258641ac945772475a52917a55db7ed67eb6a5cc9ee2446b0fb9ac7d6ffd",
+      "vinkulum/donnees/menagerie/spot.xml": "f2643c93832f0aaadb29e8e4226357ba89bf1c58e39c373db231bb203406274b",
+      "vinkulum/donnees/menagerie/stretch.xml": "4f33408242b90acbe4ca0f4b544ca5efae4f423c92ef71358f0977ec0b03a316",
+      "vinkulum/donnees/menagerie/ur10e.xml": "a8f709df340788033d497ff7d892fdecab4f6cc9c36299a00f57efa9f25e0744",
+      "vinkulum/donnees/menagerie/wx250s.xml": "2475c1f4a4c085d370d3e7e43d56377d07bd44de3bace9371f1b5f08de00c27b",
+      "vinkulum/donnees/menagerie/x2.xml": "5e8f14afe735d07e0b299444d68927058a757149761313c2f0d2f88264c2ae7b",
+      "vinkulum/donnees/menagerie/xarm7.xml": "ac6b369e0b9c5abdaca55d2c6c048102f2e1133bf550b059a8622afa4b9da433",
+      "vinkulum/donnees/multibarmech.json": "228529beab109ddee0969a3960f772365461d84451608aa53142e48f8822b0e7",
+      "vinkulum/donnees/r2d2.urdf": "1e079b050af5e0ba942d6156e8a5f688a2d55a6a749252599a8483b0545405f8",
+      "vinkulum/donnees/ur5e.xml": "ffd0a7b336d3c2d27c35a15cc0d4aaa95196769aca190ac8d6522d3318c345a0",
+      "vinkulum/donnees/urdfs/cartpole.urdf": "38e4ff88cc8a4e39bfac4ac68bc9cade2ea7ee68e54422bed8f9839b51bfdc56",
+      "vinkulum/donnees/urdfs/humanoid.urdf": "4a449f923dcbd242c1c6a3ad15e62047c6cb2fc1d275bf31a339bf60d27a6894",
+      "vinkulum/donnees/urdfs/husky.urdf": "cd6c2e5d2b5282e33993b635f142f8252320efa8b5ca818ada91b8f7f2899314",
+      "vinkulum/donnees/urdfs/laikago_toes.urdf": "326a4bacfcfd78d56eb692fef74d4e48969538a67e3361e12d11a3661e3a8c3c",
+      "vinkulum/donnees/urdfs/model.urdf": "5c13c5b4bb88b5265223e0ec9a7706cbf81e9bb21cc0e18534273755a041788c",
+      "vinkulum/donnees/urdfs/panda.urdf": "9c27cf846302e26a1d3a44ccfd4dd2dbba89cccc9f17b96b6bd1f8bceedd1ff0",
+      "vinkulum/donnees/urdfs/quadruped.urdf": "f3e09a6407bd9a30a22565d696968f30cd37c2aad4f394cf898a86403dff7eda",
+      "vinkulum/donnees/urdfs/r2d2.urdf": "1e079b050af5e0ba942d6156e8a5f688a2d55a6a749252599a8483b0545405f8",
+      "vinkulum/donnees/urdfs/racecar.urdf": "38d641dc8974dd14efadedb2e2dc518b7a98f99c0b354103404b4ad829d5db3e",
+      "vinkulum/elliott1988.py": "a8f070de89668cdf2e7d461e5992c80fb1c3e65acdba6154ada4ecce6144069b",
+      "vinkulum/floquet.py": "c61fbf7e2b6b090206f24b21d1001e98cce2bcff278e16300b5bdddb97f333df",
+      "vinkulum/jantzen2014.py": "721c601b50e44d5432f342eecd0eca90ea970509cefe7c138781d56158866a1a",
+      "vinkulum/kim2017.py": "f40825d704c75aa3d288547e537e9d2dfdacf2c6144ea99a3aa84a2e47389612",
+      "vinkulum/maquette.py": "c80bf83a719c05d216dfa5017b3e65c2c73cbea5e8cdbc67f548d9d84fbf504e",
+      "vinkulum/mjcf.py": "379cb5372c5aef20f2eb7f2ebba7f780e17785095243616c5295cc7c8b0e15a1",
+      "vinkulum/osu_s809.py": "a254a23c08cac748372bcfa8f322d63214f290e75077b00139d8ae36a55fcc12",
+      "vinkulum/pale_elastique.py": "f0ba4a9d6d7d43ccd6973b3b1548d13791d88a02d07df45f5beb5d643266dcee",
+      "vinkulum/peters_he.py": "2ed1836f0cee7dd2ea53c19215cbcd6a45aab2b7e684c65702acc47234c14de7",
+      "vinkulum/reduction.py": "4e0dc18549b0bdfc2b86ee41008bbe65f83339b03ddf91b897b0fde93bca3e9d",
+      "vinkulum/reduction_contrainte.py": "7406cb10b87632fc86e6a4ca4b861ec329cd4c9554f9284c55d2638dd33d8fbc",
+      "vinkulum/reduction_ports.py": "f7cd5e7476b54712bff3a8a14516c8e6a398fdf7beca4a4c0bd6c4c0d2866aba",
+      "vinkulum/rotation.py": "55fdf558a778e503d38f2ba4f301b5b95288d6f15594835420cf651fe2899f07",
+      "vinkulum/rotor.py": "092f87762941fe520afcbc6cefb684e6b4893f8c4880428896fe4e5ec522703e",
+      "vinkulum/sensibilite.py": "7eeb12bc1e8817c9335cb516a51fa2bc530909ef78323bf17598421dea251557",
+      "vinkulum/sillage.py": "1be02fad2d0c5a0e4642f7f76833df072d3115c570647f3d9b211af6d3bce6a2",
+      "vinkulum/test_analyses.py": "53120f891b884fab8fcdd4c1b67b464409f86a11049fb533ca161db177bebddc",
+      "vinkulum/test_assemblage.py": "77647638e7c34b9c4a8bbc5c0a6ea76fb7010bddc1d99657c3b330cf307d7649",
+      "vinkulum/test_campagnes.py": "7453f37106504928ab9c67e6ac87df2a6e39adb49a93cfec2f7a613885234381",
+      "vinkulum/test_noyau.py": "6d6de6afbb6caf61ef68bcb010a622fd2550971ca6ca41d25dfa3fb65183548a",
+      "vinkulum/test_operateurs.py": "8f3481f5252467ed2a07b609bd84c3dfac74dfc59fe96034073e76553d1bdda8",
+      "vinkulum/test_reduction_contrainte.py": "e013a6e69e925e807833e4324889913008b2865a537e6c3ce123a844e191b50f",
+      "vinkulum/test_reduction_ports.py": "297ede6f22aa2c515dadff96b8e833d23cd2b5bd4fe2e8080826ca07c4710c87",
+      "vinkulum/test_reponses_groupees.py": "84baee33ea9ba62e633814a09c046a532f53ae13352b1e9b52e03bb4069f121e",
+      "vinkulum/test_schema_lie.py": "dafd7c08956c77cc5529d682a59ced25bf23dda4a7d9031dcfb579a313094695",
+      "vinkulum/trim.py": "2c4243c87c5543be1d2205b5cc88fc71b304ae12f739a8224a163985b9f7e9ae",
+      "vinkulum/urdf.py": "3e42490fbdb79af2f416d16c0d93208c8590fdf012423cfb90463ef57e4e4497",
+      "vinkulum/validation.py": "07a286405d242927a8504769e462312844e4cc2f287658331724b2e67f1c894c",
+      "vinkulum/verification.py": "b30a0669cb32102552efe2f8f0b52874bd22d3cbf02bfebb1471cecc298acae4"
+    }
+  },
+  "environnement": {
+    "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+    "vinkulum": "0.12.1",
+    "metadata": "0.12.1",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "paquet": "/tmp/vinkulum-livraison-0.12.1-physique/venv/lib/python3.14/site-packages/vinkulum/__init__.py",
+    "extension": "/tmp/vinkulum-livraison-0.12.1-physique/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so"
+  },
+  "references_binaires": {
+    "0.12.0_livree": "16722eb7bf16f8a356be63ce974b30df25c5c2db9ca6f9900b588793382930e4",
+    "0.12.1_candidate_non_livree_avant_correction_acceleration": "55195e9d662f31c1d3012403006ecefd4e67f8ba08205d9180cb835268896633"
+  },
+  "verification": {
+    "python_roue": 144,
+    "nouveaux_tests_python": 15,
+    "rust": 85,
+    "nouveaux_tests_rust": 2,
+    "prototype_rust": 8,
+    "verification": 41,
+    "bancs_rapides": 46,
+    "contacts": 9,
+    "exudyn_ignores": 3
+  },
+  "campagne_physique": {
+    "criteres": {
+      "projection_erreur_absolue_max": 1e-10,
+      "longueurs_projection": [
+        9.5367431640625e-07,
+        0.0009765625,
+        1.0,
+        1024.0,
+        65536.0,
+        67108864.0
+      ],
+      "longueurs_exploration": [
+        1099511627776.0,
+        281474976710656.0
+      ],
+      "pendule_erreur_adimensionnelle_max_256_pas": 0.0002,
+      "pendule_derive_energie_relative_max_256_pas": 0.0002,
+      "pendule_rapport_erreurs_128_sur_256_min": 3.0,
+      "pendule_rapport_erreurs_128_sur_256_max": 5.0,
+      "reference_ecart_entre_tolerances_max": 1e-10
+    },
+    "script_sha256": "017fa6eba9573a5f75c3c8e887272ef969891b0dcc6b5bb9abc3fabaeb8edcf5",
+    "projections": 2304,
+    "erreur_projection_max": 4.440892098500626e-16,
+    "explorations": [
+      {
+        "longueur": 1099511627776.0,
+        "statut": "refus",
+        "raison": "assemblage : vitesses incompatibles ou précision insuffisante, ‖G·u + ∂Φ/∂t‖ = 5.000e-1 (tolérance 1.000e-12)",
+        "etat_restitue": true
+      },
+      {
+        "longueur": 281474976710656.0,
+        "statut": "refus",
+        "raison": "assemblage : vitesses incompatibles ou précision insuffisante, ‖G·u + ∂Φ/∂t‖ = 5.000e-1 (tolérance 1.000e-12)",
+        "etat_restitue": true
+      }
+    ],
+    "pendules": [
+      {
+        "longueur": 0.001,
+        "pas": 128,
+        "pas_acceptes": 128,
+        "temps_final": 0.04424010108874648,
+        "initial_adimensionnel": [
+          0.40000000921060075,
+          0.2999998842123138
+        ],
+        "final_adimensionnel": [
+          -0.4982697810959108,
+          0.06856984094814265
+        ],
+        "reference": [
+          -0.49823942355883033,
+          0.06876396615196886
+        ],
+        "ecart_references": 3.5582647939236267e-13,
+        "erreur_reference": 0.00019412520382620924,
+        "derive_energie_relative": 9.502097362590593e-06
+      },
+      {
+        "longueur": 0.001,
+        "pas": 256,
+        "pas_acceptes": 256,
+        "temps_final": 0.04424010108874648,
+        "initial_adimensionnel": [
+          0.40000000921060075,
+          0.2999998842123138
+        ],
+        "final_adimensionnel": [
+          -0.4982470212782638,
+          0.06871543353746506
+        ],
+        "reference": [
+          -0.49823942355883033,
+          0.06876396615196886
+        ],
+        "ecart_references": 3.5582647939236267e-13,
+        "erreur_reference": 4.8532614503798976e-05,
+        "derive_energie_relative": 2.3778172196319503e-06,
+        "rapport_erreurs": 3.9998917390080795
+      },
+      {
+        "longueur": 1.0,
+        "pas": 128,
+        "pas_acceptes": 128,
+        "temps_final": 1.398994833565338,
+        "initial_adimensionnel": [
+          0.404605288691191,
+          0.24192578492256323
+        ],
+        "final_adimensionnel": [
+          -0.458428525541959,
+          0.1162383074038217
+        ],
+        "reference": [
+          -0.4583816947227511,
+          0.1164127219403437
+        ],
+        "ecart_references": 3.0109248427834245e-13,
+        "erreur_reference": 0.00017441453652200511,
+        "derive_energie_relative": 3.9510523832148846e-06
+      },
+      {
+        "longueur": 1.0,
+        "pas": 256,
+        "pas_acceptes": 256,
+        "temps_final": 1.398994833565338,
+        "initial_adimensionnel": [
+          0.404605288691191,
+          0.24192578492256323
+        ],
+        "final_adimensionnel": [
+          -0.45839341073918377,
+          0.11636911640874315
+        ],
+        "reference": [
+          -0.4583816947227511,
+          0.1164127219403437
+        ],
+        "ecart_references": 3.0109248427834245e-13,
+        "erreur_reference": 4.360553160055736e-05,
+        "derive_energie_relative": 9.915888981797873e-07,
+        "rapport_erreurs": 3.9998259422613205
+      },
+      {
+        "longueur": 1000.0,
+        "pas": 128,
+        "pas_acceptes": 128,
+        "temps_final": 44.24010108874648,
+        "initial_adimensionnel": [
+          0.40921034027095154,
+          0.1834871770281767
+        ],
+        "final_adimensionnel": [
+          -0.418046220341163,
+          0.16298660635892898
+        ],
+        "reference": [
+          -0.417983140733885,
+          0.16314378687496014
+        ],
+        "ecart_references": 3.1863400806741993e-13,
+        "erreur_reference": 0.000157180516031169,
+        "derive_energie_relative": 2.38455906327969e-07
+      },
+      {
+        "longueur": 1000.0,
+        "pas": 256,
+        "pas_acceptes": 256,
+        "temps_final": 44.24010108874648,
+        "initial_adimensionnel": [
+          0.40921034027095154,
+          0.1834871770281767
+        ],
+        "final_adimensionnel": [
+          -0.4179989182889479,
+          0.1631044900441214
+        ],
+        "reference": [
+          -0.417983140733885,
+          0.16314378687496014
+        ],
+        "ecart_references": 3.1863400806741993e-13,
+        "erreur_reference": 3.929683083875313e-05,
+        "derive_energie_relative": 5.788309464381312e-08,
+        "rapport_erreurs": 3.9998267716836646
+      }
+    ],
+    "echecs_par_famille": {
+      "roue_0.12.0": {
+        "projection": 384,
+        "exploration": 2,
+        "pendule": 1
+      },
+      "candidate_avant_correction_acceleration": {
+        "pendule": 1
+      },
+      "livraison": {}
+    },
+    "seuils_identiques_avant_apres": true
+  },
+  "ci": {
+    "commande": "ci/local.sh --bancs",
+    "code_sortie": 0,
+    "pre_push_obligatoire": "ci/local.sh",
+    "note": "Les contrôles explicites de terminaison des références et du nombre de pas ont été ajoutés après le passage de la campagne dans cette CI. La campagne finale sur roue les exécute, ainsi que la CI obligatoire avant push."
+  },
+  "archive": {
+    "nom": "version-0.12.1-preuves.json.gz",
+    "sha256": "838e68589afcf4d3dc0db56e35f9c1b65cf85e77ce60b03f9292e80eb40e8b99",
+    "journaux_sha256": {
+      "ci-etendue-finale.log": "1b3d9220e765f94d23440669f97f6cef8a1647e0aa43fdf6cf2520866598da73",
+      "roue-construction.log": "84166e2834e2cc9e09ef169593d26bc9e03765a82bedafd8943b22821a2b23dc",
+      "roue-installation.log": "8688fe7e66a0cf3e55542b35a6bd741528aaa1b17c6e78a5146467254416c6d8",
+      "roue-tests.log": "75cd09c76ba9f9c941ea5277be2ce18f567e4defb99592c812aa1e61fad84191",
+      "regressions-assemblage-0.12.0.log": "1c2fcb9e66f0e5e0db007595da129b6a220fa774eb3b5a6fb40b1e7da3ecd9cd",
+      "regressions-acceleration-0.12.0.log": "2043abe1fc48744be95ffe2955518fe2c4b3fe7684e02c49d082a696009290b9",
+      "ci-verte-avant-campagne-physique.log": "0a80505d0686cbb0ee04fa57cd7a476f1677704df0df4af2f08cc36bf97c4b3c",
+      "ci-collision-de-constructions.log": "1946c936cb1388ff3fbe6f88aad9f6115db8092f8646c1d60c0f1a039ccdba3a",
+      "ci-intermediaire-interrompue.log": "e28bee6794a18674866ebc06a0d865c1a46faf350973b17f00bf95374336db7b"
+    }
+  },
+  "sources_sha256": {
+    "Cargo.lock": "d55405826fad3c65e9cefb48453fc586f12d6994350b4cc7b9911a3f489a2f02",
+    "Cargo.toml": "bdb9d537e9a1f98496bf600cd310825d2f70e11cfa34a0b0d6b4c48a02269779",
+    "build.rs": "654357e38ba6010ef0912e05b1351735249e6fec76da234211aefab1851eea6a",
+    "ci/audit_assemblage_physique.py": "017fa6eba9573a5f75c3c8e887272ef969891b0dcc6b5bb9abc3fabaeb8edcf5",
+    "ci/github-actions.yml": "e41162ac5d480c12bb585595cc4975cdfc3ecb24e0370db5813a0b7dd35e0e7c",
+    "ci/local.sh": "1a9abe6d318d87f4b15a45e554cda2b261451a47d1e56189ace77a601c57850c",
+    "pyproject.toml": "2d0c08d3b2ada461eebd542a581a8cc2e54014dcf89d284bfd9a3b16fd57a913",
+    "python/vinkulum/__init__.py": "5dab7cc1f9dcfc41d1bac5b0057ce4d5442eae9d0361b0ccbf1c65653ad71189",
+    "python/vinkulum/_banc_multirythme.py": "c7f80c0208a5f3838baead7ee557914f8010e7391085882135b5b9de21e95c4e",
+    "python/vinkulum/_campagnes.py": "bf64e3df9b0b33b60d6e713b639852cf0e87afcb4b25b019db5ade30e511c1f1",
+    "python/vinkulum/_ports/__init__.py": "8addfc6575d89a65839440d942f710eaac9b0071ef4fa6eff3261c6dcc5a843f",
+    "python/vinkulum/_ports/assemblage_complements.py": "7228a25c7223e71bf0b8ec15fb287c9cf17b7edeea635d331b721fd086f707a0",
+    "python/vinkulum/_ports/certificat_spectral.py": "5385bb6ca3322a32e24ee5fc738a39cef178f9b344a1339659e11bf8669d434a",
+    "python/vinkulum/_ports/champ_interieur.py": "fc06e6517ed3cdddf798b7a5a48cacf437fabd83bfe043091236a230a790065b",
+    "python/vinkulum/_ports/comparaison_masse.py": "34c8fd5ef938b74b0d9be7e2bbc2fcc5373456ae2bdf94fb41a3f446110e907f",
+    "python/vinkulum/_ports/condensation_energie.py": "8cf95400d746f439ece96a6a984c2a6680ea3f4a4a444dffd500047969cac691",
+    "python/vinkulum/_ports/condensation_energie_lu.py": "f1138f92e1deea9681730166facbe0e71be8534768c504b9a347904239c385a4",
+    "python/vinkulum/_ports/construction_certificat.py": "66a28e04c85027d746758735b8cce9916fe2f57c90a8de3368f6dc0939812dc3",
+    "python/vinkulum/_ports/controle_complement.py": "04854873b669920eaed13368802fa3803151d8bffa18570a753a7c9bc3ceb568",
+    "python/vinkulum/_ports/controle_facteurs.py": "ffcfb50d7d5694dd6396715c0cecc6bc688436bcd406286047da3e720e3de930",
+    "python/vinkulum/_ports/controle_masse_comparee.py": "bca0d663b35490a9b93fc41facf2507c0cbf13f0d9578756f46599d3364a4f31",
+    "python/vinkulum/_ports/inertie_binaire_compile.py": "2b74e077395f34c469b628175e87212cd950e921a42920b409c06288f631fbd1",
+    "python/vinkulum/_ports/inverse_contrainte_energie.py": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+    "python/vinkulum/_ports/inverse_selectionnee.py": "6658d460bfdcaf08d499da40f58cb87333f658ca69f138631c4c1f3d2ffbc65d",
+    "python/vinkulum/_ports/krylov_contraint.py": "088ada69850eebdfa51aa5eee80a8e4a864cab4a3d76fccbad8554b0c56a15bf",
+    "python/vinkulum/_ports/matrices_certificat.py": "1c239e1e0416261cc159cb962142fc9c1e56692543d404feb25347f85991466d",
+    "python/vinkulum/_ports/ordre_separateurs.py": "a81c39b472567ef86c448ca5c67285f35b035dbf53b07495ab3626cd18d54d53",
+    "python/vinkulum/_ports/ports_krylov.py": "06f6c53478dce24e3103f84957a46dcbc09e0828505e321f8c585e22f977a5ad",
+    "python/vinkulum/_ports/ports_releves.py": "3269dd2d79a1c61289045b152f306c3b76b46f7bbb77d3bc44224bdc51f68953",
+    "python/vinkulum/_ports/racine_masse_blocs.py": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+    "python/vinkulum/_ports/validation_certificat.py": "010aae903d98bef36fe4159308b60c3286a66150f5b8516ff689c5d257bef5de",
+    "python/vinkulum/adjoint_temps.py": "bec0890fb847d55e0ce5cab487a6871a7e757150e3889689179b4a35ffb8ed05",
+    "python/vinkulum/andrews.py": "fb8c9773184d0b4a2cba2b82c9df49c5536fc9cbe6568ccadc0cb027d4a89e96",
+    "python/vinkulum/bancs.py": "d394b4e45f070b86e96364ddff572de6c602f166d76c419fc33974271376439a",
+    "python/vinkulum/campagne.py": "6490de1d767df6262785311bbb0a9a8bb88b36153d12dd6178079aaa7cf7cd8e",
+    "python/vinkulum/contact.py": "577fda6044b06a2ee71e5094c72703a391eaf7d7d0007670c0e652d92f7ffb7a",
+    "python/vinkulum/convergence.py": "c484f244f993d093aaa33e883d3ee4ef3fbdaa566c34adf60b5cb8946c331005",
+    "python/vinkulum/coque.py": "960069c2222d439368d577cb1a6603902ac30ff15ca06114b88302a69822a403",
+    "python/vinkulum/doc.py": "40b5ef53c5c1ebca3d9fba7c2c9613493b4150e5f821d33a50316e636f99caf7",
+    "python/vinkulum/domaines.py": "30ec38823433b87b8b424f8396e8b5d37e2a11509cf68418d1f08f7918f371c1",
+    "python/vinkulum/elliott1988.py": "a8f070de89668cdf2e7d461e5992c80fb1c3e65acdba6154ada4ecce6144069b",
+    "python/vinkulum/floquet.py": "c61fbf7e2b6b090206f24b21d1001e98cce2bcff278e16300b5bdddb97f333df",
+    "python/vinkulum/jantzen2014.py": "721c601b50e44d5432f342eecd0eca90ea970509cefe7c138781d56158866a1a",
+    "python/vinkulum/kim2017.py": "f40825d704c75aa3d288547e537e9d2dfdacf2c6144ea99a3aa84a2e47389612",
+    "python/vinkulum/maquette.py": "c80bf83a719c05d216dfa5017b3e65c2c73cbea5e8cdbc67f548d9d84fbf504e",
+    "python/vinkulum/mjcf.py": "379cb5372c5aef20f2eb7f2ebba7f780e17785095243616c5295cc7c8b0e15a1",
+    "python/vinkulum/osu_s809.py": "a254a23c08cac748372bcfa8f322d63214f290e75077b00139d8ae36a55fcc12",
+    "python/vinkulum/pale_elastique.py": "f0ba4a9d6d7d43ccd6973b3b1548d13791d88a02d07df45f5beb5d643266dcee",
+    "python/vinkulum/peters_he.py": "2ed1836f0cee7dd2ea53c19215cbcd6a45aab2b7e684c65702acc47234c14de7",
+    "python/vinkulum/reduction.py": "4e0dc18549b0bdfc2b86ee41008bbe65f83339b03ddf91b897b0fde93bca3e9d",
+    "python/vinkulum/reduction_contrainte.py": "7406cb10b87632fc86e6a4ca4b861ec329cd4c9554f9284c55d2638dd33d8fbc",
+    "python/vinkulum/reduction_ports.py": "f7cd5e7476b54712bff3a8a14516c8e6a398fdf7beca4a4c0bd6c4c0d2866aba",
+    "python/vinkulum/rotation.py": "55fdf558a778e503d38f2ba4f301b5b95288d6f15594835420cf651fe2899f07",
+    "python/vinkulum/rotor.py": "092f87762941fe520afcbc6cefb684e6b4893f8c4880428896fe4e5ec522703e",
+    "python/vinkulum/sensibilite.py": "7eeb12bc1e8817c9335cb516a51fa2bc530909ef78323bf17598421dea251557",
+    "python/vinkulum/sillage.py": "1be02fad2d0c5a0e4642f7f76833df072d3115c570647f3d9b211af6d3bce6a2",
+    "python/vinkulum/test_analyses.py": "53120f891b884fab8fcdd4c1b67b464409f86a11049fb533ca161db177bebddc",
+    "python/vinkulum/test_assemblage.py": "77647638e7c34b9c4a8bbc5c0a6ea76fb7010bddc1d99657c3b330cf307d7649",
+    "python/vinkulum/test_campagnes.py": "7453f37106504928ab9c67e6ac87df2a6e39adb49a93cfec2f7a613885234381",
+    "python/vinkulum/test_noyau.py": "6d6de6afbb6caf61ef68bcb010a622fd2550971ca6ca41d25dfa3fb65183548a",
+    "python/vinkulum/test_operateurs.py": "8f3481f5252467ed2a07b609bd84c3dfac74dfc59fe96034073e76553d1bdda8",
+    "python/vinkulum/test_reduction_contrainte.py": "e013a6e69e925e807833e4324889913008b2865a537e6c3ce123a844e191b50f",
+    "python/vinkulum/test_reduction_ports.py": "297ede6f22aa2c515dadff96b8e833d23cd2b5bd4fe2e8080826ca07c4710c87",
+    "python/vinkulum/test_reponses_groupees.py": "84baee33ea9ba62e633814a09c046a532f53ae13352b1e9b52e03bb4069f121e",
+    "python/vinkulum/test_schema_lie.py": "dafd7c08956c77cc5529d682a59ced25bf23dda4a7d9031dcfb579a313094695",
+    "python/vinkulum/trim.py": "2c4243c87c5543be1d2205b5cc88fc71b304ae12f739a8224a163985b9f7e9ae",
+    "python/vinkulum/urdf.py": "3e42490fbdb79af2f416d16c0d93208c8590fdf012423cfb90463ef57e4e4497",
+    "python/vinkulum/validation.py": "07a286405d242927a8504769e462312844e4cc2f287658331724b2e67f1c894c",
+    "python/vinkulum/verification.py": "b30a0669cb32102552efe2f8f0b52874bd22d3cbf02bfebb1471cecc298acae4",
+    "src/ad.rs": "1fd44c5469618d90d93ffa530639b44f6836deb992a5b24637b263026e5c75ff",
+    "src/analyse.rs": "0c6be6448f7125b36b0d222ab1265b2992385ecfff6489f2a1a20165596aeb00",
+    "src/assemblage.rs": "71e4b8628abad8953bde4e8a3b0842cc05b6fdd8167d8a7d4c229e7bf6051b2c",
+    "src/certificat.rs": "e14d9f0fd3fddbb2954dd6c4adaa94d6b8ba8f7688b7c0af210b2799af1af71a",
+    "src/certificat/abi.cpp": "fcecf2e9cd4d587cb386290f87a7a2c2638cd71e114453db8a9e4f6174ff97ab",
+    "src/certificat/comparaison_masse_native.cpp": "1628aec48cd2c9a06f8cc7f35968ebe64693cc0aeb9bab556bf2707cfc3773eb",
+    "src/certificat/inertie_binaire_native.cpp": "4ac5ac53dd8cbd61a99cc0d00daf2dddbcc5b9f13f3f845657f6e75c57c24d62",
+    "src/contraintes.rs": "44c9f015ad27af1118aa8972b3f036a724c1d0930b6ec250af4b8ecd9b1a5431",
+    "src/contraintes/equivalentes.rs": "d3c756e24ee532b6e5a214f4904a72d1ad2ac27140dde18737a7e03ca8db1761",
+    "src/contraintes/qr_creux.rs": "b05e0d434b15c62ec9da1d323a5c984dde28df4158a9bd7f644ded4561f9005e",
+    "src/equilibrage.rs": "3c5d0ad141e07152c3cd14213183e2ccb7c9754c118f301135e67771d9d56db0",
+    "src/initialisation.rs": "e2303468faa0adec6e5c0d595ee72b24c0d93336db43a57bdcc47576c23528a5",
+    "src/initialisation/contact.rs": "c7599ec14c079f0aad4093554aad3bf326cab557c84f3fb6d2a63f3b96d540dd",
+    "src/lib.rs": "ff5a6ba938ebdf7eabd9b06ac80d12e4b6d4c0fa92f336ef32ef65897bb8f876",
+    "src/moindres_carres.rs": "5f677b71e7556c26e37fae9e84fbc7a35292b2a363b9c51fa5e05862e8409238",
+    "src/numerique.rs": "6872219a7265400e069e8fa2317315376ee648ba08d83fbb97bb96410f79ffba",
+    "src/partition.rs": "24c59b9b2914f3a1999528937c5410bbb6eae78e1675cf51cebad1fbed4d3674",
+    "src/raffinement.rs": "1baaaac026bf585cc0045fbef8bf93e6094b1e9a150ca4557e19fdfdeec06848",
+    "src/robustesse.rs": "0900a8cfb885e658cc7c8f4bd824a8408e99889b8494c856a9eb8d4df649963c",
+    "src/rotation.rs": "d2d3e922ef599c9000adb05ff4b5187902725243cf53332a7e8e723ac4b0ce2c",
+    "src/schema_lie.rs": "c630e6f6b6018ce966a54dd2f3073675e835b893c78cfdecb0176b80c08d526d",
+    "src/superelement.rs": "2769e6ac826754da3d8b9dc4d183d9f88f9c8c5b4acc3440e564d6c93f6385d3",
+    "src/svd.rs": "80464c440a12672ee419d064b5d605ceee737dc716d6dee215c08b00e64b48cc",
+    "src/tangent.rs": "77cc46fe3719f0ac2074d0592e8092b80fb22a69492941d6354a5da76cf9892e"
+  },
+  "limites": [
+    "Campagne déterministe sur un domaine déclaré, sans garantie universelle de fiabilité.",
+    "Projection dense, seuil de rang 1e-12 après équilibrage ; tolérances dans les unités du modèle.",
+    "Les résidus de contraintes ne constituent pas une borne universelle de distance à la solution exacte.",
+    "Pendule physique et charges constantes : ces preuves ne qualifient pas toutes les lois constitutives et interactions.",
+    "Les performances temporelles de CI sont des diagnostics, pas un classement contrôlé entre solveurs.",
+    "Les simulations antérieures dont l’accélération initiale était plafonnée doivent être recalculées."
+  ],
+  "incidents_de_validation": [
+    "Première CI étendue verte avant découverte du plafonnement par la campagne indépendante.",
+    "Collision de deux constructions maturin dans le même répertoire : tentative rejetée puis constructions séquentielles."
+  ]
+}

@@ -1,0 +1,830 @@
+{
+  "cible": 1e-06,
+  "nombre_essais": 60,
+  "type_campagne": "controle_facteurs_60_essais",
+  "configurations": [
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "facteurs_controle",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.05087757599540055,
+      "preparation_s_plage": [
+        0.049143054988235235,
+        0.0516106050927192
+      ],
+      "reponses_s": 0.10392260900698602,
+      "reponses_s_plage": [
+        0.10303185903467238,
+        0.12184872385114431
+      ],
+      "total_s": 0.15480018500238657,
+      "total_s_plage": [
+        0.15217491402290761,
+        0.1734593289438635
+      ],
+      "erreur_mediane": 5.5705882483384234e-11,
+      "erreur_pire": 5.5705882483384234e-11,
+      "type_certificat": "inertie_kkt_dirigee",
+      "parametres_certificat": {
+        "type": "inertie_kkt_dirigee",
+        "precision_decimal": 32,
+        "gamma_binary64": 252661.87266788757,
+        "gamma_hex": "0x1.ed7aefb394d2bp+17",
+        "frequence_seuil_hz": 80.0,
+        "permutation": "naturelle",
+        "budget_operations": 100000000,
+        "budget_coefficients": 2000000,
+        "budget_rectangulaire": 2000000
+      },
+      "parametres_reduction": {
+        "blocs": 4,
+        "max_directions": 128,
+        "directions_retenues": 1,
+        "profondeur_controle": 8
+      },
+      "parametres_controle": {
+        "classe": "ControleFacteurs",
+        "extension": "gram",
+        "reparation": "ImageFaibleRang",
+        "profondeur": 8,
+        "certification_machine": false
+      },
+      "phases_s": {
+        "condensation": 0.007447174051776528,
+        "selection_direction": 0.013483474962413311,
+        "certification_complement": 0.012115924851968884,
+        "construction_krylov": 0.008219548035413027,
+        "construction_controle": 0.008872885024175048,
+        "reponses": 0.10392260900698602
+      },
+      "phases_s_plages": {
+        "condensation": [
+          0.007124958094209433,
+          0.007677373010665178
+        ],
+        "selection_direction": [
+          0.013270007912069559,
+          0.013941840035840869
+        ],
+        "certification_complement": [
+          0.01192720397375524,
+          0.012310415972024202
+        ],
+        "construction_krylov": [
+          0.008046358125284314,
+          0.008269553072750568
+        ],
+        "construction_controle": [
+          0.008774526882916689,
+          0.010149992071092129
+        ],
+        "reponses": [
+          0.10303185903467238,
+          0.12184872385114431
+        ]
+      },
+      "lambda_min_certifie": 252661.87266788757,
+      "tailles_reduites": [
+        31
+      ],
+      "controle_accepte_tous_essais": true,
+      "majorants_couvrent_oracles": true,
+      "eligible_controle": true,
+      "reponses_certifiees_machine": false
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "inertie_controle",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.04945282684639096,
+      "preparation_s_plage": [
+        0.048667778028175235,
+        0.05036037904210389
+      ],
+      "reponses_s": 0.12204226292669773,
+      "reponses_s_plage": [
+        0.12170757306739688,
+        0.12408591387793422
+      ],
+      "total_s": 0.17116039991378784,
+      "total_s_plage": [
+        0.17071004095487297,
+        0.1744462929200381
+      ],
+      "erreur_mediane": 5.5705882483384234e-11,
+      "erreur_pire": 5.5705882483384234e-11,
+      "type_certificat": "inertie_kkt_dirigee",
+      "parametres_certificat": {
+        "type": "inertie_kkt_dirigee",
+        "precision_decimal": 32,
+        "gamma_binary64": 252661.87266788757,
+        "gamma_hex": "0x1.ed7aefb394d2bp+17",
+        "frequence_seuil_hz": 80.0,
+        "permutation": "naturelle",
+        "budget_operations": 100000000,
+        "budget_coefficients": 2000000,
+        "budget_rectangulaire": 2000000
+      },
+      "parametres_reduction": {
+        "blocs": 4,
+        "max_directions": 128,
+        "directions_retenues": 1,
+        "profondeur_controle": 8
+      },
+      "parametres_controle": {
+        "classe": "ControleComplement",
+        "profondeur": 8,
+        "certification_machine": false
+      },
+      "phases_s": {
+        "condensation": 0.007571239955723286,
+        "selection_direction": 0.013559860875830054,
+        "certification_complement": 0.012073233025148511,
+        "construction_krylov": 0.008157178992405534,
+        "construction_controle": 0.008091313997283578,
+        "reponses": 0.12204226292669773
+      },
+      "phases_s_plages": {
+        "condensation": [
+          0.007134176092222333,
+          0.007678175112232566
+        ],
+        "selection_direction": [
+          0.013513852842152119,
+          0.013902614824473858
+        ],
+        "certification_complement": [
+          0.011932254070416093,
+          0.01212278800085187
+        ],
+        "construction_krylov": [
+          0.008044844958931208,
+          0.008365896996110678
+        ],
+        "construction_controle": [
+          0.008042650064453483,
+          0.008290904108434916
+        ],
+        "reponses": [
+          0.12170757306739688,
+          0.12408591387793422
+        ]
+      },
+      "lambda_min_certifie": 252661.87266788757,
+      "tailles_reduites": [
+        31
+      ],
+      "controle_accepte_tous_essais": true,
+      "majorants_couvrent_oracles": true,
+      "eligible_controle": true,
+      "reponses_certifiees_machine": false
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "lu_corrigee",
+      "modes_demandes": 0,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.0010885780211538076,
+      "preparation_s_plage": [
+        0.001076974906027317,
+        0.0011169719509780407
+      ],
+      "reponses_s": 0.10259707900695503,
+      "reponses_s_plage": [
+        0.10233829612843692,
+        0.10341833718121052
+      ],
+      "total_s": 0.10368565702810884,
+      "total_s_plage": [
+        0.10341527103446424,
+        0.10453530913218856
+      ],
+      "erreur_mediane": 3.497890611682929e-10,
+      "erreur_pire": 3.497890611682929e-10,
+      "type_certificat": "aucun",
+      "parametres_certificat": {
+        "type": "aucun"
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "hcb_standard",
+      "modes_demandes": 185,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.030501746106892824,
+      "preparation_s_plage": [
+        0.030259884893894196,
+        0.030916617950424552
+      ],
+      "reponses_s": 0.0774588999338448,
+      "reponses_s_plage": [
+        0.07697488600388169,
+        0.07778127491474152
+      ],
+      "total_s": 0.10789150395430624,
+      "total_s_plage": [
+        0.107718784827739,
+        0.10828302102163434
+      ],
+      "erreur_mediane": 4.13754841086073e-08,
+      "erreur_pire": 4.1375484549125716e-08,
+      "type_certificat": "aucun",
+      "parametres_certificat": {
+        "type": "aucun"
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "hcb_energie",
+      "modes_demandes": 185,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.03075618203729391,
+      "preparation_s_plage": [
+        0.030387117061764002,
+        0.030861041974276304
+      ],
+      "reponses_s": 0.07787421299144626,
+      "reponses_s_plage": [
+        0.0772091830149293,
+        0.07978705293498933
+      ],
+      "total_s": 0.10873525496572256,
+      "total_s_plage": [
+        0.1075963000766933,
+        0.11054323497228324
+      ],
+      "erreur_mediane": 4.1375484135830455e-08,
+      "erreur_pire": 4.1375484296572685e-08,
+      "type_certificat": "aucun",
+      "parametres_certificat": {
+        "type": "aucun"
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "facteurs_controle",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.12452010111883283,
+      "preparation_s_plage": [
+        0.12387727503664792,
+        0.1250914630945772
+      ],
+      "reponses_s": 0.1288049800787121,
+      "reponses_s_plage": [
+        0.1284860810264945,
+        0.1301798839122057
+      ],
+      "total_s": 0.25332508119754493,
+      "total_s_plage": [
+        0.2523633560631424,
+        0.2552713470067829
+      ],
+      "erreur_mediane": 4.1622215937829787e-10,
+      "erreur_pire": 4.1622215937829787e-10,
+      "type_certificat": "inertie_kkt_dirigee",
+      "parametres_certificat": {
+        "type": "inertie_kkt_dirigee",
+        "precision_decimal": 32,
+        "gamma_binary64": 252661.87266788757,
+        "gamma_hex": "0x1.ed7aefb394d2bp+17",
+        "frequence_seuil_hz": 80.0,
+        "permutation": "naturelle",
+        "budget_operations": 100000000,
+        "budget_coefficients": 2000000,
+        "budget_rectangulaire": 2000000
+      },
+      "parametres_reduction": {
+        "blocs": 4,
+        "max_directions": 128,
+        "directions_retenues": 1,
+        "profondeur_controle": 8
+      },
+      "parametres_controle": {
+        "classe": "ControleFacteurs",
+        "extension": "gram",
+        "reparation": "ImageFaibleRang",
+        "profondeur": 8,
+        "certification_machine": false
+      },
+      "phases_s": {
+        "condensation": 0.023066054098308086,
+        "selection_direction": 0.015515021979808807,
+        "certification_complement": 0.04896102799102664,
+        "construction_krylov": 0.014770061010494828,
+        "construction_controle": 0.02206189790740609,
+        "reponses": 0.1288049800787121
+      },
+      "phases_s_plages": {
+        "condensation": [
+          0.023030075943097472,
+          0.02351984102278948
+        ],
+        "selection_direction": [
+          0.015357400989159942,
+          0.015692780958488584
+        ],
+        "certification_complement": [
+          0.048860016046091914,
+          0.048977780155837536
+        ],
+        "construction_krylov": [
+          0.014601889066398144,
+          0.014839163050055504
+        ],
+        "construction_controle": [
+          0.022027892991900444,
+          0.022207936039194465
+        ],
+        "reponses": [
+          0.1284860810264945,
+          0.1301798839122057
+        ]
+      },
+      "lambda_min_certifie": 252661.87266788757,
+      "tailles_reduites": [
+        39
+      ],
+      "controle_accepte_tous_essais": true,
+      "majorants_couvrent_oracles": true,
+      "eligible_controle": true,
+      "reponses_certifiees_machine": false
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "inertie_controle",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.12326602800749242,
+      "preparation_s_plage": [
+        0.1231138480361551,
+        0.12345931702293456
+      ],
+      "reponses_s": 0.17475192598067224,
+      "reponses_s_plage": [
+        0.17326813307590783,
+        0.17499412782490253
+      ],
+      "total_s": 0.29801795398816466,
+      "total_s_plage": [
+        0.2967274500988424,
+        0.29810797586105764
+      ],
+      "erreur_mediane": 4.1622215937829787e-10,
+      "erreur_pire": 4.1622215937829787e-10,
+      "type_certificat": "inertie_kkt_dirigee",
+      "parametres_certificat": {
+        "type": "inertie_kkt_dirigee",
+        "precision_decimal": 32,
+        "gamma_binary64": 252661.87266788757,
+        "gamma_hex": "0x1.ed7aefb394d2bp+17",
+        "frequence_seuil_hz": 80.0,
+        "permutation": "naturelle",
+        "budget_operations": 100000000,
+        "budget_coefficients": 2000000,
+        "budget_rectangulaire": 2000000
+      },
+      "parametres_reduction": {
+        "blocs": 4,
+        "max_directions": 128,
+        "directions_retenues": 1,
+        "profondeur_controle": 8
+      },
+      "parametres_controle": {
+        "classe": "ControleComplement",
+        "profondeur": 8,
+        "certification_machine": false
+      },
+      "phases_s": {
+        "condensation": 0.023326552007347345,
+        "selection_direction": 0.015418017050251365,
+        "certification_complement": 0.04886353202164173,
+        "construction_krylov": 0.014718431979417801,
+        "construction_controle": 0.020932391984388232,
+        "reponses": 0.17475192598067224
+      },
+      "phases_s_plages": {
+        "condensation": [
+          0.023293629055842757,
+          0.023363162064924836
+        ],
+        "selection_direction": [
+          0.01524705090560019,
+          0.015521954977884889
+        ],
+        "certification_complement": [
+          0.048820910044014454,
+          0.04898547497577965
+        ],
+        "construction_krylov": [
+          0.014662023866549134,
+          0.014819866046309471
+        ],
+        "construction_controle": [
+          0.020870293024927378,
+          0.020995903061702847
+        ],
+        "reponses": [
+          0.17326813307590783,
+          0.17499412782490253
+        ]
+      },
+      "lambda_min_certifie": 252661.87266788757,
+      "tailles_reduites": [
+        39
+      ],
+      "controle_accepte_tous_essais": true,
+      "majorants_couvrent_oracles": true,
+      "eligible_controle": true,
+      "reponses_certifiees_machine": false
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "lu_corrigee",
+      "modes_demandes": 0,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.0011694619897753,
+      "preparation_s_plage": [
+        0.0011273219715803862,
+        0.0012304990086704493
+      ],
+      "reponses_s": 0.22102200821973383,
+      "reponses_s_plage": [
+        0.22079359088093042,
+        0.2225149970036
+      ],
+      "total_s": 0.22219147020950913,
+      "total_s_plage": [
+        0.22202408988960087,
+        0.2236423189751804
+      ],
+      "erreur_mediane": 1.0539617861197251e-08,
+      "erreur_pire": 1.0539617861197251e-08,
+      "type_certificat": "aucun",
+      "parametres_certificat": {
+        "type": "aucun"
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "hcb_standard",
+      "modes_demandes": 761,
+      "eligible_champs": false,
+      "acceptations_champs": 1,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.66427147295326,
+      "preparation_s_plage": [
+        0.6628485168330371,
+        0.6652292010840029
+      ],
+      "reponses_s": 0.9697902319021523,
+      "reponses_s_plage": [
+        0.9674785509705544,
+        0.9742377211805433
+      ],
+      "total_s": 1.6350194329861552,
+      "total_s_plage": [
+        1.6303270678035915,
+        1.6385091941338032
+      ],
+      "erreur_mediane": 1.1570157721632782e-06,
+      "erreur_pire": 1.6611524670777207e-06,
+      "type_certificat": "aucun",
+      "parametres_certificat": {
+        "type": "aucun"
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "hcb_energie",
+      "modes_demandes": 761,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.6603411210235208,
+      "preparation_s_plage": [
+        0.6586022730916739,
+        0.6626717611216009
+      ],
+      "reponses_s": 0.9955936109181494,
+      "reponses_s_plage": [
+        0.9702386790886521,
+        0.998091469053179
+      ],
+      "total_s": 1.6541958840098232,
+      "total_s_plage": [
+        1.630579800112173,
+        1.66076323017478
+      ],
+      "erreur_mediane": 3.973793453006199e-09,
+      "erreur_pire": 5.906683297520432e-09,
+      "type_certificat": "aucun",
+      "parametres_certificat": {
+        "type": "aucun"
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "facteurs_controle",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.43936592200770974,
+      "preparation_s_plage": [
+        0.4392216468695551,
+        0.44300757301971316
+      ],
+      "reponses_s": 0.22970799496397376,
+      "reponses_s_plage": [
+        0.22965005482546985,
+        0.2319540921598673
+      ],
+      "total_s": 0.6711757390294224,
+      "total_s_plage": [
+        0.6690159768331796,
+        0.6727155679836869
+      ],
+      "erreur_mediane": 2.167009108040826e-09,
+      "erreur_pire": 2.167009108040826e-09,
+      "type_certificat": "inertie_kkt_dirigee",
+      "parametres_certificat": {
+        "type": "inertie_kkt_dirigee",
+        "precision_decimal": 32,
+        "gamma_binary64": 252661.87266788757,
+        "gamma_hex": "0x1.ed7aefb394d2bp+17",
+        "frequence_seuil_hz": 80.0,
+        "permutation": "naturelle",
+        "budget_operations": 100000000,
+        "budget_coefficients": 2000000,
+        "budget_rectangulaire": 2000000
+      },
+      "parametres_reduction": {
+        "blocs": 4,
+        "max_directions": 128,
+        "directions_retenues": 1,
+        "profondeur_controle": 8
+      },
+      "parametres_controle": {
+        "classe": "ControleFacteurs",
+        "extension": "gram",
+        "reparation": "ImageFaibleRang",
+        "profondeur": 8,
+        "certification_machine": false
+      },
+      "phases_s": {
+        "condensation": 0.08620926109142601,
+        "selection_direction": 0.021642446983605623,
+        "certification_complement": 0.19744379492476583,
+        "construction_krylov": 0.04549863003194332,
+        "construction_controle": 0.08995551010593772,
+        "reponses": 0.22970799496397376
+      },
+      "phases_s_plages": {
+        "condensation": [
+          0.08560847397893667,
+          0.086472432827577
+        ],
+        "selection_direction": [
+          0.02149195014499128,
+          0.02181163989007473
+        ],
+        "certification_complement": [
+          0.19605676806531847,
+          0.19911238993518054
+        ],
+        "construction_krylov": [
+          0.04546664818190038,
+          0.045933529967442155
+        ],
+        "construction_controle": [
+          0.0883148389402777,
+          0.0905768268276006
+        ],
+        "reponses": [
+          0.22965005482546985,
+          0.2319540921598673
+        ]
+      },
+      "lambda_min_certifie": 252661.87266788757,
+      "tailles_reduites": [
+        47
+      ],
+      "controle_accepte_tous_essais": true,
+      "majorants_couvrent_oracles": true,
+      "eligible_controle": true,
+      "reponses_certifiees_machine": false
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "inertie_controle",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.4371021119877696,
+      "preparation_s_plage": [
+        0.43648935202509165,
+        0.4393582479096949
+      ],
+      "reponses_s": 0.3819883510004729,
+      "reponses_s_plage": [
+        0.3809447279199958,
+        0.383059605024755
+      ],
+      "total_s": 0.8190904629882425,
+      "total_s_plage": [
+        0.8174340799450874,
+        0.8224178529344499
+      ],
+      "erreur_mediane": 2.167009108040826e-09,
+      "erreur_pire": 2.167009108040826e-09,
+      "type_certificat": "inertie_kkt_dirigee",
+      "parametres_certificat": {
+        "type": "inertie_kkt_dirigee",
+        "precision_decimal": 32,
+        "gamma_binary64": 252661.87266788757,
+        "gamma_hex": "0x1.ed7aefb394d2bp+17",
+        "frequence_seuil_hz": 80.0,
+        "permutation": "naturelle",
+        "budget_operations": 100000000,
+        "budget_coefficients": 2000000,
+        "budget_rectangulaire": 2000000
+      },
+      "parametres_reduction": {
+        "blocs": 4,
+        "max_directions": 128,
+        "directions_retenues": 1,
+        "profondeur_controle": 8
+      },
+      "parametres_controle": {
+        "classe": "ControleComplement",
+        "profondeur": 8,
+        "certification_machine": false
+      },
+      "phases_s": {
+        "condensation": 0.08596017607487738,
+        "selection_direction": 0.02170579810626805,
+        "certification_complement": 0.19870362989604473,
+        "construction_krylov": 0.046564202988520265,
+        "construction_controle": 0.08416317496448755,
+        "reponses": 0.3819883510004729
+      },
+      "phases_s_plages": {
+        "condensation": [
+          0.08556320797652006,
+          0.08900745189748704
+        ],
+        "selection_direction": [
+          0.02159060793928802,
+          0.02224967605434358
+        ],
+        "certification_complement": [
+          0.1984015330672264,
+          0.1994002889841795
+        ],
+        "construction_krylov": [
+          0.04586165305227041,
+          0.04668452311307192
+        ],
+        "construction_controle": [
+          0.08283917792141438,
+          0.08425460988655686
+        ],
+        "reponses": [
+          0.3809447279199958,
+          0.383059605024755
+        ]
+      },
+      "lambda_min_certifie": 252661.87266788757,
+      "tailles_reduites": [
+        47
+      ],
+      "controle_accepte_tous_essais": true,
+      "majorants_couvrent_oracles": true,
+      "eligible_controle": true,
+      "reponses_certifiees_machine": false
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "lu_corrigee",
+      "modes_demandes": 0,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.0018661417998373508,
+      "preparation_s_plage": [
+        0.001805576030164957,
+        0.001954310107976198
+      ],
+      "reponses_s": 0.6939361009281129,
+      "reponses_s_plage": [
+        0.6932597891427577,
+        0.6984420791268349
+      ],
+      "total_s": 0.6958904110360891,
+      "total_s_plage": [
+        0.695125930942595,
+        0.7002476551569998
+      ],
+      "erreur_mediane": 1.1060932267566793e-08,
+      "erreur_pire": 1.1060932267566793e-08,
+      "type_certificat": "aucun",
+      "parametres_certificat": {
+        "type": "aucun"
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "hcb_standard",
+      "modes_demandes": 768,
+      "eligible_champs": false,
+      "acceptations_champs": 0,
+      "chauffe_acceptee": false,
+      "preparation_s": 5.015322225866839,
+      "preparation_s_plage": [
+        5.001493594842032,
+        5.016298515023664
+      ],
+      "reponses_s": 1.5512949211988598,
+      "reponses_s_plage": [
+        1.53828512202017,
+        1.5663373519200832
+      ],
+      "total_s": 6.553607347887009,
+      "total_s_plage": [
+        6.552788516040891,
+        6.582635866943747
+      ],
+      "erreur_mediane": 3.2300013153986044e-05,
+      "erreur_pire": 3.230001316387924e-05,
+      "type_certificat": "aucun",
+      "parametres_certificat": {
+        "type": "aucun"
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "hcb_energie",
+      "modes_demandes": 768,
+      "eligible_champs": false,
+      "acceptations_champs": 0,
+      "chauffe_acceptee": false,
+      "preparation_s": 4.955887282034382,
+      "preparation_s_plage": [
+        4.946661068126559,
+        4.9959226828068495
+      ],
+      "reponses_s": 1.5307118461932987,
+      "reponses_s_plage": [
+        1.5247340770438313,
+        1.5621765819378197
+      ],
+      "total_s": 6.508837650064379,
+      "total_s_plage": [
+        6.480621359078214,
+        6.526634529000148
+      ],
+      "erreur_mediane": 3.230001279751465e-05,
+      "erreur_pire": 3.2300012907398856e-05,
+      "type_certificat": "aucun",
+      "parametres_certificat": {
+        "type": "aucun"
+      }
+    }
+  ],
+  "portee": "consoles natives, réponses matricielles ; HCB officiel avec pont de réponse local, aucune simulation FFRF"
+}

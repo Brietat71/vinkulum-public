@@ -1,0 +1,1173 @@
+{
+  "schema": 1,
+  "cible": 1e-06,
+  "statut": "sondes exploratoires non reproductibles exactement",
+  "nombre_observations": 43,
+  "nombre_observations_champs": 39,
+  "champs_acceptes_declares": 27,
+  "champs_refuses_declares": 12,
+  "familles": [
+    {
+      "id": "krylov_initial",
+      "fichiers": {
+        ".py": "sources/vinkulum-pilot-krylov-contraint.py",
+        ".log": "journaux/vinkulum-pilot-krylov-contraint.log",
+        ".json": "rapports/vinkulum-pilot-krylov-contraint.json.gz"
+      },
+      "observations": 9,
+      "champs_acceptes_declares": 6,
+      "champs_refuses_declares": 3,
+      "majorants_sous_seuil_declares": 0
+    },
+    {
+      "id": "controle_scalaire",
+      "fichiers": {
+        ".py": "sources/vinkulum-pilot-controle-complement.py",
+        ".log": "journaux/vinkulum-pilot-controle-complement.log"
+      },
+      "observations": 9,
+      "champs_acceptes_declares": 6,
+      "champs_refuses_declares": 3,
+      "majorants_sous_seuil_declares": 0
+    },
+    {
+      "id": "controle_anisotrope",
+      "fichiers": {
+        ".log": "journaux/vinkulum-pilot-controle-complement-anisotrope.log",
+        ".json": "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz"
+      },
+      "observations": 9,
+      "champs_acceptes_declares": 6,
+      "champs_refuses_declares": 3,
+      "majorants_sous_seuil_declares": 0
+    },
+    {
+      "id": "controle_repare",
+      "fichiers": {
+        ".py": "sources/vinkulum-pilot-controle-complement-repare.py",
+        ".log": "journaux/vinkulum-pilot-controle-complement-repare.log",
+        ".json": "rapports/vinkulum-pilot-controle-complement-repare.json.gz"
+      },
+      "observations": 9,
+      "champs_acceptes_declares": 6,
+      "champs_refuses_declares": 3,
+      "majorants_sous_seuil_declares": 6
+    },
+    {
+      "id": "selection_fraiche",
+      "fichiers": {
+        ".py": "sources/vinkulum-krylov-selection-fraiche.py",
+        ".log": "journaux/vinkulum-krylov-selection-fraiche.log",
+        ".json": "rapports/vinkulum-krylov-selection-fraiche.json.gz"
+      },
+      "observations": 3,
+      "champs_acceptes_declares": 3,
+      "champs_refuses_declares": 0,
+      "majorants_sous_seuil_declares": 3
+    },
+    {
+      "id": "precisions_complement",
+      "fichiers": {
+        ".log": "journaux/vinkulum-complement-precisions.log",
+        ".json": "rapports/vinkulum-complement-precisions.json.gz"
+      },
+      "observations": 4,
+      "champs_acceptes_declares": 0,
+      "champs_refuses_declares": 0,
+      "majorants_sous_seuil_declares": 0
+    }
+  ],
+  "observations": [
+    {
+      "famille": "krylov_initial",
+      "index": 0,
+      "provenance": "rapports/vinkulum-pilot-krylov-contraint.json.gz",
+      "ligne_journal": 1,
+      "n": 32,
+      "blocs": 2,
+      "taille": 19,
+      "champs_sous_seuil_declares": false,
+      "erreur_max_toutes_normes": 9.965982027551347e-06,
+      "maxima_operateurs": {
+        "masse": 6.87813532825907e-07,
+        "deformation": 9.965982027551347e-06,
+        "port": 1.348243926999255e-09
+      },
+      "temps_indicatifs_s": {
+        "prep": 0.0065957289189100266,
+        "reponses": 0.016677501145750284
+      },
+      "defaut_contrainte": 1.3908015480776289e-16
+    },
+    {
+      "famille": "krylov_initial",
+      "index": 1,
+      "provenance": "rapports/vinkulum-pilot-krylov-contraint.json.gz",
+      "ligne_journal": 2,
+      "n": 32,
+      "blocs": 4,
+      "taille": 31,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 8.153253591411316e-11,
+      "maxima_operateurs": {
+        "masse": 2.6141059261335264e-12,
+        "deformation": 8.153253591411316e-11,
+        "port": 1.3715339644458948e-11
+      },
+      "temps_indicatifs_s": {
+        "prep": 0.008186104940250516,
+        "reponses": 0.018724757945165038
+      },
+      "defaut_contrainte": 4.989621538195175e-15
+    },
+    {
+      "famille": "krylov_initial",
+      "index": 2,
+      "provenance": "rapports/vinkulum-pilot-krylov-contraint.json.gz",
+      "ligne_journal": 3,
+      "n": 32,
+      "blocs": 6,
+      "taille": 43,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 9.959857592986899e-11,
+      "maxima_operateurs": {
+        "masse": 2.8116732836488593e-12,
+        "deformation": 9.959857592986899e-11,
+        "port": 1.3715339644458956e-11
+      },
+      "temps_indicatifs_s": {
+        "prep": 0.010451327078044415,
+        "reponses": 0.020830346969887614
+      },
+      "defaut_contrainte": 5.945769282122487e-14
+    },
+    {
+      "famille": "krylov_initial",
+      "index": 3,
+      "provenance": "rapports/vinkulum-pilot-krylov-contraint.json.gz",
+      "ligne_journal": 4,
+      "n": 128,
+      "blocs": 2,
+      "taille": 23,
+      "champs_sous_seuil_declares": false,
+      "erreur_max_toutes_normes": 2.50162119164385e-06,
+      "maxima_operateurs": {
+        "masse": 8.423400795351183e-08,
+        "deformation": 2.50162119164385e-06,
+        "port": 2.273619828489122e-10
+      },
+      "temps_indicatifs_s": {
+        "prep": 0.011501692002639174,
+        "reponses": 0.025165071012452245
+      },
+      "defaut_contrainte": 1.19305951787296e-16
+    },
+    {
+      "famille": "krylov_initial",
+      "index": 4,
+      "provenance": "rapports/vinkulum-pilot-krylov-contraint.json.gz",
+      "ligne_journal": 5,
+      "n": 128,
+      "blocs": 4,
+      "taille": 39,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 6.229636264910619e-10,
+      "maxima_operateurs": {
+        "masse": 3.2712951956625303e-12,
+        "deformation": 6.229636264910619e-10,
+        "port": 5.91266684208182e-11
+      },
+      "temps_indicatifs_s": {
+        "prep": 0.015074551105499268,
+        "reponses": 0.028921759920194745
+      },
+      "defaut_contrainte": 4.065405690340567e-15
+    },
+    {
+      "famille": "krylov_initial",
+      "index": 5,
+      "provenance": "rapports/vinkulum-pilot-krylov-contraint.json.gz",
+      "ligne_journal": 6,
+      "n": 128,
+      "blocs": 6,
+      "taille": 55,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 6.291284601361114e-10,
+      "maxima_operateurs": {
+        "masse": 3.26993381473312e-12,
+        "deformation": 6.291284601361114e-10,
+        "port": 5.912666842081815e-11
+      },
+      "temps_indicatifs_s": {
+        "prep": 0.018252756912261248,
+        "reponses": 0.03202627506107092
+      },
+      "defaut_contrainte": 2.8546667316135285e-14
+    },
+    {
+      "famille": "krylov_initial",
+      "index": 6,
+      "provenance": "rapports/vinkulum-pilot-krylov-contraint.json.gz",
+      "ligne_journal": 7,
+      "n": 512,
+      "blocs": 2,
+      "taille": 27,
+      "champs_sous_seuil_declares": false,
+      "erreur_max_toutes_normes": 2.658572739845911e-06,
+      "maxima_operateurs": {
+        "masse": 6.910997660902105e-08,
+        "deformation": 2.658572739845911e-06,
+        "port": 1.9924762278747477e-10
+      },
+      "temps_indicatifs_s": {
+        "prep": 0.034659601049497724,
+        "reponses": 0.057738610077649355
+      },
+      "defaut_contrainte": 2.824139487685137e-16
+    },
+    {
+      "famille": "krylov_initial",
+      "index": 7,
+      "provenance": "rapports/vinkulum-pilot-krylov-contraint.json.gz",
+      "ligne_journal": 8,
+      "n": 512,
+      "blocs": 4,
+      "taille": 47,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 6.3830818925018605e-09,
+      "maxima_operateurs": {
+        "masse": 3.3579033796411735e-12,
+        "deformation": 6.3830818925018605e-09,
+        "port": 1.559106110902841e-10
+      },
+      "temps_indicatifs_s": {
+        "prep": 0.04273240896873176,
+        "reponses": 0.06777623784728348
+      },
+      "defaut_contrainte": 1.1843694608284695e-14
+    },
+    {
+      "famille": "krylov_initial",
+      "index": 8,
+      "provenance": "rapports/vinkulum-pilot-krylov-contraint.json.gz",
+      "ligne_journal": 9,
+      "n": 512,
+      "blocs": 6,
+      "taille": 67,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 6.3828244219073676e-09,
+      "maxima_operateurs": {
+        "masse": 3.357902847279475e-12,
+        "deformation": 6.3828244219073676e-09,
+        "port": 1.5591061109028408e-10
+      },
+      "temps_indicatifs_s": {
+        "prep": 0.050035767955705523,
+        "reponses": 0.07646139478310943
+      },
+      "defaut_contrainte": 1.628124144632206e-13
+    },
+    {
+      "famille": "controle_scalaire",
+      "index": 0,
+      "provenance": "journaux/vinkulum-pilot-controle-complement.log",
+      "ligne_journal": 1,
+      "n": 32,
+      "blocs": 2,
+      "taille": 19,
+      "delta": 1.1065507903326461,
+      "bS": 1.1549259055755274e-05,
+      "majorants_relatifs_max_declares": {
+        "masse": null,
+        "deformation": 0.01697027596445525
+      },
+      "majorants_relatifs_sous_seuil_declares": false,
+      "champs_sous_seuil_declares": false,
+      "maxima_operateurs": {
+        "masse": 6.878135328624715e-07,
+        "deformation": 9.965982020014633e-06,
+        "port": 1.3508947138187578e-09
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.006375979166477919,
+        "reponses": 0.13638719194568694
+      },
+      "couverture": "Résumé du journal ; tableaux par fréquence perdus"
+    },
+    {
+      "famille": "controle_scalaire",
+      "index": 1,
+      "provenance": "journaux/vinkulum-pilot-controle-complement.log",
+      "ligne_journal": 2,
+      "n": 32,
+      "blocs": 4,
+      "taille": 31,
+      "delta": 5.315653246955225e-07,
+      "bS": 6.466962285159815e-11,
+      "majorants_relatifs_max_declares": {
+        "masse": 1.215992581518272e-05,
+        "deformation": 7.07807157025915e-08
+      },
+      "majorants_relatifs_sous_seuil_declares": false,
+      "champs_sous_seuil_declares": true,
+      "maxima_operateurs": {
+        "masse": 1.8003593873921168e-12,
+        "deformation": 4.962816478838646e-11,
+        "port": 3.067306366683378e-11
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.00699826586060226,
+        "reponses": 0.16422850801609457
+      },
+      "couverture": "Résumé du journal ; tableaux par fréquence perdus"
+    },
+    {
+      "famille": "controle_scalaire",
+      "index": 2,
+      "provenance": "journaux/vinkulum-pilot-controle-complement.log",
+      "ligne_journal": 3,
+      "n": 32,
+      "blocs": 6,
+      "taille": 43,
+      "delta": 4.6339509602156825e-06,
+      "bS": 7.706225313684146e-10,
+      "majorants_relatifs_max_declares": {
+        "masse": 0.00014477595055121007,
+        "deformation": 8.368301294065731e-07
+      },
+      "majorants_relatifs_sous_seuil_declares": false,
+      "champs_sous_seuil_declares": true,
+      "maxima_operateurs": {
+        "masse": 8.412767461914025e-13,
+        "deformation": 5.3484306266952364e-11,
+        "port": 2.368612024957024e-11
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.0075130288023501635,
+        "reponses": 0.1981076889205724
+      },
+      "couverture": "Résumé du journal ; tableaux par fréquence perdus"
+    },
+    {
+      "famille": "controle_scalaire",
+      "index": 3,
+      "provenance": "journaux/vinkulum-pilot-controle-complement.log",
+      "ligne_journal": 4,
+      "n": 128,
+      "blocs": 2,
+      "taille": 23,
+      "delta": 1.1938581897172063,
+      "bS": 1.3290352977615894e-05,
+      "majorants_relatifs_max_declares": {
+        "masse": null,
+        "deformation": 0.01988083338022054
+      },
+      "majorants_relatifs_sous_seuil_declares": false,
+      "champs_sous_seuil_declares": false,
+      "maxima_operateurs": {
+        "masse": 8.42340079424189e-08,
+        "deformation": 2.5016212022225e-06,
+        "port": 2.549154764620506e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.014121612068265676,
+        "reponses": 0.21888700686395168
+      },
+      "couverture": "Résumé du journal ; tableaux par fréquence perdus"
+    },
+    {
+      "famille": "controle_scalaire",
+      "index": 4,
+      "provenance": "journaux/vinkulum-pilot-controle-complement.log",
+      "ligne_journal": 5,
+      "n": 128,
+      "blocs": 4,
+      "taille": 39,
+      "delta": 8.863725699149321e-07,
+      "bS": 5.258018474858802e-11,
+      "majorants_relatifs_max_declares": {
+        "masse": 1.116093985397359e-05,
+        "deformation": 6.16179823918728e-08
+      },
+      "majorants_relatifs_sous_seuil_declares": false,
+      "champs_sous_seuil_declares": true,
+      "maxima_operateurs": {
+        "masse": 4.224971604862335e-12,
+        "deformation": 4.047728686947106e-10,
+        "port": 7.448054921768674e-11
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.016697918996214867,
+        "reponses": 0.32036692602559924
+      },
+      "couverture": "Résumé du journal ; tableaux par fréquence perdus"
+    },
+    {
+      "famille": "controle_scalaire",
+      "index": 5,
+      "provenance": "journaux/vinkulum-pilot-controle-complement.log",
+      "ligne_journal": 6,
+      "n": 128,
+      "blocs": 6,
+      "taille": 55,
+      "delta": 1.2520759085143808e-05,
+      "bS": 3.692113973250816e-10,
+      "majorants_relatifs_max_declares": {
+        "masse": 7.889258455781554e-05,
+        "deformation": 4.5690525009758583e-07
+      },
+      "majorants_relatifs_sous_seuil_declares": false,
+      "champs_sous_seuil_declares": true,
+      "maxima_operateurs": {
+        "masse": 3.918852235276319e-12,
+        "deformation": 3.2510089166322263e-10,
+        "port": 3.6163891045970587e-11
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.020154856145381927,
+        "reponses": 0.45380248385481536
+      },
+      "couverture": "Résumé du journal ; tableaux par fréquence perdus"
+    },
+    {
+      "famille": "controle_scalaire",
+      "index": 6,
+      "provenance": "journaux/vinkulum-pilot-controle-complement.log",
+      "ligne_journal": 7,
+      "n": 512,
+      "blocs": 2,
+      "taille": 27,
+      "delta": 1.1315589013755567,
+      "bS": 1.1930890600720575e-05,
+      "majorants_relatifs_max_declares": {
+        "masse": null,
+        "deformation": 0.022582535347849462
+      },
+      "majorants_relatifs_sous_seuil_declares": false,
+      "champs_sous_seuil_declares": false,
+      "maxima_operateurs": {
+        "masse": 6.910997661153268e-08,
+        "deformation": 2.6585727285457594e-06,
+        "port": 2.3245244516584691e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.04987221397459507,
+        "reponses": 0.5753338630311191
+      },
+      "couverture": "Résumé du journal ; tableaux par fréquence perdus"
+    },
+    {
+      "famille": "controle_scalaire",
+      "index": 7,
+      "provenance": "journaux/vinkulum-pilot-controle-complement.log",
+      "ligne_journal": 8,
+      "n": 512,
+      "blocs": 4,
+      "taille": 47,
+      "delta": 4.243455865144527e-06,
+      "bS": 1.5316099573981646e-10,
+      "majorants_relatifs_max_declares": {
+        "masse": 4.309791176751132e-05,
+        "deformation": 2.4072597037516477e-07
+      },
+      "majorants_relatifs_sous_seuil_declares": false,
+      "champs_sous_seuil_declares": true,
+      "maxima_operateurs": {
+        "masse": 5.4635775559040035e-12,
+        "deformation": 2.128551146377475e-09,
+        "port": 2.535054408716079e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.061168873915448785,
+        "reponses": 1.0470051809679717
+      },
+      "couverture": "Résumé du journal ; tableaux par fréquence perdus"
+    },
+    {
+      "famille": "controle_scalaire",
+      "index": 8,
+      "provenance": "journaux/vinkulum-pilot-controle-complement.log",
+      "ligne_journal": 9,
+      "n": 512,
+      "blocs": 6,
+      "taille": 67,
+      "delta": 0.00015275899343290705,
+      "bS": 2.1056829248591057e-09,
+      "majorants_relatifs_max_declares": {
+        "masse": 0.0006006081295720767,
+        "deformation": 3.6728064568909227e-06
+      },
+      "majorants_relatifs_sous_seuil_declares": false,
+      "champs_sous_seuil_declares": true,
+      "maxima_operateurs": {
+        "masse": 1.7337340285837669e-12,
+        "deformation": 2.311111286378091e-09,
+        "port": 1.1524326259235393e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.07897810405120254,
+        "reponses": 1.716234538005665
+      },
+      "couverture": "Résumé du journal ; tableaux par fréquence perdus"
+    },
+    {
+      "famille": "controle_anisotrope",
+      "index": 0,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz",
+      "ligne_journal": 1,
+      "n": 32,
+      "blocs": 2,
+      "taille": 19,
+      "champs_sous_seuil_declares": false,
+      "erreur_max_toutes_normes": 9.965982020014633e-06,
+      "maxima_operateurs": {
+        "masse": 6.878135328624715e-07,
+        "deformation": 9.965982020014633e-06,
+        "port": 1.3508947138187578e-09
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.007230650167912245,
+        "reponses": 0.1934954470489174
+      },
+      "delta": 1.1065507903326461,
+      "bS": 1.1549258142257957e-05,
+      "marge_min": 0.0015627821743402926,
+      "majorants_relatifs_max_declares": {
+        "masse": 0.02957991786852816,
+        "deformation": 0.009744829288209318
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_anisotrope",
+      "index": 1,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz",
+      "ligne_journal": 2,
+      "n": 32,
+      "blocs": 4,
+      "taille": 31,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 4.962816478838646e-11,
+      "maxima_operateurs": {
+        "masse": 1.8003593873921168e-12,
+        "deformation": 4.962816478838646e-11,
+        "port": 3.067306366683378e-11
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.008096621837466955,
+        "reponses": 0.2597452600020915
+      },
+      "delta": 5.315653246955225e-07,
+      "bS": 3.1901275581269924e-11,
+      "marge_min": 0.0015743314005813751,
+      "majorants_relatifs_max_declares": {
+        "masse": 5.976769827629112e-06,
+        "deformation": 3.492074765065202e-08
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_anisotrope",
+      "index": 2,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz",
+      "ligne_journal": 3,
+      "n": 32,
+      "blocs": 6,
+      "taille": 43,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 5.3484306266952364e-11,
+      "maxima_operateurs": {
+        "masse": 8.412767461914025e-13,
+        "deformation": 5.3484306266952364e-11,
+        "port": 2.368612024957024e-11
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.00884638400748372,
+        "reponses": 0.35215406701900065
+      },
+      "delta": 4.6339509602156825e-06,
+      "bS": 3.8014520967620763e-10,
+      "marge_min": 0.0015743310523372717,
+      "majorants_relatifs_max_declares": {
+        "masse": 7.122167276720768e-05,
+        "deformation": 4.1300920871942675e-07
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_anisotrope",
+      "index": 3,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz",
+      "ligne_journal": 4,
+      "n": 128,
+      "blocs": 2,
+      "taille": 23,
+      "champs_sous_seuil_declares": false,
+      "erreur_max_toutes_normes": 2.5016212022225e-06,
+      "maxima_operateurs": {
+        "masse": 8.42340079424189e-08,
+        "deformation": 2.5016212022225e-06,
+        "port": 2.549154764620506e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.01616533286869526,
+        "reponses": 0.37192643410526216
+      },
+      "delta": 1.1938581897172063,
+      "bS": 1.3290352196972844e-05,
+      "marge_min": 0.0013783034939382952,
+      "majorants_relatifs_max_declares": {
+        "masse": 0.04118785523397081,
+        "deformation": 0.012097279462529214
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_anisotrope",
+      "index": 4,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz",
+      "ligne_journal": 5,
+      "n": 128,
+      "blocs": 4,
+      "taille": 39,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 4.047728686947106e-10,
+      "maxima_operateurs": {
+        "masse": 4.224971604862335e-12,
+        "deformation": 4.047728686947106e-10,
+        "port": 7.448054921768674e-11
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.019428190076723695,
+        "reponses": 0.6516884360462427
+      },
+      "delta": 8.863725699149321e-07,
+      "bS": 2.5974566295662563e-11,
+      "marge_min": 0.0013915938201853116,
+      "majorants_relatifs_max_declares": {
+        "masse": 5.478572110257503e-06,
+        "deformation": 3.2021160325686674e-08
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_anisotrope",
+      "index": 5,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz",
+      "ligne_journal": 6,
+      "n": 128,
+      "blocs": 6,
+      "taille": 55,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 3.2510089166322263e-10,
+      "maxima_operateurs": {
+        "masse": 3.918852235276319e-12,
+        "deformation": 3.2510089166322263e-10,
+        "port": 3.6163891045970587e-11
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.02457910100929439,
+        "reponses": 1.0314055890776217
+      },
+      "delta": 1.2520759085143808e-05,
+      "bS": 1.823908281539613e-10,
+      "marge_min": 0.001391593663768972,
+      "majorants_relatifs_max_declares": {
+        "masse": 3.846340152917603e-05,
+        "deformation": 2.3683450573534998e-07
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_anisotrope",
+      "index": 6,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz",
+      "ligne_journal": 7,
+      "n": 512,
+      "blocs": 2,
+      "taille": 27,
+      "champs_sous_seuil_declares": false,
+      "erreur_max_toutes_normes": 2.6585727285457594e-06,
+      "maxima_operateurs": {
+        "masse": 6.910997661153268e-08,
+        "deformation": 2.6585727285457594e-06,
+        "port": 2.3245244516584691e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.056553494883701205,
+        "reponses": 1.2066800000611693
+      },
+      "delta": 1.1315589013755567,
+      "bS": 1.1930888752872857e-05,
+      "marge_min": 0.0010394580258384662,
+      "majorants_relatifs_max_declares": {
+        "masse": 0.049072795615750536,
+        "deformation": 0.013728781738023827
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_anisotrope",
+      "index": 7,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz",
+      "ligne_journal": 8,
+      "n": 512,
+      "blocs": 4,
+      "taille": 47,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 2.128551146377475e-09,
+      "maxima_operateurs": {
+        "masse": 5.4635775559040035e-12,
+        "deformation": 2.128551146377475e-09,
+        "port": 2.535054408716079e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.0735610059928149,
+        "reponses": 2.6186061650514603
+      },
+      "delta": 4.243455865144527e-06,
+      "bS": 7.566821283093624e-11,
+      "marge_min": 0.0010513888389489271,
+      "majorants_relatifs_max_declares": {
+        "masse": 2.1136482156204535e-05,
+        "deformation": 1.224294008729201e-07
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_anisotrope",
+      "index": 8,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz",
+      "ligne_journal": 9,
+      "n": 512,
+      "blocs": 6,
+      "taille": 67,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 2.311111286378091e-09,
+      "maxima_operateurs": {
+        "masse": 1.7337340285837669e-12,
+        "deformation": 2.311111286378091e-09,
+        "port": 1.1524326259235393e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.09804804995656013,
+        "reponses": 4.622251582099125
+      },
+      "delta": 0.00015275899343290705,
+      "bS": 1.0404080617620074e-09,
+      "marge_min": 0.001051387874211627,
+      "majorants_relatifs_max_declares": {
+        "masse": 0.0002904166645250759,
+        "deformation": 1.95206746389478e-06
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_repare",
+      "index": 0,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-repare.json.gz",
+      "ligne_journal": 1,
+      "n": 32,
+      "blocs": 2,
+      "taille": 19,
+      "champs_sous_seuil_declares": false,
+      "erreur_max_toutes_normes": 9.965982037494205e-06,
+      "maxima_operateurs": {
+        "masse": 6.878135328671156e-07,
+        "deformation": 9.965982037494205e-06,
+        "port": 1.3591354228955323e-09
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.007204419933259487,
+        "reponses": 0.11933411681093276
+      },
+      "delta": 1.1065507920384554,
+      "bS": 1.1549257288813219e-05,
+      "marge_min": 0.0015627821751946732,
+      "majorants_relatifs_max_declares": {
+        "masse": 0.029579914084802574,
+        "deformation": 0.009744828345359445
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_repare",
+      "index": 1,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-repare.json.gz",
+      "ligne_journal": 2,
+      "n": 32,
+      "blocs": 4,
+      "taille": 31,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 6.516932396927187e-11,
+      "maxima_operateurs": {
+        "masse": 9.684681896744546e-13,
+        "deformation": 6.516932396927187e-11,
+        "port": 1.0104960713769473e-11
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.008268160047009587,
+        "reponses": 0.12217632192187011
+      },
+      "delta": 7.28640790606006e-07,
+      "bS": 3.4717584738750435e-16,
+      "marge_min": 0.0015743314324825777,
+      "majorants_relatifs_max_declares": {
+        "masse": 1.3062254619570704e-09,
+        "deformation": 2.81823029230708e-09
+      },
+      "majorants_relatifs_sous_seuil_declares": true
+    },
+    {
+      "famille": "controle_repare",
+      "index": 2,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-repare.json.gz",
+      "ligne_journal": 3,
+      "n": 32,
+      "blocs": 6,
+      "taille": 43,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 4.192166611246389e-11,
+      "maxima_operateurs": {
+        "masse": 9.67131884862909e-13,
+        "deformation": 2.9318586272914866e-11,
+        "port": 4.192166611246389e-11
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.009069128893315792,
+        "reponses": 0.12292770599015057
+      },
+      "delta": 1.766286921710358e-08,
+      "bS": 3.4271612419953035e-16,
+      "marge_min": 0.001574331432482543,
+      "majorants_relatifs_max_declares": {
+        "masse": 3.391173662015403e-10,
+        "deformation": 7.098904747105282e-11
+      },
+      "majorants_relatifs_sous_seuil_declares": true
+    },
+    {
+      "famille": "controle_repare",
+      "index": 3,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-repare.json.gz",
+      "ligne_journal": 4,
+      "n": 128,
+      "blocs": 2,
+      "taille": 23,
+      "champs_sous_seuil_declares": false,
+      "erreur_max_toutes_normes": 2.501621205406775e-06,
+      "maxima_operateurs": {
+        "masse": 8.423400794417911e-08,
+        "deformation": 2.501621205406775e-06,
+        "port": 2.622114983799342e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.016148559981957078,
+        "reponses": 0.16741680703125894
+      },
+      "delta": 1.1938581878171635,
+      "bS": 1.3290351394587319e-05,
+      "marge_min": 0.0013783034947438513,
+      "majorants_relatifs_max_declares": {
+        "masse": 0.041187851231502794,
+        "deformation": 0.012097278554770208
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_repare",
+      "index": 4,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-repare.json.gz",
+      "ligne_journal": 5,
+      "n": 128,
+      "blocs": 4,
+      "taille": 39,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 3.196803499576031e-10,
+      "maxima_operateurs": {
+        "masse": 1.5275113341662765e-12,
+        "deformation": 3.196803499576031e-10,
+        "port": 1.304060865571815e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.019965776009485126,
+        "reponses": 0.17624399391934276
+      },
+      "delta": 5.285432061269077e-07,
+      "bS": 2.0487290872897317e-15,
+      "marge_min": 0.0013915938461630606,
+      "majorants_relatifs_max_declares": {
+        "masse": 1.4934378402379346e-09,
+        "deformation": 2.023312301339635e-09
+      },
+      "majorants_relatifs_sous_seuil_declares": true
+    },
+    {
+      "famille": "controle_repare",
+      "index": 5,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-repare.json.gz",
+      "ligne_journal": 6,
+      "n": 128,
+      "blocs": 6,
+      "taille": 55,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 3.5434149001534576e-10,
+      "maxima_operateurs": {
+        "masse": 1.3862487271059628e-12,
+        "deformation": 3.5434149001534576e-10,
+        "port": 1.3225735571702654e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.02542862296104431,
+        "reponses": 0.18284612405113876
+      },
+      "delta": 5.278067184806831e-07,
+      "bS": 2.048793378480759e-15,
+      "marge_min": 0.0013915938461628529,
+      "majorants_relatifs_max_declares": {
+        "masse": 1.4931395165751044e-09,
+        "deformation": 2.020204350742436e-09
+      },
+      "majorants_relatifs_sous_seuil_declares": true
+    },
+    {
+      "famille": "controle_repare",
+      "index": 6,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-repare.json.gz",
+      "ligne_journal": 7,
+      "n": 512,
+      "blocs": 2,
+      "taille": 27,
+      "champs_sous_seuil_declares": false,
+      "erreur_max_toutes_normes": 2.658572728903801e-06,
+      "maxima_operateurs": {
+        "masse": 6.91099766116326e-08,
+        "deformation": 2.658572728903801e-06,
+        "port": 3.486701384841857e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.05630020285025239,
+        "reponses": 0.35901693697087467
+      },
+      "delta": 1.1315588843321178,
+      "bS": 1.1930886592232202e-05,
+      "marge_min": 0.001039458027998389,
+      "majorants_relatifs_max_declares": {
+        "masse": 0.04907278157275722,
+        "deformation": 0.013728778563269779
+      },
+      "majorants_relatifs_sous_seuil_declares": false
+    },
+    {
+      "famille": "controle_repare",
+      "index": 7,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-repare.json.gz",
+      "ligne_journal": 8,
+      "n": 512,
+      "blocs": 4,
+      "taille": 47,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 2.3070284593617547e-09,
+      "maxima_operateurs": {
+        "masse": 4.1010521830103894e-12,
+        "deformation": 2.3070284593617547e-09,
+        "port": 1.1851447776211924e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.07597038405947387,
+        "reponses": 0.38896001619286835
+      },
+      "delta": 2.775837762253343e-06,
+      "bS": 3.178665778849477e-15,
+      "marge_min": 0.0010513889146121346,
+      "majorants_relatifs_max_declares": {
+        "masse": 1.8129858677986594e-08,
+        "deformation": 1.067963969579542e-08
+      },
+      "majorants_relatifs_sous_seuil_declares": true
+    },
+    {
+      "famille": "controle_repare",
+      "index": 8,
+      "provenance": "rapports/vinkulum-pilot-controle-complement-repare.json.gz",
+      "ligne_journal": 9,
+      "n": 512,
+      "blocs": 6,
+      "taille": 67,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 2.1051023826011207e-09,
+      "maxima_operateurs": {
+        "masse": 4.7071501466593554e-12,
+        "deformation": 2.1051023826011207e-09,
+        "port": 1.0523220606337875e-10
+      },
+      "temps_indicatifs_s": {
+        "prep_controle": 0.1037296149879694,
+        "reponses": 0.4184136900585145
+      },
+      "delta": 2.7726739555857764e-06,
+      "bS": 3.1785301543439923e-15,
+      "marge_min": 0.0010513889146110558,
+      "majorants_relatifs_max_declares": {
+        "masse": 1.813039828162854e-08,
+        "deformation": 1.0667467404729933e-08
+      },
+      "majorants_relatifs_sous_seuil_declares": true
+    },
+    {
+      "famille": "selection_fraiche",
+      "index": 0,
+      "provenance": "rapports/vinkulum-krylov-selection-fraiche.json.gz",
+      "ligne_journal": 1,
+      "n": 32,
+      "blocs": 4,
+      "taille": 31,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 6.524547298514391e-11,
+      "maxima_operateurs": {
+        "masse": 9.68739699623392e-13,
+        "deformation": 6.524547298514391e-11,
+        "port": 1.050166916726412e-11
+      },
+      "temps_indicatifs_s": {
+        "qr": 0.0073048819322139025,
+        "mode": 0.013622810132801533,
+        "cert": 0.050886619836091995,
+        "krylov": 0.008285142946988344,
+        "controle": 0.008380644954741001,
+        "reponses": 0.12151379813440144
+      },
+      "majorants_relatifs_max_declares": {
+        "masse": 1.2969453847112536e-09,
+        "deformation": 2.8134537008033747e-09
+      },
+      "majorants_relatifs_sous_seuil_declares": true
+    },
+    {
+      "famille": "selection_fraiche",
+      "index": 1,
+      "provenance": "rapports/vinkulum-krylov-selection-fraiche.json.gz",
+      "ligne_journal": 2,
+      "n": 128,
+      "blocs": 4,
+      "taille": 39,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 3.4619975454946057e-10,
+      "maxima_operateurs": {
+        "masse": 2.4194785690495003e-12,
+        "deformation": 3.4619975454946057e-10,
+        "port": 7.973405167055343e-11
+      },
+      "temps_indicatifs_s": {
+        "qr": 0.022508559050038457,
+        "mode": 0.014950374141335487,
+        "cert": 0.20939239114522934,
+        "krylov": 0.015169742982834578,
+        "controle": 0.02171781985089183,
+        "reponses": 0.17568127089180052
+      },
+      "majorants_relatifs_max_declares": {
+        "masse": 1.612198533743159e-09,
+        "deformation": 1.352360646917272e-09
+      },
+      "majorants_relatifs_sous_seuil_declares": true
+    },
+    {
+      "famille": "selection_fraiche",
+      "index": 2,
+      "provenance": "rapports/vinkulum-krylov-selection-fraiche.json.gz",
+      "ligne_journal": 3,
+      "n": 512,
+      "blocs": 4,
+      "taille": 47,
+      "champs_sous_seuil_declares": true,
+      "erreur_max_toutes_normes": 2.2450905121816625e-09,
+      "maxima_operateurs": {
+        "masse": 6.241769675194218e-12,
+        "deformation": 2.2450905121816625e-09,
+        "port": 1.7344418559374244e-10
+      },
+      "temps_indicatifs_s": {
+        "qr": 0.08631577994674444,
+        "mode": 0.021516756154596806,
+        "cert": 0.856972413836047,
+        "krylov": 0.04642818192951381,
+        "controle": 0.08314404683187604,
+        "reponses": 0.39295910112559795
+      },
+      "majorants_relatifs_max_declares": {
+        "masse": 1.7443069837414056e-08,
+        "deformation": 1.0166026167266483e-08
+      },
+      "majorants_relatifs_sous_seuil_declares": true
+    },
+    {
+      "famille": "precisions_complement",
+      "index": 0,
+      "provenance": "rapports/vinkulum-complement-precisions.json.gz",
+      "ligne_journal": 1,
+      "n": 512,
+      "precision": 80,
+      "temps_indicatif_s": 0.8585338068660349,
+      "lambda_min": 170485.69949640392,
+      "eta_superieur": 3.059687603487591e-08,
+      "eta_superieur_decimal": "3.0596876034875909473239554108824048993687498677818502832800579864863393273479964E-8",
+      "certification_machine_complement_declaree": true,
+      "portee": "coercivité sur le complément seulement ; ni Schur global ni réponse certifiés"
+    },
+    {
+      "famille": "precisions_complement",
+      "index": 1,
+      "provenance": "rapports/vinkulum-complement-precisions.json.gz",
+      "ligne_journal": 2,
+      "n": 512,
+      "precision": 32,
+      "temps_indicatif_s": 0.7117681039962918,
+      "lambda_min": 170485.69949640392,
+      "eta_superieur": 3.059687603487594e-08,
+      "eta_superieur_decimal": "3.0596876034875934928743373741508E-8",
+      "certification_machine_complement_declaree": true,
+      "portee": "coercivité sur le complément seulement ; ni Schur global ni réponse certifiés"
+    },
+    {
+      "famille": "precisions_complement",
+      "index": 2,
+      "provenance": "rapports/vinkulum-complement-precisions.json.gz",
+      "ligne_journal": 3,
+      "n": 512,
+      "precision": 24,
+      "temps_indicatif_s": 0.7143268280196935,
+      "lambda_min": 170485.6994964035,
+      "eta_superieur": 3.059687840883735e-08,
+      "eta_superieur_decimal": "3.05968784088373510272694E-8",
+      "certification_machine_complement_declaree": true,
+      "portee": "coercivité sur le complément seulement ; ni Schur global ni réponse certifiés"
+    },
+    {
+      "famille": "precisions_complement",
+      "index": 3,
+      "provenance": "rapports/vinkulum-complement-precisions.json.gz",
+      "ligne_journal": 4,
+      "n": 512,
+      "precision": 16,
+      "temps_indicatif_s": 0.6772389619145542,
+      "lambda_min": 170485.66247046008,
+      "eta_superieur": 2.4759976773290015e-07,
+      "eta_superieur_decimal": "2.475997677329001E-7",
+      "certification_machine_complement_declaree": true,
+      "portee": "coercivité sur le complément seulement ; ni Schur global ni réponse certifiés"
+    }
+  ],
+  "verification_archive": {
+    "json_journaux_concordants": 34,
+    "resumes_log_seuls": 9,
+    "calculs_physiques_relances": 0
+  },
+  "limites": [
+    "Anciennes implémentations non toutes figées et modifiées entre sondes.",
+    "Chronométrages partiels ; processus frais et répétitions homogènes non démontrés.",
+    "Ancien JSON scalaire perdu ; seul le journal subsiste.",
+    "Pas de confrontation absolue exhaustive des majorants dans ces fichiers.",
+    "Aucune réponse certifiée machine ; aucun classement formel."
+  ]
+}

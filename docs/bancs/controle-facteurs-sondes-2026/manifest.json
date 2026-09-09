@@ -1,0 +1,775 @@
+{
+  "schema": 1,
+  "fichiers": {
+    "profil/README.md": {
+      "sha256": "18d13448934dacfb0235637785840ab40e15c876b30547fa1a13efc1c7e6c024",
+      "octets": 7580,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/README.md",
+      "source_sha256": "18d13448934dacfb0235637785840ab40e15c876b30547fa1a13efc1c7e6c024",
+      "source_octets": 7580
+    },
+    "profil/bases_originales.npz": {
+      "sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "octets": 1101752,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/bases_originales.npz",
+      "source_sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "source_octets": 1101752
+    },
+    "profil/certificat_offert.json.gz": {
+      "sha256": "92037e84445d0b2f577898445365f5d72cd99d23275c6fa3f7f3270ad3fcb28b",
+      "octets": 100762,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/certificat_offert.json",
+      "source_sha256": "6c2346cdd8e42ff510b2963bf0ddc5fe775fad92e12bae674ee332601209d116",
+      "source_octets": 790282
+    },
+    "profil/condensation_energie_distribuee.py": {
+      "sha256": "8cf95400d746f439ece96a6a984c2a6680ea3f4a4a444dffd500047969cac691",
+      "octets": 6293,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/condensation_energie_distribuee.py",
+      "source_sha256": "8cf95400d746f439ece96a6a984c2a6680ea3f4a4a444dffd500047969cac691",
+      "source_octets": 6293
+    },
+    "profil/environnement.json.gz": {
+      "sha256": "d3def5284532e7773e68cbf262a56518fedae122354ffbea213dc00c3929030f",
+      "octets": 3351,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/environnement.json",
+      "source_sha256": "8961d2fbb0a713f6081367adde16160f51bbfe70366008421d2892a495025016",
+      "source_octets": 6272
+    },
+    "profil/execution.log": {
+      "sha256": "4d178ad0fb11b6b768798e5035324266cd53c4527dbd4af989b455bdf69c4f9c",
+      "octets": 2163,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/execution.log",
+      "source_sha256": "4d178ad0fb11b6b768798e5035324266cd53c4527dbd4af989b455bdf69c4f9c",
+      "source_octets": 2163
+    },
+    "profil/manifest.json.gz": {
+      "sha256": "036331482b779e7edd061ba91511641d400c26675daa78993161f8cab7eebcf6",
+      "octets": 1343,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/manifest.json",
+      "source_sha256": "33a82ef1fbd6c1bd35d54b3f1fbc4573582bb0cb0d6e9a971104f54bf10dde74",
+      "source_octets": 4797
+    },
+    "profil/profil.json.gz": {
+      "sha256": "94861a1a3013fac8c7c55b3c09578e3ff5c5c3821d095880863e53537e2fe827",
+      "octets": 10096,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/profil.json",
+      "source_sha256": "61f12c5a83bcaa55f56c286e8cfe9f85e4fdfa4ae46da96c5fdd594455b57ca6",
+      "source_octets": 109710
+    },
+    "profil/profiler_controle.py": {
+      "sha256": "01e4514134e111d92e53e2ea37145d73632ef56965b9b8281c375e3d49d90867",
+      "octets": 9882,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/profiler_controle.py",
+      "source_sha256": "01e4514134e111d92e53e2ea37145d73632ef56965b9b8281c375e3d49d90867",
+      "source_octets": 9882
+    },
+    "profil/reponses_originales.prof": {
+      "sha256": "9abe8c0215ea3f70b97106f59870c82fc44d94b2ffd2e0cfd63ac2f43117b4f2",
+      "octets": 17971,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/reponses_originales.prof",
+      "source_sha256": "9abe8c0215ea3f70b97106f59870c82fc44d94b2ffd2e0cfd63ac2f43117b4f2",
+      "source_octets": 17971
+    },
+    "profil/sources/condensation_energie.py": {
+      "sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "octets": 209,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/sources/condensation_energie.py",
+      "source_sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "source_octets": 209
+    },
+    "profil/sources/confronte_ports_exudyn.py": {
+      "sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "octets": 34295,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/sources/confronte_ports_exudyn.py",
+      "source_sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "source_octets": 34295
+    },
+    "profil/sources/controle_complement.py": {
+      "sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "octets": 10091,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/sources/controle_complement.py",
+      "source_sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "source_octets": 10091
+    },
+    "profil/sources/inverse_contrainte_energie.py": {
+      "sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "octets": 8959,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/sources/inverse_contrainte_energie.py",
+      "source_sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "source_octets": 8959
+    },
+    "profil/sources/krylov_contraint.py": {
+      "sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "octets": 9990,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/sources/krylov_contraint.py",
+      "source_sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "source_octets": 9990
+    },
+    "profil/sources/racine_masse_blocs.py": {
+      "sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "octets": 7424,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/sources/racine_masse_blocs.py",
+      "source_sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "source_octets": 7424
+    },
+    "pilote-v1/bilan.json.gz": {
+      "sha256": "a8954a8b7a7f9698925ff5f3bfb4adbbef317c645b11b620c0e548fdd6bd7ed4",
+      "octets": 6192,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/bilan.json",
+      "source_sha256": "3888f01cdf7e013b0bfa1643d8c56d0a9df026e9a48f7e1fbe84a9fea105a6ce",
+      "source_octets": 29721
+    },
+    "pilote-v1/environnement.json.gz": {
+      "sha256": "d1b25f14fc0eb232abe90cc428784765e05a7d657d29b96584830561e99216c5",
+      "octets": 10438,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/environnement.json",
+      "source_sha256": "2cad07acb51e2b97eff337254f56aa3452f63ebd543e9e6c5c0dad1b35dce62e",
+      "source_octets": 28756
+    },
+    "pilote-v1/manifest.json.gz": {
+      "sha256": "dbde4d76fdde606f789f16c3981ee3bab724f3a9212a0233b7a6efa40ed25816",
+      "octets": 2070,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/manifest.json",
+      "source_sha256": "1468009ec8e5da4a0a7272f7dfa0ba0e22cbd129f2938091cc98c14b5f093c9f",
+      "source_octets": 5887
+    },
+    "pilote-v1/n128-ancien/resultat.json.gz": {
+      "sha256": "6e545ac413ce5124602a311403bc6fee35d220250139b1c4273deb4609e4fa15",
+      "octets": 244176,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n128-ancien/resultat.json",
+      "source_sha256": "5f2eb18cf38dc9979a060e8b890868d874a081fb20d47afa63009b5c0c465250",
+      "source_octets": 1036866
+    },
+    "pilote-v1/n128-bases.npz": {
+      "sha256": "7e1c1aad14693d546bc5c0457309b967638cbe5974db10a0fece6e43e1f63f30",
+      "octets": 221476,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n128-bases.npz",
+      "source_sha256": "7e1c1aad14693d546bc5c0457309b967638cbe5974db10a0fece6e43e1f63f30",
+      "source_octets": 221476
+    },
+    "pilote-v1/n128-certificat.json.gz": {
+      "sha256": "241cc70531e12fc00f71c60cbaeed1fc4cea2f6a6ca7ff58a8fa9776e2590b0e",
+      "octets": 26496,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n128-certificat.json",
+      "source_sha256": "a160382fa5df6b0b357708975ffbe25c002499b4a7383cdb5ca7d5074acc5b7c",
+      "source_octets": 196318
+    },
+    "pilote-v1/n128-gram/resultat.json.gz": {
+      "sha256": "50b4d0b64de31635b11c955b1282dc209367c57b0a6746adba9226d8a8653ab4",
+      "octets": 245138,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n128-gram/resultat.json",
+      "source_sha256": "c74c063089cdec26e36048e6e1ed591ee5d6223d17ccab6a0b66e150563a6e20",
+      "source_octets": 1039482
+    },
+    "pilote-v1/n128-qr/resultat.json.gz": {
+      "sha256": "886871f7d8266cef72eebcd9e7a191af76ea7b6c8cce6a3d5b1700153a1edfe1",
+      "octets": 246017,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n128-qr/resultat.json",
+      "source_sha256": "fdd5c7b5c18885c4beafc939119ea7d5ef8493e52f0b52bc372cbbc3119974db",
+      "source_octets": 1041866
+    },
+    "pilote-v1/n32-ancien/resultat.json.gz": {
+      "sha256": "80209681802a409ee2d823f0e437b51b00f3e1cd68cc9ab47701ecea77030a63",
+      "octets": 245865,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n32-ancien/resultat.json",
+      "source_sha256": "ed9619db22b298eac1bd90f10d2d246e9458d87bb795cd56ee0e6bfce2d8efc5",
+      "source_octets": 1037099
+    },
+    "pilote-v1/n32-bases.npz": {
+      "sha256": "c4319295525935ca26c4756172a726785f1ea299ab6bd9c2463ac3f993e4b109",
+      "octets": 43043,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n32-bases.npz",
+      "source_sha256": "c4319295525935ca26c4756172a726785f1ea299ab6bd9c2463ac3f993e4b109",
+      "source_octets": 43043
+    },
+    "pilote-v1/n32-certificat.json.gz": {
+      "sha256": "5861114fbc636347ca6eb522803ebf5a84711629248f207929ca9803b911e61d",
+      "octets": 7181,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n32-certificat.json",
+      "source_sha256": "4da2094ef2b7c3361507d44c11bd7c6009531e3ad7681a47ab84141b68640fe0",
+      "source_octets": 48851
+    },
+    "pilote-v1/n32-gram/resultat.json.gz": {
+      "sha256": "b6f1057dea5d1d4473c6f5938cad94ef8c6c64c0f853cf2a47616c8c407f60d6",
+      "octets": 246746,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n32-gram/resultat.json",
+      "source_sha256": "33e4e1518d0aeacbd7419d8e0e08586586f3a8a14cfd30e13ef852f1695a0015",
+      "source_octets": 1039253
+    },
+    "pilote-v1/n32-qr/resultat.json.gz": {
+      "sha256": "e8f18a10f2dd370c70a82d7596890e70e9a40a4e8935ee7fadea9cad90faa86a",
+      "octets": 247318,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n32-qr/resultat.json",
+      "source_sha256": "65b3718fdb8c6a0748b86beeaa53c7fa370419fb8fedb196a3af783bd05bd9e6",
+      "source_octets": 1041203
+    },
+    "pilote-v1/n512-ancien/resultat.json.gz": {
+      "sha256": "381be9958bec76f9300988c116347d707bac4fadf327431040c14e89097f17e0",
+      "octets": 243572,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n512-ancien/resultat.json",
+      "source_sha256": "5e6ba9921b2847294a121b3766b72464873d3f865f41d63eb1d6058d20bfe7d8",
+      "source_octets": 1036306
+    },
+    "pilote-v1/n512-bases.npz": {
+      "sha256": "1ac35139a5c95931babbd71736b5a521babde336344d3fa6cc56cae96df4e1c7",
+      "octets": 1080565,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n512-bases.npz",
+      "source_sha256": "1ac35139a5c95931babbd71736b5a521babde336344d3fa6cc56cae96df4e1c7",
+      "source_octets": 1080565
+    },
+    "pilote-v1/n512-certificat.json.gz": {
+      "sha256": "40a5f963017a88b676166336f68ff55d4bbef6fa85f52bc6a3b5ada4730183e4",
+      "octets": 100759,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n512-certificat.json",
+      "source_sha256": "cfb46d310467cc7743d2c2e5e03f43071ed91ecabb49ee33d5202770490af4fc",
+      "source_octets": 790282
+    },
+    "pilote-v1/n512-gram/resultat.json.gz": {
+      "sha256": "5ee50e7d12632f4ba4f023add7515748c3fc3764422682e0b2e4aa1bb25b57b7",
+      "octets": 244715,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n512-gram/resultat.json",
+      "source_sha256": "678d62420688a40387e1d1a236268dd5f054fccce116e4b40b9ab637b5e9d68a",
+      "source_octets": 1039513
+    },
+    "pilote-v1/n512-qr/resultat.json.gz": {
+      "sha256": "81cd3c0afdf84e1a57577dadaa74501ecf7c2f7518a2798090b0edbee90b039f",
+      "octets": 245773,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n512-qr/resultat.json",
+      "source_sha256": "6712be476fb862c3d47d98ead6fe442cdd554256429fa528dbc2bddaa128633c",
+      "source_octets": 1042342
+    },
+    "pilote-v1/pilote.py": {
+      "sha256": "7603062d84de3e5e881065fb4afc9b3f2b41aeb3e87036d0e64ebd241a136154",
+      "octets": 4568,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/pilote.py",
+      "source_sha256": "7603062d84de3e5e881065fb4afc9b3f2b41aeb3e87036d0e64ebd241a136154",
+      "source_octets": 4568
+    },
+    "pilote-v1/sources/condensation_energie.py": {
+      "sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "octets": 209,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/condensation_energie.py",
+      "source_sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "source_octets": 209
+    },
+    "pilote-v1/sources/confronte_ports_exudyn.py": {
+      "sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "octets": 34295,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/confronte_ports_exudyn.py",
+      "source_sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "source_octets": 34295
+    },
+    "pilote-v1/sources/controle_complement.py": {
+      "sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "octets": 10091,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/controle_complement.py",
+      "source_sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "source_octets": 10091
+    },
+    "pilote-v1/sources/controle_facteurs.py": {
+      "sha256": "46f2cc409f08ce0bcf9b15f6bd1e5e7b33973fbafd7c09b36cef5080c3c6ab46",
+      "octets": 11693,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/controle_facteurs.py",
+      "source_sha256": "46f2cc409f08ce0bcf9b15f6bd1e5e7b33973fbafd7c09b36cef5080c3c6ab46",
+      "source_octets": 11693
+    },
+    "pilote-v1/sources/experience_inertie_contrainte.py": {
+      "sha256": "046ddb048e6755daf2da6032ed3cb8060eae277b28366ae88bb837e253d1622b",
+      "octets": 50068,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/experience_inertie_contrainte.py",
+      "source_sha256": "046ddb048e6755daf2da6032ed3cb8060eae277b28366ae88bb837e253d1622b",
+      "source_octets": 50068
+    },
+    "pilote-v1/sources/experience_krylov_contraint.py": {
+      "sha256": "eca0ad55fcc208fa16e5b9a701be34782f79f318040544b1c415a296ba4f744e",
+      "octets": 45111,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/experience_krylov_contraint.py",
+      "source_sha256": "eca0ad55fcc208fa16e5b9a701be34782f79f318040544b1c415a296ba4f744e",
+      "source_octets": 45111
+    },
+    "pilote-v1/sources/experience_reduction_native.py": {
+      "sha256": "80b97a8be33bd479167a050da12115cac03894fb92880159557ae3271c84d6b2",
+      "octets": 22606,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/experience_reduction_native.py",
+      "source_sha256": "80b97a8be33bd479167a050da12115cac03894fb92880159557ae3271c84d6b2",
+      "source_octets": 22606
+    },
+    "pilote-v1/sources/inertie_complement_dirigee.py": {
+      "sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "octets": 13407,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/inertie_complement_dirigee.py",
+      "source_sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "source_octets": 13407
+    },
+    "pilote-v1/sources/inverse_contrainte_energie.py": {
+      "sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "octets": 8959,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/inverse_contrainte_energie.py",
+      "source_sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "source_octets": 8959
+    },
+    "pilote-v1/sources/krylov_contraint.py": {
+      "sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "octets": 9990,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/krylov_contraint.py",
+      "source_sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "source_octets": 9990
+    },
+    "pilote-v1/sources/oracle_champs_ports.py": {
+      "sha256": "a82d949aad75545ed07644a985cbb809e1ff26402edc572a452c545b803d13b7",
+      "octets": 10199,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/oracle_champs_ports.py",
+      "source_sha256": "a82d949aad75545ed07644a985cbb809e1ff26402edc572a452c545b803d13b7",
+      "source_octets": 10199
+    },
+    "pilote-v1/sources/racine_masse_blocs.py": {
+      "sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "octets": 7424,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/racine_masse_blocs.py",
+      "source_sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "source_octets": 7424
+    },
+    "pilote-v1/sources/reference_hcb_exudyn.py": {
+      "sha256": "0b22511d4dca51e8cfccc29c295b443838473b7d6f1ee126347f79c3af4918e3",
+      "octets": 13893,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/reference_hcb_exudyn.py",
+      "source_sha256": "0b22511d4dca51e8cfccc29c295b443838473b7d6f1ee126347f79c3af4918e3",
+      "source_octets": 13893
+    },
+    "pilote-v1/sources/reference_ports_precision.py": {
+      "sha256": "4fb36d49bae345b7bdc7cddfd541279df285564c1d0618d2f7f5e91dbf71a41c",
+      "octets": 12052,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/reference_ports_precision.py",
+      "source_sha256": "4fb36d49bae345b7bdc7cddfd541279df285564c1d0618d2f7f5e91dbf71a41c",
+      "source_octets": 12052
+    },
+    "pilote-v1/sources/trace_complement_dirigee.py": {
+      "sha256": "ebbdd7b727ea93df6acb583ca68251d504e9d70a812354deeb688ba84f8cb8f3",
+      "octets": 8497,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/sources/trace_complement_dirigee.py",
+      "source_sha256": "ebbdd7b727ea93df6acb583ca68251d504e9d70a812354deeb688ba84f8cb8f3",
+      "source_octets": 8497
+    },
+    "pilote-v1/parent.log": {
+      "sha256": "6397831d6678e0bba6722f60641d50a7daab271d6f123172e66edd691a27c7a5",
+      "octets": 2315,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1.log",
+      "source_sha256": "6397831d6678e0bba6722f60641d50a7daab271d6f123172e66edd691a27c7a5",
+      "source_octets": 2315
+    },
+    "README.md": {
+      "sha256": "53cf7b588a27c9ede5bc34e4e38291ceacedb50600d790fcc3d2c2527ac9d355",
+      "octets": 3159,
+      "compression": "aucune"
+    },
+    "exclus.json": {
+      "sha256": "92361e2b6ecde52037005df3673e9b91bbe4f3eaf69d866b3b6d9ae6e769356c",
+      "octets": 7347,
+      "compression": "aucune"
+    },
+    "refutations-v1/README.md": {
+      "sha256": "f32af6fa93775e4e285ac4ab46e9dea7ddf3cd5d02f93428d139099987408364",
+      "octets": 3709,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-controle-facteurs-refutations-v1/README.md",
+      "source_sha256": "f32af6fa93775e4e285ac4ab46e9dea7ddf3cd5d02f93428d139099987408364",
+      "source_octets": 3709
+    },
+    "refutations-v1/controle_facteurs.py": {
+      "sha256": "861ecf586bc36344a4e5673c3c1450ab66bbea482f16886f20307ac7e99d99ed",
+      "octets": 11930,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-controle-facteurs-refutations-v1/controle_facteurs.py",
+      "source_sha256": "861ecf586bc36344a4e5673c3c1450ab66bbea482f16886f20307ac7e99d99ed",
+      "source_octets": 11930
+    },
+    "refutations-v1/donnees.npz": {
+      "sha256": "c5526bcb39fc1bc0ce1ee77a80f86232c67947bd0070373f3d66e1f0f11ed460",
+      "octets": 986,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-controle-facteurs-refutations-v1/donnees.npz",
+      "source_sha256": "c5526bcb39fc1bc0ce1ee77a80f86232c67947bd0070373f3d66e1f0f11ed460",
+      "source_octets": 986
+    },
+    "refutations-v1/execution.log": {
+      "sha256": "d2523ceef715df40077620ad428d93bd706193e1de3a211788c4f805a2ff1339",
+      "octets": 1245,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-controle-facteurs-refutations-v1/execution.log",
+      "source_sha256": "d2523ceef715df40077620ad428d93bd706193e1de3a211788c4f805a2ff1339",
+      "source_octets": 1245
+    },
+    "refutations-v1/manifest.json.gz": {
+      "sha256": "88f025d54c3c202cb6836b9b65b60de116d0452cf9999b242469565f61b0cfa2",
+      "octets": 626,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-controle-facteurs-refutations-v1/manifest.json",
+      "source_sha256": "4ebe5384857ee27d358c6848009706d44e8344e179050df6557ee70e2ff9647d",
+      "source_octets": 1913
+    },
+    "refutations-v1/reproduire.py": {
+      "sha256": "7e8a83a336205898955fe66836618f92cd04cdbe4eb5c976873bd422cda30eb3",
+      "octets": 2641,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-controle-facteurs-refutations-v1/reproduire.py",
+      "source_sha256": "7e8a83a336205898955fe66836618f92cd04cdbe4eb5c976873bd422cda30eb3",
+      "source_octets": 2641
+    },
+    "refutations-v1/resultats.json.gz": {
+      "sha256": "5f5845a1a4877a1ddf5629afade8d0ee7bf9b62fb6e65f562bc579483526d2cd",
+      "octets": 719,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-controle-facteurs-refutations-v1/resultats.json",
+      "source_sha256": "b75d410869d742c7e1e02dc35b9b64fa63ad7c2c0529d1defd6099290b8a42f1",
+      "source_octets": 1515
+    },
+    "refutations-v1/snapshot.json.gz": {
+      "sha256": "36aa6de53ef191e412215146e22e14f31f308e603d55cf563a347f78aca038a0",
+      "octets": 218,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-controle-facteurs-refutations-v1/snapshot.json",
+      "source_sha256": "fbb88ef5a852548c50eff42e8643160ed10af6d870488a20228a72be0d93bafc",
+      "source_octets": 269
+    },
+    "pilote-v2/bilan.json.gz": {
+      "sha256": "3d8e7e035567adb1a1109872e0ef9d7c8f245591d35710ab3fbc309ac2571181",
+      "octets": 6196,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/bilan.json",
+      "source_sha256": "49218cfd57ad0190125086903b2bb5d100350c0dd7e09aa9589e4763562ab451",
+      "source_octets": 29790
+    },
+    "pilote-v2/environnement.json.gz": {
+      "sha256": "d1b25f14fc0eb232abe90cc428784765e05a7d657d29b96584830561e99216c5",
+      "octets": 10438,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/environnement.json",
+      "source_sha256": "2cad07acb51e2b97eff337254f56aa3452f63ebd543e9e6c5c0dad1b35dce62e",
+      "source_octets": 28756
+    },
+    "pilote-v2/manifest.json.gz": {
+      "sha256": "cd993917c4e8def30cb680b68358a60793817fe4b450c5bebd7ee8d65e377426",
+      "octets": 2070,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/manifest.json",
+      "source_sha256": "cf3572310840a40856122d7eb97154bf233441ba28585b3b397852e98d684184",
+      "source_octets": 5887
+    },
+    "pilote-v2/n128-ancien/resultat.json.gz": {
+      "sha256": "68400ede5045340da3c1da750843aa68d300100e4d94a9d23f5f82d153f8a007",
+      "octets": 244175,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n128-ancien/resultat.json",
+      "source_sha256": "6df9cf414c6cb2fd1cf3dd75100ce5a645610c93c54f935ebaca2b5bb05c3dc2",
+      "source_octets": 1036867
+    },
+    "pilote-v2/n128-bases.npz": {
+      "sha256": "7e1c1aad14693d546bc5c0457309b967638cbe5974db10a0fece6e43e1f63f30",
+      "octets": 221476,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n128-bases.npz",
+      "source_sha256": "7e1c1aad14693d546bc5c0457309b967638cbe5974db10a0fece6e43e1f63f30",
+      "source_octets": 221476
+    },
+    "pilote-v2/n128-certificat.json.gz": {
+      "sha256": "3e70c73272112fcb0e3cc684de7f509154792d637fdf2b00cfcb52c55d7811ce",
+      "octets": 26496,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n128-certificat.json",
+      "source_sha256": "c133cec5a2e369e6059f688073f5cbba9a44b6556a76b9c343f42b56f6d53875",
+      "source_octets": 196317
+    },
+    "pilote-v2/n128-gram/resultat.json.gz": {
+      "sha256": "b7ff61d935c0b39c09c70e53514e6ec1c679a1805535f993ed27dd83b31d7094",
+      "octets": 245130,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n128-gram/resultat.json",
+      "source_sha256": "38094321fd874555a75d829c43c7ed87f850409c1589a7967c88cb6b66dc2ae2",
+      "source_octets": 1039475
+    },
+    "pilote-v2/n128-qr/resultat.json.gz": {
+      "sha256": "ac90ecb7acf9a69cecbd6ea3951486103bce073ea85e89f660943eeb59e58226",
+      "octets": 246041,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n128-qr/resultat.json",
+      "source_sha256": "74457716461a6b099566d4bba84f50be95aa58f63d050842c57533d747c01b02",
+      "source_octets": 1041894
+    },
+    "pilote-v2/n32-ancien/resultat.json.gz": {
+      "sha256": "fb1504a3d9c501d40bbdea5d2c80c9cb3c57fe59d73061f908f2b86d7208a3ee",
+      "octets": 245863,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n32-ancien/resultat.json",
+      "source_sha256": "5d66222d887fdd7e10dc2740cf2183d997af28c6e6bae3c9cfa18f4bf3bebfe4",
+      "source_octets": 1037098
+    },
+    "pilote-v2/n32-bases.npz": {
+      "sha256": "c4319295525935ca26c4756172a726785f1ea299ab6bd9c2463ac3f993e4b109",
+      "octets": 43043,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n32-bases.npz",
+      "source_sha256": "c4319295525935ca26c4756172a726785f1ea299ab6bd9c2463ac3f993e4b109",
+      "source_octets": 43043
+    },
+    "pilote-v2/n32-certificat.json.gz": {
+      "sha256": "8f6369e753fbe6a1f2e27f8a71bb736c0b7ee9083933ac9c2a22b8d95e8e75c6",
+      "octets": 7184,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n32-certificat.json",
+      "source_sha256": "915878eb4bfab09f52f535ebe3f10f22227f32fd0865d3218d810c2715c665ea",
+      "source_octets": 48854
+    },
+    "pilote-v2/n32-gram/resultat.json.gz": {
+      "sha256": "89046bcda3e4e818c03bcc4d5b5154b896cc006bc94c29adf51d19418bdca42c",
+      "octets": 246712,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n32-gram/resultat.json",
+      "source_sha256": "55b2fc1166367742601e344ab5ebd06b7fc7148b0cee1d1621a9033e1107d14f",
+      "source_octets": 1039246
+    },
+    "pilote-v2/n32-qr/resultat.json.gz": {
+      "sha256": "fb9fad5ef2b710fa37bccbd24d67833153c874ff2446bf121e89d8397e8a12c0",
+      "octets": 247311,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n32-qr/resultat.json",
+      "source_sha256": "12d844a2554f14ff7902e6784ddfb89dc93f0cef9a56a3a0e57fbc2effb1cc3c",
+      "source_octets": 1041221
+    },
+    "pilote-v2/n512-ancien/resultat.json.gz": {
+      "sha256": "575e6096400ec21fd6a8c45584f38ef366754f5f6ecc2e09870d05946a90f895",
+      "octets": 243569,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n512-ancien/resultat.json",
+      "source_sha256": "798e3abd2c0d24e2422c7a0c7be9cc4bf3f7606467acca947cbe9d1ff278f22f",
+      "source_octets": 1036306
+    },
+    "pilote-v2/n512-bases.npz": {
+      "sha256": "1ac35139a5c95931babbd71736b5a521babde336344d3fa6cc56cae96df4e1c7",
+      "octets": 1080565,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n512-bases.npz",
+      "source_sha256": "1ac35139a5c95931babbd71736b5a521babde336344d3fa6cc56cae96df4e1c7",
+      "source_octets": 1080565
+    },
+    "pilote-v2/n512-certificat.json.gz": {
+      "sha256": "c6b185c92f50db2e209c7e72662f9bdc78403665c8c68536e6d6d31496c4cc5a",
+      "octets": 100760,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n512-certificat.json",
+      "source_sha256": "3df616a9ea0e3799ab43519d9aca27b3f9fbc60d28cef0876bcf81407cc75991",
+      "source_octets": 790282
+    },
+    "pilote-v2/n512-gram/resultat.json.gz": {
+      "sha256": "71224715dec2f84a8495af847e7dc3d78567be593dd00e16ec020adb318105d1",
+      "octets": 244745,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n512-gram/resultat.json",
+      "source_sha256": "5842f1e49173e5de2fc1b9b602b7d9dd8d119c6cd85ae3f57eeb495c0e312a5f",
+      "source_octets": 1039524
+    },
+    "pilote-v2/n512-qr/resultat.json.gz": {
+      "sha256": "37adb87b3e4caf194ae29b7f6eea38a8118818b70effcade734a536622f95ee8",
+      "octets": 245809,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n512-qr/resultat.json",
+      "source_sha256": "21f9524de27cf68f254d945c1c322f52365b5afa287adf56120edfff19fee787",
+      "source_octets": 1042362
+    },
+    "pilote-v2/pilote.py": {
+      "sha256": "33f10a45ef6a6939b76a763016e06ed23e3559b66c560c569a43fec622900383",
+      "octets": 4568,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/pilote.py",
+      "source_sha256": "33f10a45ef6a6939b76a763016e06ed23e3559b66c560c569a43fec622900383",
+      "source_octets": 4568
+    },
+    "pilote-v2/sources/condensation_energie.py": {
+      "sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "octets": 209,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/condensation_energie.py",
+      "source_sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "source_octets": 209
+    },
+    "pilote-v2/sources/confronte_ports_exudyn.py": {
+      "sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "octets": 34295,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/confronte_ports_exudyn.py",
+      "source_sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "source_octets": 34295
+    },
+    "pilote-v2/sources/controle_complement.py": {
+      "sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "octets": 10091,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/controle_complement.py",
+      "source_sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "source_octets": 10091
+    },
+    "pilote-v2/sources/controle_facteurs.py": {
+      "sha256": "fed375d6b120df072d056a7029e84916dd666ab8bbfc926b3ccae849dd769bbe",
+      "octets": 13895,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/controle_facteurs.py",
+      "source_sha256": "fed375d6b120df072d056a7029e84916dd666ab8bbfc926b3ccae849dd769bbe",
+      "source_octets": 13895
+    },
+    "pilote-v2/sources/experience_inertie_contrainte.py": {
+      "sha256": "046ddb048e6755daf2da6032ed3cb8060eae277b28366ae88bb837e253d1622b",
+      "octets": 50068,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/experience_inertie_contrainte.py",
+      "source_sha256": "046ddb048e6755daf2da6032ed3cb8060eae277b28366ae88bb837e253d1622b",
+      "source_octets": 50068
+    },
+    "pilote-v2/sources/experience_krylov_contraint.py": {
+      "sha256": "eca0ad55fcc208fa16e5b9a701be34782f79f318040544b1c415a296ba4f744e",
+      "octets": 45111,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/experience_krylov_contraint.py",
+      "source_sha256": "eca0ad55fcc208fa16e5b9a701be34782f79f318040544b1c415a296ba4f744e",
+      "source_octets": 45111
+    },
+    "pilote-v2/sources/experience_reduction_native.py": {
+      "sha256": "80b97a8be33bd479167a050da12115cac03894fb92880159557ae3271c84d6b2",
+      "octets": 22606,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/experience_reduction_native.py",
+      "source_sha256": "80b97a8be33bd479167a050da12115cac03894fb92880159557ae3271c84d6b2",
+      "source_octets": 22606
+    },
+    "pilote-v2/sources/inertie_complement_dirigee.py": {
+      "sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "octets": 13407,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/inertie_complement_dirigee.py",
+      "source_sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "source_octets": 13407
+    },
+    "pilote-v2/sources/inverse_contrainte_energie.py": {
+      "sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "octets": 8959,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/inverse_contrainte_energie.py",
+      "source_sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "source_octets": 8959
+    },
+    "pilote-v2/sources/krylov_contraint.py": {
+      "sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "octets": 9990,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/krylov_contraint.py",
+      "source_sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "source_octets": 9990
+    },
+    "pilote-v2/sources/oracle_champs_ports.py": {
+      "sha256": "a82d949aad75545ed07644a985cbb809e1ff26402edc572a452c545b803d13b7",
+      "octets": 10199,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/oracle_champs_ports.py",
+      "source_sha256": "a82d949aad75545ed07644a985cbb809e1ff26402edc572a452c545b803d13b7",
+      "source_octets": 10199
+    },
+    "pilote-v2/sources/racine_masse_blocs.py": {
+      "sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "octets": 7424,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/racine_masse_blocs.py",
+      "source_sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "source_octets": 7424
+    },
+    "pilote-v2/sources/reference_hcb_exudyn.py": {
+      "sha256": "0b22511d4dca51e8cfccc29c295b443838473b7d6f1ee126347f79c3af4918e3",
+      "octets": 13893,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/reference_hcb_exudyn.py",
+      "source_sha256": "0b22511d4dca51e8cfccc29c295b443838473b7d6f1ee126347f79c3af4918e3",
+      "source_octets": 13893
+    },
+    "pilote-v2/sources/reference_ports_precision.py": {
+      "sha256": "4fb36d49bae345b7bdc7cddfd541279df285564c1d0618d2f7f5e91dbf71a41c",
+      "octets": 12052,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/reference_ports_precision.py",
+      "source_sha256": "4fb36d49bae345b7bdc7cddfd541279df285564c1d0618d2f7f5e91dbf71a41c",
+      "source_octets": 12052
+    },
+    "pilote-v2/sources/trace_complement_dirigee.py": {
+      "sha256": "ebbdd7b727ea93df6acb583ca68251d504e9d70a812354deeb688ba84f8cb8f3",
+      "octets": 8497,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/sources/trace_complement_dirigee.py",
+      "source_sha256": "ebbdd7b727ea93df6acb583ca68251d504e9d70a812354deeb688ba84f8cb8f3",
+      "source_octets": 8497
+    },
+    "pilote-v2/parent.log": {
+      "sha256": "35627a6f4d65371ac8a2f0dfc431b3b554238a3427af9b9b384d1b223f2ab40e",
+      "octets": 2309,
+      "compression": "aucune",
+      "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2.log",
+      "source_sha256": "35627a6f4d65371ac8a2f0dfc431b3b554238a3427af9b9b384d1b223f2ab40e",
+      "source_octets": 2309
+    },
+    "profil/cprofile-cumulatif.txt.gz": {
+      "sha256": "74c8de25af8151164b913192745a69124992047378bc473ca9ca0ed5fc882c2c",
+      "octets": 1268,
+      "compression": "gzip",
+      "source_path": "/tmp/vinkulum-profil-controle-facteurs-2026/cprofile-cumulatif.txt",
+      "source_sha256": "cd594029e7ed8f091fc0e8e9575f83cabdd55a8dd49e11f621b9dfaba5954d83",
+      "source_octets": 6415
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "date_utc": "2026-09-07T02:22:04.600708+00:00",
+  "temoin_commit": "6a09df2079885da8540f4e8e7aaa8aa3969c7c5b",
+  "binaires_sha256": {
+    "avant": "ac19229e9cce57fc0001af0f12cc32ea2f0b0d258b52abbba269267ae252e01d",
+    "courant": "32d333a80b62c87a2b05f99e02e93cc77a5e87a1820cd4cf2d5d1029590875e0"
+  },
+  "intermediaire_sans_borne_de_rang_sha256": "5c89332696f5455f7e61c1462277f06129eb5a8ef301ffd71aed481b7906a8fa",
+  "traces_double8": {
+    "commande": "VINKULUM_TRACE=1 RAYON_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv314/bin/python ci/diagnostic_redondances.py double 8",
+    "portee": "Diagnostic séparé, hors des mesures alternées avec affinité CPU.",
+    "binaires_sha256": {
+      "avant": "ac19229e9cce57fc0001af0f12cc32ea2f0b0d258b52abbba269267ae252e01d",
+      "intermediaire": "5c89332696f5455f7e61c1462277f06129eb5a8ef301ffd71aed481b7906a8fa",
+      "apres": "32d333a80b62c87a2b05f99e02e93cc77a5e87a1820cd4cf2d5d1029590875e0"
+    }
+  },
+  "sources_sha256": {
+    "Cargo.lock": "5a143572b13859a6954cda57d624a785eceb90ba5f1b9a204df7bfb1664c5343",
+    "Cargo.toml": "d27526bf96a1a7d46674f86a2475b433e562491df0552d749e715d77f262bb05",
+    "README.md": "e58e8ca27b0a4f1b8722973410502e619185fa7b7616eb1769b4fc5e581423ec",
+    "ci/bilan_contraintes.py": "d55f810337ee4acbc68c1cf2670fed974816fbbd0aaaac90079511b484bd4952",
+    "ci/confronte_mbdyn.py": "5b335dc114daad7e1739ec66ea2426245373123c559079c9eb8a3d6872e3a31c",
+    "ci/diagnostic_cable.py": "6f7f9db7ab069eaf9eba533d2c86543095e4f5fb11230eab72d88fe0ad1750ed",
+    "ci/diagnostic_chaine_articulee.py": "9ae863e595b8e505111ff624236bef6df34884ffce757e0a9f904574cd89d598",
+    "ci/diagnostic_contraintes.py": "dd164fd1113b5dea127de90448cde6688d468d2f32fa7332bc56a449f8e586c0",
+    "ci/diagnostic_positions_compensees.py": "777b728c325b5974f703090ab77e5778a0c5660aace15830d334c32eae572a52",
+    "ci/diagnostic_poutres.py": "1489735261e8759188126291fc90418b935626071fb39ff7f65f1ed86b6047ed",
+    "ci/diagnostic_precision_statique.py": "8f76484b4ef1d687933c065506b98119037b4d6aa7288c1c54de5f4139b215a0",
+    "ci/diagnostic_redondances.py": "025356ec744a80b21ba5a098112178954dd93785e65d54d4fd06bc185f91aec7",
+    "ci/diagnostic_statut_statique.py": "531344cff7942e5016a29ed014f4b42ca0564145814978abea900036d1312e23",
+    "ci/local.sh": "260e4cf66d105a8a23fe4bc02d9c1746db1e96740528d2040ae842d55b5ac839",
+    "ci/mesure_redondances.py": "1d49c686ef4baa6f1624491446cd419512354d60701423790eea31959c966c31",
+    "ci/valide_redondances.py": "4951cbe5c4b717dd6f51ffa422d52faf91a5f2e120318dd25f8fe69e2bcd794f",
+    "docs/OBJECTIF_MBDYN.md": "7f9caccd30a2ef8bd9f728fc2e8d6a116df15030d2e2b7640a8d043a9bfe4539",
+    "docs/REDONDANCES_CREUSES.md": "7fb1421ce5c6434d8fb5a014d9e7f03846db75a20cdfd29863c2d7506f5c1766",
+    "pyproject.toml": "3826a6b2787be22b8c85a55ee29f191be2670482d5fa0d27186b54a720b75575",
+    "python/vinkulum/campagne.py": "6490de1d767df6262785311bbb0a9a8bb88b36153d12dd6178079aaa7cf7cd8e",
+    "python/vinkulum/test_noyau.py": "41fa44323641c38a3ba8feb07e9eff5ca97ee44a8282a036d55a24fae9c3cbe0",
+    "src/ad.rs": "1fd44c5469618d90d93ffa530639b44f6836deb992a5b24637b263026e5c75ff",
+    "src/analyse.rs": "18b0adaab5439b5b760714ce9d42ae7f165f58987ff3972f2b67862ec932c579",
+    "src/contraintes/qr_creux.rs": "b05e0d434b15c62ec9da1d323a5c984dde28df4158a9bd7f644ded4561f9005e",
+    "src/contraintes.rs": "8b0af31899dc42198b397df69bb08002bbe833e1e3d1a19ea68d747a65e30c33",
+    "src/lib.rs": "6a58c8aa883ec579c78d0670022fa8b405c663ebc762138a4e16cbe29d829486",
+    "src/numerique.rs": "6872219a7265400e069e8fa2317315376ee648ba08d83fbb97bb96410f79ffba",
+    "src/partition.rs": "24c59b9b2914f3a1999528937c5410bbb6eae78e1675cf51cebad1fbed4d3674",
+    "src/robustesse.rs": "0b0490343581ca78e5fb637b96d8c727da6d694b96a8a917f0c9cef670003c2a",
+    "src/superelement.rs": "2769e6ac826754da3d8b9dc4d183d9f88f9c8c5b4acc3440e564d6c93f6385d3",
+    "src/tangent.rs": "3128fca6cee949ba0e5f72566fbf67d930864a0e13b9422865504084d3130fed"
+  },
+  "artefacts_sha256": {
+    "docs/bancs/redondances-cable.json": "15d9ea6975d54c617ebf13004769e56c419410239c17d7d77650503c4130805d",
+    "docs/bancs/redondances-ci.log": "ae7ddf1ff1a522b0efebef69c7e36f88d6fd85c42b98483c8ca01ba4e7b4eae0",
+    "docs/bancs/redondances-comparaison.json": "35dfbf09ce82e2eea4f3988e511d1249a973ca1729aa4b3f8a898515441f3614",
+    "docs/bancs/redondances-double8-apres.trace": "a0ff606196f3fb99d9a478e99c0e3b100914c19702a0da5cb9bef3f72ab1e316",
+    "docs/bancs/redondances-double8-avant.trace": "d2e9d803781b9b24cce4d2e298350d20b50a5f9d7104139053238af6e4ece738",
+    "docs/bancs/redondances-double8-intermediaire.trace": "33e6b0fc3b9fe8fe352dc7859644e3eeb50ad69f30cd70045c40144b1d9adc69",
+    "docs/bancs/redondances-intermediaire.json": "24ef731ca94ac8fa06afe10cd7887c47d9b2127b757a2caab84d672627f54e22",
+    "docs/bancs/redondances-mesures.json": "14a16b4e770362d05e4e9673851f3f124042860952446c0c11c5da7629da5d87",
+    "docs/bancs/redondances-princeton-strict.json": "9721a4fb2fbe5a0abede8dfca66790c986469baafe9f3a8285fc3f51a98db4bb",
+    "docs/bancs/redondances-tests-python.log": "79041a082a406f71257f1c7f86867e05c35d02f847b5b394f767a42353c15007"
+  },
+  "ci": {
+    "commande": "ci/local.sh --bancs",
+    "code_sortie": 0,
+    "rust": 38,
+    "python": 61,
+    "verification": 41,
+    "bancs": 46,
+    "contacts": 9,
+    "api": 185
+  },
+  "controles": {
+    "equilibres_stricts": 108,
+    "paliers_princeton_stricts": 400
+  },
+  "limites": [
+    "Gain de projection de blocs larges de rang plein, entre versions Vinkulum.",
+    "Rang réellement déficient : SVD dense conservée, surcoût du QR tenté publié.",
+    "Newton augmenté singulier reste dense ; autres projecteurs inchangés.",
+    "Norme minimale moins précise à certaines grandes tailles : erreurs publiées.",
+    "Aucune nouvelle exécution MBDyn ou Simpack."
+  ]
+}

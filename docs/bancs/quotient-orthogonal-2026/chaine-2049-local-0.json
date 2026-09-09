@@ -1,0 +1,55 @@
+{
+  "famille": "chaine",
+  "taille": 2049,
+  "variante": "local",
+  "forme": [
+    3072,
+    2049
+  ],
+  "nnz": 6144,
+  "python": "3.14.7",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "cpu": [
+    8
+  ],
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "statut": "calcule",
+  "factorisation_s": 0.08613824914209545,
+  "projection_s": 0.02462577586993575,
+  "reactions_s": 0.013161267153918743,
+  "total_s": 0.12392529216594994,
+  "diagnostic": {
+    "lignes": 3072,
+    "colonnes": 2049,
+    "rang": 2048,
+    "seuil": 4.3655745685100555e-11,
+    "nnz_entree": 6144,
+    "nnz_actifs_max": 6144,
+    "nnz_facteur": 7166,
+    "coefficients_reflexions": 4096,
+    "support_max": 2,
+    "coefficients_transformes": 14332,
+    "lignes_supprimees": 1024,
+    "norme_residus_supprimes": 6.1404467328717665e-15,
+    "pivot_min": 0.7072793936097669,
+    "orthogonalite_locale_max": 4.440892098500626e-16,
+    "base_dense": false,
+    "gram_forme": false
+  },
+  "rss_avant_oracle_kib": 65536,
+  "controles": {
+    "erreur_projection": 1.3235940121703038e-14,
+    "erreur_force": 2.5868196473766147e-14,
+    "fermeture": 3.920475055707584e-16,
+    "idempotence": 8.881784197001252e-16,
+    "rang_attendu": 2048,
+    "rang_correct": true
+  },
+  "accepte": true
+}

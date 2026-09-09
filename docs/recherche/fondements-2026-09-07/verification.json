@@ -1,0 +1,105 @@
+{
+  "source": "docs/recherche/fondements-2026-09-07/report-source.md",
+  "source_sha256": "9b41de3d726ae87d71e72d28f17a58da2079b03c3b70007719931d45f8af81e4",
+  "pdf": "docs/FONDEMENTS_MATHEMATIQUES_VINKULUM_2026.pdf",
+  "pdf_sha256": "eea216bfff7829c2b8450db1af769418e959e135a2cfa590332a559a3d901235",
+  "bytes": 103191,
+  "headings": [
+    {
+      "title": "Vinkulum : les fondements d’une rupture de performance",
+      "page": 1
+    },
+    {
+      "title": "1. Définir mathématiquement le gain recherché",
+      "page": 2
+    },
+    {
+      "title": "2. Graphes : un résultat fondamental de 2025",
+      "page": 3
+    },
+    {
+      "title": "3. Topologie et analyse fonctionnelle : éviter les faux degrés de liberté",
+      "page": 4
+    },
+    {
+      "title": "4. Gamblets : résoudre dans les bonnes échelles",
+      "page": 5
+    },
+    {
+      "title": "5. Interfaces optimales : réduire ce qui traverse les composants",
+      "page": 6
+    },
+    {
+      "title": "6. Largeurs stables : savoir quand la compression est impossible",
+      "page": 7
+    },
+    {
+      "title": "7. Physique fondamentale : que deviennent les variables supprimées ?",
+      "page": 8
+    },
+    {
+      "title": "8. Contact : la régularité est une ressource algorithmique",
+      "page": 9
+    },
+    {
+      "title": "9. Composer les briques : une borne que l’on peut dériver",
+      "page": 10
+    },
+    {
+      "title": "10. Ce que les concurrents ont déjà",
+      "page": 11
+    },
+    {
+      "title": "11. Programme de recherche et critères d’abandon",
+      "page": 12
+    },
+    {
+      "title": "Sources et accès",
+      "page": 13
+    }
+  ],
+  "pages": 14,
+  "source_records": 21,
+  "checked_source_blocks_or_cells": 183,
+  "link_annotations": 47,
+  "unique_link_targets": 21,
+  "words_geometry_checked": 5434,
+  "checks": {
+    "all_source_blocks_extracted": true,
+    "all_ledger_sources_linked": true,
+    "all_word_rectangles_inside_pages": true,
+    "all_link_rectangles_inside_pages": true,
+    "no_empty_pages": true,
+    "no_internal_tool_markers": true
+  },
+  "visual_review": {
+    "scope": "Toutes les 14 pages",
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "scale": "100 dpi, images examinées à leur taille de rendu",
+    "corrections_rechecked": [
+      3,
+      10
+    ],
+    "result": "Aucun débordement, chevauchement, glyphe manquant ou tableau coupé observé ; corrections des pages 3 et 10 rendues et relues."
+  },
+  "validation_limits": [
+    "Contrôle du document, sans nouvelle campagne de performances ni validation des transferts proposés.",
+    "Contrôle des liens inclus dans le PDF ; ne garantit pas un accès intégral futur aux destinations."
+  ],
+  "historical_render_unchanged_sha256": "baa071c5e4b74168726031f68f3cefcf3382850b069a5ced9c07e48f82fb0ae1"
+}

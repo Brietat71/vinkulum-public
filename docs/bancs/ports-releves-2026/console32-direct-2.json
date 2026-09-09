@@ -1,0 +1,70 @@
+{
+  "cas": {
+    "nom": "console32",
+    "famille": "console",
+    "n": 32
+  },
+  "variante": "direct",
+  "oracle_sha256": "af61ae3bc18bd362099b8aef2c22ad34544e3783865f259594c33047ce57914c",
+  "date": "2026-09-07T17:37:57.722575+00:00",
+  "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "cpu": [
+    8
+  ],
+  "tolerance": 1e-10,
+  "lambda_min": 33921.41396030565,
+  "omega_max": 128.9888792552338,
+  "directions": 24,
+  "ports": 6,
+  "nombre_requetes": 257,
+  "nombre_frequences_audit": 17,
+  "preparation_s": 0.009717068867757916,
+  "requetes_s": 0.005066120997071266,
+  "reconstruction_s": 4.64380718767643e-05,
+  "total_s": 0.014829627936705947,
+  "rss_avant_oracle_kib": 71168,
+  "borne_uniforme": 8.015800895848533e-15,
+  "erreur_D": 5.4434065468918835e-11,
+  "erreur_physique": 5.4434271768201914e-11,
+  "ecart_energie": 3.4918287371087654e-11,
+  "diagnostic": {
+    "statut": "tolerance_estimee",
+    "historique": [
+      {
+        "blocs": 1,
+        "directions": 6,
+        "borne_uniforme": 952.713740645275,
+        "defaut_gram": 9.555763760640312e-14
+      },
+      {
+        "blocs": 2,
+        "directions": 12,
+        "borne_uniforme": 0.566056529397263,
+        "defaut_gram": 2.1677370425184455e-13
+      },
+      {
+        "blocs": 3,
+        "directions": 18,
+        "borne_uniforme": 3.0443410021839673e-07,
+        "defaut_gram": 2.1890305989599573e-13
+      },
+      {
+        "blocs": 4,
+        "directions": 24,
+        "borne_uniforme": 8.015800895848533e-15,
+        "defaut_gram": 2.2008956830185587e-13
+      }
+    ]
+  },
+  "accepte": true,
+  "certification_machine": false
+}

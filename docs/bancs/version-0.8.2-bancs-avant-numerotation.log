@@ -1,0 +1,205 @@
+
+══ format et lint
+    Finished `release` profile [optimized] target(s) in 0.09s
+
+══ tests du noyau
+
+running 73 tests
+.........................................................................
+test result: ok. 73 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+══ contrôles du prototype de poutre mixte
+
+running 8 tests
+........
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.91s
+
+
+══ roue → /root/vinkulum/.venv314/bin/python
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /root/vinkulum/.venv314/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+Using Python 3.14.7 environment at: .venv314
+Checked 4 packages in 1ms
+   Compiling pyo3-ffi v0.29.2
+   Compiling pyo3 v0.29.2
+   Compiling vinkulum v0.8.1 (/root/vinkulum)
+    Finished `release` profile [optimized] target(s) in 18.70s
+📦 Built wheel for CPython 3.14 to /tmp/.tmpXXUrxm/vinkulum-0.8.1-cp314-cp314-linux_x86_64.whl
+✏️ Setting installed package as editable
+🛠 Installed vinkulum-0.8.1
+
+══ contrôles rapides (campagne parallèle)
+╔═ vérification : 41 cas, 8 processus, 64 CPU au total
+║ journaux : /tmp/vinkulum-campagne-1w7k_o7k
+║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés
+║ OK    robustesse — 0.37 s
+║ OK    validation_scores — 0.37 s
+║ OK    assemblage — 0.37 s
+║ OK    convergence — 0.47 s
+║ OK    amortissement — 0.52 s
+║ OK    superelement — 0.37 s
+║ OK    toupie — 0.82 s
+║ OK    bennett — 0.41 s
+║ OK    vis_ecrou — 0.52 s
+║ OK    liaisons_unilaterales — 0.82 s
+║ OK    determinisme — 1.42 s
+║ OK    six_barres — 0.77 s
+║ OK    invariance_unites — 0.47 s
+║ OK    lateral_buckling — 1.42 s
+║ OK    quatre_barres_flexible — 1.17 s
+║ OK    modeles_mal_poses — 0.37 s
+║ OK    invariances — 0.82 s
+║ OK    _regressions — 3.22 s
+║ OK    srscm — 2.42 s
+║ OK    arbre_tournant — 2.17 s
+║ OK    non_holonome — 0.37 s
+║ OK    coulomb_pente — 0.52 s
+║ OK    lecteurs_casses — 0.37 s
+║ OK    sparsite — 0.47 s
+║ OK    trim.demo — 0.17 s
+║ OK    gyroscopique_tangent — 0.37 s
+║ OK    audit_jacobien — 0.36 s
+║ OK    reduction.demo — 0.26 s
+║ OK    accords — 0.97 s
+║ OK    treillis_de_boucles — 2.47 s
+║ OK    floquet.demo — 0.87 s
+║ OK    convergence.demo — 0.82 s
+║ OK    domaines.demo — 0.62 s
+║ OK    mjcf.demo — 0.82 s
+║ OK    urdf.demo — 0.92 s
+║ OK    campagne.demo — 0.42 s
+║ OK    adjoint_temps.demo — 4.32 s
+║ OK    statique — 7.63 s
+║ OK    kapitza — 19.40 s
+║ OK    echelle — 1.87 s
+║ OK    refus_gardes — 0.37 s
+╚ vérification OK — 41/41 cas, 22.16 s
+
+══ régressions Python : noyau, analyses, campagnes et cinématique sigma
+................/root/vinkulum/python/vinkulum/urdf.py:124: ResourceWarning: unclosed file <_io.BufferedReader name='/root/vinkulum/python/vinkulum/donnees/urdfs/cartpole.urdf'>
+  src = open(chemin, "rb").read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..............................................................
+----------------------------------------------------------------------
+Ran 78 tests in 2.926s
+
+OK
+
+══ la référence d'API est-elle à jour
+╚═ référence d'API à jour (185 entrées)
+
+══ archive du prototype de poutre mixte
+{"essais_princeton": 36, "succes_princeton": 36, "echauffements": 9, "sondages_moment": 8, "sondages_lineaires": 20, "refus_condensation": 2, "raideurs_negatives": 1, "ecart_reference_m": 3.767292033884928e-12}
+
+══ archive de l'expérience sigma
+252 essais contrôlés, 84 configurations ; références et sorties cohérentes.
+
+══ archive de globalisation statique
+{
+  "configurations": 51,
+  "repetitions": 3,
+  "resolutions_chronometrees": 306,
+  "controles_reussis_par_version": 49,
+  "echecs_numeriques_communs": [
+    {
+      "famille": "poutre",
+      "formulation": "milieu",
+      "n": 10,
+      "tourne": true,
+      "unites": [
+        0.001,
+        1.0
+      ]
+    },
+    {
+      "famille": "poutre",
+      "formulation": "integree",
+      "n": 10,
+      "tourne": true,
+      "unites": [
+        0.001,
+        1.0
+      ]
+    }
+  ],
+  "regressions_de_convergence_observees": 0,
+  "ecart_position_max": 5.80017534002053e-10,
+  "ecart_rotation_max": 1.996061732567611e-09
+}
+
+══ bancs rapide
+╔═ bancs : 46 cas, 8 processus, 64 CPU au total
+║ journaux : /tmp/vinkulum-campagne-1k4mqbh6
+║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés
+║ OK    engrenage — 0.37 s
+║ OK    pendule — 0.42 s
+║ OK    bielle — 0.47 s
+║ OK    double_pendule — 0.52 s
+║ OK    poutre — 0.57 s
+║ OK    quatre_barres — 0.62 s
+║ OK    toupie — 0.67 s
+║ OK    reduction.demo — 0.26 s
+║ OK    contact.capsules — 0.11 s
+║ OK    contact.boites — 0.16 s
+║ OK    contact.cylindres — 0.11 s
+║ OK    rotor.demo — 0.92 s
+║ OK    contact.multiples — 0.36 s
+║ OK    floquet.demo — 0.82 s
+║ OK    contact.capsules_primitives — 0.87 s
+║ OK    phi_dot — 0.67 s
+║ OK    bifurcation — 0.72 s
+║ OK    oye — 0.42 s
+║ OK    contact.nonlisse — 1.57 s
+║ OK    leishman_beddoes — 0.52 s
+║ OK    peters_he — 0.37 s
+║ OK    sensibilite.demo — 3.02 s
+║ OK    ggl_boucles — 2.47 s
+║ OK    theodorsen_complet — 1.67 s
+║ OK    pitt_peters — 0.37 s
+║ OK    rotation.demo — 3.87 s
+║ OK    instationnaire — 0.87 s
+║ OK    inflow_carte — 1.87 s
+║ OK    adaptatif — 4.92 s
+║ OK    energie_moment — 0.92 s
+║ OK    raideur_gravite — 0.36 s
+║ OK    amortis — 0.37 s
+║ OK    coque — 0.27 s
+║ OK    modes_console — 0.37 s
+║ OK    multirythme — 2.47 s
+║ OK    pale_elastique — 1.52 s
+║ OK    echelle — 0.47 s
+║ OK    dissipation — 5.53 s
+║ OK    andrews — 4.83 s
+║ OK    noether — 9.89 s
+║ OK    moment_projete — 12.80 s
+║ OK    contact.penalite_ccd — 29.08 s
+║ OK    seuils — 97.18 s
+║ OK    sillage — 167.82 s
+║ OK    contact.maillages — 0.82 s
+║ OK    contact.appariement — 0.42 s
+╚ bancs OK — 46/46 cas, 175.63 s
+
+══ bancs de contact
+╔═ contacts : 9 cas, 8 processus, 64 CPU au total
+║ journaux : /tmp/vinkulum-campagne-95ua_nc9
+║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés
+║ OK    boites — 0.17 s
+║ OK    cylindres — 0.17 s
+║ OK    capsules — 0.18 s
+║ OK    multiples — 0.37 s
+║ OK    capsules_primitives — 0.87 s
+║ OK    nonlisse — 1.57 s
+║ OK    penalite_ccd — 167.48 s
+║ OK    maillages — 0.82 s
+║ OK    appariement — 0.57 s
+╚ contacts OK — 9/9 cas, 168.88 s
+
+╚ CI locale OK

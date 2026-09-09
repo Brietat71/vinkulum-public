@@ -1,0 +1,100 @@
+{
+  "cas": {
+    "nom": "chaine32",
+    "famille": "chaine",
+    "n": 32,
+    "fraction": 0.8,
+    "modes": 28,
+    "tolerance": 1e-06
+  },
+  "variante": "krylov",
+  "date": "2026-09-07T16:57:42.182396+00:00",
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "cpu": [
+    8
+  ],
+  "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+  "metadata": {
+    "famille": "chaine",
+    "n": 32,
+    "ddl": 32,
+    "ports": [
+      31
+    ],
+    "raideur_N_par_m": 1.0,
+    "masse_nodale_kg": 1.0,
+    "masse_mobile_kg": 32.0,
+    "mu_min_interieur_s_moins_2": 0.009630546655606228,
+    "omega_min_interieur_rad_s": 0.09813534865483603,
+    "ddl_unites": "m",
+    "force_interface_unite": "N",
+    "convention": "(K - omega^2 M) u = f; u_0 = 0"
+  },
+  "lambda_min": 0.009620916108950621,
+  "origine_borne": "spectre analytique chaîne Dirichlet",
+  "omega_max": 0.07850827892386883,
+  "directions": 5,
+  "ports": 1,
+  "nombre_requetes": 257,
+  "preparation_s": 0.01023628911934793,
+  "requetes_s": 0.0038402199279516935,
+  "reconstruction_s": 3.609899431467056e-05,
+  "total_s": 0.014112608041614294,
+  "rss_avant_oracle_kib": 66560,
+  "diagnostic": {
+    "statut": "tolerance_estimee",
+    "historique": [
+      {
+        "blocs": 1,
+        "directions": 1,
+        "borne_uniforme": 2.399539301567976,
+        "defaut_gram": 1.1102230246251565e-16
+      },
+      {
+        "blocs": 2,
+        "directions": 2,
+        "borne_uniforme": 3.070848656529032,
+        "defaut_gram": 8.88355822549997e-16
+      },
+      {
+        "blocs": 3,
+        "directions": 3,
+        "borne_uniforme": 0.016445127613795088,
+        "defaut_gram": 9.237745511909192e-16
+      },
+      {
+        "blocs": 4,
+        "directions": 4,
+        "borne_uniforme": 1.58426846300982e-05,
+        "defaut_gram": 1.006639720243707e-15
+      },
+      {
+        "blocs": 5,
+        "directions": 5,
+        "borne_uniforme": 5.164797391409285e-09,
+        "defaut_gram": 1.0161740931825895e-15
+      }
+    ],
+    "resolutions": 15,
+    "seconds_membres": 25,
+    "nnz_facteurs": 122,
+    "residu_resolution_max": 1.0733220421537513e-16,
+    "defaut_gram": 1.0161740931825895e-15
+  },
+  "borne_uniforme": 5.164797391409285e-09,
+  "erreur_schur_audit": 7.136424784448536e-11,
+  "minimum_ecart_loewner": -2.195466031196247e-14,
+  "residu_champ_relatif": 8.073223007274956e-06,
+  "accepte_borne": true,
+  "accepte_audit": true,
+  "accepte": true,
+  "certification_machine": false
+}

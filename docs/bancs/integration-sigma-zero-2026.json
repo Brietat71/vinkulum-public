@@ -1,0 +1,155 @@
+{
+  "ancien": {
+    "version": "0.7.2",
+    "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+    "modeles": {
+      "affine": {
+        "trajectoire_sha256": "167593f3cd71acf4ca5804e62d58dfa3870f393c49854bb42c749c43713bbe82",
+        "sorties": 25,
+        "stats": [
+          25,
+          0,
+          25,
+          0
+        ]
+      },
+      "libre": {
+        "trajectoire_sha256": "4a0f032816ae5960edd21db488585255105da2af14142badb9c0f6673f231dd3",
+        "sorties": 50,
+        "stats": [
+          150,
+          0,
+          50,
+          0
+        ]
+      },
+      "plan": {
+        "trajectoire_sha256": "ddd7225d0d5ebe780422ff643076bb4195f2c9a6f6ad07d0ba219bb0719c57a9",
+        "sorties": 50,
+        "stats": [
+          137,
+          0,
+          50,
+          0
+        ]
+      },
+      "toupie": {
+        "trajectoire_sha256": "88fc1f19d4aebe2d5023cd46b489c9c654e111ea42e7137fea52d8245905993d",
+        "sorties": 200,
+        "stats": [
+          400,
+          0,
+          200,
+          0
+        ]
+      },
+      "axes_commandes": {
+        "trajectoire_sha256": "71fdc604ecc94e3cce1160ca05ed608d6e7c0efdb8fb4ebb8f61cc05a02244af",
+        "sorties": 50,
+        "stats": [
+          150,
+          0,
+          50,
+          0
+        ]
+      },
+      "branche_flexible": {
+        "trajectoire_sha256": "c72449f1f7e56a0746cce14de2aaf0f60f4fedb68dbe30c8c44e05f2f82d9db7",
+        "sorties": 100,
+        "stats": [
+          200,
+          0,
+          100,
+          0
+        ]
+      },
+      "boucle_spatiale": {
+        "trajectoire_sha256": "d06de09508e0ee366bb8ac43522c07b3c203e69fc01b1486931a646be38c948f",
+        "sorties": 250,
+        "stats": [
+          736,
+          0,
+          250,
+          0
+        ]
+      }
+    }
+  },
+  "nouveau": {
+    "version": "0.8.0",
+    "binaire_sha256": "e542a9ef19c70c8e8ae3c5ac3ae8114dda759824ba589aa54f77d64f816ffa57",
+    "modeles": {
+      "affine": {
+        "trajectoire_sha256": "167593f3cd71acf4ca5804e62d58dfa3870f393c49854bb42c749c43713bbe82",
+        "sorties": 25,
+        "stats": [
+          25,
+          0,
+          25,
+          0
+        ]
+      },
+      "libre": {
+        "trajectoire_sha256": "4a0f032816ae5960edd21db488585255105da2af14142badb9c0f6673f231dd3",
+        "sorties": 50,
+        "stats": [
+          150,
+          0,
+          50,
+          0
+        ]
+      },
+      "plan": {
+        "trajectoire_sha256": "ddd7225d0d5ebe780422ff643076bb4195f2c9a6f6ad07d0ba219bb0719c57a9",
+        "sorties": 50,
+        "stats": [
+          137,
+          0,
+          50,
+          0
+        ]
+      },
+      "toupie": {
+        "trajectoire_sha256": "88fc1f19d4aebe2d5023cd46b489c9c654e111ea42e7137fea52d8245905993d",
+        "sorties": 200,
+        "stats": [
+          400,
+          0,
+          200,
+          0
+        ]
+      },
+      "axes_commandes": {
+        "trajectoire_sha256": "71fdc604ecc94e3cce1160ca05ed608d6e7c0efdb8fb4ebb8f61cc05a02244af",
+        "sorties": 50,
+        "stats": [
+          150,
+          0,
+          50,
+          0
+        ]
+      },
+      "branche_flexible": {
+        "trajectoire_sha256": "c72449f1f7e56a0746cce14de2aaf0f60f4fedb68dbe30c8c44e05f2f82d9db7",
+        "sorties": 100,
+        "stats": [
+          200,
+          0,
+          100,
+          0
+        ]
+      },
+      "boucle_spatiale": {
+        "trajectoire_sha256": "d06de09508e0ee366bb8ac43522c07b3c203e69fc01b1486931a646be38c948f",
+        "sorties": 250,
+        "stats": [
+          736,
+          0,
+          250,
+          0
+        ]
+      }
+    }
+  },
+  "identiques": true
+}

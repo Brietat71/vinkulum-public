@@ -1,0 +1,137 @@
+{
+  "n": 2048,
+  "segments": 8,
+  "nombre_frequences": 3,
+  "frequences": [
+    0.0,
+    0.00045405826869568107,
+    0.0012271845099883273
+  ],
+  "tolerance_relative": 1e-10,
+  "omega_max": 0.0012271845099883273,
+  "force_physique": 0.022097086912079608,
+  "omega_premier_mode_global": 0.0007668031673474393,
+  "historique": [
+    {
+      "etape": 0,
+      "directions": 32,
+      "borne_schur": 8.712699861231838e-14,
+      "bornes_relatives": {
+        "masse": [
+          2.4864597832950166e-08,
+          2.4828576524659295e-08,
+          2.4709852998304975e-08
+        ],
+        "deformation": [
+          3.607427497717427e-07,
+          3.7940693945810696e-07,
+          2.9912546004025175e-07
+        ]
+      },
+      "accepte": false
+    },
+    {
+      "etape": 1,
+      "directions": 48,
+      "borne_schur": 3.930953719584329e-14,
+      "bornes_relatives": {
+        "masse": [
+          7.56137554067061e-12,
+          7.636950312283089e-12,
+          7.451526280272464e-12
+        ],
+        "deformation": [
+          1.0885364849301053e-10,
+          1.1532061623854423e-10,
+          8.977313292082101e-11
+        ]
+      },
+      "accepte": false
+    },
+    {
+      "etape": 2,
+      "directions": 64,
+      "borne_schur": 4.0291910673494044e-14,
+      "bornes_relatives": {
+        "masse": [
+          1.84837978300687e-12,
+          1.9343135016931358e-12,
+          1.7724826694218305e-12
+        ],
+        "deformation": [
+          2.5946755589156324e-11,
+          2.8144366240521752e-11,
+          2.101485222252569e-11
+        ]
+      },
+      "accepte": true
+    }
+  ],
+  "initial": [
+    {
+      "omega": 0.0,
+      "norme_oracle": 1182.8463551958048,
+      "norme_deformation_oracle": 1.0000000000000004,
+      "erreur_masse_relative": 4.944014497941853e-15,
+      "erreur_deformation_relative": 2.371017896455302e-13,
+      "borne_masse_relative": 2.4864597832950166e-08,
+      "borne_deformation_relative": 3.607427497717427e-07,
+      "marge": 0.272430405057486
+    },
+    {
+      "omega": 0.00045405826869568107,
+      "norme_oracle": 1814.316581834076,
+      "norme_deformation_oracle": 1.4562846348209995,
+      "erreur_masse_relative": 1.6050390244829813e-12,
+      "erreur_deformation_relative": 1.1944713572379239e-10,
+      "borne_masse_relative": 2.4828576524659295e-08,
+      "borne_deformation_relative": 3.7940693945810696e-07,
+      "marge": 0.17729870569595169
+    },
+    {
+      "omega": 0.0012271845099883273,
+      "norme_oracle": 776.3963672475285,
+      "norme_deformation_oracle": 0.7866634356635159,
+      "erreur_masse_relative": 6.269013850583364e-10,
+      "erreur_deformation_relative": 3.695302425142457e-08,
+      "borne_masse_relative": 2.4709852998304975e-08,
+      "borne_deformation_relative": 2.9912546004025175e-07,
+      "marge": 0.432155356988211
+    }
+  ],
+  "final": [
+    {
+      "omega": 0.0,
+      "norme_oracle": 1182.8463551958048,
+      "norme_deformation_oracle": 1.0000000000000004,
+      "erreur_masse_relative": 4.95235703305623e-15,
+      "erreur_deformation_relative": 2.4106829392225024e-13,
+      "borne_masse_relative": 1.84837978300687e-12,
+      "borne_deformation_relative": 2.5946755589156324e-11,
+      "marge": 0.27243040505753285
+    },
+    {
+      "omega": 0.00045405826869568107,
+      "norme_oracle": 1814.316581834076,
+      "norme_deformation_oracle": 1.4562846348209995,
+      "erreur_masse_relative": 2.5436131147261392e-15,
+      "erreur_deformation_relative": 2.8868502777888213e-13,
+      "borne_masse_relative": 1.9343135016931358e-12,
+      "borne_deformation_relative": 2.8144366240521752e-11,
+      "marge": 0.1772987056959985
+    },
+    {
+      "omega": 0.0012271845099883273,
+      "norme_oracle": 776.3963672475285,
+      "norme_deformation_oracle": 0.7866634356635159,
+      "erreur_masse_relative": 1.4665865178170977e-14,
+      "erreur_deformation_relative": 2.7000376582199385e-13,
+      "borne_masse_relative": 1.7724826694218305e-12,
+      "borne_deformation_relative": 2.101485222252569e-11,
+      "marge": 0.43215535698825785
+    }
+  ],
+  "statut": "tolerance_aux_frequences_demandees",
+  "facteurs_reutilises": true,
+  "certification_machine": false
+}

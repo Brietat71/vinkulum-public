@@ -1,0 +1,311 @@
+{
+  "date_utc": "2026-09-07T04:26:04.252845+00:00",
+  "temoin_commit": "6d38aa435c38360df23d0e48315300d3e6cb48ba",
+  "binaires_sha256": {
+    "avant": "f7efce93e24837af8f7b3ae721533c4fd7be704522ccc68f6257bd7c157cd96a",
+    "svd_seule": "ac8b4c9090108668b73ed29d09a30aeb16fab7ff3a6bcd2052435190814870cf",
+    "prototype_cod": "8077da2c497d560ed3d64924c48dd8d0079b0c99049feb8ec42b48d395945735",
+    "prototype_blocs": "66b30802b8e82bff3287e7ce25107aa264cd9af4db47de76c9b3cff51c9d2fc3",
+    "courant": "74c52b7bd4d8aaa9743d84c2845296634bf11e81fdde26c3f56686c85a60e882"
+  },
+  "sources_sha256": {
+    "Cargo.lock": "5a143572b13859a6954cda57d624a785eceb90ba5f1b9a204df7bfb1664c5343",
+    "Cargo.toml": "d27526bf96a1a7d46674f86a2475b433e562491df0552d749e715d77f262bb05",
+    "README.md": "689aabc874ab35fdafb8ddadcd01b36317ab2a83b6d7ff666d993b0be7be01a0",
+    "ci/audit_noyau.py": "1e5f8860db7d885a105c03b5f13b4439967a7256e712f54eb7687fc8df9d5a72",
+    "ci/banc_spectre.py": "69ead627fda84cd3265733ce525d2a983f15904f3c5aef35bb04530c8dfe9776",
+    "ci/bilan_assemblage_local.py": "9fdc8c532de4d7d4cd76282fc76fcaeee56995980057cbcf642a044e1d185cdf",
+    "ci/bilan_confrontation.py": "c81e32455ee06fff01c554229a37d0a8d8e69abdecb6dd23c3ce2c6716fcb9ab",
+    "ci/bilan_contraintes.py": "d55f810337ee4acbc68c1cf2670fed974816fbbd0aaaac90079511b484bd4952",
+    "ci/bilan_factorisations.py": "ae35948ef7f004489e4974142c999a92bf2e00e393424ee0395c3b830a8ba66c",
+    "ci/confronte_mbdyn.py": "5b335dc114daad7e1739ec66ea2426245373123c559079c9eb8a3d6872e3a31c",
+    "ci/diagnostic_assemblage_local.py": "c8b60a647c5844d6884b04b053a2a2cc858a8ec0e5d166062e212a6c6218dde4",
+    "ci/diagnostic_cable.py": "6f7f9db7ab069eaf9eba533d2c86543095e4f5fb11230eab72d88fe0ad1750ed",
+    "ci/diagnostic_cascade.py": "f187ca424d3513163fa5c2185b4e5577615e9518a760c8df22097db02d6a461d",
+    "ci/diagnostic_chaine_articulee.py": "9ae863e595b8e505111ff624236bef6df34884ffce757e0a9f904574cd89d598",
+    "ci/diagnostic_contraintes.py": "dd164fd1113b5dea127de90448cde6688d468d2f32fa7332bc56a449f8e586c0",
+    "ci/diagnostic_contraintes_proches.py": "0d462ea45b59d3e0440f4efbb8f44f0318016612adbaa6d57f7cd60de66d4b2a",
+    "ci/diagnostic_newton_redondant.py": "b65aa6f5fc7716f9705bb4547fb68aa13e5165d2193a15bcaf3a4a51e7631894",
+    "ci/diagnostic_positions_compensees.py": "777b728c325b5974f703090ab77e5778a0c5660aace15830d334c32eae572a52",
+    "ci/diagnostic_poutres.py": "1489735261e8759188126291fc90418b935626071fb39ff7f65f1ed86b6047ed",
+    "ci/diagnostic_precision_statique.py": "8f76484b4ef1d687933c065506b98119037b4d6aa7288c1c54de5f4139b215a0",
+    "ci/diagnostic_redondances.py": "025356ec744a80b21ba5a098112178954dd93785e65d54d4fd06bc185f91aec7",
+    "ci/diagnostic_statut_statique.py": "531344cff7942e5016a29ed014f4b42ca0564145814978abea900036d1312e23",
+    "ci/local.sh": "260e4cf66d105a8a23fe4bc02d9c1746db1e96740528d2040ae842d55b5ac839",
+    "ci/mesure_contraintes_alternee.py": "51f8189e2192c13b25256e8b538f87c85821894881022c5e76a6c27b3883796e",
+    "ci/mesure_dynamique_locale.py": "4361bac496115980ba219404fb347395c0e7fbafb07ee71a9346c360dee3d06d",
+    "ci/mesure_multirythme.py": "871a936d96ef70b23b573870614e2b49051377a54ed966d806986c4af1a677ff",
+    "ci/mesure_newton_redondant.py": "a6784c4e7e9f0c40cfa120cdd77e004f582afa2830dfbc7fcaaac1e087d66f29",
+    "ci/mesure_noyau.py": "b81ac3578141fb79fd0dfc71c0d04d665f542e1d7516edfd7d4f96d58ce95c0b",
+    "ci/mesure_redondances.py": "1d49c686ef4baa6f1624491446cd419512354d60701423790eea31959c966c31",
+    "ci/mesure_statique.py": "cc971d8cd0e6a2d92f4ef4ea8f794b31b0d9ce0e78c1c2cb729cba7635659bdf",
+    "ci/mesure_statique_alternee.py": "9b31d6d73999c86f06ff52ac5440e149bb5b1457bf792c8d62f213d99bb6a7fc",
+    "ci/mesure_svd.py": "bd76072c3a706c54f76cdace63f7aa6e8628a9e134235964ec8ef480efa587da",
+    "ci/mesure_tangentes.py": "7251b692025171e1c2316b6c68814da9f4ded1c8d3c5df4d5b72679d1b6c8275",
+    "ci/modeles_confrontation.py": "d7b154b95414f1755ff17e71fd92b5eb17fb27872fe61177fadd863fb3a8d02b",
+    "ci/test_confrontation.py": "9437da1799fc4b2d566aa1a6457655b6b82e86908e31c6c80793017a104321be",
+    "ci/test_precision_statique.py": "1453a6ed2f811ceb31decc5e6e382d94ee7bbcd652f2ae1c9c05edfa15c5481c",
+    "ci/trace_confrontation.py": "9a2e10da1999647f9e980e34c2ed3445a88e0f6a280da52e5734d6c27dd2d520",
+    "ci/valide_assemblage_local.py": "a9c662c50e4b030a96cdf9b6ec42fa603eceb231c7e9ebe02db16df35b07ae59",
+    "ci/valide_contraintes.py": "f53fd58fe181c83e703bf817bc20a7c0388f716afbb7b2fb6cc8655e2f9d4e81",
+    "ci/valide_factorisations.py": "ff12d0cff3c0c1544f6abaaa958972323226c1f87a35ce91d133babd3811ced8",
+    "ci/valide_newton_redondant.py": "f2d445c51342438c5a9b9ab5bf92565ec2af5d640f5859cebf245d8adf18f1c1",
+    "ci/valide_redondances.py": "4951cbe5c4b717dd6f51ffa422d52faf91a5f2e120318dd25f8fe69e2bcd794f",
+    "ci/valide_svd.py": "0b72c442cf909fd29c668f9d30eb7dfab752355a31475aff4899aecb5623d962",
+    "docs/FACTORISATIONS_ORTHOGONALES.md": "f2c4d330b871164161437dad8a3501bd508895bb6a536d36bbc9df7ee4c83a54",
+    "docs/OBJECTIF_MBDYN.md": "4d82dba7277bd226bdce1758f6243842c3a82d2b506d4cc08138cac6cda6a27d",
+    "examples/diagnostic_svd.rs": "0d10af0b73edff517d2beb3363ed77ea96bd44ae25b32738d316231d4012dc4d",
+    "pyproject.toml": "3826a6b2787be22b8c85a55ee29f191be2670482d5fa0d27186b54a720b75575",
+    "python/vinkulum/test_noyau.py": "c8065be5a410af6e1ba2ae824e0a865f98ad4338e4ee45611fd01ff4be4ff0d2",
+    "src/ad.rs": "1fd44c5469618d90d93ffa530639b44f6836deb992a5b24637b263026e5c75ff",
+    "src/analyse.rs": "18b0adaab5439b5b760714ce9d42ae7f165f58987ff3972f2b67862ec932c579",
+    "src/contraintes/equivalentes.rs": "d3c756e24ee532b6e5a214f4904a72d1ad2ac27140dde18737a7e03ca8db1761",
+    "src/contraintes/qr_creux.rs": "b05e0d434b15c62ec9da1d323a5c984dde28df4158a9bd7f644ded4561f9005e",
+    "src/contraintes.rs": "5af17c7e61c20b3f5e7ef4a52b8d0d536bb56c3a36f9a7c05858390dd02be8a9",
+    "src/lib.rs": "c52d67c538d32b1be48d42e94e4851f7dada2b6f9953ff99577241a89c47dfae",
+    "src/moindres_carres.rs": "5f677b71e7556c26e37fae9e84fbc7a35292b2a363b9c51fa5e05862e8409238",
+    "src/numerique.rs": "6872219a7265400e069e8fa2317315376ee648ba08d83fbb97bb96410f79ffba",
+    "src/partition.rs": "24c59b9b2914f3a1999528937c5410bbb6eae78e1675cf51cebad1fbed4d3674",
+    "src/robustesse.rs": "0b0490343581ca78e5fb637b96d8c727da6d694b96a8a917f0c9cef670003c2a",
+    "src/superelement.rs": "2769e6ac826754da3d8b9dc4d183d9f88f9c8c5b4acc3440e564d6c93f6385d3",
+    "src/svd.rs": "a781fbe1f868cec6a0f2963f2b218e5d5789e34441899cb7af3bc637c07d68aa",
+    "src/tangent.rs": "3128fca6cee949ba0e5f72566fbf67d930864a0e13b9422865504084d3130fed"
+  },
+  "artefacts_sha256": {
+    "docs/bancs/factorisations-ablation-bilan.json": "4f2217eef97cfbf9633ac8fd57c3658d6ec54e4d47a54d135811e4b9d13d7642",
+    "docs/bancs/factorisations-ablation-cod-sources.json": "36fba4965cff5b0fbcb34228b2c752f2474c1c75c67157594e2e3972f87e8f67",
+    "docs/bancs/factorisations-ablation-cod.patch": "1e54b1a083e9abb8bec0571ab500d009fa054eba162b404a399a495f0f82b4dd",
+    "docs/bancs/factorisations-ablation-svd-sources.json": "d8c84f66c22743589065fb929ecd0c60447f4c80a42517cb2f37e9376ca6344b",
+    "docs/bancs/factorisations-ablation-svd.patch": "b61bea1f90bfb895119fcee1e06450fdd63c6acf15a324adc79a24b7ec1ac181",
+    "docs/bancs/factorisations-ablation.json": "4ba7116f3485e63f819b26e4e5bad2fbc3e87d711c5e8d8f13204d283bb70488",
+    "docs/bancs/factorisations-blocs-bilan.json": "0805dbc0490610c0bea9b1a7307d4c49e2f096cba501c239d9265df01a24fbd0",
+    "docs/bancs/factorisations-blocs-ci.log": "297262923adb750257748c556b3259626a52319f24791dfc0fb4ac935d02cab9",
+    "docs/bancs/factorisations-blocs-openat.log.gz": "eaa13df3a8db6973f8bde69d7200ad7cf70817a06ec6a222e5ea7d5a41ac0beb",
+    "docs/bancs/factorisations-blocs-sources.json": "10274271b31426cb563ecaeea843012c22e0244bb26c29fe6ed0ac90e1d46a2c",
+    "docs/bancs/factorisations-blocs.json": "d74e0b3044fcf7ded8956d36b4844ffe8859749795df104ca51396ded7de3fe5",
+    "docs/bancs/factorisations-blocs.patch": "48a612ef7e5f82b854f7d28e0c6b0de546c26ac24ece2c89e04cf3dd3be40d14",
+    "docs/bancs/factorisations-cable.json": "5f69c9cf4d3353030fe6fa452039aa395d886b1657f2d55d8a01cca3a09ce6f3",
+    "docs/bancs/factorisations-ci.log": "86836a7b6f8312e81581673b22a9a3996f77c809befb52780513ec35fa6cbe8b",
+    "docs/bancs/factorisations-demarrage.json": "fa886656b520241c8f23b010809982d4b240ce81a442b19c13fe9c3b2a773c88",
+    "docs/bancs/factorisations-finale-openat.log.gz": "d3b40f0a9ec47a1533bb92138077ae4839646c35283fbc68f0b168da08b1515b",
+    "docs/bancs/factorisations-grands-bilan.json": "d58fa2a8561e1f391e53a14631a320c6264cf1d9591d9d14108f07dde19625ed",
+    "docs/bancs/factorisations-grands.json": "17f524bd23493c5082e2cc0684e58d64f80f8ddf9c08e0e235c2ccfb6dff8fdd",
+    "docs/bancs/factorisations-mesures-bilan.json": "6a5fd4a92a55e45a7a1ea1ca1eb27edc7cca505b4970704a54a2a81e4e8004ef",
+    "docs/bancs/factorisations-mesures.json": "0893d73cd09d9ec1ba712edbc43022c14b78621c6538594a593e2205f470771c",
+    "docs/bancs/factorisations-negatif.log": "1ad789c4515f0749599e85df71f105164b189470321b5ca6f34612a18773e7e0",
+    "docs/bancs/factorisations-princeton.json": "86247c90aae6bb5d8a83e8bbf26cd3fb063f6a15eb87cf4ecf67bbbc917f151f",
+    "docs/bancs/factorisations-svd-lapack.json": "4128f65999ed12acc7d06024630d94eba3bc50d63fe4a242fba0fd08d6fe7b1c",
+    "docs/bancs/factorisations-svd-rust.json": "59f759f861d4db9b507eed4997da2d44415ab9e5f34ff41bd1e3b23d17772ab6",
+    "docs/bancs/factorisations-tests-python.log": "1e4e3b1a1234374631d74ef82bd5284e179cf68cf05336ac99820c4e8c896124"
+  },
+  "ci": {
+    "commande": "ci/local.sh --bancs",
+    "code_sortie": 0,
+    "rust": 48,
+    "python": 65,
+    "verification": 41,
+    "bancs": 46,
+    "contacts": 9,
+    "api": 185
+  },
+  "campagnes": {
+    "ablation": {
+      "essais": 60,
+      "equilibres_stricts": 48,
+      "echecs_restaures": [
+        [
+          "cascade",
+          4,
+          "svd",
+          0
+        ],
+        [
+          "cascade",
+          8,
+          "svd",
+          0
+        ],
+        [
+          "cascade",
+          16,
+          "svd",
+          0
+        ],
+        [
+          "cascade",
+          32,
+          "svd",
+          0
+        ],
+        [
+          "cascade",
+          4,
+          "svd",
+          1
+        ],
+        [
+          "cascade",
+          8,
+          "svd",
+          1
+        ],
+        [
+          "cascade",
+          16,
+          "svd",
+          1
+        ],
+        [
+          "cascade",
+          32,
+          "svd",
+          1
+        ],
+        [
+          "cascade",
+          4,
+          "svd",
+          2
+        ],
+        [
+          "cascade",
+          8,
+          "svd",
+          2
+        ],
+        [
+          "cascade",
+          16,
+          "svd",
+          2
+        ],
+        [
+          "cascade",
+          32,
+          "svd",
+          2
+        ]
+      ],
+      "delais_depasses": []
+    },
+    "blocs": {
+      "essais": 102,
+      "equilibres_stricts": 90,
+      "echecs_restaures": [
+        [
+          "cascade",
+          8,
+          "avant",
+          0
+        ],
+        [
+          "cascade",
+          16,
+          "avant",
+          0
+        ],
+        [
+          "parallelogrammes",
+          16,
+          "avant",
+          0
+        ],
+        [
+          "cascade",
+          8,
+          "avant",
+          1
+        ],
+        [
+          "cascade",
+          16,
+          "avant",
+          1
+        ],
+        [
+          "parallelogrammes",
+          16,
+          "avant",
+          1
+        ],
+        [
+          "cascade",
+          8,
+          "avant",
+          2
+        ],
+        [
+          "cascade",
+          16,
+          "avant",
+          2
+        ],
+        [
+          "parallelogrammes",
+          16,
+          "avant",
+          2
+        ]
+      ],
+      "delais_depasses": [
+        [
+          "parallelogrammes",
+          32,
+          "avant",
+          0
+        ],
+        [
+          "parallelogrammes",
+          32,
+          "avant",
+          1
+        ],
+        [
+          "parallelogrammes",
+          32,
+          "avant",
+          2
+        ]
+      ]
+    },
+    "mesures": {
+      "essais": 78,
+      "equilibres_stricts": 78,
+      "echecs_restaures": [],
+      "delais_depasses": []
+    },
+    "grands": {
+      "essais": 15,
+      "equilibres_stricts": 15,
+      "echecs_restaures": [],
+      "delais_depasses": []
+    }
+  },
+  "paliers_princeton_stricts": 400,
+  "controles_svd": {
+    "nalgebra": {
+      "erreur_solution": 0.002384394859949502,
+      "erreur_sigma": 0.003775812765527631,
+      "erreur_reconstruction_relative": 0.023902974865673336,
+      "orthogonalite_u": 1.6731070251477462e-15,
+      "orthogonalite_v": 9.915791739918584e-16
+    },
+    "faer": {
+      "erreur_solution": 1.9199557061445896e-15,
+      "erreur_sigma": 1.2077369121160678e-15,
+      "erreur_reconstruction_relative": 6.775068152342755e-16,
+      "orthogonalite_u": 8.896352212479632e-16,
+      "orthogonalite_v": 1.1936795136326552e-15
+    },
+    "lapack": {
+      "erreur_solution": 3.152427400121712e-16
+    }
+  },
+  "limites": [
+    "Le repli de rang général reste dense.",
+    "La borne de rang concerne le triangle calculé, sans certificat par intervalles des données.",
+    "Les échecs et délais dépassés des témoins ne sont pas des gains de vitesse.",
+    "Tolérance relative au déséquilibre initial libre ; pas de garantie absolue universelle.",
+    "Câble condensé extrême encore en échec ; aucune nouvelle exécution MBDyn ou Simpack."
+  ]
+}

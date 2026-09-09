@@ -1,0 +1,9 @@
+{
+  "binaire_sha256": "8077da2c497d560ed3d64924c48dd8d0079b0c99049feb8ec42b48d395945735",
+  "sources_sha256": {
+    "src/lib.rs": "c52d67c538d32b1be48d42e94e4851f7dada2b6f9953ff99577241a89c47dfae",
+    "src/contraintes.rs": "5af17c7e61c20b3f5e7ef4a52b8d0d536bb56c3a36f9a7c05858390dd02be8a9",
+    "src/moindres_carres.rs": "0a90899ad42173137efb06fd3f09f7a33c88fba75b7b96d30607a58152180749",
+    "src/svd.rs": "a781fbe1f868cec6a0f2963f2b218e5d5789e34441899cb7af3bc637c07d68aa"
+  }
+}

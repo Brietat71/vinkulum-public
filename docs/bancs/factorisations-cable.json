@@ -1,0 +1,300 @@
+{
+  "extension_sha256": "74c52b7bd4d8aaa9743d84c2845296634bf11e81fdde26c3f56686c85a60e882",
+  "sources_sha256": {
+    "src/lib.rs": "c52d67c538d32b1be48d42e94e4851f7dada2b6f9953ff99577241a89c47dfae",
+    "src/tangent.rs": "3128fca6cee949ba0e5f72566fbf67d930864a0e13b9422865504084d3130fed",
+    "ci/diagnostic_cable.py": "6f7f9db7ab069eaf9eba533d2c86543095e4f5fb11230eab72d88fe0ad1750ed",
+    "ci/diagnostic_poutres.py": "1489735261e8759188126291fc90418b935626071fb39ff7f65f1ed86b6047ed",
+    "python/vinkulum/campagne.py": "6490de1d767df6262785311bbb0a9a8bb88b36153d12dd6178079aaa7cf7cd8e"
+  },
+  "cas": {
+    "milieu": {
+      "tol": 1e-10,
+      "echelle_forces_initiale": 14.715000000002945,
+      "definition_echelle": "max(1, norme infinie du résidu des translations libres)",
+      "conditionnement_2": 162.461866964568,
+      "ecart_K_max": 5.820766091346741e-11,
+      "ecart_K_relatif": 1.4553018054094309e-16,
+      "positions_reference": [
+        [
+          0.5,
+          0.0,
+          -0.07892469574251672
+        ],
+        [
+          1.0,
+          0.0,
+          -0.15584858598121024
+        ],
+        [
+          1.5,
+          0.0,
+          -0.2288929198198882
+        ],
+        [
+          2.0,
+          0.0,
+          -0.29627279508299526
+        ],
+        [
+          2.5,
+          0.0,
+          -0.35634109256565966
+        ],
+        [
+          3.0,
+          0.0,
+          -0.40762900150522263
+        ],
+        [
+          3.5,
+          0.0,
+          -0.44888214299815743
+        ],
+        [
+          4.0,
+          0.0,
+          -0.4790914078925703
+        ],
+        [
+          4.5,
+          0.0,
+          -0.49751775656493624
+        ],
+        [
+          5.0,
+          0.0,
+          -0.5037103765553304
+        ],
+        [
+          5.5,
+          0.0,
+          -0.49751775656493624
+        ],
+        [
+          6.0,
+          0.0,
+          -0.4790914078925704
+        ],
+        [
+          6.5,
+          0.0,
+          -0.4488821429981575
+        ],
+        [
+          7.0,
+          0.0,
+          -0.40762900150522263
+        ],
+        [
+          7.5,
+          0.0,
+          -0.3563410925656597
+        ],
+        [
+          8.0,
+          0.0,
+          -0.2962727950829953
+        ],
+        [
+          8.5,
+          0.0,
+          -0.2288929198198883
+        ],
+        [
+          9.0,
+          0.0,
+          -0.15584858598121032
+        ],
+        [
+          9.5,
+          0.0,
+          -0.07892469574251679
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "fleche_reference_m": 0.5037103765553304,
+      "residu_lineaire_absolu": 2.753353101070388e-13,
+      "essais": {
+        "originale": {
+          "statut": "ok",
+          "residu_annonce": 2.871429507356637e-11,
+          "iterations": 1,
+          "secondes": 0.0015534970443695784,
+          "echelle_forces_depart": 14.715000000002945,
+          "norme_forces_totales_depart": 14.715000000002945,
+          "residu_relatif_echelle_originale": 1.9513622204254585e-12,
+          "tol_originale_tenue": true,
+          "residu_translations_libres": 2.871429507356637e-11,
+          "phi_max": 1.236421051169163e-17,
+          "fleche_m": 0.5037103765553304
+        },
+        "lineaire": {
+          "statut": "ok",
+          "residu_annonce": 3.5819560826767446e-11,
+          "iterations": 0,
+          "secondes": 0.00019602407701313496,
+          "echelle_forces_depart": 1.0,
+          "norme_forces_totales_depart": 139.792500009811,
+          "residu_relatif_echelle_originale": 2.434220919249764e-12,
+          "tol_originale_tenue": true,
+          "residu_translations_libres": 3.5819560826767446e-11,
+          "phi_max": 0.0,
+          "fleche_m": 0.5037103765553304
+        }
+      }
+    },
+    "integree": {
+      "tol": 1e-10,
+      "echelle_forces_initiale": 14.715000000002945,
+      "definition_echelle": "max(1, norme infinie du résidu des translations libres)",
+      "conditionnement_2": 87184223148.80849,
+      "ecart_K_max": 2.9103830456733704e-11,
+      "ecart_K_relatif": 7.277611978144719e-17,
+      "positions_reference": [
+        [
+          -34582.632422990566,
+          0.0,
+          -221071.15976479536
+        ],
+        [
+          -49339.568486532036,
+          0.0,
+          -317788.9931038426
+        ],
+        [
+          -49710.38946342042,
+          0.0,
+          -320350.39494797424
+        ],
+        [
+          -41300.6394412969,
+          0.0,
+          -257498.62374734675
+        ],
+        [
+          -29155.791839319194,
+          0.0,
+          -155720.37197460682
+        ],
+        [
+          -17213.159378032648,
+          0.0,
+          -38537.578971609655
+        ],
+        [
+          -7979.126365882927,
+          0.0,
+          74080.77413013633
+        ],
+        [
+          -2448.2397576168864,
+          0.0,
+          166177.0558351806
+        ],
+        [
+          -251.27450851447816,
+          0.0,
+          226137.50868270715
+        ],
+        [
+          4.998501160194288,
+          0.0,
+          246912.0547311611
+        ],
+        [
+          261.27143557543565,
+          0.0,
+          226137.5147955656
+        ],
+        [
+          2458.2364577565895,
+          0.0,
+          166177.0681426868
+        ],
+        [
+          7989.122681118816,
+          0.0,
+          74080.79284736548
+        ],
+        [
+          17223.15519397864,
+          0.0,
+          -38537.55416470163
+        ],
+        [
+          29165.787031218097,
+          0.0,
+          -155720.3410441999
+        ],
+        [
+          41310.63434505779,
+          0.0,
+          -257498.59040213656
+        ],
+        [
+          49720.38445647662,
+          0.0,
+          -320350.36227016925
+        ],
+        [
+          49349.564093839785,
+          0.0,
+          -317788.9646630294
+        ],
+        [
+          34592.630265643376,
+          0.0,
+          -221071.14597405423
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "fleche_reference_m": 320350.39494797424,
+      "residu_lineaire_absolu": 3.8146752572768608e-06,
+      "essais": {
+        "originale": {
+          "statut": "echec",
+          "erreur": "ValueError: statique : pas convergé en 8 itérations, ‖r‖ = 1.472e1 pour une échelle de force de 1.472e1 (1.0e0 en relatif)",
+          "secondes": 0.17838672595098615,
+          "echelle_forces_depart": 14.715000000002945,
+          "norme_forces_totales_depart": 14.715000000002945,
+          "residu_relatif_echelle_originale": 1.0,
+          "tol_originale_tenue": false,
+          "residu_translations_libres": 14.715000000002945,
+          "phi_max": 0.0,
+          "fleche_m": 0.5
+        },
+        "lineaire": {
+          "statut": "echec",
+          "erreur": "ValueError: statique : pas convergé en 8 itérations, ‖r‖ = 5.159e-7 pour une échelle de force de 1.000e0 (5.2e-7 en relatif)",
+          "secondes": 0.07815824705176055,
+          "echelle_forces_depart": 1.0,
+          "norme_forces_totales_depart": 124033356.28304473,
+          "residu_relatif_echelle_originale": 2.800406810358325e-07,
+          "tol_originale_tenue": false,
+          "residu_translations_libres": 4.1207986214431e-06,
+          "phi_max": 0.0,
+          "fleche_m": 320350.39494797424
+        }
+      }
+    }
+  }
+}

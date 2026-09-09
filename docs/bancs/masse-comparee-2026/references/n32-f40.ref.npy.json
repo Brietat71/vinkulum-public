@@ -1,0 +1,50 @@
+{
+  "precision": [
+    70,
+    90
+  ],
+  "ecart_relatif_max": 0.0,
+  "maxima": {
+    "masse": 0.0,
+    "deformation": 0.0,
+    "port": 0.0
+  },
+  "maxima_operateurs": {
+    "masse": 0.0,
+    "deformation": 0.0,
+    "port": 0.0
+  },
+  "fichier_sha256": "6468422835bf0a173f7d708841d6fc11d20e181d34f4b6b9a1f84b8022cb87f6",
+  "temps_hors_mesures_s": 3.933206888148561,
+  "oracle": "OracleChampsCouples",
+  "controle": "colonnes et opérateurs masse/déformation/port après conversion binary64",
+  "certification_machine": false,
+  "compteurs": [
+    {
+      "assemblages_raideur": 1,
+      "produits_gram": 1002,
+      "condensations_frequence": 257,
+      "resolutions_blocs": 8224,
+      "reponses": 257,
+      "colonnes_force": 1542
+    },
+    {
+      "assemblages_raideur": 1,
+      "produits_gram": 1002,
+      "condensations_frequence": 257,
+      "resolutions_blocs": 8224,
+      "reponses": 257,
+      "colonnes_force": 1542
+    }
+  ],
+  "audit_masse": {
+    "produits_rationnels": 564,
+    "largeur_bande": 6,
+    "nnz_facteur": 378,
+    "rho_numerateur": "104826766460079839",
+    "rho_denominateur": "220502973764768117228394596270080",
+    "alpha": 0.25,
+    "correction_relative": 1.000000000000002,
+    "portee": "défaut du facteur exact encadré ; calcul des champs pondérés et QR du juge non certifiés"
+  }
+}

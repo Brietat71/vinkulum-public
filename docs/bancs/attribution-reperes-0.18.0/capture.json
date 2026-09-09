@@ -1,0 +1,166 @@
+{
+  "schema": "vinkulum.diagnostic.trace_em.1",
+  "version": "0.18.0",
+  "extension_sha256": "2b28111334e0f3c9db914a99435525b9dea400c602c4f1766fc1f4892a6aa53a",
+  "programme_sha256": "ae4a60b1abe159cee7a2ac1cfb8b6a6907ae434d3cbb14cf4065952481fab1c8",
+  "modele_sha256": "b4377840cb8301ecef793ec0954c3b1380d64d24e2cb39cfca98d12bf78407a5",
+  "propagation_certifiee": false,
+  "cas": [
+    {
+      "fichier": "initial-0.00100.json.gz",
+      "sha256": "69aabe8e963a07a4b98445549ca71d4db91d93f79630ce476396830873520b63",
+      "points": 20001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    },
+    {
+      "fichier": "spatial-0.00100.json.gz",
+      "sha256": "02902d79cbfaaaf4a442f6c4d218e9fcad175f8cbbd105f886c66a3130fa92ba",
+      "points": 20001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    },
+    {
+      "fichier": "materiel-0.00100.json.gz",
+      "sha256": "b60105945b6d5c0e1fb1cac29ad036f1a52ccb5c93833900e46cd8b34a1842d8",
+      "points": 20001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    },
+    {
+      "fichier": "combine-0.00100.json.gz",
+      "sha256": "b378ac456f64c85db8f6ac0c09a723b5f6169173be6515e0bea072177c3b8199",
+      "points": 20001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    },
+    {
+      "fichier": "initial-0.00050.json.gz",
+      "sha256": "5d74e76352ec79fc546432f5464b0449c7dca0fbf63cbdb85bb83d0c5718b3db",
+      "points": 40001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    },
+    {
+      "fichier": "spatial-0.00050.json.gz",
+      "sha256": "722e9a48bb67c591686ae8a71d925c6764fa38f6df07a1447c71cfa0d4e06031",
+      "points": 40001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    },
+    {
+      "fichier": "materiel-0.00050.json.gz",
+      "sha256": "1d2c8433348c2938ea2b683e854cb4ffc816a58c6388debfc85614e4cc0308a0",
+      "points": 40001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    },
+    {
+      "fichier": "combine-0.00050.json.gz",
+      "sha256": "477e77bf9f1aace197cfd6563bd47f926d3f5bf60915eebc0cd900a40337d7a3",
+      "points": 40001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    },
+    {
+      "fichier": "initial-0.00025.json.gz",
+      "sha256": "fb43fab0abe1b8dccc5ec8832ce3c972520a4f4887768c202a5ee76716963a9e",
+      "points": 80001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    },
+    {
+      "fichier": "spatial-0.00025.json.gz",
+      "sha256": "cc4daa2d2662aa59113d5404f3f19fd6199d6e80e28796cf9849f6f77722e981",
+      "points": 80001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    },
+    {
+      "fichier": "materiel-0.00025.json.gz",
+      "sha256": "9ee7c9b1b72ec2f2dad4e4a08a659d2764c896fcd8a07a22911821eeb0dd9c8a",
+      "points": 80001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    },
+    {
+      "fichier": "combine-0.00025.json.gz",
+      "sha256": "1571aa5e833acf683d6d477ff029accd40e23da6967e8c82db64c0b8c45d81ac",
+      "points": 80001,
+      "comparaison_meme_roue": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      },
+      "comparaison_roue_publiee": {
+        "composantes_differentes_bits": 0,
+        "ecart_absolu_max": 0.0
+      }
+    }
+  ]
+}

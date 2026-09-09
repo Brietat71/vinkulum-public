@@ -1,0 +1,69 @@
+{
+  "date": "2026-09-07T18:11:04.236095+00:00",
+  "python": "3.14.7",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "essais": [
+    {
+      "fichier": "chaine-64-4-3.json",
+      "sha256": "968b42dfca8097a179a1b43a603aa4467f6ddeec7094b61a350a156b49440ad2",
+      "cas": [
+        64,
+        4,
+        3
+      ]
+    },
+    {
+      "fichier": "chaine-2048-8-3.json",
+      "sha256": "91970f6b7b8b3eece84caa835f9432c53ec6c2378ec7ced8deb36a7867f93674",
+      "cas": [
+        2048,
+        8,
+        3
+      ]
+    },
+    {
+      "fichier": "chaine-2048-32-3.json",
+      "sha256": "6c751b78f48121a4325f61ca1a398fc1051e3283358fa0d15f073abd50236820",
+      "cas": [
+        2048,
+        32,
+        3
+      ]
+    },
+    {
+      "fichier": "chaine-2048-8-17.json",
+      "sha256": "196045e25e2a0aade2ffc53521888892672e93daea04e5d255cb4725c42de04b",
+      "cas": [
+        2048,
+        8,
+        17
+      ]
+    },
+    {
+      "fichier": "chaine-2048-32-17.json",
+      "sha256": "92300af0975a8b2789f7283dcd0764e3c7aabfe16235594994fc424f081accd8",
+      "cas": [
+        2048,
+        32,
+        17
+      ]
+    }
+  ],
+  "sources": {
+    "experience_champ_interieur.py": "67ae7e6a8260617b5b0d412ddbf2bb49621348c259e4dc8af8c06a8e569c1d4c",
+    "champ_interieur.py": "d3b56e8f52e31fbf41fcabe8a722f5a6b92e4784a4ac34a41f982cc2fb505cb3",
+    "ports_releves.py": "08939d904e46dcbc6a27b47c27ca943c8cb2316096920a66a0715a2ebcde38ca",
+    "ports_krylov.py": "06f6c53478dce24e3103f84957a46dcbc09e0828505e321f8c585e22f977a5ad",
+    "chaine_sous_structures.py": "fd6bfdac7dc2d130247933daf16942c5826ec814be4fb444127022244c0d1f54",
+    "condensation_energie.py": "8cf95400d746f439ece96a6a984c2a6680ea3f4a4a444dffd500047969cac691",
+    "condensation_energie_lu.py": "f1138f92e1deea9681730166facbe0e71be8534768c504b9a347904239c385a4",
+    "energie_ports.py": "0a6c5fe63323c27b288028b21869f45e4f3e8a581e3f7cbe7016beb71e554159",
+    "reference_ports_precision.py": "4fb36d49bae345b7bdc7cddfd541279df285564c1d0618d2f7f5e91dbf71a41c",
+    "modeles_ports.py": "5d4be88b787bfe48d0f702129e9dc0f23bdf6d32071289861d21079a75d6b348",
+    "test_ports_releves.py": "6b55f417bb2ea3e06a91230af977c60abb2cc6cf21cd850884629ca5c981c71c",
+    "test_champ_interieur.py": "63437f9b1028fa6c49652c7bc966eb40c0259955975289cc4b3903be8e0919f4"
+  },
+  "chronometrage": false,
+  "oracle": "solution analytique de la chaîne discrète, force physique 1/echelle"
+}

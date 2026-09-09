@@ -1,0 +1,70 @@
+{
+  "format": 1,
+  "date_archivage_utc": "2026-09-08T11:13:15.903264+00:00",
+  "base_git": "9062db807da2a406ec8681193a06ae046418cf92",
+  "source_originale": "/tmp/vinkulum-sonde-complement-2026",
+  "fichiers": {
+    "AUDIT_DIRIGE.md": {
+      "sha256": "2d1cc658923e638d261c4edda7dd9be9fa07c71e82643b44a1dbc7824a199348",
+      "octets": 5141
+    },
+    "NOTE.md": {
+      "sha256": "11d8e730e8e4a3b0116d5965daeea43bcc4d467d46b80983f751f3a83f87ea6d",
+      "octets": 6364
+    },
+    "README.md": {
+      "sha256": "30974278f09a2df5ccc52a419e7f378532b79d5ed01db0a80429503ef195f915",
+      "octets": 3867
+    },
+    "audit_dirige.json": {
+      "sha256": "d87bbedf6d51834e79dc278b69b2d4fd86d70c977a1de00331cc40edf20df1aa",
+      "octets": 23624
+    },
+    "audit_dirige.log": {
+      "sha256": "f47754ecf640064181ebedad8d85aaa2f2555a12e7190eb9fe9a05ab57f0fc92",
+      "octets": 306
+    },
+    "audit_dirige.py": {
+      "sha256": "6b77b67426542463a2ac0314fbd0cdf29cb7749bf01bb97b783c77c1167f1e9c",
+      "octets": 5230
+    },
+    "audit_entrees.json": {
+      "sha256": "14d0c66db125f3ce31cd0086c92110f0afb596e7002abc3b5b685e99183c59ab",
+      "octets": 2140
+    },
+    "audit_entrees.py": {
+      "sha256": "7cda82230402da2370e42a80bb515b03fdfba73f09460ff3fdedb29260cd9428",
+      "octets": 2544
+    },
+    "environnement.json": {
+      "sha256": "19a2e0c6b1a3963add01c1db0cd60d1713131bda0d2ddeea8e980d96a320a8ea",
+      "octets": 323
+    },
+    "execution.log": {
+      "sha256": "a39a1995d0516417edebe4fbd55552b704c4126866307c795a324312fac73e20",
+      "octets": 552
+    },
+    "rapport.json": {
+      "sha256": "8279f87792a058538a3dd08ead8945a7de4908b84cb27da5dd7f48a735383fec",
+      "octets": 90724
+    },
+    "sonde.py": {
+      "sha256": "18ec08833333c83df92bdeecc0e654e33694f16be761446bcd21e4fc74f3ffdf",
+      "octets": 9792
+    }
+  },
+  "sources_auditees": {
+    "ci/trace_complement_dirigee.py": "ebbdd7b727ea93df6acb583ca68251d504e9d70a812354deeb688ba84f8cb8f3",
+    "ci/test_trace_complement.py": "432ed69c88fadf68750a0ecba5dd3c453e4b1835450e5b74895da559ad7eeced"
+  },
+  "directions_externes": {
+    "n32-directions.npz": "4254e73e24a108f1279b2a5013a737dfa36932eff66b2bbfcfcc4c43d66e469d",
+    "n128-directions.npz": "71da6946f4d357acd82e4ab1f80567127e269104b237d1c6ce73de6bb5e76457",
+    "n512-directions.npz": "004bcb43ca87f17dae5ab5342e6de4650c01fcbd104820d871d654d880a62c2f"
+  },
+  "portee": {
+    "sonde": "estimations flottantes non certifiées du complément ; aucune réponse calculée",
+    "audit": "70 cas rationnels, 68 certificats acceptés vérifiés exactement et 2 refus sûrs",
+    "temps": "indicatifs ; aucune comparaison de performances"
+  }
+}

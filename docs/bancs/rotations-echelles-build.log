@@ -1,0 +1,5 @@
+   Compiling pyo3-ffi v0.29.2
+   Compiling pyo3 v0.29.2
+   Compiling vinkulum v0.6.2 (/root/vinkulum)
+    Finished `release` profile [optimized] target(s) in 19.51s
+     Running `target/release/examples/diagnostic_echelle_svd`

@@ -1,0 +1,57 @@
+{
+  "famille": "cascade_tournee",
+  "taille": 20,
+  "variante": "local",
+  "forme": [
+    400,
+    360
+  ],
+  "nnz": 3613,
+  "python": "3.14.7",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "cpu": [
+    8
+  ],
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+  "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+  "statut": "calcule",
+  "factorisation_s": 0.047129783080890775,
+  "projection_s": 0.00435833795927465,
+  "reactions_s": 0.0028601379599422216,
+  "total_s": 0.054348259000107646,
+  "diagnostic": {
+    "lignes": 400,
+    "colonnes": 360,
+    "rang": 340,
+    "seuil": 5.6843418860808015e-12,
+    "nnz_entree": 3613,
+    "nnz_actifs_max": 3613,
+    "nnz_facteur": 3991,
+    "coefficients_reflexions": 2211,
+    "support_max": 25,
+    "coefficients_transformes": 27851,
+    "lignes_supprimees": 60,
+    "norme_residus_supprimes": 9.652245285985893e-16,
+    "pivot_min": 0.042870848400268086,
+    "orthogonalite_locale_max": 4.440892098500626e-16,
+    "base_dense": false,
+    "gram_forme": false
+  },
+  "rss_avant_oracle_kib": 84480,
+  "controles": {
+    "erreur_projection": 8.81239525796218e-15,
+    "erreur_force": 2.525757381022231e-14,
+    "fermeture": 4.180683577104105e-16,
+    "idempotence": 1.7763568394002505e-15,
+    "rang_attendu": 340,
+    "rang_correct": true
+  },
+  "accepte": true
+}

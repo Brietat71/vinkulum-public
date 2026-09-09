@@ -1,0 +1,213 @@
+{
+  "schema": "vinkulum.diagnostic.rattachement_reperes.1",
+  "archive_sha256": "f962ca6f5b14767b7ba7f26063c11424d173acdc764ba5098238da562d61e33e",
+  "programme_sha256": "4aa89965248d6f7bfef37d612623e350ecd5396f42f6e5230b75c706288fa10d",
+  "version_historique": "0.14.1",
+  "comparaisons": [
+    {
+      "cadre": "initial",
+      "pas": 0.001,
+      "historique": [
+        0.0,
+        0.0
+      ],
+      "trace": [
+        0.0,
+        0.0
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "cadre": "spatial",
+      "pas": 0.001,
+      "historique": [
+        1.7210446978663415e-07,
+        7.242258797405715e-07
+      ],
+      "trace": [
+        1.7210446978663415e-07,
+        7.242258797405715e-07
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "cadre": "materiel",
+      "pas": 0.001,
+      "historique": [
+        8.937419336104277e-08,
+        3.71542224519436e-07
+      ],
+      "trace": [
+        8.937419336104277e-08,
+        3.71542224519436e-07
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "cadre": "combine",
+      "pas": 0.001,
+      "historique": [
+        3.026103674481697e-08,
+        1.2734032145915615e-07
+      ],
+      "trace": [
+        3.026103674481697e-08,
+        1.2734032145915615e-07
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "cadre": "initial",
+      "pas": 0.0005,
+      "historique": [
+        0.0,
+        0.0
+      ],
+      "trace": [
+        0.0,
+        0.0
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "cadre": "spatial",
+      "pas": 0.0005,
+      "historique": [
+        3.4083550097944337e-07,
+        1.4337413658071853e-06
+      ],
+      "trace": [
+        3.4083550097944337e-07,
+        1.4337413658071853e-06
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "cadre": "materiel",
+      "pas": 0.0005,
+      "historique": [
+        6.632834428039897e-08,
+        2.7901370368590123e-07
+      ],
+      "trace": [
+        6.632834428039897e-08,
+        2.7901370368590123e-07
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "cadre": "combine",
+      "pas": 0.0005,
+      "historique": [
+        9.527725044735272e-08,
+        4.007885020167497e-07
+      ],
+      "trace": [
+        9.527725044735272e-08,
+        4.007885020167497e-07
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "cadre": "initial",
+      "pas": 0.00025,
+      "historique": [
+        0.0,
+        0.0
+      ],
+      "trace": [
+        0.0,
+        0.0
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "cadre": "spatial",
+      "pas": 0.00025,
+      "historique": [
+        1.6413233736309722e-07,
+        6.903699692191334e-07
+      ],
+      "trace": [
+        1.6413233736309722e-07,
+        6.903699692191334e-07
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "cadre": "materiel",
+      "pas": 0.00025,
+      "historique": [
+        7.970736055979458e-08,
+        3.312021101119073e-07
+      ],
+      "trace": [
+        7.970736055979458e-08,
+        3.312021101119073e-07
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "cadre": "combine",
+      "pas": 0.00025,
+      "historique": [
+        7.858108752304243e-08,
+        3.3052558136845864e-07
+      ],
+      "trace": [
+        7.858108752304243e-08,
+        3.3052558136845864e-07
+      ],
+      "identiques": true,
+      "differences": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "toutes_identiques": true
+}

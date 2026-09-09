@@ -1,0 +1,42 @@
+{
+  "parametres": {
+    "alpha": 0.49,
+    "beta": 1.51,
+    "blocs": 4,
+    "max_directions": 128,
+    "profondeur": 8,
+    "seuil_hz": 80.0,
+    "eigsh": {
+      "k": 1,
+      "ncv": 20,
+      "tol": 1e-11,
+      "which": "LA"
+    },
+    "budget_inertie": {
+      "budget_operations": 100000000,
+      "budget_coefficients": 2000000,
+      "budget_rectangulaire": 2000000
+    }
+  },
+  "passages": 1,
+  "variantes": [
+    "masse_comparee",
+    "lu_corrigee"
+  ],
+  "maillages": [
+    32,
+    128,
+    512
+  ],
+  "python": "/tmp/vinkulum-release-0.11.0-final/venv/bin/python",
+  "entrees": "/tmp/vinkulum-modeles-masse-consistante-2026-v2",
+  "cpu": 8,
+  "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "certification_machine_reponses": false,
+  "portee": "nouvelle masse P1 ; aucune comparaison inter-modèle"
+}

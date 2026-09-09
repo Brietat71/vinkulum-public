@@ -1,0 +1,2042 @@
+[
+  {
+    "name": "aho-corasick",
+    "version": "1.1.5",
+    "license": "Unlicense OR MIT",
+    "repository": "https://github.com/BurntSushi/aho-corasick",
+    "notices": [
+      "python/vinkulum/licences/rust/aho-corasick-1.1.5/LICENSE-MIT",
+      "python/vinkulum/licences/rust/aho-corasick-1.1.5/COPYING"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/aho-corasick-1.1.5/LICENSE-MIT": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f",
+      "python/vinkulum/licences/rust/aho-corasick-1.1.5/COPYING": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    }
+  },
+  {
+    "name": "approx",
+    "version": "0.5.1",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/brendanzab/approx",
+    "notices": [
+      "python/vinkulum/licences/rust/approx-0.5.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/approx-0.5.1/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    }
+  },
+  {
+    "name": "atomic-wait",
+    "version": "1.1.0",
+    "license": "BSD-2-Clause",
+    "repository": "https://github.com/m-ou-se/atomic-wait",
+    "notices": [
+      "python/vinkulum/licences/rust/atomic-wait-1.1.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/atomic-wait-1.1.0/LICENSE": "a7bd8b93bc1ee4c2caa75e5c500133c366f31066e1617db8743188ae0fae182c"
+    }
+  },
+  {
+    "name": "autocfg",
+    "version": "1.5.1",
+    "license": "Apache-2.0 OR MIT",
+    "repository": "https://github.com/cuviper/autocfg",
+    "notices": [
+      "python/vinkulum/licences/rust/autocfg-1.5.1/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/autocfg-1.5.1/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/autocfg-1.5.1/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/autocfg-1.5.1/LICENSE-MIT": "27995d58ad5c1145c1a8cd86244ce844886958a35eb2b78c6b772748669999ac"
+    }
+  },
+  {
+    "name": "bitflags",
+    "version": "2.13.1",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/bitflags/bitflags",
+    "notices": [
+      "python/vinkulum/licences/rust/bitflags-2.13.1/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/bitflags-2.13.1/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/bitflags-2.13.1/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/bitflags-2.13.1/LICENSE-MIT": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    }
+  },
+  {
+    "name": "bytemuck",
+    "version": "1.25.2",
+    "license": "Zlib OR Apache-2.0 OR MIT",
+    "repository": "https://github.com/Lokathor/bytemuck",
+    "notices": [
+      "python/vinkulum/licences/rust/bytemuck-1.25.2/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/bytemuck-1.25.2/LICENSE-MIT",
+      "python/vinkulum/licences/rust/bytemuck-1.25.2/LICENSE-ZLIB"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/bytemuck-1.25.2/LICENSE-APACHE": "e3ba223bb1423f0aad8c3dfce0fe3148db48926d41e6fbc3afbbf5ff9e1c89cb",
+      "python/vinkulum/licences/rust/bytemuck-1.25.2/LICENSE-MIT": "9df9ba60a11af705f2e451b53762686e615d86f76b169cf075c3237730dbd7e2",
+      "python/vinkulum/licences/rust/bytemuck-1.25.2/LICENSE-ZLIB": "84b34dd7608f7fb9b17bd588a6bf392bf7de504e2716f024a77d89f1b145a151"
+    }
+  },
+  {
+    "name": "bytemuck_derive",
+    "version": "1.12.0",
+    "license": "Zlib OR Apache-2.0 OR MIT",
+    "repository": "https://github.com/Lokathor/bytemuck",
+    "notices": [
+      "python/vinkulum/licences/rust/bytemuck_derive-1.12.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/bytemuck_derive-1.12.0/LICENSE-MIT",
+      "python/vinkulum/licences/rust/bytemuck_derive-1.12.0/LICENSE-ZLIB"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/bytemuck_derive-1.12.0/LICENSE-APACHE": "e3ba223bb1423f0aad8c3dfce0fe3148db48926d41e6fbc3afbbf5ff9e1c89cb",
+      "python/vinkulum/licences/rust/bytemuck_derive-1.12.0/LICENSE-MIT": "9df9ba60a11af705f2e451b53762686e615d86f76b169cf075c3237730dbd7e2",
+      "python/vinkulum/licences/rust/bytemuck_derive-1.12.0/LICENSE-ZLIB": "84b34dd7608f7fb9b17bd588a6bf392bf7de504e2716f024a77d89f1b145a151"
+    }
+  },
+  {
+    "name": "byteorder",
+    "version": "1.5.0",
+    "license": "Unlicense OR MIT",
+    "repository": "https://github.com/BurntSushi/byteorder",
+    "notices": [
+      "python/vinkulum/licences/rust/byteorder-1.5.0/LICENSE-MIT",
+      "python/vinkulum/licences/rust/byteorder-1.5.0/COPYING"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/byteorder-1.5.0/LICENSE-MIT": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f",
+      "python/vinkulum/licences/rust/byteorder-1.5.0/COPYING": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    }
+  },
+  {
+    "name": "cc",
+    "version": "1.4.4",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-lang/cc-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/cc-1.4.4/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/cc-1.4.4/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/cc-1.4.4/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/cc-1.4.4/LICENSE-MIT": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    }
+  },
+  {
+    "name": "cfg-if",
+    "version": "1.0.4",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-lang/cfg-if",
+    "notices": [
+      "python/vinkulum/licences/rust/cfg-if-1.0.4/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/cfg-if-1.0.4/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/cfg-if-1.0.4/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/cfg-if-1.0.4/LICENSE-MIT": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    }
+  },
+  {
+    "name": "crossbeam",
+    "version": "0.8.4",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/crossbeam-rs/crossbeam",
+    "notices": [
+      "python/vinkulum/licences/rust/crossbeam-0.8.4/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/crossbeam-0.8.4/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/crossbeam-0.8.4/LICENSE-APACHE": "6f712474a3e3be1386d2d0c29449850ea788da64d35cff0fc8799acf741e9ecd",
+      "python/vinkulum/licences/rust/crossbeam-0.8.4/LICENSE-MIT": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    }
+  },
+  {
+    "name": "crossbeam-channel",
+    "version": "0.5.16",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/crossbeam-rs/crossbeam",
+    "notices": [
+      "python/vinkulum/licences/rust/crossbeam-channel-0.5.16/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/crossbeam-channel-0.5.16/LICENSE-THIRD-PARTY",
+      "python/vinkulum/licences/rust/crossbeam-channel-0.5.16/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/crossbeam-channel-0.5.16/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/crossbeam-channel-0.5.16/LICENSE-THIRD-PARTY": "b16db96b93b1d7cf7bea533f572091ec6bca3234fbe0a83038be772ff391a44c",
+      "python/vinkulum/licences/rust/crossbeam-channel-0.5.16/LICENSE-MIT": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    }
+  },
+  {
+    "name": "crossbeam-deque",
+    "version": "0.8.7",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/crossbeam-rs/crossbeam",
+    "notices": [
+      "python/vinkulum/licences/rust/crossbeam-deque-0.8.7/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/crossbeam-deque-0.8.7/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/crossbeam-deque-0.8.7/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/crossbeam-deque-0.8.7/LICENSE-MIT": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    }
+  },
+  {
+    "name": "crossbeam-epoch",
+    "version": "0.9.20",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/crossbeam-rs/crossbeam",
+    "notices": [
+      "python/vinkulum/licences/rust/crossbeam-epoch-0.9.20/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/crossbeam-epoch-0.9.20/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/crossbeam-epoch-0.9.20/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/crossbeam-epoch-0.9.20/LICENSE-MIT": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    }
+  },
+  {
+    "name": "crossbeam-queue",
+    "version": "0.3.13",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/crossbeam-rs/crossbeam",
+    "notices": [
+      "python/vinkulum/licences/rust/crossbeam-queue-0.3.13/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/crossbeam-queue-0.3.13/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/crossbeam-queue-0.3.13/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/crossbeam-queue-0.3.13/LICENSE-MIT": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    }
+  },
+  {
+    "name": "crossbeam-utils",
+    "version": "0.8.22",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/crossbeam-rs/crossbeam",
+    "notices": [
+      "python/vinkulum/licences/rust/crossbeam-utils-0.8.22/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/crossbeam-utils-0.8.22/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/crossbeam-utils-0.8.22/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/crossbeam-utils-0.8.22/LICENSE-MIT": "5734ed989dfca1f625b40281ee9f4530f91b2411ec01cb748223e7eb87e201ab"
+    }
+  },
+  {
+    "name": "crunchy",
+    "version": "0.2.4",
+    "license": "MIT",
+    "repository": "https://github.com/eira-fransham/crunchy",
+    "notices": [
+      "python/vinkulum/licences/rust/crunchy-0.2.4/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/crunchy-0.2.4/LICENSE": "3eab77734a181b2a2e8418af9004f960f715f04aac4d76a26cf774f63a7b13d1"
+    }
+  },
+  {
+    "name": "defer",
+    "version": "0.2.1",
+    "license": "MIT/Apache-2.0",
+    "repository": "https://github.com/andrewhickman/defer/",
+    "notices": [
+      "python/vinkulum/licences/rust/defer-0.2.1/LICENSE-MIT.txt",
+      "python/vinkulum/licences/rust/defer-0.2.1/LICENSE-APACHE.txt"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/defer-0.2.1/LICENSE-MIT.txt": "5012186e53180c4c7c2403b7b09bccc52a88e76fb9350bce90992ef24ec10b16",
+      "python/vinkulum/licences/rust/defer-0.2.1/LICENSE-APACHE.txt": "98811e25dec78a24fb82837189c32bbe92da4c451b6025f298e1211c3d54ece7"
+    }
+  },
+  {
+    "name": "dyn-stack",
+    "version": "0.13.2",
+    "license": "MIT",
+    "repository": "https://codeberg.org/sarah-quinones/dyn-stack",
+    "notices": [
+      "python/vinkulum/licences/rust/dyn-stack-0.13.2/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/dyn-stack-0.13.2/LICENSE": "bf5a93d1014429b43e01c57d45bea928748fbf37d059306145a1a0a91aec2014"
+    }
+  },
+  {
+    "name": "dyn-stack-macros",
+    "version": "0.1.3",
+    "license": "MIT",
+    "repository": "https://github.com/kitegi/dynstack/",
+    "notices": [
+      "python/vinkulum/licences/rust/dyn-stack-macros-0.1.3/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/dyn-stack-macros-0.1.3/LICENSE": "4263a9907c8e8d799f714d5cf2ec18663772f09e7eef3eeaaab074ea29ee1358"
+    }
+  },
+  {
+    "name": "either",
+    "version": "1.18.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rayon-rs/either",
+    "notices": [
+      "python/vinkulum/licences/rust/either-1.18.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/either-1.18.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/either-1.18.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/either-1.18.0/LICENSE-MIT": "7576269ea71f767b99297934c0b2367532690f8c4badc695edf8e04ab6a1e545"
+    }
+  },
+  {
+    "name": "enum-as-inner",
+    "version": "0.6.1",
+    "license": "MIT/Apache-2.0",
+    "repository": "https://github.com/bluejekyll/enum-as-inner",
+    "notices": [
+      "python/vinkulum/licences/rust/enum-as-inner-0.6.1/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/enum-as-inner-0.6.1/LICENSE-MIT",
+      "python/vinkulum/licences/rust/enum-as-inner-0.6.1/copyright.txt"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/enum-as-inner-0.6.1/LICENSE-APACHE": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08",
+      "python/vinkulum/licences/rust/enum-as-inner-0.6.1/LICENSE-MIT": "10d73bf26900fa6dd6f2613bb962b7bd8fa1e66618fcf0f9f899aa071a4ee200",
+      "python/vinkulum/licences/rust/enum-as-inner-0.6.1/copyright.txt": "b54db71f7d0b1f62c8c1b6b297347b81f7c217b4ce7e58223a20d2275535cd17"
+    }
+  },
+  {
+    "name": "equator",
+    "version": "0.2.2",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/equator/",
+    "notices": [
+      "python/vinkulum/licences/rust/equator-0.2.2/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/equator-0.2.2/LICENSE": "97d3424e347e8fa236806725ce9837bb453d4dfc9ce1d4733fd6023a8038000a"
+    }
+  },
+  {
+    "name": "equator",
+    "version": "0.4.2",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/equator/",
+    "notices": [
+      "python/vinkulum/licences/rust/equator-0.4.2/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/equator-0.4.2/LICENSE": "97d3424e347e8fa236806725ce9837bb453d4dfc9ce1d4733fd6023a8038000a"
+    }
+  },
+  {
+    "name": "equator",
+    "version": "0.6.0",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/equator/",
+    "notices": [
+      "python/vinkulum/licences/rust/equator-0.6.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/equator-0.6.0/LICENSE": "97d3424e347e8fa236806725ce9837bb453d4dfc9ce1d4733fd6023a8038000a"
+    }
+  },
+  {
+    "name": "equator-macro",
+    "version": "0.2.1",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/equator/",
+    "notices": [
+      "python/vinkulum/licences/rust/equator-macro-0.2.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/equator-macro-0.2.1/LICENSE": "97d3424e347e8fa236806725ce9837bb453d4dfc9ce1d4733fd6023a8038000a"
+    }
+  },
+  {
+    "name": "equator-macro",
+    "version": "0.4.2",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/equator/",
+    "notices": [
+      "python/vinkulum/licences/rust/equator-macro-0.4.2/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/equator-macro-0.4.2/LICENSE": "97d3424e347e8fa236806725ce9837bb453d4dfc9ce1d4733fd6023a8038000a"
+    }
+  },
+  {
+    "name": "equator-macro",
+    "version": "0.6.0",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/equator/",
+    "notices": [
+      "python/vinkulum/licences/rust/equator-macro-0.6.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/equator-macro-0.6.0/LICENSE": "97d3424e347e8fa236806725ce9837bb453d4dfc9ce1d4733fd6023a8038000a"
+    }
+  },
+  {
+    "name": "faer",
+    "version": "0.24.4",
+    "license": "MIT",
+    "repository": "https://codeberg.org/sarah-quinones/faer",
+    "notices": [
+      "python/vinkulum/licences/rust/faer-0.24.4/COPYING.SUITE_SPARSE.AMD.BSD",
+      "python/vinkulum/licences/rust/faer-0.24.4/COPYING.SUITE_SPARSE.COLAMD.BSD",
+      "python/vinkulum/licences/rust/faer-0.24.4/COPYING.LAPACK.BSD",
+      "python/vinkulum/licences/rust/faer-0.24.4/COPYING.EIGEN.MPL2"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/faer-0.24.4/COPYING.SUITE_SPARSE.AMD.BSD": "748448bad56ee129a9222d63da70513428b41e9ff804b401a0be37a7b5151bf9",
+      "python/vinkulum/licences/rust/faer-0.24.4/COPYING.SUITE_SPARSE.COLAMD.BSD": "0e92b7bb3e216b8a4d1357b3d828043a4f758f762b2abc30b3440cf78063f80f",
+      "python/vinkulum/licences/rust/faer-0.24.4/COPYING.LAPACK.BSD": "7e4bc07b4d1691c7b503816c232467ac808bdb3f260a7f4f203ca0e3e44311ad",
+      "python/vinkulum/licences/rust/faer-0.24.4/COPYING.EIGEN.MPL2": "1905e1009a9d8444c2573d0f9e96d34188a6f098a5c359694f2d9043a7445323"
+    }
+  },
+  {
+    "name": "faer-traits",
+    "version": "0.24.0",
+    "license": "MIT",
+    "repository": "https://codeberg.org/sarah-quinones/faer",
+    "notices": [
+      "python/vinkulum/licences/rust/faer-traits-0.24.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/faer-traits-0.24.0/LICENSE": "1f6b7e2a30afc2f5f253cb3535e041f91de1e1f9815b38714dfd94e53e61d972"
+    }
+  },
+  {
+    "name": "find-msvc-tools",
+    "version": "0.1.11",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-lang/cc-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/find-msvc-tools-0.1.11/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/find-msvc-tools-0.1.11/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/find-msvc-tools-0.1.11/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/find-msvc-tools-0.1.11/LICENSE-MIT": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    }
+  },
+  {
+    "name": "gemm",
+    "version": "0.19.0",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/gemm-0.19.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/gemm-0.19.0/LICENSE": "d64f878c89bd5f1e5ada7e4aad57690b122727cf5229b7b87ea1980c188da1d9"
+    }
+  },
+  {
+    "name": "gemm-c32",
+    "version": "0.19.0",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/gemm-c32-0.19.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/gemm-c32-0.19.0/LICENSE": "d64f878c89bd5f1e5ada7e4aad57690b122727cf5229b7b87ea1980c188da1d9"
+    }
+  },
+  {
+    "name": "gemm-c64",
+    "version": "0.19.0",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/gemm-c64-0.19.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/gemm-c64-0.19.0/LICENSE": "d64f878c89bd5f1e5ada7e4aad57690b122727cf5229b7b87ea1980c188da1d9"
+    }
+  },
+  {
+    "name": "gemm-common",
+    "version": "0.19.0",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/gemm-common-0.19.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/gemm-common-0.19.0/LICENSE": "d64f878c89bd5f1e5ada7e4aad57690b122727cf5229b7b87ea1980c188da1d9"
+    }
+  },
+  {
+    "name": "gemm-f16",
+    "version": "0.19.0",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/gemm-f16-0.19.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/gemm-f16-0.19.0/LICENSE": "d64f878c89bd5f1e5ada7e4aad57690b122727cf5229b7b87ea1980c188da1d9"
+    }
+  },
+  {
+    "name": "gemm-f32",
+    "version": "0.19.0",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/gemm-f32-0.19.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/gemm-f32-0.19.0/LICENSE": "d64f878c89bd5f1e5ada7e4aad57690b122727cf5229b7b87ea1980c188da1d9"
+    }
+  },
+  {
+    "name": "gemm-f64",
+    "version": "0.19.0",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/gemm-f64-0.19.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/gemm-f64-0.19.0/LICENSE": "d64f878c89bd5f1e5ada7e4aad57690b122727cf5229b7b87ea1980c188da1d9"
+    }
+  },
+  {
+    "name": "generativity",
+    "version": "1.2.1",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/CAD97/generativity",
+    "notices": [
+      "python/vinkulum/licences/rust/generativity-1.2.1/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/generativity-1.2.1/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/generativity-1.2.1/LICENSE-APACHE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "python/vinkulum/licences/rust/generativity-1.2.1/LICENSE-MIT": "7230950be2113ed0293b254c19d93f365bc8add64b06dd6b8ae3811028bdc3fd"
+    }
+  },
+  {
+    "name": "generator",
+    "version": "0.8.9",
+    "license": "MIT/Apache-2.0",
+    "repository": "https://github.com/Xudong-Huang/generator-rs.git",
+    "notices": [
+      "python/vinkulum/licences/rust/generator-0.8.9/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/generator-0.8.9/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/generator-0.8.9/LICENSE-APACHE": "7ecb6108c3b8570339bb27e0f3affbe19300263a0e7a7e8c5f59a028a6eb70b3",
+      "python/vinkulum/licences/rust/generator-0.8.9/LICENSE-MIT": "d0efb39501d05934b5d141573627ab9ead815287bb49acb37855642cf6a7205b"
+    }
+  },
+  {
+    "name": "getrandom",
+    "version": "0.3.4",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-random/getrandom",
+    "notices": [
+      "python/vinkulum/licences/rust/getrandom-0.3.4/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/getrandom-0.3.4/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/getrandom-0.3.4/LICENSE-APACHE": "aaff376532ea30a0cd5330b9502ad4a4c8bf769c539c87ffe78819d188a18ebf",
+      "python/vinkulum/licences/rust/getrandom-0.3.4/LICENSE-MIT": "29e9fe5074bd27e0e5d5d110394fbbcd841baee2651a3c4b4560a632702cede4"
+    }
+  },
+  {
+    "name": "half",
+    "version": "2.7.1",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/VoidStarKat/half-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/half-2.7.1/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/half-2.7.1/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/half-2.7.1/LICENSE-APACHE": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+      "python/vinkulum/licences/rust/half-2.7.1/LICENSE-MIT": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1"
+    }
+  },
+  {
+    "name": "heck",
+    "version": "0.5.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/withoutboats/heck",
+    "notices": [
+      "python/vinkulum/licences/rust/heck-0.5.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/heck-0.5.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/heck-0.5.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/heck-0.5.0/LICENSE-MIT": "7b63ecd5f1902af1b63729947373683c32745c16a10e8e6292e2e2dcd7e90ae0"
+    }
+  },
+  {
+    "name": "hermit-abi",
+    "version": "0.5.3",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/hermit-os/hermit-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/hermit-abi-0.5.3/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/hermit-abi-0.5.3/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/hermit-abi-0.5.3/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/hermit-abi-0.5.3/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "interpol",
+    "version": "0.2.1",
+    "license": "MIT",
+    "repository": "https://github.com/tanakh/interpol",
+    "notices": [
+      "python/vinkulum/licences/rust/interpol-0.2.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/interpol-0.2.1/LICENSE": "eb699a2e5ea36a8a61194175d67616400479e76c1a96e2096da44065281cbaaa"
+    }
+  },
+  {
+    "name": "lazy_static",
+    "version": "1.5.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-lang-nursery/lazy-static.rs",
+    "notices": [
+      "python/vinkulum/licences/rust/lazy_static-1.5.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/lazy_static-1.5.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/lazy_static-1.5.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/lazy_static-1.5.0/LICENSE-MIT": "0621878e61f0d0fda054bcbe02df75192c28bde1ecc8289cbd86aeba2dd72720"
+    }
+  },
+  {
+    "name": "libc",
+    "version": "0.2.189",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-lang/libc",
+    "notices": [
+      "python/vinkulum/licences/rust/libc-0.2.189/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/libc-0.2.189/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/libc-0.2.189/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "python/vinkulum/licences/rust/libc-0.2.189/LICENSE-MIT": "123a331b5dbf04c30097fa43b8f858bc85df671fe776de498d01f3d6b7c1f69e"
+    }
+  },
+  {
+    "name": "libm",
+    "version": "0.2.16",
+    "license": "MIT",
+    "repository": "https://github.com/rust-lang/compiler-builtins",
+    "notices": [
+      "python/vinkulum/licences/rust/libm-0.2.16/LICENSE.txt"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/libm-0.2.16/LICENSE.txt": "3823dda7cf046602f4b4e77ec8e227863dc4736037cc85bb33d9f19febe16bb7"
+    }
+  },
+  {
+    "name": "log",
+    "version": "0.4.34",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-lang/log",
+    "notices": [
+      "python/vinkulum/licences/rust/log-0.4.34/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/log-0.4.34/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/log-0.4.34/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/log-0.4.34/LICENSE-MIT": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    }
+  },
+  {
+    "name": "loom",
+    "version": "0.7.2",
+    "license": "MIT",
+    "repository": "https://github.com/tokio-rs/loom",
+    "notices": [
+      "python/vinkulum/licences/rust/loom-0.7.2/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/loom-0.7.2/LICENSE": "8ce0830173fdac609dfb4ea603fdc002c2f4af0dc9b1a005653f5da9cf534b18"
+    }
+  },
+  {
+    "name": "matchers",
+    "version": "0.2.0",
+    "license": "MIT",
+    "repository": "https://github.com/hawkw/matchers",
+    "notices": [
+      "python/vinkulum/licences/rust/matchers-0.2.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/matchers-0.2.0/LICENSE": "a47129d738752a6ae52247fea645b42cb320d19e9327f1eb2d1a7f99d9455ad3"
+    }
+  },
+  {
+    "name": "matrixmultiply",
+    "version": "0.3.11",
+    "license": "MIT/Apache-2.0",
+    "repository": "https://github.com/bluss/matrixmultiply/",
+    "notices": [
+      "python/vinkulum/licences/rust/matrixmultiply-0.3.11/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/matrixmultiply-0.3.11/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/matrixmultiply-0.3.11/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/matrixmultiply-0.3.11/LICENSE-MIT": "792d075c7bad6dac258a44e799eb64cbf465e24d9932d27669be08c5ec957e27"
+    }
+  },
+  {
+    "name": "memchr",
+    "version": "2.8.3",
+    "license": "Unlicense OR MIT",
+    "repository": "https://github.com/BurntSushi/memchr",
+    "notices": [
+      "python/vinkulum/licences/rust/memchr-2.8.3/LICENSE-MIT",
+      "python/vinkulum/licences/rust/memchr-2.8.3/COPYING"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/memchr-2.8.3/LICENSE-MIT": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f",
+      "python/vinkulum/licences/rust/memchr-2.8.3/COPYING": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    }
+  },
+  {
+    "name": "nalgebra",
+    "version": "0.33.3",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/dimforge/nalgebra",
+    "notices": [
+      "python/vinkulum/licences/rust/nalgebra-0.33.3/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/nalgebra-0.33.3/LICENSE": "86ae51c591e742d80ce56823d35e2e176b53e38a99bd8499c85dae31ef4fe1f7"
+    }
+  },
+  {
+    "name": "nalgebra-macros",
+    "version": "0.2.2",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/dimforge/nalgebra",
+    "notices": [
+      "python/vinkulum/licences/rust/nalgebra-macros-0.2.2/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/nalgebra-macros-0.2.2/LICENSE": "1e881ecf2862d01e6e5bc2b861e46886d2a6fb01499c0c508a209a7271b13cf2"
+    }
+  },
+  {
+    "name": "nano-gemm",
+    "version": "0.2.2",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/nano-gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/nano-gemm-0.2.2/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/nano-gemm-0.2.2/LICENSE": "310b7323adcc27fc94c45d1155b6c89c17986576d790f766a04c855662428a7c"
+    }
+  },
+  {
+    "name": "nano-gemm-c32",
+    "version": "0.2.1",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/nano-gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/nano-gemm-c32-0.2.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/nano-gemm-c32-0.2.1/LICENSE": "310b7323adcc27fc94c45d1155b6c89c17986576d790f766a04c855662428a7c"
+    }
+  },
+  {
+    "name": "nano-gemm-c64",
+    "version": "0.2.1",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/nano-gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/nano-gemm-c64-0.2.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/nano-gemm-c64-0.2.1/LICENSE": "310b7323adcc27fc94c45d1155b6c89c17986576d790f766a04c855662428a7c"
+    }
+  },
+  {
+    "name": "nano-gemm-codegen",
+    "version": "0.2.1",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/nano-gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/nano-gemm-codegen-0.2.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/nano-gemm-codegen-0.2.1/LICENSE": "310b7323adcc27fc94c45d1155b6c89c17986576d790f766a04c855662428a7c"
+    }
+  },
+  {
+    "name": "nano-gemm-core",
+    "version": "0.2.1",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/nano-gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/nano-gemm-core-0.2.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/nano-gemm-core-0.2.1/LICENSE": "310b7323adcc27fc94c45d1155b6c89c17986576d790f766a04c855662428a7c"
+    }
+  },
+  {
+    "name": "nano-gemm-f32",
+    "version": "0.2.1",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/nano-gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/nano-gemm-f32-0.2.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/nano-gemm-f32-0.2.1/LICENSE": "310b7323adcc27fc94c45d1155b6c89c17986576d790f766a04c855662428a7c"
+    }
+  },
+  {
+    "name": "nano-gemm-f64",
+    "version": "0.2.1",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/nano-gemm/",
+    "notices": [
+      "python/vinkulum/licences/rust/nano-gemm-f64-0.2.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/nano-gemm-f64-0.2.1/LICENSE": "310b7323adcc27fc94c45d1155b6c89c17986576d790f766a04c855662428a7c"
+    }
+  },
+  {
+    "name": "npyz",
+    "version": "0.8.4",
+    "license": "MIT",
+    "repository": "https://github.com/ExpHP/npyz",
+    "notices": [
+      "python/vinkulum/licences/rust/npyz-0.8.4/LICENSE-MIT",
+      "python/vinkulum/licences/rust/npyz-0.8.4/README.md"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/npyz-0.8.4/LICENSE-MIT": "67b93df3cd9991cce1b016a746a8e07093322a37e785cf514a9d14c8f3a3e8f5",
+      "python/vinkulum/licences/rust/npyz-0.8.4/README.md": "379d38b654196d340cae0297cc21b73b9a49c295a45e6a0fac8c3d9652a32fe6"
+    }
+  },
+  {
+    "name": "nu-ansi-term",
+    "version": "0.50.3",
+    "license": "MIT",
+    "repository": "https://github.com/nushell/nu-ansi-term",
+    "notices": [
+      "python/vinkulum/licences/rust/nu-ansi-term-0.50.3/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/nu-ansi-term-0.50.3/LICENSE": "284465860407420254e39be4e1bdcaaf2e7f2d18e06f9bab75bc75341a5d8501"
+    }
+  },
+  {
+    "name": "num-bigint",
+    "version": "0.4.8",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-num/num-bigint",
+    "notices": [
+      "python/vinkulum/licences/rust/num-bigint-0.4.8/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/num-bigint-0.4.8/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/num-bigint-0.4.8/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/num-bigint-0.4.8/LICENSE-MIT": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    }
+  },
+  {
+    "name": "num-complex",
+    "version": "0.4.6",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-num/num-complex",
+    "notices": [
+      "python/vinkulum/licences/rust/num-complex-0.4.6/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/num-complex-0.4.6/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/num-complex-0.4.6/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/num-complex-0.4.6/LICENSE-MIT": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    }
+  },
+  {
+    "name": "num-integer",
+    "version": "0.1.47",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-num/num-integer",
+    "notices": [
+      "python/vinkulum/licences/rust/num-integer-0.1.47/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/num-integer-0.1.47/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/num-integer-0.1.47/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/num-integer-0.1.47/LICENSE-MIT": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    }
+  },
+  {
+    "name": "num-rational",
+    "version": "0.4.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-num/num-rational",
+    "notices": [
+      "python/vinkulum/licences/rust/num-rational-0.4.2/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/num-rational-0.4.2/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/num-rational-0.4.2/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/num-rational-0.4.2/LICENSE-MIT": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    }
+  },
+  {
+    "name": "num-traits",
+    "version": "0.2.19",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-num/num-traits",
+    "notices": [
+      "python/vinkulum/licences/rust/num-traits-0.2.19/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/num-traits-0.2.19/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/num-traits-0.2.19/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/num-traits-0.2.19/LICENSE-MIT": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    }
+  },
+  {
+    "name": "num_cpus",
+    "version": "1.17.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/seanmonstar/num_cpus",
+    "notices": [
+      "python/vinkulum/licences/rust/num_cpus-1.17.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/num_cpus-1.17.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/num_cpus-1.17.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/num_cpus-1.17.0/LICENSE-MIT": "391a5396cec6230bfabd4ef4eb2350eb895bc5efce377a2218f5702ed020d3e3"
+    }
+  },
+  {
+    "name": "once_cell",
+    "version": "1.21.4",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/matklad/once_cell",
+    "notices": [
+      "python/vinkulum/licences/rust/once_cell-1.21.4/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/once_cell-1.21.4/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/once_cell-1.21.4/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/once_cell-1.21.4/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "paste",
+    "version": "1.0.15",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/dtolnay/paste",
+    "notices": [
+      "python/vinkulum/licences/rust/paste-1.0.15/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/paste-1.0.15/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/paste-1.0.15/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "python/vinkulum/licences/rust/paste-1.0.15/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "pest",
+    "version": "2.9.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/pest-parser/pest",
+    "notices": [
+      "python/vinkulum/licences/rust/pest-2.9.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/pest-2.9.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pest-2.9.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/pest-2.9.0/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "pest_derive",
+    "version": "2.9.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/pest-parser/pest",
+    "notices": [
+      "python/vinkulum/licences/rust/pest_derive-2.9.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/pest_derive-2.9.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pest_derive-2.9.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/pest_derive-2.9.0/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "pest_generator",
+    "version": "2.9.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/pest-parser/pest",
+    "notices": [
+      "python/vinkulum/licences/rust/pest_generator-2.9.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/pest_generator-2.9.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pest_generator-2.9.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/pest_generator-2.9.0/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "pest_meta",
+    "version": "2.9.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/pest-parser/pest",
+    "notices": [
+      "python/vinkulum/licences/rust/pest_meta-2.9.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/pest_meta-2.9.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pest_meta-2.9.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/pest_meta-2.9.0/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "pin-project-lite",
+    "version": "0.2.17",
+    "license": "Apache-2.0 OR MIT",
+    "repository": "https://github.com/taiki-e/pin-project-lite",
+    "notices": [
+      "python/vinkulum/licences/rust/pin-project-lite-0.2.17/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/pin-project-lite-0.2.17/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pin-project-lite-0.2.17/LICENSE-APACHE": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "python/vinkulum/licences/rust/pin-project-lite-0.2.17/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "portable-atomic",
+    "version": "1.15.0",
+    "license": "Apache-2.0 OR MIT",
+    "repository": "https://github.com/taiki-e/portable-atomic",
+    "notices": [
+      "python/vinkulum/licences/rust/portable-atomic-1.15.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/portable-atomic-1.15.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/portable-atomic-1.15.0/LICENSE-APACHE": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "python/vinkulum/licences/rust/portable-atomic-1.15.0/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "ppv-lite86",
+    "version": "0.2.21",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/cryptocorrosion/cryptocorrosion",
+    "notices": [
+      "python/vinkulum/licences/rust/ppv-lite86-0.2.21/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/ppv-lite86-0.2.21/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/ppv-lite86-0.2.21/LICENSE-APACHE": "0218327e7a480793ffdd4eb792379a9709e5c135c7ba267f709d6f6d4d70af0a",
+      "python/vinkulum/licences/rust/ppv-lite86-0.2.21/LICENSE-MIT": "4cada0bd02ea3692eee6f16400d86c6508bbd3bafb2b65fed0419f36d4f83e8f"
+    }
+  },
+  {
+    "name": "private-gemm-x86",
+    "version": "0.1.20",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-quinones/gemm-x64-v2/",
+    "notices": [
+      "python/vinkulum/licences/rust/private-gemm-x86-0.1.20/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/private-gemm-x86-0.1.20/LICENSE": "4263a9907c8e8d799f714d5cf2ec18663772f09e7eef3eeaaab074ea29ee1358"
+    }
+  },
+  {
+    "name": "proc-macro2",
+    "version": "1.0.107",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/dtolnay/proc-macro2",
+    "notices": [
+      "python/vinkulum/licences/rust/proc-macro2-1.0.107/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/proc-macro2-1.0.107/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/proc-macro2-1.0.107/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "python/vinkulum/licences/rust/proc-macro2-1.0.107/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "pulp",
+    "version": "0.22.3",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-quinones/pulp/",
+    "notices": [
+      "python/vinkulum/licences/rust/pulp-0.22.3/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pulp-0.22.3/LICENSE": "d64f878c89bd5f1e5ada7e4aad57690b122727cf5229b7b87ea1980c188da1d9"
+    }
+  },
+  {
+    "name": "pulp-wasm-simd-flag",
+    "version": "0.1.1",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-quinones/pulp/",
+    "notices": [
+      "python/vinkulum/licences/rust/pulp-wasm-simd-flag-0.1.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pulp-wasm-simd-flag-0.1.1/LICENSE": "d64f878c89bd5f1e5ada7e4aad57690b122727cf5229b7b87ea1980c188da1d9"
+    }
+  },
+  {
+    "name": "py_literal",
+    "version": "0.4.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/jturner314/py_literal",
+    "notices": [
+      "python/vinkulum/licences/rust/py_literal-0.4.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/py_literal-0.4.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/py_literal-0.4.0/LICENSE-APACHE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "python/vinkulum/licences/rust/py_literal-0.4.0/LICENSE-MIT": "2113741119d38a3d20165a9d2f9fada98d3e8e9d8df6d901358519e630f9acda"
+    }
+  },
+  {
+    "name": "pyo3",
+    "version": "0.29.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/pyo3/pyo3",
+    "notices": [
+      "python/vinkulum/licences/rust/pyo3-0.29.2/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/pyo3-0.29.2/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pyo3-0.29.2/LICENSE-APACHE": "32c76dbe0e73d79100d5ece77c158399f2e2541bc5c78548a4ba45c1cb53c5c9",
+      "python/vinkulum/licences/rust/pyo3-0.29.2/LICENSE-MIT": "afcbe3b2e6b37172b5a9ca869ee4c0b8cdc09316e5d4384864154482c33e5af6"
+    }
+  },
+  {
+    "name": "pyo3-build-config",
+    "version": "0.29.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/pyo3/pyo3",
+    "notices": [
+      "python/vinkulum/licences/rust/pyo3-build-config-0.29.2/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/pyo3-build-config-0.29.2/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pyo3-build-config-0.29.2/LICENSE-APACHE": "32c76dbe0e73d79100d5ece77c158399f2e2541bc5c78548a4ba45c1cb53c5c9",
+      "python/vinkulum/licences/rust/pyo3-build-config-0.29.2/LICENSE-MIT": "afcbe3b2e6b37172b5a9ca869ee4c0b8cdc09316e5d4384864154482c33e5af6"
+    }
+  },
+  {
+    "name": "pyo3-ffi",
+    "version": "0.29.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/pyo3/pyo3",
+    "notices": [
+      "python/vinkulum/licences/rust/pyo3-ffi-0.29.2/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/pyo3-ffi-0.29.2/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pyo3-ffi-0.29.2/LICENSE-APACHE": "32c76dbe0e73d79100d5ece77c158399f2e2541bc5c78548a4ba45c1cb53c5c9",
+      "python/vinkulum/licences/rust/pyo3-ffi-0.29.2/LICENSE-MIT": "afcbe3b2e6b37172b5a9ca869ee4c0b8cdc09316e5d4384864154482c33e5af6"
+    }
+  },
+  {
+    "name": "pyo3-macros",
+    "version": "0.29.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/pyo3/pyo3",
+    "notices": [
+      "python/vinkulum/licences/rust/pyo3-macros-0.29.2/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/pyo3-macros-0.29.2/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pyo3-macros-0.29.2/LICENSE-APACHE": "32c76dbe0e73d79100d5ece77c158399f2e2541bc5c78548a4ba45c1cb53c5c9",
+      "python/vinkulum/licences/rust/pyo3-macros-0.29.2/LICENSE-MIT": "afcbe3b2e6b37172b5a9ca869ee4c0b8cdc09316e5d4384864154482c33e5af6"
+    }
+  },
+  {
+    "name": "pyo3-macros-backend",
+    "version": "0.29.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/pyo3/pyo3",
+    "notices": [
+      "python/vinkulum/licences/rust/pyo3-macros-backend-0.29.2/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/pyo3-macros-backend-0.29.2/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/pyo3-macros-backend-0.29.2/LICENSE-APACHE": "32c76dbe0e73d79100d5ece77c158399f2e2541bc5c78548a4ba45c1cb53c5c9",
+      "python/vinkulum/licences/rust/pyo3-macros-backend-0.29.2/LICENSE-MIT": "afcbe3b2e6b37172b5a9ca869ee4c0b8cdc09316e5d4384864154482c33e5af6"
+    }
+  },
+  {
+    "name": "qd",
+    "version": "0.8.0",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-quinones/qd/",
+    "notices": [
+      "python/vinkulum/licences/rust/qd-0.8.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/qd-0.8.0/LICENSE": "4263a9907c8e8d799f714d5cf2ec18663772f09e7eef3eeaaab074ea29ee1358"
+    }
+  },
+  {
+    "name": "quote",
+    "version": "1.0.47",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/dtolnay/quote",
+    "notices": [
+      "python/vinkulum/licences/rust/quote-1.0.47/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/quote-1.0.47/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/quote-1.0.47/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "python/vinkulum/licences/rust/quote-1.0.47/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "r-efi",
+    "version": "5.3.0",
+    "license": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+    "repository": "https://github.com/r-efi/r-efi",
+    "notices": [
+      "python/vinkulum/licences/rust/r-efi-5.3.0/AUTHORS",
+      "python/vinkulum/licences/rust/r-efi-5.3.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/r-efi-5.3.0/README.md"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/r-efi-5.3.0/AUTHORS": "ff92bed461f50338dd703a9ba9aee496a425957873df1d91192776e4bdf5dda7",
+      "python/vinkulum/licences/rust/r-efi-5.3.0/LICENSE-APACHE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "python/vinkulum/licences/rust/r-efi-5.3.0/README.md": "420f65fec3ba2e89d49da51b222d2881d26959037a7b7d3794143db4bd4627b1"
+    }
+  },
+  {
+    "name": "rand",
+    "version": "0.8.8",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-random/rand",
+    "notices": [
+      "python/vinkulum/licences/rust/rand-0.8.8/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/rand-0.8.8/COPYRIGHT",
+      "python/vinkulum/licences/rust/rand-0.8.8/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/rand-0.8.8/LICENSE-APACHE": "35242e7a83f69875e6edeff02291e688c97caafe2f8902e4e19b49d3e78b4cab",
+      "python/vinkulum/licences/rust/rand-0.8.8/COPYRIGHT": "90eb64f0279b0d9432accfa6023ff803bc4965212383697eee27a0f426d5f8d5",
+      "python/vinkulum/licences/rust/rand-0.8.8/LICENSE-MIT": "209fbbe0ad52d9235e37badf9cadfe4dbdc87203179c0899e738b39ade42177b"
+    }
+  },
+  {
+    "name": "rand",
+    "version": "0.9.5",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-random/rand",
+    "notices": [
+      "python/vinkulum/licences/rust/rand-0.9.5/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/rand-0.9.5/COPYRIGHT",
+      "python/vinkulum/licences/rust/rand-0.9.5/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/rand-0.9.5/LICENSE-APACHE": "35242e7a83f69875e6edeff02291e688c97caafe2f8902e4e19b49d3e78b4cab",
+      "python/vinkulum/licences/rust/rand-0.9.5/COPYRIGHT": "90eb64f0279b0d9432accfa6023ff803bc4965212383697eee27a0f426d5f8d5",
+      "python/vinkulum/licences/rust/rand-0.9.5/LICENSE-MIT": "209fbbe0ad52d9235e37badf9cadfe4dbdc87203179c0899e738b39ade42177b"
+    }
+  },
+  {
+    "name": "rand_chacha",
+    "version": "0.9.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-random/rand",
+    "notices": [
+      "python/vinkulum/licences/rust/rand_chacha-0.9.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/rand_chacha-0.9.0/COPYRIGHT",
+      "python/vinkulum/licences/rust/rand_chacha-0.9.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/rand_chacha-0.9.0/LICENSE-APACHE": "35242e7a83f69875e6edeff02291e688c97caafe2f8902e4e19b49d3e78b4cab",
+      "python/vinkulum/licences/rust/rand_chacha-0.9.0/COPYRIGHT": "90eb64f0279b0d9432accfa6023ff803bc4965212383697eee27a0f426d5f8d5",
+      "python/vinkulum/licences/rust/rand_chacha-0.9.0/LICENSE-MIT": "209fbbe0ad52d9235e37badf9cadfe4dbdc87203179c0899e738b39ade42177b"
+    }
+  },
+  {
+    "name": "rand_core",
+    "version": "0.6.4",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-random/rand",
+    "notices": [
+      "python/vinkulum/licences/rust/rand_core-0.6.4/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/rand_core-0.6.4/COPYRIGHT",
+      "python/vinkulum/licences/rust/rand_core-0.6.4/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/rand_core-0.6.4/LICENSE-APACHE": "6df43f6f4b5d4587f3d8d71e45532c688fd168afa5fe89d571cb32fa09c4ef51",
+      "python/vinkulum/licences/rust/rand_core-0.6.4/COPYRIGHT": "90eb64f0279b0d9432accfa6023ff803bc4965212383697eee27a0f426d5f8d5",
+      "python/vinkulum/licences/rust/rand_core-0.6.4/LICENSE-MIT": "209fbbe0ad52d9235e37badf9cadfe4dbdc87203179c0899e738b39ade42177b"
+    }
+  },
+  {
+    "name": "rand_core",
+    "version": "0.9.5",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-random/rand",
+    "notices": [
+      "python/vinkulum/licences/rust/rand_core-0.9.5/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/rand_core-0.9.5/COPYRIGHT",
+      "python/vinkulum/licences/rust/rand_core-0.9.5/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/rand_core-0.9.5/LICENSE-APACHE": "6df43f6f4b5d4587f3d8d71e45532c688fd168afa5fe89d571cb32fa09c4ef51",
+      "python/vinkulum/licences/rust/rand_core-0.9.5/COPYRIGHT": "90eb64f0279b0d9432accfa6023ff803bc4965212383697eee27a0f426d5f8d5",
+      "python/vinkulum/licences/rust/rand_core-0.9.5/LICENSE-MIT": "209fbbe0ad52d9235e37badf9cadfe4dbdc87203179c0899e738b39ade42177b"
+    }
+  },
+  {
+    "name": "rand_distr",
+    "version": "0.5.1",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-random/rand_distr",
+    "notices": [
+      "python/vinkulum/licences/rust/rand_distr-0.5.1/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/rand_distr-0.5.1/COPYRIGHT",
+      "python/vinkulum/licences/rust/rand_distr-0.5.1/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/rand_distr-0.5.1/LICENSE-APACHE": "6df43f6f4b5d4587f3d8d71e45532c688fd168afa5fe89d571cb32fa09c4ef51",
+      "python/vinkulum/licences/rust/rand_distr-0.5.1/COPYRIGHT": "90eb64f0279b0d9432accfa6023ff803bc4965212383697eee27a0f426d5f8d5",
+      "python/vinkulum/licences/rust/rand_distr-0.5.1/LICENSE-MIT": "a771e4354f6b3ad4c92da1a5c9a239b6c291527db869632ecea4f20e24ca1135"
+    }
+  },
+  {
+    "name": "raw-cpuid",
+    "version": "11.6.0",
+    "license": "MIT",
+    "repository": "https://github.com/gz/rust-cpuid",
+    "notices": [
+      "python/vinkulum/licences/rust/raw-cpuid-11.6.0/LICENSE.md"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/raw-cpuid-11.6.0/LICENSE.md": "cdd45f4d0c552c3a51725728215919e0dedb1e1af250f130e7c2d60eef6721fe"
+    }
+  },
+  {
+    "name": "rawpointer",
+    "version": "0.2.1",
+    "license": "MIT/Apache-2.0",
+    "repository": "https://github.com/bluss/rawpointer/",
+    "notices": [
+      "python/vinkulum/licences/rust/rawpointer-0.2.1/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/rawpointer-0.2.1/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/rawpointer-0.2.1/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/rawpointer-0.2.1/LICENSE-MIT": "7576269ea71f767b99297934c0b2367532690f8c4badc695edf8e04ab6a1e545"
+    }
+  },
+  {
+    "name": "rayon",
+    "version": "1.12.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rayon-rs/rayon",
+    "notices": [
+      "python/vinkulum/licences/rust/rayon-1.12.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/rayon-1.12.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/rayon-1.12.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/rayon-1.12.0/LICENSE-MIT": "0621878e61f0d0fda054bcbe02df75192c28bde1ecc8289cbd86aeba2dd72720"
+    }
+  },
+  {
+    "name": "rayon-core",
+    "version": "1.13.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rayon-rs/rayon",
+    "notices": [
+      "python/vinkulum/licences/rust/rayon-core-1.13.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/rayon-core-1.13.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/rayon-core-1.13.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/rayon-core-1.13.0/LICENSE-MIT": "0621878e61f0d0fda054bcbe02df75192c28bde1ecc8289cbd86aeba2dd72720"
+    }
+  },
+  {
+    "name": "reborrow",
+    "version": "0.5.5",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-ek/reborrow/",
+    "notices": [
+      "python/vinkulum/licences/rust/reborrow-0.5.5/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/reborrow-0.5.5/LICENSE": "bf5a93d1014429b43e01c57d45bea928748fbf37d059306145a1a0a91aec2014"
+    }
+  },
+  {
+    "name": "regex-automata",
+    "version": "0.4.18",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-lang/regex",
+    "notices": [
+      "python/vinkulum/licences/rust/regex-automata-0.4.18/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/regex-automata-0.4.18/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/regex-automata-0.4.18/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/regex-automata-0.4.18/LICENSE-MIT": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    }
+  },
+  {
+    "name": "regex-syntax",
+    "version": "0.8.11",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/rust-lang/regex",
+    "notices": [
+      "python/vinkulum/licences/rust/regex-syntax-0.8.11/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/regex-syntax-0.8.11/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/regex-syntax-0.8.11/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/regex-syntax-0.8.11/LICENSE-MIT": "6485b8ed310d3f0340bf1ad1f47645069ce4069dcc6bb46c7d5c6faf41de1fdb"
+    }
+  },
+  {
+    "name": "rustversion",
+    "version": "1.0.23",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/dtolnay/rustversion",
+    "notices": [
+      "python/vinkulum/licences/rust/rustversion-1.0.23/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/rustversion-1.0.23/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/rustversion-1.0.23/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "python/vinkulum/licences/rust/rustversion-1.0.23/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "safe_arch",
+    "version": "0.7.4",
+    "license": "Zlib OR Apache-2.0 OR MIT",
+    "repository": "https://github.com/Lokathor/safe_arch",
+    "notices": [
+      "python/vinkulum/licences/rust/safe_arch-0.7.4/LICENSE-ZLIB.md",
+      "python/vinkulum/licences/rust/safe_arch-0.7.4/LICENSE-MIT.md",
+      "python/vinkulum/licences/rust/safe_arch-0.7.4/LICENSE-APACHE.md"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/safe_arch-0.7.4/LICENSE-ZLIB.md": "c43b9a9b1387ed53d2c49263838261129a010e280e3a174a792242c3e2c98db9",
+      "python/vinkulum/licences/rust/safe_arch-0.7.4/LICENSE-MIT.md": "e57011537d230b14e790f6666dc00816f7b371ebbd7da8a12491e51086fec278",
+      "python/vinkulum/licences/rust/safe_arch-0.7.4/LICENSE-APACHE.md": "e3ba223bb1423f0aad8c3dfce0fe3148db48926d41e6fbc3afbbf5ff9e1c89cb"
+    }
+  },
+  {
+    "name": "same-file",
+    "version": "1.0.6",
+    "license": "Unlicense/MIT",
+    "repository": "https://github.com/BurntSushi/same-file",
+    "notices": [
+      "python/vinkulum/licences/rust/same-file-1.0.6/LICENSE-MIT",
+      "python/vinkulum/licences/rust/same-file-1.0.6/COPYING"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/same-file-1.0.6/LICENSE-MIT": "cb3c929a05e6cbc9de9ab06a4c57eeb60ca8c724bef6c138c87d3a577e27aa14",
+      "python/vinkulum/licences/rust/same-file-1.0.6/COPYING": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    }
+  },
+  {
+    "name": "scoped-tls",
+    "version": "1.0.1",
+    "license": "MIT/Apache-2.0",
+    "repository": "https://github.com/alexcrichton/scoped-tls",
+    "notices": [
+      "python/vinkulum/licences/rust/scoped-tls-1.0.1/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/scoped-tls-1.0.1/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/scoped-tls-1.0.1/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/scoped-tls-1.0.1/LICENSE-MIT": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+    }
+  },
+  {
+    "name": "seq-macro",
+    "version": "0.3.6",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/dtolnay/seq-macro",
+    "notices": [
+      "python/vinkulum/licences/rust/seq-macro-0.3.6/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/seq-macro-0.3.6/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/seq-macro-0.3.6/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "python/vinkulum/licences/rust/seq-macro-0.3.6/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "sharded-slab",
+    "version": "0.1.7",
+    "license": "MIT",
+    "repository": "https://github.com/hawkw/sharded-slab",
+    "notices": [
+      "python/vinkulum/licences/rust/sharded-slab-0.1.7/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/sharded-slab-0.1.7/LICENSE": "eafbfa606bc005ed7fd2f623d65af17ffe4ef7c017221ac14405bf4140771ea9"
+    }
+  },
+  {
+    "name": "shlex",
+    "version": "2.0.1",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/comex/rust-shlex",
+    "notices": [
+      "python/vinkulum/licences/rust/shlex-2.0.1/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/shlex-2.0.1/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/shlex-2.0.1/LICENSE-APACHE": "553fffcd9b1cb158bc3e9edc35da85ca5c3b3d7d2e61c883ebcfa8a65814b583",
+      "python/vinkulum/licences/rust/shlex-2.0.1/LICENSE-MIT": "4455bf75a91154108304cb283e0fea9948c14f13e20d60887cf2552449dea3b1"
+    }
+  },
+  {
+    "name": "simba",
+    "version": "0.9.1",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/dimforge/simba",
+    "notices": [
+      "python/vinkulum/licences/rust/simba-0.9.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/simba-0.9.1/LICENSE": "ceacfa4d7fa67df64ab09a56fe248c50a3bfc9bc00374d69bd74ad763b14b89c"
+    }
+  },
+  {
+    "name": "smallvec",
+    "version": "1.16.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/servo/rust-smallvec",
+    "notices": [
+      "python/vinkulum/licences/rust/smallvec-1.16.0/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/smallvec-1.16.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/smallvec-1.16.0/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/smallvec-1.16.0/LICENSE-MIT": "0b28172679e0009b655da42797c03fd163a3379d5cfa67ba1f1655e974a2a1a9"
+    }
+  },
+  {
+    "name": "spindle",
+    "version": "0.2.6",
+    "license": "MIT",
+    "repository": "https://github.com/sarah-quinones/spindle",
+    "notices": [
+      "python/vinkulum/licences/rust/spindle-0.2.6/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/spindle-0.2.6/LICENSE": "4263a9907c8e8d799f714d5cf2ec18663772f09e7eef3eeaaab074ea29ee1358"
+    }
+  },
+  {
+    "name": "syn",
+    "version": "1.0.109",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/dtolnay/syn",
+    "notices": [
+      "python/vinkulum/licences/rust/syn-1.0.109/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/syn-1.0.109/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/syn-1.0.109/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/syn-1.0.109/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "syn",
+    "version": "2.0.119",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/dtolnay/syn",
+    "notices": [
+      "python/vinkulum/licences/rust/syn-2.0.119/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/syn-2.0.119/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/syn-2.0.119/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "python/vinkulum/licences/rust/syn-2.0.119/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "syn",
+    "version": "3.0.4",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/dtolnay/syn",
+    "notices": [
+      "python/vinkulum/licences/rust/syn-3.0.4/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/syn-3.0.4/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/syn-3.0.4/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "python/vinkulum/licences/rust/syn-3.0.4/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "sysctl",
+    "version": "0.6.0",
+    "license": "MIT",
+    "repository": "https://github.com/johalun/sysctl-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/sysctl-0.6.0/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/sysctl-0.6.0/LICENSE-MIT": "53c2dcd4a0105784749459719bc59d759bb8dbb28939fd742645ac543416b556"
+    }
+  },
+  {
+    "name": "target-lexicon",
+    "version": "0.13.5",
+    "license": "Apache-2.0 WITH LLVM-exception",
+    "repository": "https://github.com/bytecodealliance/target-lexicon",
+    "notices": [
+      "python/vinkulum/licences/rust/target-lexicon-0.13.5/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/target-lexicon-0.13.5/LICENSE": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5"
+    }
+  },
+  {
+    "name": "thiserror",
+    "version": "1.0.69",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/dtolnay/thiserror",
+    "notices": [
+      "python/vinkulum/licences/rust/thiserror-1.0.69/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/thiserror-1.0.69/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/thiserror-1.0.69/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "python/vinkulum/licences/rust/thiserror-1.0.69/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "thiserror-impl",
+    "version": "1.0.69",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/dtolnay/thiserror",
+    "notices": [
+      "python/vinkulum/licences/rust/thiserror-impl-1.0.69/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/thiserror-impl-1.0.69/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/thiserror-impl-1.0.69/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "python/vinkulum/licences/rust/thiserror-impl-1.0.69/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "thread_local",
+    "version": "1.1.10",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/Amanieu/thread_local-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/thread_local-1.1.10/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/thread_local-1.1.10/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/thread_local-1.1.10/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/thread_local-1.1.10/LICENSE-MIT": "c9a75f18b9ab2927829a208fc6aa2cf4e63b8420887ba29cdb265d6619ae82d5"
+    }
+  },
+  {
+    "name": "tracing",
+    "version": "0.1.44",
+    "license": "MIT",
+    "repository": "https://github.com/tokio-rs/tracing",
+    "notices": [
+      "python/vinkulum/licences/rust/tracing-0.1.44/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/tracing-0.1.44/LICENSE": "898b1ae9821e98daf8964c8d6c7f61641f5f5aa78ad500020771c0939ee0dea1"
+    }
+  },
+  {
+    "name": "tracing-core",
+    "version": "0.1.36",
+    "license": "MIT",
+    "repository": "https://github.com/tokio-rs/tracing",
+    "notices": [
+      "python/vinkulum/licences/rust/tracing-core-0.1.36/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/tracing-core-0.1.36/LICENSE": "898b1ae9821e98daf8964c8d6c7f61641f5f5aa78ad500020771c0939ee0dea1"
+    }
+  },
+  {
+    "name": "tracing-log",
+    "version": "0.2.0",
+    "license": "MIT",
+    "repository": "https://github.com/tokio-rs/tracing",
+    "notices": [
+      "python/vinkulum/licences/rust/tracing-log-0.2.0/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/tracing-log-0.2.0/LICENSE": "898b1ae9821e98daf8964c8d6c7f61641f5f5aa78ad500020771c0939ee0dea1"
+    }
+  },
+  {
+    "name": "tracing-subscriber",
+    "version": "0.3.23",
+    "license": "MIT",
+    "repository": "https://github.com/tokio-rs/tracing",
+    "notices": [
+      "python/vinkulum/licences/rust/tracing-subscriber-0.3.23/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/tracing-subscriber-0.3.23/LICENSE": "898b1ae9821e98daf8964c8d6c7f61641f5f5aa78ad500020771c0939ee0dea1"
+    }
+  },
+  {
+    "name": "typenum",
+    "version": "1.20.1",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/paholg/typenum",
+    "notices": [
+      "python/vinkulum/licences/rust/typenum-1.20.1/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/typenum-1.20.1/LICENSE-MIT",
+      "python/vinkulum/licences/rust/typenum-1.20.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/typenum-1.20.1/LICENSE-APACHE": "516b24e051bf5630880ebbd55c40a25ce9552ebaf8970a53e8976eb70e522406",
+      "python/vinkulum/licences/rust/typenum-1.20.1/LICENSE-MIT": "a825bd853ab71619a4923d7b4311221427848070ff44d990da39b0b274c1683f",
+      "python/vinkulum/licences/rust/typenum-1.20.1/LICENSE": "db11fec9946737df39ca3898d9cd8c10ec6f6c3a884a6802b0ad0b81b4e8f23a"
+    }
+  },
+  {
+    "name": "ucd-trie",
+    "version": "0.1.7",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/BurntSushi/ucd-generate",
+    "notices": [
+      "python/vinkulum/licences/rust/ucd-trie-0.1.7/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/ucd-trie-0.1.7/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/ucd-trie-0.1.7/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/ucd-trie-0.1.7/LICENSE-MIT": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+    }
+  },
+  {
+    "name": "unicode-ident",
+    "version": "1.0.24",
+    "license": "(MIT OR Apache-2.0) AND Unicode-3.0",
+    "repository": "https://github.com/dtolnay/unicode-ident",
+    "notices": [
+      "python/vinkulum/licences/rust/unicode-ident-1.0.24/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/unicode-ident-1.0.24/LICENSE-MIT",
+      "python/vinkulum/licences/rust/unicode-ident-1.0.24/LICENSE-UNICODE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/unicode-ident-1.0.24/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+      "python/vinkulum/licences/rust/unicode-ident-1.0.24/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+      "python/vinkulum/licences/rust/unicode-ident-1.0.24/LICENSE-UNICODE": "f7db81051789b729fea528a63ec4c938fdcb93d9d61d97dc8cc2e9df6d47f2a1"
+    }
+  },
+  {
+    "name": "valuable",
+    "version": "0.1.1",
+    "license": "MIT",
+    "repository": "https://github.com/tokio-rs/valuable",
+    "notices": [
+      "python/vinkulum/licences/rust/valuable-0.1.1/LICENSE"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/valuable-0.1.1/LICENSE": "ed60d479b8fd1f64e9cbc3de449a16a53ac1b3d1b6aeb9bf9d190a8e93061b44"
+    }
+  },
+  {
+    "name": "version_check",
+    "version": "0.9.5",
+    "license": "MIT/Apache-2.0",
+    "repository": "https://github.com/SergioBenitez/version_check",
+    "notices": [
+      "python/vinkulum/licences/rust/version_check-0.9.5/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/version_check-0.9.5/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/version_check-0.9.5/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/version_check-0.9.5/LICENSE-MIT": "b7e650f3fce5c53249d1cdc608b54df156a97edd636cf9d23498d0cfe7aec63e"
+    }
+  },
+  {
+    "name": "walkdir",
+    "version": "2.5.0",
+    "license": "Unlicense/MIT",
+    "repository": "https://github.com/BurntSushi/walkdir",
+    "notices": [
+      "python/vinkulum/licences/rust/walkdir-2.5.0/LICENSE-MIT",
+      "python/vinkulum/licences/rust/walkdir-2.5.0/COPYING"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/walkdir-2.5.0/LICENSE-MIT": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f",
+      "python/vinkulum/licences/rust/walkdir-2.5.0/COPYING": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    }
+  },
+  {
+    "name": "wasip2",
+    "version": "1.0.4+wasi-0.2.12",
+    "license": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT",
+    "repository": "https://github.com/bytecodealliance/wasi-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/wasip2-1.0.4+wasi-0.2.12/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/wasip2-1.0.4+wasi-0.2.12/LICENSE-Apache-2.0_WITH_LLVM-exception",
+      "python/vinkulum/licences/rust/wasip2-1.0.4+wasi-0.2.12/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/wasip2-1.0.4+wasi-0.2.12/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/wasip2-1.0.4+wasi-0.2.12/LICENSE-Apache-2.0_WITH_LLVM-exception": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+      "python/vinkulum/licences/rust/wasip2-1.0.4+wasi-0.2.12/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "wide",
+    "version": "0.7.33",
+    "license": "Zlib OR Apache-2.0 OR MIT",
+    "repository": "https://github.com/Lokathor/wide",
+    "notices": [
+      "python/vinkulum/licences/rust/wide-0.7.33/LICENSE-ZLIB.md"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/wide-0.7.33/LICENSE-ZLIB.md": "c43b9a9b1387ed53d2c49263838261129a010e280e3a174a792242c3e2c98db9"
+    }
+  },
+  {
+    "name": "winapi-util",
+    "version": "0.1.11",
+    "license": "Unlicense OR MIT",
+    "repository": "https://github.com/BurntSushi/winapi-util",
+    "notices": [
+      "python/vinkulum/licences/rust/winapi-util-0.1.11/LICENSE-MIT",
+      "python/vinkulum/licences/rust/winapi-util-0.1.11/COPYING"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/winapi-util-0.1.11/LICENSE-MIT": "cb3c929a05e6cbc9de9ab06a4c57eeb60ca8c724bef6c138c87d3a577e27aa14",
+      "python/vinkulum/licences/rust/winapi-util-0.1.11/COPYING": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+    }
+  },
+  {
+    "name": "windows-link",
+    "version": "0.2.1",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/microsoft/windows-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/windows-link-0.2.1/license-mit",
+      "python/vinkulum/licences/rust/windows-link-0.2.1/license-apache-2.0"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/windows-link-0.2.1/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "python/vinkulum/licences/rust/windows-link-0.2.1/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    }
+  },
+  {
+    "name": "windows-result",
+    "version": "0.4.1",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/microsoft/windows-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/windows-result-0.4.1/license-mit",
+      "python/vinkulum/licences/rust/windows-result-0.4.1/license-apache-2.0"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/windows-result-0.4.1/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "python/vinkulum/licences/rust/windows-result-0.4.1/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    }
+  },
+  {
+    "name": "windows-sys",
+    "version": "0.42.0",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/microsoft/windows-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/windows-sys-0.42.0/license-mit",
+      "python/vinkulum/licences/rust/windows-sys-0.42.0/license-apache-2.0"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/windows-sys-0.42.0/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "python/vinkulum/licences/rust/windows-sys-0.42.0/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    }
+  },
+  {
+    "name": "windows-sys",
+    "version": "0.61.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/microsoft/windows-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/windows-sys-0.61.2/license-mit",
+      "python/vinkulum/licences/rust/windows-sys-0.61.2/license-apache-2.0"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/windows-sys-0.61.2/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "python/vinkulum/licences/rust/windows-sys-0.61.2/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    }
+  },
+  {
+    "name": "windows_aarch64_gnullvm",
+    "version": "0.42.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/microsoft/windows-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/windows_aarch64_gnullvm-0.42.2/license-mit",
+      "python/vinkulum/licences/rust/windows_aarch64_gnullvm-0.42.2/license-apache-2.0"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/windows_aarch64_gnullvm-0.42.2/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "python/vinkulum/licences/rust/windows_aarch64_gnullvm-0.42.2/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    }
+  },
+  {
+    "name": "windows_aarch64_msvc",
+    "version": "0.42.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/microsoft/windows-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/windows_aarch64_msvc-0.42.2/license-mit",
+      "python/vinkulum/licences/rust/windows_aarch64_msvc-0.42.2/license-apache-2.0"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/windows_aarch64_msvc-0.42.2/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "python/vinkulum/licences/rust/windows_aarch64_msvc-0.42.2/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    }
+  },
+  {
+    "name": "windows_i686_gnu",
+    "version": "0.42.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/microsoft/windows-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/windows_i686_gnu-0.42.2/license-mit",
+      "python/vinkulum/licences/rust/windows_i686_gnu-0.42.2/license-apache-2.0"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/windows_i686_gnu-0.42.2/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "python/vinkulum/licences/rust/windows_i686_gnu-0.42.2/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    }
+  },
+  {
+    "name": "windows_i686_msvc",
+    "version": "0.42.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/microsoft/windows-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/windows_i686_msvc-0.42.2/license-mit",
+      "python/vinkulum/licences/rust/windows_i686_msvc-0.42.2/license-apache-2.0"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/windows_i686_msvc-0.42.2/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "python/vinkulum/licences/rust/windows_i686_msvc-0.42.2/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    }
+  },
+  {
+    "name": "windows_x86_64_gnu",
+    "version": "0.42.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/microsoft/windows-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/windows_x86_64_gnu-0.42.2/license-mit",
+      "python/vinkulum/licences/rust/windows_x86_64_gnu-0.42.2/license-apache-2.0"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/windows_x86_64_gnu-0.42.2/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "python/vinkulum/licences/rust/windows_x86_64_gnu-0.42.2/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    }
+  },
+  {
+    "name": "windows_x86_64_gnullvm",
+    "version": "0.42.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/microsoft/windows-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/windows_x86_64_gnullvm-0.42.2/license-mit",
+      "python/vinkulum/licences/rust/windows_x86_64_gnullvm-0.42.2/license-apache-2.0"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/windows_x86_64_gnullvm-0.42.2/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "python/vinkulum/licences/rust/windows_x86_64_gnullvm-0.42.2/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    }
+  },
+  {
+    "name": "windows_x86_64_msvc",
+    "version": "0.42.2",
+    "license": "MIT OR Apache-2.0",
+    "repository": "https://github.com/microsoft/windows-rs",
+    "notices": [
+      "python/vinkulum/licences/rust/windows_x86_64_msvc-0.42.2/license-mit",
+      "python/vinkulum/licences/rust/windows_x86_64_msvc-0.42.2/license-apache-2.0"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/windows_x86_64_msvc-0.42.2/license-mit": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+      "python/vinkulum/licences/rust/windows_x86_64_msvc-0.42.2/license-apache-2.0": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
+    }
+  },
+  {
+    "name": "wit-bindgen",
+    "version": "0.57.1",
+    "license": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT",
+    "repository": "https://github.com/bytecodealliance/wit-bindgen",
+    "notices": [
+      "python/vinkulum/licences/rust/wit-bindgen-0.57.1/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/wit-bindgen-0.57.1/LICENSE-Apache-2.0_WITH_LLVM-exception",
+      "python/vinkulum/licences/rust/wit-bindgen-0.57.1/LICENSE-MIT"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/wit-bindgen-0.57.1/LICENSE-APACHE": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "python/vinkulum/licences/rust/wit-bindgen-0.57.1/LICENSE-Apache-2.0_WITH_LLVM-exception": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+      "python/vinkulum/licences/rust/wit-bindgen-0.57.1/LICENSE-MIT": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+    }
+  },
+  {
+    "name": "zerocopy",
+    "version": "0.8.56",
+    "license": "BSD-2-Clause OR Apache-2.0 OR MIT",
+    "repository": "https://github.com/google/zerocopy",
+    "notices": [
+      "python/vinkulum/licences/rust/zerocopy-0.8.56/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/zerocopy-0.8.56/LICENSE-MIT",
+      "python/vinkulum/licences/rust/zerocopy-0.8.56/LICENSE-BSD"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/zerocopy-0.8.56/LICENSE-APACHE": "9d185ac6703c4b0453974c0d85e9eee43e6941009296bb1f5eb0b54e2329e9f3",
+      "python/vinkulum/licences/rust/zerocopy-0.8.56/LICENSE-MIT": "1a2f5c12ddc934d58956aa5dbdd3255fe55fd957633ab7d0d39e4f0daa73f7df",
+      "python/vinkulum/licences/rust/zerocopy-0.8.56/LICENSE-BSD": "83c1763356e822adde0a2cae748d938a73fdc263849ccff6b27776dff213bd32"
+    }
+  },
+  {
+    "name": "zerocopy-derive",
+    "version": "0.8.56",
+    "license": "BSD-2-Clause OR Apache-2.0 OR MIT",
+    "repository": "https://github.com/google/zerocopy",
+    "notices": [
+      "python/vinkulum/licences/rust/zerocopy-derive-0.8.56/LICENSE-APACHE",
+      "python/vinkulum/licences/rust/zerocopy-derive-0.8.56/LICENSE-MIT",
+      "python/vinkulum/licences/rust/zerocopy-derive-0.8.56/LICENSE-BSD"
+    ],
+    "notice_sha256": {
+      "python/vinkulum/licences/rust/zerocopy-derive-0.8.56/LICENSE-APACHE": "9d185ac6703c4b0453974c0d85e9eee43e6941009296bb1f5eb0b54e2329e9f3",
+      "python/vinkulum/licences/rust/zerocopy-derive-0.8.56/LICENSE-MIT": "1a2f5c12ddc934d58956aa5dbdd3255fe55fd957633ab7d0d39e4f0daa73f7df",
+      "python/vinkulum/licences/rust/zerocopy-derive-0.8.56/LICENSE-BSD": "83c1763356e822adde0a2cae748d938a73fdc263849ccff6b27776dff213bd32"
+    }
+  }
+]

@@ -1,0 +1,7 @@
+Première exécution, terminée avec le code 127.
+Le fichier ci/local.sh a reçu une ligne de test supplémentaire pendant que
+Bash lisait encore ce fichier. Le journal finit par « y: command not found »
+après les tests de contrôle par facteurs. Cette exécution est invalide et
+n'est pas retenue comme CI réussie. Elle n'a pas révélé d'échec numérique.
+La validation de livraison doit employer une nouvelle exécution du script
+figé, sans modification concurrente. Le hook pre-push reste obligatoire.

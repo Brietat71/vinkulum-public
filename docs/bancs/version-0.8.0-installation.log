@@ -1,0 +1,7 @@
+Using Python 3.14.7 environment at: /tmp/vinkulum-release-0.8.0/venv
+Resolved 3 packages in 4ms
+Prepared 1 package in 38ms
+Installed 3 packages in 34ms
+ + numpy==2.5.3
+ + scipy==1.18.1
+ + vinkulum==0.8.0 (from file:///tmp/vinkulum-release-0.8.0/wheels/vinkulum-0.8.0-cp314-cp314-manylinux_2_39_x86_64.whl)

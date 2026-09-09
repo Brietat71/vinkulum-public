@@ -1,0 +1,33 @@
+{
+  "version": "0.7.2",
+  "roue": {
+    "nom": "vinkulum-0.7.2-cp314-cp314-manylinux_2_39_x86_64.whl",
+    "sha256": "64afe8cd944792937d825d3acec191d3a68262e4fbc43758c48b808dd46412ef",
+    "octets": 2579884,
+    "entrees_record_verifiees": 75
+  },
+  "extension_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+  "release_commit": "30c2c5ad4027efa5196267010835feee52f1bbc4",
+  "scripts_sha256": {
+    "ci/confronte_mbdyn.py": "7ed5bda7e2afd7a3a83bd8b9c576f8dcb77ad872a3fbae791c4b0ddc8ff2d104",
+    "ci/modeles_confrontation.py": "d7b154b95414f1755ff17e71fd92b5eb17fb27872fe61177fadd863fb3a8d02b",
+    "ci/bilan_confrontation.py": "b2da245ccecd240f55a5e43d5b6ec29daf428c3460babffa7b8dfe31911bc654",
+    "ci/test_confrontation.py": "c81ab38255b2ac7a3e957132170710b51dcac562d75035958430e97be7b23321",
+    "ci/archive_confrontation.py": "c021d2997c597255cc75c1d1a97ea959510b304f29cdf6faa1fa234d582fc188",
+    "ci/trace_confrontation.py": "661a4b5b961673fc1512442ff15c77fb4c4a692965ebdc56b75b1fd14f40c52e"
+  },
+  "fichiers": {
+    "confrontation-mbdyn-0.7.2.json": {
+      "sha256": "a0e9513849e1dd8ac46783e481b511cc79fa436aab71d340b112f07a1c55f761",
+      "octets": 126909
+    },
+    "confrontation-mbdyn-0.7.2-trajectoires.json.gz": {
+      "sha256": "094791aaadd6c471fa49f434b61de4754c3a0789baee44fb2d985472dfab54d5",
+      "octets": 2888195
+    },
+    "confrontation-mbdyn-0.7.2-journaux.json.gz": {
+      "sha256": "714c765ee68a819d290473edaeba79c5903e95a85d7dfaa14017594e19c8d9db",
+      "octets": 5743355
+    }
+  }
+}

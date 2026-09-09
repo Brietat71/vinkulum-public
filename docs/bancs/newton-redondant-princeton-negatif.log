@@ -1,0 +1,15 @@
+test_statique_princeton_encastrement_double (vinkulum.test_noyau.AuditNoyau.test_statique_princeton_encastrement_double) ... ERROR
+
+======================================================================
+ERROR: test_statique_princeton_encastrement_double (vinkulum.test_noyau.AuditNoyau.test_statique_princeton_encastrement_double)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/vinkulum-newton-redondant-avant/vinkulum/test_noyau.py", line 171, in test_statique_princeton_encastrement_double
+    n.statique(strict=True, tol=1e-8, iters=100, paliers_max=1)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 6.214e0 pour une échelle de force de 6.290e0 (9.9e-1 en relatif)
+
+----------------------------------------------------------------------
+Ran 1 test in 0.165s
+
+FAILED (errors=1)

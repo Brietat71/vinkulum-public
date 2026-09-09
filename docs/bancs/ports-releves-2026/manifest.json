@@ -1,0 +1,549 @@
+{
+  "schema": 1,
+  "date": "2026-09-07T17:38:12.640765+00:00",
+  "cas": [
+    {
+      "nom": "chaine2048",
+      "famille": "chaine",
+      "n": 2048
+    },
+    {
+      "nom": "console32",
+      "famille": "console",
+      "n": 32
+    },
+    {
+      "nom": "console128",
+      "famille": "console",
+      "n": 128
+    },
+    {
+      "nom": "console512",
+      "famille": "console",
+      "n": 512
+    }
+  ],
+  "variantes": [
+    "direct",
+    "qr",
+    "lu_energie"
+  ],
+  "repetitions": 4,
+  "assemblages": [
+    [
+      64,
+      4
+    ],
+    [
+      2048,
+      8
+    ],
+    [
+      2048,
+      32
+    ]
+  ],
+  "sources": {
+    "mesure_ports_releves.py": "8af3ff43ef4314f09a00b4787de0759ffcb07ef53e118c3b7353d555577053ac",
+    "ports_releves.py": "ac65d8fad552b8f736aeff901938a93565965a8e608263538f7c390b73d4ed0a",
+    "ports_krylov.py": "00b03833919cd63e15acab700831718c9873b4401e5dd305d037b619b2bb1471",
+    "condensation_energie.py": "8cf95400d746f439ece96a6a984c2a6680ea3f4a4a444dffd500047969cac691",
+    "condensation_energie_lu.py": "f1138f92e1deea9681730166facbe0e71be8534768c504b9a347904239c385a4",
+    "energie_ports.py": "0a6c5fe63323c27b288028b21869f45e4f3e8a581e3f7cbe7016beb71e554159",
+    "modeles_ports.py": "5d4be88b787bfe48d0f702129e9dc0f23bdf6d32071289861d21079a75d6b348",
+    "reference_ports_precision.py": "4fb36d49bae345b7bdc7cddfd541279df285564c1d0618d2f7f5e91dbf71a41c",
+    "chaine_sous_structures.py": "0ef8a08c606a7ef39cddc1a01188c10b5a276fea8578bfd85148171de98dad63",
+    "test_energie_ports.py": "de65eb334610c59301b096a5afd1bf628e68e871036432d4ba9c0e786fa62204",
+    "test_ports_releves.py": "6b55f417bb2ea3e06a91230af977c60abb2cc6cf21cd850884629ca5c981c71c",
+    "test_reference_ports_precision.py": "174b0cba28626f108798e0ab5dd5b1b1e17c92d77a2385fa18ad4e8542197b3e"
+  },
+  "references": {
+    "chaine2048.json": "b688d8edc7ed125a390ba7a20dbba895eb80f961cbb80961f13643e3f510d46b",
+    "console32.json": "af61ae3bc18bd362099b8aef2c22ad34544e3783865f259594c33047ce57914c",
+    "console128.json": "72cc2feb90d9ab961ebf8edf118ed665cbf115e0ed3bfa1ea868e602b9b5dbc0",
+    "console512.json": "0216b32a446a0b3f358bf2e1de8d121950495f1d441851e07eb73a2aaca44ad2"
+  },
+  "essais": [
+    {
+      "fichier": "chaine2048-direct-0.json",
+      "sha256": "bbeeebebac881e1dc5127e9e5be10f712b6b658cd05d921dddb326a2f0998871",
+      "cas": "chaine2048",
+      "variante": "direct",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "chaine2048-qr-0.json",
+      "sha256": "e1eec25929d6f52cda3a385a42ea46acf4f1998d88108e31e84c648abf76e754",
+      "cas": "chaine2048",
+      "variante": "qr",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "chaine2048-lu_energie-0.json",
+      "sha256": "0909d0ffa52239e47f000ea7310e6e864d4cd63a78feeac89ade62de0e0eef00",
+      "cas": "chaine2048",
+      "variante": "lu_energie",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "chaine2048-qr-1.json",
+      "sha256": "336d7252cfe236692a0d54d8dc64b210bdc1001a6ae04cc74b5d03fbc0952764",
+      "cas": "chaine2048",
+      "variante": "qr",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-lu_energie-1.json",
+      "sha256": "adb20b66ca5f0db927690fd75265874c6199c92480117626c4b57266271473cb",
+      "cas": "chaine2048",
+      "variante": "lu_energie",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-direct-1.json",
+      "sha256": "f8ec4408a12f87838be02a92e0145c0758e5220b123289c198be3d43f5fa1b6c",
+      "cas": "chaine2048",
+      "variante": "direct",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-lu_energie-2.json",
+      "sha256": "7c51eb03fe0dfb6a590bd6f9bd9e8f759abba73184c1360221c733e3bcb54239",
+      "cas": "chaine2048",
+      "variante": "lu_energie",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-direct-2.json",
+      "sha256": "47a74a6762a4936f43d02d8cf20a755490e339198a6ba69c3d229e21366e950d",
+      "cas": "chaine2048",
+      "variante": "direct",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-qr-2.json",
+      "sha256": "3dc2ba7ff45350aca91095d95a8c6373415df435eb27201f0dead96c89a53eaa",
+      "cas": "chaine2048",
+      "variante": "qr",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-direct-3.json",
+      "sha256": "6d8a274355698aa59b505033a2325bade24f34a3fa2ef6375d50a79beb93e05c",
+      "cas": "chaine2048",
+      "variante": "direct",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-qr-3.json",
+      "sha256": "6ec14df9e64f87c5a0f8c4516149378dc6be7698b0908a1d84e662d24916cb9e",
+      "cas": "chaine2048",
+      "variante": "qr",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-lu_energie-3.json",
+      "sha256": "15307992031619cc74fa47ae7c9751e93d7ee2675fb88fc2743061bce32a2335",
+      "cas": "chaine2048",
+      "variante": "lu_energie",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console32-direct-0.json",
+      "sha256": "495847dd523fd515414bab925ca32bda5297044a6b040bca55a3ce8e8649b1ca",
+      "cas": "console32",
+      "variante": "direct",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console32-qr-0.json",
+      "sha256": "bcd2ef70582c08487f1b9ec9d150b8b09478030e7274753784d8962e895fadd7",
+      "cas": "console32",
+      "variante": "qr",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console32-lu_energie-0.json",
+      "sha256": "9d69afecd9c51bc842773574a0e02a6bd8d349a0e78f876c458649b50b95631e",
+      "cas": "console32",
+      "variante": "lu_energie",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console32-qr-1.json",
+      "sha256": "82ae060f34a614ae72d29a3cb48f9521b6e4ee533d69419dbd4d5687f3d56947",
+      "cas": "console32",
+      "variante": "qr",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console32-lu_energie-1.json",
+      "sha256": "82bc654677f0b53c2e11ea811d43435420e6f31cad5fef6330460f4985f7bb00",
+      "cas": "console32",
+      "variante": "lu_energie",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console32-direct-1.json",
+      "sha256": "a7df8576cf777924f7f597c84174fdd4ca719e5875c4919f1179e34d0ec84d97",
+      "cas": "console32",
+      "variante": "direct",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console32-lu_energie-2.json",
+      "sha256": "359c32938bdf7ca0bbab9178c039cf3852e1092da363bb2d1fe7c333d51ab29e",
+      "cas": "console32",
+      "variante": "lu_energie",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console32-direct-2.json",
+      "sha256": "086cd819764ccc5ab5c56bea375c9f2c10cc2d9f8cf1120282d5b9d6ffe65f5a",
+      "cas": "console32",
+      "variante": "direct",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console32-qr-2.json",
+      "sha256": "b0490f76e04e18b650f09cb7e73563aa2feff22fa1396354f226c75dd8a0135b",
+      "cas": "console32",
+      "variante": "qr",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console32-direct-3.json",
+      "sha256": "940ba5a6a3d728b5e301daed0b587750727813bea828593f8280f51e5c7b8c86",
+      "cas": "console32",
+      "variante": "direct",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console32-qr-3.json",
+      "sha256": "8f8a1a49b5daacabfb4f464e38cdf40f324a7ab76663ad4a2a2a75dc35470c74",
+      "cas": "console32",
+      "variante": "qr",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console32-lu_energie-3.json",
+      "sha256": "08d5a5bc8c55e23a5cf1d43211955186c4636d52341ef4d615589b3915008690",
+      "cas": "console32",
+      "variante": "lu_energie",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-direct-0.json",
+      "sha256": "f77edae703a2be4effef2a84d041f2cfa4703c998cbc96ad1fb0ec37ff052fc0",
+      "cas": "console128",
+      "variante": "direct",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console128-qr-0.json",
+      "sha256": "0804504756662deef13d106aac2487aec48ee2e687131ff0e19979217fbf593e",
+      "cas": "console128",
+      "variante": "qr",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console128-lu_energie-0.json",
+      "sha256": "19292715e9d9531d16c498567609939f3c7f0d660e9377f5f7ff489b533bfb2c",
+      "cas": "console128",
+      "variante": "lu_energie",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console128-qr-1.json",
+      "sha256": "95e65f37a5bdb8ef8522e66bf049f8bf4c555fd99f6a699ad8082e4e91ad48c7",
+      "cas": "console128",
+      "variante": "qr",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-lu_energie-1.json",
+      "sha256": "f270a19302c79c0bb4d728fd13e557340c60e3d3cd93cdfbb1e3b7dcd834efc9",
+      "cas": "console128",
+      "variante": "lu_energie",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-direct-1.json",
+      "sha256": "82848d1daa2dcd64c47e4b60f432997afa73f2a0357d0272540666b2863bad16",
+      "cas": "console128",
+      "variante": "direct",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-lu_energie-2.json",
+      "sha256": "59cd12e7666d653159edecf34ae5c7cbc55d0bd02617b861fd22c6c9e938e73f",
+      "cas": "console128",
+      "variante": "lu_energie",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-direct-2.json",
+      "sha256": "7b58aff3b43b4d0e45ea2183030e06c11206e73cc04e0ac86a97defbfc34872e",
+      "cas": "console128",
+      "variante": "direct",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-qr-2.json",
+      "sha256": "73ab4b352384f371e11d1c191b15261375f00c92e0317d52d20c84b8958f3e04",
+      "cas": "console128",
+      "variante": "qr",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-direct-3.json",
+      "sha256": "cf63c4bdff7c52640203bc4f75d0ced32427ec1cc011d3d2bb834c05dacbaae5",
+      "cas": "console128",
+      "variante": "direct",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-qr-3.json",
+      "sha256": "40db879bb8f41d46cde5f4d725bc357508599f226cfe9203de64552cb05ee3ec",
+      "cas": "console128",
+      "variante": "qr",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-lu_energie-3.json",
+      "sha256": "90e75fd5e38c5c33cf076e71365f7857d7b635d59f5c185dc5b0aef9533f8f03",
+      "cas": "console128",
+      "variante": "lu_energie",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console512-direct-0.json",
+      "sha256": "57aeb2fdfc287f1bd06ab071c989f4ddecc3297d652e850a191b180e85b3bb66",
+      "cas": "console512",
+      "variante": "direct",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console512-qr-0.json",
+      "sha256": "f38c18cbce6434cd87f4abf4155c895228ee71838530efaa503f3aa6613587de",
+      "cas": "console512",
+      "variante": "qr",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console512-lu_energie-0.json",
+      "sha256": "819d1c74b820af9d8e0080fc041e327095fe877c53c770b29178cb3e022e5a97",
+      "cas": "console512",
+      "variante": "lu_energie",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console512-qr-1.json",
+      "sha256": "beb366c5ae6503ce6da44a5727ff8ecbc9d7e676588c992d1c7430c2bbe67361",
+      "cas": "console512",
+      "variante": "qr",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console512-lu_energie-1.json",
+      "sha256": "89e7d31006fb9856a1c0fff9f06c9d6cb823ff94d0c130ee76b9f1c1d59192cc",
+      "cas": "console512",
+      "variante": "lu_energie",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console512-direct-1.json",
+      "sha256": "12ae2de24f9a5d2124942b36cca3015d2152a0e58216c7342fda08f661baf679",
+      "cas": "console512",
+      "variante": "direct",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console512-lu_energie-2.json",
+      "sha256": "c2a19a5e90a2af74b6a4f347b3850d90737a5c3a2fef7bb47faf781893550af1",
+      "cas": "console512",
+      "variante": "lu_energie",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console512-direct-2.json",
+      "sha256": "5c482a860ff6803e37eefb1157eaf123c03b99077ff505b63ab52a9d06019862",
+      "cas": "console512",
+      "variante": "direct",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console512-qr-2.json",
+      "sha256": "636247674b5fa30df704ae9a759ea671f32a1731e995899ddc5a267828485cf9",
+      "cas": "console512",
+      "variante": "qr",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console512-direct-3.json",
+      "sha256": "8a710082a506720c3839b8053c2d9b993d2256c6b1b4fef19c5e2cf58a355db8",
+      "cas": "console512",
+      "variante": "direct",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console512-qr-3.json",
+      "sha256": "e973c2f2dab874c75cd1987f0040a219bf969fdbbd24ba67933862ea78ba18c4",
+      "cas": "console512",
+      "variante": "qr",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console512-lu_energie-3.json",
+      "sha256": "8d0ccbfab980b2dd8c70b169764d7d8dd25c6d5ef061bbc33274016ca9e987c5",
+      "cas": "console512",
+      "variante": "lu_energie",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "assemblage-64-4-0.json",
+      "sha256": "efc65a5b145f9b1321055c58d5e4df67cefa0dbc19b481d7024c2edd12574de6",
+      "cas": "assemblage-64-4",
+      "variante": "assemblage_qr",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "assemblage-64-4-1.json",
+      "sha256": "47fc99ca95316096233938d9c587ad144d91be4ea49424a164feef03e3334d39",
+      "cas": "assemblage-64-4",
+      "variante": "assemblage_qr",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "assemblage-64-4-2.json",
+      "sha256": "1cacd9415cdb67eccf1ec5d6f8c02bc8ab2cd7196de19ecd3f01df925fa2029a",
+      "cas": "assemblage-64-4",
+      "variante": "assemblage_qr",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "assemblage-64-4-3.json",
+      "sha256": "0b0b1234a4a02c7dff0740b519ba13a3772ce0bc2e39e18188d89cc525a1e548",
+      "cas": "assemblage-64-4",
+      "variante": "assemblage_qr",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "assemblage-2048-8-0.json",
+      "sha256": "a0959a82a6a90d3572aae8f4e59e10e4777b1416ada99f9dd693cabab94b5683",
+      "cas": "assemblage-2048-8",
+      "variante": "assemblage_qr",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "assemblage-2048-8-1.json",
+      "sha256": "22a5c24997aefda9d00c16db402a9981ab79a245cc34d678245ed41ef593e195",
+      "cas": "assemblage-2048-8",
+      "variante": "assemblage_qr",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "assemblage-2048-8-2.json",
+      "sha256": "d3dd68d02acb174bf847a5c5842e6fe056617ec28ababc6955aee174a1fe58ee",
+      "cas": "assemblage-2048-8",
+      "variante": "assemblage_qr",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "assemblage-2048-8-3.json",
+      "sha256": "93820ec1ccd74e260aafe60f23c6f7a47e053a883988a5dd4f3723a4f283221e",
+      "cas": "assemblage-2048-8",
+      "variante": "assemblage_qr",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "assemblage-2048-32-0.json",
+      "sha256": "8ffa8109be20351cc23fa9ade82d03a61d18cd5bcab7586655ba4f5b43df9f61",
+      "cas": "assemblage-2048-32",
+      "variante": "assemblage_qr",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "assemblage-2048-32-1.json",
+      "sha256": "42f75a1f5d38bd977b8ce06016d0965f96a44c7b6051ba5251d4dfd7b8e8a637",
+      "cas": "assemblage-2048-32",
+      "variante": "assemblage_qr",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "assemblage-2048-32-2.json",
+      "sha256": "8ae0a0172b2d0a31428a015cd137f00959afd731b74a13b062dc18561e5d09c5",
+      "cas": "assemblage-2048-32",
+      "variante": "assemblage_qr",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "assemblage-2048-32-3.json",
+      "sha256": "8a6c75c7a5955a77db16a4713b9ee7ba2fa3502116ba5a37813d1f12903bf448",
+      "cas": "assemblage-2048-32",
+      "variante": "assemblage_qr",
+      "repetition": 3,
+      "echauffement": false
+    }
+  ],
+  "cpu_info": "AMD EPYC 7543 32-Core Processor"
+}

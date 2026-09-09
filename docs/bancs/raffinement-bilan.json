@@ -1,0 +1,1525 @@
+{
+  "essais": 156,
+  "equilibres_stricts": 156,
+  "echecs_conserves": [],
+  "comparaisons": [
+    {
+      "famille": "articulee",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.002544977003708482,
+          "etendue_s": [
+            0.0025307489559054375,
+            0.002546119038015604
+          ],
+          "rss_mio": 40.4140625,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_moment_independant_Nm": 6.755177472082818e-13,
+            "erreur_reactions_N": 5.684341886080802e-14,
+            "erreur_fermeture_m": 2.275285537235716e-13
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0026404999662190676,
+          "etendue_s": [
+            0.0026327951345592737,
+            0.0026460399385541677
+          ],
+          "rss_mio": 40.23046875,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_moment_independant_Nm": 6.801897912099564e-13,
+            "erreur_reactions_N": 4.973799150320701e-14,
+            "erreur_fermeture_m": 2.2752839109324574e-13
+          }
+        }
+      },
+      "gain": 0.9638239107242387,
+      "ecart_position_compensee_m": 1.5710767105672763e-17,
+      "ecart_rotation": 1.1102230246251565e-16,
+      "ecart_reactions_SI": 7.105427357601002e-15
+    },
+    {
+      "famille": "articulee",
+      "taille": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.010072993114590645,
+          "etendue_s": [
+            0.010052685160189867,
+            0.010087169939652085
+          ],
+          "rss_mio": 41.5,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_moment_independant_Nm": 1.6087619517796137e-13,
+            "erreur_reactions_N": 4.440892098500626e-14,
+            "erreur_fermeture_m": 3.505165992526149e-14
+          }
+        },
+        "apres": {
+          "mediane_s": 0.010755063965916634,
+          "etendue_s": [
+            0.010697535006329417,
+            0.010809108149260283
+          ],
+          "rss_mio": 41.10546875,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_moment_independant_Nm": 1.6085700479950837e-13,
+            "erreur_reactions_N": 3.907985046680551e-14,
+            "erreur_fermeture_m": 3.505155150504424e-14
+          }
+        }
+      },
+      "gain": 0.9365814230870679,
+      "ecart_position_compensee_m": 6.116255505533852e-17,
+      "ecart_rotation": 1.1102230246251565e-16,
+      "ecart_reactions_SI": 1.0658141036401503e-14
+    },
+    {
+      "famille": "boucle",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0004451698623597622,
+          "etendue_s": [
+            0.0004441381897777319,
+            0.0004471230786293745
+          ],
+          "rss_mio": 39.703125,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 2.291500322826323e-13,
+            "orthogonalite_autocontraintes": 3.821465454940453e-16
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0004526539705693722,
+          "etendue_s": [
+            0.000451111001893878,
+            0.00045740301720798016
+          ],
+          "rss_mio": 39.640625,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 2.291500322826323e-13,
+            "orthogonalite_autocontraintes": 3.821465454940453e-16
+          }
+        }
+      },
+      "gain": 0.9834661602543857,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0,
+      "ecart_reactions_SI": 0.0
+    },
+    {
+      "famille": "boucle",
+      "taille": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0011751330457627773,
+          "etendue_s": [
+            0.0011674179695546627,
+            0.001199058024212718
+          ],
+          "rss_mio": 39.94921875,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 6.0254023992456496e-12,
+            "orthogonalite_autocontraintes": 7.405038006754649e-15
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0011810341384261847,
+          "etendue_s": [
+            0.0011794408783316612,
+            0.0011892288457602262
+          ],
+          "rss_mio": 39.97265625,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 6.0254023992456496e-12,
+            "orthogonalite_autocontraintes": 7.405038006754649e-15
+          }
+        }
+      },
+      "gain": 0.9950034529304369,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0,
+      "ecart_reactions_SI": 0.0
+    },
+    {
+      "famille": "cascade",
+      "taille": 8,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.07024494488723576,
+          "etendue_s": [
+            0.06979638803750277,
+            0.0702483500353992
+          ],
+          "rss_mio": 42.0,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 7.660926586031472e-11,
+            "erreur_rotation_reference": 4.358626654044073e-10,
+            "erreur_fermeture_m": 2.5957024303948674e-11,
+            "reactions_hors_plan": 6.465200915161905e-14,
+            "erreur_forces_N": 1.0617995371831057e-10,
+            "erreur_moments_Nm": 7.352468119471538e-10
+          }
+        },
+        "apres": {
+          "mediane_s": 0.005016623064875603,
+          "etendue_s": [
+            0.00501247588545084,
+            0.005050227046012878
+          ],
+          "rss_mio": 39.0,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 7.660926553505407e-11,
+            "erreur_rotation_reference": 4.3586233233749994e-10,
+            "erreur_fermeture_m": 2.595701435639374e-11,
+            "reactions_hors_plan": 0.0,
+            "erreur_forces_N": 1.0618306234277952e-10,
+            "erreur_moments_Nm": 7.352474164982852e-10
+          }
+        }
+      },
+      "gain": 14.002436296053991,
+      "ecart_position_compensee_m": 2.4166866424701894e-16,
+      "ecart_rotation": 1.5230872119076366e-15,
+      "ecart_reactions_SI": 6.465200915161905e-14
+    },
+    {
+      "famille": "cascade",
+      "taille": 16,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.25019823387265205,
+          "etendue_s": [
+            0.24917631410062313,
+            0.25033832900226116
+          ],
+          "rss_mio": 51.0,
+          "evaluations": [
+            6,
+            6,
+            6
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 2.2264991608213214e-11,
+            "erreur_rotation_reference": 1.5292368760189134e-10,
+            "erreur_fermeture_m": 4.5458358113187065e-12,
+            "reactions_hors_plan": 1.347464173746737e-13,
+            "erreur_forces_N": 1.5481838033792883e-11,
+            "erreur_moments_Nm": 1.3295124415724658e-10
+          }
+        },
+        "apres": {
+          "mediane_s": 0.012543898075819016,
+          "etendue_s": [
+            0.012454969109967351,
+            0.012559709139168262
+          ],
+          "rss_mio": 39.5,
+          "evaluations": [
+            6,
+            6,
+            6
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 2.2264437147222205e-11,
+            "erreur_rotation_reference": 1.529221749230203e-10,
+            "erreur_fermeture_m": 4.545825819718061e-12,
+            "reactions_hors_plan": 0.0,
+            "erreur_forces_N": 1.5483614390632283e-11,
+            "erreur_moments_Nm": 1.329465213048206e-10
+          }
+        }
+      },
+      "gain": 19.94581208810692,
+      "ecart_position_compensee_m": 8.454608541041964e-16,
+      "ecart_rotation": 3.804248582817138e-15,
+      "ecart_reactions_SI": 1.347464173746737e-13
+    },
+    {
+      "famille": "cascade",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 2.0384020779747516,
+          "etendue_s": [
+            2.036371709778905,
+            2.040088298963383
+          ],
+          "rss_mio": 86.0,
+          "evaluations": [
+            9,
+            9,
+            9
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 6.37197434573411e-13,
+            "erreur_rotation_reference": 4.88532131415198e-12,
+            "erreur_fermeture_m": 7.370586617167635e-14,
+            "reactions_hors_plan": 2.5961134340420797e-13,
+            "erreur_forces_N": 2.2648549702353193e-13,
+            "erreur_moments_Nm": 2.120356746627451e-12
+          }
+        },
+        "apres": {
+          "mediane_s": 0.037652494851499796,
+          "etendue_s": [
+            0.03762238705530763,
+            0.0376804880797863
+          ],
+          "rss_mio": 40.86328125,
+          "evaluations": [
+            9,
+            9,
+            9
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 6.371927725040694e-13,
+            "erreur_rotation_reference": 4.887867888214714e-12,
+            "erreur_fermeture_m": 7.37093051254422e-14,
+            "reactions_hors_plan": 0.0,
+            "erreur_forces_N": 2.220446049250313e-13,
+            "erreur_moments_Nm": 2.1214923738642304e-12
+          }
+        }
+      },
+      "gain": 54.137238077161754,
+      "ecart_position_compensee_m": 3.4531839193663316e-16,
+      "ecart_rotation": 5.3013149425851225e-15,
+      "ecart_reactions_SI": 2.5961134340420797e-13
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 8,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.06910045887343585,
+          "etendue_s": [
+            0.06874032295309007,
+            0.06974122300744057
+          ],
+          "rss_mio": 71.83203125,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 7.660921517386315e-11,
+            "erreur_rotation_reference": 4.3586232539860603e-10,
+            "erreur_fermeture_m": 2.5957045872795643e-11,
+            "reactions_hors_plan": 5.196446703430351e-14,
+            "erreur_forces_N": 1.0617773327226132e-10,
+            "erreur_moments_Nm": 7.352477679424194e-10
+          }
+        },
+        "apres": {
+          "mediane_s": 0.05590710206888616,
+          "etendue_s": [
+            0.05561216897331178,
+            0.05621818616054952
+          ],
+          "rss_mio": 72.0,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 7.660940371662095e-11,
+            "erreur_rotation_reference": 4.358621311095767e-10,
+            "erreur_fermeture_m": 2.5957005005150004e-11,
+            "reactions_hors_plan": 7.337475598537686e-14,
+            "erreur_forces_N": 1.0618350643198937e-10,
+            "erreur_moments_Nm": 7.352479975222294e-10
+          }
+        }
+      },
+      "gain": 1.2359871343052882,
+      "ecart_position_compensee_m": 2.497730754863481e-16,
+      "ecart_rotation": 1.6653345369377348e-15,
+      "ecart_reactions_SI": 7.543365271473485e-14
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 16,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.27326989104039967,
+          "etendue_s": [
+            0.2726567448116839,
+            0.27411290211603045
+          ],
+          "rss_mio": 79.34375,
+          "evaluations": [
+            7,
+            7,
+            7
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 6.8171486251183966e-12,
+            "erreur_rotation_reference": 4.7176221262823503e-11,
+            "erreur_fermeture_m": 1.4146015630579767e-12,
+            "reactions_hors_plan": 1.4457437702186553e-13,
+            "erreur_forces_N": 4.725109192804666e-12,
+            "erreur_moments_Nm": 4.064449326418324e-11
+          }
+        },
+        "apres": {
+          "mediane_s": 0.13692471594549716,
+          "etendue_s": [
+            0.13687617215327919,
+            0.13752552005462348
+          ],
+          "rss_mio": 80.13671875,
+          "evaluations": [
+            7,
+            7,
+            7
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 6.816126005629308e-12,
+            "erreur_rotation_reference": 4.717611024052104e-11,
+            "erreur_fermeture_m": 1.4146008955960142e-12,
+            "reactions_hors_plan": 1.606486896929183e-13,
+            "erreur_forces_N": 4.727773728063767e-12,
+            "erreur_moments_Nm": 4.064464762746755e-11
+          }
+        }
+      },
+      "gain": 1.9957674489474542,
+      "ecart_position_compensee_m": 9.694393725279138e-16,
+      "ecart_rotation": 4.427014310692812e-15,
+      "ecart_reactions_SI": 2.126820810124835e-13
+    },
+    {
+      "famille": "cascade_tournee",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 2.133928418159485,
+          "etendue_s": [
+            2.1334242201410234,
+            2.1403748081065714
+          ],
+          "rss_mio": 107.34375,
+          "evaluations": [
+            10,
+            10,
+            10
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 1.9875648436112892e-13,
+            "erreur_rotation_reference": 1.5297832445249071e-12,
+            "erreur_fermeture_m": 2.315089106205183e-14,
+            "reactions_hors_plan": 3.8996104289576025e-13,
+            "erreur_forces_N": 7.549516567451064e-14,
+            "erreur_moments_Nm": 6.614723485208647e-13
+          }
+        },
+        "apres": {
+          "mediane_s": 0.6396344020031393,
+          "etendue_s": [
+            0.6387179740704596,
+            0.6402194439433515
+          ],
+          "rss_mio": 108.796875,
+          "evaluations": [
+            10,
+            10,
+            10
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_position_reference_m": 1.9877236792295583e-13,
+            "erreur_rotation_reference": 1.5305048894909135e-12,
+            "erreur_fermeture_m": 2.3158443207809548e-14,
+            "reactions_hors_plan": 3.4668790365210157e-13,
+            "erreur_forces_N": 7.37188088351104e-14,
+            "erreur_moments_Nm": 6.619710611914173e-13
+          }
+        }
+      },
+      "gain": 3.3361689294332417,
+      "ecart_position_compensee_m": 2.282245573081987e-16,
+      "ecart_rotation": 5.7592819402429996e-15,
+      "ecart_reactions_SI": 4.575630600905809e-13
+    },
+    {
+      "famille": "chaine",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0003326449077576399,
+          "etendue_s": [
+            0.00032481993548572063,
+            0.0003329259343445301
+          ],
+          "rss_mio": 39.671875,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_absolue": 2.8421709430404007e-13,
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 2.6645352591003757e-14
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0003406200557947159,
+          "etendue_s": [
+            0.0003363718278706074,
+            0.0003428040072321892
+          ],
+          "rss_mio": 39.72265625,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_absolue": 2.8421709430404007e-13,
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 2.6645352591003757e-14
+          }
+        }
+      },
+      "gain": 0.9765863815080741,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0,
+      "ecart_reactions_SI": 0.0
+    },
+    {
+      "famille": "chaine",
+      "taille": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0009326289873570204,
+          "etendue_s": [
+            0.0009275400079786777,
+            0.000941867008805275
+          ],
+          "rss_mio": 40.015625,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_absolue": 2.091837814077735e-11,
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 5.5067062021407764e-14
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0009404141455888748,
+          "etendue_s": [
+            0.0009365668520331383,
+            0.0009472279343754053
+          ],
+          "rss_mio": 39.96875,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_absolue": 2.091837814077735e-11,
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 5.5067062021407764e-14
+          }
+        }
+      },
+      "gain": 0.9917215640913404,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0,
+      "ecart_reactions_SI": 0.0
+    },
+    {
+      "famille": "double",
+      "taille": 8,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0009492209646850824,
+          "etendue_s": [
+            0.0009471769444644451,
+            0.0009576568845659494
+          ],
+          "rss_mio": 39.9453125,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 1.2612133559741778e-13,
+            "ecart_doublons": 0.0,
+            "erreur_moments_Nm": 1.2142628374144093e-11,
+            "erreur_fermeture_m": 4.232440949363675e-12
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0009742591064423323,
+          "etendue_s": [
+            0.0009716839995235205,
+            0.0009776758961379528
+          ],
+          "rss_mio": 39.8203125,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 1.2256862191861728e-13,
+            "ecart_doublons": 0.0,
+            "erreur_moments_Nm": 1.2142634228835825e-11,
+            "erreur_fermeture_m": 4.2324415998849785e-12
+          }
+        }
+      },
+      "gain": 0.9743003256611265,
+      "ecart_position_compensee_m": 2.0626946331536722e-17,
+      "ecart_rotation": 1.3877787807814457e-17,
+      "ecart_reactions_SI": 1.7763568394002505e-15
+    },
+    {
+      "famille": "double",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0035258489660918713,
+          "etendue_s": [
+            0.0035206079483032227,
+            0.0035421489737927914
+          ],
+          "rss_mio": 40.23828125,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 2.3092638912203256e-14,
+            "ecart_doublons": 0.0,
+            "erreur_moments_Nm": 6.713202584975042e-13,
+            "erreur_fermeture_m": 2.2752904161454923e-13
+          }
+        },
+        "apres": {
+          "mediane_s": 0.003570975037291646,
+          "etendue_s": [
+            0.0035684399772435427,
+            0.003580261953175068
+          ],
+          "rss_mio": 40.62109375,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 1.2434497875801753e-14,
+            "ecart_doublons": 0.0,
+            "erreur_moments_Nm": 6.7132909474521e-13,
+            "erreur_fermeture_m": 2.2752904161454923e-13
+          }
+        }
+      },
+      "gain": 0.9873630953091176,
+      "ecart_position_compensee_m": 2.74574200181954e-17,
+      "ecart_rotation": 1.1102230246251565e-16,
+      "ecart_reactions_SI": 6.661338147750939e-15
+    },
+    {
+      "famille": "mixte",
+      "taille": 8,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0009412760846316814,
+          "etendue_s": [
+            0.0009397631511092186,
+            0.0009446330368518829
+          ],
+          "rss_mio": 40.046875,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 1.3145040611561853e-13,
+            "ecart_copies": 0.0,
+            "erreur_moments_Nm": 1.2142631301489959e-11,
+            "erreur_fermeture_m": 4.232441491464761e-12
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0009590708650648594,
+          "etendue_s": [
+            0.0009457450360059738,
+            0.000960333039984107
+          ],
+          "rss_mio": 39.96484375,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 1.3677947663381929e-13,
+            "ecart_copies": 0.0,
+            "erreur_moments_Nm": 1.2144849470714647e-11,
+            "erreur_fermeture_m": 4.2324411662041095e-12
+          }
+        }
+      },
+      "gain": 0.9814458127325403,
+      "ecart_position_compensee_m": 1.328147661294743e-17,
+      "ecart_rotation": 2.7755575615628914e-17,
+      "ecart_reactions_SI": 5.329070518200751e-15
+    },
+    {
+      "famille": "mixte",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0035572589840739965,
+          "etendue_s": [
+            0.0035287339705973864,
+            0.003565313993021846
+          ],
+          "rss_mio": 40.3984375,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 2.1316282072803006e-14,
+            "ecart_copies": 0.0,
+            "erreur_moments_Nm": 6.755315165758724e-13,
+            "erreur_fermeture_m": 2.27528933194332e-13
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0036301380023360252,
+          "etendue_s": [
+            0.003617864102125168,
+            0.003635598113760352
+          ],
+          "rss_mio": 40.51171875,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 2.1316282072803006e-14,
+            "ecart_copies": 0.0,
+            "erreur_moments_Nm": 6.624032377298972e-13,
+            "erreur_fermeture_m": 2.2752925845498373e-13
+          }
+        }
+      },
+      "gain": 0.9799238987016112,
+      "ecart_position_compensee_m": 4.30767075655647e-17,
+      "ecart_rotation": 1.1102230246251565e-16,
+      "ecart_reactions_SI": 2.6645352591003757e-15
+    },
+    {
+      "famille": "parallelogrammes",
+      "taille": 8,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.057599863037467,
+          "etendue_s": [
+            0.05748583492822945,
+            0.05784982000477612
+          ],
+          "rss_mio": 43.0,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_reference_m": 9.94222830149119e-12,
+            "erreur_rotation_reference": 6.810772483122805e-12,
+            "erreur_forces_N": 2.072120253160392e-12,
+            "erreur_moments_Nm": 8.214581903580136e-11,
+            "erreur_reactions_N": 1.021520645849705e-10,
+            "reactions_hors_plan": 4.718103158175783e-15,
+            "erreur_fermeture_m": 5.742514916275837e-12
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0025380339939147234,
+          "etendue_s": [
+            0.0025291561614722013,
+            0.002539345994591713
+          ],
+          "rss_mio": 40.421875,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_reference_m": 9.942289992594805e-12,
+            "erreur_rotation_reference": 6.810936604491363e-12,
+            "erreur_forces_N": 2.0747847884194925e-12,
+            "erreur_moments_Nm": 8.214260636551311e-11,
+            "erreur_reactions_N": 1.021307483028977e-10,
+            "reactions_hors_plan": 0.0,
+            "erreur_fermeture_m": 5.742510416836821e-12
+          }
+        }
+      },
+      "gain": 22.6946775242453,
+      "ecart_position_compensee_m": 7.350023367713732e-15,
+      "ecart_rotation": 9.769962616701378e-15,
+      "ecart_reactions_SI": 1.2789769243681803e-13
+    },
+    {
+      "famille": "parallelogrammes",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.8022779589518905,
+          "etendue_s": [
+            0.7981938461307436,
+            0.80528679699637
+          ],
+          "rss_mio": 87.0,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_reference_m": 9.95162123280241e-12,
+            "erreur_rotation_reference": 6.825540548245023e-12,
+            "erreur_forces_N": 2.0730084315800923e-12,
+            "erreur_moments_Nm": 8.215109857303541e-11,
+            "erreur_reactions_N": 1.021494000497114e-10,
+            "reactions_hors_plan": 7.01556252359452e-15,
+            "erreur_fermeture_m": 5.7425838173238986e-12
+          }
+        },
+        "apres": {
+          "mediane_s": 0.010074025020003319,
+          "etendue_s": [
+            0.010038476902991533,
+            0.010100836167111993
+          ],
+          "rss_mio": 41.0,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_reference_m": 9.952635666565096e-12,
+            "erreur_rotation_reference": 6.826628059828173e-12,
+            "erreur_forces_N": 2.0747847884194925e-12,
+            "erreur_moments_Nm": 8.21478727568559e-11,
+            "erreur_reactions_N": 1.021378537302553e-10,
+            "reactions_hors_plan": 0.0,
+            "erreur_fermeture_m": 5.742614446035271e-12
+          }
+        }
+      },
+      "gain": 79.63827341691734,
+      "ecart_position_compensee_m": 7.322267792098103e-15,
+      "ecart_rotation": 1.902644708451362e-14,
+      "ecart_reactions_SI": 2.540190280342358e-13
+    },
+    {
+      "famille": "princeton_integree",
+      "taille": 10,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.017714455956593156,
+          "etendue_s": [
+            0.017624604050070047,
+            0.017748741200193763
+          ],
+          "rss_mio": 40.4140625,
+          "evaluations": [
+            45,
+            45,
+            45
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 1.2112803730590646e-10,
+            "erreur_moments_Nm": 4.2030181418573065e-14,
+            "ecart_copies": 0.0
+          }
+        },
+        "apres": {
+          "mediane_s": 0.01795343216508627,
+          "etendue_s": [
+            0.01792826410382986,
+            0.017972778994590044
+          ],
+          "rss_mio": 40.20703125,
+          "evaluations": [
+            45,
+            45,
+            45
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 2.6015230946141436e-10,
+            "erreur_moments_Nm": 5.2309176955256387e-14,
+            "ecart_copies": 0.0
+          }
+        }
+      },
+      "gain": 0.9866891073363763,
+      "ecart_position_compensee_m": 1.3030754860560156e-17,
+      "ecart_rotation": 1.734723475976807e-16,
+      "ecart_reactions_SI": 3.8128034676732084e-10
+    },
+    {
+      "famille": "princeton_integree",
+      "taille": 40,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.08162130392156541,
+          "etendue_s": [
+            0.08143925783224404,
+            0.08184976107440889
+          ],
+          "rss_mio": 40.546875,
+          "evaluations": [
+            47,
+            47,
+            47
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 1.8319845949410493e-10,
+            "erreur_moments_Nm": 9.835340007702253e-15,
+            "ecart_copies": 0.0
+          }
+        },
+        "apres": {
+          "mediane_s": 0.07684262515977025,
+          "etendue_s": [
+            0.07662697392515838,
+            0.0769804788287729
+          ],
+          "rss_mio": 40.546875,
+          "evaluations": [
+            47,
+            47,
+            47
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 4.991100268442183e-10,
+            "erreur_moments_Nm": 1.0444770048856356e-14,
+            "ecart_copies": 0.0
+          }
+        }
+      },
+      "gain": 1.0621878645069633,
+      "ecart_position_compensee_m": 3.7283002206345284e-17,
+      "ecart_rotation": 1.6653345369377348e-16,
+      "ecart_reactions_SI": 3.159115673501133e-10
+    },
+    {
+      "famille": "princeton_milieu",
+      "taille": 10,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.016418393002822995,
+          "etendue_s": [
+            0.01639675092883408,
+            0.016515187919139862
+          ],
+          "rss_mio": 40.3828125,
+          "evaluations": [
+            47,
+            47,
+            47
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 9.221358641120501e-11,
+            "erreur_moments_Nm": 7.493354894916315e-15,
+            "ecart_copies": 0.0
+          }
+        },
+        "apres": {
+          "mediane_s": 0.017470540013164282,
+          "etendue_s": [
+            0.017396589973941445,
+            0.017553598852828145
+          ],
+          "rss_mio": 40.27734375,
+          "evaluations": [
+            49,
+            49,
+            49
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 4.182093764626415e-11,
+            "erreur_moments_Nm": 4.816166996463034e-14,
+            "ecart_copies": 0.0
+          }
+        }
+      },
+      "gain": 0.9397759308213438,
+      "ecart_position_compensee_m": 2.510334605118625e-16,
+      "ecart_rotation": 8.326672684688674e-16,
+      "ecart_reactions_SI": 5.0392648764940865e-11
+    },
+    {
+      "famille": "princeton_milieu",
+      "taille": 40,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.06934464583173394,
+          "etendue_s": [
+            0.06921699410304427,
+            0.06945809279568493
+          ],
+          "rss_mio": 40.546875,
+          "evaluations": [
+            48,
+            48,
+            48
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 1.710542156752037e-10,
+            "erreur_moments_Nm": 9.977153651863357e-15,
+            "ecart_copies": 0.0
+          }
+        },
+        "apres": {
+          "mediane_s": 0.06962291686795652,
+          "etendue_s": [
+            0.06954135210253298,
+            0.06980868219397962
+          ],
+          "rss_mio": 40.5,
+          "evaluations": [
+            48,
+            48,
+            48
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "erreur_reactions_N": 1.452977416105394e-10,
+            "erreur_moments_Nm": 1.2163664173114874e-14,
+            "ecart_copies": 0.0
+          }
+        }
+      },
+      "gain": 0.9960031689457893,
+      "ecart_position_compensee_m": 1.5016200088924236e-17,
+      "ecart_rotation": 1.6653345369377348e-16,
+      "ecart_reactions_SI": 3.163519572857431e-10
+    },
+    {
+      "famille": "rotors",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0005594480317085981,
+          "etendue_s": [
+            0.000556090846657753,
+            0.0005613719113171101
+          ],
+          "rss_mio": 40.11328125,
+          "evaluations": [
+            2,
+            2,
+            2
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_max": 1.1102230246251565e-16,
+            "erreur_equilibre_independant": 1.3877787807814457e-16
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0005953260697424412,
+          "etendue_s": [
+            0.0005952161736786366,
+            0.0005978809203952551
+          ],
+          "rss_mio": 40.12109375,
+          "evaluations": [
+            2,
+            2,
+            2
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 1.3877787807814457e-16
+          }
+        }
+      },
+      "gain": 0.9397338032763035,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 1.1102230246251565e-16,
+      "ecart_reactions_SI": 0.0
+    },
+    {
+      "famille": "rotors",
+      "taille": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0019733260851353407,
+          "etendue_s": [
+            0.0019528069533407688,
+            0.0019737870898097754
+          ],
+          "rss_mio": 40.5,
+          "evaluations": [
+            2,
+            2,
+            2
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_max": 1.1102230246251565e-16,
+            "erreur_equilibre_independant": 1.3877787807814457e-16
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0020090139005333185,
+          "etendue_s": [
+            0.0020019400399178267,
+            0.002031516982242465
+          ],
+          "rss_mio": 40.5,
+          "evaluations": [
+            2,
+            2,
+            2
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 1.3877787807814457e-16
+          }
+        }
+      },
+      "gain": 0.9822361530756437,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 1.1102230246251565e-16,
+      "ecart_reactions_SI": 0.0
+    },
+    {
+      "famille": "spatiale",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0006545691285282373,
+          "etendue_s": [
+            0.000646163010969758,
+            0.000663696089759469
+          ],
+          "rss_mio": 40.66796875,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_forces_N": 1.687538997430238e-13,
+            "erreur_moments_Nm": 3.232969447708456e-13,
+            "erreur_reactions_reference_SI": 4.831690603168681e-13,
+            "orthogonalite_autocontraintes": 2.811712663624415e-16
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0006620739586651325,
+          "etendue_s": [
+            0.0006586469244211912,
+            0.0006642069201916456
+          ],
+          "rss_mio": 40.64453125,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_forces_N": 1.687538997430238e-13,
+            "erreur_moments_Nm": 3.232969447708456e-13,
+            "erreur_reactions_reference_SI": 4.831690603168681e-13,
+            "orthogonalite_autocontraintes": 2.811712663624415e-16
+          }
+        }
+      },
+      "gain": 0.9886646649688106,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0,
+      "ecart_reactions_SI": 0.0
+    },
+    {
+      "famille": "spatiale",
+      "taille": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.002610060852020979,
+          "etendue_s": [
+            0.0025616688653826714,
+            0.002628105925396085
+          ],
+          "rss_mio": 41.5,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_forces_N": 6.910028105266974e-12,
+            "erreur_moments_Nm": 6.536993168992922e-12,
+            "erreur_reactions_reference_SI": 6.775735528208315e-11,
+            "orthogonalite_autocontraintes": 2.1605846492485745e-15
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0026042999234050512,
+          "etendue_s": [
+            0.00255519594065845,
+            0.002629668917506933
+          ],
+          "rss_mio": 41.5,
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_forces_N": 6.910028105266974e-12,
+            "erreur_moments_Nm": 6.536993168992922e-12,
+            "erreur_reactions_reference_SI": 6.775735528208315e-11,
+            "orthogonalite_autocontraintes": 2.1605846492485745e-15
+          }
+        }
+      },
+      "gain": 1.0022120833949093,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0,
+      "ecart_reactions_SI": 0.0
+    }
+  ],
+  "mesures_sha256": "1255473ca19438ed3a6fa161aebae9ec07713687afb10a841b200e07622cba04",
+  "validateur_sha256": "13d620a6917b6cdb547765692ab31bbfcfc7cff535d5dab74ad4b7b015d61d84"
+}

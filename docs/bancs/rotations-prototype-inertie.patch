@@ -1,0 +1,32 @@
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -3636,0 +3637,3 @@
++        if self.t >= t_end {
++            return Ok(0);
++        }
+@@ -3645 +3648,3 @@
+-        let mut pis: Vec<V3> = self
++        // L'inertie matérielle est constante dans ce domaine : son inverse
++        // se prépare une fois par corps et par appel, avec le moment porté.
++        let mut rotations: Vec<(V3, M3)> = self
+@@ -3648,2 +3653,8 @@
+-            .map(|c| c.j * (c.rot.transpose() * c.w))
+-            .collect();
++            .map(|c| {
++                Ok((
++                    c.j * (c.rot.transpose() * c.w),
++                    c.j.try_inverse()
++                        .ok_or("énergie-moment : inertie singulière")?,
++                ))
++            })
++            .collect::<Result<_, String>>()?;
+@@ -3660,5 +3671 @@
+-                let jinv = match c.j.try_inverse() {
+-                    Some(v) => v,
+-                    None => return Err("énergie-moment : inertie singulière".into()),
+-                };
+-                let p0 = pis[ic];
++                let (p0, jinv) = rotations[ic];
+@@ -3720 +3727 @@
+-                pis[ic] = p1;
++                rotations[ic].0 = p1;

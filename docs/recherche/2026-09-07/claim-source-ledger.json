@@ -1,0 +1,892 @@
+[
+  {
+    "id": "sigma",
+    "title": "σ-modified Lie group generalized-α methods for constrained multibody systems",
+    "authors": "Holzinger, Arnold, Gerstmayr",
+    "date": "2025-10",
+    "publisher": "Mechanism and Machine Theory 217, 106236",
+    "url": "https://doi.org/10.1016/j.mechmachtheory.2025.106236",
+    "access": "Texte intégral déposé par le premier auteur sur ResearchGate, relu par le coordinateur ; éditeur inaccessible.",
+    "claim": "Une composante de l'erreur dominante est annulable ; σ=1 simplifie le correcteur ; ordre 2 sous initialisation adaptée ; implémentation Exudyn déjà annoncée.",
+    "provenance": [
+      "turn140view0",
+      "turn141view0",
+      "turn142view1"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "lie12",
+    "title": "Lie group generalized-alpha time integration of constrained flexible multibody systems",
+    "authors": "Brüls, Cardona, Arnold",
+    "date": "2012",
+    "publisher": "Mechanism and Machine Theory 48, 121–137",
+    "url": "https://orbi.uliege.be/handle/2268/119869",
+    "access": "Résumé institutionnel et extraits consultés.",
+    "claim": "Antériorité de l'intégration generalized-alpha sur Lie pour DAE contraintes.",
+    "provenance": [
+      "research_geometry_physics:turn79search0"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "se314",
+    "title": "Geometrically exact beam finite element formulated on the special Euclidean group SE(3)",
+    "authors": "Sonneville, Cardona, Brüls",
+    "date": "2014",
+    "publisher": "CMAME 268, 451–474",
+    "url": "https://orbi.uliege.be/bitstream/2268/159471/1/pa_SonnevilleCardonaBruls2014_GeometricallyExactBeamFEOnSE3.pdf",
+    "access": "Postprint intégral institutionnel.",
+    "claim": "Interpolation couplée positions/rotations et objectivité : socle établi, pas nouveauté exclusive.",
+    "provenance": [
+      "research_geometry_physics:turn72view0"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "mixed26",
+    "title": "Mixed Finite Elements for Geometrically Exact Beams using Discontinuous Rotations and Discrete Curvature",
+    "authors": "Humer, Steinbrecher, Pechstein",
+    "date": "2026-05-06",
+    "publisher": "arXiv 2605.04573v1, prépublication",
+    "url": "https://arxiv.org/html/2605.04573v1",
+    "access": "Théorie et résultats lus ; dérivation propre et prototype exécuté dans Vinkulum.",
+    "claim": "Rotations internes discontinues, moments indépendants, hybridation et condensation ; ordres élevés avec intégration réduite.",
+    "provenance": [
+      "turn37view0",
+      "turn38view0"
+    ],
+    "confidence": "résultat théorique étudié ; transfert partiel exécuté, limites archivées dans vbeam",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "warping24",
+    "title": "An objective isogeometric mixed finite element formulation for nonlinear elastodynamic beams with incompatible warping strains",
+    "authors": "Choi, Klinkel, Klarmann, Sauer",
+    "date": "2024-11-19 (v2)",
+    "publisher": "arXiv 2407.14637v2",
+    "url": "https://arxiv.org/html/2407.14637v2",
+    "access": "Texte intégral.",
+    "claim": "Directeurs extensibles et gauchissement ; conservation EMC discutée exacte pour St-Venant–Kirchhoff et perdue pour Neo-Hooke.",
+    "provenance": [
+      "research_geometry_physics:turn55view0",
+      "research_geometry_physics:turn58view3"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "bspline25",
+    "title": "Geometrically exact beam finite element with generalized B-spline interpolation on the special Euclidean group SE(3)",
+    "authors": "Ren, Yuan, Liu",
+    "date": "2025",
+    "publisher": "CMAME 441, 117979",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0045782525002518",
+    "access": "Aperçu éditeur ; dérivation complète non auditée.",
+    "claim": "Interpolation de configurations d'ordre élevé ; gains de précision annoncés sur les cas des auteurs.",
+    "provenance": [
+      "research_geometry_physics:turn47search0"
+    ],
+    "confidence": "moyenne ; résumé et extraits seulement",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "rom03",
+    "title": "Structure-preserving model reduction for mechanical systems",
+    "authors": "Lall, Krysl, Marsden",
+    "date": "2003-10-01",
+    "publisher": "Physica D 184, 304–318",
+    "url": "https://doi.org/10.1016/S0167-2789(03)00227-6",
+    "access": "Résumé et introduction éditeur.",
+    "claim": "La réduction préservant la structure lagrangienne constitue un socle depuis 2003.",
+    "provenance": [
+      "research_geometry_physics:turn39search0"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "rom15",
+    "title": "Preserving Lagrangian Structure in Nonlinear Model Reduction with Application to Structural Dynamics",
+    "authors": "Carlberg, Tuminaro, Boggs",
+    "date": "2015 ; prépublication 2014",
+    "publisher": "SIAM Journal on Scientific Computing",
+    "url": "https://arxiv.org/pdf/1401.8044",
+    "access": "Texte intégral.",
+    "claim": "Réduire métrique, potentiel, dissipation et efforts avant de dériver ; intérêts hors ligne/en ligne et hypothèses mécaniques spécifiques.",
+    "provenance": [
+      "research_geometry_physics:turn59view0"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "ecsw15",
+    "title": "Structure-preserving, stability, and accuracy properties of the energy-conserving sampling and weighting method for the hyper reduction of nonlinear finite element dynamic models",
+    "authors": "Farhat, Chapman, Avery",
+    "date": "2015-03-03",
+    "publisher": "IJNME 102, 1077–1110",
+    "url": "https://doi.org/10.1002/nme.4820",
+    "access": "Résumé éditeur détaillé ; intégral inaccessible.",
+    "claim": "Hyperréduction ECSW préservant la structure ; borne annoncée à paramètres fixés, pas certificat universel hors domaine.",
+    "provenance": [
+      "research_geometry_physics:turn65view0",
+      "research_geometry_physics:turn112view0"
+    ],
+    "confidence": "élevée sur le résumé ; transférabilité à vérifier",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "ssm16",
+    "title": "Nonlinear normal modes and spectral submanifolds: existence, uniqueness and use in model reduction",
+    "authors": "Haller, Ponsioen",
+    "date": "2016-08-01",
+    "publisher": "Nonlinear Dynamics 86, 1493–1534",
+    "url": "https://www.georgehaller.com/reprints/NNM.pdf",
+    "access": "Texte intégral auteur.",
+    "claim": "Variétés spectrales sous hypothèses de non-résonance ; garanties locales et contre-exemple de série formelle non convergente.",
+    "provenance": [
+      "research_geometry_physics:turn85view0"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "ssm22",
+    "title": "How to compute invariant manifolds and their reduced dynamics in high-dimensional finite element models",
+    "authors": "Jain, Haller",
+    "date": "2022 ; en ligne 2021-10-12",
+    "publisher": "Nonlinear Dynamics",
+    "url": "https://arxiv.org/pdf/2103.10264",
+    "access": "Texte intégral.",
+    "claim": "Calcul en coordonnées physiques ; modèle d'aile 133920 ddl, coût hors ligne élevé ; pas réduction universelle des impacts.",
+    "provenance": [
+      "research_geometry_physics:turn59view3",
+      "research_geometry_physics:turn116view1"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "ph26",
+    "title": "Port-Hamiltonian multibody dynamics: Lagrangian formulation, consistent interconnection, structure-preserving simulation and index-reduction",
+    "authors": "Latussek, Kinon, Betsch",
+    "date": "2026-03-13",
+    "publisher": "arXiv 2603.12841v1, prépublication",
+    "url": "https://arxiv.org/html/2603.12841v1",
+    "access": "Texte intégral ; hypothèses recoupées par le coordinateur.",
+    "claim": "Interconnexion énergétique avec directeurs ; bilans midpoint exacts sous restrictions quadratiques, même schéma aux interfaces.",
+    "provenance": [
+      "turn140view2",
+      "turn141view4",
+      "turn141view5"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "ecco17",
+    "title": "Energy Conservation and Power Bonds in Co-Simulations: Non-Iterative Adaptive Step Size Control and Error Estimation",
+    "authors": "Sadjina, Kyllingstad, Pedersen, Skjong",
+    "date": "2017 ; prépublication 2016",
+    "publisher": "Engineering with Computers",
+    "url": "https://arxiv.org/pdf/1602.06434",
+    "access": "Texte intégral.",
+    "claim": "Défaut d'énergie d'interface et adaptation de macro-pas sans accès interne ; pas théorème général de stabilité de cosimulation.",
+    "provenance": [
+      "research_geometry_physics:turn59view1"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "em10",
+    "title": "Variational Integrators and Energy-Momentum Schemes for Flexible Multibody Dynamics",
+    "authors": "Betsch, Hesch, Sänger, Uhlar",
+    "date": "2010",
+    "publisher": "Journal of Computational and Nonlinear Dynamics 5, 031001",
+    "url": "https://doi.org/10.1115/1.4001388",
+    "access": "Texte auteur consulté.",
+    "claim": "Comparaison variationnel/énergie-moment ; énergie seule insuffisante pour diagnostiquer convergence et stabilité.",
+    "provenance": [
+      "research_geometry_physics:turn97view0",
+      "research_geometry_physics:turn91view0"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "jfnk04",
+    "title": "Jacobian-free Newton–Krylov methods: a survey of approaches and applications",
+    "authors": "Knoll, Keyes",
+    "date": "2004-01-20",
+    "publisher": "Journal of Computational Physics",
+    "url": "https://doi.org/10.1016/j.jcp.2003.08.010",
+    "access": "Résumé éditeur.",
+    "claim": "Produits Jacobienne-vecteur sans assemblage complet ; préconditionnement déterminant.",
+    "provenance": [
+      "research_hpc_differentiation:final"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "lsmr11",
+    "title": "LSMR: An Iterative Algorithm for Sparse Least-Squares Problems",
+    "authors": "Fong, Saunders",
+    "date": "2011-10-27",
+    "publisher": "SIAM Journal on Scientific Computing",
+    "url": "https://stanford.edu/group/SOL/software/lsmr/LSMR-SISC-2011.pdf",
+    "access": "Texte intégral et documentation auteurs.",
+    "claim": "Moindres carrés par produits A et A-transposée ; rang déficient et norme minimale sous formulation appropriée.",
+    "provenance": [
+      "research_hpc_differentiation:final"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "minres11",
+    "title": "MINRES-QLP: A Krylov Subspace Method for Indefinite or Singular Symmetric Systems",
+    "authors": "Choi, Paige, Saunders",
+    "date": "2011-08-04",
+    "publisher": "SIAM Journal on Scientific Computing",
+    "url": "https://doi.org/10.1137/100787921",
+    "access": "Article et analyse du préconditionnement dans https://www.mcs.anl.gov/papers/P3027-0812.pdf.",
+    "claim": "Symétrie requise ; préconditionner peut changer la norme minimale et la norme du résidu.",
+    "provenance": [
+      "research_hpc_differentiation:final"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "prox21",
+    "title": "Proximal and Sparse Resolution of Constrained Dynamic Equations",
+    "authors": "Carpentier, Budhiraja, Mansard",
+    "date": "2021-07",
+    "publisher": "Robotics: Science and Systems",
+    "url": "https://www.roboticsproceedings.org/rss17/p017.pdf",
+    "access": "Texte intégral ; lecture coordonnateur de la formulation et de l'introduction.",
+    "claim": "Résolution proximale et factorisation exploitant le graphe cinématique ; implémentée dans Pinocchio.",
+    "provenance": [
+      "turn144view0"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "lqr24",
+    "title": "Efficient Constrained Dynamics Algorithms Based on an Equivalent LQR Formulation Using Gauss’ Principle of Least Constraint",
+    "authors": "Sathya, Bruyninckx, Decré, Pipeleers",
+    "date": "2024",
+    "publisher": "IEEE Transactions on Robotics 40",
+    "url": "https://doi.org/10.1109/TRO.2023.3335652",
+    "access": "Texte intégral institutionnel ; complexité et limites §IX.E.",
+    "claim": "Lien LQR et élimination précoce ; certaines variantes linéaires ne couvrent pas les boucles internes générales.",
+    "provenance": [
+      "research_hpc_differentiation:turn123view0"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "newton24",
+    "title": "A Globalized and Preconditioned Newton-CG Solver for Metric-Aware Curved High-Order Mesh Optimization",
+    "authors": "Aparicio-Estrems, Gargallo-Peiró, Roca",
+    "date": "2024",
+    "publisher": "Computer-Aided Design 168",
+    "url": "https://arxiv.org/html/2403.13654v1",
+    "access": "Texte intégral.",
+    "claim": "Globalisation, mémoire du pas, précision linéaire adaptative et préconditionnement ; application à l'optimisation de maillages, pas aux KKT généraux.",
+    "provenance": [
+      "research_hpc_differentiation:final"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "mixedprecision24",
+    "title": "Five-Precision GMRES-Based Iterative Refinement",
+    "authors": "Amestoy, Buttari, Higham, L’Excellent, Mary, Vieublé",
+    "date": "2024-02-08",
+    "publisher": "SIAM Journal on Matrix Analysis and Applications",
+    "url": "https://doi.org/10.1137/23M1549079",
+    "access": "Résumé publié et prépublication consultés ; hypothèses détaillées à relire avant portage.",
+    "claim": "Précisions distinctes de factorisation, résidus et Krylov ; conditions de convergence, pas garantie pour KKT singulier.",
+    "provenance": [
+      "research_hpc_differentiation:final"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "stable26",
+    "title": "Stable algorithms for general linear systems by preconditioning the normal equations",
+    "authors": "Epperly, Greenbaum, Nakatsukasa",
+    "date": "2026-05-26 ; prépublication 2025",
+    "publisher": "Numerische Mathematik, DOI 10.1007/s00211-026-01547-1",
+    "url": "https://arxiv.org/html/2502.17767v2",
+    "access": "Prépublication intégrale ; date de publication recoupée institutionnellement ; final éditeur sous abonnement.",
+    "claim": "Stabilité arrière sous rang numérique plein et préconditionnement adéquat ; aucune garantie déduite pour projection singulière.",
+    "provenance": [
+      "turn144view2",
+      "research_hpc_differentiation:turn131search1"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "random26",
+    "title": "Fast randomized least-squares solvers can be just as accurate and stable as classical direct solvers",
+    "authors": "Epperly, Meier, Nakatsukasa",
+    "date": "2026-02 ; en ligne 2025-09-30",
+    "publisher": "Communications on Pure and Applied Mathematics 79(2)",
+    "url": "https://arxiv.org/html/2406.03468v3",
+    "access": "Texte intégral.",
+    "claim": "SPIR/FOSSILS pour moindres carrés surdéterminés ; hypothèses d'arrondi et plongement ; bancs sparse excluant rang structurellement déficient.",
+    "provenance": [
+      "research_hpc_differentiation:final"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "implicit22",
+    "title": "Efficient and Modular Implicit Differentiation",
+    "authors": "Blondel et al.",
+    "date": "2022",
+    "publisher": "NeurIPS",
+    "url": "https://papers.neurips.cc/paper_files/paper/2022/file/228b9279ecf9bbafe582406850c57115-Paper-Conference.pdf",
+    "access": "Texte intégral ; équations et erreur de dérivation consultées.",
+    "claim": "Dériver les conditions du problème convergé par résolutions JVP/VJP, sous régularité/inversibilité locales.",
+    "provenance": [
+      "turn144view1"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "enzyme20",
+    "title": "Instead of Rewriting Foreign Code for Machine Learning, Automatically Synthesize Fast Gradients",
+    "authors": "Moses, Churavy",
+    "date": "2020",
+    "publisher": "NeurIPS",
+    "url": "https://papers.neurips.cc/paper_files/paper/2020/hash/9332c513ef44b682e9347822c2e457ac-Abstract.html",
+    "access": "Publication et article.",
+    "claim": "Différentiation après optimisation LLVM ; performance des bancs auteurs non extrapolable au noyau Vinkulum.",
+    "provenance": [
+      "research_hpc_differentiation:final"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "rustad",
+    "title": "Automatic differentiation: Installation",
+    "authors": "Rust Compiler Development Guide",
+    "date": "s.d. ; consulté le 7 septembre 2026",
+    "publisher": "Documentation officielle Rust",
+    "url": "https://rustc-dev-guide.rust-lang.org/autodiff/installation.html",
+    "access": "Page officielle consultée et recoupée par le coordinateur.",
+    "claim": "Composant enzyme sur certaines plateformes nightly ; technologie expérimentale, pas dépendance stable imposée.",
+    "provenance": [
+      "turn144view3"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "learned25",
+    "title": "DeepONet Based Preconditioning Strategies for Solving Parametric Linear Systems of Equations",
+    "authors": "Kopaničáková, Karniadakis",
+    "date": "2025-02-20",
+    "publisher": "SIAM Journal on Scientific Computing",
+    "url": "https://arxiv.org/html/2401.02016v2",
+    "access": "Texte intégral ; §4 et conclusion.",
+    "claim": "Apprentissage d'un inverse ou d'un espace grossier ; propriétés conservées seulement sous les hypothèses adaptées.",
+    "provenance": [
+      "research_hpc_differentiation:final"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "pinn21",
+    "title": "Characterizing possible failure modes in physics-informed neural networks",
+    "authors": "Krishnapriyan, Gholami, Zhe, Kirby, Mahoney",
+    "date": "2021",
+    "publisher": "NeurIPS",
+    "url": "https://www.stat.berkeley.edu/~mmahoney/pubs/failure-modes-neurips21.pdf",
+    "access": "Texte intégral.",
+    "claim": "Échecs d'optimisation sur PDE simples malgré expressivité ; pénaliser la physique n'en garantit pas le respect.",
+    "provenance": [
+      "research_hpc_differentiation:final"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "anitescu06",
+    "title": "Optimization-based simulation of nonsmooth rigid multibody dynamics",
+    "authors": "Anitescu",
+    "date": "2006 ; en ligne 2005",
+    "publisher": "Mathematical Programming",
+    "url": "https://doi.org/10.1007/s10107-005-0590-7",
+    "access": "Texte intégral ; théorème 3 et hypothèses A1–A5.",
+    "claim": "QP convexe relaxé et convergence conditionnelle vers inclusion à mesures ; pas Coulomb exact à pas fini.",
+    "provenance": [
+      "research_contact_constraints:turn121view0"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "acary11",
+    "title": "A formulation of the linear discrete Coulomb friction problem via convex optimization",
+    "authors": "Acary, Cadoux, Lemaréchal, Malick",
+    "date": "2011 ; en ligne 2010",
+    "publisher": "ZAMM",
+    "url": "https://doi.org/10.1002/zamm.201000073",
+    "access": "Texte intégral §§3–5.",
+    "claim": "Sous-QP conique couplé à un point fixe ; existence conditionnelle et convergence extérieure non générale.",
+    "provenance": [
+      "research_contact_constraints:turn121view1"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "contact24",
+    "title": "Contact Models in Robotics: a Comparative Analysis",
+    "authors": "Le Lidec, Jallet, Montaut, Laptev, Schmid, Carpentier",
+    "date": "2024",
+    "publisher": "IEEE Transactions on Robotics",
+    "url": "https://simple-robotics.github.io/publications/contact-models/static/paper/lelidec2024contacts.pdf",
+    "access": "Texte intégral.",
+    "claim": "Dissociation des lois et de leurs relaxations ; sélection des réactions hyperstatiques pas automatiquement garantie par proximal.",
+    "provenance": [
+      "research_contact_constraints:turn54view4"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "ncp24",
+    "title": "From Compliant to Rigid Contact Simulation: a Unified and Efficient Approach",
+    "authors": "Carpentier, Le Lidec, Montaut",
+    "date": "2024-07",
+    "publisher": "Robotics: Science and Systems",
+    "url": "https://www.roboticsproceedings.org/rss20/p108.pdf",
+    "access": "Texte intégral ; §VI.",
+    "claim": "ADMM proximal et correction De Saxcé ; garanties convexes retrouvées sans correction, pas théorème général du NCP exact.",
+    "provenance": [
+      "research_contact_constraints:turn52view2"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "scd23",
+    "title": "On the SCD semismooth* Newton method for generalized equations with application to a class of static contact problems with Coulomb friction",
+    "authors": "Gfrerer, Mandlmayr, Outrata, Valdman",
+    "date": "2023 ; en ligne 2022-11-07",
+    "publisher": "Computational Optimization and Applications",
+    "url": "https://link.springer.com/article/10.1007/s10589-022-00429-0",
+    "access": "Texte intégral éditeur.",
+    "claim": "Convergence locale superlinéaire sous régularité SCD ; globalisation heuristique et exemples statiques élastiques.",
+    "provenance": [
+      "research_contact_constraints:turn86view3"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "icf25",
+    "title": "Irrotational Contact Fields",
+    "authors": "Castro, Han, Masterjohn",
+    "date": "2025-07-15 (v3) ; prépublication initiale 2023",
+    "publisher": "arXiv 2312.03908v3",
+    "url": "https://arxiv.org/html/2312.03908v3",
+    "access": "Texte intégral ; tableau I recoupé par le coordinateur.",
+    "claim": "Lagged évite le décollement artificiel de certaines approximations convexes mais reste régularisé et découplé ; déjà dans Drake.",
+    "provenance": [
+      "turn140view3",
+      "turn141view6"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "coulomb26",
+    "title": "A Splitting Architecture for Exact Reduced Coulomb Friction",
+    "authors": "Song, Fan, Ascher, Pai",
+    "date": "2026-07-21",
+    "publisher": "arXiv 2607.19599v1, prépublication",
+    "url": "https://arxiv.org/html/2607.19599v1",
+    "access": "Texte intégral ; non-monotonie et tableaux de convergence vérifiés par le coordinateur.",
+    "claim": "Sous-QP fortement convexe et correction extérieure non monotone ; seulement 47% des sous-pas de l'arche sous 1e-6 dans un essai, contradiction texte/tableau en annexe.",
+    "provenance": [
+      "turn140view1",
+      "turn141view2",
+      "turn141view3",
+      "turn142view2"
+    ],
+    "confidence": "élevée sur la décomposition ; robustesse générale non consolidée",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "painleve17",
+    "title": "On the regularization of impact without collision: the Painlevé paradox and compliance",
+    "authors": "Hogan, Uldall Kristiansen",
+    "date": "2017",
+    "publisher": "Proceedings of the Royal Society A",
+    "url": "https://arxiv.org/pdf/1610.00143",
+    "access": "Texte intégral.",
+    "claim": "Existence et unicité peuvent échouer à cause de l'idéalisation rigide ; comportement de régularisations physiques spécifiques.",
+    "provenance": [
+      "research_contact_constraints:turn120view3"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "ccd21",
+    "title": "A Large Scale Benchmark and an Inclusion-Based Algorithm for Continuous Collision Detection",
+    "authors": "Wang, Ferguson, Schneider, Jiang, Attene, Panozzo",
+    "date": "2021-10",
+    "publisher": "ACM Transactions on Graphics, DOI 10.1145/3460775",
+    "url": "https://continuous-collision-detection.github.io/tight_inclusion/CCD-benchmark-paper-350ppi.pdf",
+    "access": "Texte intégral.",
+    "claim": "CCD par inclusion et contrôle des faux négatifs/faux positifs ; garantie bornée aux primitives et trajectoires étudiées.",
+    "provenance": [
+      "research_contact_constraints:turn120view2"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "rigidipc21",
+    "title": "Intersection-free Rigid Body Dynamics",
+    "authors": "Ferguson et al.",
+    "date": "2021-08",
+    "publisher": "ACM Transactions on Graphics, DOI 10.1145/3450626.3459802",
+    "url": "https://ipc-sim.github.io/rigid-ipc/assets/rigid_ipc_paper_350ppi.pdf",
+    "access": "Texte intégral ; §4.3 et limites §7.",
+    "claim": "Borne trajectoire courbe–corde pour CCD rigide ; capsules pas garanties par cette seule preuve.",
+    "provenance": [
+      "research_contact_constraints:turn110view0"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "ipc23",
+    "title": "Convergent Incremental Potential Contact",
+    "authors": "Li, Ferguson, Schneider, Langlois, Zorin, Panozzo, Jiang, Kaufman",
+    "date": "2023-07-29",
+    "publisher": "arXiv 2307.15908v1",
+    "url": "https://arxiv.org/html/2307.15908v1",
+    "access": "Texte intégral.",
+    "claim": "Formulation continue et raffinement conjoint surface/barrière/temps ; contraintes de convergence de la force de contact.",
+    "provenance": [
+      "research_contact_constraints:turn92view5"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "slide23",
+    "title": "No Free Slide: Spurious Contact Forces in Incremental Potential Contact",
+    "authors": "Du, Li, Coros, Thomaszewski",
+    "date": "2023-08",
+    "publisher": "arXiv 2308.01696",
+    "url": "https://arxiv.org/pdf/2308.01696",
+    "access": "Texte intégral ; contre-exemple §6.",
+    "claim": "Des forces tangentielles parasites peuvent apparaître sans friction ; absence d'intersection n'est pas exactitude mécanique.",
+    "provenance": [
+      "research_contact_constraints:turn93view5"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "saltation24",
+    "title": "Saltation Matrices: The Essential Tool for Linearizing Hybrid Dynamical Systems",
+    "authors": "Kong, Payne, Zhu, Johnson",
+    "date": "2024",
+    "publisher": "Proceedings of the IEEE, DOI 10.1109/JPROC.2024.3440211",
+    "url": "https://arxiv.org/html/2306.06862v3",
+    "access": "Texte intégral ; hypothèses et §III.",
+    "claim": "Dérivée du temps d'événement ; traversée transverse et séquence locale fixe, rasance/simultanéité hors garantie classique.",
+    "provenance": [
+      "research_contact_constraints:turn93view3"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "gark20",
+    "title": "Goal-oriented a posteriori estimation of numerical errors in the solution of multiphysics systems",
+    "authors": "Narayanamurthi, Römer, Sandu",
+    "date": "2020-01-23",
+    "publisher": "arXiv 2001.08824v1",
+    "url": "https://arxiv.org/html/2001.08824v1",
+    "access": "Texte intégral : cadre, adjoints et description des expériences.",
+    "claim": "Décomposition de l'erreur temporelle et spatiale par adjoints GARK ; transfert aux DAE non lisses non démontré.",
+    "provenance": [
+      "turn122view0",
+      "turn132view0"
+    ],
+    "confidence": "élevée sur le résultat cité ; transfert Vinkulum non mesuré",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "mfmc16",
+    "title": "Optimal model management for multifidelity Monte Carlo estimation",
+    "authors": "Peherstorfer, Willcox, Gunzburger",
+    "date": "2016",
+    "publisher": "SIAM Journal on Scientific Computing 38(5), A3163–A3194",
+    "url": "https://cims.nyu.edu/~pehersto/",
+    "access": "Résumé et bibliographie auteur ; PDF MIT et DOI inaccessibles pendant cette recherche.",
+    "claim": "Répartir appels haute/basse fidélité selon coûts et statistiques ; estimateur non biaisé de la sortie haute fidélité, pas du monde physique.",
+    "provenance": [
+      "turn143search1",
+      "turn113search12"
+    ],
+    "confidence": "élevée sur le résumé ; hypothèses détaillées à relire",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "mbdyn",
+    "title": "MBDyn — Introduction and capabilities",
+    "authors": "Équipe MBDyn, Politecnico di Milano",
+    "date": "s.d. ; consulté le 7 septembre 2026",
+    "publisher": "Documentation officielle",
+    "url": "https://www.mbdyn.org/",
+    "access": "Page officielle.",
+    "claim": "Multicorps rigides/flexibles, poutres et coques, CMS, aéro, hydraulique, électrique et cosimulation.",
+    "provenance": [
+      "turn75view0"
+    ],
+    "confidence": "élevée sur capacités déclarées ; pas benchmark",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "simpack",
+    "title": "Simpack Base Modules and Wizard",
+    "authors": "Dassault Systèmes",
+    "date": "s.d. ; consulté le 7 septembre 2026",
+    "publisher": "Documentation produit officielle",
+    "url": "https://www.3ds.com/products/simulia/simpack/core",
+    "access": "Page officielle.",
+    "claim": "Analyses temporelles/fréquentielles et temps réel annoncées ; ni coût ni domination universelle déduits.",
+    "provenance": [
+      "turn46search4"
+    ],
+    "confidence": "capacités déclarées",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "simpackflex",
+    "title": "Simpack Flexible Body Modules",
+    "authors": "Dassault Systèmes",
+    "date": "s.d. ; consulté le 7 septembre 2026",
+    "publisher": "Documentation produit officielle",
+    "url": "https://www.3ds.com/products/simulia/simpack/flexible-body",
+    "access": "Page officielle.",
+    "claim": "SIMBEAM non linéaire, réduction modale/non linéaire, FlexContact et liaison Abaqus annoncés.",
+    "provenance": [
+      "turn75view3",
+      "turn122view3"
+    ],
+    "confidence": "capacités déclarées",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "adams",
+    "title": "Adams — Products and 2025.1 update",
+    "authors": "Hexagon",
+    "date": "2025.1 ; page consultée le 7 septembre 2026",
+    "publisher": "Documentation produit officielle",
+    "url": "https://nexus.hexagon.com/home/product/adams/",
+    "access": "Page officielle.",
+    "claim": "Dynamique industrielle, temps réel et cas métiers ; pas classement indépendant.",
+    "provenance": [
+      "turn46search1"
+    ],
+    "confidence": "capacités déclarées",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "recurdyn",
+    "title": "RecurDyn — All Product Components",
+    "authors": "FunctionBay",
+    "date": "s.d. ; consulté le 7 septembre 2026",
+    "publisher": "Documentation produit officielle",
+    "url": "https://support.functionbay.com/en/page/single/232/recurdyn-all-products",
+    "access": "Page officielle.",
+    "claim": "MFBD, grandes déformations, contact, contrôle, MPS/DEM annoncés.",
+    "provenance": [
+      "turn57search2"
+    ],
+    "confidence": "capacités déclarées",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "siemens",
+    "title": "Motion simulation",
+    "authors": "Siemens",
+    "date": "s.d. ; consulté le 7 septembre 2026",
+    "publisher": "Documentation produit officielle",
+    "url": "https://www.siemens.com/en-us/products/simcenter/simulation-test/motion-simulation/",
+    "access": "Page officielle.",
+    "claim": "Simulation rigide/flexible dans chaîne CAO/CAE.",
+    "provenance": [
+      "turn143search4"
+    ],
+    "confidence": "capacités déclarées",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "chrono",
+    "title": "Chrono 10.0.0 released",
+    "authors": "Project Chrono",
+    "date": "2026-03-27",
+    "publisher": "Actualités officielles",
+    "url": "https://projectchrono.org/news/",
+    "access": "Annonce et documentation des modules consultées.",
+    "claim": "Multiphysique, FSI, peridynamique et stratégies de mise à jour des Jacobiennes ; pas preuve de domination.",
+    "provenance": [
+      "turn57search9",
+      "turn57search11"
+    ],
+    "confidence": "capacités déclarées",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "exudyn",
+    "title": "Exudyn — flexible multibody dynamics with Python and C++",
+    "authors": "Gerstmayr et équipe Exudyn",
+    "date": "publication 2024 ; documentation consultée le 7 septembre 2026",
+    "publisher": "Multibody System Dynamics et documentation officielle",
+    "url": "https://exudyn.readthedocs.io/en/latest/docs/RST/Exudyn.html",
+    "access": "Documentation officielle ; versions de documentation et d'essais à figer séparément.",
+    "claim": "Moteur flexible Python/C++ ; base de comparaison proche de Vinkulum.",
+    "provenance": [
+      "turn57search3"
+    ],
+    "confidence": "capacités documentées",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "drake",
+    "title": "Hydroelastic Contact User Guide",
+    "authors": "Équipe Drake",
+    "date": "s.d. ; consulté le 7 septembre 2026",
+    "publisher": "Documentation officielle",
+    "url": "https://drake.mit.edu/doxygen_cxx/group__hydroelastic__user__guide.html",
+    "access": "Guide officiel.",
+    "claim": "Contact compliant réparti sur surface ; pas d'état de vraie déformation ni d'ondes rapides ; lois dissipatives dépendantes du mode.",
+    "provenance": [
+      "turn143search0"
+    ],
+    "confidence": "élevée sur limites déclarées",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "mjwarp",
+    "title": "MuJoCo Warp — When To Use MJWarp?",
+    "authors": "Équipes MuJoCo, Google DeepMind et NVIDIA",
+    "date": "s.d. ; consulté le 7 septembre 2026",
+    "publisher": "Documentation officielle",
+    "url": "https://mujoco.readthedocs.io/en/latest/mjwarp/",
+    "access": "Sections débit/latence/mécanismes/différentiabilité relues par le coordinateur.",
+    "claim": "Débit distinct de latence ; grands mécanismes connectés encore priorité d'optimisation ; différentiabilité pas actuellement celle de MJX/JAX.",
+    "provenance": [
+      "turn132view2",
+      "turn142view0"
+    ],
+    "confidence": "élevée sur limites déclarées ; page évolutive",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "mjx",
+    "title": "MuJoCo XLA — Implementations and Feature Parity",
+    "authors": "Équipe MuJoCo",
+    "date": "s.d. ; consulté le 7 septembre 2026",
+    "publisher": "Documentation officielle",
+    "url": "https://mujoco.readthedocs.io/en/stable/mjx.html",
+    "access": "Tableau des fonctionnalités consulté.",
+    "claim": "MJX/JAX et MJX/Warp diffèrent en fonctionnalités, jacobiennes et différentiabilité.",
+    "provenance": [
+      "turn75view1"
+    ],
+    "confidence": "capacités documentées",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "newton",
+    "title": "Newton Physics — Solvers",
+    "authors": "Newton Developers",
+    "date": "2026 ; consulté le 7 septembre 2026",
+    "publisher": "Documentation officielle",
+    "url": "https://newton-physics.github.io/newton/stable/solvers/index.html",
+    "access": "Guide et tableau des fonctionnalités consultés.",
+    "claim": "Plusieurs backends ; Kamino expérimental et prise en charge différentiable propre à chaque backend.",
+    "provenance": [
+      "turn122view2"
+    ],
+    "confidence": "capacités documentées",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "vbench",
+    "title": "Vinkulum 0.7.2 face à MBDyn — confrontation exécutée",
+    "authors": "Projet Vinkulum",
+    "date": "2026-09-07",
+    "publisher": "Dépôt Vinkulum, mesures locales archivées",
+    "url": "https://github.com/Brietat71/vinkulum/blob/723112bd51fc71b81d2757bdadc854529b055831/docs/CONFRONTATION_MBDYN_0.7.2.md",
+    "access": "Sources locales et archives vérifiées ; commit poussé.",
+    "claim": "326 calculs ; écarts à précision commune ; timings de protocoles avec sorties différentes, aucun essai Simpack.",
+    "provenance": [
+      "local:docs/CONFRONTATION_MBDYN_0.7.2.md"
+    ],
+    "confidence": "mesure locale, domaine limité",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "vbeam",
+    "title": "Poutre mixte : transfert d'une formulation de 2026",
+    "authors": "Projet Vinkulum",
+    "date": "2026-09-07",
+    "publisher": "Prototype autonome, commit 723112b",
+    "url": "https://github.com/Brietat71/vinkulum/blob/723112bd51fc71b81d2757bdadc854529b055831/docs/POUTRE_MIXTE_PROTOTYPE.md",
+    "access": "Prototype exécuté, 36 runs Princeton, 28 sondages et 8 tests ; archive vérifiée.",
+    "claim": "Gain spatial mais surcoût et raideur négative artificielle au ratio 1e16 ; aucune nouvelle API livrée.",
+    "provenance": [
+      "local:docs/bancs/poutre-mixte-2026.json"
+    ],
+    "confidence": "mesure locale, domaine limité",
+    "consulted": "2026-09-07"
+  },
+  {
+    "id": "vlimits",
+    "title": "Vinkulum — état et limites du noyau",
+    "authors": "Projet Vinkulum",
+    "date": "2026-09-07",
+    "publisher": "README et sources au commit 723112b",
+    "url": "https://github.com/Brietat71/vinkulum/blob/723112bd51fc71b81d2757bdadc854529b055831/README.md",
+    "access": "Lecture README et points d'entrée du code propre ; aucun code concurrent.",
+    "claim": "AD et adjoints présents ; couplages et projections denses, contact/CCD et flexibilité encore limités.",
+    "provenance": [
+      "local:README.md",
+      "local:src/lib.rs"
+    ],
+    "confidence": "constats locaux",
+    "consulted": "2026-09-07"
+  }
+]

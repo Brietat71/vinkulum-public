@@ -1,0 +1,18 @@
+{
+  "code": 1,
+  "commande": [
+    "/tmp/vinkulum-livraison-0.12.0-v2/venv/bin/python",
+    "/tmp/vinkulum-energie-native-travail/ci/controle_livraison_contrainte.py",
+    "worker",
+    "--mode",
+    "assemblage",
+    "--n",
+    "32",
+    "--entrees",
+    "/tmp/vinkulum-references-assemblage-complements-v1",
+    "--sortie",
+    "/tmp/vinkulum-qualification-0.12.0-v2/assemblage-n32",
+    "--bibliotheque",
+    "/tmp/vinkulum-qualification-0.12.0-v2/juge-build/comparaison_masse.so"
+  ]
+}

@@ -1,0 +1,7 @@
+Using Python 3.14.7 environment at: vinkulum-livraison-0.12.0-v1/venv
+error: Request failed after 3 retries in 8.0s
+  Caused by: Failed to fetch: `https://pypi.org/simple/scipy/`
+  Caused by: error sending request for url (https://pypi.org/simple/scipy/)
+  Caused by: client error (Connect)
+  Caused by: dns error
+  Caused by: failed to lookup address information: Temporary failure in name resolution

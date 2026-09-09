@@ -1,0 +1,365 @@
+{
+  "format": 1,
+  "date_archivage_utc": "2026-09-08T12:53:11.429734+00:00",
+  "fichiers": {
+    "README.md": {
+      "sha256": "27db9c1d93a113dce67ab0658116487a9cd7be9140a2b7efd722d8346788a0aa",
+      "octets": 4215,
+      "nature": "documentation_archive",
+      "compression": "aucune"
+    },
+    "captures_cache/pilote-controle-v1/sources/condensation_energie.cpython-314.pyc.gz": {
+      "sha256": "9cb93a4bd01dfe179df580d7a5a95bf3e0afb4aa61d733b794cf03889c6f0195",
+      "octets": 340,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/__pycache__/condensation_energie.cpython-314.pyc",
+      "source_sha256": "67c75d5914fc4f8ecc7431a6144c31d057038e15e0e570312b83c8734e958f9e",
+      "source_octets": 429,
+      "compression": "gzip",
+      "chemin_archive_initial": "pilote-controle-v1/sources/__pycache__/condensation_energie.cpython-314.pyc.gz"
+    },
+    "captures_cache/pilote-controle-v1/sources/confronte_ports_exudyn.cpython-314.pyc.gz": {
+      "sha256": "7a53a142aabdcb90a35d3f1b653c86a73e0079a18b662936a20bcd673b1e7f8e",
+      "octets": 27370,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/__pycache__/confronte_ports_exudyn.cpython-314.pyc",
+      "source_sha256": "840652edac4f76590de3f74fc608a45a8b5f658bfc4cec2a02218b524dc5613c",
+      "source_octets": 56340,
+      "compression": "gzip",
+      "chemin_archive_initial": "pilote-controle-v1/sources/__pycache__/confronte_ports_exudyn.cpython-314.pyc.gz"
+    },
+    "captures_cache/pilote-controle-v1/sources/controle_complement.cpython-314.pyc.gz": {
+      "sha256": "c2707e792f6df540a8b9c5ff44b5300f3f1b43edada6b337a1ae5c9fe13717ce",
+      "octets": 9212,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/__pycache__/controle_complement.cpython-314.pyc",
+      "source_sha256": "7eb7d3148259ed82ab40b2c176d7bfb9526575742e1d3fded4ea025643660029",
+      "source_octets": 20211,
+      "compression": "gzip",
+      "chemin_archive_initial": "pilote-controle-v1/sources/__pycache__/controle_complement.cpython-314.pyc.gz"
+    },
+    "captures_cache/pilote-controle-v1/sources/inertie_complement_dirigee.cpython-314.pyc.gz": {
+      "sha256": "7cc294dd909c9a5051f5bd9da86dc0a37df27adcb71ba7328b9488664ffbe982",
+      "octets": 11503,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/__pycache__/inertie_complement_dirigee.cpython-314.pyc",
+      "source_sha256": "88fa7b178c87667864a087e1f612c96eb2dd71ef6b2e9f8e705c8a03c3602961",
+      "source_octets": 25007,
+      "compression": "gzip",
+      "chemin_archive_initial": "pilote-controle-v1/sources/__pycache__/inertie_complement_dirigee.cpython-314.pyc.gz"
+    },
+    "captures_cache/pilote-controle-v1/sources/inverse_contrainte_energie.cpython-314.pyc.gz": {
+      "sha256": "6201951e229856ce7ff31e81234d45490efa93ca6cbd0cc55aa7535a6d2b9f5c",
+      "octets": 7074,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/__pycache__/inverse_contrainte_energie.cpython-314.pyc",
+      "source_sha256": "a97b9d09b319a3fe87462f4306bdfe4ee45794544697a8b7e146a95bb535a12d",
+      "source_octets": 15568,
+      "compression": "gzip",
+      "chemin_archive_initial": "pilote-controle-v1/sources/__pycache__/inverse_contrainte_energie.cpython-314.pyc.gz"
+    },
+    "captures_cache/pilote-controle-v1/sources/krylov_contraint.cpython-314.pyc.gz": {
+      "sha256": "7e25ace6a24f130f210e8c7012fad8299b2b653b224f352543e5de7b73b032e3",
+      "octets": 8606,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/__pycache__/krylov_contraint.cpython-314.pyc",
+      "source_sha256": "4fc29a2203040030a4f25c170130c46bd268d353ad0a0ef00042b32cd490b4b6",
+      "source_octets": 19809,
+      "compression": "gzip",
+      "chemin_archive_initial": "pilote-controle-v1/sources/__pycache__/krylov_contraint.cpython-314.pyc.gz"
+    },
+    "captures_cache/pilote-controle-v1/sources/racine_masse_blocs.cpython-314.pyc.gz": {
+      "sha256": "3852a97cefd14485fd37fa81241c509ad02c3ef2314611fd4ce385a5b00a2092",
+      "octets": 6096,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/__pycache__/racine_masse_blocs.cpython-314.pyc",
+      "source_sha256": "1810cc7b86bd126511f28601aa0ef01d388b251adde757e473aa221fc3b5fbaa",
+      "source_octets": 12647,
+      "compression": "gzip",
+      "chemin_archive_initial": "pilote-controle-v1/sources/__pycache__/racine_masse_blocs.cpython-314.pyc.gz"
+    },
+    "captures_cache/sondes-double/sonde_inertie.cpython-314.pyc.gz": {
+      "sha256": "81c762e48ed1d68d030213e9ddbe0f06d951c0355ee924493e71519cfcbd7737",
+      "octets": 11595,
+      "source_originale": "/tmp/vinkulum-sonde-inertie-2026/__pycache__/sonde_inertie.cpython-314.pyc",
+      "source_sha256": "5e5542c5d1d2ff75c5434ecb4be8842fa55fc078b994336f086d20fa33de2975",
+      "source_octets": 23752,
+      "compression": "gzip",
+      "chemin_archive_initial": "sondes-double/__pycache__/sonde_inertie.cpython-314.pyc.gz"
+    },
+    "pilote-controle-v1/execution.log": {
+      "sha256": "5c0eb84f8ac9ee056145ee9f2c0888fc485303bd45e61010fce247f539aad57d",
+      "octets": 1576,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1.log",
+      "source_sha256": "5c0eb84f8ac9ee056145ee9f2c0888fc485303bd45e61010fce247f539aad57d",
+      "source_octets": 1576,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/manifest.json.gz": {
+      "sha256": "ac7e3437f7dbe44c48656a83f23adb769d5709cf0991a4992c22879e2a4702bb",
+      "octets": 1150,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/manifest.json",
+      "source_sha256": "0d7ed290069438ee33bc320ddad7c822c3ef97114f96443a5f10157866c80ec8",
+      "source_octets": 2391,
+      "compression": "gzip"
+    },
+    "pilote-controle-v1/n128-certificat.json.gz": {
+      "sha256": "6a934782f4c55877403f4547c160d70c11bf3d31c286e118d3fc53b881c63ea9",
+      "octets": 26888,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/n128-certificat.json",
+      "source_sha256": "29cbf1ac5120af2c4a0f7eeeaa4c8d793fdd5e2c2eb43c40b09e6c6b21493a85",
+      "source_octets": 196283,
+      "compression": "gzip"
+    },
+    "pilote-controle-v1/n128-directions.npz": {
+      "sha256": "dee53c0a8837c80a9e5a557def1404bd522a46e3906bc3b0bbb7e6bf5e5f90d4",
+      "octets": 11346,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/n128-directions.npz",
+      "source_sha256": "dee53c0a8837c80a9e5a557def1404bd522a46e3906bc3b0bbb7e6bf5e5f90d4",
+      "source_octets": 11346,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/n32-certificat.json.gz": {
+      "sha256": "614e9da402d9d57d2bfe252cf688437ac31b3558a50abae597828750bbebc123",
+      "octets": 7200,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/n32-certificat.json",
+      "source_sha256": "0486835ab0b6173118dc6253f9e121a17f4efe5e60dcac3b9e47484c1c9697f0",
+      "source_octets": 48818,
+      "compression": "gzip"
+    },
+    "pilote-controle-v1/n32-directions.npz": {
+      "sha256": "bb0bf1b08d86368f26f0997f3e29e913d22b5624715191815129538aa460120f",
+      "octets": 3162,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/n32-directions.npz",
+      "source_sha256": "bb0bf1b08d86368f26f0997f3e29e913d22b5624715191815129538aa460120f",
+      "source_octets": 3162,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/n512-certificat.json.gz": {
+      "sha256": "23c8f8e992dff28adec81410f391de483254500bc115bc73cc55771416e5e6cd",
+      "octets": 103073,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/n512-certificat.json",
+      "source_sha256": "84f9eaefb6e197929c8b4d61fd5871048616a05f7bcb7d532a5bf7bd56556330",
+      "source_octets": 790245,
+      "compression": "gzip"
+    },
+    "pilote-controle-v1/n512-directions.npz": {
+      "sha256": "4dcc585352208f01b45bdfa3f40ff512d89e23d18a2db7a33a4d70eec5e045b3",
+      "octets": 44740,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/n512-directions.npz",
+      "source_sha256": "4dcc585352208f01b45bdfa3f40ff512d89e23d18a2db7a33a4d70eec5e045b3",
+      "source_octets": 44740,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/pilote.py": {
+      "sha256": "cf6f5abd0dd2a2fd32d393f5f661fafe2d323e68b8b363360e2cd57cbff4a7b0",
+      "octets": 3359,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/pilote.py",
+      "source_sha256": "cf6f5abd0dd2a2fd32d393f5f661fafe2d323e68b8b363360e2cd57cbff4a7b0",
+      "source_octets": 3359,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/resultats.json.gz": {
+      "sha256": "9d92bae53fc53a5669eb8293c1f3e82c051ce5bd58f990e8ba9534c19516857f",
+      "octets": 1121036,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/resultats.json",
+      "source_sha256": "5940d78469e85cd0f46fd8d5967f2dcc0157260d90089694d34bded94e8d6f1f",
+      "source_octets": 4793998,
+      "compression": "gzip"
+    },
+    "pilote-controle-v1/script-parent.py": {
+      "sha256": "cf6f5abd0dd2a2fd32d393f5f661fafe2d323e68b8b363360e2cd57cbff4a7b0",
+      "octets": 3359,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote.py",
+      "source_sha256": "cf6f5abd0dd2a2fd32d393f5f661fafe2d323e68b8b363360e2cd57cbff4a7b0",
+      "source_octets": 3359,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/sources/condensation_energie.py": {
+      "sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "octets": 209,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/condensation_energie.py",
+      "source_sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "source_octets": 209,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/sources/confronte_ports_exudyn.py": {
+      "sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "octets": 34295,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/confronte_ports_exudyn.py",
+      "source_sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "source_octets": 34295,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/sources/controle_complement.py": {
+      "sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "octets": 10091,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/controle_complement.py",
+      "source_sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "source_octets": 10091,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/sources/inertie_complement_dirigee.py": {
+      "sha256": "85bc871af96d7ab8fc33c479a83c944dd8e2ad3c55fd1f8152e05bc7c3a7740b",
+      "octets": 12898,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/inertie_complement_dirigee.py",
+      "source_sha256": "85bc871af96d7ab8fc33c479a83c944dd8e2ad3c55fd1f8152e05bc7c3a7740b",
+      "source_octets": 12898,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/sources/inverse_contrainte_energie.py": {
+      "sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "octets": 8959,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/inverse_contrainte_energie.py",
+      "source_sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "source_octets": 8959,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/sources/krylov_contraint.py": {
+      "sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "octets": 9990,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/krylov_contraint.py",
+      "source_sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "source_octets": 9990,
+      "compression": "aucune"
+    },
+    "pilote-controle-v1/sources/racine_masse_blocs.py": {
+      "sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "octets": 7424,
+      "source_originale": "/tmp/vinkulum-inertie-controle-pilote-v1/sources/racine_masse_blocs.py",
+      "source_sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "source_octets": 7424,
+      "compression": "aucune"
+    },
+    "pilote-initial/resultats.json.gz": {
+      "sha256": "690722f2eca17382a5d3682dbe00001b6454be444fdb4a78eae7ced431398bd4",
+      "octets": 195471,
+      "source_originale": "/tmp/vinkulum-inertie-pilot-initial.json",
+      "source_sha256": "7c8be1aacca56fa0a2076ee7810a5d5d169a24cec446145d4c575d0be978549a",
+      "source_octets": 3363031,
+      "compression": "gzip"
+    },
+    "sondes-double/README.md": {
+      "sha256": "d2fef404ee5570b75399704aa96fc81eeca3e0ac05720189f5a96562b0575efd",
+      "octets": 9419,
+      "source_originale": "/tmp/vinkulum-sonde-inertie-2026/README.md",
+      "source_sha256": "d2fef404ee5570b75399704aa96fc81eeca3e0ac05720189f5a96562b0575efd",
+      "source_octets": 9419,
+      "compression": "aucune"
+    },
+    "sondes-double/echelles.json.gz": {
+      "sha256": "983cb3b85e233b3c1451e9cd696e4e78936ffd654a2d7c4a39f9db18f9d81d3c",
+      "octets": 2703,
+      "source_originale": "/tmp/vinkulum-sonde-inertie-2026/echelles.json",
+      "source_sha256": "8d73aa8f59e49f7cb8a53b31f25d2f085bd6c44d633ab6c497385c34af31e46b",
+      "source_octets": 16059,
+      "compression": "gzip"
+    },
+    "sondes-double/execution.log": {
+      "sha256": "a2fec183d4b79130337816ef586d3c9cf60e833a00242ce534103ea0d47549b4",
+      "octets": 20917,
+      "source_originale": "/tmp/vinkulum-sonde-inertie-2026/execution.log",
+      "source_sha256": "a2fec183d4b79130337816ef586d3c9cf60e833a00242ce534103ea0d47549b4",
+      "source_octets": 20917,
+      "compression": "aucune"
+    },
+    "sondes-double/rapport.json.gz": {
+      "sha256": "27fa93c53b058204e9463deff7daafca725da23b33fb11931186f88e3910e50a",
+      "octets": 10785,
+      "source_originale": "/tmp/vinkulum-sonde-inertie-2026/rapport.json",
+      "source_sha256": "1fec17aaa05ea745bd4d076ba4f274edc45ac88766892a5f3b30c4ee97a2a646",
+      "source_octets": 82936,
+      "compression": "gzip"
+    },
+    "sondes-double/sonde_inertie.py": {
+      "sha256": "655f6d9761ffc35a78a1f2cc7f9e8ae5ae2ad558dcba0786d9ff13c212d25ea6",
+      "octets": 11472,
+      "source_originale": "/tmp/vinkulum-sonde-inertie-2026/sonde_inertie.py",
+      "source_sha256": "655f6d9761ffc35a78a1f2cc7f9e8ae5ae2ad558dcba0786d9ff13c212d25ea6",
+      "source_octets": 11472,
+      "compression": "aucune"
+    }
+  },
+  "sources_originales": [
+    "/tmp/vinkulum-sonde-inertie-2026",
+    "/tmp/vinkulum-inertie-pilot-initial.json",
+    "/tmp/vinkulum-inertie-controle-pilote-v1",
+    "/tmp/vinkulum-inertie-controle-pilote-v1.log",
+    "/tmp/vinkulum-inertie-controle-pilote.py"
+  ],
+  "portee": {
+    "sondes_double": "non certifiées ; directions préexistantes offertes",
+    "pilote_initial": "certificats dirigés 32/16 chiffres, refus 512 à16 ; source initiale non figée",
+    "pilote_controle_v1": "code figé, un passage, phases QR/sélection/certificat réutilisées entre3/4 blocs ; refus majorants32/512 à3blocs",
+    "performances": "aucun classement formel"
+  },
+  "conservation": {
+    "json": "octets originaux complets sous gzip, mtime0",
+    "caches": "huit captures pyc originales complètes sous gzip dans captures_cache ; chemins originaux conservés en provenance",
+    "original_v1": "pilote-controle-v1/manifest.json.gz"
+  },
+  "fichiers_sha256": {
+    "README.md": "27db9c1d93a113dce67ab0658116487a9cd7be9140a2b7efd722d8346788a0aa",
+    "captures_cache/pilote-controle-v1/sources/condensation_energie.cpython-314.pyc.gz": "9cb93a4bd01dfe179df580d7a5a95bf3e0afb4aa61d733b794cf03889c6f0195",
+    "captures_cache/pilote-controle-v1/sources/confronte_ports_exudyn.cpython-314.pyc.gz": "7a53a142aabdcb90a35d3f1b653c86a73e0079a18b662936a20bcd673b1e7f8e",
+    "captures_cache/pilote-controle-v1/sources/controle_complement.cpython-314.pyc.gz": "c2707e792f6df540a8b9c5ff44b5300f3f1b43edada6b337a1ae5c9fe13717ce",
+    "captures_cache/pilote-controle-v1/sources/inertie_complement_dirigee.cpython-314.pyc.gz": "7cc294dd909c9a5051f5bd9da86dc0a37df27adcb71ba7328b9488664ffbe982",
+    "captures_cache/pilote-controle-v1/sources/inverse_contrainte_energie.cpython-314.pyc.gz": "6201951e229856ce7ff31e81234d45490efa93ca6cbd0cc55aa7535a6d2b9f5c",
+    "captures_cache/pilote-controle-v1/sources/krylov_contraint.cpython-314.pyc.gz": "7e25ace6a24f130f210e8c7012fad8299b2b653b224f352543e5de7b73b032e3",
+    "captures_cache/pilote-controle-v1/sources/racine_masse_blocs.cpython-314.pyc.gz": "3852a97cefd14485fd37fa81241c509ad02c3ef2314611fd4ce385a5b00a2092",
+    "captures_cache/sondes-double/sonde_inertie.cpython-314.pyc.gz": "81c762e48ed1d68d030213e9ddbe0f06d951c0355ee924493e71519cfcbd7737",
+    "pilote-controle-v1/execution.log": "5c0eb84f8ac9ee056145ee9f2c0888fc485303bd45e61010fce247f539aad57d",
+    "pilote-controle-v1/manifest.json.gz": "ac7e3437f7dbe44c48656a83f23adb769d5709cf0991a4992c22879e2a4702bb",
+    "pilote-controle-v1/n128-certificat.json.gz": "6a934782f4c55877403f4547c160d70c11bf3d31c286e118d3fc53b881c63ea9",
+    "pilote-controle-v1/n128-directions.npz": "dee53c0a8837c80a9e5a557def1404bd522a46e3906bc3b0bbb7e6bf5e5f90d4",
+    "pilote-controle-v1/n32-certificat.json.gz": "614e9da402d9d57d2bfe252cf688437ac31b3558a50abae597828750bbebc123",
+    "pilote-controle-v1/n32-directions.npz": "bb0bf1b08d86368f26f0997f3e29e913d22b5624715191815129538aa460120f",
+    "pilote-controle-v1/n512-certificat.json.gz": "23c8f8e992dff28adec81410f391de483254500bc115bc73cc55771416e5e6cd",
+    "pilote-controle-v1/n512-directions.npz": "4dcc585352208f01b45bdfa3f40ff512d89e23d18a2db7a33a4d70eec5e045b3",
+    "pilote-controle-v1/pilote.py": "cf6f5abd0dd2a2fd32d393f5f661fafe2d323e68b8b363360e2cd57cbff4a7b0",
+    "pilote-controle-v1/resultats.json.gz": "9d92bae53fc53a5669eb8293c1f3e82c051ce5bd58f990e8ba9534c19516857f",
+    "pilote-controle-v1/script-parent.py": "cf6f5abd0dd2a2fd32d393f5f661fafe2d323e68b8b363360e2cd57cbff4a7b0",
+    "pilote-controle-v1/sources/condensation_energie.py": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+    "pilote-controle-v1/sources/confronte_ports_exudyn.py": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+    "pilote-controle-v1/sources/controle_complement.py": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+    "pilote-controle-v1/sources/inertie_complement_dirigee.py": "85bc871af96d7ab8fc33c479a83c944dd8e2ad3c55fd1f8152e05bc7c3a7740b",
+    "pilote-controle-v1/sources/inverse_contrainte_energie.py": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+    "pilote-controle-v1/sources/krylov_contraint.py": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+    "pilote-controle-v1/sources/racine_masse_blocs.py": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+    "pilote-initial/resultats.json.gz": "690722f2eca17382a5d3682dbe00001b6454be444fdb4a78eae7ced431398bd4",
+    "sondes-double/README.md": "d2fef404ee5570b75399704aa96fc81eeca3e0ac05720189f5a96562b0575efd",
+    "sondes-double/echelles.json.gz": "983cb3b85e233b3c1451e9cd696e4e78936ffd654a2d7c4a39f9db18f9d81d3c",
+    "sondes-double/execution.log": "a2fec183d4b79130337816ef586d3c9cf60e833a00242ce534103ea0d47549b4",
+    "sondes-double/rapport.json.gz": "27fa93c53b058204e9463deff7daafca725da23b33fb11931186f88e3910e50a",
+    "sondes-double/sonde_inertie.py": "655f6d9761ffc35a78a1f2cc7f9e8ae5ae2ad558dcba0786d9ff13c212d25ea6"
+  },
+  "fichiers_octets": {
+    "README.md": 4215,
+    "captures_cache/pilote-controle-v1/sources/condensation_energie.cpython-314.pyc.gz": 340,
+    "captures_cache/pilote-controle-v1/sources/confronte_ports_exudyn.cpython-314.pyc.gz": 27370,
+    "captures_cache/pilote-controle-v1/sources/controle_complement.cpython-314.pyc.gz": 9212,
+    "captures_cache/pilote-controle-v1/sources/inertie_complement_dirigee.cpython-314.pyc.gz": 11503,
+    "captures_cache/pilote-controle-v1/sources/inverse_contrainte_energie.cpython-314.pyc.gz": 7074,
+    "captures_cache/pilote-controle-v1/sources/krylov_contraint.cpython-314.pyc.gz": 8606,
+    "captures_cache/pilote-controle-v1/sources/racine_masse_blocs.cpython-314.pyc.gz": 6096,
+    "captures_cache/sondes-double/sonde_inertie.cpython-314.pyc.gz": 11595,
+    "pilote-controle-v1/execution.log": 1576,
+    "pilote-controle-v1/manifest.json.gz": 1150,
+    "pilote-controle-v1/n128-certificat.json.gz": 26888,
+    "pilote-controle-v1/n128-directions.npz": 11346,
+    "pilote-controle-v1/n32-certificat.json.gz": 7200,
+    "pilote-controle-v1/n32-directions.npz": 3162,
+    "pilote-controle-v1/n512-certificat.json.gz": 103073,
+    "pilote-controle-v1/n512-directions.npz": 44740,
+    "pilote-controle-v1/pilote.py": 3359,
+    "pilote-controle-v1/resultats.json.gz": 1121036,
+    "pilote-controle-v1/script-parent.py": 3359,
+    "pilote-controle-v1/sources/condensation_energie.py": 209,
+    "pilote-controle-v1/sources/confronte_ports_exudyn.py": 34295,
+    "pilote-controle-v1/sources/controle_complement.py": 10091,
+    "pilote-controle-v1/sources/inertie_complement_dirigee.py": 12898,
+    "pilote-controle-v1/sources/inverse_contrainte_energie.py": 8959,
+    "pilote-controle-v1/sources/krylov_contraint.py": 9990,
+    "pilote-controle-v1/sources/racine_masse_blocs.py": 7424,
+    "pilote-initial/resultats.json.gz": 195471,
+    "sondes-double/README.md": 9419,
+    "sondes-double/echelles.json.gz": 2703,
+    "sondes-double/execution.log": 20917,
+    "sondes-double/rapport.json.gz": 10785,
+    "sondes-double/sonde_inertie.py": 11472
+  },
+  "schema": 1
+}

@@ -1,0 +1,220 @@
+# CI — ce qui doit être vrai à chaque poussée.
+#
+# Trois niveaux, dans l'ordre du moins cher au plus cher, et le premier qui
+# casse arrête tout : compiler, puis la vérification, puis la
+# suite complète. La référence d'API est vérifiée en même temps que le code —
+# une doc qui a dérivé est un défaut, pas un détail.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  noyau:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: format et lint
+        run: |
+          cargo fmt --check
+          cargo clippy --release --all-targets -- -D warnings
+
+      - name: tests du noyau
+        run: cargo test --release
+
+      - name: contrôles du prototype de poutre mixte
+        run: cargo test --release --example poutre_mixte
+
+      - name: construire et installer
+        run: |
+          python -m pip install --upgrade pip maturin
+          python -m pip install ".[verification]"
+
+      - name: contrôles rapides
+        run: python -m vinkulum.verification
+
+      - name: régressions Python et archive sigma
+        run: |
+          python -m unittest vinkulum.test_modes_creux vinkulum.test_certification_creuse vinkulum.test_certification vinkulum.test_certification_assemblage vinkulum.test_certification_quotient vinkulum.test_noyau vinkulum.test_assemblage vinkulum.test_analyses vinkulum.test_campagnes vinkulum.test_schema_lie vinkulum.test_operateurs vinkulum.test_reduction_ports vinkulum.test_reponses_groupees vinkulum.test_reduction_contrainte vinkulum.test_fiabilite_lisse vinkulum.test_validation
+          python ci/bilan_sigma.py docs/bancs/integration-sigma-2026.json
+
+      - name: Épreuves physiques d'assemblage et d'intégration
+        run: python ci/audit_assemblage_physique.py --sortie "$RUNNER_TEMP/audit-assemblage.json"
+
+      - name: Diagnostic énergie–moment et contre-épreuves exactes
+        run: |
+          python ci/test_trace_moments_em.py
+          python ci/test_attribution_moments_em.py
+          python ci/test_attribution_rotation_em.py
+          python ci/test_archive_attribution_reperes.py
+
+      - name: Prototype de certificat géométrique
+        run: |
+          python ci/test_prototype_assemblage_certifie.py
+          python ci/test_export_geometrie_certifiee.py
+          python ci/test_oracle_polynomial_assemblage.py
+          python ci/test_archive_assemblage_certifie.py
+          python ci/test_archive_assemblage_public.py
+          python ci/test_intervalle_temporel.py
+          python ci/test_taylor_temporel.py
+          python ci/test_reference_temporelle.py
+          python ci/test_archive_trajectoire_certifiee.py
+          python ci/test_trace_pendule_courante.py
+          python ci/test_lineaire_creux.py
+          python ci/test_dependances_structurelles.py
+          python ci/test_archive_lineaire_creux.py
+          python ci/test_lineaire_creux_natif.py
+          python ci/test_archive_certification_creuse.py
+          python ci/test_archive_modes_creux.py
+          python ci/test_confronte_modes.py
+          python ci/test_archive_confrontation_modale.py
+
+      - name: Dossier de fiabilité et contre-épreuves
+        run: |
+          python ci/test_qualifie_validation.py
+          python ci/verifie_fiabilite.py docs/bancs/version-0.14.1.json
+          python ci/test_verifie_fiabilite.py
+
+      - name: Certification des décisions de vitesse et couverture
+        run: python ci/certifie_noyau.py --sortie "$RUNNER_TEMP/certification.json"
+
+      - name: Installer Lean 4.19.0 figé
+        run: |
+          curl --fail --location --retry 3 https://github.com/leanprover/lean4/releases/download/v4.19.0/lean-4.19.0-linux.tar.zst -o "$RUNNER_TEMP/lean.tar.zst"
+          echo "6fe3ce97a58f44e2b3567d455b994eacec5bfe9ae7774f2a573444480ba813fe  $RUNNER_TEMP/lean.tar.zst" | sha256sum --check
+          tar --no-same-owner --use-compress-program=unzstd -xf "$RUNNER_TEMP/lean.tar.zst" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/lean-4.19.0-linux/bin" >> "$GITHUB_PATH"
+
+      - name: Preuves Lean et correspondance Rust
+        run: |
+          (cd preuves && lake exe cache get)
+          PY="$(command -v python)" preuves/verifier.sh
+
+      - name: réduction matérielle et minoration spectrale
+        run: |
+          python ci/test_inverse_selectionnee.py
+          python ci/test_ports_krylov.py
+          python ci/test_ports_releves.py
+          python ci/test_champ_interieur.py
+
+      - name: oracle, juge, pont HCB et archive de confrontation des ports
+        run: |
+          python ci/test_oracle_champs_ports.py
+          python ci/test_trace_complement.py
+          python ci/test_juge_ports_exudyn.py
+          # La partie algébrique reste obligatoire sans Exudyn ; seuls
+          # ses tests d'intégration officiels peuvent être ignorés.
+          python ci/test_reference_hcb_exudyn.py
+          # Relit l'archive, sans relancer les solveurs chronométrés.
+          python ci/test_archive_ports_exudyn.py
+          python ci/test_reponses_groupees_archive.py
+
+      - name: la référence d'API est-elle à jour
+        run: python -m vinkulum.doc
+
+      - name: complément contraint, inertie et audit des bornes creuses
+        run: |
+          python ci/test_trace_complement_dirigee.py
+          python ci/test_retention_complement.py
+          python ci/test_inertie_complement.py
+          python ci/test_bornes_produits_creux.py
+          python ci/test_archive_complement_spectral.py
+          python ci/test_inverse_contrainte_energie.py
+          python ci/test_racine_masse_blocs.py
+          python ci/test_krylov_contraint_preuves.py
+          python ci/test_krylov_contraint.py
+          python ci/test_archive_krylov_contraint.py
+          python ci/test_inertie_dirigee_preuves.py
+          python ci/test_inertie_complement_dirigee.py
+          python ci/test_archive_inertie_contrainte.py
+          python ci/test_controle_facteurs_preuves.py
+          python ci/test_controle_facteurs.py
+          python ci/test_archive_controle_facteurs.py
+          python ci/test_inertie_binaire_compile.py
+          python ci/test_archive_inertie_binaire.py
+          python ci/test_comparaison_masse.py
+          python ci/test_controle_masse_comparee.py
+          python ci/test_oracle_champs_couples.py
+          python ci/test_juge_masse_couplee.py
+          python ci/test_modeles_masse_consistante.py
+          python ci/test_archive_masse_comparee.py
+          python ci/test_assemblage_complements_preuves.py
+          python ci/test_assemblage_complements.py
+          python ci/test_oracle_assemblage_complements.py
+          python ci/test_archive_assemblage_complements.py
+          python ci/test_certificat_paquet.py
+          python ci/test_livraison_contrainte.py
+
+      - name: archive de globalisation statique
+        run: python ci/bilan_globalisation.py docs/bancs/globalisation-statique-0.8.1.json
+
+      - name: archive de la tangente analytique des poutres
+        run: python ci/bilan_globalisation.py docs/bancs/tangente-poutre-0.8.2.json
+
+      - name: confrontations externes et contrôles du classement
+        run: |
+          python ci/archive_confrontation.py --verifier docs/bancs/confrontation-statique-mbdyn-0.8.2
+          python ci/confronte_exudyn.py --verifier docs/bancs/confrontation-exudyn-0.8.2
+          python ci/test_confrontation_exudyn.py
+
+      - name: adjoints par produits et contrôles de comparaison
+        run: |
+          python ci/mesure_adjoint_operateurs.py --verifier docs/bancs/adjoint-operateurs-0.9.0-essais.json.gz
+          python ci/mesure_adjoint_operateurs.py --verifier docs/bancs/adjoint-operateurs-0.9.0-livraison-essais.json.gz
+          python ci/test_adjoint_operateurs.py
+
+      - name: archive du prototype de poutre mixte
+        run: python ci/archive_poutre_mixte.py --verifier docs/bancs/poutre-mixte-2026
+
+      - name: suite complète de bancs
+        env:
+          VINKULUM_BANCS_JOBS: "8" # limité automatiquement au budget CPU du runner
+        run: python -m vinkulum.bancs
+
+      - name: bancs de contact
+        run: python -m vinkulum.contact
+
+  roue:
+    # une roue publiable pour chaque version de Python supportée : c'est ce
+    # qui rend le noyau installable par un tiers sans chaîne Rust.
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.14", "3.14t"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --upgrade pip maturin
+      - run: maturin build --release --interpreter python
+      - uses: actions/upload-artifact@v4
+        with:
+          name: roue-py${{ matrix.python }}
+          path: target/wheels/*.whl
+
+# ─────────────────────────────────────────────────────────────────────────
+# POURQUOI CE FICHIER N'EST PAS DANS `.github/workflows/`
+#
+# Le jeton de poussée de ce dépôt n'a pas le scope `workflow`, et GitHub
+# refuse alors toute création ou modification d'un fichier sous
+# `.github/workflows/` — « refusing to allow an OAuth App to create or update
+# workflow ... without `workflow` scope ».
+#
+# Le contenu est prêt. Pour l'activer, depuis une session ayant ce scope :
+#
+#     mkdir -p .github/workflows && git mv ci/github-actions.yml .github/workflows/ci.yml
+#
+# Rien d'autre à changer. Le laisser ici plutôt que de le perdre : un
+# workflow non commité n'existe pas, et un blocage de jeton se dit.

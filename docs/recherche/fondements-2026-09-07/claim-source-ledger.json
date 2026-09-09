@@ -1,0 +1,359 @@
+[
+  {
+    "id": "tree25",
+    "title": "Fast Gaussian Elimination for Low Treewidth Matrices",
+    "authors": "Martin Fürer, Carlos Hoppen, Vilmar Trevisan",
+    "date": "2025",
+    "publisher": "ESA 2025, 116:1–15",
+    "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol351-esa2025/LIPIcs.ESA.2025.116/LIPIcs.ESA.2025.116.pdf",
+    "access": "Texte primaire : théorème 1, introduction, complexité, corollaires.",
+    "claim": "O(k²(m+n)) opérations de corps, décomposition arborescente fournie ; aucune garantie flottante extraite.",
+    "provenance": [
+      "turn202view0",
+      "turn204view1",
+      "turn206view2",
+      "turn213view0"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "lcaba26",
+    "title": "Constrained Articulated Body Dynamics Algorithms for Closed-Loop Mechanisms",
+    "authors": "Ajay Suresha Sathya, Justin Carpentier",
+    "date": "2026 ; prépublication 2025",
+    "publisher": "IEEE Transactions on Robotics, DOI 10.1109/TRO.2026.3651683",
+    "url": "https://www.ajaysathya.com/assets/pdf/LCABA.pdf",
+    "access": "PDF auteur 20 pages et DOI ; confronté au préprint antérieur 19 pages.",
+    "claim": "LCABA O(n+m+m_c²n) première passe ; boucles locales et coûts proximaux distincts.",
+    "provenance": [
+      "turn210view1",
+      "turn210view2",
+      "turn212view0",
+      "turn212view1"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "del26",
+    "title": "Matrix-Free Delassus Operations: Scalable and Memory-Efficient Algorithms",
+    "authors": "Ajay Suresha Sathya, Louis Montaut, Yann de Mont-Marin, Justin Carpentier",
+    "date": "2026",
+    "publisher": "Manuscrit auteur ; version examinée encore présentée avant fin d'évaluation",
+    "url": "https://www.ajaysathya.com/assets/pdf/26_matrix-free_delassus.pdf",
+    "access": "Texte auteur, sections I, III–V ; DOI d'une publication ultérieure repéré mais non accessible, non requis pour la conclusion.",
+    "claim": "Produit O(n+m) sous modèle de contraintes de l’article ; inverse amorti pire cas O(n+m²d+m³). Contradiction mémoire non résolue : introduction O(n+m²), section V-C O(n+dm²). Aucune borne mémoire générale retenue.",
+    "provenance": [
+      "turn208view0",
+      "turn210view0",
+      "turn212view3",
+      "turn213view1",
+      "turn213view2",
+      "turn214view0"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur le produit et la lecture des deux bornes contradictoires ; borne mémoire générale non retenue."
+  },
+  {
+    "id": "feec10",
+    "title": "Finite element exterior calculus: from Hodge theory to numerical stability",
+    "authors": "Douglas N. Arnold, Richard S. Falk, Ragnar Winther",
+    "date": "2010 ; prépublication 2009",
+    "publisher": "Bulletin AMS 47, 281–354",
+    "url": "https://arxiv.org/pdf/0906.4325",
+    "access": "Texte primaire, théorèmes 3.8–3.9 et hypothèses de sous-complexe.",
+    "claim": "Projection de cochaînes uniformément bornée et complexe fermé donnent stabilité discrète du Hodge Laplacien ; pas un théorème déjà applicable aux poutres Vinkulum.",
+    "provenance": [
+      "turn193view1",
+      "turn195view2",
+      "turn196view5"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "op11",
+    "title": "Preconditioning discretizations of systems of partial differential equations",
+    "authors": "Kent-Andre Mardal, Ragnar Winther",
+    "date": "2011",
+    "publisher": "Numerical Linear Algebra with Applications 18, 1–40 ; DOI 10.1002/nla.716",
+    "url": "https://web-backend.simula.no/sites/default/files/publications/Simula.SC.570.pdf",
+    "access": "Manuscrit institutionnel ; métadonnées éditeur recoupées, pied de page générique 2000 non retenu.",
+    "claim": "Préconditionnement comme application de Riesz, systèmes selles et paramètres ; choix des normes essentiel.",
+    "provenance": [
+      "turn188search0",
+      "turn193view2",
+      "turn195view3",
+      "turn199view4"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "gam17",
+    "title": "Multigrid with Rough Coefficients and Multiresolution Operator Decomposition from Hierarchical Information Games",
+    "authors": "Houman Owhadi",
+    "date": "2017 ; prépublication 2015",
+    "publisher": "SIAM Review 59, 99–149 ; DOI 10.1137/15M1013894",
+    "url": "https://arxiv.org/pdf/1503.03467",
+    "access": "Texte primaire : cadre elliptique, localisation, théorèmes 5.5–5.6 et complexité section 5.",
+    "claim": "Bases adaptées à l'énergie, décroissance localisée et complexité quasi linéaire sous hypothèses.",
+    "provenance": [
+      "turn187search0",
+      "turn189view0",
+      "turn190view0"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "gtime17",
+    "title": "Gamblets for opening the complexity-bottleneck of implicit schemes for hyperbolic and parabolic ODEs/PDEs with rough coefficients",
+    "authors": "Houman Owhadi, Lei Zhang",
+    "date": "2017",
+    "publisher": "Journal of Computational Physics 347, 99–128",
+    "url": "https://arxiv.org/pdf/1606.07686",
+    "access": "Texte primaire : opérateur 2.1, théorème 3.1 et introduction.",
+    "claim": "Opérateur adapté au pas ; coût préparatoire et coût par pas distincts ; borne contre schéma milieu exact.",
+    "provenance": [
+      "turn193view0",
+      "turn201view3"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "ports16",
+    "title": "Optimal Local Approximation Spaces for Component-Based Static Condensation Procedures",
+    "authors": "Kathrin Smetana, Anthony T. Patera",
+    "date": "2016",
+    "publisher": "SIAM Journal on Scientific Computing 38, A3318–A3356 ; DOI 10.1137/15M1009603",
+    "url": "https://doi.org/10.1137/15M1009603",
+    "access": "Texte auteur déposé sur ResearchGate ; propositions 3.5 et 3.8, corollaires ; métadonnées éditeur.",
+    "claim": "Espace optimal pour transfert compact ; largeur sqrt(lambda suivante) ; constantes, noyaux et train set délimitent la garantie.",
+    "provenance": [
+      "turn188search1",
+      "turn194view0",
+      "turn196view0",
+      "turn206view3"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "ports18",
+    "title": "Static condensation optimal port/interface reduction and error estimation for structural health monitoring",
+    "authors": "Kathrin Smetana",
+    "date": "2018 prépublication",
+    "publisher": "arXiv 1808.02946",
+    "url": "https://arxiv.org/pdf/1808.02946",
+    "access": "Texte primaire sections 3.1–3.2 ; exemple séparable et proposition 3.4.",
+    "claim": "Noyaux rigides et charges internes à réintroduire ; exemple de décroissance de transfert.",
+    "provenance": [
+      "turn194view1",
+      "turn199view2",
+      "turn203view2"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "rand18",
+    "title": "Randomized Local Model Order Reduction",
+    "authors": "Andreas Buhr, Kathrin Smetana",
+    "date": "2018 ; prépublication 2017",
+    "publisher": "SIAM Journal on Scientific Computing 40, A2120–A2151 ; DOI 10.1137/17M1138480",
+    "url": "https://arxiv.org/pdf/1706.09179",
+    "access": "Texte primaire : algorithme 1, propositions 3.2, 3.7, 3.8 et discussion des normes.",
+    "claim": "Approximation presque optimale en espérance et estimateur probabiliste fiable ; budget d'échec cumulé.",
+    "provenance": [
+      "turn200search2",
+      "turn202view1",
+      "turn204view0",
+      "turn206view0"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "width22",
+    "title": "Optimal Stable Nonlinear Approximation",
+    "authors": "Albert Cohen, Ronald DeVore, Guergana Petrova, Przemyslaw Wojtaszczyk",
+    "date": "2022 ; prépublication 2020",
+    "publisher": "Foundations of Computational Mathematics 22 ; DOI 10.1007/s10208-021-09494-z",
+    "url": "https://arxiv.org/pdf/2009.09907",
+    "access": "Texte primaire : définitions des largeurs stables, théorèmes 2.4 et 3.3.",
+    "claim": "Les largeurs de variétés stables sont contraintes par l'entropie ; pas de compression générale arbitraire.",
+    "provenance": [
+      "turn189view1",
+      "turn190view1",
+      "turn195view0"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "dlra21",
+    "title": "Dynamical reduced basis methods for Hamiltonian systems",
+    "authors": "Cecilia Pagliantini",
+    "date": "2021",
+    "publisher": "Numerische Mathematik 148, 409–448 ; DOI 10.1007/s00211-021-01211-w",
+    "url": "https://arpi.unipi.it/bitstream/11568/1169930/2/s00211-021-01211-w-15.pdf",
+    "access": "Texte primaire, géométrie du fibré et projections, propositions 4.1 et 4.3.",
+    "claim": "Espace symplectique évolutif de rang fixé ; paramètres multiples, pas un accélérateur général d'une trajectoire isolée.",
+    "provenance": [
+      "turn193view3",
+      "turn204view2",
+      "turn205view1"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "sfd17",
+    "title": "Exact model reduction by a slow–fast decomposition of nonlinear mechanical systems",
+    "authors": "George Haller, Sten Ponsioen",
+    "date": "2017",
+    "publisher": "Nonlinear Dynamics 90, 617–647 ; DOI 10.1007/s11071-017-3685-9",
+    "url": "https://georgehaller.com/reprints/slow_fast.pdf",
+    "access": "Texte primaire prépublication : A1–A3, théorème 1, limites ; publication auteur recoupée.",
+    "claim": "Variété lente attirante sous stabilité asymptotique rapide ; raideur seule insuffisante.",
+    "provenance": [
+      "turn200search14",
+      "turn201view1",
+      "turn203view0",
+      "turn205view2"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "generic25",
+    "title": "Deriving a GENERIC system from a Hamiltonian system",
+    "authors": "Alexander Mielke, Mark A. Peletier, Johannes Zimmer",
+    "date": "2025-09-22",
+    "publisher": "Archive for Rational Mechanics and Analysis 249, 62 ; DOI 10.1007/s00205-025-02119-7",
+    "url": "https://link.springer.com/article/10.1007/s00205-025-02119-7",
+    "access": "Intégral éditeur, hypothèse 1.2 et théorème 4.10.",
+    "claim": "Fermeture markovienne grâce à la propriété de compression d'un bain infini linéaire ; extension énergie/entropie GENERIC.",
+    "provenance": [
+      "turn194view2",
+      "turn196view3",
+      "turn199view0",
+      "turn201view2"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "scd23",
+    "title": "On the SCD semismooth* Newton method for generalized equations with application to a class of static contact problems with Coulomb friction",
+    "authors": "Helmut Gfrerer, Michael Mandlmayr, Jiří V. Outrata, Jan Valdman",
+    "date": "2023 ; en ligne 2022",
+    "publisher": "Computational Optimization and Applications 86, 1159–1191 ; DOI 10.1007/s10589-022-00429-0",
+    "url": "https://arxiv.org/pdf/2205.15129",
+    "access": "Texte primaire : proposition 4.2, théorème 4.4 et algorithme 1 ; source déjà dans étude précédente, lecture approfondie.",
+    "claim": "Convergence locale superlinéaire avec SCD semismooth* et SCD régularité ; ne prouve pas différentiabilité globale des trajectoires.",
+    "provenance": [
+      "turn189view2",
+      "turn190view2",
+      "turn203view1",
+      "turn207search2"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "mb22",
+    "title": "A massless boundary component mode synthesis method for elastodynamic contact problems",
+    "authors": "C. D. Monjaraz Tec, J. Gross, M. Krack",
+    "date": "2022 ; prépublication 2021",
+    "publisher": "Computers & Structures 260, 106698 ; DOI 10.1016/j.compstruc.2021.106698",
+    "url": "https://arxiv.org/pdf/2111.07693",
+    "access": "Texte primaire : formulation et introduction ; métadonnées éditeur recoupées.",
+    "claim": "Réduction avec frontière sans masse pour contact élastodynamique ; résultats numériques de l'article, pas preuve de gain Vinkulum.",
+    "provenance": [
+      "turn198view3",
+      "turn200search0",
+      "turn203view4"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "exurom",
+    "title": "Model order reduction and component mode synthesis",
+    "authors": "Équipe Exudyn",
+    "date": "version 1.11.0 ; consulté 2026-09-07",
+    "publisher": "Documentation officielle",
+    "url": "https://exudyn.readthedocs.io/en/v1.11.0/docs/RST/ModelOrderReductionAndComponentModeSynthesis.html",
+    "access": "Guide théorique officiel uniquement ; aucun code solveur lu.",
+    "claim": "FFRF, HCB, modes creux et hypothèses locales de petites déformations déjà documentés.",
+    "provenance": [
+      "turn198view1"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "exukt",
+    "title": "ObjectKinematicTree",
+    "authors": "Équipe Exudyn",
+    "date": "version 1.11.0 ; consulté 2026-09-07",
+    "publisher": "Documentation officielle",
+    "url": "https://exudyn.readthedocs.io/en/v1.11.0/docs/RST/items/ObjectKinematicTree.html",
+    "access": "Contenu officiel visible par recherche ; open échoue deux fois, pas de retry supplémentaire.",
+    "claim": "Coordonnées minimales d'arbres et liaison à des contraintes pour fermer des boucles.",
+    "provenance": [
+      "turn207search3"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "mbdyn",
+    "title": "MBDyn FAQ — flexible elements",
+    "authors": "Équipe MBDyn",
+    "date": "consulté 2026-09-07",
+    "publisher": "Documentation officielle",
+    "url": "https://www.mbdyn.org/Documentation/FAQ.html",
+    "access": "Page officielle.",
+    "claim": "CMS et éléments géométriquement exacts déjà disponibles ; pas de classement d'implémentations.",
+    "provenance": [
+      "turn197search1"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "simpack",
+    "title": "Flexible Body Simulation Modules",
+    "authors": "Dassault Systèmes / SIMULIA",
+    "date": "consulté 2026-09-07",
+    "publisher": "Documentation produit officielle",
+    "url": "https://www.3ds.com/products/simulia/simpack/flexible-body",
+    "access": "Page officielle ; capacités déclarées, algorithmes internes non audités.",
+    "claim": "Réduction linéaire/non linéaire, poutres 3D et co-simulation Abaqus déjà proposées.",
+    "provenance": [
+      "turn197search0"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  },
+  {
+    "id": "simpack25",
+    "title": "Simpack Release 2025x News",
+    "authors": "Dassault Systèmes / SIMULIA",
+    "date": "2025x",
+    "publisher": "Actualités produit officielles",
+    "url": "https://3dswym.3dexperience.3ds.com/wiki/simulia-community/simpack-release-2025x-news_6CSq0Y9uTB-kTqrJ9h-qzQ",
+    "access": "Annonce officielle.",
+    "claim": "Améliorations de sélection automatique des modes : automatisation pas terrain vierge.",
+    "provenance": [
+      "turn197search7"
+    ],
+    "consulted": "2026-09-07",
+    "confidence": "Élevée sur l'énoncé limité cité ; transfert Vinkulum non établi"
+  }
+]

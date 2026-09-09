@@ -1,0 +1,35 @@
+{
+  "version": "0.18.1",
+  "license": "Apache-2.0",
+  "wheel": {
+    "filename": "vinkulum-0.18.1-cp314-cp314-manylinux_2_39_x86_64.whl",
+    "sha256": "47406e169932aa07ba818a4fd4fb7d80ed32eadda6b9e936277476833028495c",
+    "python": "CPython 3.14.7",
+    "platform": "manylinux_2_39_x86_64"
+  },
+  "numerical_source_changes": false,
+  "readme_example_passed": true,
+  "isolated_verification_cases": 41,
+  "models_with_provenance_and_notices": 36,
+  "cargo_dependency_notice_records": 150,
+  "historical_repository_published": false,
+  "whole_kernel_certified": false,
+  "ci": {
+    "passed": true,
+    "rust_tests": 87,
+    "mixed_beam_tests": 8,
+    "python_tests": 209,
+    "lean_theorems": 13,
+    "lean_rust_fraction_cases": 13314,
+    "divergences": 0,
+    "exudyn_integration_tests_skipped": 3,
+    "extended_benchmarks_rerun": false
+  },
+  "log_sha256": {
+    "final-build.log": "9becc4a4ddda2b5d438b3bf4255cbdae749adf073f325d4fbfb3581fb4b633ae",
+    "readme-example.log": "ff80b7178359909eb41636b52d3f4b39f179c1abfe2236bc4d50e0f3e687bd00",
+    "isolated-install.log": "39e251d251ea8979db29cfd57cf33733572fc7d2e87736c932306d74226f906f",
+    "isolated-verification.log": "d88b07646f110c2df27fd6353ce0e93e6db7200eeda0ddec25e851f9e84d76bd",
+    "ci.log": "8c91ac25f9d2b4c0836a366e3f80b8657923e99da5977a04bb29f4afe49b47a2"
+  }
+}

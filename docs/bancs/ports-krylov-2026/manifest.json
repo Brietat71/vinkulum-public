@@ -1,0 +1,522 @@
+{
+  "schema": 1,
+  "cas": [
+    {
+      "nom": "chaine32",
+      "famille": "chaine",
+      "n": 32,
+      "fraction": 0.8,
+      "modes": 28,
+      "tolerance": 1e-06
+    },
+    {
+      "nom": "chaine256",
+      "famille": "chaine",
+      "n": 256,
+      "fraction": 0.8,
+      "modes": 88,
+      "tolerance": 1e-06
+    },
+    {
+      "nom": "chaine2048",
+      "famille": "chaine",
+      "n": 2048,
+      "fraction": 0.8,
+      "modes": 96,
+      "tolerance": 1e-06
+    },
+    {
+      "nom": "chaine2048_pole",
+      "famille": "chaine",
+      "n": 2048,
+      "fraction": 0.98,
+      "modes": 256,
+      "tolerance": 1e-06
+    },
+    {
+      "nom": "console16",
+      "famille": "console",
+      "n": 16,
+      "fraction": 0.7,
+      "modes": 32,
+      "tolerance": 1e-06
+    },
+    {
+      "nom": "console128",
+      "famille": "console",
+      "n": 128,
+      "fraction": 0.7,
+      "modes": 56,
+      "tolerance": 1e-06
+    },
+    {
+      "nom": "console128_arrondi",
+      "famille": "console",
+      "n": 128,
+      "fraction": 0.7,
+      "modes": 762,
+      "tolerance": 1e-10
+    }
+  ],
+  "repetitions": 4,
+  "essais": [
+    {
+      "fichier": "chaine32-krylov-0.json",
+      "sha256": "fb7305c77ff2694578f387207879d6297007fa452c89485d1058cb9004f8775b",
+      "cas": "chaine32",
+      "variante": "krylov",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "chaine32-hcb-0.json",
+      "sha256": "cdef88620cadf310a7ceb0ddebb937e805522b64735af337a6b994895b570a3d",
+      "cas": "chaine32",
+      "variante": "hcb",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "chaine32-hcb-1.json",
+      "sha256": "4a28323966e2bbc8a349f40eb4758590b159e7e28b3a19ca062d08cdd3715eda",
+      "cas": "chaine32",
+      "variante": "hcb",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine32-krylov-1.json",
+      "sha256": "d44a98aafa158886157762dd07bdc3b74cb7f204dcf91a04b0367c8e0a5c2fd8",
+      "cas": "chaine32",
+      "variante": "krylov",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine32-krylov-2.json",
+      "sha256": "d0037fcade2ba21c7dd9ad99f51dbbc730023a7d7dc5a33eb5aa15999f1a0097",
+      "cas": "chaine32",
+      "variante": "krylov",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine32-hcb-2.json",
+      "sha256": "d127f8c9c069f32461d9f9ebbfd1aff6d6c4b43d3a2613138c448f3462a22e5a",
+      "cas": "chaine32",
+      "variante": "hcb",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine32-hcb-3.json",
+      "sha256": "13b255faba23674134b1e60dd0b556fa2a840b8915b604ebf75aa53b193f5a6d",
+      "cas": "chaine32",
+      "variante": "hcb",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine32-krylov-3.json",
+      "sha256": "42595011a74e2b886899c538b2a0a2c27b1db1d64b927ca5785e616872a01b9c",
+      "cas": "chaine32",
+      "variante": "krylov",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine256-krylov-0.json",
+      "sha256": "865ff603e9396bb87389832a284c5e0a2370b431513e24b7e86046bc8f3bd594",
+      "cas": "chaine256",
+      "variante": "krylov",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "chaine256-hcb-0.json",
+      "sha256": "4d5ec99a80f75fd7010fbb0bfb1f0fb105040e5c19a2c0be8c3929bee00463ef",
+      "cas": "chaine256",
+      "variante": "hcb",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "chaine256-hcb-1.json",
+      "sha256": "371d7879b174d355b70a087e8ba1ce4ce58762801acf36e564de80f08a570a80",
+      "cas": "chaine256",
+      "variante": "hcb",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine256-krylov-1.json",
+      "sha256": "a5d167d89c953f45c3245510850bab4ac1fa7dc627efdbd33a8b2bd131ab3f3e",
+      "cas": "chaine256",
+      "variante": "krylov",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine256-krylov-2.json",
+      "sha256": "26e3ad5bf8adf3069414eaf88386fe63455280c2d334c25e87477811feb9493b",
+      "cas": "chaine256",
+      "variante": "krylov",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine256-hcb-2.json",
+      "sha256": "64c599b94059e065ca9011db54c3bd92470144c3f1d2f53ec5f139c1eab8e0da",
+      "cas": "chaine256",
+      "variante": "hcb",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine256-hcb-3.json",
+      "sha256": "5ced1ecd82f2f0aba206a8ae98e1127c5dffe1d289cfb8f89e8fdc185d750048",
+      "cas": "chaine256",
+      "variante": "hcb",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine256-krylov-3.json",
+      "sha256": "bd7adbed77fb211c183ca0a5c1156f427113b2ad93c6d1574bcdf7576db2ae16",
+      "cas": "chaine256",
+      "variante": "krylov",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-krylov-0.json",
+      "sha256": "f8c53102eb02ff190167d0bfc445397ebaf981a419d0caea60985121c516713d",
+      "cas": "chaine2048",
+      "variante": "krylov",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "chaine2048-hcb-0.json",
+      "sha256": "9bf7e064a1fc390ef2d11b27cc47d5652309c4966c8ec0b407e1e6034593c1ef",
+      "cas": "chaine2048",
+      "variante": "hcb",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "chaine2048-hcb-1.json",
+      "sha256": "e493f7d90a0f6702ca72e79f7c745647b2f2862f2d22cbd1f49226941f812e55",
+      "cas": "chaine2048",
+      "variante": "hcb",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-krylov-1.json",
+      "sha256": "62bda9381d70ec02a53cbac6ecfbd28d00ce7cb41409b8fd6a9e855c15071de3",
+      "cas": "chaine2048",
+      "variante": "krylov",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-krylov-2.json",
+      "sha256": "e84a44554ff762b645c0eff821cbd48dd18dd3e348b0c1d2e6a2cb73422dab19",
+      "cas": "chaine2048",
+      "variante": "krylov",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-hcb-2.json",
+      "sha256": "aa6dfbe0ccda0ada1200ca9faf332c52d27d7c3192b2a80ace6f23b4566dff3a",
+      "cas": "chaine2048",
+      "variante": "hcb",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-hcb-3.json",
+      "sha256": "e801a6355ad688eaa826d66bad4849e5152916c41f015bbd82391d9066950af5",
+      "cas": "chaine2048",
+      "variante": "hcb",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048-krylov-3.json",
+      "sha256": "d171400f8261e4c3cda6dc3edbee02562a3fd7246e3d0237ea496e85f66446f8",
+      "cas": "chaine2048",
+      "variante": "krylov",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048_pole-krylov-0.json",
+      "sha256": "1e4753857adcc186639d9fe5009091fd5da5b3e1f6872be10c61c855381a8b67",
+      "cas": "chaine2048_pole",
+      "variante": "krylov",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "chaine2048_pole-hcb-0.json",
+      "sha256": "e3671dfff66a7febf2a9e0ee040838f5008b0398fed0cf2dd4110350cec4f683",
+      "cas": "chaine2048_pole",
+      "variante": "hcb",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "chaine2048_pole-hcb-1.json",
+      "sha256": "9a5e2b80eb4c9a24be924a897efd1fc916b9ba12ec0c70668eef551bac80b8b7",
+      "cas": "chaine2048_pole",
+      "variante": "hcb",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048_pole-krylov-1.json",
+      "sha256": "32ca0479844eba4ae1f4214a51e2b31f02b5a7796292ad491fdbbcde6eb82f68",
+      "cas": "chaine2048_pole",
+      "variante": "krylov",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048_pole-krylov-2.json",
+      "sha256": "3616fa9b0a98b48fa519b60f168d892f9e787a565e6110a7efd46cadf97fdc24",
+      "cas": "chaine2048_pole",
+      "variante": "krylov",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048_pole-hcb-2.json",
+      "sha256": "355b50d84dc81296b7cba3929ed90dcdb72f33d9ae3dc60457c1c05206c029a0",
+      "cas": "chaine2048_pole",
+      "variante": "hcb",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048_pole-hcb-3.json",
+      "sha256": "389a116c49665595265a25a828a08b26a23c886880eb75e1d773298f6a7e86b2",
+      "cas": "chaine2048_pole",
+      "variante": "hcb",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "chaine2048_pole-krylov-3.json",
+      "sha256": "08b9423db6297ba234b6a8eff55c3928dbeb1ade76f24376a8f031f50a1144b4",
+      "cas": "chaine2048_pole",
+      "variante": "krylov",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console16-krylov-0.json",
+      "sha256": "8327f957a5f1d04752ba7be4f5f439f05ba95f1bdd5aaf1c63956f1ecc28de99",
+      "cas": "console16",
+      "variante": "krylov",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console16-hcb-0.json",
+      "sha256": "f075194aa2f17500605f8ff1ff8c40c6635398a5afbd99152ab61cf995bbd844",
+      "cas": "console16",
+      "variante": "hcb",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console16-hcb-1.json",
+      "sha256": "1756b9600fb9cb34d10a5a686056bc38395eb4cd8eaf140882dae4908dec7e68",
+      "cas": "console16",
+      "variante": "hcb",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console16-krylov-1.json",
+      "sha256": "8d51140b22668f20765dbc3d62bb1c2b47ad5727e48704b96751f7d2807d28b1",
+      "cas": "console16",
+      "variante": "krylov",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console16-krylov-2.json",
+      "sha256": "9d97b4c59e16365ebf94780472fd47e60def6947d55b2a7928a40f4511de8c33",
+      "cas": "console16",
+      "variante": "krylov",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console16-hcb-2.json",
+      "sha256": "8c06bcc4acbb4d2f2bbbc53ee177bb4c2b88d2f390d1f2834a4884ae5b723556",
+      "cas": "console16",
+      "variante": "hcb",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console16-hcb-3.json",
+      "sha256": "016b30dfb1e8ee1666771d9b6c63263f282ca627f0bc706e08931d1137e673cb",
+      "cas": "console16",
+      "variante": "hcb",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console16-krylov-3.json",
+      "sha256": "b5155097cb8c937fd3f859411a6db095b2482115ce31570b66a001e09c20f703",
+      "cas": "console16",
+      "variante": "krylov",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-krylov-0.json",
+      "sha256": "73376fda19f7c60c9530abab2bcb2b25f53532b156b17ab07f36212e04e0098e",
+      "cas": "console128",
+      "variante": "krylov",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console128-hcb-0.json",
+      "sha256": "bd33dae7f6da13942fc3ce9c4013a9f6bdefadb2ecbda0174dfcd21fbe2ca30c",
+      "cas": "console128",
+      "variante": "hcb",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console128-hcb-1.json",
+      "sha256": "71f78347fcac751625ae6e1b8037b3715a707d090f3ccf9188bae708386ca313",
+      "cas": "console128",
+      "variante": "hcb",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-krylov-1.json",
+      "sha256": "a47887c577cfc2add33493d2cfd18ec1a39706c85f24fca4727fbda7c5eb5e63",
+      "cas": "console128",
+      "variante": "krylov",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-krylov-2.json",
+      "sha256": "e1305ff3c85b254524fbe50107009642eeb226d164baccf61272ef4c154ea99a",
+      "cas": "console128",
+      "variante": "krylov",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-hcb-2.json",
+      "sha256": "11a6f952674ae6edef42a7f85697336ed0b6a119ad8fa90b3b0db37f20151649",
+      "cas": "console128",
+      "variante": "hcb",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-hcb-3.json",
+      "sha256": "202c79bd553f854817ae4f5ea98ce05f385254e79dcfb0b208fc29021882ddce",
+      "cas": "console128",
+      "variante": "hcb",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128-krylov-3.json",
+      "sha256": "5a65baaf906aea96fb79926688aa3573d86d3c62fd72bec11314227440ca7283",
+      "cas": "console128",
+      "variante": "krylov",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128_arrondi-krylov-0.json",
+      "sha256": "6957ecbbf12ac87cb19a83e7bd73928d8f3bb255c8291ec25a522dbdb6f00ebd",
+      "cas": "console128_arrondi",
+      "variante": "krylov",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console128_arrondi-hcb-0.json",
+      "sha256": "763290fb12a1ea707d474c4a9450f9bb7b29b0694e3090979139c08af5bfec52",
+      "cas": "console128_arrondi",
+      "variante": "hcb",
+      "repetition": 0,
+      "echauffement": true
+    },
+    {
+      "fichier": "console128_arrondi-hcb-1.json",
+      "sha256": "5bc22741ea43a432d59fe7de1c9117766ceadd1a2b5bfc7dd19872fbcf1321ad",
+      "cas": "console128_arrondi",
+      "variante": "hcb",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128_arrondi-krylov-1.json",
+      "sha256": "017a2427732f9a26ec76b51798e15766c0153e265f041ffb43f80eec2df2bda9",
+      "cas": "console128_arrondi",
+      "variante": "krylov",
+      "repetition": 1,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128_arrondi-krylov-2.json",
+      "sha256": "12914320815435ea917486ac818d40b73da502e1d0960a2a90e64941b2c25e95",
+      "cas": "console128_arrondi",
+      "variante": "krylov",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128_arrondi-hcb-2.json",
+      "sha256": "b0d8c4cb523b02822270198b5da3f95e8ab15d05b3ea92b12f3c98920f08fbfb",
+      "cas": "console128_arrondi",
+      "variante": "hcb",
+      "repetition": 2,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128_arrondi-hcb-3.json",
+      "sha256": "81529a16f085e38f03fa403d7eccdab2fc0bfa2a2d9efbf6b7d55c7017a0a43c",
+      "cas": "console128_arrondi",
+      "variante": "hcb",
+      "repetition": 3,
+      "echauffement": false
+    },
+    {
+      "fichier": "console128_arrondi-krylov-3.json",
+      "sha256": "fe5513c232ea15d04f10d2f6708e4fe4237a5e311d847f7768db42f1874b4554",
+      "cas": "console128_arrondi",
+      "variante": "krylov",
+      "repetition": 3,
+      "echauffement": false
+    }
+  ],
+  "sources": {
+    "mesure_ports_krylov.py": "177c58de1eac12344f88c65ee3a52e6748e6d53bffa1dc7b27f079b4e48b6929",
+    "ports_krylov.py": "eadf040c0bb922acc67e7fac26c06d9f28bc9977fbe6d87904644fd0b3eef043",
+    "reference_ports_hcb.py": "d2ff9d15c1f98685ec78effa0f92a67f6936137ee25038e3bd5dcab421835694",
+    "modeles_ports.py": "5d4be88b787bfe48d0f702129e9dc0f23bdf6d32071289861d21079a75d6b348",
+    "test_ports_krylov.py": "a7fdc06c0925050b8d7a2d9e26f2a7da6e6ef124072d436a5af2e0375fcdd08e",
+    "test_reference_ports_hcb.py": "638a1f55911c9408f7670b617914b509114b80993d10e18d892a754a852a488c"
+  },
+  "date": "2026-09-07T16:58:08.037456+00:00",
+  "cpu_info": "AMD EPYC 7543 32-Core Processor"
+}

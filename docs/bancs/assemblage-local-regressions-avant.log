@@ -1,0 +1,23 @@
+FF
+======================================================================
+FAIL: test_tangente_roulement_charge (vinkulum.test_noyau.AuditNoyau.test_tangente_roulement_charge)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/vinkulum-assemblage-avant/vinkulum/test_noyau.py", line 100, in test_tangente_roulement_charge
+    self.assertLess(max(e for _, e, _ in blocs), 1e-9, (h, blocs))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.00022185847393633494 not less than 1e-09 : (0.01, [('dyn/udot', 0.00022185847393633494, 2.0), ('dyn/lam', 7.223199815531492e-11, 1.000000000072232), ('con/udot', 9.671041745207278e-13, 0.909090909090909), ('con/lam', 0.0, 0.0)])
+
+======================================================================
+FAIL: test_amortissement_sous_precharge (vinkulum.test_noyau.AuditNoyau.test_amortissement_sous_precharge)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/vinkulum-assemblage-avant/vinkulum/test_noyau.py", line 107, in test_amortissement_sous_precharge
+    self.assertAlmostEqual(n.k_c_m_z()[1][5][5], 1., places=12)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: -0.0 != 1.0 within 12 places (1.0 difference)
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+FAILED (failures=2)

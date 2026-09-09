@@ -1,0 +1,16 @@
+{
+  "code": 0,
+  "commande": [
+    "/tmp/vinkulum-release-0.11.0-final/venv/bin/python",
+    "/tmp/vinkulum-energie-native-travail/ci/experience_masse_comparee.py",
+    "worker",
+    "/tmp/vinkulum-modeles-masse-consistante-2026-v2",
+    "/tmp/vinkulum-masse-comparee-2026/n32-masse_comparee-p2",
+    "--n",
+    "32",
+    "--variante",
+    "masse_comparee",
+    "--bibliotheque",
+    "/tmp/vinkulum-masse-comparee-2026/build/comparaison_masse.so"
+  ]
+}

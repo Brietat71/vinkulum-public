@@ -1,0 +1,20 @@
+{
+  "precision": [
+    70,
+    90
+  ],
+  "ecart_relatif_max": 0.0,
+  "controle": "colonnes et opérateurs masse/déformation/port, après conversion binary64",
+  "maxima": {
+    "masse": 0.0,
+    "deformation": 0.0,
+    "port": 0.0
+  },
+  "maxima_operateurs": {
+    "masse": 0.0,
+    "deformation": 0.0,
+    "port": 0.0
+  },
+  "fichier_sha256": "a0449dfdc2717f19ceec9d359bf848666a91fbdd37fbf31ad9e76771f0f7c05f",
+  "temps_hors_mesures_s": 59.40416428283788
+}

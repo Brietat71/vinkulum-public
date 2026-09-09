@@ -1,0 +1,6 @@
+{'dossier': 'simple-n32', 'code': 0, 'statut': 'termine', 'qualifie_champs': True, 'qualifie_controle': [True, True]}
+{'dossier': 'simple-n128', 'code': 0, 'statut': 'termine', 'qualifie_champs': True, 'qualifie_controle': [True, True]}
+{'dossier': 'simple-n512', 'code': 0, 'statut': 'termine', 'qualifie_champs': True, 'qualifie_controle': [True, True]}
+{'dossier': 'assemblage-n32', 'code': 0, 'statut': 'termine', 'qualifie_champs': True, 'qualifie_controle': [True, True]}
+{'dossier': 'assemblage-n128', 'code': 0, 'statut': 'termine', 'qualifie_champs': True, 'qualifie_controle': [True, True]}
+{'dossier': 'assemblage-n512', 'code': 0, 'statut': 'termine', 'qualifie_champs': True, 'qualifie_controle': [True, True]}

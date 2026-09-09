@@ -1,0 +1,44 @@
+{
+  "schema": "vinkulum_preuve_garde_1",
+  "date": "2026-09-09",
+  "portee": "Modele du garde exact et correspondance experimentale ; pas de preuve du code Rust compile ni du noyau entier",
+  "lean": "4.19.0",
+  "mathlib_commit": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+  "noyau_confronte": "0.14.1",
+  "wheel_sha256": "2201e2b0dba334940601fba2d2f0fc1aa2474dacffd9d2b40bbbed6e99c8c112",
+  "campagne": {
+    "cas_valides": 13314,
+    "invalides_lean_refuses": 7,
+    "divergences": 0,
+    "entrees_sha256": "4feb06279f65282fed0a5e78be7f86d208bf7c96615608ce0e91a494b94d7650"
+  },
+  "audit_axiomes": [
+    "'Vinkulum.garde_exact' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Vinkulum.decode_exact' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Vinkulum.decode_bornes' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Vinkulum.bit_implicite' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Vinkulum.boucle_exacte' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Vinkulum.decalage_exact' depends on axioms: [propext]",
+    "'Vinkulum.produit_u128' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Vinkulum.exposants_rust' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Vinkulum.tolerance_admise' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Vinkulum.fraction_masque' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Vinkulum.champ_masque' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Vinkulum.signe_decalage' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Vinkulum.refus_non_fini' depends on axioms: [propext]"
+  ],
+  "sources_sha256": {
+    "preuves/Audit.lean": "8c8199f4642825d22cfb1a7a3fe8306727ced1bca94eacb40e10642aa7c09e57",
+    "preuves/Main.lean": "cab2eca6577aacf4f0058306bca3e8ed449de77d563bc4e01527b8c400f67d70",
+    "preuves/VinkulumPreuves/Binary64.lean": "275dcbb8a4712856bc628b9ca94af710025d2ea2bbc58445502bcdcccd60c5fd",
+    "preuves/VinkulumPreuves/GardeVitesse.lean": "453bc125f7a3251978d718dd03c6a0bef80f586295fd4b05ca7828780f8a156c",
+    "preuves/VinkulumPreuves/Modele.lean": "f217c80b84b22dcaee3628bbd5174ad3e976870a69636e3e49ff14f6a5c6c4d5",
+    "preuves/VinkulumPreuves.lean": "117c7d6f4ccfe4e8f736eea66a0079fad665c54b869b3205430e848573ace934",
+    "preuves/contre_epreuves.py": "0e0aad3ad671d313be9505210ea8aab4cf6abc41e3e7daefca5baaeb7067ab52",
+    "preuves/lake-manifest.json": "8d8a7c1c4c7c9b24d6bb8ea3ec550424be3025aa3e40bff59db4c403823d9f80",
+    "preuves/lakefile.toml": "44626a283970f72704767bceec35b48945f072453c85f6a5b3b5145d099548e2",
+    "preuves/lean-toolchain": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea",
+    "preuves/verifier.sh": "e2bc64366b9b00f79bac6917aa109615cc1858e5f466adca852508d72389ee7d",
+    "src/certificat_vitesse.rs": "4d289271fdeea7dce81b714c8650e50be6f09929fdf254a94ff2588a960db19d"
+  }
+}

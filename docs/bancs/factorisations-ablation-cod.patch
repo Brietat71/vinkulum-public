@@ -1,0 +1,23 @@
+--- a/src/moindres_carres.rs
++++ b/src/moindres_carres.rs
+@@ -16,11 +15,0 @@
+-fn taille_bloc(m: usize, n: usize) -> usize {
+-    // Petites matrices : appliquer les réflecteurs individuellement évite
+-    // de préparer des produits matriciels par blocs pour quelques dizaines
+-    // de coordonnées. Les décisions de rang restent identiques.
+-    if m.max(n) <= 64 {
+-        1
+-    } else {
+-        qr::recommended_block_size::<f64>(m, n)
+-    }
+-}
+-
+@@ -84 +73 @@
+-    let bs = taille_bloc(m, n);
++    let bs = qr::recommended_block_size::<f64>(m, n);
+@@ -140 +129 @@
+-    let bz = taille_bloc(n, rang);
++    let bz = qr::recommended_block_size::<f64>(n, rang);
+@@ -265 +254 @@
+-        for a in [0.0_f64, 0.1, 1., 100., 1e12] {
++        for a in [0., 0.1, 1., 100., 1e12] {

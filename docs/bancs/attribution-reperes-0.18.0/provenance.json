@@ -1,0 +1,35 @@
+{
+  "sources": {
+    "ci/algebre_moments_em.py": "dc49c663e1d1677ed1d139f8e6b6c90036c46f969b7630487c3c49769a3f3f98",
+    "ci/defauts_moments_em.py": "0b6ddab3cf68051cfe97bc358c24ce9d73dd94906ec53daf6462c8690f8807ad",
+    "ci/attribue_moments_em.py": "88dee238f737ed5dafa938e88d6eedf6b9e01467b58b8e31435e5974a342be07",
+    "ci/attribue_rotation_em.py": "da072f973c67cc439d03e2253d7ea20da53375f5db3441e6999fa9793e9a09f9",
+    "ci/trace_moments_em.py": "ae4a60b1abe159cee7a2ac1cfb8b6a6907ae434d3cbb14cf4065952481fab1c8",
+    "ci/diagnostic_rotation.py": "b4377840cb8301ecef793ec0954c3b1380d64d24e2cb39cfca98d12bf78407a5",
+    "ci/compare_historique_reperes.py": "4aa89965248d6f7bfef37d612623e350ecd5396f42f6e5230b75c706288fa10d",
+    "src/lib.rs": "db375c55f569ecf22a53331e13e31c9b5115903c8c124f99ef78f473515c446a",
+    "src/numerique.rs": "6872219a7265400e069e8fa2317315376ee648ba08d83fbb97bb96410f79ffba",
+    "Cargo.toml": "71a034d649197a6933d71c59434f7d865c474a05ea8094b44b4d1abb0fe24335",
+    "Cargo.lock": "961519140133ec8df17ac9010b7b2a7daad827c32738d80e04a49c553641d93e",
+    "pyproject.toml": "0dd017e82d4cdf6b063d20cf8acfd25eaf2aa7f2d6f6a7d56ed252f9c47517f0"
+  },
+  "candidate_wheel": {
+    "nom": "vinkulum-0.18.0-cp314-cp314-manylinux_2_39_x86_64.whl",
+    "sha256": "18fdae8bfe8f653b186b5dadd20d4e939fd37ad8b23e865cb01ddbbc3c498925"
+  },
+  "candidate_extension_sha256": "2b28111334e0f3c9db914a99435525b9dea400c602c4f1766fc1f4892a6aa53a",
+  "parent_git": "8e2bc761458a12c62c399866f4e59a0bbba658db",
+  "note": "Candidat instrument\u00e9 ; la livraison finale et sa CI restent \u00e0 qualifier. Les traces conservent leur identit\u00e9 de roue candidate.",
+  "baseline_wheel": {
+    "nom": "vinkulum-0.17.0-cp314-cp314-manylinux_2_39_x86_64.whl",
+    "sha256": "c2835cd2b900f2ef2e1610e28f3960d4b4ed51f5246d3770d4ee6cce532a58a9"
+  },
+  "environnement": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "plateforme": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)"
+  }
+}

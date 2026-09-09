@@ -1,0 +1,17 @@
+test_budgets_et_rang_refuses (ci.test_juge_masse_couplee.JugeMasseCouplee.test_budgets_et_rang_refuses) ... ok
+test_defaut_rationnel_et_correction_relative (ci.test_juge_masse_couplee.JugeMasseCouplee.test_defaut_rationnel_et_correction_relative) ... FAIL
+test_jugement_champs_et_operateurs_couples (ci.test_juge_masse_couplee.JugeMasseCouplee.test_jugement_champs_et_operateurs_couples) ... ok
+
+======================================================================
+FAIL: test_defaut_rationnel_et_correction_relative (ci.test_juge_masse_couplee.JugeMasseCouplee.test_defaut_rationnel_et_correction_relative)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/vinkulum-energie-native-travail/ci/test_juge_masse_couplee.py", line 32, in test_defaut_rationnel_et_correction_relative
+    self.assertGreater(rho,0)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^
+AssertionError: Fraction(0, 1) not greater than 0
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.560s
+
+FAILED (failures=1)

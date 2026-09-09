@@ -1,0 +1,29 @@
+{
+  "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "source_sha256": "d828275a9085023f202ce416e73466d84ee4d3783ee515c4fd2d2e52af484219",
+  "observations": [
+    {
+      "parent_reserve_octets": 0,
+      "parent_rusage_kib": 18432,
+      "enfant": {
+        "rusage_kib": 18432,
+        "proc": [
+          "VmHWM:\t   13012 kB",
+          "VmRSS:\t   13012 kB"
+        ]
+      }
+    },
+    {
+      "parent_reserve_octets": 167772160,
+      "parent_rusage_kib": 182272,
+      "enfant": {
+        "rusage_kib": 182272,
+        "proc": [
+          "VmHWM:\t   13020 kB",
+          "VmRSS:\t   13020 kB"
+        ]
+      }
+    }
+  ],
+  "portee": "Diagnostic du compteur, hors campagne ; aucune mesure de mémoire des solveurs"
+}

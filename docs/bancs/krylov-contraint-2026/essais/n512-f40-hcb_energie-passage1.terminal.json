@@ -1,0 +1,17 @@
+{
+  "pid": 98,
+  "retour": 0,
+  "attente_terminee": true,
+  "date_utc": "2026-09-08T12:07:11.793407+00:00",
+  "processus_s": 7.621223193127662,
+  "commande": [
+    "/tmp/vinkulum-exudyn-1.11.0/venv/bin/python",
+    "/tmp/vinkulum-campagne-krylov-contraint-2026/sources/experience_krylov_contraint.py",
+    "--worker",
+    "/tmp/vinkulum-campagne-krylov-contraint-2026/entrees/n512-f40.npz",
+    "/tmp/vinkulum-confrontation-ports-0.10.0-corrigee/n512-f40.ref.npy",
+    "hcb_energie",
+    "512",
+    "/tmp/vinkulum-campagne-krylov-contraint-2026/essais/n512-f40-hcb_energie-passage1"
+  ]
+}

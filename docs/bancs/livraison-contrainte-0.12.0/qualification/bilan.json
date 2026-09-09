@@ -1,0 +1,62 @@
+[
+  {
+    "dossier": "simple-n32",
+    "code": 0,
+    "statut": "termine",
+    "qualifie_champs": true,
+    "qualifie_controle": [
+      true,
+      true
+    ]
+  },
+  {
+    "dossier": "simple-n128",
+    "code": 0,
+    "statut": "termine",
+    "qualifie_champs": true,
+    "qualifie_controle": [
+      true,
+      true
+    ]
+  },
+  {
+    "dossier": "simple-n512",
+    "code": 0,
+    "statut": "termine",
+    "qualifie_champs": true,
+    "qualifie_controle": [
+      true,
+      true
+    ]
+  },
+  {
+    "dossier": "assemblage-n32",
+    "code": 0,
+    "statut": "termine",
+    "qualifie_champs": true,
+    "qualifie_controle": [
+      true,
+      true
+    ]
+  },
+  {
+    "dossier": "assemblage-n128",
+    "code": 0,
+    "statut": "termine",
+    "qualifie_champs": true,
+    "qualifie_controle": [
+      true,
+      true
+    ]
+  },
+  {
+    "dossier": "assemblage-n512",
+    "code": 0,
+    "statut": "termine",
+    "qualifie_champs": true,
+    "qualifie_controle": [
+      true,
+      true
+    ]
+  }
+]

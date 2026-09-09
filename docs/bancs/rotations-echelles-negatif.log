@@ -1,0 +1,19 @@
+   Compiling vinkulum v0.6.2 (/root/vinkulum)
+    Finished `release` profile [optimized] target(s) in 23.94s
+     Running unittests src/lib.rs (target/release/deps/vinkulum-780341548dbf4323)
+
+running 1 test
+
+thread 'rotation::tests::echelles_reflexions_rang_nul_et_non_finis' (75) panicked at src/rotation.rs:80:17:
+scale=0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001, signe=-1, erreur=1.513183322593153, sigma=[1.5268235281281052e-200, 9.930943328425056e-201, 6.595088878673509e-201]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test rotation::tests::echelles_reflexions_rang_nul_et_non_finis ... FAILED
+
+failures:
+
+failures:
+    rotation::tests::echelles_reflexions_rang_nul_et_non_finis
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 50 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

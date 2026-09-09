@@ -1,0 +1,187 @@
+{
+  "schema": "vinkulum.qualification.modale.1",
+  "seuil": 1e-08,
+  "certification_spectrale": false,
+  "python": "3.14.7",
+  "plateforme": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "vinkulum": "0.17.0",
+  "roue": {
+    "nom": "vinkulum-0.17.0-cp314-cp314-manylinux_2_39_x86_64.whl",
+    "sha256": "c2835cd2b900f2ef2e1610e28f3960d4b4ed51f5246d3770d4ee6cce532a58a9"
+  },
+  "extensions": {
+    "_vinkulum.cpython-314-x86_64-linux-gnu.so": "57e730b8fb18772104ff48b99aaf98a14f2f62c72cd3ad78a3376c76cc5af54c"
+  },
+  "sources": {
+    "modes_creux.py": "a137192378e637f7079a29ef62ba9d1bb92150a8c4e88bdf138f2138171a8aba",
+    "modes_creux_avant_qualification.py": "032c57cfcc444fe77489ce87b66dfd2ef1051f7d2b13f93cf0a7de3c55e88710",
+    "modeles_modes.py": "36a640a12646d485518603cb0ece1c4b28e5dfefd55a89975d738e98ae726998",
+    "qualifie_modes_creux.py": "3e934aeff39e459c7399b68c7bd2f754590b297e1311b1624272066899196985"
+  },
+  "cas": [
+    {
+      "fichier": "console-4.json.gz",
+      "sha256": "1ad636947de9ba09d1a4cbf4ff7793a4090cdfc901bb7cee463218b286c51b39",
+      "erreur_relative_frequence": 1.0347278589506459e-13,
+      "orthogonalite_massique": 1.1102230246251565e-15,
+      "residu_physique_relatif": 2.2900880810968546e-16,
+      "contrainte_relative": 4.895672861023573e-15,
+      "controle_solveur": 1.1102204849046681e-16
+    },
+    {
+      "fichier": "console-16.json.gz",
+      "sha256": "9ccc9665a8756e126b209f559b06fe59e2fa80709718403a51541c749abd8146",
+      "erreur_relative_frequence": 5.3290705182007514e-14,
+      "orthogonalite_massique": 1.7763568394002505e-15,
+      "residu_physique_relatif": 1.6533601589110193e-16,
+      "contrainte_relative": 1.3780337993033882e-14,
+      "controle_solveur": 3.9952850056083055e-17
+    },
+    {
+      "fichier": "console-64.json.gz",
+      "sha256": "1b1e4858848bf2c0069feeb04e38bfc5ce11630c67f7f036b1f585f4f9f53095",
+      "erreur_relative_frequence": 2.617905892066119e-13,
+      "orthogonalite_massique": 6.661338147750939e-16,
+      "residu_physique_relatif": 1.0244025886038619e-16,
+      "contrainte_relative": 4.6355416751047334e-14,
+      "controle_solveur": 9.063840163955952e-17
+    },
+    {
+      "fichier": "console-256.json.gz",
+      "sha256": "cca0c9b8fc30a41a8c33d216cb9f6256607a9303a84c2d69d879ea5893e64007",
+      "erreur_relative_frequence": 3.5883518378909685e-12,
+      "orthogonalite_massique": 1.1102230246251565e-15,
+      "residu_physique_relatif": 5.130016777909755e-16,
+      "contrainte_relative": 9.682058575335074e-16,
+      "controle_solveur": 7.287255196790205e-16
+    },
+    {
+      "fichier": "console-512.json.gz",
+      "sha256": "b74fb969083d08a47592e024c2977f9dfe90b9e3a6e48e150bad1b07fed461e7",
+      "erreur_relative_frequence": 1.3075096561010469e-12,
+      "orthogonalite_massique": 1.1102230246251565e-15,
+      "residu_physique_relatif": 1.599239692206343e-16,
+      "contrainte_relative": 1.7958335355404496e-13,
+      "controle_solveur": 8.405350475236531e-16
+    },
+    {
+      "fichier": "console-1024.json.gz",
+      "sha256": "415447fa29520dfc8f6fabd1269149393f5fa2ddb7c9b3086018a34cbdcbfd1b",
+      "erreur_relative_frequence": 4.92756946357531e-11,
+      "orthogonalite_massique": 1.5543122344752192e-15,
+      "residu_physique_relatif": 5.973868928190714e-16,
+      "contrainte_relative": 2.531523797348092e-13,
+      "controle_solveur": 9.279112254195368e-16
+    },
+    {
+      "fichier": "articulee-4.json.gz",
+      "sha256": "20f51678aedcb02c757d9d77fffbec66bcd79735b731a59143a9f67d90d78ed9",
+      "erreur_relative_frequence": 1.9984014443252818e-15,
+      "orthogonalite_massique": 2.220446049250313e-16,
+      "residu_physique_relatif": 8.699136096066472e-16,
+      "contrainte_relative": 2.125576569757477e-16,
+      "controle_solveur": 1.6653345369377348e-16
+    },
+    {
+      "fichier": "articulee-16.json.gz",
+      "sha256": "ddf43225beb95c95ee882fd9c365ee903a73c243ba21a49bf5857dd7d6f72cd4",
+      "erreur_relative_frequence": 2.97983859809392e-13,
+      "orthogonalite_massique": 6.661338147750939e-16,
+      "residu_physique_relatif": 6.67804269101318e-14,
+      "contrainte_relative": 1.3859553966623863e-15,
+      "controle_solveur": 1.511685365048816e-16
+    },
+    {
+      "fichier": "articulee-64.json.gz",
+      "sha256": "ac1b5ed70f8ba304a5d067c6d3473c0e7a28d45d61d6d4fcacc0aa2e3b0bb9bf",
+      "erreur_relative_frequence": 1.6897594434794883e-13,
+      "orthogonalite_massique": 6.661338147750939e-16,
+      "residu_physique_relatif": 2.1165574559980306e-12,
+      "contrainte_relative": 1.442696907994264e-14,
+      "controle_solveur": 1.1050745393712688e-16
+    },
+    {
+      "fichier": "articulee-256.json.gz",
+      "sha256": "ca4a844eb676e42a43a26741ba3b6d6e0cab191fe6bd07fe9a9e2151869e6469",
+      "erreur_relative_frequence": 3.774758283725532e-14,
+      "orthogonalite_massique": 1.1102230246251565e-15,
+      "residu_physique_relatif": 3.000746557421876e-11,
+      "contrainte_relative": 7.587799106285465e-14,
+      "controle_solveur": 1.4364857275944825e-16
+    },
+    {
+      "fichier": "articulee-512.json.gz",
+      "sha256": "8b439355f30a9e5b24e7ef7d946fff7b483341c7256d1cdcb4af0c39604ed55f",
+      "erreur_relative_frequence": 8.881784197001252e-15,
+      "orthogonalite_massique": 1.3322676295501878e-15,
+      "residu_physique_relatif": 4.065457260023401e-10,
+      "contrainte_relative": 6.808411163226907e-13,
+      "controle_solveur": 1.1102230246251399e-16
+    },
+    {
+      "fichier": "articulee-1024.json.gz",
+      "sha256": "a9f34ccd31c48f0ad89c85565bbe02073ee7621792e8b8cca4fccee117b5e84d",
+      "erreur_relative_frequence": 7.771561172376096e-15,
+      "orthogonalite_massique": 4.440892098500626e-16,
+      "residu_physique_relatif": 6.2565932014520465e-09,
+      "contrainte_relative": 4.755759504734307e-13,
+      "controle_solveur": 2.7876985877216997e-16
+    },
+    {
+      "fichier": "gravite-4.json.gz",
+      "sha256": "6c2614d77f80f06bf5fef88a1597c168702b016d585a8f6af46638aaaf4f7e57",
+      "erreur_relative_frequence": 3.774758283725532e-15,
+      "orthogonalite_massique": 5.551115123125783e-16,
+      "residu_physique_relatif": 5.647461818767897e-17,
+      "contrainte_relative": 2.0564784094662514e-16,
+      "controle_solveur": 1.1693426324183588e-16
+    },
+    {
+      "fichier": "gravite-16.json.gz",
+      "sha256": "8c9f0c5c27cb7b28d59dcd1df889a06abd905e84eb9746b95d4b0abf88f2cc05",
+      "erreur_relative_frequence": 1.9984014443252818e-15,
+      "orthogonalite_massique": 1.1102230246251565e-15,
+      "residu_physique_relatif": 9.35436422807134e-16,
+      "contrainte_relative": 8.97674241607756e-16,
+      "controle_solveur": 1.1102230246251565e-16
+    },
+    {
+      "fichier": "gravite-64.json.gz",
+      "sha256": "5ea9f915292909945133b4c6828144fd26c0163b39b698aa19941ae507236388",
+      "erreur_relative_frequence": 1.4432899320127035e-15,
+      "orthogonalite_massique": 1.7763568394002505e-15,
+      "residu_physique_relatif": 9.331803823882496e-15,
+      "contrainte_relative": 4.124913144011054e-15,
+      "controle_solveur": 8.304988641238964e-17
+    },
+    {
+      "fichier": "gravite-256.json.gz",
+      "sha256": "9efac4e102bcb4605231dfd88b74b1305630c21b71f8fafd6ffc7ccaef22c969",
+      "erreur_relative_frequence": 1.7763568394002505e-15,
+      "orthogonalite_massique": 4.440892098500626e-16,
+      "residu_physique_relatif": 1.8390512931161456e-13,
+      "contrainte_relative": 5.936213002853461e-14,
+      "controle_solveur": 2.193069944395054e-16
+    },
+    {
+      "fichier": "gravite-512.json.gz",
+      "sha256": "0f247e86618c3257b5b2c42f4edd2fa3b454f65a8262c713b52969ec915676b4",
+      "erreur_relative_frequence": 3.3306690738754696e-15,
+      "orthogonalite_massique": 6.661338147750939e-16,
+      "residu_physique_relatif": 4.804806734563954e-13,
+      "contrainte_relative": 2.1262458172473064e-12,
+      "controle_solveur": 3.246146331985958e-16
+    },
+    {
+      "fichier": "gravite-1024.json.gz",
+      "sha256": "c27b176625f09188929b9eaed9b9b0820e1d9052136671f9e8ffb1fbf4e09000",
+      "erreur_relative_frequence": 8.43769498715119e-15,
+      "orthogonalite_massique": 1.3322676295501878e-15,
+      "residu_physique_relatif": 1.2811897902473015e-12,
+      "contrainte_relative": 6.284454575581396e-13,
+      "controle_solveur": 1.9394343986692264e-16
+    }
+  ]
+}

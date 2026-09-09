@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/tmp/vinkulum-energie-native-travail/ci/controle_livraison_contrainte.py", line 136, in <module>
+    args=p.parse_args();raise SystemExit(worker(args) if args.action=='worker' else campagne(args))
+                                         ~~~~~~^^^^^^
+  File "/tmp/vinkulum-energie-native-travail/ci/controle_livraison_contrainte.py", line 33, in worker
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'

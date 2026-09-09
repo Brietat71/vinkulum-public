@@ -1,0 +1,44 @@
+[
+  {
+    "dossier": "simple-n32",
+    "code": 1,
+    "statut": "crash",
+    "qualifie_champs": null,
+    "qualifie_controle": null
+  },
+  {
+    "dossier": "simple-n128",
+    "code": 1,
+    "statut": "crash",
+    "qualifie_champs": null,
+    "qualifie_controle": null
+  },
+  {
+    "dossier": "simple-n512",
+    "code": 1,
+    "statut": "crash",
+    "qualifie_champs": null,
+    "qualifie_controle": null
+  },
+  {
+    "dossier": "assemblage-n32",
+    "code": 1,
+    "statut": "crash",
+    "qualifie_champs": null,
+    "qualifie_controle": null
+  },
+  {
+    "dossier": "assemblage-n128",
+    "code": 1,
+    "statut": "crash",
+    "qualifie_champs": null,
+    "qualifie_controle": null
+  },
+  {
+    "dossier": "assemblage-n512",
+    "code": 1,
+    "statut": "crash",
+    "qualifie_champs": null,
+    "qualifie_controle": null
+  }
+]

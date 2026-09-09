@@ -1,0 +1,36 @@
+{
+  "extension_sha256": "a7c78411e52b8d82634fd336c0ce911a773de2e502a3e619d23738c4010b7991",
+  "sources_sha256": {
+    "src/lib.rs": "85c2f79626483448c7d9f636aca6f6d98b9d57bb2720ef782a0b8023b4ae0e1c",
+    "src/tangent.rs": "1c16cb98dfe7d2ef6ad5d02538db439bc700020746696f4eaa8eebc529796621",
+    "ci/diagnostic_statut_statique.py": "531344cff7942e5016a29ed014f4b42ca0564145814978abea900036d1312e23",
+    "ci/confronte_mbdyn.py": "5b335dc114daad7e1739ec66ea2426245373123c559079c9eb8a3d6872e3a31c",
+    "ci/mesure_statique.py": "cc971d8cd0e6a2d92f4ef4ea8f794b31b0d9ce0e78c1c2cb729cba7635659bdf"
+  },
+  "diagnostic_sha256": "977e1ce62097b83347bb785e1b5665776b1d5b78d172f85d577ced1e30b7ddaa",
+  "temoin_ancien": {
+    "extension_sha256": "5a4b6df88dd6cf3aad2f48340324818af108bc6ec4de77d924cb67f9b135348b",
+    "retour": [
+      5e-07,
+      10
+    ],
+    "avertissements": [],
+    "residu_libre": 5e-07
+  },
+  "script_temoin_ancien": "import hashlib,json,warnings\nfrom pathlib import Path\nfrom vinkulum import Noyau,_vinkulum\nn=Noyau([0.,0.,0.])\nn.corps('libre',1.,[1.,0.,0.,0.,1.,0.,0.,0.,1.],[0.,0.,0.])\nn.effort(0,[5e-7,0.,0.],[0.,0.,0.])\nwith warnings.catch_warnings(record=True) as caught:\n warnings.simplefilter('always')\n result=n.statique(tol=1e-12,iters=12,paliers_max=1)\nprint(json.dumps({'extension_sha256':hashlib.sha256(Path(_vinkulum.__file__).read_bytes()).hexdigest(),\n 'retour':result,'avertissements':[str(w.message) for w in caught],\n 'residu_libre':max(map(abs,n.residu_statique()))}))\n",
+  "ancien_lib_sha256": "2e59476113e8db14c1bc0d06d5f9f8ece5243609c798b8c9703f86f766746da6",
+  "ancien_lib_archive_sha256": "c9f73f748acf44cc1e3b89939d62488daff2f218e5104c21b42b03225dbb150c",
+  "test_sha256": "46c28072f621ff9d49f42f97703e5390e975b65ecccac6eeaaeb3c95ba356b8f",
+  "checks": {
+    "fmt": "",
+    "clippy": "    Checking vinkulum v0.6.2 (/root/vinkulum)\n    Finished `release` profile [optimized] target(s) in 1.69s\n",
+    "rust": "\nrunning 26 tests\n..........................\ntest result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+    "python": "..................................................\n----------------------------------------------------------------------\nRan 50 tests in 3.111s\n\nOK\n",
+    "verification": "╔═ vérification : 41 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-bad0xgli\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    robustesse — 0.37 s\n║ OK    validation_scores — 0.37 s\n║ OK    assemblage — 0.37 s\n║ OK    convergence — 0.42 s\n║ OK    amortissement — 0.52 s\n║ OK    superelement — 0.36 s\n║ OK    bennett — 0.36 s\n║ OK    toupie — 0.82 s\n║ OK    vis_ecrou — 0.52 s\n║ OK    liaisons_unilaterales — 0.77 s\n║ OK    determinisme — 1.42 s\n║ OK    six_barres — 0.77 s\n║ OK    invariance_unites — 0.57 s\n║ OK    srscm — 2.37 s\n║ OK    lateral_buckling — 2.42 s\n║ OK    _regressions — 3.47 s\n║ OK    modeles_mal_poses — 0.31 s\n║ OK    quatre_barres_flexible — 2.27 s\n║ OK    non_holonome — 0.36 s\n║ OK    coulomb_pente — 0.52 s\n║ OK    lecteurs_casses — 0.36 s\n║ OK    treillis_de_boucles — 2.47 s\n║ OK    gyroscopique_tangent — 0.36 s\n║ OK    trim.demo — 0.16 s\n║ OK    audit_jacobien — 0.37 s\n║ OK    invariances — 1.67 s\n║ OK    reduction.demo — 0.27 s\n║ OK    arbre_tournant — 4.02 s\n║ OK    accords — 1.52 s\n║ OK    floquet.demo — 0.82 s\n║ OK    urdf.demo — 0.92 s\n║ OK    mjcf.demo — 0.87 s\n║ OK    sparsite — 2.17 s\n║ OK    convergence.demo — 1.52 s\n║ OK    adjoint_temps.demo — 4.62 s\n║ OK    campagne.demo — 4.12 s\n║ OK    domaines.demo — 8.32 s\n║ OK    statique — 14.49 s\n║ OK    kapitza — 20.96 s\n║ OK    echelle — 2.02 s\n║ OK    refus_gardes — 0.36 s\n╚ vérification OK — 41/41 cas, 23.87 s\n",
+    "rapide": "╔═ bancs : 46 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-c5207ubn\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    engrenage — 0.37 s\n║ OK    pendule — 0.42 s\n║ OK    bielle — 0.47 s\n║ OK    double_pendule — 0.52 s\n║ OK    quatre_barres — 0.62 s\n║ OK    toupie — 0.67 s\n║ OK    reduction.demo — 0.26 s\n║ OK    poutre — 0.77 s\n║ OK    contact.capsules — 0.11 s\n║ OK    contact.boites — 0.11 s\n║ OK    contact.cylindres — 0.11 s\n║ OK    rotor.demo — 0.92 s\n║ OK    contact.multiples — 0.31 s\n║ OK    floquet.demo — 0.82 s\n║ OK    contact.capsules_primitives — 0.87 s\n║ OK    phi_dot — 0.66 s\n║ OK    bifurcation — 0.72 s\n║ OK    contact.nonlisse — 1.42 s\n║ OK    oye — 0.41 s\n║ OK    leishman_beddoes — 0.52 s\n║ OK    peters_he — 0.36 s\n║ OK    ggl_boucles — 2.17 s\n║ OK    theodorsen_complet — 1.57 s\n║ OK    pitt_peters — 0.36 s\n║ OK    inflow_carte — 1.87 s\n║ OK    instationnaire — 0.82 s\n║ OK    adaptatif — 4.87 s\n║ OK    energie_moment — 0.92 s\n║ OK    rotation.demo — 7.54 s\n║ OK    sensibilite.demo — 7.79 s\n║ OK    raideur_gravite — 0.37 s\n║ OK    amortis — 0.37 s\n║ OK    modes_console — 0.42 s\n║ OK    coque — 0.26 s\n║ OK    multirythme — 3.12 s\n║ OK    dissipation — 5.58 s\n║ OK    echelle — 0.47 s\n║ OK    pale_elastique — 2.52 s\n║ OK    andrews — 3.73 s\n║ OK    noether — 9.99 s\n║ OK    moment_projete — 16.35 s\n║ OK    contact.penalite_ccd — 31.29 s\n║ OK    seuils — 97.69 s\n║ OK    sillage — 172.27 s\n║ OK    contact.maillages — 0.82 s\n║ OK    contact.appariement — 0.37 s\n╚ bancs OK — 46/46 cas, 182.34 s\n",
+    "contact": "╔═ contacts : 9 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-6gols9u2\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    capsules — 0.17 s\n║ OK    boites — 0.17 s\n║ OK    cylindres — 0.17 s\n║ OK    multiples — 0.37 s\n║ OK    capsules_primitives — 0.87 s\n║ OK    nonlisse — 1.52 s\n║ OK    penalite_ccd — 168.39 s\n║ OK    maillages — 0.82 s\n║ OK    appariement — 0.57 s\n╚ contacts OK — 9/9 cas, 169.79 s\n",
+    "api": "╚═ référence d'API à jour (184 entrées)\n",
+    "cibles": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.003s\n\nOK\n",
+    "programme_mesure": "Rapports du programme de mesure : charge pleine stricte et 50 paliers contrôlés.\nArrêts sur stagnation : 49\n"
+  }
+}

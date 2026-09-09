@@ -1,0 +1,33 @@
+{
+  "version": "0.7.1",
+  "python": "3.14.7",
+  "numpy": "2.5.2",
+  "scipy": "1.18.1",
+  "module": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+  "extension_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+  "import_hors_depot": true,
+  "exemple_readme_execute": true,
+  "angle_readme_rad": 0.02,
+  "statique_stricte": {
+    "statut": "tolerance",
+    "tol": 1e-10,
+    "strict": true,
+    "residu_libre": 0.0,
+    "contraintes": 0.0,
+    "echelle_force": 2.0,
+    "residu_relatif": 0.0,
+    "tolerance_finale_atteinte": true,
+    "evaluations": 2,
+    "tentatives": 1,
+    "paliers": 1,
+    "palier": 1,
+    "paliers_stagnation": 0,
+    "etat_restaure": false,
+    "message": null
+  },
+  "etat_precis_restaure": true,
+  "poutre_integree_chargee": true,
+  "panda_corps": 11,
+  "modeles_mjcf": 21,
+  "modeles_urdf": 9
+}

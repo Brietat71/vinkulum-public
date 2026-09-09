@@ -1,0 +1,55 @@
+{
+  "source": "docs/recherche/champ-interieur-2026/report-source.md",
+  "source_sha256": "daf87f5681c54e69d69c2bb759da6c4d2046c1c4ec0528b5989b44d0585f3dd8",
+  "pdf": "docs/CHAMP_INTERIEUR_VINKULUM_2026.pdf",
+  "pdf_sha256": "11dc4936ff6cf7aa8e69e27bdb9b72a55a2a253512b38767154a80bc76dc5cd9",
+  "bytes": 67021,
+  "headings": [
+    {
+      "title": "Vinkulum : des interfaces au champ physique",
+      "page": 1
+    },
+    {
+      "title": "1. Du résidu au champ : preuve locale",
+      "page": 2
+    },
+    {
+      "title": "2. Assembler les garanties, contrôler une observable",
+      "page": 3
+    },
+    {
+      "title": "3. Cinq expériences, y compris les refus",
+      "page": 4
+    },
+    {
+      "title": "4. Passer au noyau sans perdre l'énergie physique",
+      "page": 5
+    },
+    {
+      "title": "Sources et accès",
+      "page": 6
+    }
+  ],
+  "pages": 6,
+  "pages_inspectees_visuellement": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "liens_externes": [
+    "https://arxiv.org/pdf/math/0305006",
+    "https://doi.org/10.1137/22M148402X",
+    "https://arxiv.org/pdf/math/0305006",
+    "https://ris.utwente.nl/ws/portalfiles/portal/168414349/15m1009603.pdf",
+    "https://ris.utwente.nl/ws/portalfiles/portal/168414349/15m1009603.pdf",
+    "https://arxiv.org/pdf/1706.09179",
+    "https://arxiv.org/pdf/1710.02104",
+    "https://arxiv.org/pdf/1710.02104",
+    "https://doi.org/10.1137/22M148402X",
+    "https://www.math.u-bordeaux.fr/~ttaddei/data/KSTT_arxiv.pdf"
+  ],
+  "extraction_texte_verifiee": true
+}

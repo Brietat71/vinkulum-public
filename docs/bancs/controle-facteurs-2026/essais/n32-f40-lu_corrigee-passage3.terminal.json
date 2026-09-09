@@ -1,0 +1,17 @@
+{
+  "pid": 42,
+  "retour": 0,
+  "attente_terminee": true,
+  "date_utc": "2026-09-08T13:42:38.736262+00:00",
+  "processus_s": 0.6435330619569868,
+  "commande": [
+    "/tmp/vinkulum-release-0.11.0-final/venv/bin/python",
+    "/tmp/vinkulum-campagne-controle-facteurs-2026/sources/experience_controle_facteurs.py",
+    "--worker",
+    "/tmp/vinkulum-campagne-controle-facteurs-2026/entrees/n32-f40.npz",
+    "/tmp/vinkulum-confrontation-ports-0.10.0-corrigee/n32-f40.ref.npy",
+    "lu_corrigee",
+    "32",
+    "/tmp/vinkulum-campagne-controle-facteurs-2026/essais/n32-f40-lu_corrigee-passage3"
+  ]
+}

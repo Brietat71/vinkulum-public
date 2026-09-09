@@ -1,0 +1,729 @@
+[
+  {
+    "local": "python/vinkulum/donnees/go1.xml",
+    "upstream": "unitree_go1/go1.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "d5a7466784c8e72fd174cc7fa5a92754a1a0a6d458a1dec79e7ca0abc9525c4a",
+    "licenses": [
+      "unitree_go1/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/unitree_go1/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/unitree_go1/LICENSE": "2b794acf1e250f5545ae5a47d81e5685ea5488ce077d1087ed8be5f81e9ba5c0"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/ur5e.xml",
+    "upstream": "universal_robots_ur5e/ur5e.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "ffd0a7b336d3c2d27c35a15cc0d4aaa95196769aca190ac8d6522d3318c345a0",
+    "licenses": [
+      "universal_robots_ur5e/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/universal_robots_ur5e/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/universal_robots_ur5e/LICENSE": "5ec71ccf66c8d03261448f2441a586765b97f2248c860a1ae19689fb1c45cee6"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/op3.xml",
+    "upstream": "robotis_op3/op3.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "02e07fe80bb0352a0987e14e41be496d045a070dd70444a8277b9272105e44ac",
+    "licenses": [
+      "robotis_op3/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/robotis_op3/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/robotis_op3/LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/sawyer.xml",
+    "upstream": "rethink_robotics_sawyer/sawyer.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "82bb258641ac945772475a52917a55db7ed67eb6a5cc9ee2446b0fb9ac7d6ffd",
+    "licenses": [
+      "rethink_robotics_sawyer/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/rethink_robotics_sawyer/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/rethink_robotics_sawyer/LICENSE": "3d28a9482e06088be8c897b1f436652b1fc69485490c2e4ce914c23b04cd38fa"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/x2.xml",
+    "upstream": "skydio_x2/x2.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "5e8f14afe735d07e0b299444d68927058a757149761313c2f0d2f88264c2ae7b",
+    "licenses": [
+      "skydio_x2/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/skydio_x2/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/skydio_x2/LICENSE": "d42cae9a0f292b7a713597ba26e1e1e23d50df906c488f0d36fd3538af200bc1"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/right_hand.xml",
+    "upstream": "shadow_hand/right_hand.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "ac14d09dd12b62c3ca62233d0ac646101cc718146dda76e26d0b993a91abf399",
+    "licenses": [
+      "shadow_hand/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/shadow_hand/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/shadow_hand/LICENSE": "d42cae9a0f292b7a713597ba26e1e1e23d50df906c488f0d36fd3538af200bc1"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/stretch.xml",
+    "upstream": "hello_robot_stretch/stretch.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "4f33408242b90acbe4ca0f4b544ca5efae4f423c92ef71358f0977ec0b03a316",
+    "licenses": [
+      "hello_robot_stretch/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/hello_robot_stretch/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/hello_robot_stretch/LICENSE": "bcc1dc8fcec14cbef3dc8f10b6f6d2fd2d81c0fb5c0e3657e43e34d3d38f9072"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/xarm7.xml",
+    "upstream": "ufactory_xarm7/xarm7.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "ac6b369e0b9c5abdaca55d2c6c048102f2e1133bf550b059a8622afa4b9da433",
+    "licenses": [
+      "ufactory_xarm7/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/ufactory_xarm7/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/ufactory_xarm7/LICENSE": "4fe659325706d0fc41592c8743d085a0bdf778056249f2a108943d22be916fb2"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/panda.xml",
+    "upstream": "franka_emika_panda/panda.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "96ad67da03710f17f798c9478fd9e9efdf24a3bf8359f05e456dd9fb158ea273",
+    "licenses": [
+      "franka_emika_panda/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/franka_emika_panda/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/franka_emika_panda/LICENSE": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/anymal_c.xml",
+    "upstream": "anybotics_anymal_c/anymal_c.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "25dfeab8913aff6f69877a85faa5f2dfa15c56a0d553cd99dbd46a4584067d8b",
+    "licenses": [
+      "anybotics_anymal_c/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/anybotics_anymal_c/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/anybotics_anymal_c/LICENSE": "de5f42e8397f2e1c2339f41b00d2e4e64d09ad8c5b9251be9388445ae7f6b41d"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/g1.xml",
+    "upstream": "unitree_g1/g1.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "3c2616550a31f33e84d3c80b8e913ac5618c8888019b0c9490dae93493e647f3",
+    "licenses": [
+      "unitree_g1/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/unitree_g1/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/unitree_g1/LICENSE": "98335465f43a20b5850e4651db6e74c4aa1e9fc8e8813d38f345178045c0da50"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/fruitfly.xml",
+    "upstream": "flybody/fruitfly.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "35541d5312f71e7c96156c345cd90918867513a2b3dafbb07b8684ee59b6f4dc",
+    "licenses": [
+      "flybody/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/flybody/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/flybody/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/iiwa14.xml",
+    "upstream": "kuka_iiwa_14/iiwa14.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "ee7e6d796a9f8642de6097f95077281d15f43678dc5285beafeda99b84cf9ef5",
+    "licenses": [
+      "kuka_iiwa_14/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/kuka_iiwa_14/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/kuka_iiwa_14/LICENSE": "c0ddafa1e3b5f0edcb02b6ef477a9792e3e423b8fcd20abbd7654f4005e21ef8"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/spot.xml",
+    "upstream": "boston_dynamics_spot/spot.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "f2643c93832f0aaadb29e8e4226357ba89bf1c58e39c373db231bb203406274b",
+    "licenses": [
+      "boston_dynamics_spot/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/boston_dynamics_spot/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/boston_dynamics_spot/LICENSE": "705a95c1a2febfd6058b68b2e99a98e8d016c01d2cf39bb764aaae7557afa8cd"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/h1.xml",
+    "upstream": "unitree_h1/h1.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "4d15bc381ee8113722fe514a6fc0059988cd114c2bedfadf2e6279b41ef0810d",
+    "licenses": [
+      "unitree_h1/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/unitree_h1/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/unitree_h1/LICENSE": "98335465f43a20b5850e4651db6e74c4aa1e9fc8e8813d38f345178045c0da50"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/cf2.xml",
+    "upstream": "bitcraze_crazyflie_2/cf2.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "c1260dd47cded49edd5c1c02226529a5452a73f70000515f83bf223814037933",
+    "licenses": [
+      "bitcraze_crazyflie_2/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/bitcraze_crazyflie_2/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/bitcraze_crazyflie_2/LICENSE": "fc2e3286b47f415c0724d1f82047501d738ef60cff3779b2f3998ea75d8aae99"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/aloha.xml",
+    "upstream": "aloha/aloha.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "68430b29719bda1b75e63f540953f81991bc3fd136bdf0a43bbe3e04393b78d3",
+    "licenses": [
+      "aloha/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/aloha/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/aloha/LICENSE": "21868447315ac2b10e592d08958c1035b19a32cf39e9165b23033f68390098cb"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/ur10e.xml",
+    "upstream": "universal_robots_ur10e/ur10e.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "a8f709df340788033d497ff7d892fdecab4f6cc9c36299a00f57efa9f25e0744",
+    "licenses": [
+      "universal_robots_ur10e/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/universal_robots_ur10e/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/universal_robots_ur10e/LICENSE": "5ec71ccf66c8d03261448f2441a586765b97f2248c860a1ae19689fb1c45cee6"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/barkour_v0.xml",
+    "upstream": "google_barkour_v0/barkour_v0.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "73b4f298420acf81a91c39f0ec735ce65946a3e6a747f45931383b3db583d1c3",
+    "licenses": [
+      "google_barkour_v0/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/google_barkour_v0/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/google_barkour_v0/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/wx250s.xml",
+    "upstream": "trossen_wx250s/wx250s.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "2475c1f4a4c085d370d3e7e43d56377d07bd44de3bace9371f1b5f08de00c27b",
+    "licenses": [
+      "trossen_wx250s/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/trossen_wx250s/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/trossen_wx250s/LICENSE": "21868447315ac2b10e592d08958c1035b19a32cf39e9165b23033f68390098cb"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/2f85.xml",
+    "upstream": "robotiq_2f85/2f85.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "d48aca5f9151798ffd38111ce4e8b2081f3ec2d4f525161b33643451580010de",
+    "licenses": [
+      "robotiq_2f85/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/robotiq_2f85/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/robotiq_2f85/LICENSE": "3d5edd18d1e22a17666e9bb84270171ed5ac90b192d24e0177fd171708ea2316"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/a1.xml",
+    "upstream": "unitree_a1/a1.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "492978cb7700b0064bcefbc2b93dba651a828cf9212df91d56e951666890807c",
+    "licenses": [
+      "unitree_a1/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/unitree_a1/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/unitree_a1/LICENSE": "2b794acf1e250f5545ae5a47d81e5685ea5488ce077d1087ed8be5f81e9ba5c0"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/menagerie/cassie.xml",
+    "upstream": "agility_cassie/cassie.xml",
+    "commit": "8161bba264d7fa7c99ca301e91e7fb44737676ad",
+    "identical": true,
+    "sha256": "92ec84d23a0f62a848b4d646fc9197cad3b0c518bb6cb1aafe241b3db88dd885",
+    "licenses": [
+      "agility_cassie/LICENSE"
+    ],
+    "license_files": [
+      "python/vinkulum/licences/modeles/agility_cassie/LICENSE"
+    ],
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "license_sha256": {
+      "python/vinkulum/licences/modeles/agility_cassie/LICENSE": "66a031b71b6164c91683ccf2929faef82b3df5e51844322807fd7dc5cf238c38"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/r2d2.urdf",
+    "upstream": "data/r2d2.urdf",
+    "commit": "63c4d67e337017f9d8b298c900e9aabdb69296e7",
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "identical": true,
+    "sha256": "1e079b050af5e0ba942d6156e8a5f688a2d55a6a749252599a8483b0545405f8",
+    "license_files": [
+      "python/vinkulum/licences/bullet/data/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/husky/license.txt",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/bullet/data/LICENSE.txt": "7b4b1fc66a8579fa4eaed185d39f16ab45295c7b4aa8fd533f34f9f8cda052a3",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt": "1f1e0ffb393c55d2b0a73242484b32087ceb40327b10434df30e02dc8aa41570",
+      "python/vinkulum/licences/bullet/data/husky/license.txt": "07a0881843ec604c50ca35cf23759a917554343f14f9cbcd9d71615e6d72665a",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt": "eee857362a707db2b7a4ad268388d4b0fb3e6f8faf670f25be3c95582f51d9b1",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt": "2697d975d9e601c9c187e8387b84777b0fbc00923f3c1b02a8c2c3db8a3a4aa4",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt": "9e0bf5d85579f45d217c600369f5904e380111733062b1ba4d4a11fb804e423a",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt": "bec0d1545b2e4cbe2b862af479bbd186906ff41c71ade24fb76541524453295c"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/kuka_iiwa.urdf",
+    "upstream": "data/kuka_iiwa/model.urdf",
+    "commit": "63c4d67e337017f9d8b298c900e9aabdb69296e7",
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "identical": true,
+    "sha256": "5c13c5b4bb88b5265223e0ec9a7706cbf81e9bb21cc0e18534273755a041788c",
+    "license_files": [
+      "python/vinkulum/licences/bullet/data/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/husky/license.txt",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/bullet/data/LICENSE.txt": "7b4b1fc66a8579fa4eaed185d39f16ab45295c7b4aa8fd533f34f9f8cda052a3",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt": "1f1e0ffb393c55d2b0a73242484b32087ceb40327b10434df30e02dc8aa41570",
+      "python/vinkulum/licences/bullet/data/husky/license.txt": "07a0881843ec604c50ca35cf23759a917554343f14f9cbcd9d71615e6d72665a",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt": "eee857362a707db2b7a4ad268388d4b0fb3e6f8faf670f25be3c95582f51d9b1",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt": "2697d975d9e601c9c187e8387b84777b0fbc00923f3c1b02a8c2c3db8a3a4aa4",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt": "9e0bf5d85579f45d217c600369f5904e380111733062b1ba4d4a11fb804e423a",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt": "bec0d1545b2e4cbe2b862af479bbd186906ff41c71ade24fb76541524453295c"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/urdfs/racecar.urdf",
+    "upstream": "data/racecar/racecar.urdf",
+    "commit": "63c4d67e337017f9d8b298c900e9aabdb69296e7",
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "identical": true,
+    "sha256": "38d641dc8974dd14efadedb2e2dc518b7a98f99c0b354103404b4ad829d5db3e",
+    "license_files": [
+      "python/vinkulum/licences/bullet/data/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/husky/license.txt",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/bullet/data/LICENSE.txt": "7b4b1fc66a8579fa4eaed185d39f16ab45295c7b4aa8fd533f34f9f8cda052a3",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt": "1f1e0ffb393c55d2b0a73242484b32087ceb40327b10434df30e02dc8aa41570",
+      "python/vinkulum/licences/bullet/data/husky/license.txt": "07a0881843ec604c50ca35cf23759a917554343f14f9cbcd9d71615e6d72665a",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt": "eee857362a707db2b7a4ad268388d4b0fb3e6f8faf670f25be3c95582f51d9b1",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt": "2697d975d9e601c9c187e8387b84777b0fbc00923f3c1b02a8c2c3db8a3a4aa4",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt": "9e0bf5d85579f45d217c600369f5904e380111733062b1ba4d4a11fb804e423a",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt": "bec0d1545b2e4cbe2b862af479bbd186906ff41c71ade24fb76541524453295c"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/urdfs/panda.urdf",
+    "upstream": "examples/pybullet/gym/pybullet_data/franka_panda/panda.urdf",
+    "commit": "63c4d67e337017f9d8b298c900e9aabdb69296e7",
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "identical": true,
+    "sha256": "9c27cf846302e26a1d3a44ccfd4dd2dbba89cccc9f17b96b6bd1f8bceedd1ff0",
+    "license_files": [
+      "python/vinkulum/licences/bullet/data/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/husky/license.txt",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/bullet/data/LICENSE.txt": "7b4b1fc66a8579fa4eaed185d39f16ab45295c7b4aa8fd533f34f9f8cda052a3",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt": "1f1e0ffb393c55d2b0a73242484b32087ceb40327b10434df30e02dc8aa41570",
+      "python/vinkulum/licences/bullet/data/husky/license.txt": "07a0881843ec604c50ca35cf23759a917554343f14f9cbcd9d71615e6d72665a",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt": "eee857362a707db2b7a4ad268388d4b0fb3e6f8faf670f25be3c95582f51d9b1",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt": "2697d975d9e601c9c187e8387b84777b0fbc00923f3c1b02a8c2c3db8a3a4aa4",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt": "9e0bf5d85579f45d217c600369f5904e380111733062b1ba4d4a11fb804e423a",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt": "bec0d1545b2e4cbe2b862af479bbd186906ff41c71ade24fb76541524453295c"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/urdfs/laikago_toes.urdf",
+    "upstream": "examples/pybullet/gym/pybullet_data/laikago/laikago_toes.urdf",
+    "commit": "63c4d67e337017f9d8b298c900e9aabdb69296e7",
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "identical": true,
+    "sha256": "326a4bacfcfd78d56eb692fef74d4e48969538a67e3361e12d11a3661e3a8c3c",
+    "license_files": [
+      "python/vinkulum/licences/bullet/data/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/husky/license.txt",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/bullet/data/LICENSE.txt": "7b4b1fc66a8579fa4eaed185d39f16ab45295c7b4aa8fd533f34f9f8cda052a3",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt": "1f1e0ffb393c55d2b0a73242484b32087ceb40327b10434df30e02dc8aa41570",
+      "python/vinkulum/licences/bullet/data/husky/license.txt": "07a0881843ec604c50ca35cf23759a917554343f14f9cbcd9d71615e6d72665a",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt": "eee857362a707db2b7a4ad268388d4b0fb3e6f8faf670f25be3c95582f51d9b1",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt": "2697d975d9e601c9c187e8387b84777b0fbc00923f3c1b02a8c2c3db8a3a4aa4",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt": "9e0bf5d85579f45d217c600369f5904e380111733062b1ba4d4a11fb804e423a",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt": "bec0d1545b2e4cbe2b862af479bbd186906ff41c71ade24fb76541524453295c"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/urdfs/r2d2.urdf",
+    "upstream": "data/r2d2.urdf",
+    "commit": "63c4d67e337017f9d8b298c900e9aabdb69296e7",
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "identical": true,
+    "sha256": "1e079b050af5e0ba942d6156e8a5f688a2d55a6a749252599a8483b0545405f8",
+    "license_files": [
+      "python/vinkulum/licences/bullet/data/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/husky/license.txt",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/bullet/data/LICENSE.txt": "7b4b1fc66a8579fa4eaed185d39f16ab45295c7b4aa8fd533f34f9f8cda052a3",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt": "1f1e0ffb393c55d2b0a73242484b32087ceb40327b10434df30e02dc8aa41570",
+      "python/vinkulum/licences/bullet/data/husky/license.txt": "07a0881843ec604c50ca35cf23759a917554343f14f9cbcd9d71615e6d72665a",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt": "eee857362a707db2b7a4ad268388d4b0fb3e6f8faf670f25be3c95582f51d9b1",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt": "2697d975d9e601c9c187e8387b84777b0fbc00923f3c1b02a8c2c3db8a3a4aa4",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt": "9e0bf5d85579f45d217c600369f5904e380111733062b1ba4d4a11fb804e423a",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt": "bec0d1545b2e4cbe2b862af479bbd186906ff41c71ade24fb76541524453295c"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/urdfs/model.urdf",
+    "upstream": "data/kuka_iiwa/model.urdf",
+    "commit": "63c4d67e337017f9d8b298c900e9aabdb69296e7",
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "identical": true,
+    "sha256": "5c13c5b4bb88b5265223e0ec9a7706cbf81e9bb21cc0e18534273755a041788c",
+    "license_files": [
+      "python/vinkulum/licences/bullet/data/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/husky/license.txt",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/bullet/data/LICENSE.txt": "7b4b1fc66a8579fa4eaed185d39f16ab45295c7b4aa8fd533f34f9f8cda052a3",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt": "1f1e0ffb393c55d2b0a73242484b32087ceb40327b10434df30e02dc8aa41570",
+      "python/vinkulum/licences/bullet/data/husky/license.txt": "07a0881843ec604c50ca35cf23759a917554343f14f9cbcd9d71615e6d72665a",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt": "eee857362a707db2b7a4ad268388d4b0fb3e6f8faf670f25be3c95582f51d9b1",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt": "2697d975d9e601c9c187e8387b84777b0fbc00923f3c1b02a8c2c3db8a3a4aa4",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt": "9e0bf5d85579f45d217c600369f5904e380111733062b1ba4d4a11fb804e423a",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt": "bec0d1545b2e4cbe2b862af479bbd186906ff41c71ade24fb76541524453295c"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/urdfs/quadruped.urdf",
+    "upstream": "examples/pybullet/gym/pybullet_data/quadruped/quadruped.urdf",
+    "commit": "63c4d67e337017f9d8b298c900e9aabdb69296e7",
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "identical": true,
+    "sha256": "f3e09a6407bd9a30a22565d696968f30cd37c2aad4f394cf898a86403dff7eda",
+    "license_files": [
+      "python/vinkulum/licences/bullet/data/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/husky/license.txt",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/bullet/data/LICENSE.txt": "7b4b1fc66a8579fa4eaed185d39f16ab45295c7b4aa8fd533f34f9f8cda052a3",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt": "1f1e0ffb393c55d2b0a73242484b32087ceb40327b10434df30e02dc8aa41570",
+      "python/vinkulum/licences/bullet/data/husky/license.txt": "07a0881843ec604c50ca35cf23759a917554343f14f9cbcd9d71615e6d72665a",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt": "eee857362a707db2b7a4ad268388d4b0fb3e6f8faf670f25be3c95582f51d9b1",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt": "2697d975d9e601c9c187e8387b84777b0fbc00923f3c1b02a8c2c3db8a3a4aa4",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt": "9e0bf5d85579f45d217c600369f5904e380111733062b1ba4d4a11fb804e423a",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt": "bec0d1545b2e4cbe2b862af479bbd186906ff41c71ade24fb76541524453295c"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/urdfs/husky.urdf",
+    "upstream": "data/husky/husky.urdf",
+    "commit": "63c4d67e337017f9d8b298c900e9aabdb69296e7",
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "identical": true,
+    "sha256": "cd6c2e5d2b5282e33993b635f142f8252320efa8b5ca818ada91b8f7f2899314",
+    "license_files": [
+      "python/vinkulum/licences/bullet/data/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/husky/license.txt",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/bullet/data/LICENSE.txt": "7b4b1fc66a8579fa4eaed185d39f16ab45295c7b4aa8fd533f34f9f8cda052a3",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt": "1f1e0ffb393c55d2b0a73242484b32087ceb40327b10434df30e02dc8aa41570",
+      "python/vinkulum/licences/bullet/data/husky/license.txt": "07a0881843ec604c50ca35cf23759a917554343f14f9cbcd9d71615e6d72665a",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt": "eee857362a707db2b7a4ad268388d4b0fb3e6f8faf670f25be3c95582f51d9b1",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt": "2697d975d9e601c9c187e8387b84777b0fbc00923f3c1b02a8c2c3db8a3a4aa4",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt": "9e0bf5d85579f45d217c600369f5904e380111733062b1ba4d4a11fb804e423a",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt": "bec0d1545b2e4cbe2b862af479bbd186906ff41c71ade24fb76541524453295c"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/urdfs/humanoid.urdf",
+    "upstream": "examples/pybullet/gym/pybullet_data/humanoid/humanoid.urdf",
+    "commit": "63c4d67e337017f9d8b298c900e9aabdb69296e7",
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "identical": true,
+    "sha256": "4a449f923dcbd242c1c6a3ad15e62047c6cb2fc1d275bf31a339bf60d27a6894",
+    "license_files": [
+      "python/vinkulum/licences/bullet/data/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/husky/license.txt",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/bullet/data/LICENSE.txt": "7b4b1fc66a8579fa4eaed185d39f16ab45295c7b4aa8fd533f34f9f8cda052a3",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt": "1f1e0ffb393c55d2b0a73242484b32087ceb40327b10434df30e02dc8aa41570",
+      "python/vinkulum/licences/bullet/data/husky/license.txt": "07a0881843ec604c50ca35cf23759a917554343f14f9cbcd9d71615e6d72665a",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt": "eee857362a707db2b7a4ad268388d4b0fb3e6f8faf670f25be3c95582f51d9b1",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt": "2697d975d9e601c9c187e8387b84777b0fbc00923f3c1b02a8c2c3db8a3a4aa4",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt": "9e0bf5d85579f45d217c600369f5904e380111733062b1ba4d4a11fb804e423a",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt": "bec0d1545b2e4cbe2b862af479bbd186906ff41c71ade24fb76541524453295c"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/urdfs/cartpole.urdf",
+    "upstream": "examples/pybullet/gym/pybullet_data/cartpole.urdf",
+    "commit": "63c4d67e337017f9d8b298c900e9aabdb69296e7",
+    "repository": "https://github.com/bulletphysics/bullet3",
+    "identical": true,
+    "sha256": "38e4ff88cc8a4e39bfac4ac68bc9cade2ea7ee68e54422bed8f9839b51bfdc56",
+    "license_files": [
+      "python/vinkulum/licences/bullet/data/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt",
+      "python/vinkulum/licences/bullet/data/husky/license.txt",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/bullet/data/LICENSE.txt": "7b4b1fc66a8579fa4eaed185d39f16ab45295c7b4aa8fd533f34f9f8cda052a3",
+      "python/vinkulum/licences/bullet/data/humanoid/LICENSE.txt": "1f1e0ffb393c55d2b0a73242484b32087ceb40327b10434df30e02dc8aa41570",
+      "python/vinkulum/licences/bullet/data/husky/license.txt": "07a0881843ec604c50ca35cf23759a917554343f14f9cbcd9d71615e6d72665a",
+      "python/vinkulum/licences/bullet/data/kuka_iiwa/license.txt": "eee857362a707db2b7a4ad268388d4b0fb3e6f8faf670f25be3c95582f51d9b1",
+      "python/vinkulum/licences/bullet/data/quadruped/license.txt": "2697d975d9e601c9c187e8387b84777b0fbc00923f3c1b02a8c2c3db8a3a4aa4",
+      "python/vinkulum/licences/bullet/data/racecar/LICENSE.txt": "9e0bf5d85579f45d217c600369f5904e380111733062b1ba4d4a11fb804e423a",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/franka_panda/LICENSE.txt": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "python/vinkulum/licences/bullet/examples/pybullet/gym/pybullet_data/laikago/license.txt": "bec0d1545b2e4cbe2b862af479bbd186906ff41c71ade24fb76541524453295c"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/acrobot.xml",
+    "upstream": "dm_control/suite/acrobot.xml",
+    "commit": "d2cf3a3d3ad47a9ea4153710fca852375adb4dff",
+    "repository": "https://github.com/google-deepmind/dm_control",
+    "identical": true,
+    "sha256": "e203285c5779113bace0d9e1c6a1b1c7246dc019df6ded9790a99b8185ec5ed8",
+    "license_files": [
+      "python/vinkulum/licences/dmcontrol/LICENSE"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/dmcontrol/LICENSE": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    }
+  },
+  {
+    "local": "python/vinkulum/donnees/humanoid.xml",
+    "upstream": "model/humanoid/humanoid.xml",
+    "commit": "319cf22fdf6fabb803205fcafbb9398707736c8d",
+    "repository": "https://github.com/google-deepmind/mujoco",
+    "identical": true,
+    "sha256": "acc9167550bf20580717a551467e6e8d0d03d1916d24bbe4b734ce11afb99406",
+    "license_files": [
+      "python/vinkulum/licences/mujoco/LICENSE"
+    ],
+    "license_sha256": {
+      "python/vinkulum/licences/mujoco/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  }
+]

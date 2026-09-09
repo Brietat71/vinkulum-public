@@ -1,0 +1,14 @@
+{
+  "base": "20803a2712efc4e50b9388bf5d7846cfa1660e6b",
+  "changed": [
+    ".gitattributes",
+    "Cargo.lock",
+    "Cargo.toml",
+    "README.md",
+    "docs/API.md",
+    "docs/VERSIONNEMENT.md",
+    "pyproject.toml"
+  ],
+  "missing": [],
+  "numerical_sources_unchanged": true
+}

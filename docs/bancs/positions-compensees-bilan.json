@@ -1,0 +1,239 @@
+{
+  "date_utc": "2026-09-06T22:55:48.304354+00:00",
+  "extension_sha256": "98b63cbd3d1679b95149e882ac7ab79a8b3a04af3a73ec4ef51b466d35a75053",
+  "extension_ancienne_sha256": "a7c78411e52b8d82634fd336c0ce911a773de2e502a3e619d23738c4010b7991",
+  "fichiers_sha256": {
+    "src/partition.rs": "24c59b9b2914f3a1999528937c5410bbb6eae78e1675cf51cebad1fbed4d3674",
+    "src/numerique.rs": "6872219a7265400e069e8fa2317315376ee648ba08d83fbb97bb96410f79ffba",
+    "src/tangent.rs": "473731d7d8f1a95e8e3086c69c80ce70c522787be420163f530b17adfc3a7e6f",
+    "src/lib.rs": "ccf4d0894dfdcbe75a0b7a7580f0e9da85416376d400bca75713d8676b5195ad",
+    "src/robustesse.rs": "0b0490343581ca78e5fb637b96d8c727da6d694b96a8a917f0c9cef670003c2a",
+    "src/superelement.rs": "2769e6ac826754da3d8b9dc4d183d9f88f9c8c5b4acc3440e564d6c93f6385d3",
+    "src/ad.rs": "1fd44c5469618d90d93ffa530639b44f6836deb992a5b24637b263026e5c75ff",
+    "Cargo.toml": "d27526bf96a1a7d46674f86a2475b433e562491df0552d749e715d77f262bb05",
+    "Cargo.lock": "5a143572b13859a6954cda57d624a785eceb90ba5f1b9a204df7bfb1664c5343",
+    "python/vinkulum/test_noyau.py": "df6d0c02ef192716a1bc4721959fea911dc529ff14951fc3aa033ed369919811",
+    "ci/diagnostic_positions_compensees.py": "777b728c325b5974f703090ab77e5778a0c5660aace15830d334c32eae572a52",
+    "ci/diagnostic_precision_statique.py": "8f76484b4ef1d687933c065506b98119037b4d6aa7288c1c54de5f4139b215a0",
+    "ci/diagnostic_statut_statique.py": "531344cff7942e5016a29ed014f4b42ca0564145814978abea900036d1312e23",
+    "ci/mesure_statique.py": "cc971d8cd0e6a2d92f4ef4ea8f794b31b0d9ce0e78c1c2cb729cba7635659bdf",
+    "ci/confronte_mbdyn.py": "5b335dc114daad7e1739ec66ea2426245373123c559079c9eb8a3d6872e3a31c",
+    "docs/POSITIONS_COMPENSEES.md": "9d2898b9a49c84fadcd1d513f34722e4205652096da00c9ad991ac333b487f54",
+    "docs/API.md": "c9c4898eedf458e8244ac9a53a8341b86fc387a246b136b642aaeb35c1e676a0",
+    "docs/bancs/positions-compensees-ancien.json": "4d97eb5ab5dcb575f9498a15cdb74fe20e2bb2e1873f070402a41a25fd555291",
+    "docs/bancs/positions-compensees-diagnostic.json": "d8ed0580bdae0a99d83394d582f5f68c66861e0268566615ef351622466cc688",
+    "docs/bancs/cable-positions-compensees.json": "ae55b9c122090d94fd33807d92755573c29bae0f33fa82b669548db7ce9db581",
+    "docs/bancs/positions-compensees-sources-avant.tar.gz": "65c5e63bd6237b69eae13974ffacd0173b1918872cc2ac51d547db61a5382b03",
+    "docs/bancs/princeton-positions-ancien-milieu.json": "745fb28f09c122e8e595297b34e803d4c889f0dc23feeb7401688475a2ee85dd",
+    "docs/bancs/princeton-positions-milieu.json": "9340a38371f9685df2e7b07074785467c5969ef3f3d5c1e6147155480ecab547",
+    "docs/bancs/princeton-positions-ancien-integree.json": "b8334ff8fc0d895015d58eb293d6d3a897fa79a54208e797fe9d25859a3c5586",
+    "docs/bancs/princeton-positions-integree.json": "e80a429ee10da802e60b09c06919ec9e51a1579ce48ea0e56785bbe527b43522"
+  },
+  "comparaison_statique_directe": [
+    {
+      "formulation": "milieu",
+      "intervalles": 10,
+      "avant_s": 0.019965146202594042,
+      "apres_s": 0.02095236093737185,
+      "variation_pourcent": 4.944690736347024,
+      "ecart_positions_m": 2.7755575615628914e-17
+    },
+    {
+      "formulation": "milieu",
+      "intervalles": 20,
+      "avant_s": 0.05041338503360748,
+      "apres_s": 0.0543701930437237,
+      "variation_pourcent": 7.848725110361987,
+      "ecart_positions_m": 2.7755575615628914e-17
+    },
+    {
+      "formulation": "milieu",
+      "intervalles": 40,
+      "avant_s": 0.11355798598378897,
+      "apres_s": 0.12121275695972145,
+      "variation_pourcent": 6.740847778882975,
+      "ecart_positions_m": 5.551115123125783e-17
+    },
+    {
+      "formulation": "milieu",
+      "intervalles": 60,
+      "avant_s": 0.1941861540544778,
+      "apres_s": 0.2047059067990631,
+      "variation_pourcent": 5.417354700600341,
+      "ecart_positions_m": 5.551115123125783e-17
+    },
+    {
+      "formulation": "integree",
+      "intervalles": 10,
+      "avant_s": 0.020183231914415956,
+      "apres_s": 0.02195301209576428,
+      "variation_pourcent": 8.768566842281844,
+      "ecart_positions_m": 1.3877787807814457e-17
+    },
+    {
+      "formulation": "integree",
+      "intervalles": 20,
+      "avant_s": 0.04939190298318863,
+      "apres_s": 0.05297516705468297,
+      "variation_pourcent": 7.25476010250905,
+      "ecart_positions_m": 1.249000902703301e-16
+    },
+    {
+      "formulation": "integree",
+      "intervalles": 40,
+      "avant_s": 0.11513281404040754,
+      "apres_s": 0.1247216600459069,
+      "variation_pourcent": 8.328508327898621,
+      "ecart_positions_m": 8.673617379884035e-18
+    },
+    {
+      "formulation": "integree",
+      "intervalles": 60,
+      "avant_s": 0.20489284512586892,
+      "apres_s": 0.21223440789617598,
+      "variation_pourcent": 3.583123054295534,
+      "ecart_positions_m": 5.551115123125783e-17
+    }
+  ],
+  "execution_mesures": [
+    {
+      "version": "ancien",
+      "formulation": "milieu",
+      "commande": [
+        ".venv314/bin/python",
+        "ci/mesure_statique.py",
+        "--strict",
+        "--formulation",
+        "milieu",
+        "--sortie",
+        "docs/bancs/princeton-positions-ancien-milieu.json"
+      ],
+      "code_sortie": 1,
+      "journal": "/tmp/vinkulum-compensation-mesure-ancien-milieu.log",
+      "mesures": "docs/bancs/princeton-positions-ancien-milieu.json",
+      "texte_journal": "direct 10 0.019965146202594042 0.0002548736228567966\ndirect 20 0.05041338503360748 6.372332507807721e-05\ndirect 40 0.11355798598378897 1.5931134616606335e-05\ndirect 60 0.1941861540544778 7.0805253632733045e-06\nrampe 10 0.38250106293708086 2.0820030144363955e-09\nrampe 20 1.0224555269815028 9.553166726128384e-09\nTraceback (most recent call last):\n  File \"/root/vinkulum/ci/mesure_statique.py\", line 82, in <module>\n    main()\n    ~~~~^^\n  File \"/root/vinkulum/ci/mesure_statique.py\", line 71, in main\n    sample=run(ne,rampe=True,formulation=args.formulation,strict=args.strict)\n  File \"/root/vinkulum/ci/mesure_statique.py\", line 31, in run\n    residual, iterations = n.statique(tol=1e-8, iters=100, paliers_max=1, **options)\n                           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 1.904e-8 pour une échelle de force de 1.000e0 (1.9e-8 en relatif)\n"
+    },
+    {
+      "version": "actuel",
+      "formulation": "milieu",
+      "commande": [
+        ".venv314/bin/python",
+        "ci/mesure_statique.py",
+        "--strict",
+        "--formulation",
+        "milieu",
+        "--sortie",
+        "docs/bancs/princeton-positions-milieu.json"
+      ],
+      "code_sortie": 0,
+      "journal": "/tmp/vinkulum-compensation-mesure-milieu.log",
+      "mesures": "docs/bancs/princeton-positions-milieu.json",
+      "texte_journal": "direct 10 0.02095236093737185 0.00025487362285682436\ndirect 20 0.0543701930437237 6.372332507804945e-05\ndirect 40 0.12121275695972145 1.5931134616661846e-05\ndirect 60 0.2047059067990631 7.080525363287182e-06\nrampe 10 0.41412382503040135 2.5414603754825293e-09\nrampe 20 1.1463673401158303 2.7042014666633916e-09\nrampe 40 2.2361841320525855 2.6939042462537065e-09\n"
+    },
+    {
+      "version": "ancien",
+      "formulation": "integree",
+      "commande": [
+        ".venv314/bin/python",
+        "ci/mesure_statique.py",
+        "--strict",
+        "--formulation",
+        "integree",
+        "--sortie",
+        "docs/bancs/princeton-positions-ancien-integree.json"
+      ],
+      "code_sortie": 1,
+      "journal": "/tmp/vinkulum-compensation-mesure-ancien-integree.log",
+      "mesures": "docs/bancs/princeton-positions-ancien-integree.json",
+      "texte_journal": "direct 10 0.020183231914415956 5.329842190496259e-06\ndirect 20 0.04939190298318863 1.3463990286496919e-06\ndirect 40 0.11513281404040754 3.3746639625797936e-07\ndirect 60 0.20489284512586892 1.5005150451850857e-07\nrampe 10 0.4186316258274019 3.0207525369974064e-09\nrampe 20 1.0038732821121812 7.113116505585997e-09\nTraceback (most recent call last):\n  File \"/root/vinkulum/ci/mesure_statique.py\", line 82, in <module>\n    main()\n    ~~~~^^\n  File \"/root/vinkulum/ci/mesure_statique.py\", line 71, in main\n    sample=run(ne,rampe=True,formulation=args.formulation,strict=args.strict)\n  File \"/root/vinkulum/ci/mesure_statique.py\", line 31, in run\n    residual, iterations = n.statique(tol=1e-8, iters=100, paliers_max=1, **options)\n                           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 1.152e-8 pour une échelle de force de 1.000e0 (1.2e-8 en relatif)\n"
+    },
+    {
+      "version": "actuel",
+      "formulation": "integree",
+      "commande": [
+        ".venv314/bin/python",
+        "ci/mesure_statique.py",
+        "--strict",
+        "--formulation",
+        "integree",
+        "--sortie",
+        "docs/bancs/princeton-positions-integree.json"
+      ],
+      "code_sortie": 0,
+      "journal": "/tmp/vinkulum-compensation-mesure-integree.log",
+      "mesures": "docs/bancs/princeton-positions-integree.json",
+      "texte_journal": "direct 10 0.02195301209576428 5.3298421904927895e-06\ndirect 20 0.05297516705468297 1.3463990286496919e-06\ndirect 40 0.1247216600459069 3.37466396266653e-07\ndirect 60 0.21223440789617598 1.5005150452371274e-07\nrampe 10 0.45737598091363907 3.254364777660612e-09\nrampe 20 1.092643080977723 2.652154051929756e-09\nrampe 40 2.3672068268060684 3.267495095649055e-09\n"
+    }
+  ],
+  "checks": [
+    {
+      "nom": "fmt",
+      "code_sortie": 0,
+      "journal": "",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "nom": "clippy",
+      "code_sortie": 0,
+      "journal": "    Checking vinkulum v0.6.2 (/root/vinkulum)\n    Finished `release` profile [optimized] target(s) in 3.43s\n",
+      "sha256": "d77188ff6c87353c389843738c607699535a19be96cd5c37190fc3c5d1e7eec4"
+    },
+    {
+      "nom": "rust",
+      "code_sortie": 0,
+      "journal": "\nrunning 28 tests\n............................\ntest result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "sha256": "cf488bc8122843e0a1804f03b06f5bd188864b5d87be1639ff42eb07ce23bd27"
+    },
+    {
+      "nom": "verification",
+      "code_sortie": 0,
+      "journal": "╔═ vérification : 41 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-x77feo2p\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    robustesse — 0.37 s\n║ OK    validation_scores — 0.37 s\n║ OK    assemblage — 0.37 s\n║ OK    convergence — 0.42 s\n║ OK    amortissement — 0.52 s\n║ OK    superelement — 0.37 s\n║ OK    bennett — 0.36 s\n║ OK    toupie — 0.82 s\n║ OK    vis_ecrou — 0.51 s\n║ OK    liaisons_unilaterales — 0.77 s\n║ OK    determinisme — 1.42 s\n║ OK    six_barres — 0.72 s\n║ OK    invariance_unites — 0.57 s\n║ OK    srscm — 2.37 s\n║ OK    lateral_buckling — 2.62 s\n║ OK    _regressions — 3.52 s\n║ OK    modeles_mal_poses — 0.36 s\n║ OK    non_holonome — 0.37 s\n║ OK    quatre_barres_flexible — 2.47 s\n║ OK    lecteurs_casses — 0.36 s\n║ OK    coulomb_pente — 0.51 s\n║ OK    treillis_de_boucles — 2.42 s\n║ OK    gyroscopique_tangent — 0.36 s\n║ OK    audit_jacobien — 0.37 s\n║ OK    invariances — 1.72 s\n║ OK    trim.demo — 0.16 s\n║ OK    reduction.demo — 0.26 s\n║ OK    accords — 1.57 s\n║ OK    arbre_tournant — 4.42 s\n║ OK    floquet.demo — 0.82 s\n║ OK    urdf.demo — 0.87 s\n║ OK    mjcf.demo — 0.82 s\n║ OK    sparsite — 2.22 s\n║ OK    convergence.demo — 1.62 s\n║ OK    adjoint_temps.demo — 4.67 s\n║ OK    campagne.demo — 4.02 s\n║ OK    domaines.demo — 8.53 s\n║ OK    statique — 15.05 s\n║ OK    kapitza — 19.25 s\n║ OK    echelle — 1.77 s\n║ OK    refus_gardes — 0.37 s\n╚ vérification OK — 41/41 cas, 21.91 s\n",
+      "sha256": "827b5ef326717876164fdf9572a08261da1344ab0764fd93848a6b954073813d"
+    },
+    {
+      "nom": "rapide",
+      "code_sortie": 0,
+      "journal": "╔═ bancs : 46 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-ni57sjay\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    engrenage — 0.37 s\n║ OK    pendule — 0.42 s\n║ OK    bielle — 0.47 s\n║ OK    double_pendule — 0.52 s\n║ OK    quatre_barres — 0.62 s\n║ OK    toupie — 0.67 s\n║ OK    reduction.demo — 0.26 s\n║ OK    contact.capsules — 0.11 s\n║ OK    poutre — 0.82 s\n║ OK    contact.boites — 0.11 s\n║ OK    rotor.demo — 0.92 s\n║ OK    contact.cylindres — 0.11 s\n║ OK    contact.multiples — 0.37 s\n║ OK    floquet.demo — 0.82 s\n║ OK    contact.capsules_primitives — 0.87 s\n║ OK    phi_dot — 0.67 s\n║ OK    bifurcation — 0.72 s\n║ OK    oye — 0.42 s\n║ OK    contact.nonlisse — 1.47 s\n║ OK    leishman_beddoes — 0.57 s\n║ OK    peters_he — 0.37 s\n║ OK    ggl_boucles — 2.22 s\n║ OK    theodorsen_complet — 1.62 s\n║ OK    pitt_peters — 0.37 s\n║ OK    inflow_carte — 1.87 s\n║ OK    instationnaire — 0.82 s\n║ OK    adaptatif — 5.03 s\n║ OK    energie_moment — 0.97 s\n║ OK    rotation.demo — 7.83 s\n║ OK    raideur_gravite — 0.36 s\n║ OK    sensibilite.demo — 8.28 s\n║ OK    amortis — 0.36 s\n║ OK    modes_console — 0.41 s\n║ OK    coque — 0.31 s\n║ OK    multirythme — 3.42 s\n║ OK    dissipation — 5.53 s\n║ OK    echelle — 0.47 s\n║ OK    andrews — 3.57 s\n║ OK    pale_elastique — 2.82 s\n║ OK    noether — 9.94 s\n║ OK    moment_projete — 16.84 s\n║ OK    contact.penalite_ccd — 29.17 s\n║ OK    seuils — 98.15 s\n║ OK    sillage — 167.95 s\n║ OK    contact.maillages — 0.82 s\n║ OK    contact.appariement — 0.37 s\n╚ bancs OK — 46/46 cas, 178.53 s\n",
+      "sha256": "a536d465597ec440c321a7a77c92fedb978cc1eea5b1ddc7423a70b7b3cb877a"
+    },
+    {
+      "nom": "contact",
+      "code_sortie": 0,
+      "journal": "╔═ contacts : 9 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-3j9rcge8\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    cylindres — 0.12 s\n║ OK    capsules — 0.12 s\n║ OK    boites — 0.12 s\n║ OK    multiples — 0.37 s\n║ OK    capsules_primitives — 0.87 s\n║ OK    nonlisse — 1.47 s\n║ OK    penalite_ccd — 167.33 s\n║ OK    maillages — 0.82 s\n║ OK    appariement — 0.57 s\n╚ contacts OK — 9/9 cas, 168.72 s\n",
+      "sha256": "90efdcec29be6c62c56c205108fb6fdbe41fcfbb1873dc672777eeccbeae172a"
+    },
+    {
+      "nom": "api",
+      "code_sortie": 0,
+      "journal": "╚═ référence d'API à jour (185 entrées)\n",
+      "sha256": "c7906ea8c367e1f0eac2eced307c569bd671079b53b8ba7047641013e459d8fc"
+    },
+    {
+      "nom": "adjoint",
+      "code_sortie": 0,
+      "journal": "╔═ vinkulum — ADJOINT EN TEMPS SUR LE NOYAU (pont, premier pas)\n║ double pendule, p = g, 375 pas : adjoint +1.934621232e-01  DF +1.934621229e-01  écart 1.55e-09\n║   coût : 375 k_c_m_z, 0.1 s, contre 2 simule = 0.02 s pour la DF à 1 paramètre\n║ pendule sphérique tournant, p = g : adjoint +1.029464740e-01  DF +1.029464740e-01  écart 4.86e-10\n║   contrôle négatif sans J_l                   : écart 5.20e-03\n║   contrôle négatif sans K_M                   : écart 3.82e-02\n║   contrôle négatif gyro doublé (défaut d'avant) : écart 1.34e+00\n║ pendule flexible, p = EI, 300 pas : adjoint +7.209132975e-04  DF +7.208980e-04 … +7.209349e-04 (ε de 3e-4 à 3e-5, étendue 0.01 %)\n╚═ pont adjoint ↔ noyau OK\n",
+      "sha256": "70d7f70ee9e8ed43ba9d5d9d9a36c1a52eb162f6742c91ab543f0778763ea100"
+    },
+    {
+      "nom": "diagnostic-tests",
+      "code_sortie": 0,
+      "journal": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.009s\n\nOK\n",
+      "sha256": "5d8a174d448d59185fd227bcbab9c964e39b10a9c2e28965972cfb0c833dd854"
+    },
+    {
+      "nom": "55 tests Python",
+      "code_sortie": 0,
+      "journal": ".......................................................\n----------------------------------------------------------------------\nRan 55 tests in 3.140s\n\nOK\n",
+      "sha256": "9d68f99e57d4fa778969d39f068ebfd1a058097f522df555e298cb2197e49763"
+    }
+  ],
+  "regression_intermediaire_vis": "  9. vis–écrou — la contrainte, et l'inertie qu'elle ramène\n     inertie ramenée (I + m(pas/2π)²)ω = Iω₀ sur 2 décades de pas — pire écart 0.0001 %\n     |Φ| max 8.7e-20 m · |v_z − pas·ω/2π| max 1615 nm/s\nTraceback (most recent call last):\n  File \"/root/vinkulum/python/vinkulum/_campagnes.py\", line 198, in <module>\n    _worker()\n    ~~~~~~~^^\n  File \"/root/vinkulum/python/vinkulum/_campagnes.py\", line 189, in _worker\n    valeur = _appel(t)\n  File \"/root/vinkulum/python/vinkulum/_campagnes.py\", line 33, in _appel\n    return fonction(*t['args'], **t['kwargs'])\n  File \"/root/vinkulum/python/vinkulum/verification.py\", line 657, in vis_ecrou\n    assert phimax < 1e-14 and max(ecarts_v) < 1e-6, (phimax, ecarts_v)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (8.703269223272923e-20, [1.1540194518738778e-08, 1.6152012739627242e-06, 9.571741168695747e-07, 4.2038036476843565e-07])\n",
+  "correction_vis_verifiee": "  9. vis–écrou — la contrainte, et l'inertie qu'elle ramène\n     inertie ramenée (I + m(pas/2π)²)ω = Iω₀ sur 2 décades de pas — pire écart 0.0001 %\n     |Φ| max 2.0e-19 m · |v_z − pas·ω/2π| max 508 nm/s\n",
+  "resultat": "400 paliers stricts à la tolérance ; trois barres sous le pas représentable corrigées",
+  "limites": [
+    "Surcoût mesuré du calcul direct, pas de nouveau classement MBDyn",
+    "Câble condensé extrême toujours en échec",
+    "État précis cinématique, pas sauvegarde de tous les historiques",
+    "Vues et trajectoires historiques arrondies ; roue non rejouée"
+  ]
+}

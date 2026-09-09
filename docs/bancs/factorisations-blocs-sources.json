@@ -1,0 +1,12 @@
+{
+  "binaire": {
+    "path": "/tmp/vinkulum-factorisations-apres/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+    "sha256": "66b30802b8e82bff3287e7ce25107aa264cd9af4db47de76c9b3cff51c9d2fc3"
+  },
+  "sources": {
+    "src/lib.rs": "c52d67c538d32b1be48d42e94e4851f7dada2b6f9953ff99577241a89c47dfae",
+    "src/contraintes.rs": "5af17c7e61c20b3f5e7ef4a52b8d0d536bb56c3a36f9a7c05858390dd02be8a9",
+    "src/moindres_carres.rs": "d9a9526e9602bcebd5783d77999fc08049171a411d77d4efdbde55647dae8e7d",
+    "src/svd.rs": "a781fbe1f868cec6a0f2963f2b218e5d5789e34441899cb7af3bc637c07d68aa"
+  }
+}

@@ -1,0 +1,78 @@
+[
+  {
+    "nom": "D_CSR_doublons_drapeau_mensonger",
+    "statut": "refus",
+    "type": "ValueError",
+    "message": "D doit être canonique : doublons ou indices non triés"
+  },
+  {
+    "nom": "R_CSR_doublons_drapeau_mensonger",
+    "statut": "refus",
+    "type": "ValueError",
+    "message": "R doit être canonique : doublons ou indices non triés"
+  },
+  {
+    "nom": "M_CSR_doublons_drapeau_mensonger",
+    "statut": "refus",
+    "type": "ValueError",
+    "message": "M doit être canonique : doublons ou indices non triés"
+  },
+  {
+    "nom": "R_triangle_inferieur_non_nul",
+    "statut": "refus",
+    "type": "ValueError",
+    "message": "R doit être triangulaire supérieur"
+  },
+  {
+    "nom": "M_asymetrique",
+    "statut": "refus",
+    "type": "ValueError",
+    "message": "masse finie exactement symétrique de taille n requise"
+  },
+  {
+    "nom": "R_mute_apres_certificat",
+    "statut": "eta_et_minorant_actualises",
+    "eta": 0.9900000000000001,
+    "lambda_min": 0.003333333333333333
+  },
+  {
+    "nom": "budget_operations_booleen",
+    "statut": "refus",
+    "type": "ValueError",
+    "message": "budget_operations doit être un entier strictement positif"
+  },
+  {
+    "nom": "budget_coefficients_booleen",
+    "statut": "refus",
+    "type": "ValueError",
+    "message": "budget_coefficients doit être un entier strictement positif"
+  },
+  {
+    "nom": "budget_rectangulaire_booleen",
+    "statut": "refus",
+    "type": "ValueError",
+    "message": "budget_rectangulaire doit être un entier strictement positif"
+  },
+  {
+    "nom": "precision_booleen",
+    "statut": "refus",
+    "type": "ValueError",
+    "message": "precision doit être un entier strictement positif"
+  },
+  {
+    "nom": "budget_operations_seuil_moins_un",
+    "statut": "refus",
+    "type": "BudgetInverseSelectionnee",
+    "message": "budget d'opérations Decimal dépassé"
+  },
+  {
+    "nom": "budget_rectangulaire_seuil_moins_un",
+    "statut": "refus",
+    "type": "BudgetInverseSelectionnee",
+    "message": "budget rectangulaire dépassé"
+  },
+  {
+    "nom": "B_mute_apres_certificat",
+    "statut": "empreinte_changee_sans_cache"
+  }
+]

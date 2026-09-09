@@ -1,0 +1,802 @@
+
+══ format et lint
+   Compiling pyo3-ffi v0.29.2
+   Compiling pyo3 v0.29.2
+   Compiling vinkulum v0.18.0 (/tmp/vinkulum-energie-native-travail)
+    Finished `release` profile [optimized] target(s) in 4.95s
+
+══ tests du noyau
+
+running 87 tests
+....................................................................................... 87/87
+
+test result: ok. 87 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+══ contrôles du prototype de poutre mixte
+
+running 8 tests
+........
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.90s
+
+
+══ roue → /tmp/vinkulum-fiabilite-0.14.1/ci/bin/python
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.14 at /tmp/vinkulum-fiabilite-0.14.1/ci/bin/python
+🔗 Found pyo3 bindings
+📡 Using build options features from pyproject.toml
+Using Python 3.14.7 environment at: /tmp/vinkulum-fiabilite-0.14.1/ci
+Checked 5 packages in 1ms
+   Compiling pyo3-ffi v0.29.2
+   Compiling pyo3 v0.29.2
+   Compiling vinkulum v0.18.0 (/tmp/vinkulum-energie-native-travail)
+    Finished `release` profile [optimized] target(s) in 19.95s
+⚠️ Warning: Failed to set rpath for /tmp/vinkulum-energie-native-travail/target/maturin/libvinkulum.so: Failed to execute 'patchelf', did you install it? Hint: Try `pip install maturin[patchelf]` (or just `pip install patchelf`)
+📦 Built wheel for CPython 3.14 to /tmp/.tmpj78blQ/vinkulum-0.18.0-cp314-cp314-linux_x86_64.whl
+✏️ Setting installed package as editable
+🛠 Installed vinkulum-0.18.0
+
+══ contrôles rapides (campagne parallèle)
+╔═ vérification : 41 cas, 8 processus, 64 CPU au total
+║ journaux : /tmp/vinkulum-campagne-juab76wl
+║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés
+║ OK    robustesse — 0.37 s
+║ OK    validation_scores — 0.37 s
+║ OK    assemblage — 0.37 s
+║ OK    convergence — 0.42 s
+║ OK    amortissement — 0.52 s
+║ OK    superelement — 0.37 s
+║ OK    bennett — 0.36 s
+║ OK    toupie — 0.82 s
+║ OK    vis_ecrou — 0.52 s
+║ OK    liaisons_unilaterales — 0.82 s
+║ OK    determinisme — 1.37 s
+║ OK    six_barres — 0.72 s
+║ OK    invariance_unites — 0.47 s
+║ OK    lateral_buckling — 1.42 s
+║ OK    quatre_barres_flexible — 1.17 s
+║ OK    modeles_mal_poses — 0.37 s
+║ OK    invariances — 0.82 s
+║ OK    srscm — 2.37 s
+║ OK    _regressions — 3.32 s
+║ OK    arbre_tournant — 2.17 s
+║ OK    non_holonome — 0.36 s
+║ OK    coulomb_pente — 0.52 s
+║ OK    lecteurs_casses — 0.36 s
+║ OK    gyroscopique_tangent — 0.37 s
+║ OK    sparsite — 0.47 s
+║ OK    trim.demo — 0.16 s
+║ OK    audit_jacobien — 0.37 s
+║ OK    reduction.demo — 0.27 s
+║ OK    accords — 1.02 s
+║ OK    treillis_de_boucles — 2.52 s
+║ OK    floquet.demo — 0.82 s
+║ OK    convergence.demo — 0.82 s
+║ OK    domaines.demo — 0.47 s
+║ OK    campagne.demo — 0.36 s
+║ OK    urdf.demo — 0.87 s
+║ OK    mjcf.demo — 0.87 s
+║ OK    adjoint_temps.demo — 4.42 s
+║ OK    statique — 7.58 s
+║ OK    kapitza — 21.66 s
+║ OK    echelle — 1.72 s
+║ OK    refus_gardes — 0.37 s
+╚ vérification OK — 41/41 cas, 24.27 s
+
+══ régressions Python : noyau, analyses, campagnes et cinématique sigma
+............................................................................/tmp/vinkulum-energie-native-travail/python/vinkulum/urdf.py:124: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/vinkulum-energie-native-travail/python/vinkulum/donnees/urdfs/cartpole.urdf'>
+  src = open(chemin, "rb").read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.....................................................................................................................................
+----------------------------------------------------------------------
+Ran 209 tests in 5.174s
+
+OK
+
+══ épreuves physiques : covariance des projections et convergence du pendule
+{
+  "version": "0.18.0",
+  "projections": 2304,
+  "explorations": [
+    {
+      "longueur": 1099511627776.0,
+      "statut": "refus",
+      "raison": "assemblage : vitesses incompatibles ou précision insuffisante, ‖G·u + ∂Φ/∂t‖ = 5.000e-1 (tolérance 1.000e-12)",
+      "etat_restitue": true
+    },
+    {
+      "longueur": 281474976710656.0,
+      "statut": "refus",
+      "raison": "assemblage : vitesses incompatibles ou précision insuffisante, ‖G·u + ∂Φ/∂t‖ = 5.000e-1 (tolérance 1.000e-12)",
+      "etat_restitue": true
+    }
+  ],
+  "pendules": [
+    {
+      "longueur": 0.001,
+      "pas": 128,
+      "pas_acceptes": 128,
+      "temps_final": 0.04424010108874648,
+      "initial_adimensionnel": [
+        0.40000000921060075,
+        0.2999998842123138
+      ],
+      "final_adimensionnel": [
+        -0.4982697810959108,
+        0.06856984094814265
+      ],
+      "reference": [
+        -0.49823942355883033,
+        0.06876396615196886
+      ],
+      "ecart_references": 3.5582647939236267e-13,
+      "erreur_reference": 0.00019412520382620924,
+      "derive_energie_relative": 9.502097362590593e-06
+    },
+    {
+      "longueur": 0.001,
+      "pas": 256,
+      "pas_acceptes": 256,
+      "temps_final": 0.04424010108874648,
+      "initial_adimensionnel": [
+        0.40000000921060075,
+        0.2999998842123138
+      ],
+      "final_adimensionnel": [
+        -0.4982470212782638,
+        0.06871543353746506
+      ],
+      "reference": [
+        -0.49823942355883033,
+        0.06876396615196886
+      ],
+      "ecart_references": 3.5582647939236267e-13,
+      "erreur_reference": 4.8532614503798976e-05,
+      "derive_energie_relative": 2.3778172196319503e-06,
+      "rapport_erreurs": 3.9998917390080795
+    },
+    {
+      "longueur": 1.0,
+      "pas": 128,
+      "pas_acceptes": 128,
+      "temps_final": 1.398994833565338,
+      "initial_adimensionnel": [
+        0.404605288691191,
+        0.24192578492256323
+      ],
+      "final_adimensionnel": [
+        -0.458428525541959,
+        0.1162383074038217
+      ],
+      "reference": [
+        -0.4583816947227511,
+        0.1164127219403437
+      ],
+      "ecart_references": 3.0109248427834245e-13,
+      "erreur_reference": 0.00017441453652200511,
+      "derive_energie_relative": 3.9510523832148846e-06
+    },
+    {
+      "longueur": 1.0,
+      "pas": 256,
+      "pas_acceptes": 256,
+      "temps_final": 1.398994833565338,
+      "initial_adimensionnel": [
+        0.404605288691191,
+        0.24192578492256323
+      ],
+      "final_adimensionnel": [
+        -0.45839341073918377,
+        0.11636911640874315
+      ],
+      "reference": [
+        -0.4583816947227511,
+        0.1164127219403437
+      ],
+      "ecart_references": 3.0109248427834245e-13,
+      "erreur_reference": 4.360553160055736e-05,
+      "derive_energie_relative": 9.915888981797873e-07,
+      "rapport_erreurs": 3.9998259422613205
+    },
+    {
+      "longueur": 1000.0,
+      "pas": 128,
+      "pas_acceptes": 128,
+      "temps_final": 44.24010108874648,
+      "initial_adimensionnel": [
+        0.40921034027095154,
+        0.1834871770281767
+      ],
+      "final_adimensionnel": [
+        -0.418046220341163,
+        0.16298660635892898
+      ],
+      "reference": [
+        -0.417983140733885,
+        0.16314378687496014
+      ],
+      "ecart_references": 3.1863400806741993e-13,
+      "erreur_reference": 0.000157180516031169,
+      "derive_energie_relative": 2.38455906327969e-07
+    },
+    {
+      "longueur": 1000.0,
+      "pas": 256,
+      "pas_acceptes": 256,
+      "temps_final": 44.24010108874648,
+      "initial_adimensionnel": [
+        0.40921034027095154,
+        0.1834871770281767
+      ],
+      "final_adimensionnel": [
+        -0.4179989182889479,
+        0.1631044900441214
+      ],
+      "reference": [
+        -0.417983140733885,
+        0.16314378687496014
+      ],
+      "ecart_references": 3.1863400806741993e-13,
+      "erreur_reference": 3.929683083875313e-05,
+      "derive_energie_relative": 5.788309464381312e-08,
+      "rapport_erreurs": 3.9998267716836646
+    }
+  ],
+  "echecs": 0,
+  "admis": true
+}
+
+══ diagnostic énergie–moment : trace non mutante et attribution exacte
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.008s
+
+OK
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.006s
+
+OK
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.052s
+
+OK
+......terminé 1.6209621271118522 False
+.
+----------------------------------------------------------------------
+Ran 7 tests in 12.273s
+
+OK
+
+══ prototype de certificat géométrique : intervalles, export, oracle et documents
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.463s
+
+OK
+........
+----------------------------------------------------------------------
+Ran 8 tests in 1.292s
+
+OK
+...
+----------------------------------------------------------------------
+Ran 3 tests in 2.550s
+
+OK
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.374s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.116s
+
+OK
+
+══ garantie temporelle du pendule : intervalles, référence et archives
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.120s
+
+OK
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.027s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 6.710s
+
+OK
+......
+----------------------------------------------------------------------
+Ran 6 tests in 10.763s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 2.317s
+
+OK
+
+══ certificats creux : facteurs, perturbations, archives et matrices natives
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.145s
+
+OK
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.004s
+
+OK
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.793s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.216s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.881s
+
+OK
+...
+----------------------------------------------------------------------
+Ran 3 tests in 1.442s
+
+OK
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+OK
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.513s
+
+OK
+
+══ certification : garde exact des vitesses et obligations ouvertes
+Décisions exactes : 13314 cas, 0 divergence ; 7 entrées invalides refusées.
+Systèmes linéaires : 12 certificats vérifiés indépendamment.
+Quotients exacts : 8 certificats vérifiés indépendamment ; faux rang refusé.
+Noyau entier certifié : NON. 9 obligations ouvertes. Dossier : /tmp/tmp.7B1qoFC7da
+
+══ preuves Lean et correspondance du garde exact
+Build completed successfully.
+Build completed successfully.
+'Vinkulum.garde_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Vinkulum.decode_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Vinkulum.decode_bornes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Vinkulum.bit_implicite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Vinkulum.boucle_exacte' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Vinkulum.decalage_exact' depends on axioms: [propext]
+'Vinkulum.produit_u128' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Vinkulum.exposants_rust' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Vinkulum.tolerance_admise' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Vinkulum.fraction_masque' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Vinkulum.champ_masque' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Vinkulum.signe_decalage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Vinkulum.refus_non_fini' depends on axioms: [propext]
+{
+  "cas_valides": 13314,
+  "invalides_lean_refuses": 7,
+  "divergences": 0,
+  "entrees_sha256": "4feb06279f65282fed0a5e78be7f86d208bf7c96615608ce0e91a494b94d7650"
+}
+
+══ la référence d'API est-elle à jour
+╚═ référence d'API à jour (196 entrées)
+
+══ archive du prototype de poutre mixte
+{"essais_princeton": 36, "succes_princeton": 36, "echauffements": 9, "sondages_moment": 8, "sondages_lineaires": 20, "refus_condensation": 2, "raideurs_negatives": 1, "ecart_reference_m": 3.767292033884928e-12}
+
+══ quotient orthogonal local : contre-épreuves et archive
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 0.416s
+
+OK
+chaine 257 [('local', 'calcule', 0.01767301792278886), ('qr_dense', 'calcule', 0.008875068044289947)]
+chaine 1025 [('local', 'calcule', 0.06370346294716), ('qr_dense', 'calcule', 0.3011397321242839)]
+chaine 2049 [('local', 'calcule', 0.12444613594561815), ('qr_dense', 'calcule', 2.5533088070806116)]
+cascade 4 [('local', 'calcule', 0.006448927102610469), ('qr_dense', 'calcule', 0.0011890898458659649)]
+cascade 20 [('local', 'calcule', 0.03175560291856527), ('qr_dense', 'calcule', 0.009839819045737386)]
+cascade 60 [('local', 'calcule', 0.10696118790656328), ('qr_dense', 'calcule', 0.1587119500618428)]
+cascade_tournee 4 [('local', 'calcule', 0.009643333964049816), ('qr_dense', 'calcule', 0.0011869859881699085)]
+cascade_tournee 20 [('local', 'calcule', 0.05427573109045625), ('qr_dense', 'calcule', 0.00987810199148953)]
+cascade_tournee 60 [('local', 'calcule', 0.17375502898357809), ('qr_dense', 'calcule', 0.15951726702041924)]
+couplages 129 [('local', 'calcule', 0.06647059507668018), ('qr_dense', 'calcule', 0.0032558729872107506)]
+couplages 513 [('local', 'calcule', 0.9167314670048654), ('qr_dense', 'calcule', 0.050074263010174036)]
+Archive vérifiée : 88 essais, dont 0 refus et les échauffements.
+
+══ réduction par ports : identités, enveloppes et confrontation HCB
+..............
+----------------------------------------------------------------------
+Ran 14 tests in 0.183s
+
+OK
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.095s
+
+OK
+chaine32 [{'variante': 'krylov', 'directions': [5, 5, 5], 'accepte': [True, True, True], 'total_ms': 13.748814119026065, 'borne': 5.164797391409285e-09, 'erreur': 7.136424784448536e-11}, {'variante': 'hcb', 'directions': [28, 28, 28], 'accepte': [True, True, True], 'total_ms': 8.361370069906116, 'borne': 4.5855667936592657e-07, 'erreur': 1.6504531252792276e-07}]
+chaine256 [{'variante': 'krylov', 'directions': [5, 5, 5], 'accepte': [True, True, True], 'total_ms': 13.109532883390784, 'borne': 7.96294404267768e-08, 'erreur': 1.3947598631602887e-10}, {'variante': 'hcb', 'directions': [88, 88, 88], 'accepte': [True, True, True], 'total_ms': 32.910509034991264, 'borne': 7.983297670306645e-07, 'erreur': 2.869055095722217e-07}]
+chaine2048 [{'variante': 'krylov', 'directions': [5, 5, 5], 'accepte': [True, True, True], 'total_ms': 18.01714114844799, 'borne': 6.837914934206086e-07, 'erreur': 1.489492973405504e-10}, {'variante': 'hcb', 'directions': [96, 96, 96], 'accepte': [True, True, True], 'total_ms': 88.34055392071605, 'borne': 8.409148388640579e-07, 'erreur': 3.022022099230526e-07}]
+chaine2048_pole [{'variante': 'krylov', 'directions': [7, 7, 7], 'accepte': [True, True, True], 'total_ms': 23.3677439391613, 'borne': 2.2463297747333707e-09, 'erreur': 8.065370593612897e-11}, {'variante': 'hcb', 'directions': [256, 256, 256], 'accepte': [True, True, True], 'total_ms': 415.01052188687027, 'borne': 9.069079634688729e-07, 'erreur': 3.503783574387853e-08}]
+console16 [{'variante': 'krylov', 'directions': [18, 18, 18], 'accepte': [True, True, True], 'total_ms': 12.146355118602514, 'borne': 1.6393821381680342e-08, 'erreur': 1.804822055146964e-11}, {'variante': 'hcb', 'directions': [32, 32, 32], 'accepte': [True, True, True], 'total_ms': 14.658851083368063, 'borne': 3.9158745262078033e-07, 'erreur': 1.9951902316556136e-07}]
+console128 [{'variante': 'krylov', 'directions': [24, 24, 24], 'accepte': [True, True, True], 'total_ms': 20.17405815422535, 'borne': 3.547759530606213e-13, 'erreur': 1.2223833666849494e-08}, {'variante': 'hcb', 'directions': [56, 56, 56], 'accepte': [True, True, True], 'total_ms': 35.20895587280393, 'borne': 8.661663381000987e-07, 'erreur': 4.3107455256265683e-07}]
+console128_arrondi [{'variante': 'krylov', 'directions': [24, 24, 24], 'accepte': [False, False, False], 'total_ms': 20.113752922043204, 'borne': 3.547759530606213e-13, 'erreur': 1.2223833666849494e-08}, {'variante': 'hcb', 'directions': [762, 762, 762], 'accepte': [False, False, False], 'total_ms': 787.8720869775862, 'borne': 1.0698250003618463e-23, 'erreur': 1.3868267397814359e-08}]
+Archive vérifiée : 56 essais, échauffements et refus conservés.
+
+══ ports relevés : énergie, précision indépendante et assemblage
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.064s
+
+OK
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.137s
+
+OK
+...............
+----------------------------------------------------------------------
+Ran 15 tests in 0.319s
+
+OK
+assemblage-2048-32 assemblage_qr r [128, 128, 128] accepte [True, True, True] ms 449.26169607788324 erreur 3.553104130138958e-10
+assemblage-2048-8 assemblage_qr r [32, 32, 32] accepte [True, True, True] ms 155.6230599526316 erreur 2.5347770384283165e-12
+assemblage-64-4 assemblage_qr r [24, 24, 24] accepte [True, True, True] ms 70.7893988583237 erreur 1.427834749850964e-13
+chaine2048 direct r [6, 6, 6] accepte [True, True, True] ms 20.46809089370072 erreur 6.95221658020273e-13
+chaine2048 lu_energie r [5, 5, 5] accepte [True, True, True] ms 34.316258039325476 erreur 8.881784197001252e-16
+chaine2048 qr r [5, 5, 5] accepte [True, True, True] ms 74.55995795316994 erreur 4.884981308350689e-15
+console128 direct r [24, 24, 24] accepte [False, False, False] ms 19.966233987361193 erreur 9.934692379962462e-10
+console128 lu_energie r [18, 18, 18] accepte [True, True, True] ms 30.90647584758699 erreur 2.9760914295894243e-15
+console128 qr r [18, 18, 18] accepte [True, True, True] ms 48.010480822995305 erreur 4.912629334803825e-15
+console32 direct r [24, 24, 24] accepte [True, True, True] ms 14.85581905581057 erreur 5.4434271768201914e-11
+console32 lu_energie r [18, 18, 18] accepte [True, True, True] ms 22.492511197924614 erreur 3.66879405708244e-15
+console32 qr r [18, 18, 18] accepte [True, True, True] ms 27.6762661524117 erreur 4.496677153843056e-15
+console512 direct r [24, 24, 24] accepte [False, False, False] ms 43.060120893642306 erreur 9.526612543402751e-09
+console512 lu_energie r [18, 18, 18] accepte [True, True, True] ms 72.35759892500937 erreur 1.6790020069398954e-15
+console512 qr r [18, 18, 18] accepte [True, True, True] ms 131.1929828952998 erreur 1.398203965068242e-14
+Archive vérifiée : 60 essais, références haute précision et refus conservés.
+
+══ minoration spectrale : inverse sélectionnée et arithmétique dirigée
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.973s
+
+OK
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.005s
+
+OK
+
+══ complément contraint : certificat dirigé, composition et inertie
+.........
+----------------------------------------------------------------------
+Ran 9 tests in 0.104s
+
+OK
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.018s
+
+OK
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.020s
+
+OK
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.002s
+
+OK
+............
+----------------------------------------------------------------------
+Ran 12 tests in 4.905s
+
+OK
+
+══ Krylov contraint : projecteurs, enveloppes et réponses physiques
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.079s
+
+OK
+.........
+----------------------------------------------------------------------
+Ran 9 tests in 0.025s
+
+OK
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.032s
+
+OK
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.126s
+
+OK
+........
+----------------------------------------------------------------------
+Ran 8 tests in 27.007s
+
+OK
+
+══ inertie dirigée : congruences exactes et certificat creux
+..................
+----------------------------------------------------------------------
+Ran 18 tests in 0.017s
+
+OK
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.035s
+
+OK
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 52.685s
+
+OK
+
+══ contrôle par facteurs : majorations et champs physiques
+.................
+----------------------------------------------------------------------
+Ran 17 tests in 0.002s
+
+OK
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 0.328s
+
+OK
+............
+----------------------------------------------------------------------
+Ran 12 tests in 34.609s
+
+OK
+
+══ inertie binary64 : intervalles compilés, séparateurs et archives
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 1.837s
+
+OK
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 4.610s
+
+OK
+
+══ masses couplées : comparaison, quotient, oracle et archives
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 1.616s
+
+OK
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 1.720s
+
+OK
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.016s
+
+OK
+...
+----------------------------------------------------------------------
+Ran 3 tests in 1.621s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.005s
+
+OK
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 5.447s
+
+OK
+
+══ assemblages contraints : travail, modes privés, marges globales et archives
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+OK
+........
+----------------------------------------------------------------------
+Ran 8 tests in 1.918s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.067s
+
+OK
+....
+----------------------------------------------------------------------
+Ran 4 tests in 14.496s
+
+OK
+...
+----------------------------------------------------------------------
+Ran 3 tests in 2.063s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.611s
+
+OK
+
+══ champ intérieur : observables, enrichissement et refus près des résonances
+test_adaptation_utilise_criteres_physiques_frais_et_actualise_assemblage (__main__.ControleChampTests.test_adaptation_utilise_criteres_physiques_frais_et_actualise_assemblage) ... ok
+test_assemblage_masse_couplee_borne_le_champ_complet (__main__.ControleChampTests.test_assemblage_masse_couplee_borne_le_champ_complet) ... ok
+test_borne_relative_vise_la_solution_exacte_et_est_optimale (__main__.ControleChampTests.test_borne_relative_vise_la_solution_exacte_et_est_optimale) ... ok
+test_budget_directions_ne_se_fait_pas_passer_pour_une_tolerance (__main__.ControleChampTests.test_budget_directions_ne_se_fait_pas_passer_pour_une_tolerance) ... ok
+test_controle_perime_refuse_et_nouveau_controle_recalcule_les_bornes (__main__.ControleChampTests.test_controle_perime_refuse_et_nouveau_controle_recalcule_les_bornes) ... ok
+test_deformation_energetique_bornee_dans_D_original (__main__.ControleChampTests.test_deformation_energetique_bornee_dans_D_original) ... ok
+test_dual_exact_corrige_observable_sans_enrichir_le_primal (__main__.ControleChampTests.test_dual_exact_corrige_observable_sans_enrichir_le_primal) ... ok
+test_enrichissement_reutilise_facteur_et_conserve_identite_energetique (__main__.ControleChampTests.test_enrichissement_reutilise_facteur_et_conserve_identite_energetique) ... ok
+test_force_nulle_et_energie_externe_indefinie_ne_creent_pas_de_garantie_relative (__main__.ControleChampTests.test_force_nulle_et_energie_externe_indefinie_ne_creent_pas_de_garantie_relative) ... ok
+test_marge_globale_insuffisante_refuse_meme_interieur_coercif (__main__.ControleChampTests.test_marge_globale_insuffisante_refuse_meme_interieur_coercif) ... ok
+test_observable_primal_dual_et_reste_exact_a_port_fixe (__main__.ControleChampTests.test_observable_primal_dual_et_reste_exact_a_port_fixe) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.186s
+
+OK
+Archive champ intérieur : 5 expériences cohérentes, dont 2 refus de tolérance.
+
+══ confrontation des ports : oracle, juge, pont HCB et archive
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.059s
+
+OK
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.037s
+
+OK
+sss.........
+----------------------------------------------------------------------
+Ran 12 tests in 0.007s
+
+OK (skipped=3)
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 24.762s
+
+OK
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 4.846s
+
+OK
+
+══ archive de l'expérience sigma
+252 essais contrôlés, 84 configurations ; références et sorties cohérentes.
+
+══ archive de globalisation statique
+{
+  "configurations": 51,
+  "repetitions": 3,
+  "resolutions_chronometrees": 306,
+  "controles_reussis_par_version": 49,
+  "echecs_numeriques_communs": [
+    {
+      "famille": "poutre",
+      "formulation": "milieu",
+      "n": 10,
+      "tourne": true,
+      "unites": [
+        0.001,
+        1.0
+      ]
+    },
+    {
+      "famille": "poutre",
+      "formulation": "integree",
+      "n": 10,
+      "tourne": true,
+      "unites": [
+        0.001,
+        1.0
+      ]
+    }
+  ],
+  "regressions_de_convergence_observees": 0,
+  "ecart_position_max": 5.80017534002053e-10,
+  "ecart_rotation_max": 1.996061732567611e-09
+}
+
+══ archive de la tangente analytique des poutres
+{
+  "configurations": 51,
+  "repetitions": 3,
+  "resolutions_chronometrees": 306,
+  "controles_reussis_par_version": 49,
+  "echecs_numeriques_communs": [
+    {
+      "famille": "poutre",
+      "formulation": "milieu",
+      "n": 10,
+      "tourne": true,
+      "unites": [
+        0.001,
+        1.0
+      ]
+    },
+    {
+      "famille": "poutre",
+      "formulation": "integree",
+      "n": 10,
+      "tourne": true,
+      "unites": [
+        0.001,
+        1.0
+      ]
+    }
+  ],
+  "regressions_de_convergence_observees": 0,
+  "ecart_position_max": 2.1508073100307e-12,
+  "ecart_rotation_max": 6.91602330959995e-12
+}
+
+══ confrontations externes et contrôles du classement
+150 essais, trajectoires, bilans, journaux et empreintes vérifiés.
+232 essais : bilan, paliers, journaux et empreintes vérifiés.
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.555s
+
+OK
+
+══ adjoints par produits : archives et contrôles de comparaison
+156 essais : gradients, produits, paliers et résidus vérifiés.
+156 essais : gradients, produits, paliers et résidus vérifiés.
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.450s
+
+OK
+
+══ dossier de fiabilité : inventaire, décisions et contre-épreuves
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+Dossier vérifié : deux campagnes physiques, corpus lisse avant/après, identités des paquets et CI.
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.059s
+
+OK
+
+╚ CI locale OK

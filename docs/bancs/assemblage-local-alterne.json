@@ -1,0 +1,519 @@
+{
+  "cpu": 0,
+  "binaires": {
+    "avant": {
+      "path": "/tmp/vinkulum-assemblage-avant/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "sha256": "dfe9aba44f62dec2afa231fad90d02509a5cbd55954dd2774455998d44fa7d25"
+    },
+    "apres": {
+      "path": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "sha256": "66f36f1af74288d1f5f198cc02025663c8f90d977311e355661f0926aa8815ca"
+    }
+  },
+  "mesures": [
+    {
+      "seconds": 2.231523214140907,
+      "position": [
+        0.4936104925683597,
+        0.10904264059046917,
+        0.0088888203882798
+      ],
+      "residual": 4.209448371976045e-09,
+      "free_residual": 4.209448371976045e-09,
+      "phi": 1.4720717766291113e-21,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 4.209448371976045e-09,
+          "contraintes": 1.4720717766291113e-21,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 6.691837879673863e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 240,
+      "total_s": 2.2324371421709657,
+      "rss_initial_kib": 58900,
+      "rss_max_kib": 94260,
+      "rusage_max_kib_non_utilise": 94260,
+      "version": "avant",
+      "repetition": 0
+    },
+    {
+      "seconds": 0.4994349970947951,
+      "position": [
+        0.4936104925683597,
+        0.10904264059046917,
+        0.0088888203882798
+      ],
+      "residual": 4.209448371976045e-09,
+      "free_residual": 4.209448371976045e-09,
+      "phi": 1.4720717766291113e-21,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 4.209448371976045e-09,
+          "contraintes": 1.4720717766291113e-21,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 6.691837879673863e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 240,
+      "total_s": 0.5003009319771081,
+      "rss_initial_kib": 58908,
+      "rss_max_kib": 63324,
+      "rusage_max_kib_non_utilise": 63324,
+      "version": "apres",
+      "repetition": 0
+    },
+    {
+      "seconds": 11.299431374995038,
+      "position": [
+        0.4936103789222778,
+        0.10904297249135478,
+        0.008888869572272627
+      ],
+      "residual": 2.9466560410659397e-09,
+      "free_residual": 2.9466560410659397e-09,
+      "phi": 1.700029006457271e-16,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 2.9466560410659397e-09,
+          "contraintes": 1.700029006457271e-16,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 4.684353571182626e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 480,
+      "total_s": 11.301133238943294,
+      "rss_initial_kib": 58952,
+      "rss_max_kib": 196016,
+      "rusage_max_kib_non_utilise": 196016,
+      "version": "avant",
+      "repetition": 0
+    },
+    {
+      "seconds": 0.9519458739086986,
+      "position": [
+        0.4936103789222778,
+        0.10904297249135478,
+        0.008888869572272627
+      ],
+      "residual": 2.9466560410659397e-09,
+      "free_residual": 2.9466560410659397e-09,
+      "phi": 1.700029006457271e-16,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 2.9466560410659397e-09,
+          "contraintes": 1.700029006457271e-16,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 4.684353571182626e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 480,
+      "total_s": 0.95356429903768,
+      "rss_initial_kib": 59040,
+      "rss_max_kib": 67864,
+      "rusage_max_kib_non_utilise": 67864,
+      "version": "apres",
+      "repetition": 0
+    },
+    {
+      "seconds": 0.47367777209728956,
+      "position": [
+        0.4936104925683597,
+        0.10904264059046917,
+        0.0088888203882798
+      ],
+      "residual": 4.209448371976045e-09,
+      "free_residual": 4.209448371976045e-09,
+      "phi": 1.4720717766291113e-21,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 4.209448371976045e-09,
+          "contraintes": 1.4720717766291113e-21,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 6.691837879673863e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 240,
+      "total_s": 0.47451867000199854,
+      "rss_initial_kib": 59024,
+      "rss_max_kib": 63700,
+      "rusage_max_kib_non_utilise": 63700,
+      "version": "apres",
+      "repetition": 1
+    },
+    {
+      "seconds": 2.197326523019001,
+      "position": [
+        0.4936104925683597,
+        0.10904264059046917,
+        0.0088888203882798
+      ],
+      "residual": 4.209448371976045e-09,
+      "free_residual": 4.209448371976045e-09,
+      "phi": 1.4720717766291113e-21,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 4.209448371976045e-09,
+          "contraintes": 1.4720717766291113e-21,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 6.691837879673863e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 240,
+      "total_s": 2.1982393690850586,
+      "rss_initial_kib": 58940,
+      "rss_max_kib": 94464,
+      "rusage_max_kib_non_utilise": 94464,
+      "version": "avant",
+      "repetition": 1
+    },
+    {
+      "seconds": 0.9429844829719514,
+      "position": [
+        0.4936103789222778,
+        0.10904297249135478,
+        0.008888869572272627
+      ],
+      "residual": 2.9466560410659397e-09,
+      "free_residual": 2.9466560410659397e-09,
+      "phi": 1.700029006457271e-16,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 2.9466560410659397e-09,
+          "contraintes": 1.700029006457271e-16,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 4.684353571182626e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 480,
+      "total_s": 0.9445652649737895,
+      "rss_initial_kib": 59076,
+      "rss_max_kib": 68048,
+      "rusage_max_kib_non_utilise": 68048,
+      "version": "apres",
+      "repetition": 1
+    },
+    {
+      "seconds": 11.359772816998884,
+      "position": [
+        0.4936103789222778,
+        0.10904297249135478,
+        0.008888869572272627
+      ],
+      "residual": 2.9466560410659397e-09,
+      "free_residual": 2.9466560410659397e-09,
+      "phi": 1.700029006457271e-16,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 2.9466560410659397e-09,
+          "contraintes": 1.700029006457271e-16,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 4.684353571182626e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 480,
+      "total_s": 11.361442629946396,
+      "rss_initial_kib": 58972,
+      "rss_max_kib": 196392,
+      "rusage_max_kib_non_utilise": 196392,
+      "version": "avant",
+      "repetition": 1
+    },
+    {
+      "seconds": 2.2206768279429525,
+      "position": [
+        0.4936104925683597,
+        0.10904264059046917,
+        0.0088888203882798
+      ],
+      "residual": 4.209448371976045e-09,
+      "free_residual": 4.209448371976045e-09,
+      "phi": 1.4720717766291113e-21,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 4.209448371976045e-09,
+          "contraintes": 1.4720717766291113e-21,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 6.691837879673863e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 240,
+      "total_s": 2.2215986088849604,
+      "rss_initial_kib": 58944,
+      "rss_max_kib": 94464,
+      "rusage_max_kib_non_utilise": 94464,
+      "version": "avant",
+      "repetition": 2
+    },
+    {
+      "seconds": 0.4689744699280709,
+      "position": [
+        0.4936104925683597,
+        0.10904264059046917,
+        0.0088888203882798
+      ],
+      "residual": 4.209448371976045e-09,
+      "free_residual": 4.209448371976045e-09,
+      "phi": 1.4720717766291113e-21,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 4.209448371976045e-09,
+          "contraintes": 1.4720717766291113e-21,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 6.691837879673863e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 240,
+      "total_s": 0.469830997986719,
+      "rss_initial_kib": 58988,
+      "rss_max_kib": 63400,
+      "rusage_max_kib_non_utilise": 63400,
+      "version": "apres",
+      "repetition": 2
+    },
+    {
+      "seconds": 11.307559442007914,
+      "position": [
+        0.4936103789222778,
+        0.10904297249135478,
+        0.008888869572272627
+      ],
+      "residual": 2.9466560410659397e-09,
+      "free_residual": 2.9466560410659397e-09,
+      "phi": 1.700029006457271e-16,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 2.9466560410659397e-09,
+          "contraintes": 1.700029006457271e-16,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 4.684353571182626e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 480,
+      "total_s": 11.309221589937806,
+      "rss_initial_kib": 59052,
+      "rss_max_kib": 195584,
+      "rusage_max_kib_non_utilise": 195584,
+      "version": "avant",
+      "repetition": 2
+    },
+    {
+      "seconds": 0.936607904965058,
+      "position": [
+        0.4936103789222778,
+        0.10904297249135478,
+        0.008888869572272627
+      ],
+      "residual": 2.9466560410659397e-09,
+      "free_residual": 2.9466560410659397e-09,
+      "phi": 1.700029006457271e-16,
+      "iterations_last_attempt": 36,
+      "statique_rapports": [
+        {
+          "statut": "tolerance",
+          "tol": 1e-08,
+          "strict": true,
+          "residu_libre": 2.9466560410659397e-09,
+          "contraintes": 1.700029006457271e-16,
+          "echelle_force": 6.290421925435527,
+          "residu_relatif": 4.684353571182626e-10,
+          "tolerance_finale_atteinte": true,
+          "evaluations": 48,
+          "tentatives": 2,
+          "paliers": 1,
+          "palier": 1,
+          "paliers_stagnation": 0,
+          "etat_restaure": false,
+          "message": null
+        }
+      ],
+      "paliers_stagnation": 0,
+      "erreur": null,
+      "intervalles": 480,
+      "total_s": 0.9382080540526658,
+      "rss_initial_kib": 58972,
+      "rss_max_kib": 68224,
+      "rusage_max_kib_non_utilise": 68224,
+      "version": "apres",
+      "repetition": 2
+    }
+  ],
+  "bilan": [
+    {
+      "intervalles": 240,
+      "avant_s": 2.2206768279429525,
+      "apres_s": 0.47367777209728956,
+      "gain": 4.688159248238576,
+      "rss_mio": [
+        92.25,
+        61.9140625
+      ]
+    },
+    {
+      "intervalles": 480,
+      "avant_s": 11.307559442007914,
+      "apres_s": 0.9429844829719514,
+      "gain": 11.991246564705405,
+      "rss_mio": [
+        191.421875,
+        66.453125
+      ]
+    }
+  ],
+  "programme_sha256": "9b31d6d73999c86f06ff52ac5440e149bb5b1457bf792c8d62f213d99bb6a7fc",
+  "worker_sha256": "c8b60a647c5844d6884b04b053a2a2cc858a8ec0e5d166062e212a6c6218dde4"
+}

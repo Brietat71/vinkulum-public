@@ -1,0 +1,42 @@
+{
+  "famille": "chaine",
+  "taille": 1025,
+  "variante": "qr_dense",
+  "forme": [
+    1536,
+    1025
+  ],
+  "nnz": 3072,
+  "python": "3.14.7",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "cpu": [
+    8
+  ],
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "statut": "calcule",
+  "factorisation_s": 0.29524973197840154,
+  "projection_s": 0.0019914701115339994,
+  "reactions_s": 0.005073401844128966,
+  "total_s": 0.3023146039340645,
+  "diagnostic": {
+    "rang": 1024,
+    "coefficients_base_normales": 1049600,
+    "base_dense": true
+  },
+  "rss_avant_oracle_kib": 104520,
+  "controles": {
+    "erreur_projection": 5.457440055423035e-15,
+    "erreur_force": 2.0095036745715333e-14,
+    "fermeture": 4.717634703027551e-15,
+    "idempotence": 5.287437154777308e-15,
+    "rang_attendu": 1024,
+    "rang_correct": true
+  },
+  "accepte": true
+}

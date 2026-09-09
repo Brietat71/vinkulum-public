@@ -1,0 +1,93 @@
+{
+  "version": "0.15.0",
+  "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "paquet": "/tmp/vinkulum-0.15.0/isolated/lib/python3.14/site-packages/vinkulum/__init__.py",
+  "roue_sha256": "057f89c7256b5bfcb15abee35c831778c64edd3c167e6500ce01280d6fb3a89c",
+  "cas": {
+    "1": {
+      "sha256": "48c96b63e19b6090c6b6de8e9af8da8e62fb011b80d11522d3710a9929ca72bc",
+      "verification_autonome": {
+        "dimension": 11,
+        "contraction": "1622592768292133543843787555471365/23384026197294446691258957323460528314494920687616",
+        "produits_facteurs": 32,
+        "termes_defaut": 25,
+        "erreur_max": "0"
+      },
+      "modele_export_s": 0.0013003719504922628,
+      "proposition_s": 0.0008398429490625858,
+      "construction_document_s": 0.002671839902177453,
+      "relecture_processus_s": 0.03545334213413298,
+      "octets_json": 1240,
+      "octets_gzip": 432
+    },
+    "4": {
+      "sha256": "e622a026bf3106ebbcd3e1aa4f85a6a80e6f653ac71fce33ef5cd1a5d667d7d5",
+      "verification_autonome": {
+        "dimension": 44,
+        "contraction": "259143604614348167390093146292728982055/191561942608236107294793378393788647952342390272950272",
+        "produits_facteurs": 219,
+        "termes_defaut": 154,
+        "erreur_max": "202042655359307432566568031780768939339/2993155353253689176481146537402947624255349848014848"
+      },
+      "modele_export_s": 0.037571654887869954,
+      "proposition_s": 0.0007834460120648146,
+      "construction_document_s": 0.008970052003860474,
+      "relecture_processus_s": 0.03264518198557198,
+      "octets_json": 10057,
+      "octets_gzip": 2629
+    },
+    "16": {
+      "sha256": "2c2c8cdca4171d4e2ccd0137661146ed09cd0fdc7ff0b6cc862b79c97c9b73c7",
+      "verification_autonome": {
+        "dimension": 176,
+        "contraction": "7030935773677921310613156625350503631/93536104789177786765035829293842113257979682750464",
+        "produits_facteurs": 903,
+        "termes_defaut": 646,
+        "erreur_max": "3908068768857507941625873000939795653/2923003274661805836407369665432566039311865085952"
+      },
+      "modele_export_s": 0.002655529184266925,
+      "proposition_s": 0.002304969821125269,
+      "construction_document_s": 0.03442393778823316,
+      "relecture_processus_s": 0.04666947084479034,
+      "octets_json": 44009,
+      "octets_gzip": 10013
+    },
+    "64": {
+      "sha256": "d427d87951923c76b53727b7afd571b35e572fb347482f42fef17cf7d6ade3d9",
+      "verification_autonome": {
+        "dimension": 704,
+        "contraction": "58434645668469523387167090169849903795/11692013098647223345629478661730264157247460343808",
+        "produits_facteurs": 3639,
+        "termes_defaut": 2614,
+        "erreur_max": "51066609877628849484226816577609368159/91343852333181432387730302044767688728495783936"
+      },
+      "modele_export_s": 0.030932312132790685,
+      "proposition_s": 0.007641976932063699,
+      "construction_document_s": 0.13572240201756358,
+      "relecture_processus_s": 0.10948494100011885,
+      "octets_json": 169437,
+      "octets_gzip": 34763
+    },
+    "256": {
+      "sha256": "ebb594f5209bbc346495531a7182c8f45e3e8816194b1e797d6f14a5ba2f3c51",
+      "verification_autonome": {
+        "dimension": 2816,
+        "contraction": "103794358264853148327838628106199503607/365375409332725729550921208179070754913983135744",
+        "produits_facteurs": 14583,
+        "termes_defaut": 10486,
+        "erreur_max": "110547272420851890975311787919636151641/11417981541647679048466287755595961091061972992"
+      },
+      "modele_export_s": 1.0917434820439667,
+      "proposition_s": 0.02794912806712091,
+      "construction_document_s": 0.5547573808580637,
+      "relecture_processus_s": 0.34596633818000555,
+      "octets_json": 686307,
+      "octets_gzip": 133389
+    }
+  },
+  "modules_sha256": {
+    "prototype_lineaire_creux.py": "4b023a082b30e242043b67de83f48436c77a44b41e85540e6812ca9f089910b8",
+    "archive_lineaire_creux.py": "b0266fbcb9a1bed9b67fcfd29c7dba2446934c914d8aac2206392662c5263345",
+    "qualifie_lineaire_creux.py": "77a7020c4aed19c39cb266f346d972158f0b839aed1358f5fcc910a4016c07b4"
+  }
+}

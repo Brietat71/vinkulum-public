@@ -1,0 +1,11 @@
+milieu tolerance
+integree tolerance
+super tolerance
+milieu 10 True 1.0
+milieu 20 True 1.0
+milieu 40 True 1.0
+milieu 60 True 1.0
+integree 10 True 1.0
+integree 20 True 1.0
+integree 40 True 1.0
+integree 60 True 1.0

@@ -1,0 +1,3940 @@
+{
+  "metadata": {
+    "protocol_version": 2,
+    "platform": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+    "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+    "created_utc": "2026-09-07T08:56:14.771087+00:00",
+    "command": [
+      "/tmp/vinkulum-release-0.7.2/venv/bin/python",
+      "ci/confronte_mbdyn.py",
+      "--mbdyn",
+      "/root/src/mbdyn/mbdyn/mbdyn",
+      "--benchmarks",
+      "/root/src/mbdyn/tests/benchmarks",
+      "--sortie",
+      "/tmp/vinkulum-confrontation-0.7.2",
+      "--repetitions",
+      "3",
+      "--timeout",
+      "90",
+      "--initialisation-andrews",
+      "--pas",
+      "{\"six_barres\":[0.004,0.002,0.0012,0.0011,0.001,0.0005],\"spatial\":[0.002,0.00125,0.001,0.0005,0.0004,0.00025],\"andrews\":[0.0001,0.00009,0.000075,0.00005,0.00002,0.00001,0.000008,0.000004],\"princeton\":[4,6,8,10,20,40,60,80,120],\"princeton_integree\":[4,6,8,10,12,16,20,40]}",
+      "--references",
+      "{\"andrews\":[0.00002,0.00001],\"princeton\":{\"vinkulum\":[160,320],\"mbdyn\":[80,160]},\"princeton_integree\":[80,160]}"
+    ],
+    "repetitions": 3,
+    "timeout_seconds": 90.0,
+    "affinity": [
+      8
+    ],
+    "vinkulum_version": "0.7.2",
+    "vinkulum_package": "/tmp/vinkulum-release-0.7.2/venv/lib/python3.14/site-packages/vinkulum",
+    "initialisation_andrews": true,
+    "pas": {
+      "six_barres": [
+        0.004,
+        0.002,
+        0.0012,
+        0.0011,
+        0.001,
+        0.0005
+      ],
+      "spatial": [
+        0.002,
+        0.00125,
+        0.001,
+        0.0005,
+        0.0004,
+        0.00025
+      ],
+      "andrews": [
+        0.0001,
+        9e-05,
+        7.5e-05,
+        5e-05,
+        2e-05,
+        1e-05,
+        8e-06,
+        4e-06
+      ],
+      "princeton": [
+        4,
+        6,
+        8,
+        10,
+        20,
+        40,
+        60,
+        80,
+        120
+      ],
+      "princeton_integree": [
+        4,
+        6,
+        8,
+        10,
+        12,
+        16,
+        20,
+        40
+      ]
+    },
+    "pas_supplementaires": {},
+    "references": {
+      "andrews": [
+        2e-05,
+        1e-05
+      ],
+      "princeton": {
+        "vinkulum": [
+          160,
+          320
+        ],
+        "mbdyn": [
+          80,
+          160
+        ]
+      },
+      "princeton_integree": [
+        80,
+        160
+      ]
+    },
+    "cpu": "\t: AMD EPYC 7543 32-Core Processor",
+    "harness_checkout_commit": "30c2c5ad4027efa5196267010835feee52f1bbc4",
+    "harness_worktree_status": "M ci/bilan_confrontation.py\n M ci/confronte_mbdyn.py\n M ci/test_confrontation.py",
+    "binary_sha256": "aa210a635918b15616e282f15d5ee8742b43d4ce9c9ac13b023e254a5290325b",
+    "extension_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+    "script_sha256": "7ed5bda7e2afd7a3a83bd8b9c576f8dcb77ad872a3fbae791c4b0ddc8ff2d104",
+    "models_sha256": "d7b154b95414f1755ff17e71fd92b5eb17fb27872fe61177fadd863fb3a8d02b",
+    "andrews_model_sha256": "fb8c9773184d0b4a2cba2b82c9df49c5536fc9cbe6568ccadc0cb027d4a89e96",
+    "input_includes_sha256": {
+      "six_barres": {},
+      "spatial": {},
+      "andrews": {
+        "andrewssqueezer.ref": "ef11739237306bd10851a00fbb7e247b94fd275ec57d73f75e3463a459d72841",
+        "andrewssqueezer.set": "fe172a8920fe13fc75a2b58f660a9c94744794aec0f88099d7d98a15c70708c3",
+        "andrewssqueezer_assembler.set": "391f7bfbd6b81d68f983d7050d83cde6fd97b66953b7b6029d40366c5fd7bec6"
+      },
+      "princeton": {},
+      "princeton_integree": {}
+    },
+    "mbdyn_version": "MBDyn - MultiBody Dynamics develop\nconfigured on Aug 16 2026 at 17:29:37\nMBDyn terminated normally",
+    "mbdyn_checkout_commit": "eb3bb5796e99c70e9ee0af072c38aada13a199f6",
+    "input_sha256": {
+      "six_barres": "6448dfd974c17a7deaf9dda105623a372b9443116cb77d80c4bf15110920d312",
+      "spatial": "b4d3f1c5c37c6083b9cbe45ebbc28d148b47f6712f82684d93c1b552ab8e7c82",
+      "andrews": "1657a0c552ebbbc1ca3a77e79ed4204dc9f9c847f99779c9787d5bd258f5a4b1",
+      "princeton": "9de8feed435d81d6c5b409aa50222c1a0c217741fd884417a7f6a037071803c8",
+      "princeton_integree": "9de8feed435d81d6c5b409aa50222c1a0c217741fd884417a7f6a037071803c8"
+    }
+  },
+  "definition": "Réduit les trajectoires de confronte_mbdyn en mesures auditables.\n\nErreur : maximum absolu sur les composantes et les instants échantillonnés.\nChaque candidat est comparé aux DEUX références fines ; aucune n'est tenue\npour une vérité exacte. Le classement exige deux raffinements réussis par\nmoteur et une variation de référence inférieure à 10 % du seuil demandé.\n",
+  "cases": {
+    "six_barres": {
+      "spec": {
+        "deck": "6barmech/6barmech",
+        "T": 3.0,
+        "steps": [
+          0.004,
+          0.002,
+          0.0012,
+          0.0011,
+          0.001,
+          0.0005
+        ],
+        "ref": [
+          0.00025,
+          0.000125
+        ],
+        "labels": [
+          0,
+          1,
+          2,
+          101,
+          102
+        ],
+        "sample": 0.004,
+        "unit": "m",
+        "target": 0.0001
+      },
+      "configurations": [
+        {
+          "engine": "vinkulum",
+          "step": 0.004,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.1858101119287312,
+            0.18703263509087265,
+            0.18608930497430265
+          ],
+          "median_seconds": 0.18608930497430265,
+          "rss_kib": [
+            48128,
+            48128,
+            48128
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.001043371479075017,
+            "mbdyn": 0.0010431816238845038
+          },
+          "trajectory_sha256": "25f9f10c0b60c2ab2483d65087f97183353efe53cf8a857361491757e4509724",
+          "final_values": [
+            -0.2742106977733328,
+            0.0,
+            -0.41810105623719973,
+            0.7257893022266672,
+            0.0,
+            -0.4181010562371994,
+            1.7257893022266673,
+            0.0,
+            -0.4181010562372001,
+            -0.04842139554666561,
+            0.0,
+            -0.8362021124743991,
+            0.9515786044533344,
+            0.0,
+            -0.8362021124743995
+          ],
+          "error_envelope": 0.001043371479075017,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 0.001047007495743435,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.002,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.2217004660051316,
+            0.22142048203386366,
+            0.22440221183933318
+          ],
+          "median_seconds": 0.2217004660051316,
+          "rss_kib": [
+            53760,
+            53760,
+            53760
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.000260121946410119,
+            "mbdyn": 0.00025993209121932814
+          },
+          "trajectory_sha256": "dba853fbad05c95052b8181e2c2e3df2190522f35a33607930fb9d4f9a217687",
+          "final_values": [
+            -0.27455508757177394,
+            0.0,
+            -0.4178749859568705,
+            0.7254449124282261,
+            0.0,
+            -0.41787498595687184,
+            1.725444912428226,
+            0.0,
+            -0.41787498595687095,
+            -0.04911017514354785,
+            0.0,
+            -0.8357499719137423,
+            0.9508898248564521,
+            0.0,
+            -0.8357499719137428
+          ],
+          "error_envelope": 0.000260121946410119,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 0.00026375796307853694,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.0012,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.2685227729380131,
+            0.27160210884176195,
+            0.2678766299504787
+          ],
+          "median_seconds": 0.2685227729380131,
+          "rss_kib": [
+            61440,
+            61440,
+            61440
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 9.462996150033653e-05,
+            "mbdyn": 9.444070622488532e-05
+          },
+          "trajectory_sha256": "f964363ab9f329c4597d628d7834389635d98db362cb330bd7ce18f3c154bc3b",
+          "final_values": [
+            -0.2746285856602369,
+            0.0,
+            -0.41782668648407145,
+            0.725371414339763,
+            0.0,
+            -0.4178266864840719,
+            1.725371414339763,
+            0.0,
+            -0.41782668648407,
+            -0.04925717132047379,
+            0.0,
+            -0.8356533729681433,
+            0.9507428286795262,
+            0.0,
+            -0.8356533729681419
+          ],
+          "error_envelope": 9.462996150033653e-05,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 9.826597816875449e-05,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.0011,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.2772624921053648,
+            0.27872030483558774,
+            0.27905110619030893
+          ],
+          "median_seconds": 0.27872030483558774,
+          "rss_kib": [
+            63488,
+            63488,
+            63488
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 7.942517283510142e-05,
+            "mbdyn": 7.92359175596502e-05
+          },
+          "trajectory_sha256": "7e7b2cf1eaee3146fa0342f4adcc4ebe1168b279c3128a18e1308567cc032e07",
+          "final_values": [
+            -0.2746351646255935,
+            0.0,
+            -0.417822362196032,
+            0.7253648353744064,
+            0.0,
+            -0.4178223621960318,
+            1.7253648353744064,
+            0.0,
+            -0.41782236219603314,
+            -0.04927032925118702,
+            0.0,
+            -0.8356447243920638,
+            0.950729670748813,
+            0.0,
+            -0.8356447243920649
+          ],
+          "error_envelope": 7.942517283510142e-05,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 8.306118950351937e-05,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.001,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.28821572684682906,
+            0.28932965197600424,
+            0.28923768689855933
+          ],
+          "median_seconds": 0.28923768689855933,
+          "rss_kib": [
+            66048,
+            65536,
+            65536
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 6.41359911175976e-05,
+            "mbdyn": 6.394613592708431e-05
+          },
+          "trajectory_sha256": "6ef54c472727f3ffacbf0a4f0589644aa99c012eb3d55a4b4612f7c39c72f837",
+          "final_values": [
+            -0.2746412297570027,
+            0.0,
+            -0.41781837551448026,
+            0.7253587702429972,
+            0.0,
+            -0.4178183755144813,
+            1.7253587702429973,
+            0.0,
+            -0.41781837551448037,
+            -0.04928245951400541,
+            0.0,
+            -0.8356367510289616,
+            0.9507175404859946,
+            0.0,
+            -0.8356367510289617
+          ],
+          "error_envelope": 6.41359911175976e-05,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 6.777200778601555e-05,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.0005,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.452177596045658,
+            0.45067314407788217,
+            0.4538243489805609
+          ],
+          "median_seconds": 0.452177596045658,
+          "rss_kib": [
+            89600,
+            89600,
+            89600
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.5273724307651726e-05,
+            "mbdyn": 1.5083869116860882e-05
+          },
+          "trajectory_sha256": "d61b7d25d0ed499e0ca57af90f462c2da6aaca24a922c303cf9deafaf8f1fab1",
+          "final_values": [
+            -0.2746627088102525,
+            0.0,
+            -0.4178042560685725,
+            0.7253372911897475,
+            0.0,
+            -0.417804256068571,
+            1.7253372911897475,
+            0.0,
+            -0.4178042560685729,
+            -0.0493254176205049,
+            0.0,
+            -0.8356085121371436,
+            0.9506745823794951,
+            0.0,
+            -0.8356085121371439
+          ],
+          "error_envelope": 1.5273724307651726e-05,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 1.8909740976069678e-05,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.00025,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.9282629319932312
+          ],
+          "median_seconds": 0.9282629319932312,
+          "rss_kib": [
+            138236
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 3.05527384397708e-06,
+            "mbdyn": 2.865418653241747e-06
+          },
+          "trajectory_sha256": "bef7b0e2eadaca5b0d58c1a88b49bccd65c8be19339615b8962228592c3ce9ed",
+          "final_values": [
+            -0.27466807959066625,
+            0.0,
+            -0.4178007252913388,
+            0.7253319204093337,
+            0.0,
+            -0.4178007252913439,
+            1.7253319204093338,
+            0.0,
+            -0.4178007252913397,
+            -0.0493361591813325,
+            0.0,
+            -0.8356014505826826,
+            0.9506638408186675,
+            0.0,
+            -0.8356014505826836
+          ],
+          "error_envelope": 3.05527384397708e-06,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 6.691290512395032e-06,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.000125,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            2.1070356238633394
+          ],
+          "median_seconds": 2.1070356238633394,
+          "rss_kib": [
+            235448
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0,
+            "mbdyn": 1.8987880645582322e-07
+          },
+          "trajectory_sha256": "bda39b11d7c6337c1fb44567b8c3da5890c61fb9de3358bf65509d19ad6470f2",
+          "final_values": [
+            -0.27466942255391497,
+            0.0,
+            -0.41779984240530904,
+            0.725330577446085,
+            0.0,
+            -0.4177998424053131,
+            1.725330577446085,
+            0.0,
+            -0.417799842405316,
+            -0.04933884510782999,
+            0.0,
+            -0.8355996848106221,
+            0.95066115489217,
+            0.0,
+            -0.8355996848106291
+          ],
+          "error_envelope": 1.8987880645582322e-07,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 3.825895474873775e-06,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.004,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.09484283905476332,
+            0.09525544592179358,
+            0.09442760702222586
+          ],
+          "median_seconds": 0.09484283905476332,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0013499032037920244,
+            "mbdyn": 0.0013497133486015667
+          },
+          "trajectory_sha256": "979b2a9684b9de1d344cac1fb56cad648f963fa3068604229138b2088343c1f2",
+          "final_values": [
+            -0.27408021050526155,
+            0.0,
+            -0.4181866069225437,
+            0.7259197894947392,
+            0.0,
+            -0.41818660692254245,
+            1.7259197894947382,
+            0.0,
+            -0.41818660692254356,
+            -0.04816042101052456,
+            0.0,
+            -0.8363732138450898,
+            0.9518395789894755,
+            0.0,
+            -0.8363732138450898
+          ],
+          "error_envelope": 0.0013499032037920244,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 0.0013535392204604424,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.002,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.17551364190876484,
+            0.17830810486339033,
+            0.17829453898593783
+          ],
+          "median_seconds": 0.17829453898593783,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0003219217186945511,
+            "mbdyn": 0.0003217318635038158
+          },
+          "trajectory_sha256": "4b64ae04628cd3b10b4b9d9a9d4c97e8c3ca42ff70e97ee7cb25903b1c3bb9f3",
+          "final_values": [
+            -0.27452854201243254,
+            0.0,
+            -0.41789242589513564,
+            0.7254714579875664,
+            0.0,
+            -0.4178924258951372,
+            1.7254714579875674,
+            0.0,
+            -0.41789242589513603,
+            -0.04905708402486984,
+            0.0,
+            -0.8357848517902784,
+            0.95094291597513,
+            0.0,
+            -0.8357848517902784
+          ],
+          "error_envelope": 0.0003219217186945511,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 0.00032555773536296906,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.0012,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.29608851997181773,
+            0.2914264420978725,
+            0.2894443499390036
+          ],
+          "median_seconds": 0.2914264420978725,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0001147393025205945,
+            "mbdyn": 0.00011455004724508777
+          },
+          "trajectory_sha256": "bafd8ba094e13e03f7bc4e525be8de66396142d1f2b677ad6a22e484bc20dbec",
+          "final_values": [
+            -0.27461986776439573,
+            0.0,
+            -0.4178324164411578,
+            0.7253801322356047,
+            0.0,
+            -0.41783241644115715,
+            1.725380132235605,
+            0.0,
+            -0.4178324164411573,
+            -0.04923973552880031,
+            0.0,
+            -0.8356648328823291,
+            0.9507602644711998,
+            0.0,
+            -0.8356648328823291
+          ],
+          "error_envelope": 0.0001147393025205945,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 0.00011837531918901245,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.0011,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.3160582110285759,
+            0.316962406039238,
+            0.3170662841293961
+          ],
+          "median_seconds": 0.316962406039238,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 9.609275912525472e-05,
+            "mbdyn": 9.590350384991453e-05
+          },
+          "trajectory_sha256": "f33346ebd888de7958a8594f851b4bb7ef456b7db2baaefa62f493d3756bac29",
+          "final_values": [
+            -0.2746262111426796,
+            0.0,
+            -0.41782516008825604,
+            0.7253737888573196,
+            0.0,
+            -0.41782516008825715,
+            1.725373788857321,
+            0.0,
+            -0.4178251600882555,
+            -0.04925242228536536,
+            0.0,
+            -0.8356503201765212,
+            0.9507475777146346,
+            0.0,
+            -0.8356503201765213
+          ],
+          "error_envelope": 9.609275912525472e-05,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 9.972877579367267e-05,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.001,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.3463661309797317,
+            0.346533521078527,
+            0.3462183300871402
+          ],
+          "median_seconds": 0.3463661309797317,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 7.786173858082002e-05,
+            "mbdyn": 7.767188339036224e-05
+          },
+          "trajectory_sha256": "06c3de7d4bd9242011b31ac3eff373a644eb69d2162cf2485e54b7c939bee8e7",
+          "final_values": [
+            -0.27463529810498366,
+            0.0,
+            -0.4178222744598324,
+            0.7253647018950166,
+            0.0,
+            -0.417822274459832,
+            1.7253647018950147,
+            0.0,
+            -0.41782227445983455,
+            -0.04927059620996394,
+            0.0,
+            -0.8356445489196596,
+            0.9507294037900361,
+            0.0,
+            -0.8356445489196596
+          ],
+          "error_envelope": 7.786173858082002e-05,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 8.149775524923797e-05,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.0005,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.6821486370172352,
+            0.6853602270130068,
+            0.6847940161824226
+          ],
+          "median_seconds": 0.6847940161824226,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.847040963964819e-05,
+            "mbdyn": 1.8280554448857345e-05
+          },
+          "trajectory_sha256": "9cc26d5d20c93f1186889f8d6d936e0e361f61e066031792127b527a9e230a30",
+          "final_values": [
+            -0.27466132172236185,
+            0.0,
+            -0.4178051679308716,
+            0.7253386782776383,
+            0.0,
+            -0.41780516793087147,
+            1.7253386782776392,
+            0.0,
+            -0.4178051679308703,
+            -0.049322643444702156,
+            0.0,
+            -0.8356103358617107,
+            0.9506773565552978,
+            0.0,
+            -0.8356103358617107
+          ],
+          "error_envelope": 1.847040963964819e-05,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 2.210642630806614e-05,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.00025,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            1.3581852251663804
+          ],
+          "median_seconds": 1.3581852251663804,
+          "rss_kib": [
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 3.825871858875729e-06,
+            "mbdyn": 3.636016668417952e-06
+          },
+          "trajectory_sha256": "c932426a782d59805c8ebda161c87ebdda89905f890f3c6ffe8abe5823f01cdb",
+          "final_values": [
+            -0.2746677444872218,
+            0.0,
+            -0.4178009455928803,
+            0.7253322555127768,
+            0.0,
+            -0.41780094559288244,
+            1.7253322555127777,
+            0.0,
+            -0.41780094559288156,
+            -0.04933548897443971,
+            0.0,
+            -0.8356018911857548,
+            0.9506645110255603,
+            0.0,
+            -0.8356018911857548
+          ],
+          "error_envelope": 3.825871858875729e-06,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 7.461888527293681e-06,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.000125,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            2.6182270639110357
+          ],
+          "median_seconds": 2.6182270639110357,
+          "rss_kib": [
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.8987880645582322e-07,
+            "mbdyn": 0.0
+          },
+          "trajectory_sha256": "4bdd86fb4f4831b8ad34ce572b27376c1e087025f278377af0f3fbd42f85e361",
+          "final_values": [
+            -0.27466933991561054,
+            0.0,
+            -0.4177998967332626,
+            0.7253306600843867,
+            0.0,
+            -0.41779989673326684,
+            1.7253306600843885,
+            0.0,
+            -0.4177998967332645,
+            -0.049338679831217605,
+            0.0,
+            -0.8355997934665199,
+            0.9506613201687824,
+            0.0,
+            -0.8355997934665199
+          ],
+          "error_envelope": 1.8987880645582322e-07,
+          "reference_variation_margin": 3.636016668417952e-06,
+          "estimated_error_with_margin": 3.825895474873775e-06,
+          "eligible": false
+        }
+      ],
+      "failures": [],
+      "warmup_failures": [],
+      "vinkulum_reference_change": 3.05527384397708e-06,
+      "mbdyn_reference_change": 3.636016668417952e-06,
+      "reference_cross_gap": 1.8987880645582322e-07,
+      "references_qualified": true,
+      "vinkulum_best": {
+        "engine": "vinkulum",
+        "step": 0.0012,
+        "successes": 3,
+        "attempts": 3,
+        "candidate": true,
+        "repetitions_complete": true,
+        "wall_seconds": [
+          0.2685227729380131,
+          0.27160210884176195,
+          0.2678766299504787
+        ],
+        "median_seconds": 0.2685227729380131,
+        "rss_kib": [
+          61440,
+          61440,
+          61440
+        ],
+        "repeat_difference": 0.0,
+        "errors_to_references": {
+          "vinkulum": 9.462996150033653e-05,
+          "mbdyn": 9.444070622488532e-05
+        },
+        "trajectory_sha256": "f964363ab9f329c4597d628d7834389635d98db362cb330bd7ce18f3c154bc3b",
+        "final_values": [
+          -0.2746285856602369,
+          0.0,
+          -0.41782668648407145,
+          0.725371414339763,
+          0.0,
+          -0.4178266864840719,
+          1.725371414339763,
+          0.0,
+          -0.41782668648407,
+          -0.04925717132047379,
+          0.0,
+          -0.8356533729681433,
+          0.9507428286795262,
+          0.0,
+          -0.8356533729681419
+        ],
+        "error_envelope": 9.462996150033653e-05,
+        "reference_variation_margin": 3.636016668417952e-06,
+        "estimated_error_with_margin": 9.826597816875449e-05,
+        "eligible": true
+      },
+      "mbdyn_best": {
+        "engine": "mbdyn",
+        "step": 0.0011,
+        "successes": 3,
+        "attempts": 3,
+        "candidate": true,
+        "repetitions_complete": true,
+        "wall_seconds": [
+          0.3160582110285759,
+          0.316962406039238,
+          0.3170662841293961
+        ],
+        "median_seconds": 0.316962406039238,
+        "rss_kib": [
+          13312,
+          13312,
+          13312
+        ],
+        "repeat_difference": 0.0,
+        "errors_to_references": {
+          "vinkulum": 9.609275912525472e-05,
+          "mbdyn": 9.590350384991453e-05
+        },
+        "trajectory_sha256": "f33346ebd888de7958a8594f851b4bb7ef456b7db2baaefa62f493d3756bac29",
+        "final_values": [
+          -0.2746262111426796,
+          0.0,
+          -0.41782516008825604,
+          0.7253737888573196,
+          0.0,
+          -0.41782516008825715,
+          1.725373788857321,
+          0.0,
+          -0.4178251600882555,
+          -0.04925242228536536,
+          0.0,
+          -0.8356503201765212,
+          0.9507475777146346,
+          0.0,
+          -0.8356503201765213
+        ],
+        "error_envelope": 9.609275912525472e-05,
+        "reference_variation_margin": 3.636016668417952e-06,
+        "estimated_error_with_margin": 9.972877579367267e-05,
+        "eligible": true
+      },
+      "mbdyn_over_vinkulum_time": 1.180393016842586
+    },
+    "spatial": {
+      "spec": {
+        "deck": "srskm/srscm",
+        "T": 5.0,
+        "steps": [
+          0.002,
+          0.00125,
+          0.001,
+          0.0005,
+          0.0004,
+          0.00025
+        ],
+        "ref": [
+          6.25e-05,
+          3.125e-05
+        ],
+        "labels": [
+          100,
+          200,
+          300
+        ],
+        "sample": 0.002,
+        "unit": "m",
+        "target": 0.0001
+      },
+      "configurations": [
+        {
+          "engine": "vinkulum",
+          "step": 0.002,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.5291165539529175,
+            0.52977559203282,
+            0.5465948609635234
+          ],
+          "median_seconds": 0.52977559203282,
+          "rss_kib": [
+            55808,
+            55808,
+            55808
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.00022642582549699947,
+            "mbdyn": 0.00022633214876321278
+          },
+          "trajectory_sha256": "cb2c00142b34beff78afe2c776fe13364fa07899ff39de227c189e6f556d8f09",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12737304545741873,
+            0.014244083818299941,
+            0.0779308242422717,
+            0.2547460909148374,
+            -9.196035022779624e-31,
+            -3.639328275662602e-30
+          ],
+          "error_envelope": 0.00022642582549699947,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 0.00022755067900739195,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.00125,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.7501675980165601,
+            0.7492566700093448,
+            0.7483741161413491
+          ],
+          "median_seconds": 0.7492566700093448,
+          "rss_kib": [
+            62464,
+            62464,
+            62464
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 8.890744271931178e-05,
+            "mbdyn": 8.881474793737826e-05
+          },
+          "trajectory_sha256": "f7322f0f97b14411fbe9b709c6cbb6d9ee72ea306d095eefd3230af59ecd1855",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.1273442989342515,
+            0.014265687577747417,
+            0.07797383975974127,
+            0.254688597868503,
+            -3.343929478771957e-32,
+            -2.845575723070907e-31
+          ],
+          "error_envelope": 8.890744271931178e-05,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 9.003229622970427e-05,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.001,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.9118012101389468,
+            0.9235623648855835,
+            0.9128533089533448
+          ],
+          "median_seconds": 0.9128533089533448,
+          "rss_kib": [
+            67548,
+            67556,
+            67548
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 5.631722397801686e-05,
+            "mbdyn": 5.6223547244230176e-05
+          },
+          "trajectory_sha256": "e84761e463ab5c0a0400840660bc79a863a22602d80262827a1f2611c47f24a4",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12733747234553547,
+            0.014270823932038438,
+            0.07798404786205254,
+            0.25467494469107094,
+            -1.418520047492991e-32,
+            -5.704671531205582e-32
+          ],
+          "error_envelope": 5.631722397801686e-05,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 5.744207748840935e-05,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.0005,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            1.6825729510746896,
+            1.7363161179237068,
+            1.6865051521454006
+          ],
+          "median_seconds": 1.6865051521454006,
+          "rss_kib": [
+            92216,
+            92220,
+            92220
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.4003682012979357e-05,
+            "mbdyn": 1.3910005279192672e-05
+          },
+          "trajectory_sha256": "fff5c2e6561e101af9187bd309b38a1a956462f9389aeb9583ed568716ef1eab",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12732820222092608,
+            0.014277802493806802,
+            0.07799790558172041,
+            0.2546564044418522,
+            -2.0246168391576923e-36,
+            9.469737493754378e-34
+          ],
+          "error_envelope": 1.4003682012979357e-05,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 1.5128535523371844e-05,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.0004,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            2.056497741956264,
+            2.1303548379801214,
+            2.058774475939572
+          ],
+          "median_seconds": 2.058774475939572,
+          "rss_kib": [
+            105028,
+            105028,
+            105092
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 8.938036475086841e-06,
+            "mbdyn": 8.844359741300156e-06
+          },
+          "trajectory_sha256": "c399c498ee41a1563e3d46a4c674f8ecddab9309b077cd8ef6a9c397680caf21",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12732707139856095,
+            0.014278654068363346,
+            0.07799959568524673,
+            0.2546541427971219,
+            5.270373622456195e-35,
+            -1.2980365027107785e-33
+          ],
+          "error_envelope": 8.938036475086841e-06,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 1.0062889985479329e-05,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 0.00025,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            3.242229219060391,
+            3.2128703638445586,
+            3.280263032997027
+          ],
+          "median_seconds": 3.242229219060391,
+          "rss_kib": [
+            142564,
+            142568,
+            142568
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 3.455300676587225e-06,
+            "mbdyn": 3.36162394280054e-06
+          },
+          "trajectory_sha256": "10c08b1dd31c8454069a59995b00972b891431c8d16057966ff84947fa783f65",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12732583902504382,
+            0.014279582188599708,
+            0.07800143748090606,
+            0.25465167805008765,
+            -4.54838463447492e-29,
+            -3.664162053795091e-27
+          ],
+          "error_envelope": 3.455300676587225e-06,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 4.5801541869797124e-06,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 6.25e-05,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            12.428562836023048
+          ],
+          "median_seconds": 12.428562836023048,
+          "rss_kib": [
+            444604
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.643828955108506e-07,
+            "mbdyn": 4.1688737659889563e-07
+          },
+          "trajectory_sha256": "1ae8bec34406766f8da65eb1a2ae31b53b5e92edfa7413342f77d296e8f95849",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12732509279743529,
+            0.01428014422095853,
+            0.07800255268356071,
+            0.25465018559487057,
+            3.443395481351186e-30,
+            -7.812991975843384e-29
+          ],
+          "error_envelope": 4.1688737659889563e-07,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 1.541740886991383e-06,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 3.125e-05,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            24.704579917015508
+          ],
+          "median_seconds": 24.704579917015508,
+          "rss_kib": [
+            848340
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0,
+            "mbdyn": 3.823060870863926e-07
+          },
+          "trajectory_sha256": "f719efc14254a1f26ac92cb3ae6fcaf659d82a31c0e2fb2cb32c3c748c8e239e",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12732505526289514,
+            0.014280172491383105,
+            0.07800260877635735,
+            0.2546501105257903,
+            9.819349420368065e-31,
+            -5.792937507639988e-30
+          ],
+          "error_envelope": 3.823060870863926e-07,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 1.5071595974788798e-06,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.002,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.1596467448398471,
+            0.16350888600572944,
+            0.16169944289140403
+          ],
+          "median_seconds": 0.16169944289140403,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0023098635692536604,
+            "mbdyn": 0.0023094819380486686
+          },
+          "trajectory_sha256": "d05e5d322f20639dda2817142de2bd9b50f940cec6c6969e2f5f5ccf889bbf46",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12672291439818503,
+            0.014742529930438631,
+            0.07889208311155538,
+            0.25344582879637007,
+            0.0,
+            0.0
+          ],
+          "error_envelope": 0.0023098635692536604,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 0.002310988422764053,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.00125,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.24811790697276592,
+            0.24476106115616858,
+            0.24555697990581393
+          ],
+          "median_seconds": 0.24555697990581393,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0007876365138572844,
+            "mbdyn": 0.0007872548826522927
+          },
+          "trajectory_sha256": "151f68921a5ad47a3bfa206ca84242b1ad735a958ccb4fef894694f57c6a9f98",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12712152391573184,
+            0.014434486316837967,
+            0.0783055793804919,
+            0.2542430478314637,
+            0.0,
+            0.0
+          ],
+          "error_envelope": 0.0007876365138572844,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 0.0007887613673676769,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.001,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.30428217514418066,
+            0.3042578580789268,
+            0.30235994700342417
+          ],
+          "median_seconds": 0.3042578580789268,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0004788004916173247,
+            "mbdyn": 0.00047841886041233295
+          },
+          "trajectory_sha256": "d583be39237c5ed184a0dd7510865c07db11078546583b57e4bd954ddedfe292",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12720178997369946,
+            0.014373387695313869,
+            0.07818638214962881,
+            0.25440357994739893,
+            0.0,
+            0.0
+          ],
+          "error_envelope": 0.0004788004916173247,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 0.0004799253451277172,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.0005,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.6026502950116992,
+            0.6096059819683433,
+            0.6029451910872012
+          ],
+          "median_seconds": 0.6029451910872012,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.00010698533666878007,
+            "mbdyn": 0.00010660303058169368
+          },
+          "trajectory_sha256": "f59c49550ec0d6a74408a0d46286eb82f0ecfc1f7ba30c437ede5328f795dc70",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.1272977969639946,
+            0.01430072133956956,
+            0.07804332295130065,
+            0.25459559392798914,
+            0.0,
+            0.0
+          ],
+          "error_envelope": 0.00010698533666878007,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 0.00010811019017917256,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.0004,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.7349193191621453,
+            0.7369616699870676,
+            0.7328151660040021
+          ],
+          "median_seconds": 0.7349193191621453,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 6.683275529164451e-05,
+            "mbdyn": 6.645044920455812e-05
+          },
+          "trajectory_sha256": "ab098847a63af27b7b98d9b27200006b6af8b9fe025cf42610aa4e6b20f76a01",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12730806769148914,
+            0.01429297438697526,
+            0.0780279871830066,
+            0.2546161353829784,
+            0.0,
+            0.0
+          ],
+          "error_envelope": 6.683275529164451e-05,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 6.7957608802037e-05,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.00025,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            1.2034966489300132,
+            1.1872736930381507,
+            1.1904754650313407
+          ],
+          "median_seconds": 1.1904754650313407,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.5148012260695074e-05,
+            "mbdyn": 2.476570617360868e-05
+          },
+          "trajectory_sha256": "1e0a3ff8b9fb31266fc11c7d347629ae9902219ee2bfb4c8f49f2183376d1c21",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12731868376315977,
+            0.014284972410205677,
+            0.07801212936496071,
+            0.2546373675263195,
+            0.0,
+            0.0
+          ],
+          "error_envelope": 2.5148012260695074e-05,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 2.627286577108756e-05,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 6.25e-05,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            4.6392350839450955
+          ],
+          "median_seconds": 4.6392350839450955,
+          "rss_kib": [
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.5071595974788798e-06,
+            "mbdyn": 1.1248535103924873e-06
+          },
+          "trajectory_sha256": "d3a5438097ac34e0804810ccd4dab4e71294e6f838b55d65cd0ac4622754b0a8",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12732466655163188,
+            0.014280465266619868,
+            0.07800318967380307,
+            0.2546493331032639,
+            0.0,
+            0.0
+          ],
+          "error_envelope": 1.5071595974788798e-06,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 2.632013107871367e-06,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 3.125e-05,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            9.489189327927306
+          ],
+          "median_seconds": 9.489189327927306,
+          "rss_kib": [
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 3.823060870863926e-07,
+            "mbdyn": 0.0
+          },
+          "trajectory_sha256": "4a34688ceee2c379d1fd5c54d18b463ee05cd81be61072786a78f392fb546c59",
+          "final_values": [
+            0.0,
+            0.1,
+            0.12,
+            0.12732494958303836,
+            0.014280252088144459,
+            0.07800276670718691,
+            0.2546498991660766,
+            0.0,
+            0.0
+          ],
+          "error_envelope": 3.823060870863926e-07,
+          "reference_variation_margin": 1.1248535103924873e-06,
+          "estimated_error_with_margin": 1.5071595974788798e-06,
+          "eligible": false
+        }
+      ],
+      "failures": [],
+      "warmup_failures": [],
+      "vinkulum_reference_change": 1.643828955108506e-07,
+      "mbdyn_reference_change": 1.1248535103924873e-06,
+      "reference_cross_gap": 3.823060870863926e-07,
+      "references_qualified": true,
+      "vinkulum_best": {
+        "engine": "vinkulum",
+        "step": 0.00125,
+        "successes": 3,
+        "attempts": 3,
+        "candidate": true,
+        "repetitions_complete": true,
+        "wall_seconds": [
+          0.7501675980165601,
+          0.7492566700093448,
+          0.7483741161413491
+        ],
+        "median_seconds": 0.7492566700093448,
+        "rss_kib": [
+          62464,
+          62464,
+          62464
+        ],
+        "repeat_difference": 0.0,
+        "errors_to_references": {
+          "vinkulum": 8.890744271931178e-05,
+          "mbdyn": 8.881474793737826e-05
+        },
+        "trajectory_sha256": "f7322f0f97b14411fbe9b709c6cbb6d9ee72ea306d095eefd3230af59ecd1855",
+        "final_values": [
+          0.0,
+          0.1,
+          0.12,
+          0.1273442989342515,
+          0.014265687577747417,
+          0.07797383975974127,
+          0.254688597868503,
+          -3.343929478771957e-32,
+          -2.845575723070907e-31
+        ],
+        "error_envelope": 8.890744271931178e-05,
+        "reference_variation_margin": 1.1248535103924873e-06,
+        "estimated_error_with_margin": 9.003229622970427e-05,
+        "eligible": true
+      },
+      "mbdyn_best": {
+        "engine": "mbdyn",
+        "step": 0.0004,
+        "successes": 3,
+        "attempts": 3,
+        "candidate": true,
+        "repetitions_complete": true,
+        "wall_seconds": [
+          0.7349193191621453,
+          0.7369616699870676,
+          0.7328151660040021
+        ],
+        "median_seconds": 0.7349193191621453,
+        "rss_kib": [
+          13312,
+          13312,
+          13312
+        ],
+        "repeat_difference": 0.0,
+        "errors_to_references": {
+          "vinkulum": 6.683275529164451e-05,
+          "mbdyn": 6.645044920455812e-05
+        },
+        "trajectory_sha256": "ab098847a63af27b7b98d9b27200006b6af8b9fe025cf42610aa4e6b20f76a01",
+        "final_values": [
+          0.0,
+          0.1,
+          0.12,
+          0.12730806769148914,
+          0.01429297438697526,
+          0.0780279871830066,
+          0.2546161353829784,
+          0.0,
+          0.0
+        ],
+        "error_envelope": 6.683275529164451e-05,
+        "reference_variation_margin": 1.1248535103924873e-06,
+        "estimated_error_with_margin": 6.7957608802037e-05,
+        "eligible": true
+      },
+      "mbdyn_over_vinkulum_time": 0.9808645669487056
+    },
+    "andrews": {
+      "spec": {
+        "deck": "andrewssqueezer/andrewssqueezer",
+        "T": 0.02,
+        "steps": [
+          0.0001,
+          9e-05,
+          7.5e-05,
+          5e-05,
+          2e-05,
+          1e-05,
+          8e-06,
+          4e-06
+        ],
+        "ref": [
+          2.5e-07,
+          1.25e-07
+        ],
+        "labels": [
+          1600
+        ],
+        "sample": 0.0002,
+        "unit": "rad",
+        "target": 0.001,
+        "ref_by_engine": {
+          "vinkulum": [
+            2e-05,
+            1e-05
+          ],
+          "mbdyn": [
+            2e-05,
+            1e-05
+          ]
+        }
+      },
+      "configurations": [
+        {
+          "engine": "vinkulum",
+          "step": 0.0001,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.16527031199075282,
+            0.16586195095442235,
+            0.16585645102895796
+          ],
+          "median_seconds": 0.16585645102895796,
+          "rss_kib": [
+            45568,
+            45568,
+            45568
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.001657537371055895,
+            "mbdyn": 0.0016640153188998141
+          },
+          "trajectory_sha256": "926dfcd4d9e06c6ad54b56e11a7bd3f579d2dca42f008dc6be8b5fb4a437d87e",
+          "final_values": [
+            8.238440789277186
+          ],
+          "error_envelope": 0.0016640153188998141,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 0.001714065529043296,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 9e-05,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.16813240386545658,
+            0.16650209319777787,
+            0.16633516480214894
+          ],
+          "median_seconds": 0.16650209319777787,
+          "rss_kib": [
+            45568,
+            45568,
+            45568
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0013791863516523506,
+            "mbdyn": 0.0013831193340179126
+          },
+          "trajectory_sha256": "0b27b80cb52f12fd4dfadeb38454b192bcf6adb407a13734884bbc8ca1bbd0a0",
+          "final_values": [
+            8.238757437049172
+          ],
+          "error_envelope": 0.0013831193340179126,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 0.0014331695441613945,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 7.5e-05,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.1687397740315646,
+            0.17025292199105024,
+            0.16959282220341265
+          ],
+          "median_seconds": 0.16959282220341265,
+          "rss_kib": [
+            45568,
+            46080,
+            45568
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0009364244807885669,
+            "mbdyn": 0.0009403574631541289
+          },
+          "trajectory_sha256": "4503c7147eab3ae7a377f75d41e453561055c1bb1bc3c78c46fded81a6dbba40",
+          "final_values": [
+            8.239175262843817
+          ],
+          "error_envelope": 0.0009403574631541289,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 0.0009904076732976108,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 5e-05,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.17909257300198078,
+            0.17973867687396705,
+            0.18014639499597251
+          ],
+          "median_seconds": 0.17973867687396705,
+          "rss_kib": [
+            47104,
+            47104,
+            47104
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.00040085557179381226,
+            "mbdyn": 0.00040733351963773146
+          },
+          "trajectory_sha256": "24fa5f4e9a5ce8fa0a39511aa7e81e24637374f5ab442df03003300e0a6e9617",
+          "final_values": [
+            8.239697471076449
+          ],
+          "error_envelope": 0.00040733351963773146,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 0.00045738372978121333,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 2e-05,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.23533601686358452,
+            0.2327709710225463,
+            0.23420157097280025
+          ],
+          "median_seconds": 0.23420157097280025,
+          "rss_kib": [
+            54272,
+            54272,
+            54272
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 5.005021014348188e-05,
+            "mbdyn": 5.652815798740107e-05
+          },
+          "trajectory_sha256": "a426fada3613a05705dfd1a3939238e3de7ea4f115aa4099e27b407981922794",
+          "final_values": [
+            8.240048276438099
+          ],
+          "error_envelope": 5.652815798740107e-05,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 0.00010657836813088295,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 1e-05,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.3516326828394085,
+            0.3505739828106016,
+            0.34984514210373163
+          ],
+          "median_seconds": 0.3505739828106016,
+          "rss_kib": [
+            67072,
+            67072,
+            67072
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0,
+            "mbdyn": 6.477947843919196e-06
+          },
+          "trajectory_sha256": "2f2bccf3ad091f53c4d34b584a24816cfc06654d985b4e6888acd4331e2a473b",
+          "final_values": [
+            8.240098326648242
+          ],
+          "error_envelope": 6.477947843919196e-06,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 5.652815798740107e-05,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 8e-06,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.38865497312508523,
+            0.39166351594030857,
+            0.3875370610039681
+          ],
+          "median_seconds": 0.38865497312508523,
+          "rss_kib": [
+            73216,
+            73216,
+            73216
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 6.005625436955597e-06,
+            "mbdyn": 4.584366913640281e-06
+          },
+          "trajectory_sha256": "ce672876b85ae71b88b38a7658668744774fde9353fdd4a115c16ca983b7571d",
+          "final_values": [
+            8.24010433227368
+          ],
+          "error_envelope": 6.005625436955597e-06,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 5.6055835580437474e-05,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 4e-06,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.7693724499549717,
+            0.7770074920263141,
+            0.7735166910570115
+          ],
+          "median_seconds": 0.7735166910570115,
+          "rss_kib": [
+            103424,
+            103424,
+            103424
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.4011828607607413e-05,
+            "mbdyn": 8.026580543329942e-06
+          },
+          "trajectory_sha256": "6f665feb8192d60954d3aeba951865801d3777fc43e5dc22897ea848c8469dcd",
+          "final_values": [
+            8.24011233847685
+          ],
+          "error_envelope": 1.4011828607607413e-05,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 6.406203875108929e-05,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 0.0001,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.07251770212315023,
+            0.07321391999721527,
+            0.07278854819014668
+          ],
+          "median_seconds": 0.07278854819014668,
+          "rss_kib": [
+            13824,
+            13824,
+            13824
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.001188687683791656,
+            "mbdyn": 0.0011951656316355752
+          },
+          "trajectory_sha256": "4dc8851874ccc59e4b9ddaa60351098a34dd29a27ce1cd4e3f8735f9519232eb",
+          "final_values": [
+            8.23890963896445
+          ],
+          "error_envelope": 0.0011951656316355752,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 0.001245215841779057,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 9e-05,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.07866590493358672,
+            0.07977635483257473,
+            0.0790827611926943
+          ],
+          "median_seconds": 0.0790827611926943,
+          "rss_kib": [
+            13824,
+            13824,
+            13824
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0010693383876683171,
+            "mbdyn": 0.0010732713700338792
+          },
+          "trajectory_sha256": "eca4c2f51d1c972788119c0a644e4d06ba6224c5a4765a53e540e921c29b0726",
+          "final_values": [
+            8.239291211664357
+          ],
+          "error_envelope": 0.0010732713700338792,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 0.001123321580177361,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 7.5e-05,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.09124230802990496,
+            0.09109281306155026,
+            0.09117323602549732
+          ],
+          "median_seconds": 0.09117323602549732,
+          "rss_kib": [
+            13824,
+            13824,
+            13824
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0007196293449780455,
+            "mbdyn": 0.0007235623273436076
+          },
+          "trajectory_sha256": "a65b01e9b33473bc1b351e9047efbc0289d7e878a3f58329f4cb500cfdd85f4e",
+          "final_values": [
+            8.239594478740493
+          ],
+          "error_envelope": 0.0007235623273436076,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 0.0007736125374870895,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 5e-05,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.1230418689083308,
+            0.12346869404427707,
+            0.12216641800478101
+          ],
+          "median_seconds": 0.1230418689083308,
+          "rss_kib": [
+            13824,
+            13824,
+            13824
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.00024386005947807377,
+            "mbdyn": 0.0002485192953081139
+          },
+          "trajectory_sha256": "41ad301359f8afb0ad8685a9aa3eebad4fce9f62601d0a46620edbe91f7439c2",
+          "final_values": [
+            8.239856285300778
+          ],
+          "error_envelope": 0.0002485192953081139,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 0.0002985695054515958,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 2e-05,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.22577759390696883,
+            0.22809401503764093,
+            0.22925523202866316
+          ],
+          "median_seconds": 0.22809401503764093,
+          "rss_kib": [
+            13824,
+            13824,
+            13824
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.694125960367444e-05,
+            "mbdyn": 3.0714239813711686e-05
+          },
+          "trajectory_sha256": "07327f3c0ce767d725b87ea9db96d05fb23c0a752a813a375886759195593cd4",
+          "final_values": [
+            8.240077186510826
+          ],
+          "error_envelope": 3.0714239813711686e-05,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 8.076444995719356e-05,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 1e-05,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.417074620956555,
+            0.4167676370125264,
+            0.41580222407355905
+          ],
+          "median_seconds": 0.4167676370125264,
+          "rss_kib": [
+            13824,
+            13824,
+            13824
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 6.477947843919196e-06,
+            "mbdyn": 0.0
+          },
+          "trajectory_sha256": "0fe82198bdef57150f77e727b9186350bc7060b0f893aca6b36135bc2123327b",
+          "final_values": [
+            8.240104804596086
+          ],
+          "error_envelope": 6.477947843919196e-06,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 5.652815798740107e-05,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 8e-06,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.515978944953531,
+            0.522199739003554,
+            0.516902499133721
+          ],
+          "median_seconds": 0.516902499133721,
+          "rss_kib": [
+            13824,
+            13824,
+            13824
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.0345717669224541e-05,
+            "mbdyn": 3.867769825305345e-06
+          },
+          "trajectory_sha256": "15605b4f9909fade36ddf8e5f3184e373bc04d5c329ea30dc25b756eb3495421",
+          "final_values": [
+            8.240108672365912
+          ],
+          "error_envelope": 1.0345717669224541e-05,
+          "reference_variation_margin": 5.005021014348188e-05,
+          "estimated_error_with_margin": 6.039592781270642e-05,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 4e-06,
+          "successes": 0,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true
+        }
+      ],
+      "failures": [
+        {
+          "engine": "mbdyn",
+          "step": 4e-06,
+          "rep": 0,
+          "error": "exit 1:  by the GNU General Public License,\nand you are welcome to change it and/or distribute copies of it\nunder certain conditions.  Use 'mbdyn --license' to see the conditions.\nThere is absolutely no warranty for MBDyn.  Use \"mbdyn --warranty\"\nfor details.\n\nreading from file \"/tmp/vinkulum-confrontation-0.7.2/andrews-3.9999999999999998e-06-mbdyn-0/model\"\nCreating scalar solver with Naive linear solver\nReading Structural(300)\nReading Structural(1600)\nReading Structural(1500)\nReading Structural(1400)\nReading Structural(1300)\nReading Structural(1100)\nReading Structural(1200)\nReading Structural(1700)\nReading Body(1600)\nReading Body(1500)\nReading Body(1400)\nReading Body(1300)\nReading Body(1100)\nReading Body(1200)\nReading Body(1700)\nReading Joint(300)\nReading Joint(0)\nReading Joint(600)\nReading Joint(501)\nReading Joint(502)\nReading Joint(503)\nReading Joint(700)\nReading Joint(800)\nReading Joint(101)\nReading Joint(102)\nReading Joint(200)\nReading Joint(400)\nReading Couple(1600)\nSkipping initial joints assembly\nInitial derivatives calculation 1 does not converge; aborting...\n(hint: try playing with the \"derivatives coefficient\" value)\nAn error occurred during the execution of MBDyn; aborting... \n",
+          "directory": "/tmp/vinkulum-confrontation-0.7.2/andrews-3.9999999999999998e-06-mbdyn-0"
+        },
+        {
+          "engine": "mbdyn",
+          "step": 4e-06,
+          "rep": 1,
+          "error": "exit 1:  by the GNU General Public License,\nand you are welcome to change it and/or distribute copies of it\nunder certain conditions.  Use 'mbdyn --license' to see the conditions.\nThere is absolutely no warranty for MBDyn.  Use \"mbdyn --warranty\"\nfor details.\n\nreading from file \"/tmp/vinkulum-confrontation-0.7.2/andrews-3.9999999999999998e-06-mbdyn-1/model\"\nCreating scalar solver with Naive linear solver\nReading Structural(300)\nReading Structural(1600)\nReading Structural(1500)\nReading Structural(1400)\nReading Structural(1300)\nReading Structural(1100)\nReading Structural(1200)\nReading Structural(1700)\nReading Body(1600)\nReading Body(1500)\nReading Body(1400)\nReading Body(1300)\nReading Body(1100)\nReading Body(1200)\nReading Body(1700)\nReading Joint(300)\nReading Joint(0)\nReading Joint(600)\nReading Joint(501)\nReading Joint(502)\nReading Joint(503)\nReading Joint(700)\nReading Joint(800)\nReading Joint(101)\nReading Joint(102)\nReading Joint(200)\nReading Joint(400)\nReading Couple(1600)\nSkipping initial joints assembly\nInitial derivatives calculation 1 does not converge; aborting...\n(hint: try playing with the \"derivatives coefficient\" value)\nAn error occurred during the execution of MBDyn; aborting... \n",
+          "directory": "/tmp/vinkulum-confrontation-0.7.2/andrews-3.9999999999999998e-06-mbdyn-1"
+        },
+        {
+          "engine": "mbdyn",
+          "step": 4e-06,
+          "rep": 2,
+          "error": "exit 1:  by the GNU General Public License,\nand you are welcome to change it and/or distribute copies of it\nunder certain conditions.  Use 'mbdyn --license' to see the conditions.\nThere is absolutely no warranty for MBDyn.  Use \"mbdyn --warranty\"\nfor details.\n\nreading from file \"/tmp/vinkulum-confrontation-0.7.2/andrews-3.9999999999999998e-06-mbdyn-2/model\"\nCreating scalar solver with Naive linear solver\nReading Structural(300)\nReading Structural(1600)\nReading Structural(1500)\nReading Structural(1400)\nReading Structural(1300)\nReading Structural(1100)\nReading Structural(1200)\nReading Structural(1700)\nReading Body(1600)\nReading Body(1500)\nReading Body(1400)\nReading Body(1300)\nReading Body(1100)\nReading Body(1200)\nReading Body(1700)\nReading Joint(300)\nReading Joint(0)\nReading Joint(600)\nReading Joint(501)\nReading Joint(502)\nReading Joint(503)\nReading Joint(700)\nReading Joint(800)\nReading Joint(101)\nReading Joint(102)\nReading Joint(200)\nReading Joint(400)\nReading Couple(1600)\nSkipping initial joints assembly\nInitial derivatives calculation 1 does not converge; aborting...\n(hint: try playing with the \"derivatives coefficient\" value)\nAn error occurred during the execution of MBDyn; aborting... \n",
+          "directory": "/tmp/vinkulum-confrontation-0.7.2/andrews-3.9999999999999998e-06-mbdyn-2"
+        }
+      ],
+      "warmup_failures": [
+        {
+          "engine": "mbdyn",
+          "step": 4e-06,
+          "rep": -1,
+          "error": "exit 1: by the GNU General Public License,\nand you are welcome to change it and/or distribute copies of it\nunder certain conditions.  Use 'mbdyn --license' to see the conditions.\nThere is absolutely no warranty for MBDyn.  Use \"mbdyn --warranty\"\nfor details.\n\nreading from file \"/tmp/vinkulum-confrontation-0.7.2/andrews-3.9999999999999998e-06-mbdyn--1/model\"\nCreating scalar solver with Naive linear solver\nReading Structural(300)\nReading Structural(1600)\nReading Structural(1500)\nReading Structural(1400)\nReading Structural(1300)\nReading Structural(1100)\nReading Structural(1200)\nReading Structural(1700)\nReading Body(1600)\nReading Body(1500)\nReading Body(1400)\nReading Body(1300)\nReading Body(1100)\nReading Body(1200)\nReading Body(1700)\nReading Joint(300)\nReading Joint(0)\nReading Joint(600)\nReading Joint(501)\nReading Joint(502)\nReading Joint(503)\nReading Joint(700)\nReading Joint(800)\nReading Joint(101)\nReading Joint(102)\nReading Joint(200)\nReading Joint(400)\nReading Couple(1600)\nSkipping initial joints assembly\nInitial derivatives calculation 1 does not converge; aborting...\n(hint: try playing with the \"derivatives coefficient\" value)\nAn error occurred during the execution of MBDyn; aborting... \n",
+          "directory": "/tmp/vinkulum-confrontation-0.7.2/andrews-3.9999999999999998e-06-mbdyn--1"
+        }
+      ],
+      "vinkulum_reference_change": 5.005021014348188e-05,
+      "mbdyn_reference_change": 3.0714239813711686e-05,
+      "reference_cross_gap": 6.477947843919196e-06,
+      "references_qualified": true,
+      "vinkulum_best": {
+        "engine": "vinkulum",
+        "step": 7.5e-05,
+        "successes": 3,
+        "attempts": 3,
+        "candidate": true,
+        "repetitions_complete": true,
+        "wall_seconds": [
+          0.1687397740315646,
+          0.17025292199105024,
+          0.16959282220341265
+        ],
+        "median_seconds": 0.16959282220341265,
+        "rss_kib": [
+          45568,
+          46080,
+          45568
+        ],
+        "repeat_difference": 0.0,
+        "errors_to_references": {
+          "vinkulum": 0.0009364244807885669,
+          "mbdyn": 0.0009403574631541289
+        },
+        "trajectory_sha256": "4503c7147eab3ae7a377f75d41e453561055c1bb1bc3c78c46fded81a6dbba40",
+        "final_values": [
+          8.239175262843817
+        ],
+        "error_envelope": 0.0009403574631541289,
+        "reference_variation_margin": 5.005021014348188e-05,
+        "estimated_error_with_margin": 0.0009904076732976108,
+        "eligible": true
+      },
+      "mbdyn_best": {
+        "engine": "mbdyn",
+        "step": 7.5e-05,
+        "successes": 3,
+        "attempts": 3,
+        "candidate": true,
+        "repetitions_complete": true,
+        "wall_seconds": [
+          0.09124230802990496,
+          0.09109281306155026,
+          0.09117323602549732
+        ],
+        "median_seconds": 0.09117323602549732,
+        "rss_kib": [
+          13824,
+          13824,
+          13824
+        ],
+        "repeat_difference": 0.0,
+        "errors_to_references": {
+          "vinkulum": 0.0007196293449780455,
+          "mbdyn": 0.0007235623273436076
+        },
+        "trajectory_sha256": "a65b01e9b33473bc1b351e9047efbc0289d7e878a3f58329f4cb500cfdd85f4e",
+        "final_values": [
+          8.239594478740493
+        ],
+        "error_envelope": 0.0007235623273436076,
+        "reference_variation_margin": 5.005021014348188e-05,
+        "estimated_error_with_margin": 0.0007736125374870895,
+        "eligible": true
+      },
+      "mbdyn_over_vinkulum_time": 0.5376007948976904
+    },
+    "princeton": {
+      "spec": {
+        "deck": "princeton/princeton",
+        "T": 0.5,
+        "steps": [
+          4,
+          6,
+          8,
+          10,
+          20,
+          40,
+          60,
+          80,
+          120
+        ],
+        "ref": [
+          80,
+          160
+        ],
+        "labels": [],
+        "unit": "m",
+        "target": 1e-05,
+        "formulation": "milieu",
+        "ref_by_engine": {
+          "vinkulum": [
+            160,
+            320
+          ],
+          "mbdyn": [
+            80,
+            160
+          ]
+        }
+      },
+      "configurations": [
+        {
+          "engine": "vinkulum",
+          "step": 4,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.2280102469958365,
+            0.22890396392904222,
+            0.22870431188493967
+          ],
+          "median_seconds": 0.22870431188493967,
+          "rss_kib": [
+            40960,
+            40960,
+            41472
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0015918753802049573,
+            "mbdyn": 0.0015921242690102172
+          },
+          "trajectory_sha256": "efd90ed23d0beb1f96e05c7d7342b53b78284cdcba8cce8ed27a5ed44c385c5d",
+          "final_values": [
+            0.4941505378192536,
+            0.10745095884808108,
+            0.008657009229672233
+          ],
+          "error_envelope": 0.0015921242690102172,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 0.0015928710457887851,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 6,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.2920568638946861,
+            0.2895600588526577,
+            0.2890520498622209
+          ],
+          "median_seconds": 0.2895600588526577,
+          "rss_kib": [
+            40960,
+            40960,
+            40960
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0007076053119077774,
+            "mbdyn": 0.0007078542007130373
+          },
+          "trajectory_sha256": "f08f1ac072ac05589b809743e6b893d3a8cbb3825f21387498b4db325ee0708d",
+          "final_values": [
+            0.4938517371814804,
+            0.10833522891637826,
+            0.008784796486353778
+          ],
+          "error_envelope": 0.0007078542007130373,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 0.0007086009774916052,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 8,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.3502796469256282,
+            0.35247413511388004,
+            0.3539834660477936
+          ],
+          "median_seconds": 0.35247413511388004,
+          "rss_kib": [
+            40960,
+            41472,
+            40960
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.00039796818794572697,
+            "mbdyn": 0.00039821707675098683
+          },
+          "trajectory_sha256": "9d1c67750415d94e15992b82e47e99836509f7b0ccc95209a0df42b74319b0fb",
+          "final_values": [
+            0.4937463845095598,
+            0.10864486604034031,
+            0.008830130299964975
+          ],
+          "error_envelope": 0.00039821707675098683,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 0.00039896385352955477,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 10,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.4171457339543849,
+            0.42195444204844534,
+            0.4171235831454396
+          ],
+          "median_seconds": 0.4171457339543849,
+          "rss_kib": [
+            40960,
+            40960,
+            40960
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.00025462470547221727,
+            "mbdyn": 0.00025487359427747713
+          },
+          "trajectory_sha256": "4316a3ab91b97403ecd623ebf8cbd1a38506e41dfed11de75ae408ba8c8fe8da",
+          "final_values": [
+            0.4936974853833717,
+            0.10878820952281382,
+            0.008851221294554103
+          ],
+          "error_envelope": 0.00025487359427747713,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 0.00025562037105604507,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 20,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.8222365740220994,
+            0.8204489729832858,
+            0.8188479079399258
+          ],
+          "median_seconds": 0.8204489729832858,
+          "rss_kib": [
+            41472,
+            41472,
+            41472
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 6.347440740435417e-05,
+            "mbdyn": 6.372329620961403e-05
+          },
+          "trajectory_sha256": "95f76a49ad2b936767d1939342e80451c2846a5861b265afaa7fb1a13e7c90d5",
+          "final_values": [
+            0.49363215264246474,
+            0.10897935982088168,
+            0.008879449395925852
+          ],
+          "error_envelope": 6.372329620961403e-05,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 6.447007298818197e-05,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 40,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            1.426898029865697,
+            1.4328593590762466,
+            1.4273962730076164
+          ],
+          "median_seconds": 1.4273962730076164,
+          "rss_kib": [
+            41984,
+            41984,
+            41984
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.5682216879808752e-05,
+            "mbdyn": 1.5931105685068614e-05
+          },
+          "trajectory_sha256": "662952e37bfd1eff81dcf55ea7b21043878a846f69a7b6cb6659b55b577d4bd3",
+          "final_values": [
+            0.4936157955305658,
+            0.10902715201140623,
+            0.008886525546523366
+          ],
+          "error_envelope": 1.5931105685068614e-05,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 1.667788246363655e-05,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 60,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            2.0728410789743066,
+            2.0618370489683002,
+            2.072341148974374
+          ],
+          "median_seconds": 2.072341148974374,
+          "rss_kib": [
+            41984,
+            41984,
+            41984
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 6.831607595486622e-06,
+            "mbdyn": 7.080496400746483e-06
+          },
+          "trajectory_sha256": "9e623ad3ab04cf9e37b5b3dc0b5a08f3a903a3082654a8038069ab7fa621f523",
+          "final_values": [
+            0.4936127653850605,
+            0.10903600262069055,
+            0.008887836785963096
+          ],
+          "error_envelope": 7.080496400746483e-06,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 7.82727317931442e-06,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 80,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            2.7306878238450736,
+            2.7642503830138594,
+            2.7371796909719706
+          ],
+          "median_seconds": 2.7371796909719706,
+          "rss_kib": [
+            43036,
+            43032,
+            43028
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 3.7338793013458327e-06,
+            "mbdyn": 3.982768106605694e-06
+          },
+          "trajectory_sha256": "5e9a02567110deaad6a2da9c61c482d629edbdef5c14588929f8e40680e0a1c4",
+          "final_values": [
+            0.49361170475655597,
+            0.10903910034898469,
+            0.008888295781899242
+          ],
+          "error_envelope": 3.982768106605694e-06,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 4.729544885173631e-06,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 120,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            4.4073403959628195,
+            4.418240185128525,
+            4.401623158948496
+          ],
+          "median_seconds": 4.4073403959628195,
+          "rss_kib": [
+            42872,
+            42872,
+            42876
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.5212114563151191e-06,
+            "mbdyn": 1.7701002615749806e-06
+          },
+          "trajectory_sha256": "7857918fd49e8ecf9a934c648ef9ab77ad833e457ae357495770237af2f8a447",
+          "final_values": [
+            0.4936109471401386,
+            0.10904131301682972,
+            0.008888623655866117
+          ],
+          "error_envelope": 1.7701002615749806e-06,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 2.5168770401429175e-06,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 160,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            5.4102277788333595
+          ],
+          "median_seconds": 5.4102277788333595,
+          "rss_kib": [
+            43404
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 7.467767785679369e-07,
+            "mbdyn": 9.956655838277984e-07
+          },
+          "trajectory_sha256": "e76ac636b1948cb8bdc4a6c144670dd65c07881f8febce61c59cdae03c084ae3",
+          "final_values": [
+            0.4936106819695461,
+            0.10904208745150747,
+            0.008888738415638127
+          ],
+          "error_envelope": 9.956655838277984e-07,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 1.7424423623957352e-06,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 320,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            11.935871376888826
+          ],
+          "median_seconds": 11.935871376888826,
+          "rss_kib": [
+            45984
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0,
+            "mbdyn": 2.4888880525986146e-07
+          },
+          "trajectory_sha256": "31d34dccd2198aa365c97b380a25d36bb4ced456a963e8d4a7a0b19fbc7251f0",
+          "final_values": [
+            0.49361042626694523,
+            0.10904283422828603,
+            0.00888884907875484
+          ],
+          "error_envelope": 2.4888880525986146e-07,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 9.956655838277984e-07,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 4,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.01590203889645636,
+            0.016276463866233826,
+            0.015443684998899698
+          ],
+          "median_seconds": 0.01590203889645636,
+          "rss_kib": [
+            12800,
+            12800,
+            12800
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.375346066851511e-05,
+            "mbdyn": 2.37903389291947e-05
+          },
+          "trajectory_sha256": "17e58583f9ddc245a2ef6e08e886239c350204c344ba3d8a43a34ac5c1b2bf33",
+          "final_values": [
+            0.4936253509080244,
+            0.1090244191493131,
+            0.008865095618086325
+          ],
+          "error_envelope": 2.37903389291947e-05,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 2.453711570776264e-05,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 6,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.01889865892007947,
+            0.0188782699406147,
+            0.01840795180760324
+          ],
+          "median_seconds": 0.0188782699406147,
+          "rss_kib": [
+            12800,
+            12800,
+            12800
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 4.859025806699946e-06,
+            "mbdyn": 4.895904067379539e-06
+          },
+          "trajectory_sha256": "ebe533f5f63b0ae864b1c6490ed6345ebcf1abfc2257b263279da1fedbc106d1",
+          "final_values": [
+            0.493613344667306,
+            0.1090392231053718,
+            0.00888399005294814
+          ],
+          "error_envelope": 4.895904067379539e-06,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 5.642680845947476e-06,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 8,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.020641586044803262,
+            0.021052940981462598,
+            0.021028253948315978
+          ],
+          "median_seconds": 0.021028253948315978,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.5349586628757295e-06,
+            "mbdyn": 1.5718369235553226e-06
+          },
+          "trajectory_sha256": "276f0e9c46549c6dae7ff24945d8aa8d71fb3146de75c2c654154eaad0d3e838",
+          "final_values": [
+            0.4936112958022277,
+            0.1090418425392217,
+            0.008887314120091964
+          ],
+          "error_envelope": 1.5718369235553226e-06,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 2.3186137021232595e-06,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 10,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.023115548072382808,
+            0.023309747921302915,
+            0.023732393980026245
+          ],
+          "median_seconds": 0.023309747921302915,
+          "rss_kib": [
+            13312,
+            13824,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 6.113285919619876e-07,
+            "mbdyn": 6.482068526415807e-07
+          },
+          "trajectory_sha256": "bb8e3448ae51d4528b6a262282dac917d0293b7b1ea438a27b039f98291e7077",
+          "final_values": [
+            0.4936107329544773,
+            0.1090425713238988,
+            0.008888237750162878
+          ],
+          "error_envelope": 6.482068526415807e-07,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 1.3949836312095176e-06,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 20,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.03512061992660165,
+            0.035021410090848804,
+            0.034766043070703745
+          ],
+          "median_seconds": 0.035021410090848804,
+          "rss_kib": [
+            13824,
+            13824,
+            13824
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.166038099715717e-07,
+            "mbdyn": 4.087403736134643e-08
+          },
+          "trajectory_sha256": "696f800d42b148eb2d80abf88121f113f1858256c426fcf32b07e64dba036133",
+          "final_values": [
+            0.4936103656058258,
+            0.109043050832096,
+            0.008888845082978158
+          ],
+          "error_envelope": 2.166038099715717e-07,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 9.633805885395086e-07,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 40,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.05799944489262998,
+            0.057986611034721136,
+            0.058564855018630624
+          ],
+          "median_seconds": 0.05799944489262998,
+          "rss_kib": [
+            16672,
+            16732,
+            16676
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.4687362916442357e-07,
+            "mbdyn": 2.5510852041943366e-09
+          },
+          "trajectory_sha256": "feba779442742195678b101863e0e83b0145d52be0e437d2dcd749f9035307b4",
+          "final_values": [
+            0.4936103425766231,
+            0.1090430811019152,
+            0.008888883405930316
+          ],
+          "error_envelope": 2.4687362916442357e-07,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 9.936504077323605e-07,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 60,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.08227469609118998,
+            0.0829178539570421,
+            0.08213162398897111
+          ],
+          "median_seconds": 0.08227469609118998,
+          "rss_kib": [
+            20680,
+            20680,
+            20680
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.484969174598728e-07,
+            "mbdyn": 4.960984244933853e-10
+          },
+          "trajectory_sha256": "0f765e60c5cde21e5d4c73680c3edbb31529877a973b6a13ec0deb42428dec08",
+          "final_values": [
+            0.4936103413436921,
+            0.1090430827252035,
+            0.008888885460917095
+          ],
+          "error_envelope": 2.484969174598728e-07,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 9.952736960278097e-07,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 80,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.10840680100955069,
+            0.10849308595061302,
+            0.10947160515934229
+          ],
+          "median_seconds": 0.10849308595061302,
+          "rss_kib": [
+            25956,
+            25952,
+            26464
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.4877019635938247e-07,
+            "mbdyn": 1.501486244365191e-10
+          },
+          "trajectory_sha256": "2343924972039e8cbf1c445051f11899e9c0dc6b76a1c3f20e0367a0aabadca9",
+          "final_values": [
+            0.4936103411361972,
+            0.1090430829984824,
+            0.008888885806866895
+          ],
+          "error_envelope": 2.4877019635938247e-07,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 9.955469749273194e-07,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 120,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.16689892788417637,
+            0.16723749600350857,
+            0.1684472649358213
+          ],
+          "median_seconds": 0.16723749600350857,
+          "rss_kib": [
+            41632,
+            41632,
+            41636
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.488717201626356e-07,
+            "mbdyn": 2.1628454235922412e-11
+          },
+          "trajectory_sha256": "b903d91464b7b5f98dad9218450c29f33e39689e81d5a1a7316d9e1fd28269ea",
+          "final_values": [
+            0.4936103410591231,
+            0.1090430831000062,
+            0.008888885935387066
+          ],
+          "error_envelope": 2.488717201626356e-07,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 9.956484987305725e-07,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 160,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.2339692390523851
+          ],
+          "median_seconds": 0.2339692390523851,
+          "rss_kib": [
+            63288
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.4888880525986146e-07,
+            "mbdyn": 0.0
+          },
+          "trajectory_sha256": "6b25a160993b257deabce59d8045714fca8680d31179caaa3f96dc1d57bc4eb1",
+          "final_values": [
+            0.4936103410461536,
+            0.1090430831170913,
+            0.00888888595701552
+          ],
+          "error_envelope": 2.4888880525986146e-07,
+          "reference_variation_margin": 7.467767785679369e-07,
+          "estimated_error_with_margin": 9.956655838277984e-07,
+          "eligible": false
+        }
+      ],
+      "failures": [],
+      "warmup_failures": [],
+      "vinkulum_reference_change": 7.467767785679369e-07,
+      "mbdyn_reference_change": 1.501486244365191e-10,
+      "reference_cross_gap": 2.4888880525986146e-07,
+      "references_qualified": true,
+      "vinkulum_best": {
+        "engine": "vinkulum",
+        "step": 60,
+        "successes": 3,
+        "attempts": 3,
+        "candidate": true,
+        "repetitions_complete": true,
+        "wall_seconds": [
+          2.0728410789743066,
+          2.0618370489683002,
+          2.072341148974374
+        ],
+        "median_seconds": 2.072341148974374,
+        "rss_kib": [
+          41984,
+          41984,
+          41984
+        ],
+        "repeat_difference": 0.0,
+        "errors_to_references": {
+          "vinkulum": 6.831607595486622e-06,
+          "mbdyn": 7.080496400746483e-06
+        },
+        "trajectory_sha256": "9e623ad3ab04cf9e37b5b3dc0b5a08f3a903a3082654a8038069ab7fa621f523",
+        "final_values": [
+          0.4936127653850605,
+          0.10903600262069055,
+          0.008887836785963096
+        ],
+        "error_envelope": 7.080496400746483e-06,
+        "reference_variation_margin": 7.467767785679369e-07,
+        "estimated_error_with_margin": 7.82727317931442e-06,
+        "eligible": true
+      },
+      "mbdyn_best": {
+        "engine": "mbdyn",
+        "step": 6,
+        "successes": 3,
+        "attempts": 3,
+        "candidate": true,
+        "repetitions_complete": true,
+        "wall_seconds": [
+          0.01889865892007947,
+          0.0188782699406147,
+          0.01840795180760324
+        ],
+        "median_seconds": 0.0188782699406147,
+        "rss_kib": [
+          12800,
+          12800,
+          12800
+        ],
+        "repeat_difference": 0.0,
+        "errors_to_references": {
+          "vinkulum": 4.859025806699946e-06,
+          "mbdyn": 4.895904067379539e-06
+        },
+        "trajectory_sha256": "ebe533f5f63b0ae864b1c6490ed6345ebcf1abfc2257b263279da1fedbc106d1",
+        "final_values": [
+          0.493613344667306,
+          0.1090392231053718,
+          0.00888399005294814
+        ],
+        "error_envelope": 4.895904067379539e-06,
+        "reference_variation_margin": 7.467767785679369e-07,
+        "estimated_error_with_margin": 5.642680845947476e-06,
+        "eligible": true
+      },
+      "mbdyn_over_vinkulum_time": 0.009109634265554094
+    },
+    "princeton_integree": {
+      "spec": {
+        "deck": "princeton/princeton",
+        "T": 0.5,
+        "steps": [
+          4,
+          6,
+          8,
+          10,
+          12,
+          16,
+          20,
+          40
+        ],
+        "ref": [
+          80,
+          160
+        ],
+        "labels": [],
+        "unit": "m",
+        "target": 1e-05,
+        "formulation": "integree",
+        "ref_by_engine": {
+          "vinkulum": [
+            80,
+            160
+          ],
+          "mbdyn": [
+            80,
+            160
+          ]
+        }
+      },
+      "configurations": [
+        {
+          "engine": "vinkulum",
+          "step": 4,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.24745276500470936,
+            0.24742039293050766,
+            0.2479375321418047
+          ],
+          "median_seconds": 0.24745276500470936,
+          "rss_kib": [
+            40960,
+            40960,
+            40960
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 3.089499673286471e-05,
+            "mbdyn": 3.0916096237046733e-05
+          },
+          "trajectory_sha256": "4524e23d1c960d0f11c852f7b9d898df859f1e22d21997c1052a83506bb94f4b",
+          "final_values": [
+            0.493624208363834,
+            0.1090202872584567,
+            0.008857969860778473
+          ],
+          "error_envelope": 3.0916096237046733e-05,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 3.097941067088661e-05,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 6,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.31511192000471056,
+            0.31475829519331455,
+            0.31522478605620563
+          ],
+          "median_seconds": 0.31511192000471056,
+          "rss_kib": [
+            40960,
+            40960,
+            40960
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.4419610372165895e-05,
+            "mbdyn": 1.444070987634792e-05
+          },
+          "trajectory_sha256": "e7bc142a942ea655d049a211054bd488c67c45c1422d159c0ca5c027a7860fa7",
+          "final_values": [
+            0.4936159212708602,
+            0.10903192041322007,
+            0.008874445247139172
+          ],
+          "error_envelope": 1.444070987634792e-05,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 1.4504024310187796e-05,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 8,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.3872785670682788,
+            0.3873034040443599,
+            0.3862775869201869
+          ],
+          "median_seconds": 0.3872785670682788,
+          "rss_kib": [
+            41472,
+            40960,
+            40960
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 8.241679719090886e-06,
+            "mbdyn": 8.262779223272912e-06
+          },
+          "trajectory_sha256": "da6c228e2147f85a15cf40e535eea40f83688c1750e72474a39d1c92db21a6e0",
+          "final_values": [
+            0.49361336603990563,
+            0.10903659955440984,
+            0.008880623177792247
+          ],
+          "error_envelope": 8.262779223272912e-06,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 8.326093657112787e-06,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 10,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.46085370308719575,
+            0.463119758060202,
+            0.46173779107630253
+          ],
+          "median_seconds": 0.46173779107630253,
+          "rss_kib": [
+            40960,
+            40960,
+            40960
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 5.3087431476691455e-06,
+            "mbdyn": 5.3298426518511716e-06
+          },
+          "trajectory_sha256": "27935b7578ce903d9d7329e063e47d633a523137f254ccb87dc5cd382a679b3e",
+          "final_values": [
+            0.49361224340571147,
+            0.10903887288221381,
+            0.008883556114363669
+          ],
+          "error_envelope": 5.3298426518511716e-06,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 5.393157085691047e-06,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 12,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.5436161840334535,
+            0.5402649289462715,
+            0.5424166948068887
+          ],
+          "median_seconds": 0.5424166948068887,
+          "rss_kib": [
+            41472,
+            41472,
+            41472
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 3.6959377971677865e-06,
+            "mbdyn": 3.7170373013498126e-06
+          },
+          "trajectory_sha256": "e675484ad4500067af0b52155e7b2689f0c74b66e3a57ff440e413fcce232a87",
+          "final_values": [
+            0.49361164945698943,
+            0.10904013639899321,
+            0.00888516891971417
+          ],
+          "error_envelope": 3.7170373013498126e-06,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 3.780351735189688e-06,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 16,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.7142034079879522,
+            0.713881473056972,
+            0.713032113853842
+          ],
+          "median_seconds": 0.713881473056972,
+          "rss_kib": [
+            41984,
+            41472,
+            41472
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.0785614342159336e-06,
+            "mbdyn": 2.0996609383979598e-06
+          },
+          "trajectory_sha256": "9d19666feaea854a19f43a938e5933684bced096a3f9ffa50afa91a95f5fc8bd",
+          "final_values": [
+            0.4936110699433165,
+            0.10904141275298657,
+            0.008886786296077122
+          ],
+          "error_envelope": 2.0996609383979598e-06,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 2.1629753722378353e-06,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 20,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.9213460930623114,
+            0.9061638859566301,
+            0.9090768669266254
+          ],
+          "median_seconds": 0.9090768669266254,
+          "rss_kib": [
+            41472,
+            41472,
+            41472
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.3252998091878299e-06,
+            "mbdyn": 1.346399313369856e-06
+          },
+          "trajectory_sha256": "539ba6fa36595160925ad74ec0343939e444df27e099248f521b861f784815b3",
+          "final_values": [
+            0.49361080544025665,
+            0.10904201028776092,
+            0.00888753955770215
+          ],
+          "error_envelope": 1.346399313369856e-06,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 1.4097137472097315e-06,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 40,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            1.5925512800458819,
+            1.5887411290314049,
+            1.5935279368422925
+          ],
+          "median_seconds": 1.5925512800458819,
+          "rss_kib": [
+            41984,
+            41984,
+            41984
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 3.163671257969819e-07,
+            "mbdyn": 3.37466629979008e-07
+          },
+          "trajectory_sha256": "0f3001dc2b2710900074494517f24a87a761537936b4a656bc5fa29fc9bb8456",
+          "final_values": [
+            0.49361045643624546,
+            0.10904281366699854,
+            0.00888854849038554
+          ],
+          "error_envelope": 3.37466629979008e-07,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 4.0078106381888357e-07,
+          "eligible": true
+        },
+        {
+          "engine": "vinkulum",
+          "step": 80,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            3.074410883942619
+          ],
+          "median_seconds": 3.074410883942619,
+          "rss_kib": [
+            42496
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 6.331443383987556e-08,
+            "mbdyn": 8.441393802190167e-08
+          },
+          "trajectory_sha256": "ed789634e80101e071f4911ba4ebec2a30b75ce5a919f8d0d05fe4a4faf079ed",
+          "final_values": [
+            0.49361036983959833,
+            0.10904301570289619,
+            0.008888801543077498
+          ],
+          "error_envelope": 8.441393802190167e-08,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 1.4772837186177723e-07,
+          "eligible": false
+        },
+        {
+          "engine": "vinkulum",
+          "step": 160,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            5.973318068077788
+          ],
+          "median_seconds": 5.973318068077788,
+          "rss_kib": [
+            44324
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 0.0,
+            "mbdyn": 2.1099504182026108e-08
+          },
+          "trajectory_sha256": "a88f1a453e7a12f31cb7ee3c7ac80d56837e8da483407dfea494cbcf3dfddd4a",
+          "final_values": [
+            0.4936103482313223,
+            0.10904306628632118,
+            0.008888864857511338
+          ],
+          "error_envelope": 2.1099504182026108e-08,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 8.441393802190167e-08,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 4,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.016362529946491122,
+            0.016090650111436844,
+            0.01643188181333244
+          ],
+          "median_seconds": 0.016362529946491122,
+          "rss_kib": [
+            12800,
+            12800,
+            12800
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.3769239425012675e-05,
+            "mbdyn": 2.37903389291947e-05
+          },
+          "trajectory_sha256": "17e58583f9ddc245a2ef6e08e886239c350204c344ba3d8a43a34ac5c1b2bf33",
+          "final_values": [
+            0.4936253509080244,
+            0.1090244191493131,
+            0.008865095618086325
+          ],
+          "error_envelope": 2.37903389291947e-05,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 2.3853653363034577e-05,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 6,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.018523002974689007,
+            0.018811793997883797,
+            0.01860576099716127
+          ],
+          "median_seconds": 0.01860576099716127,
+          "rss_kib": [
+            12800,
+            12800,
+            12800
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 4.874804563197513e-06,
+            "mbdyn": 4.895904067379539e-06
+          },
+          "trajectory_sha256": "ebe533f5f63b0ae864b1c6490ed6345ebcf1abfc2257b263279da1fedbc106d1",
+          "final_values": [
+            0.493613344667306,
+            0.1090392231053718,
+            0.00888399005294814
+          ],
+          "error_envelope": 4.895904067379539e-06,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 4.9592185012194145e-06,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 8,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.021340238861739635,
+            0.02150297095067799,
+            0.020235180156305432
+          ],
+          "median_seconds": 0.021340238861739635,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.5507374193732965e-06,
+            "mbdyn": 1.5718369235553226e-06
+          },
+          "trajectory_sha256": "276f0e9c46549c6dae7ff24945d8aa8d71fb3146de75c2c654154eaad0d3e838",
+          "final_values": [
+            0.4936112958022277,
+            0.1090418425392217,
+            0.008887314120091964
+          ],
+          "error_envelope": 1.5718369235553226e-06,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 1.6351513573951981e-06,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 10,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.022809715010225773,
+            0.023736112052574754,
+            0.023306623101234436
+          ],
+          "median_seconds": 0.023306623101234436,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 6.271073484595546e-07,
+            "mbdyn": 6.482068526415807e-07
+          },
+          "trajectory_sha256": "bb8e3448ae51d4528b6a262282dac917d0293b7b1ea438a27b039f98291e7077",
+          "final_values": [
+            0.4936107329544773,
+            0.1090425713238988,
+            0.008888237750162878
+          ],
+          "error_envelope": 6.482068526415807e-07,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 7.115212864814563e-07,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 12,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.025947121903300285,
+            0.02593529992736876,
+            0.025663291104137897
+          ],
+          "median_seconds": 0.02593529992736876,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.9265458064559047e-07,
+            "mbdyn": 3.137540848276166e-07
+          },
+          "trajectory_sha256": "25b0cdd6f278e22dc4fceb5f0f84770e6cf713d41605d4fc02965c4eee152f5d",
+          "final_values": [
+            0.4936105302645454,
+            0.1090428353481494,
+            0.008888572202930692
+          ],
+          "error_envelope": 3.137540848276166e-07,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 3.7706851866749214e-07,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 16,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.030434476910158992,
+            0.030496004037559032,
+            0.030311122070997953
+          ],
+          "median_seconds": 0.030434476910158992,
+          "rss_kib": [
+            13312,
+            13312,
+            13312
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 7.853442212345241e-08,
+            "mbdyn": 9.963392630547852e-08
+          },
+          "trajectory_sha256": "bb03cef35f7ecb11ac7e4d8a27b8d44a7d2b04f49bd72cbb550112c0a34561d7",
+          "final_values": [
+            0.4936104009822704,
+            0.1090430044248077,
+            0.008888786323089214
+          ],
+          "error_envelope": 9.963392630547852e-08,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 1.6294836014535408e-07,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 20,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.03487937105819583,
+            0.03516742982901633,
+            0.035297839902341366
+          ],
+          "median_seconds": 0.03516742982901633,
+          "rss_kib": [
+            13824,
+            13824,
+            14336
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.977453317932032e-08,
+            "mbdyn": 4.087403736134643e-08
+          },
+          "trajectory_sha256": "696f800d42b148eb2d80abf88121f113f1858256c426fcf32b07e64dba036133",
+          "final_values": [
+            0.4936103656058258,
+            0.109043050832096,
+            0.008888845082978158
+          ],
+          "error_envelope": 4.087403736134643e-08,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 1.0418847120122199e-07,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 40,
+          "successes": 3,
+          "attempts": 3,
+          "candidate": true,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.05754364817403257,
+            0.05781273101456463,
+            0.0576578660402447
+          ],
+          "median_seconds": 0.0576578660402447,
+          "rss_kib": [
+            17192,
+            16676,
+            16680
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 1.854841897783177e-08,
+            "mbdyn": 2.5510852041943366e-09
+          },
+          "trajectory_sha256": "feba779442742195678b101863e0e83b0145d52be0e437d2dcd749f9035307b4",
+          "final_values": [
+            0.4936103425766231,
+            0.1090430811019152,
+            0.008888883405930316
+          ],
+          "error_envelope": 1.854841897783177e-08,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 8.186285281770733e-08,
+          "eligible": true
+        },
+        {
+          "engine": "mbdyn",
+          "step": 80,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.108675038209185
+          ],
+          "median_seconds": 0.108675038209185,
+          "rss_kib": [
+            25960
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.094935555758959e-08,
+            "mbdyn": 1.501486244365191e-10
+          },
+          "trajectory_sha256": "2343924972039e8cbf1c445051f11899e9c0dc6b76a1c3f20e0367a0aabadca9",
+          "final_values": [
+            0.4936103411361972,
+            0.1090430829984824,
+            0.008888885806866895
+          ],
+          "error_envelope": 2.094935555758959e-08,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 8.426378939746515e-08,
+          "eligible": false
+        },
+        {
+          "engine": "mbdyn",
+          "step": 160,
+          "successes": 1,
+          "attempts": 1,
+          "candidate": false,
+          "repetitions_complete": true,
+          "wall_seconds": [
+            0.2345923250541091
+          ],
+          "median_seconds": 0.2345923250541091,
+          "rss_kib": [
+            63284
+          ],
+          "repeat_difference": 0.0,
+          "errors_to_references": {
+            "vinkulum": 2.1099504182026108e-08,
+            "mbdyn": 0.0
+          },
+          "trajectory_sha256": "6b25a160993b257deabce59d8045714fca8680d31179caaa3f96dc1d57bc4eb1",
+          "final_values": [
+            0.4936103410461536,
+            0.1090430831170913,
+            0.00888888595701552
+          ],
+          "error_envelope": 2.1099504182026108e-08,
+          "reference_variation_margin": 6.331443383987556e-08,
+          "estimated_error_with_margin": 8.441393802190167e-08,
+          "eligible": false
+        }
+      ],
+      "failures": [],
+      "warmup_failures": [],
+      "vinkulum_reference_change": 6.331443383987556e-08,
+      "mbdyn_reference_change": 1.501486244365191e-10,
+      "reference_cross_gap": 2.1099504182026108e-08,
+      "references_qualified": true,
+      "vinkulum_best": {
+        "engine": "vinkulum",
+        "step": 8,
+        "successes": 3,
+        "attempts": 3,
+        "candidate": true,
+        "repetitions_complete": true,
+        "wall_seconds": [
+          0.3872785670682788,
+          0.3873034040443599,
+          0.3862775869201869
+        ],
+        "median_seconds": 0.3872785670682788,
+        "rss_kib": [
+          41472,
+          40960,
+          40960
+        ],
+        "repeat_difference": 0.0,
+        "errors_to_references": {
+          "vinkulum": 8.241679719090886e-06,
+          "mbdyn": 8.262779223272912e-06
+        },
+        "trajectory_sha256": "da6c228e2147f85a15cf40e535eea40f83688c1750e72474a39d1c92db21a6e0",
+        "final_values": [
+          0.49361336603990563,
+          0.10903659955440984,
+          0.008880623177792247
+        ],
+        "error_envelope": 8.262779223272912e-06,
+        "reference_variation_margin": 6.331443383987556e-08,
+        "estimated_error_with_margin": 8.326093657112787e-06,
+        "eligible": true
+      },
+      "mbdyn_best": {
+        "engine": "mbdyn",
+        "step": 6,
+        "successes": 3,
+        "attempts": 3,
+        "candidate": true,
+        "repetitions_complete": true,
+        "wall_seconds": [
+          0.018523002974689007,
+          0.018811793997883797,
+          0.01860576099716127
+        ],
+        "median_seconds": 0.01860576099716127,
+        "rss_kib": [
+          12800,
+          12800,
+          12800
+        ],
+        "repeat_difference": 0.0,
+        "errors_to_references": {
+          "vinkulum": 4.874804563197513e-06,
+          "mbdyn": 4.895904067379539e-06
+        },
+        "trajectory_sha256": "ebe533f5f63b0ae864b1c6490ed6345ebcf1abfc2257b263279da1fedbc106d1",
+        "final_values": [
+          0.493613344667306,
+          0.1090392231053718,
+          0.00888399005294814
+        ],
+        "error_envelope": 4.895904067379539e-06,
+        "reference_variation_margin": 6.331443383987556e-08,
+        "estimated_error_with_margin": 4.9592185012194145e-06,
+        "eligible": true
+      },
+      "mbdyn_over_vinkulum_time": 0.048042320384543764
+    }
+  }
+}

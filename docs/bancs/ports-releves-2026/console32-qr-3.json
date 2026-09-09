@@ -1,0 +1,89 @@
+{
+  "cas": {
+    "nom": "console32",
+    "famille": "console",
+    "n": 32
+  },
+  "variante": "qr",
+  "oracle_sha256": "af61ae3bc18bd362099b8aef2c22ad34544e3783865f259594c33047ce57914c",
+  "date": "2026-09-07T17:37:58.531781+00:00",
+  "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "cpu": [
+    8
+  ],
+  "tolerance": 1e-10,
+  "lambda_min": 33921.41396030565,
+  "omega_max": 128.9888792552338,
+  "directions": 18,
+  "ports": 6,
+  "nombre_requetes": 257,
+  "nombre_frequences_audit": 17,
+  "preparation_s": 0.01896156813018024,
+  "requetes_s": 0.008658279897645116,
+  "reconstruction_s": 5.966401658952236e-05,
+  "total_s": 0.027679512044414878,
+  "rss_avant_oracle_kib": 71168,
+  "borne_uniforme": 9.319231054755264e-14,
+  "erreur_D": 4.033556835335891e-15,
+  "erreur_physique": 4.496677153843056e-15,
+  "ecart_energie": 2.1191945410320505e-15,
+  "diagnostic": {
+    "statut": "tolerance_estimee",
+    "historique": [
+      {
+        "blocs": 1,
+        "directions": 6,
+        "borne_uniforme": 0.0013311018481243612,
+        "defaut_gram": 3.3306690738754696e-16
+      },
+      {
+        "blocs": 2,
+        "directions": 12,
+        "borne_uniforme": 3.4146714526302662e-09,
+        "defaut_gram": 7.109820764830749e-16
+      },
+      {
+        "blocs": 3,
+        "directions": 18,
+        "borne_uniforme": 3.5253695105114474e-16,
+        "defaut_gram": 1.3609013198031757e-15
+      }
+    ],
+    "audit_bande": {
+      "majorant_total": 9.319231054755264e-14,
+      "majorant_residu": 1.4104794467839609e-14,
+      "ecart_modele": 7.908751607971303e-14,
+      "enveloppes": [
+        0.006687906304417557,
+        3.373002055929916e-08,
+        1.1985859566661998e-12,
+        1.4104794467839609e-14
+      ],
+      "norme_champ_dynamique": 1.011269197064269,
+      "certification_machine": false
+    },
+    "borne_reduction": 4.373506155137854e-16,
+    "audit_modele": {
+      "ecart_energie_statique": 2.685486764195216e-15,
+      "defaut_equilibre_entree_dual": 1.4102050175268646e-13,
+      "residu_lifting": 1.2898954008504455e-13,
+      "rotations": 494,
+      "operations": 21408,
+      "nnz_R": 546,
+      "coefficients_ports": 1152,
+      "certification_machine": false
+    },
+    "audit_ponctuel_total": 1.4069837000748425e-14
+  },
+  "accepte": true,
+  "certification_machine": false
+}

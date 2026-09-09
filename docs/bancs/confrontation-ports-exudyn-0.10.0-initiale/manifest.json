@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "date_utc": "2026-09-07T19:58:12.635786+00:00",
+  "version_vinkulum": "0.10.0",
+  "reference": "DᵀD exact des coefficients binary64, Decimal70/90 ; champs complets recalculables",
+  "fichiers_sha256": {
+    "bilan.json": "c6870eb30ab302fd5959f84bec7f3cad34ed9f5c3a5206df49ebb34ef7bdcba0",
+    "entrees/n128-f2.npz": "210ca0ccb87c5265f5a03fbce67fe7193a741f54ea6131692fa3b77adbf8e4ae",
+    "entrees/n128-f20.npz": "cb9c4fe1f1a48e4df8ee66cc2ef6112140ffdbed2a621bdd2b3589058272bd47",
+    "entrees/n128-f40.npz": "a1549264160cd4210d2e3e60ee31ebc0bd32e214b0925ce03ee1edb1741c740a",
+    "entrees/n32-f2.npz": "cc455176aba710cc9ea5c962957deef4b3d5a42316bd048b724849ffec2b951c",
+    "entrees/n32-f20.npz": "fc6e7035a68e70759241ffe6b7517c69bca3f8ee0879c16a771207883d6978f5",
+    "entrees/n32-f40.npz": "df335d97b6979ea280016d019e4a7fffdc7675cd61c2a5a1fb7aa68d1d4d6b8a",
+    "entrees/n512-f2.npz": "36da487a49d5be15dadfbf97237351572ccdc34074ed7efec390b75b3be742f0",
+    "entrees/n512-f20.npz": "207e7c785f71c3a34197b98b4734c0ae1a6f1bb163c5d95905f53aae101161c9",
+    "entrees/n512-f40.npz": "8934fa28cfca143c836b0ec0d78f3ffe16049b1769974c92c9c4f2f27a616905",
+    "essais.json.gz": "a8678d92bcf1663818c95336ef41742db6d1f9745a2bd25142b66cd16ae5464d",
+    "journaux.json.gz": "f66147213cb24ceec274f3a5892bc5c64916e10d639cdd691e8591a4233d3303",
+    "sources/confronte_ports_exudyn.py": "32ac71067dae98256521d6e0991f708055fae8533e7e461449ac063237cd3bec",
+    "sources/experience_reduction_native.py": "80b97a8be33bd479167a050da12115cac03894fb92880159557ae3271c84d6b2",
+    "sources/oracle_champs_ports.py": "a82d949aad75545ed07644a985cbb809e1ff26402edc572a452c545b803d13b7",
+    "sources/reference_hcb_exudyn.py": "0e03800e63ff27da07c96f7937f0df06f23981b205d02eb03af77526c7a233a5",
+    "sources/reference_ports_precision.py": "4fb36d49bae345b7bdc7cddfd541279df285564c1d0618d2f7f5e91dbf71a41c"
+  }
+}

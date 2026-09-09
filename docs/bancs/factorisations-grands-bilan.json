@@ -1,0 +1,197 @@
+{
+  "essais": 15,
+  "equilibres_stricts": 15,
+  "echecs_restaures": [],
+  "delais_depasses": [],
+  "comparaison": [
+    {
+      "famille": "cascade",
+      "taille": 8,
+      "versions": {
+        "apres": {
+          "mediane_s": 0.07056006998755038,
+          "etendue_s": [
+            0.07024425803683698,
+            0.07091794395819306
+          ],
+          "rss_mio": 41.5,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 2.595704901020568e-11,
+            "erreur_forces_N": 1.0618483869961892e-10,
+            "erreur_moments_Nm": 7.352461202803778e-10,
+            "erreur_position_reference_m": 7.660950324638038e-11,
+            "erreur_rotation_reference": 4.3586249887095363e-10,
+            "reactions_hors_plan": 2.859831382584521e-14
+          }
+        }
+      }
+    },
+    {
+      "famille": "cascade",
+      "taille": 16,
+      "versions": {
+        "apres": {
+          "mediane_s": 0.24989631795324385,
+          "etendue_s": [
+            0.24976210505701602,
+            0.25154088996350765
+          ],
+          "rss_mio": 50.5,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            6,
+            6,
+            6
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 4.545835018495868e-12,
+            "erreur_forces_N": 1.5480949855373183e-11,
+            "erreur_moments_Nm": 1.329508569479932e-10,
+            "erreur_position_reference_m": 2.2264758613166347e-11,
+            "erreur_rotation_reference": 1.529227092178509e-10,
+            "reactions_hors_plan": 1.413984277280938e-13
+          }
+        }
+      }
+    },
+    {
+      "famille": "cascade",
+      "taille": 32,
+      "versions": {
+        "apres": {
+          "mediane_s": 2.0376258951146156,
+          "etendue_s": [
+            2.0339601829182357,
+            2.037843583151698
+          ],
+          "rss_mio": 86.0,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            9,
+            9,
+            9
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 7.370624733650261e-14,
+            "erreur_forces_N": 2.282618538629322e-13,
+            "erreur_moments_Nm": 2.1249744178901755e-12,
+            "erreur_position_reference_m": 6.380310776238352e-13,
+            "erreur_rotation_reference": 4.891011207153184e-12,
+            "reactions_hors_plan": 3.236336541375266e-13
+          }
+        }
+      }
+    },
+    {
+      "famille": "parallelogrammes",
+      "taille": 16,
+      "versions": {
+        "apres": {
+          "mediane_s": 0.1564346649684012,
+          "etendue_s": [
+            0.1561233310494572,
+            0.15647917217575014
+          ],
+          "rss_mio": 52.0,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 5.742563163272513e-12,
+            "erreur_forces_N": 2.0756729668391927e-12,
+            "erreur_moments_Nm": 8.214628057997153e-11,
+            "erreur_pose_reference_m": 9.943535036159579e-12,
+            "erreur_reactions_N": 1.021689399749448e-10,
+            "erreur_rotation_reference": 6.812876754050537e-12,
+            "reactions_hors_plan": 5.691542540040737e-15
+          }
+        }
+      }
+    },
+    {
+      "famille": "parallelogrammes",
+      "taille": 32,
+      "versions": {
+        "apres": {
+          "mediane_s": 0.8018054058775306,
+          "etendue_s": [
+            0.7989153920207173,
+            0.8047214490361512
+          ],
+          "rss_mio": 87.0,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 5.742601598239527e-12,
+            "erreur_forces_N": 2.0730084315800923e-12,
+            "erreur_moments_Nm": 8.214808035596273e-11,
+            "erreur_pose_reference_m": 9.951633321656633e-12,
+            "erreur_reactions_N": 1.021644990828463e-10,
+            "erreur_rotation_reference": 6.825382844739228e-12,
+            "reactions_hors_plan": 5.9718360752188935e-15
+          }
+        }
+      }
+    }
+  ],
+  "entree_sha256": "17f524bd23493c5082e2cc0684e58d64f80f8ddf9c08e0e235c2ccfb6dff8fdd",
+  "programme_sha256": "ae35948ef7f004489e4974142c999a92bf2e00e393424ee0395c3b830a8ba66c"
+}

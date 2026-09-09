@@ -1,0 +1,832 @@
+{
+  "entree_sha256": "14a16b4e770362d05e4e9673851f3f124042860952446c0c11c5da7629da5d87",
+  "comparaison": [
+    {
+      "famille": "articulee",
+      "corps": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.00952776987105608,
+          "etendue_s": [
+            0.009525264147669077,
+            0.0095417860429734
+          ],
+          "rss_mio": 41.0,
+          "controles_max": {
+            "erreur_moment_independant_Nm": 2.2052921554854832e-13,
+            "erreur_reactions_N": 3.730349362740526e-14,
+            "erreur_fermeture_m": 3.5053503068954717e-14
+          },
+          "evaluations": [
+            4,
+            4,
+            4
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.009882265934720635,
+          "etendue_s": [
+            0.009877817006781697,
+            0.0099025450181216
+          ],
+          "rss_mio": 41.0,
+          "controles_max": {
+            "erreur_moment_independant_Nm": 2.2052921554854832e-13,
+            "erreur_reactions_N": 3.730349362740526e-14,
+            "erreur_fermeture_m": 3.5053503068954717e-14
+          },
+          "evaluations": [
+            4,
+            4,
+            4
+          ]
+        }
+      },
+      "gain": 0.9641280586855026,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "boucle",
+      "corps": 16,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.000420010881498456,
+          "etendue_s": [
+            0.0004138299264013767,
+            0.0004272859077900648
+          ],
+          "rss_mio": 39.19140625,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 1.2612133559741778e-13,
+            "orthogonalite_autocontraintes": 2.7800569775053773e-16
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.00042718485929071903,
+          "etendue_s": [
+            0.00042457995004951954,
+            0.0004306619521230459
+          ],
+          "rss_mio": 39.1796875,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 1.2612133559741778e-13,
+            "orthogonalite_autocontraintes": 2.7800569775053773e-16
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "gain": 0.9832063856285206,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "boucle",
+      "corps": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.001807179069146514,
+          "etendue_s": [
+            0.0018062358722090721,
+            0.0018658500630408525
+          ],
+          "rss_mio": 39.19140625,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 3.5704772471945034e-13,
+            "orthogonalite_autocontraintes": 2.017200199636948e-16
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.0005539171397686005,
+          "etendue_s": [
+            0.0005474539939314127,
+            0.0005641158204525709
+          ],
+          "rss_mio": 39.34375,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 2.291500322826323e-13,
+            "orthogonalite_autocontraintes": 3.821465454940453e-16
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "gain": 3.262544051085809,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "boucle",
+      "corps": 64,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.01369965705089271,
+          "etendue_s": [
+            0.013333981856703758,
+            0.013766545802354813
+          ],
+          "rss_mio": 39.70703125,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 1.5791812302268227e-12,
+            "orthogonalite_autocontraintes": 1.0869556744599922e-17
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.000537605956196785,
+          "etendue_s": [
+            0.0005327269900590181,
+            0.0005409319419413805
+          ],
+          "rss_mio": 39.390625,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 8.686384944667225e-13,
+            "orthogonalite_autocontraintes": 1.4933418569503186e-15
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "gain": 25.482710697271546,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "boucle",
+      "corps": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.19987219595350325,
+          "etendue_s": [
+            0.19815014605410397,
+            0.2015100340358913
+          ],
+          "rss_mio": 40.5,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 1.2732925824820995e-11,
+            "orthogonalite_autocontraintes": 5.7154549607033185e-15
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.0010259971022605896,
+          "etendue_s": [
+            0.0010217588860541582,
+            0.00102608697488904
+          ],
+          "rss_mio": 39.64453125,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 6.0254023992456496e-12,
+            "orthogonalite_autocontraintes": 7.405038006754649e-15
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "gain": 194.80775872867756,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "boucle",
+      "corps": 256,
+      "versions": {
+        "avant": {
+          "mediane_s": 2.8676243152003735,
+          "etendue_s": [
+            2.835113388951868,
+            2.8699926419649273
+          ],
+          "rss_mio": 45.62109375,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 6.088107795676478e-11,
+            "orthogonalite_autocontraintes": 3.6065476415882135e-14
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.0019199829548597336,
+          "etendue_s": [
+            0.0018895750399678946,
+            0.0019455219153314829
+          ],
+          "rss_mio": 40.06640625,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 4.4282799649408844e-11,
+            "orthogonalite_autocontraintes": 1.6810658836808897e-15
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "gain": 1493.5675902445034,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "boucle",
+      "corps": 512,
+      "versions": {
+        "avant": {
+          "mediane_s": 22.539316211128607,
+          "etendue_s": [
+            22.516831054119393,
+            22.736190651077777
+          ],
+          "rss_mio": 64.3515625,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 2.3141133453918883e-10,
+            "orthogonalite_autocontraintes": 1.9938629947927986e-13
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.003876986913383007,
+          "etendue_s": [
+            0.00384692894294858,
+            0.003895313013345003
+          ],
+          "rss_mio": 40.5234375,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 2.382876118645072e-10,
+            "orthogonalite_autocontraintes": 2.7559909317822484e-14
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "gain": 5813.616789193931,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "chaine",
+      "corps": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0007908791303634644,
+          "etendue_s": [
+            0.0007793169934302568,
+            0.0008122101426124573
+          ],
+          "rss_mio": 39.55859375,
+          "controles_max": {
+            "erreur_reactions_absolue": 2.091837814077735e-11,
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 5.5067062021407764e-14
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.0007813500706106424,
+          "etendue_s": [
+            0.0007633960340172052,
+            0.0007824928034096956
+          ],
+          "rss_mio": 39.625,
+          "controles_max": {
+            "erreur_reactions_absolue": 2.091837814077735e-11,
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 5.5067062021407764e-14
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "gain": 1.0121956343401552,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "double",
+      "corps": 8,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.014369536889716983,
+          "etendue_s": [
+            0.014132024953141809,
+            0.01439194893464446
+          ],
+          "rss_mio": 39.73046875,
+          "controles_max": {
+            "erreur_reactions_N": 1.3322676295501878e-13,
+            "ecart_doublons": 1.0658141036401503e-14,
+            "erreur_moments_Nm": 1.2146565003812171e-11,
+            "erreur_fermeture_m": 4.232443985129758e-12
+          },
+          "evaluations": [
+            4,
+            4,
+            4
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.014374047052115202,
+          "etendue_s": [
+            0.014288872946053743,
+            0.014481710037216544
+          ],
+          "rss_mio": 39.671875,
+          "controles_max": {
+            "erreur_reactions_N": 1.3322676295501878e-13,
+            "ecart_doublons": 1.0658141036401503e-14,
+            "erreur_moments_Nm": 1.2146565003812171e-11,
+            "erreur_fermeture_m": 4.232443985129758e-12
+          },
+          "evaluations": [
+            4,
+            4,
+            4
+          ]
+        }
+      },
+      "gain": 0.9996862287717672,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "double",
+      "corps": 16,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.158244936959818,
+          "etendue_s": [
+            0.15808903402648866,
+            0.1587807759642601
+          ],
+          "rss_mio": 41.640625,
+          "controles_max": {
+            "erreur_reactions_N": 1.0835776720341528e-13,
+            "ecart_doublons": 4.263256414560601e-14,
+            "erreur_moments_Nm": 2.353367609293777e-12,
+            "erreur_fermeture_m": 8.137153060736035e-13
+          },
+          "evaluations": [
+            4,
+            4,
+            4
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.16001138207502663,
+          "etendue_s": [
+            0.159887557849288,
+            0.16076346207410097
+          ],
+          "rss_mio": 41.5,
+          "controles_max": {
+            "erreur_reactions_N": 1.0835776720341528e-13,
+            "ecart_doublons": 4.263256414560601e-14,
+            "erreur_moments_Nm": 2.353367609293777e-12,
+            "erreur_fermeture_m": 8.137153060736035e-13
+          },
+          "evaluations": [
+            4,
+            4,
+            4
+          ]
+        }
+      },
+      "gain": 0.9889605033573151,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "double",
+      "corps": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 2.0749562880955637,
+          "etendue_s": [
+            2.0451500399503857,
+            2.0859595129732043
+          ],
+          "rss_mio": 47.5,
+          "controles_max": {
+            "erreur_reactions_N": 6.750155989720952e-13,
+            "ecart_doublons": 6.572520305780927e-14,
+            "erreur_moments_Nm": 8.204157839197812e-13,
+            "erreur_fermeture_m": 2.2748735404101716e-13
+          },
+          "evaluations": [
+            4,
+            4,
+            4
+          ]
+        },
+        "apres": {
+          "mediane_s": 2.0758580430410802,
+          "etendue_s": [
+            2.067994392942637,
+            2.1001578581053764
+          ],
+          "rss_mio": 47.5,
+          "controles_max": {
+            "erreur_reactions_N": 6.750155989720952e-13,
+            "ecart_doublons": 6.572520305780927e-14,
+            "erreur_moments_Nm": 8.204157839197812e-13,
+            "erreur_fermeture_m": 2.2748735404101716e-13
+          },
+          "evaluations": [
+            4,
+            4,
+            4
+          ]
+        }
+      },
+      "gain": 0.9995655989345998,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "double",
+      "corps": 64,
+      "versions": {
+        "avant": {
+          "mediane_s": 16.447206138866022,
+          "etendue_s": [
+            16.432288012001663,
+            16.565614389022812
+          ],
+          "rss_mio": 72.0,
+          "controles_max": {
+            "erreur_reactions_N": 5.512035272658977e-12,
+            "ecart_doublons": 2.504663143554353e-13,
+            "erreur_moments_Nm": 2.1022592520958394e-11,
+            "erreur_fermeture_m": 8.266282623681231e-14
+          },
+          "evaluations": [
+            4,
+            4,
+            4
+          ]
+        },
+        "apres": {
+          "mediane_s": 16.56010891799815,
+          "etendue_s": [
+            16.55211700196378,
+            16.767811298836023
+          ],
+          "rss_mio": 72.0,
+          "controles_max": {
+            "erreur_reactions_N": 5.512035272658977e-12,
+            "ecart_doublons": 2.504663143554353e-13,
+            "erreur_moments_Nm": 2.1022592520958394e-11,
+            "erreur_fermeture_m": 8.266282623681231e-14
+          },
+          "evaluations": [
+            4,
+            4,
+            4
+          ]
+        }
+      },
+      "gain": 0.9931822441693351,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "grande",
+      "corps": 1024,
+      "versions": {
+        "apres": {
+          "mediane_s": 0.008335653925314546,
+          "etendue_s": [
+            0.008286460069939494,
+            0.008341586915776134
+          ],
+          "rss_mio": 42.5,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 1.1215792738994423e-09,
+            "orthogonalite_autocontraintes": 2.8861249718521895e-12
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "famille": "grande",
+      "corps": 2048,
+      "versions": {
+        "apres": {
+          "mediane_s": 0.017271864926442504,
+          "etendue_s": [
+            0.01697544101625681,
+            0.017300538951531053
+          ],
+          "rss_mio": 46.79296875,
+          "controles_max": {
+            "erreur_pose_max": 0.0,
+            "erreur_equilibre_independant": 8.440110832452774e-09,
+            "orthogonalite_autocontraintes": 3.090637131036818e-13
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "famille": "rotors",
+      "corps": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0018701381050050259,
+          "etendue_s": [
+            0.001864908030256629,
+            0.0018846159800887108
+          ],
+          "rss_mio": 40.203125,
+          "controles_max": {
+            "erreur_pose_max": 1.1102230246251565e-16,
+            "erreur_equilibre_independant": 0.0
+          },
+          "evaluations": [
+            2,
+            2,
+            2
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.0018802972044795752,
+          "etendue_s": [
+            0.001849709078669548,
+            0.0018920798320323229
+          ],
+          "rss_mio": 40.11328125,
+          "controles_max": {
+            "erreur_pose_max": 1.1102230246251565e-16,
+            "erreur_equilibre_independant": 0.0
+          },
+          "evaluations": [
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      "gain": 0.9945970778181521,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "spatiale",
+      "corps": 16,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.002345765009522438,
+          "etendue_s": [
+            0.002338242018595338,
+            0.002347670029848814
+          ],
+          "rss_mio": 40.2578125,
+          "controles_max": {
+            "erreur_forces_N": 1.758593271006248e-13,
+            "erreur_moments_Nm": 1.2079226507921703e-13,
+            "erreur_reactions_reference_SI": 5.542233338928781e-13,
+            "orthogonalite_autocontraintes": 4.0837028197376353e-16
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.0003067248035222292,
+          "etendue_s": [
+            0.00030547287315130234,
+            0.0003092701081186533
+          ],
+          "rss_mio": 40.28515625,
+          "controles_max": {
+            "erreur_forces_N": 4.085620730620576e-14,
+            "erreur_moments_Nm": 7.416289804496046e-14,
+            "erreur_reactions_reference_SI": 8.271161533457416e-14,
+            "orthogonalite_autocontraintes": 1.4944229541775137e-16
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "gain": 7.64778388505002,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "spatiale",
+      "corps": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.01676370413042605,
+          "etendue_s": [
+            0.0164584640879184,
+            0.016996329184621572
+          ],
+          "rss_mio": 40.5,
+          "controles_max": {
+            "erreur_forces_N": 5.151434834260726e-13,
+            "erreur_moments_Nm": 4.263256414560601e-13,
+            "erreur_reactions_reference_SI": 1.0231815394945443e-12,
+            "orthogonalite_autocontraintes": 1.6336053861641157e-15
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.0005838540382683277,
+          "etendue_s": [
+            0.0005710290279239416,
+            0.0005843450780957937
+          ],
+          "rss_mio": 40.390625,
+          "controles_max": {
+            "erreur_forces_N": 1.687538997430238e-13,
+            "erreur_moments_Nm": 3.232969447708456e-13,
+            "erreur_reactions_reference_SI": 4.831690603168681e-13,
+            "orthogonalite_autocontraintes": 2.811712663624415e-16
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "gain": 28.712148981868964,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "spatiale",
+      "corps": 64,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.14501543017104268,
+          "etendue_s": [
+            0.14457926689647138,
+            0.1458718499634415
+          ],
+          "rss_mio": 43.0,
+          "controles_max": {
+            "erreur_forces_N": 2.893685291383008e-12,
+            "erreur_moments_Nm": 2.8137492336099967e-12,
+            "erreur_reactions_reference_SI": 1.2789769243681803e-11,
+            "orthogonalite_autocontraintes": 3.917756728989616e-15
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.0011789388954639435,
+          "etendue_s": [
+            0.0011706228833645582,
+            0.0011975241359323263
+          ],
+          "rss_mio": 40.5,
+          "controles_max": {
+            "erreur_forces_N": 9.667822098435863e-13,
+            "erreur_moments_Nm": 9.379164112033322e-13,
+            "erreur_reactions_reference_SI": 9.43600753089413e-12,
+            "orthogonalite_autocontraintes": 1.8343588650204914e-15
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "gain": 123.00504354296946,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    },
+    {
+      "famille": "spatiale",
+      "corps": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 2.6625369070097804,
+          "etendue_s": [
+            2.651991000864655,
+            2.673166010994464
+          ],
+          "rss_mio": 53.5,
+          "controles_max": {
+            "erreur_forces_N": 1.0942580175310468e-11,
+            "erreur_moments_Nm": 1.2278178473934531e-11,
+            "erreur_reactions_reference_SI": 2.105480234604329e-10,
+            "orthogonalite_autocontraintes": 6.6318992113097636e-15
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        },
+        "apres": {
+          "mediane_s": 0.002312531927600503,
+          "etendue_s": [
+            0.0023104080464690924,
+            0.0023147459141910076
+          ],
+          "rss_mio": 41.0,
+          "controles_max": {
+            "erreur_forces_N": 6.910028105266974e-12,
+            "erreur_moments_Nm": 6.536993168992922e-12,
+            "erreur_reactions_reference_SI": 6.775735528208315e-11,
+            "orthogonalite_autocontraintes": 2.1605846492485745e-15
+          },
+          "evaluations": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "gain": 1151.3514149715738,
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0
+    }
+  ]
+}

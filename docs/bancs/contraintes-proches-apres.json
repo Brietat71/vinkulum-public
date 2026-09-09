@@ -1,0 +1,788 @@
+{
+  "extension_sha256": "ac19229e9cce57fc0001af0f12cc32ea2f0b0d258b52abbba269267ae252e01d",
+  "programme_sha256": "0d462ea45b59d3e0440f4efbb8f44f0318016612adbaa6d57f7cd60de66d4b2a",
+  "cas": [
+    {
+      "delta": 1.0,
+      "erreur": null,
+      "rapport": {
+        "statut": "tolerance",
+        "tol": 1e-08,
+        "strict": true,
+        "residu_libre": 0.0,
+        "contraintes": 0.0,
+        "echelle_force": 1.0,
+        "residu_relatif": 0.0,
+        "tolerance_finale_atteinte": true,
+        "evaluations": 1,
+        "tentatives": 1,
+        "paliers": 1,
+        "palier": 1,
+        "paliers_stagnation": 0,
+        "etat_restaure": false,
+        "message": null
+      },
+      "reactions": [
+        [
+          "x",
+          [
+            0.9999999999999998
+          ]
+        ],
+        [
+          "proche",
+          [
+            1.4142135623730951
+          ]
+        ],
+        [
+          "reste",
+          [
+            3.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "etat_initial": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "etat_final": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ]
+    },
+    {
+      "delta": 0.001,
+      "erreur": null,
+      "rapport": {
+        "statut": "tolerance",
+        "tol": 1e-08,
+        "strict": true,
+        "residu_libre": 0.0,
+        "contraintes": 0.0,
+        "echelle_force": 1.0,
+        "residu_relatif": 0.0,
+        "tolerance_finale_atteinte": true,
+        "evaluations": 1,
+        "tentatives": 1,
+        "paliers": 1,
+        "palier": 1,
+        "paliers_stagnation": 0,
+        "etat_restaure": false,
+        "message": null
+      },
+      "reactions": [
+        [
+          "x",
+          [
+            -997.9999999999998
+          ]
+        ],
+        [
+          "proche",
+          [
+            1000.0004999998748
+          ]
+        ],
+        [
+          "reste",
+          [
+            3.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "etat_initial": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "etat_final": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ]
+    },
+    {
+      "delta": 1e-06,
+      "erreur": null,
+      "rapport": {
+        "statut": "tolerance",
+        "tol": 1e-08,
+        "strict": true,
+        "residu_libre": 0.0,
+        "contraintes": 0.0,
+        "echelle_force": 1.0,
+        "residu_relatif": 0.0,
+        "tolerance_finale_atteinte": true,
+        "evaluations": 1,
+        "tentatives": 1,
+        "paliers": 1,
+        "palier": 1,
+        "paliers_stagnation": 0,
+        "etat_restaure": false,
+        "message": null
+      },
+      "reactions": [
+        [
+          "x",
+          [
+            -999998.0
+          ]
+        ],
+        [
+          "proche",
+          [
+            1000000.0000005
+          ]
+        ],
+        [
+          "reste",
+          [
+            3.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "etat_initial": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "etat_final": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ]
+    },
+    {
+      "delta": 1e-09,
+      "erreur": null,
+      "rapport": {
+        "statut": "tolerance",
+        "tol": 1e-08,
+        "strict": true,
+        "residu_libre": 1.1102230246251565e-16,
+        "contraintes": 0.0,
+        "echelle_force": 1.0,
+        "residu_relatif": 1.1102230246251565e-16,
+        "tolerance_finale_atteinte": true,
+        "evaluations": 1,
+        "tentatives": 1,
+        "paliers": 1,
+        "palier": 1,
+        "paliers_stagnation": 0,
+        "etat_restaure": false,
+        "message": null
+      },
+      "reactions": [
+        [
+          "x",
+          [
+            -999999997.9999999
+          ]
+        ],
+        [
+          "proche",
+          [
+            999999999.9999999
+          ]
+        ],
+        [
+          "reste",
+          [
+            3.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "etat_initial": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "etat_final": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ]
+    },
+    {
+      "delta": 1e-12,
+      "erreur": null,
+      "rapport": {
+        "statut": "tolerance",
+        "tol": 1e-08,
+        "strict": true,
+        "residu_libre": 0.0,
+        "contraintes": 0.0,
+        "echelle_force": 1.0,
+        "residu_relatif": 0.0,
+        "tolerance_finale_atteinte": true,
+        "evaluations": 1,
+        "tentatives": 1,
+        "paliers": 1,
+        "palier": 1,
+        "paliers_stagnation": 0,
+        "etat_restaure": false,
+        "message": null
+      },
+      "reactions": [
+        [
+          "x",
+          [
+            -999999999998.0
+          ]
+        ],
+        [
+          "proche",
+          [
+            1000000000000.0
+          ]
+        ],
+        [
+          "reste",
+          [
+            3.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "etat_initial": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "etat_final": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ]
+    },
+    {
+      "delta": 0.0,
+      "erreur": "ValueError: statique : pas convergé en 10 itérations, ‖r‖ = 1.000e0 pour une échelle de force de 1.000e0 (1.0e0 en relatif)",
+      "rapport": {
+        "statut": "echec",
+        "tol": 1e-08,
+        "strict": true,
+        "residu_libre": 1.0,
+        "contraintes": 0.0,
+        "echelle_force": 1.0,
+        "residu_relatif": 1.0,
+        "tolerance_finale_atteinte": false,
+        "evaluations": 20,
+        "tentatives": 2,
+        "paliers": 1,
+        "palier": 1,
+        "paliers_stagnation": 0,
+        "etat_restaure": true,
+        "message": "ValueError: statique : pas convergé en 10 itérations, ‖r‖ = 1.000e0 pour une échelle de force de 1.000e0 (1.0e0 en relatif)"
+      },
+      "reactions": null,
+      "etat_initial": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ],
+      "etat_final": [
+        0.0,
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        [],
+        [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+[
+  {
+    "cas": "courbure",
+    "resultats": [
+      {
+        "longueur_m": 1.0,
+        "vitesse_m_s": 1.0,
+        "acceleration_m_s2": -1.0,
+        "reference_m_s2": -1.0,
+        "erreur_relative": 0.0
+      },
+      {
+        "longueur_m": 1e-06,
+        "vitesse_m_s": 10.0,
+        "acceleration_m_s2": -100000000.0,
+        "reference_m_s2": -100000000.0,
+        "erreur_relative": 0.0
+      },
+      {
+        "longueur_m": 1.0,
+        "vitesse_m_s": 100000000.0,
+        "acceleration_m_s2": -1e+16,
+        "reference_m_s2": -1e+16,
+        "erreur_relative": 0.0
+      },
+      {
+        "longueur_m": 1000000.0,
+        "vitesse_m_s": 100000000.0,
+        "acceleration_m_s2": -10000000000.0,
+        "reference_m_s2": -10000000000.0,
+        "erreur_relative": 0.0
+      }
+    ],
+    "version": "0.7.2",
+    "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+    "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56"
+  },
+  {
+    "cas": "commande",
+    "acceleration": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -6.0,
+      0.0
+    ],
+    "reference": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -6.0,
+      0.0
+    ],
+    "erreur": 0.0,
+    "version": "0.7.2",
+    "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+    "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56"
+  },
+  {
+    "cas": "decollement",
+    "resultats": [
+      {
+        "rebond": false,
+        "acceleration": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "reference": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "erreur": 0.0,
+        "vitesses": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "rebond": true,
+        "acceleration": [
+          0.0,
+          0.0,
+          -9.81,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "reference": [
+          0.0,
+          0.0,
+          -9.81,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "erreur": 0.0,
+        "vitesses": [
+          [
+            0.0,
+            0.0,
+            0.7999999857426936
+          ]
+        ]
+      }
+    ],
+    "version": "0.7.2",
+    "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+    "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56"
+  }
+]

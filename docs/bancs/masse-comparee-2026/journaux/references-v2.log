@@ -1,0 +1,34 @@
+/tmp/vinkulum-release-0.11.0-final/venv/lib/python3.14/site-packages/numpy/__config__.py:155: UserWarning: Install `pyyaml` for better output
+  warnings.warn("Install `pyyaml` for better output", stacklevel=1)
+/tmp/vinkulum-release-0.11.0-final/venv/lib/python3.14/site-packages/scipy/__config__.py:167: UserWarning: Install `pyyaml` for better output
+  warnings.warn("Install `pyyaml` for better output", stacklevel=1)
+oracle 32 0 /257
+oracle 32 32 /257
+oracle 32 64 /257
+oracle 32 96 /257
+oracle 32 128 /257
+oracle 32 160 /257
+oracle 32 192 /257
+oracle 32 224 /257
+oracle 32 256 /257
+oracle terminé 32 0.0 3.933206888148561
+oracle 128 0 /257
+oracle 128 32 /257
+oracle 128 64 /257
+oracle 128 96 /257
+oracle 128 128 /257
+oracle 128 160 /257
+oracle 128 192 /257
+oracle 128 224 /257
+oracle 128 256 /257
+oracle terminé 128 0.0 16.291853321017697
+oracle 512 0 /257
+oracle 512 32 /257
+oracle 512 64 /257
+oracle 512 96 /257
+oracle 512 128 /257
+oracle 512 160 /257
+oracle 512 192 /257
+oracle 512 224 /257
+oracle 512 256 /257
+oracle terminé 512 0.0 66.622520779958

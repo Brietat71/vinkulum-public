@@ -1,0 +1,42 @@
+{
+  "famille": "couplages",
+  "taille": 129,
+  "variante": "qr_dense",
+  "forme": [
+    257,
+    129
+  ],
+  "nnz": 643,
+  "python": "3.14.7",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "cpu": [
+    8
+  ],
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "statut": "calcule",
+  "factorisation_s": 0.0029254239052534103,
+  "projection_s": 0.00010956893675029278,
+  "reactions_s": 0.00022080098278820515,
+  "total_s": 0.0032557938247919083,
+  "diagnostic": {
+    "rang": 128,
+    "coefficients_base_normales": 16512,
+    "base_dense": true
+  },
+  "rss_avant_oracle_kib": 63488,
+  "controles": {
+    "erreur_projection": 2.435551760271437e-15,
+    "erreur_force": 3.6637359812630166e-15,
+    "fermeture": 2.040034807748725e-15,
+    "idempotence": 2.4771851236948805e-15,
+    "rang_attendu": 128,
+    "rang_correct": true
+  },
+  "accepte": true
+}

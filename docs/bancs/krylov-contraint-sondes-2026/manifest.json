@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "date_archivage_utc": "2026-09-08T12:13:04.893153+00:00",
+  "nature": "sondes exploratoires ; intégrité de capture uniquement",
+  "source_originale": "/tmp",
+  "reproduction_exacte_revendiquee": false,
+  "classement_formel": false,
+  "nombre_observations": 43,
+  "fichiers_sha256": {
+    "README.md": "4f0ecfa7d2dc9b0967fbb72fad002548f5161c88c9f44e90c02f60a78a8848ce",
+    "journaux/vinkulum-complement-precisions.log": "76d121ada73a8ed689647b24b542d81699723da10d4ab43ef2ca60b2831dac65",
+    "journaux/vinkulum-krylov-selection-fraiche.log": "dde31eb266cfc4b90246858d4aa563bf2dbe81fb3c13b075b95646f40ded9274",
+    "journaux/vinkulum-pilot-controle-complement-anisotrope.log": "1bc44146e54e2d64f186106d839e02a9d9d83610b1639be2715aa84ec9da6f28",
+    "journaux/vinkulum-pilot-controle-complement-repare.log": "5bfbe5879e453da70de1509fb087ad70fb2025e6557feb0f723869bffbbd8cd9",
+    "journaux/vinkulum-pilot-controle-complement.log": "2d253523d3b4295f43f5e01b7b7b4d3c8874476c0080e84baa13685fbb18de41",
+    "journaux/vinkulum-pilot-krylov-contraint.log": "47979dc6655f82e6dd02a94d6615a197d5f915cf943484b7963cbf5767b515d0",
+    "rapports/vinkulum-complement-precisions.json.gz": "27aa11a3c0e94c4cd8146e9c23502801bd34869545095b5775041eaaa33693d6",
+    "rapports/vinkulum-krylov-selection-fraiche.json.gz": "4c6a62631f8c31837ea41f4d5c14d8216c3ae522b06436c24775878fc24287ad",
+    "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz": "45947eaea8c8af624b1a6cce8b435560f70eec8eb877e09c16973fbaa6d2b6d0",
+    "rapports/vinkulum-pilot-controle-complement-repare.json.gz": "4bee70bf5b37992713217705dbfc2d45ba34d56242bc52aef1f5a50404fd0f4b",
+    "rapports/vinkulum-pilot-krylov-contraint.json.gz": "203cde672c6818682b56f352f7caabebbfb7b8cfc881f73beac8a61f86a6bba3",
+    "sources/vinkulum-krylov-selection-fraiche.py": "22c0fef718f1bd648be26b18d2c108f4d0f3f9dbdefcad7ebb7aa3bac69c832f",
+    "sources/vinkulum-pilot-controle-complement-repare.py": "dab2facf6b99a62ab5f5f417ca746c87af01c2e1b0d682ac8fc5c0203f239341",
+    "sources/vinkulum-pilot-controle-complement.py": "73cd73be42962d7c6aafda3c9734491b7280411a375b0b18faf464f71653e620",
+    "sources/vinkulum-pilot-krylov-contraint.py": "306fa2dbeb4e9d931b1c839f5ef7d116cd22a1902e7ec73290fdc907d2de090d",
+    "synthese.json": "17517d0ca9331e6725b4c57b47afe835997b23eb43d1266c1159348e8236a627"
+  },
+  "fichiers_octets": {
+    "README.md": 5396,
+    "journaux/vinkulum-complement-precisions.log": 252,
+    "journaux/vinkulum-krylov-selection-fraiche.log": 950,
+    "journaux/vinkulum-pilot-controle-complement-anisotrope.log": 2437,
+    "journaux/vinkulum-pilot-controle-complement-repare.log": 2448,
+    "journaux/vinkulum-pilot-controle-complement.log": 2393,
+    "journaux/vinkulum-pilot-krylov-contraint.log": 1425,
+    "rapports/vinkulum-complement-precisions.json.gz": 1498,
+    "rapports/vinkulum-krylov-selection-fraiche.json.gz": 159368,
+    "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz": 754098,
+    "rapports/vinkulum-pilot-controle-complement-repare.json.gz": 743222,
+    "rapports/vinkulum-pilot-krylov-contraint.json.gz": 478614,
+    "sources/vinkulum-krylov-selection-fraiche.py": 1953,
+    "sources/vinkulum-pilot-controle-complement-repare.py": 1999,
+    "sources/vinkulum-pilot-controle-complement.py": 1992,
+    "sources/vinkulum-pilot-krylov-contraint.py": 1534,
+    "synthese.json": 38710
+  },
+  "provenance_fichiers": {
+    "sources/vinkulum-pilot-krylov-contraint.py": {
+      "origine": "/tmp/vinkulum-pilot-krylov-contraint.py",
+      "sha256_original": "306fa2dbeb4e9d931b1c839f5ef7d116cd22a1902e7ec73290fdc907d2de090d",
+      "octets_originaux": 1534,
+      "transformation": "copie binaire intégrale"
+    },
+    "journaux/vinkulum-pilot-krylov-contraint.log": {
+      "origine": "/tmp/vinkulum-pilot-krylov-contraint.log",
+      "sha256_original": "47979dc6655f82e6dd02a94d6615a197d5f915cf943484b7963cbf5767b515d0",
+      "octets_originaux": 1425,
+      "transformation": "copie binaire intégrale"
+    },
+    "rapports/vinkulum-pilot-krylov-contraint.json.gz": {
+      "origine": "/tmp/vinkulum-pilot-krylov-contraint.json",
+      "sha256_original": "e30f5bd9da3c3092c7ffc08077ccb5e8575a21edc963a8f1bd073032a0d40705",
+      "octets_originaux": 1154291,
+      "transformation": "gzip déterministe du JSON intégral"
+    },
+    "sources/vinkulum-pilot-controle-complement.py": {
+      "origine": "/tmp/vinkulum-pilot-controle-complement.py",
+      "sha256_original": "73cd73be42962d7c6aafda3c9734491b7280411a375b0b18faf464f71653e620",
+      "octets_originaux": 1992,
+      "transformation": "copie binaire intégrale"
+    },
+    "journaux/vinkulum-pilot-controle-complement.log": {
+      "origine": "/tmp/vinkulum-pilot-controle-complement.log",
+      "sha256_original": "2d253523d3b4295f43f5e01b7b7b4d3c8874476c0080e84baa13685fbb18de41",
+      "octets_originaux": 2393,
+      "transformation": "copie binaire intégrale"
+    },
+    "journaux/vinkulum-pilot-controle-complement-anisotrope.log": {
+      "origine": "/tmp/vinkulum-pilot-controle-complement-anisotrope.log",
+      "sha256_original": "1bc44146e54e2d64f186106d839e02a9d9d83610b1639be2715aa84ec9da6f28",
+      "octets_originaux": 2437,
+      "transformation": "copie binaire intégrale"
+    },
+    "rapports/vinkulum-pilot-controle-complement-anisotrope.json.gz": {
+      "origine": "/tmp/vinkulum-pilot-controle-complement-anisotrope.json",
+      "sha256_original": "d09ed5004095dea0a8590116a8cb3b1d7594c3da9e8d1b5d2e9217cd951100e4",
+      "octets_originaux": 1829880,
+      "transformation": "gzip déterministe du JSON intégral"
+    },
+    "sources/vinkulum-pilot-controle-complement-repare.py": {
+      "origine": "/tmp/vinkulum-pilot-controle-complement-repare.py",
+      "sha256_original": "dab2facf6b99a62ab5f5f417ca746c87af01c2e1b0d682ac8fc5c0203f239341",
+      "octets_originaux": 1999,
+      "transformation": "copie binaire intégrale"
+    },
+    "journaux/vinkulum-pilot-controle-complement-repare.log": {
+      "origine": "/tmp/vinkulum-pilot-controle-complement-repare.log",
+      "sha256_original": "5bfbe5879e453da70de1509fb087ad70fb2025e6557feb0f723869bffbbd8cd9",
+      "octets_originaux": 2448,
+      "transformation": "copie binaire intégrale"
+    },
+    "rapports/vinkulum-pilot-controle-complement-repare.json.gz": {
+      "origine": "/tmp/vinkulum-pilot-controle-complement-repare.json",
+      "sha256_original": "bf067d2774ef65aac882c208a9c42d68ef00cd92374c5e594704d455d72cbd73",
+      "octets_originaux": 1827838,
+      "transformation": "gzip déterministe du JSON intégral"
+    },
+    "sources/vinkulum-krylov-selection-fraiche.py": {
+      "origine": "/tmp/vinkulum-krylov-selection-fraiche.py",
+      "sha256_original": "22c0fef718f1bd648be26b18d2c108f4d0f3f9dbdefcad7ebb7aa3bac69c832f",
+      "octets_originaux": 1953,
+      "transformation": "copie binaire intégrale"
+    },
+    "journaux/vinkulum-krylov-selection-fraiche.log": {
+      "origine": "/tmp/vinkulum-krylov-selection-fraiche.log",
+      "sha256_original": "dde31eb266cfc4b90246858d4aa563bf2dbe81fb3c13b075b95646f40ded9274",
+      "octets_originaux": 950,
+      "transformation": "copie binaire intégrale"
+    },
+    "rapports/vinkulum-krylov-selection-fraiche.json.gz": {
+      "origine": "/tmp/vinkulum-krylov-selection-fraiche.json",
+      "sha256_original": "fab0cf3f33f32cd6af94f27f1bc305b6ab28514a3e3126b71f49aae2a5281a25",
+      "octets_originaux": 384463,
+      "transformation": "gzip déterministe du JSON intégral"
+    },
+    "journaux/vinkulum-complement-precisions.log": {
+      "origine": "/tmp/vinkulum-complement-precisions.log",
+      "sha256_original": "76d121ada73a8ed689647b24b542d81699723da10d4ab43ef2ca60b2831dac65",
+      "octets_originaux": 252,
+      "transformation": "copie binaire intégrale"
+    },
+    "rapports/vinkulum-complement-precisions.json.gz": {
+      "origine": "/tmp/vinkulum-complement-precisions.json",
+      "sha256_original": "aca4c140731f014c9edb83009606fdf214533818bc38c33fd70a62d5bf7280b1",
+      "octets_originaux": 8133,
+      "transformation": "gzip déterministe du JSON intégral"
+    }
+  },
+  "fichiers_manquants": [
+    {
+      "famille": "controle_scalaire",
+      "path": "/tmp/vinkulum-pilot-controle-complement.json",
+      "motif": "ancien JSON scalaire écrasé ; journal conservé"
+    },
+    {
+      "famille": "controle_anisotrope",
+      "path": "/tmp/vinkulum-pilot-controle-complement-anisotrope.py",
+      "motif": "fichier distinct non disponible à la capture"
+    },
+    {
+      "famille": "precisions_complement",
+      "path": "/tmp/vinkulum-complement-precisions.py",
+      "motif": "fichier distinct non disponible à la capture"
+    }
+  ]
+}

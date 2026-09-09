@@ -1,0 +1,42 @@
+{
+  "n": 512,
+  "max_hz": 40.0,
+  "nombre_frequences": 257,
+  "charges": 6,
+  "modele": {
+    "n": 512,
+    "longueur_m": 1.0,
+    "largeur_y_m": 0.04,
+    "hauteur_z_m": 0.006,
+    "young_pa": 70000000000.0,
+    "poisson": 0.3,
+    "rho_kg_m3": 2700.0,
+    "facteur_cisaillement": 0.8333333333333334,
+    "pas_m": 0.001953125,
+    "ea_n": 16800000.0,
+    "gay_n": 5384615.384615385,
+    "gaz_n": 5384615.384615385,
+    "gj_nm2": 70.21138310307693,
+    "eiy_nm2": 50.4,
+    "eiz_nm2": 2240.0,
+    "masse_noeud_interieur_kg": 0.001265625,
+    "inerties_noeud_interieur_kg_m2": [
+      1.72546875e-07,
+      4.199206352233887e-09,
+      1.691523313522339e-07
+    ],
+    "masse_totale_avant_encastrement_kg": 0.648,
+    "force_port_physique": [
+      0.0,
+      0.0,
+      0.1,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "masse_discrete": "Poids nodaux 1/2 aux deux extrémités, 1 ailleurs. Chaque inertie est ce même poids de celle d'un parallélépipède pas×largeur×hauteur. La masse de la racine est retirée avec ses six coordonnées. Masse concentrée diagonale, sans matrice de masse consistante."
+  },
+  "vinkulum": "0.10.0",
+  "entree_sha256": "8934fa28cfca143c836b0ec0d78f3ffe16049b1769974c92c9c4f2f27a616905",
+  "extension_sha256": "725237fce98bb62a6f6853c375abf1eb2250418b3eaab3dbcdad8a8d274aa024"
+}

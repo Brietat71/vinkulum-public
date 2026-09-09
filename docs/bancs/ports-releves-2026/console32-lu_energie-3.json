@@ -1,0 +1,109 @@
+{
+  "cas": {
+    "nom": "console32",
+    "famille": "console",
+    "n": 32
+  },
+  "variante": "lu_energie",
+  "oracle_sha256": "af61ae3bc18bd362099b8aef2c22ad34544e3783865f259594c33047ce57914c",
+  "date": "2026-09-07T17:37:58.843769+00:00",
+  "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "cpu": [
+    8
+  ],
+  "tolerance": 1e-10,
+  "lambda_min": 33921.41396030565,
+  "omega_max": 128.9888792552338,
+  "directions": 18,
+  "ports": 6,
+  "nombre_requetes": 257,
+  "nombre_frequences_audit": 17,
+  "preparation_s": 0.013704161858186126,
+  "requetes_s": 0.008665465051308274,
+  "reconstruction_s": 6.506405770778656e-05,
+  "total_s": 0.022434690967202187,
+  "rss_avant_oracle_kib": 71168,
+  "borne_uniforme": 1.4676266369287263e-14,
+  "erreur_D": 2.6646002638532884e-15,
+  "erreur_physique": 3.66879405708244e-15,
+  "ecart_energie": 2.3252814012974205e-15,
+  "diagnostic": {
+    "statut": "tolerance_estimee",
+    "historique": [
+      {
+        "blocs": 1,
+        "directions": 6,
+        "borne_uniforme": 0.001331101848148957,
+        "defaut_gram": 3.129586411872344e-16
+      },
+      {
+        "blocs": 2,
+        "directions": 12,
+        "borne_uniforme": 3.414671484186118e-09,
+        "defaut_gram": 6.972666390952787e-16
+      },
+      {
+        "blocs": 3,
+        "directions": 18,
+        "borne_uniforme": 3.5253930785897055e-16,
+        "defaut_gram": 7.25954727504528e-16
+      }
+    ],
+    "audit_bande": {
+      "majorant_total": 1.4676266369287263e-14,
+      "majorant_residu": 1.4063705426186668e-14,
+      "ecart_modele": 6.125609431005968e-16,
+      "enveloppes": [
+        0.0066879062751893075,
+        3.372995751136227e-08,
+        1.198206868728178e-12,
+        1.4063705426186668e-14
+      ],
+      "norme_champ_dynamique": 1.0112691970660324,
+      "certification_machine": false
+    },
+    "borne_reduction": 4.373535393246092e-16,
+    "audit_modele": {
+      "backend": "lu_energie",
+      "statut_lu": "preconditionneur_admis_sous_audit",
+      "ecart_energie_statique": 0.0,
+      "defaut_equilibre_entree_dual": 0.0,
+      "residu_lifting": 1.6437726474972365e-12,
+      "norme_deformation_lifting": 1.0,
+      "residu_statique_equilibre": 4.5218662810092715e-14,
+      "condition_estimee_equilibree": 166996.41090543632,
+      "kappa_epsilon_estime": 3.70806520833958e-11,
+      "residu_resolution_relatif_max": 5.755976444517832e-12,
+      "nnz_L": 542,
+      "nnz_U": 542,
+      "coefficients_ports": 2268,
+      "compteurs": {
+        "factorisations_LU": 1,
+        "resolutions_LU": 39,
+        "colonnes_rhs_LU": 335,
+        "resolutions_conditionnement": 5,
+        "colonnes_rhs_conditionnement": 5,
+        "appels_solve": 11,
+        "appels_dual": 8,
+        "corrections_solve_tentees": 20,
+        "corrections_statiques_tentees": 3,
+        "colonnes_corrections_solve_retenues": 78,
+        "colonnes_corrections_statiques_retenues": 6
+      },
+      "certification_machine": false,
+      "norme_duale": "approchee_par_D_I_solve"
+    },
+    "audit_ponctuel_total": 1.428593214841489e-14
+  },
+  "accepte": true,
+  "certification_machine": false
+}

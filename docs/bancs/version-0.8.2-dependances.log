@@ -1,0 +1,5 @@
+Using Python 3.14.7 environment at: /tmp/vinkulum-release-0.8.2/venv
+Resolved 2 packages in 46ms
+Installed 2 packages in 28ms
+ + numpy==2.5.3
+ + scipy==1.18.1

@@ -1,0 +1,433 @@
+{
+  "schema": 1,
+  "fichiers": {
+    "decimal-separateurs/inertie_complement_dirigee.py": {
+      "source": "/tmp/vinkulum-sonde-separateurs-2026/inertie_complement_dirigee.py",
+      "source_sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "source_octets": 13407,
+      "sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "octets": 13407,
+      "compression": null
+    },
+    "decimal-separateurs/manifest.json.gz": {
+      "source": "/tmp/vinkulum-sonde-separateurs-2026/manifest.json",
+      "source_sha256": "982a45bbf398e7d2239c1713856c267f2533fe89c9ed19ed753a644c0191afce",
+      "source_octets": 789,
+      "sha256": "91d5622704982d3a41a7949d2a0be60c1227d2660a23b7867c1727b149f959ea",
+      "octets": 405,
+      "compression": "gzip"
+    },
+    "decimal-separateurs/n128-entrees.npz": {
+      "source": "/tmp/vinkulum-sonde-separateurs-2026/n128-entrees.npz",
+      "source_sha256": "d1d0edbe0078c4d38a50cc81b078b005000a2093d4f52dc0f07855a0fa2253cb",
+      "source_octets": 7177,
+      "sha256": "d1d0edbe0078c4d38a50cc81b078b005000a2093d4f52dc0f07855a0fa2253cb",
+      "octets": 7177,
+      "compression": null
+    },
+    "decimal-separateurs/n32-entrees.npz": {
+      "source": "/tmp/vinkulum-sonde-separateurs-2026/n32-entrees.npz",
+      "source_sha256": "a1d3db903328a363ca685db468abee28585969c24d4133c837eefed801e4a988",
+      "source_octets": 2111,
+      "sha256": "a1d3db903328a363ca685db468abee28585969c24d4133c837eefed801e4a988",
+      "octets": 2111,
+      "compression": null
+    },
+    "decimal-separateurs/n512-entrees.npz": {
+      "source": "/tmp/vinkulum-sonde-separateurs-2026/n512-entrees.npz",
+      "source_sha256": "38e707d8ff390523cb3256870217b970e865a940955522b4bd5395508a5e44d1",
+      "source_octets": 27622,
+      "sha256": "38e707d8ff390523cb3256870217b970e865a940955522b4bd5395508a5e44d1",
+      "octets": 27622,
+      "compression": null
+    },
+    "decimal-separateurs/resultats.json.gz": {
+      "source": "/tmp/vinkulum-sonde-separateurs-2026/resultats.json",
+      "source_sha256": "39674b629848dbcebd06e2f83905438f655904558b9bfb4d7856aa60eedc69a4",
+      "source_octets": 6254753,
+      "sha256": "3b42b60ec058d4ccc573dfab8b46c1c13e41cecc6d741157b9de46d95f8e0df1",
+      "octets": 378747,
+      "compression": "gzip"
+    },
+    "decimal-separateurs/sonde.py": {
+      "source": "/tmp/vinkulum-sonde-separateurs-2026/sonde.py",
+      "source_sha256": "476b40849e72cc90625ea51524adea97dd1a9c615ad5c48de22483f45d769f78",
+      "source_octets": 3052,
+      "sha256": "476b40849e72cc90625ea51524adea97dd1a9c615ad5c48de22483f45d769f78",
+      "octets": 3052,
+      "compression": null
+    },
+    "python-binary64/inertie_complement_binaire.py": {
+      "source": "/tmp/vinkulum-sonde-inertie-binaire-2026-v1/inertie_complement_binaire.py",
+      "source_sha256": "e79cf1e5046fa3c0fb7428ab4e8aa29514819b6094f949ad40b47252e27a17ea",
+      "source_octets": 11692,
+      "sha256": "e79cf1e5046fa3c0fb7428ab4e8aa29514819b6094f949ad40b47252e27a17ea",
+      "octets": 11692,
+      "compression": null
+    },
+    "python-binary64/inertie_complement_dirigee.py": {
+      "source": "/tmp/vinkulum-sonde-inertie-binaire-2026-v1/inertie_complement_dirigee.py",
+      "source_sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "source_octets": 13407,
+      "sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "octets": 13407,
+      "compression": null
+    },
+    "python-binary64/intervalles_binary64.py": {
+      "source": "/tmp/vinkulum-sonde-inertie-binaire-2026-v1/intervalles_binary64.py",
+      "source_sha256": "4a1ad0be156b35608416ce8c2e758792eba3fa79cddc14e9ce6f166822676779",
+      "source_octets": 4152,
+      "sha256": "4a1ad0be156b35608416ce8c2e758792eba3fa79cddc14e9ce6f166822676779",
+      "octets": 4152,
+      "compression": null
+    },
+    "python-binary64/manifest.json.gz": {
+      "source": "/tmp/vinkulum-sonde-inertie-binaire-2026-v1/manifest.json",
+      "source_sha256": "65569689cb02cc979382e37bdce7d30056a76a928aa7c65092b2303fbd541725",
+      "source_octets": 1070,
+      "sha256": "71dcd900db55b0ccb9c5a8d16214333a6196194a11ca2158926c0922b12e628a",
+      "octets": 515,
+      "compression": "gzip"
+    },
+    "python-binary64/n128-entrees.npz": {
+      "source": "/tmp/vinkulum-sonde-inertie-binaire-2026-v1/n128-entrees.npz",
+      "source_sha256": "d1d0edbe0078c4d38a50cc81b078b005000a2093d4f52dc0f07855a0fa2253cb",
+      "source_octets": 7177,
+      "sha256": "d1d0edbe0078c4d38a50cc81b078b005000a2093d4f52dc0f07855a0fa2253cb",
+      "octets": 7177,
+      "compression": null
+    },
+    "python-binary64/n32-entrees.npz": {
+      "source": "/tmp/vinkulum-sonde-inertie-binaire-2026-v1/n32-entrees.npz",
+      "source_sha256": "a1d3db903328a363ca685db468abee28585969c24d4133c837eefed801e4a988",
+      "source_octets": 2111,
+      "sha256": "a1d3db903328a363ca685db468abee28585969c24d4133c837eefed801e4a988",
+      "octets": 2111,
+      "compression": null
+    },
+    "python-binary64/n512-entrees.npz": {
+      "source": "/tmp/vinkulum-sonde-inertie-binaire-2026-v1/n512-entrees.npz",
+      "source_sha256": "38e707d8ff390523cb3256870217b970e865a940955522b4bd5395508a5e44d1",
+      "source_octets": 27622,
+      "sha256": "38e707d8ff390523cb3256870217b970e865a940955522b4bd5395508a5e44d1",
+      "octets": 27622,
+      "compression": null
+    },
+    "python-binary64/resultats.json.gz": {
+      "source": "/tmp/vinkulum-sonde-inertie-binaire-2026-v1/resultats.json",
+      "source_sha256": "2e9a5fee567ad406666b58210598db1f1447f1979c1a2cc2dff9e38bba324e5e",
+      "source_octets": 1404940,
+      "sha256": "84539f7e118a98e73f12c09910bbde709661aa93a855c435bfe490b6791771ea",
+      "octets": 60335,
+      "compression": "gzip"
+    },
+    "python-binary64/sonde.py": {
+      "source": "/tmp/vinkulum-sonde-inertie-binaire-2026-v1/sonde.py",
+      "source_sha256": "611d1788cc0fb8576b9bc95edf8ad504d0a5b0064a485e72fb02898bf55b839c",
+      "source_octets": 1734,
+      "sha256": "611d1788cc0fb8576b9bc95edf8ad504d0a5b0064a485e72fb02898bf55b839c",
+      "octets": 1734,
+      "compression": null
+    },
+    "natif-initial/build/compilation.log.gz": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/build/compilation.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_octets": 0,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "octets": 20,
+      "compression": "gzip"
+    },
+    "natif-initial/build/identite.json.gz": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/build/identite.json",
+      "source_sha256": "ad8efdd79b989cb424a0e2dcb57ab89f97028304b68aa0372e0e7fbd22f4eef4",
+      "source_octets": 827,
+      "sha256": "fc7a3fd4387d0e3b811ba4915b3e66afde5fa182624f20386d4c3b737535e93a",
+      "octets": 514,
+      "compression": "gzip"
+    },
+    "natif-initial/build/inertie_binaire.so.gz": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/build/inertie_binaire.so",
+      "source_sha256": "16b87ba32b15d24ab847666c88da4dc217634f07eed0cfcd1fa583d0c2b3dd34",
+      "source_octets": 70184,
+      "sha256": "c685888b2f6d5a10e5353e717087f08eaa90cfe071907b9308cdcda6dc878294",
+      "octets": 27930,
+      "compression": "gzip"
+    },
+    "natif-initial/build/inertie_binaire_native.cpp": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/build/inertie_binaire_native.cpp",
+      "source_sha256": "4ac5ac53dd8cbd61a99cc0d00daf2dddbcc5b9f13f3f845657f6e75c57c24d62",
+      "source_octets": 11460,
+      "sha256": "4ac5ac53dd8cbd61a99cc0d00daf2dddbcc5b9f13f3f845657f6e75c57c24d62",
+      "octets": 11460,
+      "compression": null
+    },
+    "natif-initial/inertie_binaire_compile.py": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/inertie_binaire_compile.py",
+      "source_sha256": "2e80ab63642d9fe8787d9741ecb2ea68c0d9552d128cbb227acf9579dc1c6d9d",
+      "source_octets": 8567,
+      "sha256": "2e80ab63642d9fe8787d9741ecb2ea68c0d9552d128cbb227acf9579dc1c6d9d",
+      "octets": 8567,
+      "compression": null
+    },
+    "natif-initial/inertie_binaire_native.cpp": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/inertie_binaire_native.cpp",
+      "source_sha256": "4ac5ac53dd8cbd61a99cc0d00daf2dddbcc5b9f13f3f845657f6e75c57c24d62",
+      "source_octets": 11460,
+      "sha256": "4ac5ac53dd8cbd61a99cc0d00daf2dddbcc5b9f13f3f845657f6e75c57c24d62",
+      "octets": 11460,
+      "compression": null
+    },
+    "natif-initial/inertie_complement_dirigee.py": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/inertie_complement_dirigee.py",
+      "source_sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "source_octets": 13407,
+      "sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "octets": 13407,
+      "compression": null
+    },
+    "natif-initial/manifest.json.gz": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/manifest.json",
+      "source_sha256": "820023cc294c43e97b1c760b2b09cd81ed4c63f72fe2a700a6c40ac6ff0dbaac",
+      "source_octets": 1620,
+      "sha256": "46335b486e05428de74bb87946cca369d7e00f94ff3b3d930e3a58018c5777b3",
+      "octets": 682,
+      "compression": "gzip"
+    },
+    "natif-initial/n128-entrees.npz": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/n128-entrees.npz",
+      "source_sha256": "d1d0edbe0078c4d38a50cc81b078b005000a2093d4f52dc0f07855a0fa2253cb",
+      "source_octets": 7177,
+      "sha256": "d1d0edbe0078c4d38a50cc81b078b005000a2093d4f52dc0f07855a0fa2253cb",
+      "octets": 7177,
+      "compression": null
+    },
+    "natif-initial/n32-entrees.npz": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/n32-entrees.npz",
+      "source_sha256": "a1d3db903328a363ca685db468abee28585969c24d4133c837eefed801e4a988",
+      "source_octets": 2111,
+      "sha256": "a1d3db903328a363ca685db468abee28585969c24d4133c837eefed801e4a988",
+      "octets": 2111,
+      "compression": null
+    },
+    "natif-initial/n512-entrees.npz": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/n512-entrees.npz",
+      "source_sha256": "38e707d8ff390523cb3256870217b970e865a940955522b4bd5395508a5e44d1",
+      "source_octets": 27622,
+      "sha256": "38e707d8ff390523cb3256870217b970e865a940955522b4bd5395508a5e44d1",
+      "octets": 27622,
+      "compression": null
+    },
+    "natif-initial/resultats.json.gz": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/resultats.json",
+      "source_sha256": "bb7834ddae1790e9ab1cb40ad5d99495a0c6e1a320ca9fe071a0e2f08a1cb0d3",
+      "source_octets": 2282739,
+      "sha256": "b88f7391bd94fed1d7c76ffd3b8f80ca7bd0f6cfae2f7bb3124da5ab967dfcf9",
+      "octets": 118979,
+      "compression": "gzip"
+    },
+    "natif-initial/sonde.py": {
+      "source": "/tmp/vinkulum-sonde-inertie-compilee-2026-v1/sonde.py",
+      "source_sha256": "c60132f080bd45f40b82a91c2fb1b8cfe96490ce9da692cd071e17ad961e20be",
+      "source_octets": 1827,
+      "sha256": "c60132f080bd45f40b82a91c2fb1b8cfe96490ce9da692cd071e17ad961e20be",
+      "octets": 1827,
+      "compression": null
+    },
+    "service-pilote/bases.npz": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/bases.npz",
+      "source_sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "source_octets": 1101752,
+      "sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "octets": 1101752,
+      "compression": null
+    },
+    "service-pilote/resultat.json.gz": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/resultat.json",
+      "source_sha256": "d982a4df4cd31a55b017fb74543e42cbdd8f3f78599078af88cd6751716bea54",
+      "source_octets": 1993155,
+      "sha256": "cd9092a39012f4d23843ade568f942c3a1073a8f96635c826eb92110d0b1de4c",
+      "octets": 315600,
+      "compression": "gzip"
+    },
+    "service-pilote/sources/condensation_energie.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/condensation_energie.py",
+      "source_sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "source_octets": 209,
+      "sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "octets": 209,
+      "compression": null
+    },
+    "service-pilote/sources/confronte_ports_exudyn.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/confronte_ports_exudyn.py",
+      "source_sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "source_octets": 34295,
+      "sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "octets": 34295,
+      "compression": null
+    },
+    "service-pilote/sources/controle_complement.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/controle_complement.py",
+      "source_sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "source_octets": 10091,
+      "sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "octets": 10091,
+      "compression": null
+    },
+    "service-pilote/sources/controle_facteurs.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/controle_facteurs.py",
+      "source_sha256": "fed375d6b120df072d056a7029e84916dd666ab8bbfc926b3ccae849dd769bbe",
+      "source_octets": 13895,
+      "sha256": "fed375d6b120df072d056a7029e84916dd666ab8bbfc926b3ccae849dd769bbe",
+      "octets": 13895,
+      "compression": null
+    },
+    "service-pilote/sources/experience_controle_facteurs.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/experience_controle_facteurs.py",
+      "source_sha256": "508efe7f731cfd3c368229b62706b16e32456ae22ae881571e0ad6a3a1f30a7b",
+      "source_octets": 53030,
+      "sha256": "508efe7f731cfd3c368229b62706b16e32456ae22ae881571e0ad6a3a1f30a7b",
+      "octets": 53030,
+      "compression": null
+    },
+    "service-pilote/sources/experience_inertie_binaire.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/experience_inertie_binaire.py",
+      "source_sha256": "f0390a5c92d82d3cef4c14d6264f80f1b777cf453710737f48eadc4a368d7d1a",
+      "source_octets": 34829,
+      "sha256": "f0390a5c92d82d3cef4c14d6264f80f1b777cf453710737f48eadc4a368d7d1a",
+      "octets": 34829,
+      "compression": null
+    },
+    "service-pilote/sources/experience_inertie_contrainte.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/experience_inertie_contrainte.py",
+      "source_sha256": "046ddb048e6755daf2da6032ed3cb8060eae277b28366ae88bb837e253d1622b",
+      "source_octets": 50068,
+      "sha256": "046ddb048e6755daf2da6032ed3cb8060eae277b28366ae88bb837e253d1622b",
+      "octets": 50068,
+      "compression": null
+    },
+    "service-pilote/sources/experience_krylov_contraint.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/experience_krylov_contraint.py",
+      "source_sha256": "eca0ad55fcc208fa16e5b9a701be34782f79f318040544b1c415a296ba4f744e",
+      "source_octets": 45111,
+      "sha256": "eca0ad55fcc208fa16e5b9a701be34782f79f318040544b1c415a296ba4f744e",
+      "octets": 45111,
+      "compression": null
+    },
+    "service-pilote/sources/experience_reduction_native.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/experience_reduction_native.py",
+      "source_sha256": "80b97a8be33bd479167a050da12115cac03894fb92880159557ae3271c84d6b2",
+      "source_octets": 22606,
+      "sha256": "80b97a8be33bd479167a050da12115cac03894fb92880159557ae3271c84d6b2",
+      "octets": 22606,
+      "compression": null
+    },
+    "service-pilote/sources/inertie_binaire_compile.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/inertie_binaire_compile.py",
+      "source_sha256": "e2de99dc1fd968fe196a72c82ce5c75bddf8fc7344271dcc755a24108bff1b05",
+      "source_octets": 8595,
+      "sha256": "e2de99dc1fd968fe196a72c82ce5c75bddf8fc7344271dcc755a24108bff1b05",
+      "octets": 8595,
+      "compression": null
+    },
+    "service-pilote/sources/inertie_binaire_native.cpp": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/inertie_binaire_native.cpp",
+      "source_sha256": "4ac5ac53dd8cbd61a99cc0d00daf2dddbcc5b9f13f3f845657f6e75c57c24d62",
+      "source_octets": 11460,
+      "sha256": "4ac5ac53dd8cbd61a99cc0d00daf2dddbcc5b9f13f3f845657f6e75c57c24d62",
+      "octets": 11460,
+      "compression": null
+    },
+    "service-pilote/sources/inertie_complement_dirigee.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/inertie_complement_dirigee.py",
+      "source_sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "source_octets": 13407,
+      "sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "octets": 13407,
+      "compression": null
+    },
+    "service-pilote/sources/inverse_contrainte_energie.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/inverse_contrainte_energie.py",
+      "source_sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "source_octets": 8959,
+      "sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "octets": 8959,
+      "compression": null
+    },
+    "service-pilote/sources/krylov_contraint.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/krylov_contraint.py",
+      "source_sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "source_octets": 9990,
+      "sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "octets": 9990,
+      "compression": null
+    },
+    "service-pilote/sources/matrices_certificat.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/matrices_certificat.py",
+      "source_sha256": "19180a1156261b717405bbccb738e647b678f9b485715ee871450684f2847c6c",
+      "source_octets": 1410,
+      "sha256": "19180a1156261b717405bbccb738e647b678f9b485715ee871450684f2847c6c",
+      "octets": 1410,
+      "compression": null
+    },
+    "service-pilote/sources/oracle_champs_ports.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/oracle_champs_ports.py",
+      "source_sha256": "a82d949aad75545ed07644a985cbb809e1ff26402edc572a452c545b803d13b7",
+      "source_octets": 10199,
+      "sha256": "a82d949aad75545ed07644a985cbb809e1ff26402edc572a452c545b803d13b7",
+      "octets": 10199,
+      "compression": null
+    },
+    "service-pilote/sources/ordre_separateurs.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/ordre_separateurs.py",
+      "source_sha256": "217b137a1b08c379681a74a3dd9a0d700bbe463c8939ffe991a5e20080f844a9",
+      "source_octets": 2196,
+      "sha256": "217b137a1b08c379681a74a3dd9a0d700bbe463c8939ffe991a5e20080f844a9",
+      "octets": 2196,
+      "compression": null
+    },
+    "service-pilote/sources/racine_masse_blocs.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/racine_masse_blocs.py",
+      "source_sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "source_octets": 7424,
+      "sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "octets": 7424,
+      "compression": null
+    },
+    "service-pilote/sources/reference_hcb_exudyn.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/reference_hcb_exudyn.py",
+      "source_sha256": "0b22511d4dca51e8cfccc29c295b443838473b7d6f1ee126347f79c3af4918e3",
+      "source_octets": 13893,
+      "sha256": "0b22511d4dca51e8cfccc29c295b443838473b7d6f1ee126347f79c3af4918e3",
+      "octets": 13893,
+      "compression": null
+    },
+    "service-pilote/sources/reference_ports_precision.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/reference_ports_precision.py",
+      "source_sha256": "4fb36d49bae345b7bdc7cddfd541279df285564c1d0618d2f7f5e91dbf71a41c",
+      "source_octets": 12052,
+      "sha256": "4fb36d49bae345b7bdc7cddfd541279df285564c1d0618d2f7f5e91dbf71a41c",
+      "octets": 12052,
+      "compression": null
+    },
+    "service-pilote/sources/trace_complement_dirigee.py": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/sources/trace_complement_dirigee.py",
+      "source_sha256": "ebbdd7b727ea93df6acb583ca68251d504e9d70a812354deeb688ba84f8cb8f3",
+      "source_octets": 8497,
+      "sha256": "ebbdd7b727ea93df6acb583ca68251d504e9d70a812354deeb688ba84f8cb8f3",
+      "octets": 8497,
+      "compression": null
+    },
+    "README.md": {
+      "sha256": "98949d213ab1ff393140960b5bc54f608c2476d8988299503775d2ad72503ea0",
+      "octets": 1274,
+      "compression": null
+    }
+  },
+  "exclus_npy": {
+    "service-pilote/champs.npy": {
+      "source": "/tmp/vinkulum-pilote-inertie-compilee-n512-v1/champs.npy",
+      "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+      "source_octets": 37896320
+    }
+  }
+}

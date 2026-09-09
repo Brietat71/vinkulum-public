@@ -1,0 +1,142 @@
+{
+  "description": "Prototype statique autonome d'ordres 1 et 2 ; aucune nouvelle API distribuée.",
+  "base_git": "ed7cd8cd1f9c03e7fc6a7e7eb19be4d60b1b9fcc",
+  "archive": "poutre-mixte-2026-donnees.json.gz",
+  "archive_sha256": "6aa638c24e835aac7567658d6a4910f93caad9f5411d19bc88764ba3367738e6",
+  "executable_sha256": "365ed1ec203d9ce243effd1b65cdb902856daf36d44a0e603190433ddfdf4feb",
+  "sondes_executable_sha256": "1a33cf228a4f518fb24fb08910bfebe9959ae38fdae3dcd5988eb6a22e9a94da",
+  "sources_sha256": {
+    "Cargo.lock": "38257d5f3f1e5c32b255b4b83f8f36131b0ca81ef2ee333a1351fe9f3ba13061",
+    "Cargo.toml": "c9747ed339054588276d254f772ca85714e0315bb5e7a42f147b67a6bab2db54",
+    "ci/archive_poutre_mixte.py": "474227340bf6b52ee9cbce01164c7e4b9dae98cb9448c9df95f66018e081cf38",
+    "ci/mesure_poutre_mixte.py": "3fac3e5d2cb555743f01648a871635b94fed5f7169c91140c336c52945ad2aef",
+    "ci/reference_cosserat.py": "b2f68daed2ece1a0434f21a96234b219011d9a0cdda494c3f5550fad8ffd07fa",
+    "ci/sonde_poutre_mixte.py": "a54d599ac740d7c43f455cd43a6032c130dbd674d13598577765932b028e6203",
+    "examples/poutre_mixte.rs": "edd433d681cf6021b6227619cc0153d6fce748e00238154f45b991f8295be858",
+    "examples/poutre_mixte/element.rs": "2c71041fdf556b11d0191c4e7f2d163c5f89b4c05d6ced37f0c1dbe8ca8ca46c",
+    "examples/poutre_mixte/systeme.rs": "64a4e740186dd0074f04d117da16263ba8d794b6cf5f35e4871a569cc62d034a",
+    "examples/poutre_mixte/tests.rs": "00c9cc4f462b9c14b873f171af1039a6243cdb65d7639fb6fbd4599c24af9512",
+    "examples/poutre_mixte_sondes.rs": "992ec42b0e65e3cf026a6bec67998d9f699bee7842c0762bc1d35cd53acafa00",
+    "src/ad.rs": "1fd44c5469618d90d93ffa530639b44f6836deb992a5b24637b263026e5c75ff"
+  },
+  "bilan": {
+    "essais_princeton": 36,
+    "succes_princeton": 36,
+    "echauffements": 9,
+    "sondages_moment": 8,
+    "sondages_lineaires": 20,
+    "refus_condensation": 2,
+    "raideurs_negatives": 1,
+    "ecart_reference_m": 3.767292033884928e-12,
+    "configurations": [
+      {
+        "ordre": 1,
+        "elements": 2,
+        "reussites": 3,
+        "essais": 3,
+        "temps_median_s": 0.2680951878428459,
+        "temps_calcul_median_s": 0.264048974,
+        "erreur_bout_m": 0.0006957332184863163,
+        "erreur_ligne_m": 0.007784671627186733,
+        "rss_max_kib": 3584,
+        "ecart_repetitions_m": 0.0
+      },
+      {
+        "ordre": 1,
+        "elements": 4,
+        "reussites": 3,
+        "essais": 3,
+        "temps_median_s": 0.5377926358487457,
+        "temps_calcul_median_s": 0.533339014,
+        "erreur_bout_m": 0.00018360843970777196,
+        "erreur_ligne_m": 0.0022677101347004704,
+        "rss_max_kib": 3584,
+        "ecart_repetitions_m": 0.0
+      },
+      {
+        "ordre": 1,
+        "elements": 8,
+        "reussites": 3,
+        "essais": 3,
+        "temps_median_s": 1.095455580856651,
+        "temps_calcul_median_s": 1.090035174,
+        "erreur_bout_m": 4.650951351931054e-05,
+        "erreur_ligne_m": 0.0006064867678243457,
+        "rss_max_kib": 3584,
+        "ecart_repetitions_m": 0.0
+      },
+      {
+        "ordre": 1,
+        "elements": 16,
+        "reussites": 3,
+        "essais": 3,
+        "temps_median_s": 2.211980049032718,
+        "temps_calcul_median_s": 2.204607776,
+        "erreur_bout_m": 1.1665372021352205e-05,
+        "erreur_ligne_m": 0.00015643184636005377,
+        "rss_max_kib": 3584,
+        "ecart_repetitions_m": 0.0
+      },
+      {
+        "ordre": 2,
+        "elements": 1,
+        "reussites": 3,
+        "essais": 3,
+        "temps_median_s": 0.3420001659542322,
+        "temps_calcul_median_s": 0.337644681,
+        "erreur_bout_m": 0.000198056993664264,
+        "erreur_ligne_m": 0.00273512834193899,
+        "rss_max_kib": 3584,
+        "ecart_repetitions_m": 0.0
+      },
+      {
+        "ordre": 2,
+        "elements": 2,
+        "reussites": 3,
+        "essais": 3,
+        "temps_median_s": 0.944997209822759,
+        "temps_calcul_median_s": 0.939923033,
+        "erreur_bout_m": 1.3969209905359548e-05,
+        "erreur_ligne_m": 0.00035140086438896836,
+        "rss_max_kib": 3584,
+        "ecart_repetitions_m": 0.0
+      },
+      {
+        "ordre": 2,
+        "elements": 3,
+        "reussites": 3,
+        "essais": 3,
+        "temps_median_s": 1.433821165934205,
+        "temps_calcul_median_s": 1.428032266,
+        "erreur_bout_m": 2.90578888835491e-06,
+        "erreur_ligne_m": 0.00010252034008798212,
+        "rss_max_kib": 3584,
+        "ecart_repetitions_m": 0.0
+      },
+      {
+        "ordre": 2,
+        "elements": 4,
+        "reussites": 3,
+        "essais": 3,
+        "temps_median_s": 1.9104906229767948,
+        "temps_calcul_median_s": 1.903893609,
+        "erreur_bout_m": 9.350722027928748e-07,
+        "erreur_ligne_m": 4.359513606212728e-05,
+        "rss_max_kib": 3584,
+        "ecart_repetitions_m": 0.0
+      },
+      {
+        "ordre": 2,
+        "elements": 8,
+        "reussites": 3,
+        "essais": 3,
+        "temps_median_s": 3.822823026916012,
+        "temps_calcul_median_s": 3.813424236,
+        "erreur_bout_m": 5.934212467251232e-08,
+        "erreur_ligne_m": 5.453121917135123e-06,
+        "rss_max_kib": 3584,
+        "ecart_repetitions_m": 0.0
+      }
+    ]
+  }
+}

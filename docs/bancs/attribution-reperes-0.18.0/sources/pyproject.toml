@@ -1,0 +1,31 @@
+[build-system]
+requires = ["maturin>=1.15,<2"]
+build-backend = "maturin"
+
+[project]
+name = "vinkulum"
+version = "0.18.0"
+description = "Vinkulum — noyau multicorps (Rust) : intégrateur α-généralisé sur SO(3), liaisons, poutres géométriquement exactes, contact, analyse modale et Floquet, sensibilités adjointes"
+readme = "README.md"
+license = { text = "Proprietary" }
+authors = [{ name = "Paul Brintet" }]
+keywords = ["multibody", "dynamics", "solver", "rotorcraft", "finite-element", "contact"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+requires-python = ">=3.14"
+dependencies = ["numpy>=1.26"]
+
+[project.optional-dependencies]
+reduction = ["scipy>=1.11"]
+verification = ["scipy>=1.11"]   # python -m vinkulum.verification (références EDO indépendantes)
+validation = ["scipy>=1.11", "neuralfoil"]  # python -m vinkulum.validation (polaires des essais)
+
+[tool.maturin]
+python-source = "python"
+module-name = "vinkulum._vinkulum"
+features = ["pyo3/extension-module"]

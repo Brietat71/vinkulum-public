@@ -1,0 +1,6 @@
+{'dossier': 'simple-n32', 'code': 1, 'statut': 'refus_ou_echec', 'qualifie_champs': None, 'qualifie_controle': None}
+{'dossier': 'simple-n128', 'code': 1, 'statut': 'refus_ou_echec', 'qualifie_champs': None, 'qualifie_controle': None}
+{'dossier': 'simple-n512', 'code': 1, 'statut': 'refus_ou_echec', 'qualifie_champs': None, 'qualifie_controle': None}
+{'dossier': 'assemblage-n32', 'code': 1, 'statut': 'refus_ou_echec', 'qualifie_champs': None, 'qualifie_controle': None}
+{'dossier': 'assemblage-n128', 'code': 1, 'statut': 'refus_ou_echec', 'qualifie_champs': None, 'qualifie_controle': None}
+{'dossier': 'assemblage-n512', 'code': 1, 'statut': 'refus_ou_echec', 'qualifie_champs': None, 'qualifie_controle': None}

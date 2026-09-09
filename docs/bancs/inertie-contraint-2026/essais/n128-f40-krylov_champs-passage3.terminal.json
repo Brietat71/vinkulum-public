@@ -1,0 +1,17 @@
+{
+  "pid": 114,
+  "retour": 0,
+  "attente_terminee": true,
+  "date_utc": "2026-09-08T12:53:02.909210+00:00",
+  "processus_s": 0.9599605528637767,
+  "commande": [
+    "/tmp/vinkulum-release-0.11.0-final/venv/bin/python",
+    "/tmp/vinkulum-campagne-inertie-contrainte-2026/sources/experience_inertie_contrainte.py",
+    "--worker",
+    "/tmp/vinkulum-campagne-inertie-contrainte-2026/entrees/n128-f40.npz",
+    "/tmp/vinkulum-confrontation-ports-0.10.0-corrigee/n128-f40.ref.npy",
+    "krylov_champs",
+    "128",
+    "/tmp/vinkulum-campagne-inertie-contrainte-2026/essais/n128-f40-krylov_champs-passage3"
+  ]
+}

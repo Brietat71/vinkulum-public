@@ -1,0 +1,68 @@
+{
+  "python": "3.14.7",
+  "source_sha256": "35c28b7492d21e88cf7143b03db4f9e31735300d597c24f35c3e0e32b4ffc221",
+  "input_sha256": {
+    "avant": "84cf2cf7b9a17e6bed004e46a257c6026089f48e5bb982f68155b14bce83b678",
+    "apres": "9428ae8189bb0b7ca20d7172a5243b0334bf862f995be21ca5509b13bd437cb7",
+    "tangentes_avant": "d7b9776b4e724534b019b34e1cb84b3c501a0a982b6477c006bf250e0e282614",
+    "tangentes_apres": "0c9643bb05ab62f778705c1da083548f44df208d9d0e53f82e8f1d9a2d9b77bd"
+  },
+  "statique": {
+    "10": {
+      "gain": 3.2400407665163953,
+      "position_delta_max": 5.551115123125783e-17
+    },
+    "20": {
+      "gain": 5.017085606486146,
+      "position_delta_max": 1.734723475976807e-18
+    },
+    "40": {
+      "gain": 6.717417699379246,
+      "position_delta_max": 1.3877787807814457e-17
+    },
+    "60": {
+      "gain": 6.763085799136974,
+      "position_delta_max": 1.3877787807814457e-16
+    }
+  },
+  "tangentes": {
+    "10": {
+      "gain": 3.8923382792614603,
+      "projection_relative_difference": {
+        "K": 8.509913796439073e-17,
+        "C": 0.0
+      }
+    },
+    "30": {
+      "gain": 6.330405463270843,
+      "projection_relative_difference": {
+        "K": 2.498491068097765e-17,
+        "C": 0.0
+      }
+    },
+    "60": {
+      "gain": 5.720777081407179,
+      "projection_relative_difference": {
+        "K": 9.993956907967583e-17,
+        "C": 0.0
+      }
+    },
+    "120": {
+      "gain": 4.887116422186343,
+      "projection_relative_difference": {
+        "K": 9.993955066877539e-17,
+        "C": 0.0
+      }
+    }
+  },
+  "checks": {
+    "clippy": "    Checking vinkulum v0.6.2 (/root/vinkulum)\n    Finished `release` profile [optimized] target(s) in 1.68s\n",
+    "rust": "\nrunning 25 tests\n.........................\ntest result: ok. 25 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+    "python": "...........................................\n----------------------------------------------------------------------\nRan 43 tests in 2.667s\n\nOK\n",
+    "verification": "╔═ vérification : 41 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-igbv30ds\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    validation_scores — 0.32 s\n║ OK    robustesse — 0.37 s\n║ OK    assemblage — 0.37 s\n║ OK    convergence — 0.42 s\n║ OK    amortissement — 0.52 s\n║ OK    superelement — 0.37 s\n║ OK    bennett — 0.36 s\n║ OK    toupie — 0.82 s\n║ OK    vis_ecrou — 0.52 s\n║ OK    liaisons_unilaterales — 0.77 s\n║ OK    determinisme — 1.42 s\n║ OK    six_barres — 0.72 s\n║ OK    invariance_unites — 0.57 s\n║ OK    _regressions — 3.02 s\n║ OK    srscm — 2.37 s\n║ OK    modeles_mal_poses — 0.37 s\n║ OK    lateral_buckling — 2.72 s\n║ OK    non_holonome — 0.37 s\n║ OK    coulomb_pente — 0.52 s\n║ OK    quatre_barres_flexible — 2.72 s\n║ OK    lecteurs_casses — 0.37 s\n║ OK    gyroscopique_tangent — 0.37 s\n║ OK    treillis_de_boucles — 2.87 s\n║ OK    trim.demo — 0.16 s\n║ OK    audit_jacobien — 0.37 s\n║ OK    invariances — 2.22 s\n║ OK    reduction.demo — 0.26 s\n║ OK    accords — 1.72 s\n║ OK    floquet.demo — 0.82 s\n║ OK    arbre_tournant — 4.92 s\n║ OK    sparsite — 2.17 s\n║ OK    urdf.demo — 0.92 s\n║ OK    mjcf.demo — 0.87 s\n║ OK    convergence.demo — 2.12 s\n║ OK    adjoint_temps.demo — 4.72 s\n║ OK    campagne.demo — 5.98 s\n║ OK    statique — 14.94 s\n║ OK    domaines.demo — 10.83 s\n║ OK    kapitza — 21.61 s\n║ OK    echelle — 1.62 s\n║ OK    refus_gardes — 0.37 s\n╚ vérification OK — 41/41 cas, 24.12 s\n",
+    "rapide": "╔═ bancs : 46 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-s7gbqikx\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    engrenage — 0.37 s\n║ OK    pendule — 0.42 s\n║ OK    bielle — 0.47 s\n║ OK    double_pendule — 0.52 s\n║ OK    quatre_barres — 0.62 s\n║ OK    toupie — 0.67 s\n║ OK    reduction.demo — 0.26 s\n║ OK    poutre — 0.82 s\n║ OK    contact.capsules — 0.16 s\n║ OK    rotor.demo — 0.92 s\n║ OK    contact.boites — 0.11 s\n║ OK    contact.cylindres — 0.11 s\n║ OK    contact.multiples — 0.37 s\n║ OK    floquet.demo — 0.82 s\n║ OK    contact.capsules_primitives — 0.87 s\n║ OK    phi_dot — 0.67 s\n║ OK    bifurcation — 0.72 s\n║ OK    oye — 0.42 s\n║ OK    contact.nonlisse — 1.42 s\n║ OK    leishman_beddoes — 0.52 s\n║ OK    peters_he — 0.37 s\n║ OK    ggl_boucles — 2.22 s\n║ OK    theodorsen_complet — 1.62 s\n║ OK    pitt_peters — 0.37 s\n║ OK    inflow_carte — 1.92 s\n║ OK    instationnaire — 0.82 s\n║ OK    adaptatif — 4.98 s\n║ OK    energie_moment — 0.97 s\n║ OK    rotation.demo — 8.29 s\n║ OK    raideur_gravite — 0.36 s\n║ OK    amortis — 0.36 s\n║ OK    modes_console — 0.36 s\n║ OK    multirythme — 3.17 s\n║ OK    coque — 0.26 s\n║ OK    dissipation — 5.64 s\n║ OK    sensibilite.demo — 11.61 s\n║ OK    echelle — 0.47 s\n║ OK    pale_elastique — 2.68 s\n║ OK    noether — 10.05 s\n║ OK    andrews — 3.78 s\n║ OK    moment_projete — 19.37 s\n║ OK    contact.penalite_ccd — 29.24 s\n║ OK    seuils — 97.40 s\n║ OK    sillage — 168.92 s\n║ OK    contact.maillages — 0.82 s\n║ OK    contact.appariement — 0.37 s\n╚ bancs OK — 46/46 cas, 180.28 s\n",
+    "contact": "╔═ contacts : 9 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-9il1poqs\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    capsules — 0.12 s\n║ OK    boites — 0.12 s\n║ OK    cylindres — 0.12 s\n║ OK    multiples — 0.37 s\n║ OK    capsules_primitives — 0.87 s\n║ OK    nonlisse — 1.42 s\n║ OK    penalite_ccd — 182.72 s\n║ OK    maillages — 0.82 s\n║ OK    appariement — 0.57 s\n╚ contacts OK — 9/9 cas, 184.11 s\n",
+    "api": "╚═ référence d'API à jour (183 entrées)\n",
+    "targeted": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.093s\n\nOK\n"
+  }
+}

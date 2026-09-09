@@ -1,0 +1,1354 @@
+{
+  "essais": 108,
+  "equilibres_stricts": 108,
+  "echecs_restaures": [],
+  "delais_depasses": [],
+  "comparaison": [
+    {
+      "famille": "cascade",
+      "taille": 1,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0005357631016522646,
+          "etendue_s": [
+            0.000520734116435051,
+            0.0005545290187001228
+          ],
+          "rss_mio": 38.27734375,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 1.2170169386149787e-16,
+            "erreur_forces_N": 2.220446049250313e-15,
+            "erreur_moments_Nm": 2.5900505698506215e-15,
+            "erreur_position_reference_m": 1.9900530875971434e-16,
+            "erreur_rotation_reference": 6.409992599852176e-16,
+            "reactions_hors_plan": 1.5279514446113874e-15
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0005377959460020065,
+          "etendue_s": [
+            0.0005294200964272022,
+            0.0005498391110450029
+          ],
+          "rss_mio": 38.328125,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 1.1980434005964824e-16,
+            "erreur_forces_N": 3.552713678800501e-15,
+            "erreur_moments_Nm": 4.5835731043997185e-15,
+            "erreur_position_reference_m": 1.616545439175887e-16,
+            "erreur_rotation_reference": 6.417530806375803e-16,
+            "reactions_hors_plan": 1.1793657369801241e-15
+          }
+        }
+      },
+      "gain_medianes": 0.9962200452330402,
+      "gains_par_repetition": [
+        1.0085295999518957,
+        1.0119810435377656,
+        0.9682745292265704
+      ],
+      "ecart_position_compensee_m": 1.1736488517155585e-16,
+      "ecart_rotation": 1.1102230246251565e-16,
+      "ecart_reactions_SI": 4.440892098500626e-15
+    },
+    {
+      "famille": "cascade",
+      "taille": 4,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.04010789794847369,
+          "etendue_s": [
+            0.04003328504040837,
+            0.040175928035750985
+          ],
+          "rss_mio": 39.01953125,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 1.3975366003338152e-16,
+            "erreur_forces_N": 4.440892098500626e-15,
+            "erreur_moments_Nm": 2.864704673535131e-15,
+            "erreur_position_reference_m": 2.0561894201187592e-16,
+            "erreur_rotation_reference": 1.2462366504363049e-15,
+            "reactions_hors_plan": 2.7414140857389305e-14
+          }
+        },
+        "apres": {
+          "mediane_s": 0.040139107033610344,
+          "etendue_s": [
+            0.04004455590620637,
+            0.040486039128154516
+          ],
+          "rss_mio": 39.16015625,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 1.4051260155412137e-16,
+            "erreur_forces_N": 3.219646771412954e-15,
+            "erreur_moments_Nm": 6.7989178695759344e-15,
+            "erreur_position_reference_m": 3.0314292742694704e-16,
+            "erreur_rotation_reference": 6.38378239159465e-16,
+            "reactions_hors_plan": 2.1022832362751862e-14
+          }
+        }
+      },
+      "gain_medianes": 0.9992224768450748,
+      "gains_par_repetition": [
+        0.9923402955912307,
+        0.9997185418706005,
+        0.9992224768450748
+      ],
+      "ecart_position_compensee_m": 4.2413988987632933e-16,
+      "ecart_rotation": 1.5194709359767085e-15,
+      "ecart_reactions_SI": 2.4139053159675786e-14
+    },
+    {
+      "famille": "parallelogrammes",
+      "taille": 1,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0005360331851989031,
+          "etendue_s": [
+            0.00052827806212008,
+            0.0005636061541736126
+          ],
+          "rss_mio": 40.1875,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 5.742348870713121e-12,
+            "erreur_forces_N": 2.070343896320992e-12,
+            "erreur_moments_Nm": 8.213330188664433e-11,
+            "erreur_pose_reference_m": 9.940633169044921e-12,
+            "erreur_reactions_N": 1.021156492697628e-10,
+            "erreur_rotation_reference": 6.808593295730778e-12,
+            "reactions_hors_plan": 3.3029268300436792e-15
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0005267749074846506,
+          "etendue_s": [
+            0.0005222370382398367,
+            0.0005305428057909012
+          ],
+          "rss_mio": 40.31640625,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 5.742500116916183e-12,
+            "erreur_forces_N": 2.071232074740692e-12,
+            "erreur_moments_Nm": 8.212611927991135e-11,
+            "erreur_pose_reference_m": 9.940685427589635e-12,
+            "erreur_reactions_N": 1.021289719460583e-10,
+            "erreur_rotation_reference": 6.808370774299243e-12,
+            "reactions_hors_plan": 3.1703462271067247e-15
+          }
+        }
+      },
+      "gain_medianes": 1.017575396213272,
+      "gains_par_repetition": [
+        1.0623198505791112,
+        1.0028535046261162,
+        1.0264174042606502
+      ],
+      "ecart_position_compensee_m": 5.2258544713801314e-17,
+      "ecart_rotation": 2.225214315347763e-16,
+      "ecart_reactions_SI": 1.0658141036401503e-14
+    },
+    {
+      "famille": "parallelogrammes",
+      "taille": 8,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.05763036501593888,
+          "etendue_s": [
+            0.05745600117370486,
+            0.057864591013640165
+          ],
+          "rss_mio": 43.0,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 5.742495834317601e-12,
+            "erreur_forces_N": 2.071232074740692e-12,
+            "erreur_moments_Nm": 8.214759719832424e-11,
+            "erreur_pose_reference_m": 9.942306580888044e-12,
+            "erreur_reactions_N": 1.02156505477069e-10,
+            "erreur_rotation_reference": 6.810953794230934e-12,
+            "reactions_hors_plan": 6.110241239474169e-15
+          }
+        },
+        "apres": {
+          "mediane_s": 0.057147152023389935,
+          "etendue_s": [
+            0.057077799923717976,
+            0.05729704909026623
+          ],
+          "rss_mio": 43.171875,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 5.742514916275837e-12,
+            "erreur_forces_N": 2.072120253160392e-12,
+            "erreur_moments_Nm": 8.214581903580136e-11,
+            "erreur_pose_reference_m": 9.94222830149119e-12,
+            "erreur_reactions_N": 1.021520645849705e-10,
+            "erreur_rotation_reference": 6.810772483122805e-12,
+            "reactions_hors_plan": 4.718103158175783e-15
+          }
+        }
+      },
+      "gain_medianes": 1.0084555918438625,
+      "gains_par_repetition": [
+        1.0027741757378852,
+        1.0084555918438625,
+        1.0137845377883117
+      ],
+      "ecart_position_compensee_m": 1.0321604682062002e-15,
+      "ecart_rotation": 4.3021142204224816e-16,
+      "ecart_reactions_SI": 1.5987211554602254e-14
+    },
+    {
+      "famille": "double",
+      "taille": 64,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.007161538815125823,
+          "etendue_s": [
+            0.007160597946494818,
+            0.007170848082751036
+          ],
+          "rss_mio": 40.6015625,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "ecart_doublons": 0.0,
+            "erreur_fermeture_m": 8.272451734042674e-14,
+            "erreur_moments_Nm": 2.986957740609003e-13,
+            "erreur_reactions_N": 1.5987211554602254e-14
+          }
+        },
+        "apres": {
+          "mediane_s": 0.006837090943008661,
+          "etendue_s": [
+            0.006833914900198579,
+            0.006878599990159273
+          ],
+          "rss_mio": 40.6796875,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "ecart_doublons": 0.0,
+            "erreur_fermeture_m": 8.272256577651627e-14,
+            "erreur_moments_Nm": 2.766136928886165e-13,
+            "erreur_reactions_N": 1.9539925233402755e-14
+          }
+        }
+      },
+      "gain_medianes": 1.047454081687904,
+      "gains_par_repetition": [
+        1.0479408830387578,
+        1.0488156648089728,
+        1.0409964174016484
+      ],
+      "ecart_position_compensee_m": 5.91296759819282e-17,
+      "ecart_rotation": 3.3306690738754696e-16,
+      "ecart_reactions_SI": 5.329070518200751e-15
+    },
+    {
+      "famille": "mixte",
+      "taille": 64,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.007356512127444148,
+          "etendue_s": [
+            0.007330973166972399,
+            0.007395255845040083
+          ],
+          "rss_mio": 40.8203125,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "ecart_copies": 0.0,
+            "erreur_fermeture_m": 8.272424628988362e-14,
+            "erreur_moments_Nm": 2.986913288319931e-13,
+            "erreur_reactions_N": 3.730349362740526e-14
+          }
+        },
+        "apres": {
+          "mediane_s": 0.007071607979014516,
+          "etendue_s": [
+            0.007025590864941478,
+            0.0070855747908353806
+          ],
+          "rss_mio": 40.90234375,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "ecart_copies": 0.0,
+            "erreur_fermeture_m": 8.272224051586452e-14,
+            "erreur_moments_Nm": 2.7125529470165e-13,
+            "erreur_reactions_N": 9.769962616701378e-15
+          }
+        }
+      },
+      "gain_medianes": 1.0402884533864298,
+      "gains_par_repetition": [
+        1.0471022678183561,
+        1.0366769748446982,
+        1.0437058479158599
+      ],
+      "ecart_position_compensee_m": 5.914322850908427e-17,
+      "ecart_rotation": 3.3306690738754696e-16,
+      "ecart_reactions_SI": 3.552713678800501e-14
+    },
+    {
+      "famille": "articulee",
+      "taille": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.011061884928494692,
+          "etendue_s": [
+            0.010946054011583328,
+            0.011132330168038607
+          ],
+          "rss_mio": 41.0,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 3.505160571515287e-14,
+            "erreur_moment_independant_Nm": 1.896939094518657e-13,
+            "erreur_reactions_N": 2.220446049250313e-14
+          }
+        },
+        "apres": {
+          "mediane_s": 0.010395813034847379,
+          "etendue_s": [
+            0.010390633950009942,
+            0.010402776999399066
+          ],
+          "rss_mio": 41.0,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 3.505165992526149e-14,
+            "erreur_moment_independant_Nm": 1.6087619517796137e-13,
+            "erreur_reactions_N": 4.440892098500626e-14
+          }
+        }
+      },
+      "gain_medianes": 1.064071168980685,
+      "gains_par_repetition": [
+        1.0646015422845405,
+        1.0708474777992234,
+        1.0522242293779485
+      ],
+      "ecart_position_compensee_m": 2.438912787006142e-16,
+      "ecart_rotation": 3.3306690738754696e-16,
+      "ecart_reactions_SI": 2.4868995751603507e-14
+    },
+    {
+      "famille": "spatiale",
+      "taille": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0025004330091178417,
+          "etendue_s": [
+            0.002486557001248002,
+            0.002574003068730235
+          ],
+          "rss_mio": 41.609375,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_forces_N": 6.910028105266974e-12,
+            "erreur_moments_Nm": 6.536993168992922e-12,
+            "erreur_reactions_reference_SI": 6.775735528208315e-11,
+            "orthogonalite_autocontraintes": 2.1605846492485745e-15
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0025851340033113956,
+          "etendue_s": [
+            0.002515111118555069,
+            0.002600623993203044
+          ],
+          "rss_mio": 41.5,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_forces_N": 6.910028105266974e-12,
+            "erreur_moments_Nm": 6.536993168992922e-12,
+            "erreur_reactions_reference_SI": 6.775735528208315e-11,
+            "orthogonalite_autocontraintes": 2.1605846492485745e-15
+          }
+        }
+      },
+      "gain_medianes": 0.9672353564321783,
+      "gains_par_repetition": [
+        0.9561386066370356,
+        0.9956942523803786,
+        0.9941640314302853
+      ],
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0,
+      "ecart_reactions_SI": 0.0
+    },
+    {
+      "famille": "chaine",
+      "taille": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.0009099268354475498,
+          "etendue_s": [
+            0.0009031938388943672,
+            0.0009147969540208578
+          ],
+          "rss_mio": 39.74609375,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_equilibre_independant": 5.5067062021407764e-14,
+            "erreur_pose_max": 0.0,
+            "erreur_reactions_absolue": 2.091837814077735e-11
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0009351950138807297,
+          "etendue_s": [
+            0.0009328210726380348,
+            0.0009384220466017723
+          ],
+          "rss_mio": 39.96875,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_equilibre_independant": 5.5067062021407764e-14,
+            "erreur_pose_max": 0.0,
+            "erreur_reactions_absolue": 2.091837814077735e-11
+          }
+        }
+      },
+      "gain_medianes": 0.972980845643813,
+      "gains_par_repetition": [
+        0.9806778393564755,
+        0.9624601661534126,
+        0.972980845643813
+      ],
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0,
+      "ecart_reactions_SI": 0.0
+    },
+    {
+      "famille": "rotors",
+      "taille": 128,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.002140236087143421,
+          "etendue_s": [
+            0.0021315289195626974,
+            0.0021583489142358303
+          ],
+          "rss_mio": 40.5,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            2,
+            2,
+            2
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_equilibre_independant": 0.0,
+            "erreur_pose_max": 1.1102230246251565e-16
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0019638880621641874,
+          "etendue_s": [
+            0.0019612240139395,
+            0.001964881084859371
+          ],
+          "rss_mio": 40.5,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            2,
+            2,
+            2
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_equilibre_independant": 1.3877787807814457e-16,
+            "erreur_pose_max": 1.1102230246251565e-16
+          }
+        }
+      },
+      "gain_medianes": 1.0897953546216375,
+      "gains_par_repetition": [
+        1.0868360291393266,
+        1.0990182973348026,
+        1.0892445876930004
+      ],
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 2.220446049250313e-16,
+      "ecart_reactions_SI": 0.0
+    },
+    {
+      "famille": "boucle",
+      "taille": 512,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.004431829089298844,
+          "etendue_s": [
+            0.004397342912852764,
+            0.004435115959495306
+          ],
+          "rss_mio": 41.0,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_equilibre_independant": 2.382876118645072e-10,
+            "erreur_pose_max": 0.0,
+            "orthogonalite_autocontraintes": 2.7559909317822484e-14
+          }
+        },
+        "apres": {
+          "mediane_s": 0.0044940682128071785,
+          "etendue_s": [
+            0.004478418035432696,
+            0.0044993378687649965
+          ],
+          "rss_mio": 41.328125,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            1,
+            1,
+            1
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_equilibre_independant": 2.382876118645072e-10,
+            "erreur_pose_max": 0.0,
+            "orthogonalite_autocontraintes": 2.7559909317822484e-14
+          }
+        }
+      },
+      "gain_medianes": 0.9861508280335031,
+      "gains_par_repetition": [
+        0.9903309437406714,
+        0.9849958412914915,
+        0.9784771179754755
+      ],
+      "ecart_position_compensee_m": 0.0,
+      "ecart_rotation": 0.0,
+      "ecart_reactions_SI": 0.0
+    },
+    {
+      "famille": "princeton_milieu",
+      "taille": 10,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.019055122043937445,
+          "etendue_s": [
+            0.019008863950148225,
+            0.019213395193219185
+          ],
+          "rss_mio": 40.39453125,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            47,
+            47,
+            47
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "ecart_copies": 0.0,
+            "erreur_moments_Nm": 1.5089774048349103e-13,
+            "erreur_reactions_N": 1.2462627552167757e-11
+          }
+        },
+        "apres": {
+          "mediane_s": 0.016486108070239425,
+          "etendue_s": [
+            0.016357482876628637,
+            0.016492761205881834
+          ],
+          "rss_mio": 40.3359375,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            47,
+            47,
+            47
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "ecart_copies": 0.0,
+            "erreur_moments_Nm": 7.493354894916315e-15,
+            "erreur_reactions_N": 9.221358641120501e-11
+          }
+        }
+      },
+      "gain_medianes": 1.15582901451044,
+      "gains_par_repetition": [
+        1.15582901451044,
+        1.1620897966708463,
+        1.1649592783994889
+      ],
+      "ecart_position_compensee_m": 4.798949865963964e-17,
+      "ecart_rotation": 5.551115123125783e-16,
+      "ecart_reactions_SI": 1.0467621396337277e-10
+    },
+    {
+      "famille": "princeton_integree",
+      "taille": 10,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.020426630042493343,
+          "etendue_s": [
+            0.02027768618427217,
+            0.02059098402969539
+          ],
+          "rss_mio": 40.40234375,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            45,
+            45,
+            45
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "ecart_copies": 0.0,
+            "erreur_moments_Nm": 2.2314181752358664e-14,
+            "erreur_reactions_N": 4.170583225437951e-11
+          }
+        },
+        "apres": {
+          "mediane_s": 0.017624621046707034,
+          "etendue_s": [
+            0.017527155112475157,
+            0.017836415907368064
+          ],
+          "rss_mio": 40.3828125,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            45,
+            45,
+            45
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ],
+          "controles_max": {
+            "ecart_copies": 0.0,
+            "erreur_moments_Nm": 4.2030181418573065e-14,
+            "erreur_reactions_N": 1.2112803730590646e-10
+          }
+        }
+      },
+      "gain_medianes": 1.1589826520729554,
+      "gains_par_repetition": [
+        1.154435069053836,
+        1.156929693047521,
+        1.1589826520729554
+      ],
+      "ecart_position_compensee_m": 2.839932065554218e-17,
+      "ecart_rotation": 4.440892098500626e-16,
+      "ecart_reactions_SI": 7.942220505152695e-11
+    },
+    {
+      "famille": "cascade",
+      "taille": 8,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.07028078101575375,
+          "etendue_s": [
+            0.0699441081378609,
+            0.07074507791548967
+          ],
+          "rss_mio": 41.5,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 2.595704901020568e-11,
+            "erreur_forces_N": 1.0618483869961892e-10,
+            "erreur_moments_Nm": 7.352461202803778e-10,
+            "erreur_position_reference_m": 7.660950324638038e-11,
+            "erreur_rotation_reference": 4.3586249887095363e-10,
+            "reactions_hors_plan": 2.859831382584521e-14
+          }
+        },
+        "apres": {
+          "mediane_s": 0.06971998093649745,
+          "etendue_s": [
+            0.06963022006675601,
+            0.06991706695407629
+          ],
+          "rss_mio": 41.5,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 2.5957024303948674e-11,
+            "erreur_forces_N": 1.0617995371831057e-10,
+            "erreur_moments_Nm": 7.352468119471538e-10,
+            "erreur_position_reference_m": 7.660926586031472e-11,
+            "erreur_rotation_reference": 4.358626654044073e-10,
+            "reactions_hors_plan": 6.465200915161905e-14
+          }
+        }
+      },
+      "gain_medianes": 1.0080436063195009,
+      "gains_par_repetition": [
+        1.0160111205689832,
+        1.0032146767447854,
+        1.00520207836974
+      ],
+      "ecart_position_compensee_m": 2.373860656657012e-16,
+      "ecart_rotation": 2.1701390684469857e-15,
+      "ecart_reactions_SI": 6.843148946067569e-14
+    },
+    {
+      "famille": "cascade",
+      "taille": 16,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.2517629729118198,
+          "etendue_s": [
+            0.251296702073887,
+            0.2525396659038961
+          ],
+          "rss_mio": 50.5,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            6,
+            6,
+            6
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 4.545835018495868e-12,
+            "erreur_forces_N": 1.5480949855373183e-11,
+            "erreur_moments_Nm": 1.329508569479932e-10,
+            "erreur_position_reference_m": 2.2264758613166347e-11,
+            "erreur_rotation_reference": 1.529227092178509e-10,
+            "reactions_hors_plan": 1.413984277280938e-13
+          }
+        },
+        "apres": {
+          "mediane_s": 0.24957488593645394,
+          "etendue_s": [
+            0.2491490230895579,
+            0.2503768680617213
+          ],
+          "rss_mio": 50.5,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            6,
+            6,
+            6
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 4.5458358113187065e-12,
+            "erreur_forces_N": 1.5481838033792883e-11,
+            "erreur_moments_Nm": 1.3295124415724658e-10,
+            "erreur_position_reference_m": 2.2264991608213214e-11,
+            "erreur_rotation_reference": 1.5292368760189134e-10,
+            "reactions_hors_plan": 1.347464173746737e-13
+          }
+        }
+      },
+      "gain_medianes": 1.0087672562371641,
+      "gains_par_repetition": [
+        1.0086200578179956,
+        1.0087672562371641,
+        1.0086381695678117
+      ],
+      "ecart_position_compensee_m": 3.008118927561032e-16,
+      "ecart_rotation": 2.8813756935974766e-15,
+      "ecart_reactions_SI": 1.5382513262806682e-13
+    },
+    {
+      "famille": "cascade",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 2.041854680981487,
+          "etendue_s": [
+            2.040443822974339,
+            2.043537139892578
+          ],
+          "rss_mio": 85.5,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            9,
+            9,
+            9
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 7.370624733650261e-14,
+            "erreur_forces_N": 2.282618538629322e-13,
+            "erreur_moments_Nm": 2.1249744178901755e-12,
+            "erreur_position_reference_m": 6.380310776238352e-13,
+            "erreur_rotation_reference": 4.891011207153184e-12,
+            "reactions_hors_plan": 3.236336541375266e-13
+          }
+        },
+        "apres": {
+          "mediane_s": 2.0400199468713254,
+          "etendue_s": [
+            2.037596597103402,
+            2.043710344005376
+          ],
+          "rss_mio": 85.5,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            9,
+            9,
+            9
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 7.370586617167635e-14,
+            "erreur_forces_N": 2.2648549702353193e-13,
+            "erreur_moments_Nm": 2.120356746627451e-12,
+            "erreur_position_reference_m": 6.37197434573411e-13,
+            "erreur_rotation_reference": 4.88532131415198e-12,
+            "reactions_hors_plan": 2.5961134340420797e-13
+          }
+        }
+      },
+      "gain_medianes": 1.0008993706718288,
+      "gains_par_repetition": [
+        0.9990920127065305,
+        1.0013973452227907,
+        1.0017240973680903
+      ],
+      "ecart_position_compensee_m": 1.1465980075120452e-15,
+      "ecart_rotation": 9.992007221626409e-15,
+      "ecart_reactions_SI": 3.914354994351741e-13
+    },
+    {
+      "famille": "parallelogrammes",
+      "taille": 16,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.15689035085961223,
+          "etendue_s": [
+            0.15659000794403255,
+            0.15705924411304295
+          ],
+          "rss_mio": 52.0,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 5.742563163272513e-12,
+            "erreur_forces_N": 2.0756729668391927e-12,
+            "erreur_moments_Nm": 8.214628057997153e-11,
+            "erreur_pose_reference_m": 9.943535036159579e-12,
+            "erreur_reactions_N": 1.021689399749448e-10,
+            "erreur_rotation_reference": 6.812876754050537e-12,
+            "reactions_hors_plan": 5.691542540040737e-15
+          }
+        },
+        "apres": {
+          "mediane_s": 0.1564074291381985,
+          "etendue_s": [
+            0.15632564295083284,
+            0.15648321388289332
+          ],
+          "rss_mio": 52.0,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 5.742541912909932e-12,
+            "erreur_forces_N": 2.071232074740692e-12,
+            "erreur_moments_Nm": 8.214733165302705e-11,
+            "erreur_pose_reference_m": 9.943565935921495e-12,
+            "erreur_reactions_N": 1.021618345475872e-10,
+            "erreur_rotation_reference": 6.812853753770827e-12,
+            "reactions_hors_plan": 7.259231380580968e-15
+          }
+        }
+      },
+      "gain_medianes": 1.0030875881284835,
+      "gains_par_repetition": [
+        1.003612381808383,
+        1.0036810991789873,
+        1.0011673282198938
+      ],
+      "ecart_position_compensee_m": 1.323810852604801e-16,
+      "ecart_rotation": 4.440892098500626e-16,
+      "ecart_reactions_SI": 2.3092638912203256e-14
+    },
+    {
+      "famille": "parallelogrammes",
+      "taille": 32,
+      "versions": {
+        "avant": {
+          "mediane_s": 0.8002599391620606,
+          "etendue_s": [
+            0.8000090119894594,
+            0.803239077096805
+          ],
+          "rss_mio": 87.0,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 5.742601598239527e-12,
+            "erreur_forces_N": 2.0730084315800923e-12,
+            "erreur_moments_Nm": 8.214808035596273e-11,
+            "erreur_pose_reference_m": 9.951633321656633e-12,
+            "erreur_reactions_N": 1.021644990828463e-10,
+            "erreur_rotation_reference": 6.825382844739228e-12,
+            "reactions_hors_plan": 5.9718360752188935e-15
+          }
+        },
+        "apres": {
+          "mediane_s": 0.805665697902441,
+          "etendue_s": [
+            0.8028929738793522,
+            0.8069973918609321
+          ],
+          "rss_mio": 87.0,
+          "statuts": [
+            "tolerance",
+            "tolerance",
+            "tolerance"
+          ],
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ],
+          "controles_max": {
+            "erreur_fermeture_m": 5.7425838173238986e-12,
+            "erreur_forces_N": 2.0730084315800923e-12,
+            "erreur_moments_Nm": 8.215109857303541e-11,
+            "erreur_pose_reference_m": 9.95162123280241e-12,
+            "erreur_reactions_N": 1.021494000497114e-10,
+            "erreur_rotation_reference": 6.825540548245023e-12,
+            "reactions_hors_plan": 7.01556252359452e-15
+          }
+        }
+      },
+      "gain_medianes": 0.993290320346945,
+      "gains_par_repetition": [
+        0.9967205657504143,
+        0.99698805495635,
+        0.9913402695696977
+      ],
+      "ecart_position_compensee_m": 5.143455106271233e-16,
+      "ecart_rotation": 5.205820553990791e-16,
+      "ecart_reactions_SI": 1.7763568394002505e-14
+    }
+  ],
+  "entree_sha256": "5f8c0aed504e24834f63d352536c5df582cc74433e083fda136c092d352a4826",
+  "programme_sha256": "ae35948ef7f004489e4974142c999a92bf2e00e393424ee0395c3b830a8ba66c"
+}

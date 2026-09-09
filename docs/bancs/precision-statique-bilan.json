@@ -1,0 +1,37 @@
+{
+  "date_utc": "2026-09-06T22:06:05.225090+00:00",
+  "extension_sha256": "a7c78411e52b8d82634fd336c0ce911a773de2e502a3e619d23738c4010b7991",
+  "noyau_inchange_depuis": "docs/bancs/statut-statique-bilan.json",
+  "comparaison_empreintes_noyau_et_extension": "identiques",
+  "sources_sha256": {
+    "ci/diagnostic_precision_statique.py": "8f76484b4ef1d687933c065506b98119037b4d6aa7288c1c54de5f4139b215a0",
+    "ci/test_precision_statique.py": "1453a6ed2f811ceb31decc5e6e382d94ee7bbcd652f2ae1c9c05edfa15c5481c",
+    "docs/PRECISION_STATIQUE.md": "2944bb765403c5fd9507f2fa285ef855658dd717898e61f4b38a277ff757b2b9",
+    "docs/bancs/precision-statique-diagnostic.json": "883f073e8f988f21567aaa935c4c48cc960f1f70c3d0b86e5af37cf2c275e1ac"
+  },
+  "checks": [
+    {
+      "nom": "4 tests analytiques du diagnostic",
+      "code_sortie": 0,
+      "journal": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.009s\n\nOK\n",
+      "sha256": "5d8a174d448d59185fd227bcbab9c964e39b10a9c2e28965972cfb0c833dd854"
+    },
+    {
+      "nom": "4 maillages Princeton, états habituel et strict",
+      "code_sortie": 0,
+      "journal": "10 {'noyau_translations': 3.158622898158237e-09, 'memes_positions_calcul_f64': 3.1586229030173564e-09, 'memes_positions_calcul_etendu': 2.605206395785952e-09, 'reconstruction_etendue': 8.317697204440362e-13, 'reconstruction_arrondie_f64_calcul_etendu': 2.7394172816864516e-09, 'deplacements_conserves_f64': 4.1085881400285513e-10, 'deplacements_extraits_apres_arrondi': 2.3284111463302907e-09}\n20 {'noyau_translations': 5.175144303329969e-09, 'memes_positions_calcul_f64': 5.1751443033302e-09, 'memes_positions_calcul_etendu': 5.826202875412585e-09, 'reconstruction_etendue': 3.4009705095556652e-12, 'reconstruction_arrondie_f64_calcul_etendu': 7.614067806807317e-09, 'deplacements_conserves_f64': 3.650281145799206e-10, 'deplacements_extraits_apres_arrondi': 7.583916176209583e-09}\n40 {'noyau_translations': 2.104478925846032e-08, 'memes_positions_calcul_f64': 2.1044789258377974e-08, 'memes_positions_calcul_etendu': 2.1115656975960224e-08, 'reconstruction_etendue': 4.884375535672832e-12, 'reconstruction_arrondie_f64_calcul_etendu': 1.9897017461545545e-08, 'deplacements_conserves_f64': 4.726148589673375e-10, 'deplacements_extraits_apres_arrondi': 2.0225210823007763e-08}\n60 {'noyau_translations': 3.907484676221861e-08, 'memes_positions_calcul_f64': 3.907484676221821e-08, 'memes_positions_calcul_etendu': 3.876641816586683e-08, 'reconstruction_etendue': 9.621490746638019e-12, 'reconstruction_arrondie_f64_calcul_etendu': 2.9672886727931536e-08, 'deplacements_conserves_f64': 5.737939472364079e-10, 'deplacements_extraits_apres_arrondi': 2.959320079892362e-08}\n",
+      "sha256": "e69b83876d65bfb3f00d8717419e351dba09968a6ba7f96e866429213a29e6f6"
+    },
+    {
+      "nom": "git diff --check",
+      "code_sortie": 0,
+      "journal": "",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limites": [
+    "Reconstruction des translations à rotations fixées uniquement",
+    "Pas de modification du noyau ni de nouvelle campagne générale",
+    "Pas de mesure comparative nouvelle de MBDyn"
+  ]
+}

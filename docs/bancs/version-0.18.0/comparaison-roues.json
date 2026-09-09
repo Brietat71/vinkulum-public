@@ -1,0 +1,21 @@
+{
+  "roue_finale_sha256": "4960ca85b40a853ced9db740fc76fa06f0c6a63082e8f2ceef540d9f102034ff",
+  "roue_candidate_sha256": "18fdae8bfe8f653b186b5dadd20d4e939fd37ad8b23e865cb01ddbbc3c498925",
+  "fichiers_differents": [
+    "vinkulum-0.18.0.dist-info/METADATA",
+    "vinkulum-0.18.0.dist-info/sboms/vinkulum.cyclonedx.json",
+    "vinkulum-0.18.0.dist-info/RECORD"
+  ],
+  "changements_sbom": {
+    "timestamp": [
+      "2026-09-09T11:42:13.220569649Z",
+      "2026-09-09T12:57:18.499983245Z"
+    ],
+    "serialNumber": [
+      "urn:uuid:aa10b8df-9af4-43c0-93d3-48c9d1acb723",
+      "urn:uuid:5b5b4c51-e646-4bc4-a987-aefe9602a077"
+    ]
+  },
+  "extension_sha256": "2b28111334e0f3c9db914a99435525b9dea400c602c4f1766fc1f4892a6aa53a",
+  "tous_modules_identiques": true
+}

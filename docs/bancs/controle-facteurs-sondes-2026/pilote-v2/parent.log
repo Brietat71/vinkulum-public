@@ -1,0 +1,13 @@
+/tmp/vinkulum-release-0.11.0-final/venv/lib/python3.14/site-packages/numpy/__config__.py:155: UserWarning: Install `pyyaml` for better output
+  warnings.warn("Install `pyyaml` for better output", stacklevel=1)
+/tmp/vinkulum-release-0.11.0-final/venv/lib/python3.14/site-packages/scipy/__config__.py:167: UserWarning: Install `pyyaml` for better output
+  warnings.warn("Install `pyyaml` for better output", stacklevel=1)
+32 ancien prep 0.00819948990829289 reponses 0.12059242697432637 totalindic 0.1699951880145818 controle True champsidentiques True majorants {'masse': 7.255948270324632e-10, 'deformation': 1.92350687353814e-09}
+32 gram prep 0.00878733186982572 reponses 0.1000356120057404 totalindic 0.15002621500752866 controle True champsidentiques True majorants {'masse': 7.255948478720993e-10, 'deformation': 1.92350687450897e-09}
+32 qr prep 0.009247539797797799 reponses 0.13977829506620765 totalindic 0.19022910599596798 controle True champsidentiques True majorants {'masse': 7.255948270324632e-10, 'deformation': 1.92350687353814e-09}
+128 ancien prep 0.01996679906733334 reponses 0.1717604580335319 totalindic 0.29200924932956696 controle True champsidentiques True majorants {'masse': 1.027885644434253e-09, 'deformation': 9.295419961278704e-10}
+128 gram prep 0.021312147146090865 reponses 0.12874470720998943 totalindic 0.250338846584782 controle True champsidentiques True majorants {'masse': 1.0316942286460714e-09, 'deformation': 9.295422290226823e-10}
+128 qr prep 0.022901239804923534 reponses 0.1754611909855157 totalindic 0.29864442301914096 controle True champsidentiques True majorants {'masse': 1.0278856444362528e-09, 'deformation': 9.295419961278706e-10}
+512 ancien prep 0.08185274712741375 reponses 0.3913055988959968 totalindic 0.8219047642778605 controle True champsidentiques True majorants {'masse': 1.0206016895868527e-08, 'deformation': 6.619062723083608e-09}
+512 gram prep 0.07934314711019397 reponses 0.23723427299410105 totalindic 0.665323838358745 controle True champsidentiques True majorants {'masse': 1.020625331443923e-08, 'deformation': 6.619062723083608e-09}
+512 qr prep 0.08474048902280629 reponses 0.26685660099610686 totalindic 0.7003435082733631 controle True champsidentiques True majorants {'masse': 1.0206016895869152e-08, 'deformation': 6.619062723083608e-09}

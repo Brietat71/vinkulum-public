@@ -1,0 +1,18 @@
+{
+  "version_support": "0.11.0",
+  "prototype": "complément spectral, hors API de production",
+  "fichiers_sha256": {
+    "directions/n128-directions.npz": "71da6946f4d357acd82e4ab1f80567127e269104b237d1c6ce73de6bb5e76457",
+    "directions/n32-directions.npz": "4254e73e24a108f1279b2a5013a737dfa36932eff66b2bbfcfcc4c43d66e469d",
+    "directions/n512-directions.npz": "004bcb43ca87f17dae5ab5342e6de4650c01fcbd104820d871d654d880a62c2f",
+    "entrees/n128-f40.npz": "a1549264160cd4210d2e3e60ee31ebc0bd32e214b0925ce03ee1edb1741c740a",
+    "entrees/n32-f40.npz": "df335d97b6979ea280016d019e4a7fffdc7675cd61c2a5a1fb7aa68d1d4d6b8a",
+    "entrees/n512-f40.npz": "8934fa28cfca143c836b0ec0d78f3ffe16049b1769974c92c9c4f2f27a616905",
+    "rapport.json.gz": "361707d4d1442411ce39d416433823558426ce5fe874b19775f3e540d1c15923",
+    "sources/confronte_ports_exudyn.py": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+    "sources/experience_complement_spectral.py": "5bd8702d769340aacc9dcc13ada358c4e5ab6f5371154cab60bf8aa8660e37f1",
+    "sources/retention_complement.py": "b3a8ffca08e94ad4fd5149e26ee956da073f37d9434fe18084877298639724b2",
+    "sources/trace_complement_dirigee.py": "ebbdd7b727ea93df6acb583ca68251d504e9d70a812354deeb688ba84f8cb8f3",
+    "README.md": "640d9c9cce5d13ff57ed826aef643d6075eaf6582ab37625362a3c661507b9cf"
+  }
+}

@@ -1,0 +1,26 @@
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -8938,6 +8938,23 @@
+                 return Err(err("matrice statique équilibrée : valeur non finie".into()));
+             }
+             let dim = n + mr;
++            if let Ok(dir) = std::env::var("VINKULUM_EXPORT_STATIQUE") {
++                let mut texte = format!("{dim} {dim} {}\n", trip.len());
++                for v in &trip {
++                    texte.push_str(&format!("{} {} {:.17e}\n", v.row, v.col, v.val));
++                }
++                for v in b_s.iter() {
++                    texte.push_str(&format!("{v:.17e}\n"));
++                }
++                std::fs::write(format!("{dir}/kkt-{it}.txt"), texte)
++                    .map_err(|e| err(format!("export diagnostic : {e}")))?;
++                let mut texte = format!("{n}\n");
++                for v in d.iter() {
++                    texte.push_str(&format!("{v:.17e}\n"));
++                }
++                std::fs::write(format!("{dir}/echelle-{it}.txt"), texte)
++                    .map_err(|e| err(format!("export diagnostic : {e}")))?;
++            }
+             let optimisee = if dim > DENSE_MAX {
+                 // Ne supprimer aucun petit coefficient : seul zéro est omis.
+                 // Le motif peut changer avec la configuration (rotation,

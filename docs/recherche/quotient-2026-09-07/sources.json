@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-07",
+  "perimetre": "Complément ciblé au rapport fondamental : antériorité, rang, remplissage et compression des facteurs orthogonaux.",
+  "sources": [
+    {
+      "id": "foster-davis-2013",
+      "titre": "Algorithm 933: Reliable Calculation of Numerical Rank, Null Space Bases, Pseudoinverse Solutions, and Basic Solutions using SuiteSparseQR",
+      "doi": "10.1145/2513109.2513116",
+      "url": "https://people.engr.tamu.edu/davis/publications_files/Reliable_Calculation_of_Numerical_Rank_Null_Space_Bases_Pseudoinverse_Solutions_and_Basic_Solutions_using_SuiteSparseQR.pdf",
+      "consulte": "Manuscrit auteur de 25 pages, métadonnées de publication sur la page auteur ; sections 1, 2.1–2.3, 2.7, théorème 5.",
+      "resultat": "Householder implicites, noyaux numériques et réactions minimales sont antérieurs. Les suppressions contrôlent une perturbation idéale ; la validation du rang utilise des estimations spectrales et ne donne pas une garantie absolue de succès.",
+      "limite_transfert": "Le prototype ne reprend pas les estimations spectrales ni la décomposition orthogonale complète ; il ne revendique pas le même contrat."
+    },
+    {
+      "id": "scott-tuma-2022",
+      "titre": "Solving large linear least squares problems with linear equality constraints",
+      "doi": "10.1007/s10543-022-00930-2",
+      "url": "https://link.springer.com/article/10.1007/s10543-022-00930-2",
+      "consulte": "Article ouvert, introduction et sections 2–3 ; lemme 3.1 et discussion des paramètres de pivotage.",
+      "resultat": "Le choix de variables doit considérer aussi le remplissage de l'objectif réduit. Localité, orthogonalité et fermeture des contraintes demandent un arbitrage.",
+      "limite_transfert": "Hypothèse principale de contraintes indépendantes peu nombreuses en moindres carrés ; pas un théorème sur le KKT multicorps général."
+    },
+    {
+      "id": "gnanasekaran-darve-2020",
+      "titre": "Hierarchical Orthogonal Factorization: Sparse Square Matrices",
+      "url": "https://arxiv.org/pdf/2010.06807v1",
+      "consulte": "Préprint version 1, 14 octobre 2020, sections 2.5–2.6, 3.1–3.4 et discussion numérique de la croissance N^1.4.",
+      "resultat": "Compression d'interfaces par faible rang ; complexité O(N log N) conditionnelle à la géométrie et aux rangs comprimés. L'équilibrage intervient dans les bornes d'erreur.",
+      "limite_transfert": "Matrices carrées et préconditionnement approché ; pas de transfert démontré aux contraintes exactement redondantes, pas de compression implémentée dans ce prototype."
+    }
+  ]
+}

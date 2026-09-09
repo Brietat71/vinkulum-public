@@ -1,0 +1,23 @@
+/tmp/vinkulum-release-0.11.0-final/venv/lib/python3.14/site-packages/numpy/__config__.py:155: UserWarning: Install `pyyaml` for better output
+  warnings.warn("Install `pyyaml` for better output", stacklevel=1)
+/tmp/vinkulum-release-0.11.0-final/venv/lib/python3.14/site-packages/scipy/__config__.py:167: UserWarning: Install `pyyaml` for better output
+  warnings.warn("Install `pyyaml` for better output", stacklevel=1)
+oracle 32 0 /257
+oracle 32 32 /257
+oracle 32 64 /257
+oracle 32 96 /257
+oracle 32 128 /257
+oracle 32 160 /257
+oracle 32 192 /257
+oracle 32 224 /257
+oracle 32 256 /257
+Traceback (most recent call last):
+  File "/tmp/vinkulum-energie-native-travail/ci/modeles_masse_consistante.py", line 85, in <module>
+    os.sched_setaffinity(0,{8});generer(a.source,a.destination)
+                                ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/vinkulum-energie-native-travail/ci/modeles_masse_consistante.py", line 66, in generer
+    arrays=list(map(np.asarray,fields));judgement=juger(d,m,metric,*arrays)
+                                                  ~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/vinkulum-energie-native-travail/ci/confronte_ports_exudyn.py", line 159, in juger
+    raise ValueError("le juge actuel requiert une masse diagonale strictement positive")
+ValueError: le juge actuel requiert une masse diagonale strictement positive

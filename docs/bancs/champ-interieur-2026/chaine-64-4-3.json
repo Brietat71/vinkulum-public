@@ -1,0 +1,119 @@
+{
+  "n": 64,
+  "segments": 4,
+  "nombre_frequences": 3,
+  "frequences": [
+    0.0,
+    0.014528407285564074,
+    0.03926596563665966
+  ],
+  "tolerance_relative": 1e-10,
+  "omega_max": 0.03926596563665966,
+  "force_physique": 0.125,
+  "omega_premier_mode_global": 0.024352829603995065,
+  "historique": [
+    {
+      "etape": 0,
+      "directions": 24,
+      "borne_schur": 1.3075315067855832e-14,
+      "bornes_relatives": {
+        "masse": [
+          6.525422516318821e-10,
+          6.496241244973049e-10,
+          6.416322639840544e-10
+        ],
+        "deformation": [
+          4.779600031365552e-09,
+          5.005036713712495e-09,
+          3.8863409794459005e-09
+        ]
+      },
+      "accepte": false
+    },
+    {
+      "etape": 1,
+      "directions": 32,
+      "borne_schur": 1.3147339760391498e-14,
+      "bornes_relatives": {
+        "masse": [
+          2.2090786312702837e-13,
+          2.3668752533116054e-13,
+          2.0354483168732136e-13
+        ],
+        "deformation": [
+          1.5322311217263096e-12,
+          1.6843724666121604e-12,
+          1.191971751923445e-12
+        ]
+      },
+      "accepte": true
+    }
+  ],
+  "initial": [
+    {
+      "omega": 0.0,
+      "norme_oracle": 37.383151285037485,
+      "norme_deformation_oracle": 1.0,
+      "erreur_masse_relative": 4.089295337277976e-16,
+      "erreur_deformation_relative": 6.797453234983162e-15,
+      "borne_masse_relative": 6.525422516318821e-10,
+      "borne_deformation_relative": 4.779600031365552e-09,
+      "marge": 0.48245903371271914
+    },
+    {
+      "omega": 0.014528407285564074,
+      "norme_oracle": 57.807066035844514,
+      "norme_deformation_oracle": 1.47007183210076,
+      "erreur_masse_relative": 5.469047418002513e-15,
+      "erreur_deformation_relative": 2.2841086947281134e-13,
+      "borne_masse_relative": 6.496241244973049e-10,
+      "borne_deformation_relative": 5.005036713712495e-09,
+      "marge": 0.31305388824033387
+    },
+    {
+      "omega": 0.03926596563665966,
+      "norme_oracle": 23.99208656439565,
+      "norme_deformation_oracle": 0.7761104543246252,
+      "erreur_masse_relative": 1.41845482162384e-11,
+      "erreur_deformation_relative": 5.226103576423034e-10,
+      "borne_masse_relative": 6.416322639840544e-10,
+      "borne_deformation_relative": 3.8863409794459005e-09,
+      "marge": 0.8143438076702993
+    }
+  ],
+  "final": [
+    {
+      "omega": 0.0,
+      "norme_oracle": 37.383151285037485,
+      "norme_deformation_oracle": 1.0,
+      "erreur_masse_relative": 4.0510480513016603e-16,
+      "erreur_deformation_relative": 5.9268390767480496e-15,
+      "borne_masse_relative": 2.2090786312702837e-13,
+      "borne_deformation_relative": 1.5322311217263096e-12,
+      "marge": 0.4824590337127191
+    },
+    {
+      "omega": 0.014528407285564074,
+      "norme_oracle": 57.807066035844514,
+      "norme_deformation_oracle": 1.47007183210076,
+      "erreur_masse_relative": 2.5225409987669106e-15,
+      "erreur_deformation_relative": 1.1079703050797191e-14,
+      "borne_masse_relative": 2.3668752533116054e-13,
+      "borne_deformation_relative": 1.6843724666121604e-12,
+      "marge": 0.3130538882403338
+    },
+    {
+      "omega": 0.03926596563665966,
+      "norme_oracle": 23.99208656439565,
+      "norme_deformation_oracle": 0.7761104543246252,
+      "erreur_masse_relative": 2.8863945702126954e-15,
+      "erreur_deformation_relative": 1.2579140800585614e-13,
+      "borne_masse_relative": 2.0354483168732136e-13,
+      "borne_deformation_relative": 1.191971751923445e-12,
+      "marge": 0.8143438076702993
+    }
+  ],
+  "statut": "tolerance_aux_frequences_demandees",
+  "facteurs_reutilises": true,
+  "certification_machine": false
+}

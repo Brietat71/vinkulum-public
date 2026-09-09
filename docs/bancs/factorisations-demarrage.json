@@ -1,0 +1,68 @@
+{
+  "blocs": {
+    "extension_sha256": "66b30802b8e82bff3287e7ce25107aa264cd9af4db47de76c9b3cff51c9d2fc3",
+    "trace_sha256": "4cac5983935414afe52660d5d70e0d1a75200c175ab6ff4f57c6f624cfe2e228",
+    "ouvertures_cpu": 2883,
+    "ouvertures_cache": 2880,
+    "rapport": {
+      "statut": "tolerance",
+      "tol": 1e-08,
+      "strict": true,
+      "residu_libre": 2.588151915006165e-12,
+      "contraintes": 6.193001084496943e-12,
+      "echelle_force": 2.8028571428571443,
+      "residu_relatif": 9.233977270664193e-13,
+      "tolerance_finale_atteinte": true,
+      "evaluations": 4,
+      "tentatives": 1,
+      "paliers": 1,
+      "palier": 1,
+      "paliers_stagnation": 0,
+      "etat_restaure": false,
+      "message": null
+    },
+    "controles": {
+      "erreur_pose_reference_m": 9.940573863186086e-12,
+      "erreur_rotation_reference": 6.8083968879014905e-12,
+      "erreur_forces_N": 2.064126647383091e-12,
+      "erreur_moments_Nm": 8.212552739807805e-11,
+      "erreur_reactions_N": 1.021112083776643e-10,
+      "reactions_hors_plan": 4.580924692513396e-15,
+      "erreur_fermeture_m": 5.742393214581976e-12
+    }
+  },
+  "finale": {
+    "extension_sha256": "74c52b7bd4d8aaa9743d84c2845296634bf11e81fdde26c3f56686c85a60e882",
+    "trace_sha256": "b9b8284d6f682dca67870f028d9667b2a9d5106963bbf17aaa43c987261756ea",
+    "ouvertures_cpu": 3,
+    "ouvertures_cache": 0,
+    "rapport": {
+      "statut": "tolerance",
+      "tol": 1e-08,
+      "strict": true,
+      "residu_libre": 2.581046487648564e-12,
+      "contraintes": 6.1929369964568065e-12,
+      "echelle_force": 2.8028571428571443,
+      "residu_relatif": 9.208626612405677e-13,
+      "tolerance_finale_atteinte": true,
+      "evaluations": 4,
+      "tentatives": 1,
+      "paliers": 1,
+      "palier": 1,
+      "paliers_stagnation": 0,
+      "etat_restaure": false,
+      "message": null
+    },
+    "controles": {
+      "erreur_pose_reference_m": 9.940633169044921e-12,
+      "erreur_rotation_reference": 6.808593295730778e-12,
+      "erreur_forces_N": 2.070343896320992e-12,
+      "erreur_moments_Nm": 8.213330188664433e-11,
+      "erreur_reactions_N": 1.021156492697628e-10,
+      "reactions_hors_plan": 3.3029268300436792e-15,
+      "erreur_fermeture_m": 5.742348870713121e-12
+    }
+  },
+  "commande": "RAYON_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 strace -f -e trace=openat python ci/diagnostic_newton_redondant.py parallelogrammes 1",
+  "remarque": "Le paquet PYTHONPATH sélectionne le binaire. Les durées sous strace ne servent pas aux gains publiés."
+}

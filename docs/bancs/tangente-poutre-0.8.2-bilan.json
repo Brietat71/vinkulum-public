@@ -1,0 +1,2942 @@
+{
+  "configurations": 51,
+  "repetitions": 3,
+  "resolutions_chronometrees": 306,
+  "controles_reussis_par_version": 49,
+  "echecs_numeriques_communs": [
+    {
+      "famille": "poutre",
+      "formulation": "milieu",
+      "n": 10,
+      "tourne": true,
+      "unites": [
+        0.001,
+        1.0
+      ]
+    },
+    {
+      "famille": "poutre",
+      "formulation": "integree",
+      "n": 10,
+      "tourne": true,
+      "unites": [
+        0.001,
+        1.0
+      ]
+    }
+  ],
+  "regressions_de_convergence_observees": 0,
+  "ecart_position_max": 2.1508073100307e-12,
+  "ecart_rotation_max": 6.91602330959995e-12,
+  "resultats": [
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 8,
+        "rampe": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.010020795976743102,
+          "evaluations": [
+            39,
+            39,
+            39
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.003942741081118584,
+          "evaluations": [
+            39,
+            39,
+            39
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.39345587818264605
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 8,
+        "rampe": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0757406740449369,
+          "evaluations": [
+            334,
+            334,
+            334
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.031177924945950508,
+          "evaluations": [
+            334,
+            334,
+            334
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 4.1668057892962906e-13,
+          "rotation": 1.3349876759605195e-12
+        },
+        {
+          "position": 4.1668057892962906e-13,
+          "rotation": 1.3349876759605195e-12
+        },
+        {
+          "position": 4.1668057892962906e-13,
+          "rotation": 1.3349876759605195e-12
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.4116404473434269
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 20,
+        "rampe": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.028528430964797735,
+          "evaluations": [
+            37,
+            37,
+            37
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.01413245894946158,
+          "evaluations": [
+            37,
+            37,
+            37
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 1.9872992140790302e-14,
+          "rotation": 6.106226635438361e-14
+        },
+        {
+          "position": 1.9872992140790302e-14,
+          "rotation": 6.106226635438361e-14
+        },
+        {
+          "position": 1.9872992140790302e-14,
+          "rotation": 6.106226635438361e-14
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.4953815709984237
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 20,
+        "rampe": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.22883504908531904,
+          "evaluations": [
+            334,
+            334,
+            334
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.11565995402634144,
+          "evaluations": [
+            334,
+            334,
+            334
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 4.0778491694482e-13,
+          "rotation": 1.3039569424222464e-12
+        },
+        {
+          "position": 4.0778491694482e-13,
+          "rotation": 1.3039569424222464e-12
+        },
+        {
+          "position": 4.0778491694482e-13,
+          "rotation": 1.3039569424222464e-12
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.5054293670862399
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 60,
+        "rampe": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.07396364398300648,
+          "evaluations": [
+            37,
+            37,
+            37
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.04068164504133165,
+          "evaluations": [
+            37,
+            37,
+            37
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 1.0269562977782698e-15,
+          "rotation": 3.2751579226442118e-15
+        },
+        {
+          "position": 1.0269562977782698e-15,
+          "rotation": 3.2751579226442118e-15
+        },
+        {
+          "position": 1.0269562977782698e-15,
+          "rotation": 3.2751579226442118e-15
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.55002218455703
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 60,
+        "rampe": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.6113766098860651,
+          "evaluations": [
+            334,
+            334,
+            334
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.28049253090284765,
+          "evaluations": [
+            334,
+            334,
+            334
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 3.9920844407959066e-13,
+          "rotation": 1.275479721840611e-12
+        },
+        {
+          "position": 3.9920844407959066e-13,
+          "rotation": 1.275479721840611e-12
+        },
+        {
+          "position": 3.9920844407959066e-13,
+          "rotation": 1.275479721840611e-12
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.4587884560305957
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 20,
+        "angle": 0.0
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.005172307137399912,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.002390800043940544,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.4622308730765716
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 20,
+        "angle": 30.0
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.023789461003616452,
+          "evaluations": [
+            31,
+            31,
+            31
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.011791944038122892,
+          "evaluations": [
+            31,
+            31,
+            31
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.49567932776326
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 20,
+        "angle": 60.0
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.03342928015626967,
+          "evaluations": [
+            43,
+            43,
+            43
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.016581892035901546,
+          "evaluations": [
+            43,
+            43,
+            43
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 1.1102230246251565e-16,
+          "rotation": 3.3306690738754696e-16
+        },
+        {
+          "position": 1.1102230246251565e-16,
+          "rotation": 3.3306690738754696e-16
+        },
+        {
+          "position": 1.1102230246251565e-16,
+          "rotation": 3.3306690738754696e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.49602898890993946
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 20,
+        "angle": 90.0
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.030875809025019407,
+          "evaluations": [
+            40,
+            40,
+            40
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.014873723033815622,
+          "evaluations": [
+            39,
+            39,
+            39
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 2.1508073100307e-12,
+          "rotation": 6.91602330959995e-12
+        },
+        {
+          "position": 2.1508073100307e-12,
+          "rotation": 6.91602330959995e-12
+        },
+        {
+          "position": 2.1508073100307e-12,
+          "rotation": 6.91602330959995e-12
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.4817273944712862
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          1.0,
+          1.0
+        ]
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.01247990713454783,
+          "evaluations": [
+            38,
+            38,
+            38
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0050673470832407475,
+          "evaluations": [
+            38,
+            38,
+            38
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 3.885780586188048e-16,
+          "rotation": 1.2212453270876722e-15
+        },
+        {
+          "position": 3.885780586188048e-16,
+          "rotation": 1.2212453270876722e-15
+        },
+        {
+          "position": 3.885780586188048e-16,
+          "rotation": 1.2212453270876722e-15
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.4060404479463578
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          0.001,
+          1.0
+        ]
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": false,
+          "echecs": [
+            {
+              "repetition": 0,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 1.528e-10 pour une échelle de force de 7.735e0 (2.0e-11 en relatif)"
+              ]
+            },
+            {
+              "repetition": 1,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 1.528e-10 pour une échelle de force de 7.735e0 (2.0e-11 en relatif)"
+              ]
+            },
+            {
+              "repetition": 2,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 1.528e-10 pour une échelle de force de 7.735e0 (2.0e-11 en relatif)"
+              ]
+            }
+          ],
+          "mediane_s": 0.07848475896753371,
+          "evaluations": [
+            197,
+            197,
+            197
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        },
+        "candidat": {
+          "controles_reussis": false,
+          "echecs": [
+            {
+              "repetition": 0,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 2.884e-10 pour une échelle de force de 7.735e0 (3.7e-11 en relatif)"
+              ]
+            },
+            {
+              "repetition": 1,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 2.884e-10 pour une échelle de force de 7.735e0 (3.7e-11 en relatif)"
+              ]
+            },
+            {
+              "repetition": 2,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 2.884e-10 pour une échelle de force de 7.735e0 (3.7e-11 en relatif)"
+              ]
+            }
+          ],
+          "mediane_s": 0.028144428972154856,
+          "evaluations": [
+            169,
+            169,
+            169
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      "ecarts_etats": [],
+      "etats_equivalents": null
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          1000.0,
+          1.0
+        ]
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.01292018685489893,
+          "evaluations": [
+            39,
+            39,
+            39
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.005187815986573696,
+          "evaluations": [
+            39,
+            39,
+            39
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 2.220446049250313e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 2.220446049250313e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 2.220446049250313e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.40152793801171993
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          1.0,
+          0.001
+        ]
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.012563106138259172,
+          "evaluations": [
+            38,
+            38,
+            38
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.005086883902549744,
+          "evaluations": [
+            38,
+            38,
+            38
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 4.996003610813204e-16,
+          "rotation": 1.4988010832439613e-15
+        },
+        {
+          "position": 4.996003610813204e-16,
+          "rotation": 1.4988010832439613e-15
+        },
+        {
+          "position": 4.996003610813204e-16,
+          "rotation": 1.4988010832439613e-15
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.40490654513045576
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          1.0,
+          1000.0
+        ]
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.012683975975960493,
+          "evaluations": [
+            38,
+            38,
+            38
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.00509160291403532,
+          "evaluations": [
+            38,
+            38,
+            38
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 3.191891195797325e-16,
+          "rotation": 1.1102230246251565e-15
+        },
+        {
+          "position": 3.191891195797325e-16,
+          "rotation": 1.1102230246251565e-15
+        },
+        {
+          "position": 3.191891195797325e-16,
+          "rotation": 1.1102230246251565e-15
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.401420100738543
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 8,
+        "moment": true,
+        "tourne": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.015035641845315695,
+          "evaluations": [
+            63,
+            63,
+            63
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.00509631191380322,
+          "evaluations": [
+            63,
+            63,
+            63
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 3.0531133177191805e-15,
+          "rotation": 8.659739592076221e-15
+        },
+        {
+          "position": 3.0531133177191805e-15,
+          "rotation": 8.659739592076221e-15
+        },
+        {
+          "position": 3.0531133177191805e-15,
+          "rotation": 8.659739592076221e-15
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.3389487436740826
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 8,
+        "moment": true,
+        "tourne": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.017113354988396168,
+          "evaluations": [
+            66,
+            66,
+            66
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.006532892817631364,
+          "evaluations": [
+            64,
+            64,
+            64
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 8.881784197001252e-16,
+          "rotation": 2.7755575615628914e-15
+        },
+        {
+          "position": 8.881784197001252e-16,
+          "rotation": 2.7755575615628914e-15
+        },
+        {
+          "position": 8.881784197001252e-16,
+          "rotation": 2.7755575615628914e-15
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.3817423773457068
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 8,
+        "rampe": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.009712266968563199,
+          "evaluations": [
+            34,
+            34,
+            34
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.003670732956379652,
+          "evaluations": [
+            34,
+            34,
+            34
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 1.27675647831893e-15,
+          "rotation": 4.163336342344337e-15
+        },
+        {
+          "position": 1.27675647831893e-15,
+          "rotation": 4.163336342344337e-15
+        },
+        {
+          "position": 1.27675647831893e-15,
+          "rotation": 4.163336342344337e-15
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.377948111214522
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 8,
+        "rampe": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.08638526010327041,
+          "evaluations": [
+            334,
+            334,
+            334
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.03380654891952872,
+          "evaluations": [
+            335,
+            335,
+            335
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 3.798628078754973e-13,
+          "rotation": 1.2116974090758958e-12
+        },
+        {
+          "position": 3.798628078754973e-13,
+          "rotation": 1.2116974090758958e-12
+        },
+        {
+          "position": 3.798628078754973e-13,
+          "rotation": 1.2116974090758958e-12
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.39134626531325173
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 20,
+        "rampe": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.029941686894744635,
+          "evaluations": [
+            35,
+            35,
+            35
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.014244413003325462,
+          "evaluations": [
+            35,
+            35,
+            35
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 1.1102230246251565e-16,
+          "rotation": 2.220446049250313e-16
+        },
+        {
+          "position": 1.1102230246251565e-16,
+          "rotation": 2.220446049250313e-16
+        },
+        {
+          "position": 1.1102230246251565e-16,
+          "rotation": 2.220446049250313e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.4757384930715324
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 20,
+        "rampe": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.25368477310985327,
+          "evaluations": [
+            334,
+            334,
+            334
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.12320796307176352,
+          "evaluations": [
+            335,
+            335,
+            335
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 3.829991879200634e-13,
+          "rotation": 1.2225775947172224e-12
+        },
+        {
+          "position": 3.829991879200634e-13,
+          "rotation": 1.2225775947172224e-12
+        },
+        {
+          "position": 3.829991879200634e-13,
+          "rotation": 1.2225775947172224e-12
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.485673466173749
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 60,
+        "rampe": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.08199332095682621,
+          "evaluations": [
+            36,
+            36,
+            36
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.033775530057027936,
+          "evaluations": [
+            36,
+            36,
+            36
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 3.0531133177191805e-16,
+          "rotation": 1.0547118733938987e-15
+        },
+        {
+          "position": 3.0531133177191805e-16,
+          "rotation": 1.0547118733938987e-15
+        },
+        {
+          "position": 3.0531133177191805e-16,
+          "rotation": 1.0547118733938987e-15
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.4119302604514888
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 60,
+        "rampe": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.6946919339243323,
+          "evaluations": [
+            334,
+            334,
+            334
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.29530101106502116,
+          "evaluations": [
+            335,
+            335,
+            335
+          ],
+          "tentatives": [
+            50,
+            50,
+            50
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 3.5849101465146305e-13,
+          "rotation": 1.1453060722033115e-12
+        },
+        {
+          "position": 3.5849101465146305e-13,
+          "rotation": 1.1453060722033115e-12
+        },
+        {
+          "position": 3.5849101465146305e-13,
+          "rotation": 1.1453060722033115e-12
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.42508196316151003
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 20,
+        "angle": 0.0
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.005795656004920602,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0025810429360717535,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.1102230246251565e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.4453409474061966
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 20,
+        "angle": 30.0
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.02547806198708713,
+          "evaluations": [
+            30,
+            30,
+            30
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.01205467595718801,
+          "evaluations": [
+            30,
+            30,
+            30
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.6306400674181987e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.6306400674181987e-16
+        },
+        {
+          "position": 5.551115123125783e-17,
+          "rotation": 1.6306400674181987e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.47313943907105643
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 20,
+        "angle": 60.0
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.03277966077439487,
+          "evaluations": [
+            38,
+            38,
+            38
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.015498355031013489,
+          "evaluations": [
+            38,
+            38,
+            38
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 1.3877787807814457e-16,
+          "rotation": 4.996003610813204e-16
+        },
+        {
+          "position": 1.3877787807814457e-16,
+          "rotation": 4.996003610813204e-16
+        },
+        {
+          "position": 1.3877787807814457e-16,
+          "rotation": 4.996003610813204e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.4728040090982179
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 20,
+        "angle": 90.0
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.03333236603066325,
+          "evaluations": [
+            39,
+            39,
+            39
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.01624912698753178,
+          "evaluations": [
+            40,
+            40,
+            40
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 8.329448242250237e-13,
+          "rotation": 2.6699198407698077e-12
+        },
+        {
+          "position": 8.329448242250237e-13,
+          "rotation": 2.6699198407698077e-12
+        },
+        {
+          "position": 8.329448242250237e-13,
+          "rotation": 2.6699198407698077e-12
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.48748795607799983
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          1.0,
+          1.0
+        ]
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.012541804928332567,
+          "evaluations": [
+            34,
+            34,
+            34
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.004899295978248119,
+          "evaluations": [
+            34,
+            34,
+            34
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 2.220446049250313e-16,
+          "rotation": 7.216449660063518e-16
+        },
+        {
+          "position": 2.220446049250313e-16,
+          "rotation": 7.216449660063518e-16
+        },
+        {
+          "position": 2.220446049250313e-16,
+          "rotation": 7.216449660063518e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.39063723333635686
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          0.001,
+          1.0
+        ]
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": false,
+          "echecs": [
+            {
+              "repetition": 0,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 5.945e-10 pour une échelle de force de 7.735e0 (7.7e-11 en relatif)"
+              ]
+            },
+            {
+              "repetition": 1,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 5.945e-10 pour une échelle de force de 7.735e0 (7.7e-11 en relatif)"
+              ]
+            },
+            {
+              "repetition": 2,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 5.945e-10 pour une échelle de force de 7.735e0 (7.7e-11 en relatif)"
+              ]
+            }
+          ],
+          "mediane_s": 0.09045630600303411,
+          "evaluations": [
+            200,
+            200,
+            200
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        },
+        "candidat": {
+          "controles_reussis": false,
+          "echecs": [
+            {
+              "repetition": 0,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 6.812e-10 pour une échelle de force de 7.735e0 (8.8e-11 en relatif)"
+              ]
+            },
+            {
+              "repetition": 1,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 6.812e-10 pour une échelle de force de 7.735e0 (8.8e-11 en relatif)"
+              ]
+            },
+            {
+              "repetition": 2,
+              "raisons": [
+                "RuntimeError: ValueError: statique : pas convergé en 100 itérations, ‖r‖ = 6.812e-10 pour une échelle de force de 7.735e0 (8.8e-11 en relatif)"
+              ]
+            }
+          ],
+          "mediane_s": 0.034253002144396305,
+          "evaluations": [
+            200,
+            200,
+            200
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      "ecarts_etats": [],
+      "etats_equivalents": null
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          1000.0,
+          1.0
+        ]
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.012605246156454086,
+          "evaluations": [
+            34,
+            34,
+            34
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.00492350198328495,
+          "evaluations": [
+            34,
+            34,
+            34
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 2.0816681711721685e-16,
+          "rotation": 7.216449660063518e-16
+        },
+        {
+          "position": 2.0816681711721685e-16,
+          "rotation": 7.216449660063518e-16
+        },
+        {
+          "position": 2.0816681711721685e-16,
+          "rotation": 7.216449660063518e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.390591498347221
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          1.0,
+          0.001
+        ]
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.012481659883633256,
+          "evaluations": [
+            34,
+            34,
+            34
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.004884748021140695,
+          "evaluations": [
+            34,
+            34,
+            34
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 3.0531133177191805e-16,
+          "rotation": 1.0547118733938987e-15
+        },
+        {
+          "position": 3.0531133177191805e-16,
+          "rotation": 1.0547118733938987e-15
+        },
+        {
+          "position": 3.0531133177191805e-16,
+          "rotation": 1.0547118733938987e-15
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.3913540399819647
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          1.0,
+          1000.0
+        ]
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.012573705986142159,
+          "evaluations": [
+            34,
+            34,
+            34
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.004929662914946675,
+          "evaluations": [
+            34,
+            34,
+            34
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 2.636779683484747e-16,
+          "rotation": 7.771561172376096e-16
+        },
+        {
+          "position": 2.636779683484747e-16,
+          "rotation": 7.771561172376096e-16
+        },
+        {
+          "position": 2.636779683484747e-16,
+          "rotation": 7.771561172376096e-16
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.39206125229743705
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 8,
+        "moment": true,
+        "tourne": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.01779213105328381,
+          "evaluations": [
+            65,
+            65,
+            65
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.005835982970893383,
+          "evaluations": [
+            65,
+            65,
+            65
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 5.051514762044462e-15,
+          "rotation": 1.3766765505351941e-14
+        },
+        {
+          "position": 5.051514762044462e-15,
+          "rotation": 1.3766765505351941e-14
+        },
+        {
+          "position": 5.051514762044462e-15,
+          "rotation": 1.3766765505351941e-14
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.32800921673833233
+    },
+    {
+      "spec": {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 8,
+        "moment": true,
+        "tourne": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.01918891491368413,
+          "evaluations": [
+            65,
+            65,
+            65
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.00727177201770246,
+          "evaluations": [
+            65,
+            65,
+            65
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 3.497202527569243e-15,
+          "rotation": 9.43689570931383e-15
+        },
+        {
+          "position": 3.497202527569243e-15,
+          "rotation": 9.43689570931383e-15
+        },
+        {
+          "position": 3.497202527569243e-15,
+          "rotation": 9.43689570931383e-15
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.3789569160326395
+    },
+    {
+      "spec": {
+        "famille": "cable",
+        "n": 40
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0037238840013742447,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0037032440304756165,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.9944574076713959
+    },
+    {
+      "spec": {
+        "famille": "cable",
+        "n": 52
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.004676912212744355,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0046599688939750195,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.9963772425056074
+    },
+    {
+      "spec": {
+        "famille": "cable",
+        "n": 54
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.00487664295360446,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.004877515137195587,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 1.000178849179533
+    },
+    {
+      "spec": {
+        "famille": "cable",
+        "n": 60
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.005437713116407394,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.005408137105405331,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.9945609467860996
+    },
+    {
+      "spec": {
+        "famille": "cable",
+        "n": 80
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.007430634927004576,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.007440133020281792,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 1.0012782344134143
+    },
+    {
+      "spec": {
+        "famille": "cable",
+        "n": 120
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.01116599002853036,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.011176821077242494,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 1.0009700034376225
+    },
+    {
+      "spec": {
+        "famille": "cascade",
+        "n": 1,
+        "tourne": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0005275558214634657,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0005204030312597752,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.9864416429263384
+    },
+    {
+      "spec": {
+        "famille": "cascade",
+        "n": 1,
+        "tourne": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0005767110269516706,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0005717198364436626,
+          "evaluations": [
+            4,
+            4,
+            4
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.9913454221009264
+    },
+    {
+      "spec": {
+        "famille": "cascade",
+        "n": 4,
+        "tourne": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.009524728870019317,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.00943242316134274,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.9903088360901144
+    },
+    {
+      "spec": {
+        "famille": "cascade",
+        "n": 4,
+        "tourne": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.005935253109782934,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.005906407022848725,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.9951398724872133
+    },
+    {
+      "spec": {
+        "famille": "cascade",
+        "n": 16,
+        "tourne": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.01118495687842369,
+          "evaluations": [
+            6,
+            6,
+            6
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.011227258015424013,
+          "evaluations": [
+            6,
+            6,
+            6
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 1.0037819669275545
+    },
+    {
+      "spec": {
+        "famille": "cascade",
+        "n": 16,
+        "tourne": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.08244271902367473,
+          "evaluations": [
+            6,
+            6,
+            6
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.08235560287721455,
+          "evaluations": [
+            6,
+            6,
+            6
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.9989433130361074
+    },
+    {
+      "spec": {
+        "famille": "cascade",
+        "n": 32,
+        "tourne": false
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.030040486017242074,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.03186727990396321,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 1.0608110629659129
+    },
+    {
+      "spec": {
+        "famille": "cascade",
+        "n": 32,
+        "tourne": true
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.48463490698486567,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.48289664182811975,
+          "evaluations": [
+            8,
+            8,
+            8
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.996413248134435
+    },
+    {
+      "spec": {
+        "famille": "contact",
+        "n": 1
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 6.847083568572998e-05,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 6.849085912108421e-05,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 1.0002924374319913
+    },
+    {
+      "spec": {
+        "famille": "contact",
+        "n": 32
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0015121139585971832,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0015117030125111341,
+          "evaluations": [
+            5,
+            5,
+            5
+          ],
+          "tentatives": [
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "ecarts_etats": [
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        },
+        {
+          "position": 0.0,
+          "rotation": 0.0
+        }
+      ],
+      "etats_equivalents": true,
+      "temps_candidat_sur_reference": 0.9997282307436469
+    },
+    {
+      "spec": {
+        "famille": "sans_equilibre",
+        "n": 1
+      },
+      "versions": {
+        "reference": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0003519919700920582,
+          "evaluations": [
+            111,
+            111,
+            111
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        },
+        "candidat": {
+          "controles_reussis": true,
+          "echecs": [],
+          "mediane_s": 0.0003471819218248129,
+          "evaluations": [
+            111,
+            111,
+            111
+          ],
+          "tentatives": [
+            2,
+            2,
+            2
+          ]
+        }
+      },
+      "ecarts_etats": [],
+      "etats_equivalents": null,
+      "temps_candidat_sur_reference": 0.9863347784155778
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -3595 +3595 @@
+-    /// le moment SPATIAL R₁Π₁ = R₀Π₀ est conservé en arithmétique exacte. Avec exp à la
++    /// le moment SPATIAL R₁Π₁ = R₀Π₀ est conservé au dernier bit. Avec exp à la
+@@ -3642,3 +3642,2 @@
+-        // Porté, Π₁ = cay(−hω̄̂)Π₀ évite cet aller-retour ; R est
+-        // re-orthonormalisée par projection polaire. Le Newton et les produits
+-        // flottants gardent une erreur d'arrondi, mesurée sur les invariants.
++        // Porté, Π₁ = cay(−hω̄̂)Π₀ est exact au dernier bit ; et R est
++        // re-orthonormalisée (Gram–Schmidt) pour que ω = R J⁻¹Π le reste.
+--- a/src/rotation.rs
++++ b/src/rotation.rs
+@@ -8 +8 @@
+-    if !(e.norm_squared() <= 0.125_f64.powi(2)) || !(a.determinant() > 0.) {
++    if !(e.norm() <= 0.125) || !(a.determinant() > 0.) {
+@@ -17 +17 @@
+-        if e.norm_squared() <= (8. * f64::EPSILON).powi(2) {
++        if e.norm() <= 8. * f64::EPSILON {

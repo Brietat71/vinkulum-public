@@ -1,0 +1,44 @@
+{
+  "famille": "cascade_tournee",
+  "taille": 20,
+  "variante": "qr_dense",
+  "forme": [
+    400,
+    360
+  ],
+  "nnz": 3613,
+  "python": "3.14.7",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "cpu": [
+    8
+  ],
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+  "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+  "statut": "calcule",
+  "factorisation_s": 0.00935035408474505,
+  "projection_s": 0.0002469019964337349,
+  "reactions_s": 0.00039516412653028965,
+  "total_s": 0.009992420207709074,
+  "diagnostic": {
+    "rang": 340,
+    "coefficients_base_normales": 122400,
+    "base_dense": true
+  },
+  "rss_avant_oracle_kib": 84992,
+  "controles": {
+    "erreur_projection": 8.770761894538737e-15,
+    "erreur_force": 2.173261570703744e-14,
+    "fermeture": 2.7716544337419435e-15,
+    "idempotence": 3.0773994463828558e-15,
+    "rang_attendu": 340,
+    "rang_correct": true
+  },
+  "accepte": true
+}

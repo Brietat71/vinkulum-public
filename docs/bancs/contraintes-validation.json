@@ -1,0 +1,124 @@
+{
+  "date_utc": "2026-09-07T01:34:16.767224+00:00",
+  "normalisation_archives": "JSON alterné compacté sans changement des valeurs ; espaces terminaux retirés du journal négatif.",
+  "temoin_commit": "4b79a761c47d3de2d74018808258b38d9c5958db",
+  "binaires_sha256": {
+    "avant": "66f36f1af74288d1f5f198cc02025663c8f90d977311e355661f0926aa8815ca",
+    "courant": "ac19229e9cce57fc0001af0f12cc32ea2f0b0d258b52abbba269267ae252e01d"
+  },
+  "sources_sha256": {
+    "Cargo.lock": "5a143572b13859a6954cda57d624a785eceb90ba5f1b9a204df7bfb1664c5343",
+    "Cargo.toml": "d27526bf96a1a7d46674f86a2475b433e562491df0552d749e715d77f262bb05",
+    "README.md": "4793ff9f303f8bf475a36d07ade733cf290194dc58fb24a52df86bb1d7037f5f",
+    "ci/bilan_contraintes.py": "d55f810337ee4acbc68c1cf2670fed974816fbbd0aaaac90079511b484bd4952",
+    "ci/confronte_mbdyn.py": "5b335dc114daad7e1739ec66ea2426245373123c559079c9eb8a3d6872e3a31c",
+    "ci/diagnostic_assemblage_local.py": "c8b60a647c5844d6884b04b053a2a2cc858a8ec0e5d166062e212a6c6218dde4",
+    "ci/diagnostic_cable.py": "6f7f9db7ab069eaf9eba533d2c86543095e4f5fb11230eab72d88fe0ad1750ed",
+    "ci/diagnostic_chaine_articulee.py": "9ae863e595b8e505111ff624236bef6df34884ffce757e0a9f904574cd89d598",
+    "ci/diagnostic_contraintes.py": "dd164fd1113b5dea127de90448cde6688d468d2f32fa7332bc56a449f8e586c0",
+    "ci/diagnostic_contraintes_proches.py": "0d462ea45b59d3e0440f4efbb8f44f0318016612adbaa6d57f7cd60de66d4b2a",
+    "ci/diagnostic_positions_compensees.py": "777b728c325b5974f703090ab77e5778a0c5660aace15830d334c32eae572a52",
+    "ci/diagnostic_poutres.py": "1489735261e8759188126291fc90418b935626071fb39ff7f65f1ed86b6047ed",
+    "ci/diagnostic_precision_statique.py": "8f76484b4ef1d687933c065506b98119037b4d6aa7288c1c54de5f4139b215a0",
+    "ci/diagnostic_statut_statique.py": "531344cff7942e5016a29ed014f4b42ca0564145814978abea900036d1312e23",
+    "ci/local.sh": "260e4cf66d105a8a23fe4bc02d9c1746db1e96740528d2040ae842d55b5ac839",
+    "ci/mesure_contraintes_alternee.py": "51f8189e2192c13b25256e8b538f87c85821894881022c5e76a6c27b3883796e",
+    "ci/mesure_statique_alternee.py": "9b31d6d73999c86f06ff52ac5440e149bb5b1457bf792c8d62f213d99bb6a7fc",
+    "ci/valide_contraintes.py": "f53fd58fe181c83e703bf817bc20a7c0388f716afbb7b2fb6cc8655e2f9d4e81",
+    "docs/CONTRAINTES_CREUSES.md": "28b62a27f479028481b438044ffc0b2d589a61f201a782c41b15e9b299c008f4",
+    "docs/OBJECTIF_MBDYN.md": "5e466bbe60abac090ab0d42ca2c410f878e57615d989f9846c201ea828393ed3",
+    "examples/qr_contraintes.rs": "948cf2a2e6bebdc2aa129406778f6f9ab83ad32052e89d5f4899584a0063729e",
+    "pyproject.toml": "3826a6b2787be22b8c85a55ee29f191be2670482d5fa0d27186b54a720b75575",
+    "python/vinkulum/test_noyau.py": "2971d4ac44d724de5a939dc13b5b3e29f563f1929cd564df6dffdafc214224af",
+    "src/ad.rs": "1fd44c5469618d90d93ffa530639b44f6836deb992a5b24637b263026e5c75ff",
+    "src/analyse.rs": "18b0adaab5439b5b760714ce9d42ae7f165f58987ff3972f2b67862ec932c579",
+    "src/contraintes/qr_creux.rs": "6bfba68e624f73cd6ecea3a6531e3111f0896b27f04b2adcca69d15c609ca790",
+    "src/contraintes.rs": "b7af0afdc19ad6a47031135309c80bd29bd1c65d03ea1e02438c37d3167a8a31",
+    "src/lib.rs": "6a58c8aa883ec579c78d0670022fa8b405c663ebc762138a4e16cbe29d829486",
+    "src/numerique.rs": "6872219a7265400e069e8fa2317315376ee648ba08d83fbb97bb96410f79ffba",
+    "src/partition.rs": "24c59b9b2914f3a1999528937c5410bbb6eae78e1675cf51cebad1fbed4d3674",
+    "src/robustesse.rs": "0b0490343581ca78e5fb637b96d8c727da6d694b96a8a917f0c9cef670003c2a",
+    "src/superelement.rs": "2769e6ac826754da3d8b9dc4d183d9f88f9c8c5b4acc3440e564d6c93f6385d3",
+    "src/tangent.rs": "3128fca6cee949ba0e5f72566fbf67d930864a0e13b9422865504084d3130fed"
+  },
+  "artefacts_sha256": {
+    "docs/bancs/contraintes-alternees.json": "1e1f69f2ffd51480d2254eb95d80986ca6b8eb334d9956caf029649f42d6c6b8",
+    "docs/bancs/contraintes-cable.json": "0984ef91e90dc18e8ae61d81d312a7d4fd2be0360d6bc4bd7f7d4afe9b9aba24",
+    "docs/bancs/contraintes-ci.log": "147b923bcca203a02cec86352f36a7ddb5417690e7baa322c8d8df09de3cb653",
+    "docs/bancs/contraintes-comparaison.json": "65af45abd1d5c85bc6cf962a3315a584291df6a4c6477886334f3cdc3396e43b",
+    "docs/bancs/contraintes-negatif-avant.log": "2e641ba2188a681dbaeef8a203200b206f6bdb93f57b0d2fba5552d619a402fb",
+    "docs/bancs/contraintes-princeton-alterne.json": "50ffed876b8464241e9119a19de3cd06cc9ecb9078e8be42ce52f12242c33334",
+    "docs/bancs/contraintes-princeton-strict.json": "4abe63d5ccb5003d3350fba5ffdfb2d0648cf8eff72c4907414ad814c8a5a67a",
+    "docs/bancs/contraintes-proches-apres.json": "c88d08df3f5a998730d4a91e917fb7718c18aa8c797b057401168540690fcb1d",
+    "docs/bancs/contraintes-proches-avant.json": "082e64e40085bbff4b59f3a4075f08d903aeae9d6edc505659519bd22e9b04ba",
+    "docs/bancs/contraintes-tests-python.log": "9010dbbeeb012c71e0f2c3223b6d2a8c14cc2803bb1aeddb2fde5626e15a9f90"
+  },
+  "ci": {
+    "commande": "ci/local.sh --bancs",
+    "code_sortie": 0,
+    "rust": 35,
+    "python": 60,
+    "verification": 41,
+    "bancs_rapides": 46,
+    "contacts": 9,
+    "api": 185
+  },
+  "controles": {
+    "equilibres_alternes": 132,
+    "topologies": 4,
+    "proches": [
+      {
+        "delta": 1.0,
+        "avant": "tolerance",
+        "apres": "tolerance",
+        "residu_avant": 2.220446049250313e-16,
+        "residu_apres": 0.0,
+        "residu_calcule_independamment_N": 0.0
+      },
+      {
+        "delta": 0.001,
+        "avant": "tolerance",
+        "apres": "tolerance",
+        "residu_avant": 4.995981406352712e-11,
+        "residu_apres": 0.0,
+        "residu_calcule_independamment_N": 0.0
+      },
+      {
+        "delta": 1e-06,
+        "avant": "echec",
+        "apres": "tolerance",
+        "residu_avant": 2.2122348783959467e-05,
+        "residu_apres": 0.0,
+        "residu_calcule_independamment_N": 0.0
+      },
+      {
+        "delta": 1e-09,
+        "avant": "echec",
+        "apres": "tolerance",
+        "residu_avant": 0.999999999,
+        "residu_apres": 1.1102230246251565e-16,
+        "residu_calcule_independamment_N": 1.1102230246251565e-16
+      },
+      {
+        "delta": 1e-12,
+        "avant": "echec",
+        "apres": "tolerance",
+        "residu_avant": 0.999999999999,
+        "residu_apres": 0.0,
+        "residu_calcule_independamment_N": 0.0
+      }
+    ],
+    "directions_confondues_refusees": true,
+    "paliers_princeton_stricts": 400,
+    "barres_allongement_exact": 3,
+    "controle_negatif_ancien_binaire": 1,
+    "cable_condense_original_et_lineaire": "echec"
+  },
+  "limites": [
+    "Comparaisons entre versions Vinkulum ; aucun nouveau classement externe.",
+    "Repli dense par composante pour les projections redondantes.",
+    "Matrices publiques et autres projecteurs restent denses.",
+    "Critères statiques et échelles physiques inchangés ; pas de garantie universelle de rang.",
+    "Câble condensé extrême en échec ; couverture Simpack non acquise."
+  ]
+}

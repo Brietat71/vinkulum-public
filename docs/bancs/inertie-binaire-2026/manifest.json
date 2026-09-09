@@ -1,0 +1,1640 @@
+{
+  "schema": 1,
+  "fichiers": {
+    "bilan.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/bilan.json",
+      "source_sha256": "81375705fc4a1da402692d167fa29356e790c084df43749d40c0875fc1ba10ba",
+      "source_octets": 19511,
+      "sha256": "9ecaea5bf4e181dcfbe358bb7b773a3b0034960836b7cf948a1c9c2e69351a54",
+      "octets": 3353,
+      "compression": "gzip"
+    },
+    "build/compilation.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/build/compilation.log",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_octets": 0,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "octets": 20,
+      "compression": "gzip"
+    },
+    "build/identite.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/build/identite.json",
+      "source_sha256": "d51b813d6a3ea37a98561a384ee1902f5b81149206dd25acf679b01cd1c7b56b",
+      "source_octets": 825,
+      "sha256": "30d8b3c1820e6b7959b98fadf4f807ec4b91df429e312211c6981d5f39c2d623",
+      "octets": 511,
+      "compression": "gzip"
+    },
+    "build/inertie_binaire.so.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/build/inertie_binaire.so",
+      "source_sha256": "16b87ba32b15d24ab847666c88da4dc217634f07eed0cfcd1fa583d0c2b3dd34",
+      "source_octets": 70184,
+      "sha256": "c685888b2f6d5a10e5353e717087f08eaa90cfe071907b9308cdcda6dc878294",
+      "octets": 27930,
+      "compression": "gzip"
+    },
+    "build/inertie_binaire_native.cpp": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/build/inertie_binaire_native.cpp",
+      "source_sha256": "4ac5ac53dd8cbd61a99cc0d00daf2dddbcc5b9f13f3f845657f6e75c57c24d62",
+      "source_octets": 11460,
+      "sha256": "4ac5ac53dd8cbd61a99cc0d00daf2dddbcc5b9f13f3f845657f6e75c57c24d62",
+      "octets": 11460,
+      "compression": null
+    },
+    "entrees/n128-f40.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/entrees/n128-f40.npz",
+      "source_sha256": "a1549264160cd4210d2e3e60ee31ebc0bd32e214b0925ce03ee1edb1741c740a",
+      "source_octets": 9398,
+      "sha256": "a1549264160cd4210d2e3e60ee31ebc0bd32e214b0925ce03ee1edb1741c740a",
+      "octets": 9398,
+      "compression": null
+    },
+    "entrees/n128-f40.npz.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/entrees/n128-f40.npz.json",
+      "source_sha256": "ec2e6fd90dbd23ec72d19972e3bbcfb60c25cd6fe1e71e876820a1166aa27960",
+      "source_octets": 1308,
+      "sha256": "5dae5e6c8ef56d630b452e554c18287b0e2d6161da8ed5121305ef891082280d",
+      "octets": 695,
+      "compression": "gzip"
+    },
+    "entrees/n128-f40.ref.npy.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/entrees/n128-f40.ref.npy.json",
+      "source_sha256": "9d508fdf56b02778ace7c5c491f84a2893ac462b3bf1da9a5545b7c220f719b8",
+      "source_octets": 460,
+      "sha256": "5965644425ea54ab1384897ff0df24abe3f21847f785fec3d93a067d0d3bdc93",
+      "octets": 282,
+      "compression": "gzip"
+    },
+    "entrees/n32-f40.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/entrees/n32-f40.npz",
+      "source_sha256": "df335d97b6979ea280016d019e4a7fffdc7675cd61c2a5a1fb7aa68d1d4d6b8a",
+      "source_octets": 5282,
+      "sha256": "df335d97b6979ea280016d019e4a7fffdc7675cd61c2a5a1fb7aa68d1d4d6b8a",
+      "octets": 5282,
+      "compression": null
+    },
+    "entrees/n32-f40.npz.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/entrees/n32-f40.npz.json",
+      "source_sha256": "6776b2f729ffd6aef3ebd48cdc5df84dee6abcb63aa98b210342fd49722d5a38",
+      "source_octets": 1292,
+      "sha256": "9b64decd867f92bd8df78546b7834fc3a9fdf5fe0b29a7b2fca6b246444d5800",
+      "octets": 686,
+      "compression": "gzip"
+    },
+    "entrees/n32-f40.ref.npy.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/entrees/n32-f40.ref.npy.json",
+      "source_sha256": "4c7ad303d635ee97d928b2a80daa2e65b9beddc3ab926bc2a29500c307f61d7c",
+      "source_octets": 459,
+      "sha256": "ec6d73b718dfc7f89a4c6766351187db0a82a7e762d2beb458bb06ab84769c0b",
+      "octets": 280,
+      "compression": "gzip"
+    },
+    "entrees/n512-f40.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/entrees/n512-f40.npz",
+      "source_sha256": "8934fa28cfca143c836b0ec0d78f3ffe16049b1769974c92c9c4f2f27a616905",
+      "source_octets": 25334,
+      "sha256": "8934fa28cfca143c836b0ec0d78f3ffe16049b1769974c92c9c4f2f27a616905",
+      "octets": 25334,
+      "compression": null
+    },
+    "entrees/n512-f40.npz.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/entrees/n512-f40.npz.json",
+      "source_sha256": "335da83f693d915bb694d6e84cf0f9f54d88dde60142ca561f60f6cafea8891e",
+      "source_octets": 1313,
+      "sha256": "82f01a3c6d6a662107ac7c4b0811b32134bc531f83ac2de68793130d92226da9",
+      "octets": 703,
+      "compression": "gzip"
+    },
+    "entrees/n512-f40.ref.npy.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/entrees/n512-f40.ref.npy.json",
+      "source_sha256": "d5e00ff991d8feb1b1d79f03daeb6a426a4cc3a484a906a25ef7bf5a5bb955ef",
+      "source_octets": 459,
+      "sha256": "a64c4bc68bcf2afaeede7493166b5e515be74a60a40312422c7d985599999b5d",
+      "octets": 281,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage0/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage0/bases.npz",
+      "source_sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "source_octets": 234621,
+      "sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "octets": 234621,
+      "compression": null
+    },
+    "essais/n128-f40-binaire_controle-passage0/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage0/resultat.json",
+      "source_sha256": "79f58804e04acf9bbcdd90f7e81e4814835e4b8cf3328923ad8363973a28fd09",
+      "source_octets": 1389910,
+      "sha256": "fa5471c7efe60a41b41aff90969493c2961eb795d02a6dbb7f07505d63b1e5d2",
+      "octets": 299359,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage0.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage0.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage0.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage0.terminal.json",
+      "source_sha256": "b23369d2ea370536d8c06f824fed091a86d9e0615828478cd99df218de6d3d4e",
+      "source_octets": 603,
+      "sha256": "fa6d6e0b1cb9d80b19efa57c872df823cbdde75bcdbeff69032ad24258cf9ce8",
+      "octets": 319,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage1/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage1/bases.npz",
+      "source_sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "source_octets": 234621,
+      "sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "octets": 234621,
+      "compression": null
+    },
+    "essais/n128-f40-binaire_controle-passage1/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage1/resultat.json",
+      "source_sha256": "87980d27af506adb1718ef90e88e9638157f68b5681529ec0993105eab0a1b50",
+      "source_octets": 1389887,
+      "sha256": "2b30d48af045e670a8278cd6add2dbd07952c52957e1dd25abae34716ee35528",
+      "octets": 299350,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage1.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage1.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage1.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage1.terminal.json",
+      "source_sha256": "185af69344ab99aadddb2f1027b8f11bfc30535b213fb37ce776e36319b7c99a",
+      "source_octets": 603,
+      "sha256": "36091f8b97540f21a803174b01a74413de0d9b9e460b9110c493dce028d1b574",
+      "octets": 319,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage2/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage2/bases.npz",
+      "source_sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "source_octets": 234621,
+      "sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "octets": 234621,
+      "compression": null
+    },
+    "essais/n128-f40-binaire_controle-passage2/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage2/resultat.json",
+      "source_sha256": "1c348ba7e5472004ebf7bd7aac65cd78a3b654dc38380e7294c24a3c55dd0673",
+      "source_octets": 1389899,
+      "sha256": "2d856a58e60bd6ae6e64c5039ba24838652be01710a01084eec90de3c75e88b9",
+      "octets": 299347,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage2.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage2.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage2.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage2.terminal.json",
+      "source_sha256": "8cb466b7d650d6b972e765ab85d0a3e6fd54fb2134c8d8127db3eca84d8624f0",
+      "source_octets": 603,
+      "sha256": "e2686b88a03af35640a2134920e44a33c0b1faf19e609c67a8bc2d9256752358",
+      "octets": 318,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage3/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage3/bases.npz",
+      "source_sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "source_octets": 234621,
+      "sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "octets": 234621,
+      "compression": null
+    },
+    "essais/n128-f40-binaire_controle-passage3/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage3/resultat.json",
+      "source_sha256": "94eb84142d233c0cd98543f8bae2847bfe7a5dce9fda36ded98403f97012e76a",
+      "source_octets": 1389886,
+      "sha256": "5f26f1e57d62c1555e17c32d72ccdc0bd04fb786046eeaa9c86bc337aee3916b",
+      "octets": 299348,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage3.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage3.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-binaire_controle-passage3.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage3.terminal.json",
+      "source_sha256": "a6d906ce4e60d9dbcd1d9552e570ab6a94367130acb214436a9ec6e9a3af4ecf",
+      "source_octets": 603,
+      "sha256": "d04477b1bae8870a76dff67cd3936d0c68c4cf488e01c81af35e52dc93576e67",
+      "octets": 319,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage0/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage0/bases.npz",
+      "source_sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "source_octets": 234621,
+      "sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "octets": 234621,
+      "compression": null
+    },
+    "essais/n128-f40-decimal_controle-passage0/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage0/resultat.json",
+      "source_sha256": "cd60c136783f04d663faa01a3cb067ac6ad35f1e6bf92d46be92e8f3593cf2e0",
+      "source_octets": 1407561,
+      "sha256": "c06392c6f147f66623da6b1fadb87d3b1a4444c7ec6df9c3461552f0665740dc",
+      "octets": 318813,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage0.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage0.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage0.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage0.terminal.json",
+      "source_sha256": "23e069d045437cde12e14782c098dbbdac309ec2b730911ae5c88c4709a281ed",
+      "source_octets": 603,
+      "sha256": "42ed4085d31610770b7cdf05915a9c1bb63baa80d19fe8652fd150d842c312e4",
+      "octets": 321,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage1/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage1/bases.npz",
+      "source_sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "source_octets": 234621,
+      "sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "octets": 234621,
+      "compression": null
+    },
+    "essais/n128-f40-decimal_controle-passage1/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage1/resultat.json",
+      "source_sha256": "1706a3be4fcc68354a538ffd209207995b4524ef3152ccb588dc6387b7cadb5e",
+      "source_octets": 1407561,
+      "sha256": "b668fc8312ad567eb40a302c645c089915e6889f73817e97a37a1e267b347b42",
+      "octets": 318812,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage1.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage1.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage1.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage1.terminal.json",
+      "source_sha256": "3284381601b4a59c787b875d2a7edd6365a85af746abaa87ac73e49a33efd321",
+      "source_octets": 603,
+      "sha256": "9b068f644672284435cc3b6e2f1e285031379a3ee79f607af28912ee804f4872",
+      "octets": 322,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage2/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage2/bases.npz",
+      "source_sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "source_octets": 234621,
+      "sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "octets": 234621,
+      "compression": null
+    },
+    "essais/n128-f40-decimal_controle-passage2/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage2/resultat.json",
+      "source_sha256": "8d6eb234d829319ae2fcfc32cddfc0fde2904cb76d34f534b064ea8b5731bf03",
+      "source_octets": 1407560,
+      "sha256": "e15740a71801ee8c10044e31ac9c978c441f0edf46936187e47ac39a6cf46c5c",
+      "octets": 318812,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage2.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage2.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage2.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage2.terminal.json",
+      "source_sha256": "687cde5cfcd87aaa537c03774b81f7edc7bf42dfc6955a5e0839d4b3fc3fdae7",
+      "source_octets": 603,
+      "sha256": "c31204040201d2632c58ea5110d8d930e3ed9f6da4bfb809132de36254be70e4",
+      "octets": 323,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage3/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage3/bases.npz",
+      "source_sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "source_octets": 234621,
+      "sha256": "a1a91ca0bfe26ba296bcaec11220314d3cec04be36f4c72017f5180cd07fb391",
+      "octets": 234621,
+      "compression": null
+    },
+    "essais/n128-f40-decimal_controle-passage3/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage3/resultat.json",
+      "source_sha256": "c580a05f4e1bf4a7209e96600734f02277deb09936973460ab5648da7e0f0475",
+      "source_octets": 1407563,
+      "sha256": "33f50dae6ee687b2dcf7548abdd783821349984ca4b84b0f3f04894c3ebac007",
+      "octets": 318816,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage3.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage3.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-decimal_controle-passage3.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage3.terminal.json",
+      "source_sha256": "b84374feec123bdeb0bde5ba2596d303214a997fb70e2cadfc0396f1eedc843c",
+      "source_octets": 603,
+      "sha256": "3bc3fdb1e4f4362649d735a875af1e9b50a3f0a8b8b591032bbc893c7cff39ad",
+      "octets": 321,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage0/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage0/resultat.json",
+      "source_sha256": "aab0a896763480f93e79404fe77cd757a561749b326d8ea51ce759fecffa83f7",
+      "source_octets": 324054,
+      "sha256": "8616b08f5415d27f39c45d27f6a4501c0aafa48975902d35b433f80f05417509",
+      "octets": 93321,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage0/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage0/temoin-brut.json",
+      "source_sha256": "00d7eb75a7f9b3f7503a2ee766ab0c4ae0a42b3665b62d5068d61c195ff93edd",
+      "source_octets": 291905,
+      "sha256": "1ddf3a1774161fcfb795ddffc011cbfa400986e89cd6c405f785a66952a21d18",
+      "octets": 82618,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage0.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage0.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage0.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage0.terminal.json",
+      "source_sha256": "5621591161b2dd22f8b007e40a4b7000b23d8b08dbda7d8d7bb2c7e70917d206",
+      "source_octets": 593,
+      "sha256": "7de40b695a7acbe51f1d340ed264e277a7ea9182e7b002ee9f0e40da7011f619",
+      "octets": 315,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage1/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage1/resultat.json",
+      "source_sha256": "e51d14780c0752d368ca872a409fb8555b64b8e2452bdb16bfb6df0a6b57820c",
+      "source_octets": 324053,
+      "sha256": "5eb7d2299acf09a61ae586ba54cb344ec1c8aeb00714bb447d6108f3f1be8421",
+      "octets": 93320,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage1/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage1/temoin-brut.json",
+      "source_sha256": "81fe99941e2a4e93e8b429774fb7b03d4d696afc3032e5b4ef1e1542bd29a111",
+      "source_octets": 291904,
+      "sha256": "c9261d78e52451a7b547b13e2ce78ece5cfc57916780337262d7877e90b7d224",
+      "octets": 82618,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage1.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage1.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage1.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage1.terminal.json",
+      "source_sha256": "62e2238daf680066e94c5da1b6d6d470e2f1d6920e205489f0026f9025c9599e",
+      "source_octets": 593,
+      "sha256": "44099b3500d56ca6dce0ae824dd3761b69633cf823c71e353f02f7252db1ac36",
+      "octets": 316,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage2/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage2/resultat.json",
+      "source_sha256": "514cdca8e5c232e87769397f018d74aa1eac0c1ed58d4471dbfb7a908bf13657",
+      "source_octets": 324054,
+      "sha256": "347c2285d3132c7a3380dff339ee8880780bf2db452d9e7ef8f8a36c2e24a354",
+      "octets": 93319,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage2/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage2/temoin-brut.json",
+      "source_sha256": "2701bfb3985a0adaacc3d0aeb1b1fa8dc6c91d14b24d0793a43f609eead25ddb",
+      "source_octets": 291905,
+      "sha256": "22bb90684b66dbc53de4f7ebc795186358c61266a565982d810ae6cd2df40c42",
+      "octets": 82617,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage2.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage2.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage2.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage2.terminal.json",
+      "source_sha256": "72659cf52bdbe9b3e6bd5380b21302ccd9119c16cf07d9d5b260c538fa4b0025",
+      "source_octets": 593,
+      "sha256": "9befab36dc82a594685fb2130c009b7a4bde5449f5a7db3eccfc1fcb8945041b",
+      "octets": 314,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage3/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage3/resultat.json",
+      "source_sha256": "1e87e59802d8fee82acdd08264c326057d4f22770c697043926b5143f0e71f29",
+      "source_octets": 324054,
+      "sha256": "4c5e599a38a5c7c6ed2e4971859463eb9fedc97840162014c0c05b06b2308cfa",
+      "octets": 93317,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage3/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage3/temoin-brut.json",
+      "source_sha256": "a9da77f7a894c16ddb326992600def6115e3960899ae69323e8c45914954c9d4",
+      "source_octets": 291905,
+      "sha256": "4c134b93ce90b58b0a23bb4501c80d1daa4085b9459d3f4fcd0758d26b99b195",
+      "octets": 82614,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage3.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage3.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n128-f40-lu_corrigee-passage3.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage3.terminal.json",
+      "source_sha256": "bf2c8032e8189c90c3e7a20fdd078c695fee25460bd77bd6d486946d9038e902",
+      "source_octets": 593,
+      "sha256": "0d1f1f1002991348118bc252171557308531f1501596eaa2f78dbd2365d85a4e",
+      "octets": 317,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage0/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage0/bases.npz",
+      "source_sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "source_octets": 53772,
+      "sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "octets": 53772,
+      "compression": null
+    },
+    "essais/n32-f40-binaire_controle-passage0/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage0/resultat.json",
+      "source_sha256": "49e10e2741d9ab20dfcc80bc7306e6fc2e62449811a8a2d3ee7f7d013a78bb75",
+      "source_octets": 1239962,
+      "sha256": "3ee016d29ac6bca059ebdfe9407d516d1b907f9ef9b84318eb9a018422365bca",
+      "octets": 296644,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage0.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage0.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage0.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage0.terminal.json",
+      "source_sha256": "c6db9d1923f1e0d624afc45cc9cb52ff6eed20956d67b641399560a11115b9dd",
+      "source_octets": 599,
+      "sha256": "c5ac8aeaca4eabef0fd81af809ab038359b9f89423b9474b75d195d961a6ca35",
+      "octets": 319,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage1/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage1/bases.npz",
+      "source_sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "source_octets": 53772,
+      "sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "octets": 53772,
+      "compression": null
+    },
+    "essais/n32-f40-binaire_controle-passage1/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage1/resultat.json",
+      "source_sha256": "a97402a6ae39cea0baad9679a43748365485f99127a2a54d09aed1657221a225",
+      "source_octets": 1239960,
+      "sha256": "6c57b2ef76db4809a0cd9b7bd2acb543546f6795040d3753be177d4300ce030c",
+      "octets": 296646,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage1.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage1.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage1.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage1.terminal.json",
+      "source_sha256": "a58dc4a9682254cd0ea952405630923a6eac5c23336e43de13ef855543152cbe",
+      "source_octets": 599,
+      "sha256": "c870741ac4cfd7c7646b519539626e3fbfaaa518c9cc147c59a79a7095098ae5",
+      "octets": 318,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage2/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage2/bases.npz",
+      "source_sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "source_octets": 53772,
+      "sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "octets": 53772,
+      "compression": null
+    },
+    "essais/n32-f40-binaire_controle-passage2/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage2/resultat.json",
+      "source_sha256": "1663fbc5aa2fad265c7efa1e27f85506adcc156efa8272772a449ebf8e2fa7fc",
+      "source_octets": 1239972,
+      "sha256": "2068a78b126d70d84f43cc39a701f5022813052d574c388692954aa2e3b71954",
+      "octets": 296649,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage2.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage2.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage2.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage2.terminal.json",
+      "source_sha256": "993519393a129f7fb5b8ace025ebe4b6659e3116326c4bc7d651e6e55b2f07f1",
+      "source_octets": 599,
+      "sha256": "2fdfaac9d6464011e28665cd6c3613a79d72739ae34135b87f487b2a0a07be38",
+      "octets": 318,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage3/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage3/bases.npz",
+      "source_sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "source_octets": 53772,
+      "sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "octets": 53772,
+      "compression": null
+    },
+    "essais/n32-f40-binaire_controle-passage3/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage3/resultat.json",
+      "source_sha256": "b886c43cb9aa8b42185b1096c0bc9ac2da979b30637e203a692df68b7ec9b9d0",
+      "source_octets": 1239972,
+      "sha256": "e6e2561e26af32f7fa7df2e5ab8f78f1eed1aa84c0637a7fcf261348be81685d",
+      "octets": 296648,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage3.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage3.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-binaire_controle-passage3.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage3.terminal.json",
+      "source_sha256": "0dc182431cd68b4363b793005f5df50fae555dba852d7ddd4df784f1e6a658f3",
+      "source_octets": 599,
+      "sha256": "6f7d8709e9b0edf74d523016a82658055588243e6523ff716e3fb6936373497b",
+      "octets": 317,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage0/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage0/bases.npz",
+      "source_sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "source_octets": 53772,
+      "sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "octets": 53772,
+      "compression": null
+    },
+    "essais/n32-f40-decimal_controle-passage0/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage0/resultat.json",
+      "source_sha256": "54b4027f379db5e80c3d816cf5f5b430a37ae9752a0c5f83c5c607b4879e18ac",
+      "source_octets": 1243811,
+      "sha256": "c986e996dfc09b5753163dd4f1f35e15860db0713d653552ac37cabd267fcc87",
+      "octets": 300838,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage0.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage0.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage0.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage0.terminal.json",
+      "source_sha256": "cc2a82426814ccf4ea8c66b1f4b8207c1f2fd8fd83819609ae37d289c647176e",
+      "source_octets": 598,
+      "sha256": "a029cc1819485fb40dbb55eb8f0610828990fc8b151b4319a838a6566eabd8f7",
+      "octets": 320,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage1/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage1/bases.npz",
+      "source_sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "source_octets": 53772,
+      "sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "octets": 53772,
+      "compression": null
+    },
+    "essais/n32-f40-decimal_controle-passage1/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage1/resultat.json",
+      "source_sha256": "9821c8e200d0f151c10e5b6859b04a27383c3528dbb36d86912360cbc7d48169",
+      "source_octets": 1243810,
+      "sha256": "fc5ca16fe2bbe478b6c4aac5a4cdf4ae06d1d76f50280ea9e2a01d7c7effcecd",
+      "octets": 300835,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage1.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage1.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage1.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage1.terminal.json",
+      "source_sha256": "4a376c602d272fbeeeb016e39dd3386cfb95b038aae70a89f13bc0e4d4fe9483",
+      "source_octets": 599,
+      "sha256": "0e918811c9ac0e6383144e518acb2f222623f187b99a83dcf891481abc8f0294",
+      "octets": 320,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage2/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage2/bases.npz",
+      "source_sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "source_octets": 53772,
+      "sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "octets": 53772,
+      "compression": null
+    },
+    "essais/n32-f40-decimal_controle-passage2/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage2/resultat.json",
+      "source_sha256": "b874e5b1ee3c2b533e3bae37f6b938b8ce4693518834785218638e62140c9db0",
+      "source_octets": 1243807,
+      "sha256": "f54bab2a03ee932090b798ed10396d7caca747c2482fc5162f308e721d24df99",
+      "octets": 300837,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage2.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage2.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage2.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage2.terminal.json",
+      "source_sha256": "6353247f86810029c629c6c698663c6aa475f00415e21da258f73093b9fc0bc6",
+      "source_octets": 599,
+      "sha256": "be2f0d9e0a420a50ad2aa141470bd1a326c16c0eefca3ef708b9eb477f7586d5",
+      "octets": 321,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage3/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage3/bases.npz",
+      "source_sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "source_octets": 53772,
+      "sha256": "c54449e2a61bc77db22255d2e6f86f552a17e3b8f55c7e4cd819392b051a55d8",
+      "octets": 53772,
+      "compression": null
+    },
+    "essais/n32-f40-decimal_controle-passage3/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage3/resultat.json",
+      "source_sha256": "1d75834010e42cef334442190bb2139e23dab1fe50c100381d04a0d5425ba782",
+      "source_octets": 1243811,
+      "sha256": "574f8196dfcda6369704f4184dbd8545ccde56f9b917d7271301d17aef9ac575",
+      "octets": 300826,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage3.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage3.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-decimal_controle-passage3.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage3.terminal.json",
+      "source_sha256": "86490dcdf597a43830eb31617f631e8cb6d4e7616cc685e473420e249ad4245d",
+      "source_octets": 598,
+      "sha256": "4faf0dc489546ecfe325954d779e8176da80ce2d253cc99ce0995300efe5ed4b",
+      "octets": 319,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage0/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage0/resultat.json",
+      "source_sha256": "1d4bf3824a4a2f1cfa456148f4f283db15e1dbc7fc26e5f4c219ae7b8169f1bc",
+      "source_octets": 323585,
+      "sha256": "467092e15d4787746e90a5ffe25f79c5e68e9bdaab3d7f0d57cc290d039d3d60",
+      "octets": 92975,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage0/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage0/temoin-brut.json",
+      "source_sha256": "f081263257bcc8a91e0a36ffa7fdf6a4d4ab0368fe8a696afe8729416bb666c7",
+      "source_octets": 291437,
+      "sha256": "6e0668f5d60ed9e07abd34ffaf802ee7b43d66674d609c4d8c4e7792f11046d1",
+      "octets": 82239,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage0.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage0.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage0.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage0.terminal.json",
+      "source_sha256": "9e864e1a9d1eb91cd636647f6d587768934d37051c9c0f2a8d253f04a852afe3",
+      "source_octets": 589,
+      "sha256": "58475b9ebc88e756c678817885dc42debc5400ebcb20484ba1d326fb6cca47db",
+      "octets": 316,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage1/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage1/resultat.json",
+      "source_sha256": "f64f5b6affd64dd648e0589fd9066204778cca8150eb43ad2b05cf0070f79fe7",
+      "source_octets": 323587,
+      "sha256": "b8d61c2916c341cbe94bfe4b9176797ff5b4707af5c185e31e3987ca17274395",
+      "octets": 92980,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage1/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage1/temoin-brut.json",
+      "source_sha256": "1b5f905be6215bb5f827cd6365f0d8036aa4ed567131f098a99bfbe7472a1016",
+      "source_octets": 291439,
+      "sha256": "172cb2c265cbd56f6039297dfb23718a233540021f8516c8a198d6a097e7a754",
+      "octets": 82243,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage1.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage1.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage1.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage1.terminal.json",
+      "source_sha256": "e93ec57ffc5fce7c8a10c8b848b27c02fd855fea237becc2b7949a744a9d374a",
+      "source_octets": 589,
+      "sha256": "563d7e55514d4515276f3eca7bc7d68b29b6cc8772e924b8e00f0aac0e146577",
+      "octets": 314,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage2/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage2/resultat.json",
+      "source_sha256": "21657bdcd05b64c8d30182387c33fe236212a282ee34b499ea8bfffb9b43d7dc",
+      "source_octets": 323588,
+      "sha256": "3c0b1af83495221fc03b964dfd9238e594bfd21dedb7704a14814566a0a4a022",
+      "octets": 92971,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage2/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage2/temoin-brut.json",
+      "source_sha256": "b526db0915a26447845f0ee48ec375098da763a439ccd0c14384459a3e69ca3f",
+      "source_octets": 291440,
+      "sha256": "3510cc4c4863990575ee58d9636e646b483b6e25c93ff9fcb43d6384865e09b0",
+      "octets": 82232,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage2.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage2.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage2.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage2.terminal.json",
+      "source_sha256": "1ba47aaa8a14188b3d71e2b3e69541656009156c0e173e60370d06862274dc7c",
+      "source_octets": 589,
+      "sha256": "0831d48c7935d7928e272c39e3bec89ef7d76a02a2dc7062a9262a340ab9a166",
+      "octets": 315,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage3/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage3/resultat.json",
+      "source_sha256": "10dd84e460514ff51bfec3e1fd021ef121bfae8ef2f408531a82c90acc5d72a0",
+      "source_octets": 323588,
+      "sha256": "ebe941c74127256fc4856b733b1bb3bb9ed154acf13931868bfa5fc952889e00",
+      "octets": 92978,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage3/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage3/temoin-brut.json",
+      "source_sha256": "a8c91af78752a6cc1e2e99c0c3a3f6fd4e41760220af89ceb64bceaa69250e65",
+      "source_octets": 291440,
+      "sha256": "91fa7e0948f9148671cb356df5055ddfd71dce82c6ef9b088e335e858cf88aae",
+      "octets": 82241,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage3.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage3.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n32-f40-lu_corrigee-passage3.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage3.terminal.json",
+      "source_sha256": "966be649d8514b558f05518358b8ac8e00b78c82dfa1bb250a2375f3efd217f4",
+      "source_octets": 589,
+      "sha256": "0fb0a83ef411c3ddcb05e2e198c262d493c26b769ba52df540445f457b1423b0",
+      "octets": 315,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage0/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage0/bases.npz",
+      "source_sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "source_octets": 1101752,
+      "sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "octets": 1101752,
+      "compression": null
+    },
+    "essais/n512-f40-binaire_controle-passage0/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage0/resultat.json",
+      "source_sha256": "deb290b6b311e050785aec0bdc1c40c6ae667e3e153782642ba1be54c3581575",
+      "source_octets": 1993137,
+      "sha256": "418546ac29c3cc4f2483b1121867238f4cbf35e763d7554efc082aae6a3d05c1",
+      "octets": 315596,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage0.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage0.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage0.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage0.terminal.json",
+      "source_sha256": "56478a889132856fad6bf470c723831d16fe8b502aa8c0bc83fe1e6e3ce7f82c",
+      "source_octets": 603,
+      "sha256": "3862377cd836600995ba325d21bd204da905b939c818fc0235c3d905eaef9cef",
+      "octets": 319,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage1/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage1/bases.npz",
+      "source_sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "source_octets": 1101752,
+      "sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "octets": 1101752,
+      "compression": null
+    },
+    "essais/n512-f40-binaire_controle-passage1/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage1/resultat.json",
+      "source_sha256": "baf4f78569a817d8e933d4609b1054136eb93ad965afbf3c9f33008f4502be97",
+      "source_octets": 1993136,
+      "sha256": "958fc5500565f4aaf09aeb7ecce58cf6f2ebdd8e65065840bee66ae8a04915f4",
+      "octets": 315593,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage1.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage1.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage1.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage1.terminal.json",
+      "source_sha256": "72d25d168781c4bfe630407a1c18f2548fa5feb9c9327844d0c8535df58ef8f9",
+      "source_octets": 602,
+      "sha256": "fb066d1330e4b0ff36b007e1908469b58cbce3e9801f300da594df1366ab9692",
+      "octets": 319,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage2/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage2/bases.npz",
+      "source_sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "source_octets": 1101752,
+      "sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "octets": 1101752,
+      "compression": null
+    },
+    "essais/n512-f40-binaire_controle-passage2/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage2/resultat.json",
+      "source_sha256": "471b3c562c7097a81b7f8f19284fb58cb9cc98be135ae50c02eeca85388e2412",
+      "source_octets": 1993149,
+      "sha256": "c9d1e2ed46c510ca861ad80f63c08ab1874524df73a1cc1767eacffb31307219",
+      "octets": 315596,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage2.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage2.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage2.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage2.terminal.json",
+      "source_sha256": "bf130272d251555007e465ea98abf1a9e4dbb4c787e63a3fe424caa30f7c13de",
+      "source_octets": 602,
+      "sha256": "e45d1d51618297a7f4df115ce5110823df47b8483a62fad6d681de82069c6669",
+      "octets": 318,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage3/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage3/bases.npz",
+      "source_sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "source_octets": 1101752,
+      "sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "octets": 1101752,
+      "compression": null
+    },
+    "essais/n512-f40-binaire_controle-passage3/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage3/resultat.json",
+      "source_sha256": "c6ee8f45e2a0d55306180c945807c22c3f99258410ef7f5c7f44c06cdb989fa1",
+      "source_octets": 1993140,
+      "sha256": "daead5c773a17f9521f15f8030af880a6b1266de6679239949d47396f77fe15b",
+      "octets": 315597,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage3.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage3.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-binaire_controle-passage3.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage3.terminal.json",
+      "source_sha256": "acde31d4c154e79195e9df23a397269a7437fe0b41f9b31c9bf06154380d0461",
+      "source_octets": 603,
+      "sha256": "ef2ef7d98ab28bf1f59f05be6588b9dc185da8afbc024993a67b30d871e2ad1c",
+      "octets": 320,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage0/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage0/bases.npz",
+      "source_sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "source_octets": 1101752,
+      "sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "octets": 1101752,
+      "compression": null
+    },
+    "essais/n512-f40-decimal_controle-passage0/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage0/resultat.json",
+      "source_sha256": "bf0537726c59eeddf83f2ec81c7a8635c9015f89e2317425b7699445e783d7eb",
+      "source_octets": 2066110,
+      "sha256": "eed6314d28ef9e933f95b056206ea1cca0b970ff0f208661fdf4ef282be50935",
+      "octets": 393288,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage0.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage0.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage0.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage0.terminal.json",
+      "source_sha256": "508d8485fae8d1288eb42470e494d1037a346cdcf3cb8762d680fb1c7b6444de",
+      "source_octets": 602,
+      "sha256": "f88cacb4708d58923e67439d91cfb49353d71554110dc968544c36d5a76f29ac",
+      "octets": 320,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage1/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage1/bases.npz",
+      "source_sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "source_octets": 1101752,
+      "sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "octets": 1101752,
+      "compression": null
+    },
+    "essais/n512-f40-decimal_controle-passage1/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage1/resultat.json",
+      "source_sha256": "118694da7db4abd1d229434da722775b652581f5cec55668e7b55f0f6c378807",
+      "source_octets": 2066111,
+      "sha256": "7e3d362956300e6d8908f8f346e698052b6242c09faedb33cf2680f4d956f4ef",
+      "octets": 393280,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage1.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage1.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage1.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage1.terminal.json",
+      "source_sha256": "5a5e4fe44e06df1176b747ecb09ce0fe58e52ce77742b8905275cc6a66a3bc37",
+      "source_octets": 603,
+      "sha256": "55a8d81a98f62189436dcd5bf58dd8929abb83782ed1e1381fd906a4781bb0f3",
+      "octets": 323,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage2/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage2/bases.npz",
+      "source_sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "source_octets": 1101752,
+      "sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "octets": 1101752,
+      "compression": null
+    },
+    "essais/n512-f40-decimal_controle-passage2/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage2/resultat.json",
+      "source_sha256": "8a7832b9920dc3e36662e61cb5207b7d2efdd247b2ec190b76121531339160f2",
+      "source_octets": 2066111,
+      "sha256": "84a62263e7cf36e04bd4df8e6304940191b6ce5c0de7b962e524df7ca4772886",
+      "octets": 393279,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage2.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage2.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage2.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage2.terminal.json",
+      "source_sha256": "0fd585c7a3acebb8c4eaab1e034c8131766908794a74898c58247fc0a1e1d849",
+      "source_octets": 603,
+      "sha256": "f89b72cc4f473e696c7c2f22176f486510ba0c3259751d14c465496bb849c4ff",
+      "octets": 322,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage3/bases.npz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage3/bases.npz",
+      "source_sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "source_octets": 1101752,
+      "sha256": "0bc28f275f98e97839f3c48b1258a2ba78191dcf0c7cadfb52a79d228de01d06",
+      "octets": 1101752,
+      "compression": null
+    },
+    "essais/n512-f40-decimal_controle-passage3/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage3/resultat.json",
+      "source_sha256": "3ba8831564fd7c7d6c0d04a30c727473c59c96d9417d1fcaf004f81efbb1c93d",
+      "source_octets": 2066112,
+      "sha256": "8a01c93e09dead8cceb343abb2e497a3caad68a3da885a64d8bab718d500c288",
+      "octets": 393284,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage3.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage3.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-decimal_controle-passage3.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage3.terminal.json",
+      "source_sha256": "d97f2413527a32c9f8df7f631bdc7ac77618ae737bc5f91bdab296d686ab40c1",
+      "source_octets": 603,
+      "sha256": "ac32619ba3e4f6af54c87e4211cdfe685b8199a2b998cea885f59f03cee7fa81",
+      "octets": 323,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage0/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage0/resultat.json",
+      "source_sha256": "55d6280b74606439ff0993c8103e1a5dba521977cd37ecd6ab2277eed0dd4551",
+      "source_octets": 324112,
+      "sha256": "7cd732c05fc56b760bbd09dbf7417ce5b9cf6b7676d625cdb5a54ea67791d6e4",
+      "octets": 93404,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage0/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage0/temoin-brut.json",
+      "source_sha256": "d18ebe67b7fba43124299a61f4a384fe5040c3ee0227d0f7f9023c258a5421bb",
+      "source_octets": 291962,
+      "sha256": "a119fdbb40fe8c2e2692d708488eb77468a21eeedab6418730d1cf2b1a4ce817",
+      "octets": 82691,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage0.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage0.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage0.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage0.terminal.json",
+      "source_sha256": "30893467e38102da928136799e40e4c323b74a91f8360b08c52a540385cdd080",
+      "source_octets": 593,
+      "sha256": "12d972070c1ebedb769fe78881a3d9e757684accec5e9d4c986145ee97b274b5",
+      "octets": 317,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage1/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage1/resultat.json",
+      "source_sha256": "4e4aed05a2b94edbb0d7e80aa92bb6bdb598faf8a50c079a073cc85d19dfd75f",
+      "source_octets": 324112,
+      "sha256": "e601e5b3fc193c963690b8f83861a20ff04ffb90a387a134008b2754efc3f54f",
+      "octets": 93401,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage1/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage1/temoin-brut.json",
+      "source_sha256": "ee562c89567cbd31df087403f5dc4885ba600dfa7f48b61ddaf2148b92f74a5a",
+      "source_octets": 291962,
+      "sha256": "5ad71feb857167f1d8d91ec847e327ce5fc603872b0daca099e8172344c6f105",
+      "octets": 82689,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage1.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage1.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage1.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage1.terminal.json",
+      "source_sha256": "121fe2a809e8e51c5ccb64ea4fd570645430e4f79494497d525a41319df2d757",
+      "source_octets": 593,
+      "sha256": "abdb0bf9b2f045a35ef71eb11a2a70b07cbadb1c25ef9e6790b4e43df99905cb",
+      "octets": 316,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage2/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage2/resultat.json",
+      "source_sha256": "18c1bba0f8c4001133f8726b6bd7ff7e0225a259642f92c1aa59ed0ab5ed013d",
+      "source_octets": 324112,
+      "sha256": "3d07998fa7edd64d85f5665e763a6e6bbb55649faa1a0da542b23a485ee09499",
+      "octets": 93409,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage2/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage2/temoin-brut.json",
+      "source_sha256": "2cc064ab7a351012f33487a3741792b7d92db2c235c8167e117abfca2b46d82f",
+      "source_octets": 291962,
+      "sha256": "b8f121377bd879dd7877e319f7c78cbdefbe67104a63ee96d4f0fd3fded95dd7",
+      "octets": 82694,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage2.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage2.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage2.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage2.terminal.json",
+      "source_sha256": "7124ccf5baff5268e76e4c7e612a53737120596bc71fccf5a2c31ca455377c5c",
+      "source_octets": 593,
+      "sha256": "79af987cd757fd7e56c377055478a8bf4a2c4d5ace0ef6070959121a64c41c17",
+      "octets": 317,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage3/resultat.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage3/resultat.json",
+      "source_sha256": "68b6eef70afe7b23c083db0534ba7cd3603655757dc9a263a7a45d097a297984",
+      "source_octets": 324112,
+      "sha256": "da3327e3d164961ad406c2236f29695f5fca6c40bc638c46ef07a243afcdf607",
+      "octets": 93403,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage3/temoin-brut.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage3/temoin-brut.json",
+      "source_sha256": "31222995a671fcee6daa7c600c1b49daaa4561ba2f3bd8ef59020efc6c6d4d9a",
+      "source_octets": 291962,
+      "sha256": "96d74276e950c6ffd49b8c0a7f4c1b3f7755bc2569447605645041f6b5688daf",
+      "octets": 82691,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage3.log.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage3.log",
+      "source_sha256": "9a49b6cb78da44cca646d941fc4aad5b9329ca6fe822a0b67443e56cc963cb6b",
+      "source_octets": 420,
+      "sha256": "650adb58eb682f19bb2b0ece1b005580fbc9fd6696d2933100b1d0dbc4b3362a",
+      "octets": 188,
+      "compression": "gzip"
+    },
+    "essais/n512-f40-lu_corrigee-passage3.terminal.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage3.terminal.json",
+      "source_sha256": "ddb76a346ad087463c70f32c4d25fd8479d8754aef760dd495b44cb71f89cf99",
+      "source_octets": 593,
+      "sha256": "3b96b72ee827173b13a460e1595cc46508ffe24b0651500ce6c27e16dbd6ac81",
+      "octets": 315,
+      "compression": "gzip"
+    },
+    "manifest.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/manifest.json",
+      "source_sha256": "517cc299d6a7692c9409a11f4d4a2f5c3d1947b59109a6d273cc552a9ac48fc3",
+      "source_octets": 26562,
+      "sha256": "3809a0aca9a29026abf193b900f86dd6e6c7acdae5801b8ad76795e446b29967",
+      "octets": 6429,
+      "compression": "gzip"
+    },
+    "rapport.json.gz": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/rapport.json",
+      "source_sha256": "3d6794fae331a87db7cc711611e88151f029727aa96e37d3e3363a159e85c13e",
+      "source_octets": 51106166,
+      "sha256": "375e48a8a6590c1f1d328a7df379f37ef51a97738ab42ec52e6747ed47d94729",
+      "octets": 8976662,
+      "compression": "gzip"
+    },
+    "sources/condensation_energie.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/condensation_energie.py",
+      "source_sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "source_octets": 209,
+      "sha256": "d12e66b1e26cdfd4c84e7036c47f01511008a2efdba2e47f9cdb1b2064cea489",
+      "octets": 209,
+      "compression": null
+    },
+    "sources/confronte_ports_exudyn.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/confronte_ports_exudyn.py",
+      "source_sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "source_octets": 34295,
+      "sha256": "d6c92a32d9265bbc9e7852a4baf04c6a78bf997db836658b44ce857069a18c2b",
+      "octets": 34295,
+      "compression": null
+    },
+    "sources/controle_complement.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/controle_complement.py",
+      "source_sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "source_octets": 10091,
+      "sha256": "a5addeff50d6829e9dc57b1994d2e8c7582a027e70e651706b5aac5d64bc52b6",
+      "octets": 10091,
+      "compression": null
+    },
+    "sources/controle_facteurs.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/controle_facteurs.py",
+      "source_sha256": "fed375d6b120df072d056a7029e84916dd666ab8bbfc926b3ccae849dd769bbe",
+      "source_octets": 13895,
+      "sha256": "fed375d6b120df072d056a7029e84916dd666ab8bbfc926b3ccae849dd769bbe",
+      "octets": 13895,
+      "compression": null
+    },
+    "sources/experience_controle_facteurs.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/experience_controle_facteurs.py",
+      "source_sha256": "508efe7f731cfd3c368229b62706b16e32456ae22ae881571e0ad6a3a1f30a7b",
+      "source_octets": 53030,
+      "sha256": "508efe7f731cfd3c368229b62706b16e32456ae22ae881571e0ad6a3a1f30a7b",
+      "octets": 53030,
+      "compression": null
+    },
+    "sources/experience_inertie_binaire.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/experience_inertie_binaire.py",
+      "source_sha256": "f0390a5c92d82d3cef4c14d6264f80f1b777cf453710737f48eadc4a368d7d1a",
+      "source_octets": 34829,
+      "sha256": "f0390a5c92d82d3cef4c14d6264f80f1b777cf453710737f48eadc4a368d7d1a",
+      "octets": 34829,
+      "compression": null
+    },
+    "sources/experience_inertie_contrainte.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/experience_inertie_contrainte.py",
+      "source_sha256": "046ddb048e6755daf2da6032ed3cb8060eae277b28366ae88bb837e253d1622b",
+      "source_octets": 50068,
+      "sha256": "046ddb048e6755daf2da6032ed3cb8060eae277b28366ae88bb837e253d1622b",
+      "octets": 50068,
+      "compression": null
+    },
+    "sources/experience_krylov_contraint.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/experience_krylov_contraint.py",
+      "source_sha256": "eca0ad55fcc208fa16e5b9a701be34782f79f318040544b1c415a296ba4f744e",
+      "source_octets": 45111,
+      "sha256": "eca0ad55fcc208fa16e5b9a701be34782f79f318040544b1c415a296ba4f744e",
+      "octets": 45111,
+      "compression": null
+    },
+    "sources/experience_reduction_native.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/experience_reduction_native.py",
+      "source_sha256": "80b97a8be33bd479167a050da12115cac03894fb92880159557ae3271c84d6b2",
+      "source_octets": 22606,
+      "sha256": "80b97a8be33bd479167a050da12115cac03894fb92880159557ae3271c84d6b2",
+      "octets": 22606,
+      "compression": null
+    },
+    "sources/inertie_binaire_compile.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/inertie_binaire_compile.py",
+      "source_sha256": "e2de99dc1fd968fe196a72c82ce5c75bddf8fc7344271dcc755a24108bff1b05",
+      "source_octets": 8595,
+      "sha256": "e2de99dc1fd968fe196a72c82ce5c75bddf8fc7344271dcc755a24108bff1b05",
+      "octets": 8595,
+      "compression": null
+    },
+    "sources/inertie_binaire_native.cpp": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/inertie_binaire_native.cpp",
+      "source_sha256": "4ac5ac53dd8cbd61a99cc0d00daf2dddbcc5b9f13f3f845657f6e75c57c24d62",
+      "source_octets": 11460,
+      "sha256": "4ac5ac53dd8cbd61a99cc0d00daf2dddbcc5b9f13f3f845657f6e75c57c24d62",
+      "octets": 11460,
+      "compression": null
+    },
+    "sources/inertie_complement_dirigee.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/inertie_complement_dirigee.py",
+      "source_sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "source_octets": 13407,
+      "sha256": "9b8a00a1af131ab99a0870838378794c0628d9aec2fa0fbfe6e2da5836d23274",
+      "octets": 13407,
+      "compression": null
+    },
+    "sources/inverse_contrainte_energie.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/inverse_contrainte_energie.py",
+      "source_sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "source_octets": 8959,
+      "sha256": "78bfc0327e7fe6c3539fdd7409501b4aee5015a1e7d1c4d32d3c90a19526442f",
+      "octets": 8959,
+      "compression": null
+    },
+    "sources/krylov_contraint.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/krylov_contraint.py",
+      "source_sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "source_octets": 9990,
+      "sha256": "0e425b387b40027e7b343b05e38bfda35b743b9c5c22ba2601d2f2e88241aef9",
+      "octets": 9990,
+      "compression": null
+    },
+    "sources/matrices_certificat.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/matrices_certificat.py",
+      "source_sha256": "19180a1156261b717405bbccb738e647b678f9b485715ee871450684f2847c6c",
+      "source_octets": 1410,
+      "sha256": "19180a1156261b717405bbccb738e647b678f9b485715ee871450684f2847c6c",
+      "octets": 1410,
+      "compression": null
+    },
+    "sources/oracle_champs_ports.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/oracle_champs_ports.py",
+      "source_sha256": "a82d949aad75545ed07644a985cbb809e1ff26402edc572a452c545b803d13b7",
+      "source_octets": 10199,
+      "sha256": "a82d949aad75545ed07644a985cbb809e1ff26402edc572a452c545b803d13b7",
+      "octets": 10199,
+      "compression": null
+    },
+    "sources/ordre_separateurs.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/ordre_separateurs.py",
+      "source_sha256": "217b137a1b08c379681a74a3dd9a0d700bbe463c8939ffe991a5e20080f844a9",
+      "source_octets": 2196,
+      "sha256": "217b137a1b08c379681a74a3dd9a0d700bbe463c8939ffe991a5e20080f844a9",
+      "octets": 2196,
+      "compression": null
+    },
+    "sources/racine_masse_blocs.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/racine_masse_blocs.py",
+      "source_sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "source_octets": 7424,
+      "sha256": "f994f86a9f0de20cfd7ec438893f9f135e0c4805e8f07c7664a547aeada32c6e",
+      "octets": 7424,
+      "compression": null
+    },
+    "sources/reference_hcb_exudyn.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/reference_hcb_exudyn.py",
+      "source_sha256": "0b22511d4dca51e8cfccc29c295b443838473b7d6f1ee126347f79c3af4918e3",
+      "source_octets": 13893,
+      "sha256": "0b22511d4dca51e8cfccc29c295b443838473b7d6f1ee126347f79c3af4918e3",
+      "octets": 13893,
+      "compression": null
+    },
+    "sources/reference_ports_precision.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/reference_ports_precision.py",
+      "source_sha256": "4fb36d49bae345b7bdc7cddfd541279df285564c1d0618d2f7f5e91dbf71a41c",
+      "source_octets": 12052,
+      "sha256": "4fb36d49bae345b7bdc7cddfd541279df285564c1d0618d2f7f5e91dbf71a41c",
+      "octets": 12052,
+      "compression": null
+    },
+    "sources/trace_complement_dirigee.py": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/sources/trace_complement_dirigee.py",
+      "source_sha256": "ebbdd7b727ea93df6acb583ca68251d504e9d70a812354deeb688ba84f8cb8f3",
+      "source_octets": 8497,
+      "sha256": "ebbdd7b727ea93df6acb583ca68251d504e9d70a812354deeb688ba84f8cb8f3",
+      "octets": 8497,
+      "compression": null
+    },
+    "README.md": {
+      "sha256": "f248f95fa87d1cf73c0f009d7169c341bb35098238de65f7fbeff4413bb9e686",
+      "octets": 1952,
+      "compression": null
+    }
+  },
+  "exclus_npy": {
+    "essais/n128-f40-binaire_controle-passage0/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage0/champs.npy",
+      "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+      "source_octets": 9474176
+    },
+    "essais/n128-f40-binaire_controle-passage1/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage1/champs.npy",
+      "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+      "source_octets": 9474176
+    },
+    "essais/n128-f40-binaire_controle-passage2/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage2/champs.npy",
+      "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+      "source_octets": 9474176
+    },
+    "essais/n128-f40-binaire_controle-passage3/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-binaire_controle-passage3/champs.npy",
+      "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+      "source_octets": 9474176
+    },
+    "essais/n128-f40-decimal_controle-passage0/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage0/champs.npy",
+      "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+      "source_octets": 9474176
+    },
+    "essais/n128-f40-decimal_controle-passage1/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage1/champs.npy",
+      "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+      "source_octets": 9474176
+    },
+    "essais/n128-f40-decimal_controle-passage2/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage2/champs.npy",
+      "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+      "source_octets": 9474176
+    },
+    "essais/n128-f40-decimal_controle-passage3/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-decimal_controle-passage3/champs.npy",
+      "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+      "source_octets": 9474176
+    },
+    "essais/n128-f40-lu_corrigee-passage0/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage0/champs.npy",
+      "source_sha256": "8fbdf3c5c8ec602f553f1174fdcd3e6be9912bca01d9f8e334bd3ff61197d729",
+      "source_octets": 9474176
+    },
+    "essais/n128-f40-lu_corrigee-passage1/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage1/champs.npy",
+      "source_sha256": "8fbdf3c5c8ec602f553f1174fdcd3e6be9912bca01d9f8e334bd3ff61197d729",
+      "source_octets": 9474176
+    },
+    "essais/n128-f40-lu_corrigee-passage2/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage2/champs.npy",
+      "source_sha256": "8fbdf3c5c8ec602f553f1174fdcd3e6be9912bca01d9f8e334bd3ff61197d729",
+      "source_octets": 9474176
+    },
+    "essais/n128-f40-lu_corrigee-passage3/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n128-f40-lu_corrigee-passage3/champs.npy",
+      "source_sha256": "8fbdf3c5c8ec602f553f1174fdcd3e6be9912bca01d9f8e334bd3ff61197d729",
+      "source_octets": 9474176
+    },
+    "essais/n32-f40-binaire_controle-passage0/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage0/champs.npy",
+      "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+      "source_octets": 2368640
+    },
+    "essais/n32-f40-binaire_controle-passage1/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage1/champs.npy",
+      "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+      "source_octets": 2368640
+    },
+    "essais/n32-f40-binaire_controle-passage2/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage2/champs.npy",
+      "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+      "source_octets": 2368640
+    },
+    "essais/n32-f40-binaire_controle-passage3/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-binaire_controle-passage3/champs.npy",
+      "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+      "source_octets": 2368640
+    },
+    "essais/n32-f40-decimal_controle-passage0/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage0/champs.npy",
+      "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+      "source_octets": 2368640
+    },
+    "essais/n32-f40-decimal_controle-passage1/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage1/champs.npy",
+      "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+      "source_octets": 2368640
+    },
+    "essais/n32-f40-decimal_controle-passage2/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage2/champs.npy",
+      "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+      "source_octets": 2368640
+    },
+    "essais/n32-f40-decimal_controle-passage3/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-decimal_controle-passage3/champs.npy",
+      "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+      "source_octets": 2368640
+    },
+    "essais/n32-f40-lu_corrigee-passage0/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage0/champs.npy",
+      "source_sha256": "a259311924e358cb66dee306c268fac4f45549d314d4c1a05f1ff49c6172ad05",
+      "source_octets": 2368640
+    },
+    "essais/n32-f40-lu_corrigee-passage1/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage1/champs.npy",
+      "source_sha256": "a259311924e358cb66dee306c268fac4f45549d314d4c1a05f1ff49c6172ad05",
+      "source_octets": 2368640
+    },
+    "essais/n32-f40-lu_corrigee-passage2/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage2/champs.npy",
+      "source_sha256": "a259311924e358cb66dee306c268fac4f45549d314d4c1a05f1ff49c6172ad05",
+      "source_octets": 2368640
+    },
+    "essais/n32-f40-lu_corrigee-passage3/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n32-f40-lu_corrigee-passage3/champs.npy",
+      "source_sha256": "a259311924e358cb66dee306c268fac4f45549d314d4c1a05f1ff49c6172ad05",
+      "source_octets": 2368640
+    },
+    "essais/n512-f40-binaire_controle-passage0/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage0/champs.npy",
+      "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+      "source_octets": 37896320
+    },
+    "essais/n512-f40-binaire_controle-passage1/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage1/champs.npy",
+      "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+      "source_octets": 37896320
+    },
+    "essais/n512-f40-binaire_controle-passage2/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage2/champs.npy",
+      "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+      "source_octets": 37896320
+    },
+    "essais/n512-f40-binaire_controle-passage3/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-binaire_controle-passage3/champs.npy",
+      "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+      "source_octets": 37896320
+    },
+    "essais/n512-f40-decimal_controle-passage0/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage0/champs.npy",
+      "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+      "source_octets": 37896320
+    },
+    "essais/n512-f40-decimal_controle-passage1/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage1/champs.npy",
+      "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+      "source_octets": 37896320
+    },
+    "essais/n512-f40-decimal_controle-passage2/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage2/champs.npy",
+      "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+      "source_octets": 37896320
+    },
+    "essais/n512-f40-decimal_controle-passage3/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-decimal_controle-passage3/champs.npy",
+      "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+      "source_octets": 37896320
+    },
+    "essais/n512-f40-lu_corrigee-passage0/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage0/champs.npy",
+      "source_sha256": "aab9ebb60da72fbda553e127954bf3efd0681cebee8bf934408c481f964c2378",
+      "source_octets": 37896320
+    },
+    "essais/n512-f40-lu_corrigee-passage1/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage1/champs.npy",
+      "source_sha256": "aab9ebb60da72fbda553e127954bf3efd0681cebee8bf934408c481f964c2378",
+      "source_octets": 37896320
+    },
+    "essais/n512-f40-lu_corrigee-passage2/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage2/champs.npy",
+      "source_sha256": "aab9ebb60da72fbda553e127954bf3efd0681cebee8bf934408c481f964c2378",
+      "source_octets": 37896320
+    },
+    "essais/n512-f40-lu_corrigee-passage3/champs.npy": {
+      "source": "/tmp/vinkulum-campagne-inertie-binaire-2026/essais/n512-f40-lu_corrigee-passage3/champs.npy",
+      "source_sha256": "aab9ebb60da72fbda553e127954bf3efd0681cebee8bf934408c481f964c2378",
+      "source_octets": 37896320
+    }
+  }
+}

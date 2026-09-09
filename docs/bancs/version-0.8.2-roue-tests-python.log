@@ -1,0 +1,8 @@
+................/tmp/vinkulum-release-0.8.2/venv/lib/python3.14/site-packages/vinkulum/urdf.py:124: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/vinkulum-release-0.8.2/venv/lib/python3.14/site-packages/vinkulum/donnees/urdfs/cartpole.urdf'>
+  src = open(chemin, "rb").read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..............................................................
+----------------------------------------------------------------------
+Ran 78 tests in 3.035s
+
+OK

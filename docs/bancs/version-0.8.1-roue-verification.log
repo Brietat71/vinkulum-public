@@ -1,0 +1,45 @@
+╔═ vérification : 41 cas, 8 processus, 64 CPU au total
+║ journaux : /tmp/vinkulum-campagne-gx44y0xp
+║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés
+║ OK    robustesse — 0.37 s
+║ OK    validation_scores — 0.37 s
+║ OK    convergence — 0.47 s
+║ OK    amortissement — 0.52 s
+║ OK    assemblage — 0.57 s
+║ OK    superelement — 0.42 s
+║ OK    bennett — 0.42 s
+║ OK    vis_ecrou — 0.57 s
+║ OK    toupie — 1.12 s
+║ OK    liaisons_unilaterales — 0.82 s
+║ OK    determinisme — 1.42 s
+║ OK    six_barres — 0.77 s
+║ OK    invariance_unites — 0.57 s
+║ OK    srscm — 2.42 s
+║ OK    _regressions — 3.47 s
+║ OK    lateral_buckling — 2.62 s
+║ OK    modeles_mal_poses — 0.36 s
+║ OK    non_holonome — 0.36 s
+║ OK    quatre_barres_flexible — 2.47 s
+║ OK    treillis_de_boucles — 2.42 s
+║ OK    coulomb_pente — 0.72 s
+║ OK    lecteurs_casses — 0.46 s
+║ OK    sparsite — 0.47 s
+║ OK    gyroscopique_tangent — 0.36 s
+║ OK    audit_jacobien — 0.36 s
+║ OK    trim.demo — 0.16 s
+║ OK    invariances — 1.77 s
+║ OK    reduction.demo — 0.26 s
+║ OK    arbre_tournant — 4.22 s
+║ OK    accords — 1.57 s
+║ OK    floquet.demo — 0.82 s
+║ OK    urdf.demo — 0.87 s
+║ OK    campagne.demo — 0.41 s
+║ OK    mjcf.demo — 0.82 s
+║ OK    domaines.demo — 0.62 s
+║ OK    convergence.demo — 1.62 s
+║ OK    adjoint_temps.demo — 4.37 s
+║ OK    statique — 15.44 s
+║ OK    kapitza — 19.65 s
+║ OK    echelle — 3.08 s
+║ OK    refus_gardes — 0.36 s
+╚ vérification OK — 41/41 cas, 23.66 s

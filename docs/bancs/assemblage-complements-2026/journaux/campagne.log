@@ -1,0 +1,24 @@
+n32-assemblage_controle-p0 termine True [True, True] 0.41666374704800546 None
+n32-lu_corrigee-p0 termine True None 0.3161281240172684 None
+n128-assemblage_controle-p0 termine True [True, True] 0.6597327969502658 None
+n128-lu_corrigee-p0 termine True None 0.7124176269862801 None
+n512-assemblage_controle-p0 termine True [True, True] 1.669073163997382 None
+n512-lu_corrigee-p0 termine True None 2.312659274088219 None
+n32-assemblage_controle-p1 termine True [True, True] 0.4157271299045533 None
+n32-lu_corrigee-p1 termine True None 0.3143803379498422 None
+n128-assemblage_controle-p1 termine True [True, True] 0.6567930558230728 None
+n128-lu_corrigee-p1 termine True None 0.7235673458781093 None
+n512-assemblage_controle-p1 termine True [True, True] 1.6664330950006843 None
+n512-lu_corrigee-p1 termine True None 2.3081838628277183 None
+n32-assemblage_controle-p2 termine True [True, True] 0.4212856579106301 None
+n32-lu_corrigee-p2 termine True None 0.3205638090148568 None
+n128-assemblage_controle-p2 termine True [True, True] 0.6591527399141341 None
+n128-lu_corrigee-p2 termine True None 0.7221881139557809 None
+n512-assemblage_controle-p2 termine True [True, True] 1.6647095759399235 None
+n512-lu_corrigee-p2 termine True None 2.287576623959467 None
+n32-assemblage_controle-p3 termine True [True, True] 0.4209398780949414 None
+n32-lu_corrigee-p3 termine True None 0.31751509103924036 None
+n128-assemblage_controle-p3 termine True [True, True] 0.6568489328492433 None
+n128-lu_corrigee-p3 termine True None 0.7174985639285296 None
+n512-assemblage_controle-p3 termine True [True, True] 1.6513884719461203 None
+n512-lu_corrigee-p3 termine True None 2.2699215391185135 None

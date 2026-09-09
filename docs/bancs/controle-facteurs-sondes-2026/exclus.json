@@ -1,0 +1,218 @@
+{
+  "pilote-v1/n128-ancien/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n128-ancien/champs.npy",
+    "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+    "source_octets": 9474176,
+    "forme": [
+      257,
+      768,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v1/n128-gram/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n128-gram/champs.npy",
+    "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+    "source_octets": 9474176,
+    "forme": [
+      257,
+      768,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v1/n128-qr/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n128-qr/champs.npy",
+    "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+    "source_octets": 9474176,
+    "forme": [
+      257,
+      768,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v1/n32-ancien/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n32-ancien/champs.npy",
+    "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+    "source_octets": 2368640,
+    "forme": [
+      257,
+      192,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v1/n32-gram/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n32-gram/champs.npy",
+    "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+    "source_octets": 2368640,
+    "forme": [
+      257,
+      192,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v1/n32-qr/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n32-qr/champs.npy",
+    "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+    "source_octets": 2368640,
+    "forme": [
+      257,
+      192,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v1/n512-ancien/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n512-ancien/champs.npy",
+    "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+    "source_octets": 37896320,
+    "forme": [
+      257,
+      3072,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v1/n512-gram/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n512-gram/champs.npy",
+    "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+    "source_octets": 37896320,
+    "forme": [
+      257,
+      3072,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v1/n512-qr/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v1/n512-qr/champs.npy",
+    "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+    "source_octets": 37896320,
+    "forme": [
+      257,
+      3072,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v2/n128-ancien/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n128-ancien/champs.npy",
+    "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+    "source_octets": 9474176,
+    "forme": [
+      257,
+      768,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v2/n128-gram/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n128-gram/champs.npy",
+    "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+    "source_octets": 9474176,
+    "forme": [
+      257,
+      768,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v2/n128-qr/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n128-qr/champs.npy",
+    "source_sha256": "ea255d9fc4e942612ccb8790ef2dfffdd2ae6af03bddd9588c613eef681aa8c3",
+    "source_octets": 9474176,
+    "forme": [
+      257,
+      768,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v2/n32-ancien/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n32-ancien/champs.npy",
+    "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+    "source_octets": 2368640,
+    "forme": [
+      257,
+      192,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v2/n32-gram/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n32-gram/champs.npy",
+    "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+    "source_octets": 2368640,
+    "forme": [
+      257,
+      192,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v2/n32-qr/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n32-qr/champs.npy",
+    "source_sha256": "b95fabd5e49d5eff203c84852215a0513ec326db10dd399057a8c98e915b595a",
+    "source_octets": 2368640,
+    "forme": [
+      257,
+      192,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v2/n512-ancien/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n512-ancien/champs.npy",
+    "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+    "source_octets": 37896320,
+    "forme": [
+      257,
+      3072,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v2/n512-gram/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n512-gram/champs.npy",
+    "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+    "source_octets": 37896320,
+    "forme": [
+      257,
+      3072,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  },
+  "pilote-v2/n512-qr/champs.npy": {
+    "source_path": "/tmp/vinkulum-pilote-controle-facteurs-2026-v2/n512-qr/champs.npy",
+    "source_sha256": "e6941bcada351b1f4ea75f2a17301fbfcef4c6e964f868d0f49af61241ca3d50",
+    "source_octets": 37896320,
+    "forme": [
+      257,
+      3072,
+      6
+    ],
+    "dtype": "float64",
+    "motif": "grand champ disponible dans le dossier brut, non inclus dans Git"
+  }
+}

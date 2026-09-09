@@ -1,0 +1,72 @@
+{
+  "version": "0.16.0",
+  "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "paquet": "/tmp/vinkulum-0.16.0/isolated/lib/python3.14/site-packages/vinkulum",
+  "roue_sha256": "d0779d3b2d5e0bcaf11843697e1997daccbaed779a5c9c884b16f14a64823374",
+  "cas": {
+    "chaine-1": {
+      "sha256": "26812d6d731ee42505c14a63f72966bef89f17a3894e2c1216d421e6bc48b84b",
+      "schema": "vinkulum.lineaire.creux.1",
+      "dimension": 11,
+      "borne_erreur_inf": "0",
+      "verification_autonome": "Certificat lin\u00e9aire v\u00e9rifi\u00e9 : dimension 11, borne exacte 0."
+    },
+    "chaine-4": {
+      "sha256": "f1b86f19257a832ebf75e60a7c1ed485a3f5a0f7f7585db5ec959b7213a983f5",
+      "schema": "vinkulum.lineaire.creux.1",
+      "dimension": 44,
+      "borne_erreur_inf": "202042655359307432566568031780768939339/2993155353253689176481146537402947624255349848014848",
+      "verification_autonome": "Certificat lin\u00e9aire v\u00e9rifi\u00e9 : dimension 44, borne exacte 202042655359307432566568031780768939339/2993155353253689176481146537402947624255349848014848."
+    },
+    "chaine-16": {
+      "sha256": "b2993f5202296434fc3e0f4e5879d0c600669956cf90e03abaf8614fb3d6328c",
+      "schema": "vinkulum.lineaire.creux.1",
+      "dimension": 176,
+      "borne_erreur_inf": "3908068768857507941625873000939795653/2923003274661805836407369665432566039311865085952",
+      "verification_autonome": "Certificat lin\u00e9aire v\u00e9rifi\u00e9 : dimension 176, borne exacte 3908068768857507941625873000939795653/2923003274661805836407369665432566039311865085952."
+    },
+    "chaine-64": {
+      "sha256": "3723f1423f9e2f0836ae7d308a956e0f7b586e72c9742b8c0c2f9e6605a3d41d",
+      "schema": "vinkulum.lineaire.creux.1",
+      "dimension": 704,
+      "borne_erreur_inf": "51066609877628849484226816577609368159/91343852333181432387730302044767688728495783936",
+      "verification_autonome": "Certificat lin\u00e9aire v\u00e9rifi\u00e9 : dimension 704, borne exacte 51066609877628849484226816577609368159/91343852333181432387730302044767688728495783936."
+    },
+    "chaine-256": {
+      "sha256": "c3eab06e9cfd70067ac667c27998081208037f9b37bcdb8bf97e35b8a3aed766",
+      "schema": "vinkulum.lineaire.creux.1",
+      "dimension": 2816,
+      "borne_erreur_inf": "110547272420851890975311787919636151641/11417981541647679048466287755595961091061972992",
+      "verification_autonome": "Certificat lin\u00e9aire v\u00e9rifi\u00e9 : dimension 2816, borne exacte 110547272420851890975311787919636151641/11417981541647679048466287755595961091061972992."
+    },
+    "contributions": {
+      "sha256": "897cdd22b2dadc95ae577196f9e07d39c28e56d65b3c5eaec480a044c1ce04be",
+      "schema": "vinkulum.lineaire.creux.1",
+      "dimension": 1,
+      "borne_erreur_inf": "0",
+      "verification_autonome": "Certificat lin\u00e9aire v\u00e9rifi\u00e9 : dimension 1, borne exacte 0."
+    },
+    "structure-rang-1": {
+      "sha256": "fb125ff1fa47902dae654001337944c859f89e9bd338c204b4ec83302b48478f",
+      "schema": "vinkulum.quotient.structurel.1",
+      "dimension": 3,
+      "borne_erreur_inf": "340992768522026025076385753085910650931/21778071482940061661655974875633165533184",
+      "verification_autonome": "Certificat de quotient v\u00e9rifi\u00e9 : rang 1/3, borne du repr\u00e9sentant 340992768522026025076385753085910650931/21778071482940061661655974875633165533184."
+    },
+    "structure-rang-2": {
+      "sha256": "25b80ccb483f33fd10a008198499d06d67983fb4cf8cabb4ddf6cacec7c7daae",
+      "schema": "vinkulum.quotient.structurel.1",
+      "dimension": 5,
+      "borne_erreur_inf": "242044522188917562372638133509840449765/21778071482940061661655974875633165533184",
+      "verification_autonome": "Certificat de quotient v\u00e9rifi\u00e9 : rang 2/3, borne du repr\u00e9sentant 242044522188917562372638133509840449765/21778071482940061661655974875633165533184."
+    }
+  },
+  "modules_sha256": {
+    "_api_certification_creuse.py": "1f433e747b35af539c26468fe6b83b9752074166ed26ed9ac629214b6c1c1cbe",
+    "_certification_creuse.py": "4b023a082b30e242043b67de83f48436c77a44b41e85540e6812ca9f089910b8",
+    "_verification_creuse.py": "097b7ea48a2931ef4086616439c5e137af823377087e484260ff254de8d84d13",
+    "_verification_structurelle.py": "55cbe07a998d3f77ed8b8ddcdc2c8b533091f188f8b2e666f39e3a7666aab0a9",
+    "_verification_lineaire.py": "4d5ccda0544ab1297751e3ef2dd09016d1ccb05be7f664accb408f8dcef4ef36",
+    "certification.py": "fbb88f2206261c6a5d7a9be7005db931fb882e0233cb10ed2cc04d6430d53af0"
+  }
+}

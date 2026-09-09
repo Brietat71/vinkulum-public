@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "formulation": "integree",
+    "python": "3.14.7",
+    "extension_sha256": "1df8ee11aeab33c05c968af05912ace05561dfdf456623099db8c2d7a996725c",
+    "source_sha256": "f24b206ab8067766219edb7d6a95f37ff8556ab1f7572fd2ca4d79d815e9f5c9",
+    "sources_sha256": {
+      "src/lib.rs": "f24b206ab8067766219edb7d6a95f37ff8556ab1f7572fd2ca4d79d815e9f5c9",
+      "src/tangent.rs": "c2f305593c84c7f306c81ef925316c422a66377d9503bdab2b67c987d2e201af",
+      "ci/mesure_statique.py": "ae6fa921e5ac9aa9fc84a169b018462f9c853ba5f211a0261661cfab9eebf157",
+      "ci/confronte_mbdyn.py": "13faeb79201ff58d7668fcd5d202ebe5dbe5c983bc37698e26fe720ef47b1113"
+    }
+  },
+  "inputs_sha256": {
+    "milieu": "cb0502cc33a01e9fb912146fa06491d204818fd8d109418f7c21a3e17c8dbd0a",
+    "integree": "4a9119f5fe7d948c9a8e56e113d1195391870bf615107b687ebdcf305ee7da7e",
+    "diagnostic_milieu": "6896b361039e44a53a93e7ea9c9e46726ad255c5dae7fc57eea3b0f0ebee8472",
+    "diagnostic_integree": "6558c6660b87ab456eb0637aaf80b7714f89c29f8d6d03c45b7af169cb578712"
+  },
+  "maillages": {
+    "10": {
+      "reduction_erreur": 47.820106815089126,
+      "gain_temps": 0.986183340037795
+    },
+    "20": {
+      "reduction_erreur": 47.32870712847619,
+      "gain_temps": 1.0120022415355199
+    },
+    "40": {
+      "reduction_erreur": 47.20806217476679,
+      "gain_temps": 0.9706099376459821
+    },
+    "60": {
+      "reduction_erreur": 47.18730002599326,
+      "gain_temps": 0.9600161629402083
+    }
+  },
+  "checks": {
+    "fmt": "",
+    "clippy": "    Checking vinkulum v0.6.2 (/root/vinkulum)\n    Finished `release` profile [optimized] target(s) in 1.70s\n",
+    "rust": "\nrunning 25 tests\n.........................\ntest result: ok. 25 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+    "python": "...............................................\n----------------------------------------------------------------------\nRan 47 tests in 3.217s\n\nOK\n",
+    "verification": "╔═ vérification : 41 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-kjueeh4t\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    robustesse — 0.37 s\n║ OK    validation_scores — 0.37 s\n║ OK    assemblage — 0.37 s\n║ OK    amortissement — 0.52 s\n║ OK    convergence — 0.57 s\n║ OK    superelement — 0.36 s\n║ OK    toupie — 0.82 s\n║ OK    bennett — 0.37 s\n║ OK    vis_ecrou — 0.52 s\n║ OK    liaisons_unilaterales — 0.77 s\n║ OK    determinisme — 1.37 s\n║ OK    six_barres — 0.77 s\n║ OK    invariance_unites — 0.57 s\n║ OK    srscm — 2.37 s\n║ OK    _regressions — 3.57 s\n║ OK    lateral_buckling — 2.72 s\n║ OK    modeles_mal_poses — 0.37 s\n║ OK    non_holonome — 0.37 s\n║ OK    quatre_barres_flexible — 2.72 s\n║ OK    coulomb_pente — 0.52 s\n║ OK    treillis_de_boucles — 2.57 s\n║ OK    lecteurs_casses — 0.37 s\n║ OK    gyroscopique_tangent — 0.36 s\n║ OK    trim.demo — 0.16 s\n║ OK    audit_jacobien — 0.37 s\n║ OK    reduction.demo — 0.26 s\n║ OK    invariances — 2.22 s\n║ OK    accords — 1.72 s\n║ OK    floquet.demo — 0.82 s\n║ OK    arbre_tournant — 4.92 s\n║ OK    urdf.demo — 0.92 s\n║ OK    sparsite — 2.17 s\n║ OK    mjcf.demo — 0.87 s\n║ OK    convergence.demo — 2.12 s\n║ OK    adjoint_temps.demo — 4.78 s\n║ OK    campagne.demo — 4.67 s\n║ OK    domaines.demo — 8.28 s\n║ OK    statique — 14.84 s\n║ OK    kapitza — 19.50 s\n║ OK    echelle — 2.52 s\n║ OK    refus_gardes — 0.36 s\n╚ vérification OK — 41/41 cas, 22.96 s\n",
+    "rapide": "╔═ bancs : 46 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-1w2q3uiw\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    engrenage — 0.37 s\n║ OK    pendule — 0.42 s\n║ OK    bielle — 0.47 s\n║ OK    double_pendule — 0.52 s\n║ OK    quatre_barres — 0.62 s\n║ OK    toupie — 0.67 s\n║ OK    reduction.demo — 0.37 s\n║ OK    contact.capsules — 0.11 s\n║ OK    poutre — 0.82 s\n║ OK    contact.boites — 0.11 s\n║ OK    rotor.demo — 0.92 s\n║ OK    contact.cylindres — 0.11 s\n║ OK    contact.multiples — 0.36 s\n║ OK    floquet.demo — 0.82 s\n║ OK    contact.capsules_primitives — 0.87 s\n║ OK    phi_dot — 0.67 s\n║ OK    bifurcation — 0.72 s\n║ OK    contact.nonlisse — 1.42 s\n║ OK    oye — 0.41 s\n║ OK    leishman_beddoes — 0.52 s\n║ OK    peters_he — 0.36 s\n║ OK    theodorsen_complet — 1.57 s\n║ OK    ggl_boucles — 2.27 s\n║ OK    pitt_peters — 0.36 s\n║ OK    instationnaire — 0.82 s\n║ OK    inflow_carte — 1.92 s\n║ OK    adaptatif — 4.92 s\n║ OK    energie_moment — 0.97 s\n║ OK    rotation.demo — 8.23 s\n║ OK    raideur_gravite — 0.37 s\n║ OK    amortis — 0.36 s\n║ OK    modes_console — 0.36 s\n║ OK    multirythme — 3.12 s\n║ OK    coque — 0.31 s\n║ OK    dissipation — 5.83 s\n║ OK    sensibilite.demo — 11.59 s\n║ OK    echelle — 0.47 s\n║ OK    pale_elastique — 2.67 s\n║ OK    andrews — 3.77 s\n║ OK    noether — 10.04 s\n║ OK    moment_projete — 19.40 s\n║ OK    contact.penalite_ccd — 29.32 s\n║ OK    seuils — 97.97 s\n║ OK    sillage — 168.87 s\n║ OK    contact.maillages — 0.82 s\n║ OK    contact.appariement — 0.37 s\n╚ bancs OK — 46/46 cas, 180.22 s\n",
+    "contact": "╔═ contacts : 9 cas, 8 processus, 64 CPU au total\n║ journaux : /tmp/vinkulum-campagne-k7_kb7ta\n║ durées sous concurrence ; JOBS=1 pour mesurer des cas isolés\n║ OK    cylindres — 0.12 s\n║ OK    capsules — 0.12 s\n║ OK    boites — 0.12 s\n║ OK    multiples — 0.37 s\n║ OK    capsules_primitives — 0.87 s\n║ OK    nonlisse — 1.42 s\n║ OK    penalite_ccd — 168.38 s\n║ OK    maillages — 0.82 s\n║ OK    appariement — 0.57 s\n╚ contacts OK — 9/9 cas, 169.77 s\n",
+    "api": "╚═ référence d'API à jour (183 entrées)\n",
+    "adjoint_integre": "╔═ vinkulum — ADJOINT EN TEMPS SUR LE NOYAU (pont, premier pas)\n║ double pendule, p = g, 375 pas : adjoint +1.934621232e-01  DF +1.934621229e-01  écart 1.56e-09\n║   coût : 375 k_c_m_z, 0.1 s, contre 2 simule = 0.02 s pour la DF à 1 paramètre\n║ pendule sphérique tournant, p = g : adjoint +1.029464740e-01  DF +1.029464739e-01  écart 3.20e-10\n║   contrôle négatif sans J_l                   : écart 5.20e-03\n║   contrôle négatif sans K_M                   : écart 3.82e-02\n║   contrôle négatif gyro doublé (défaut d'avant) : écart 1.34e+00\n║ pendule flexible, p = EI, 300 pas : adjoint +7.209170885e-04  DF +7.208980e-04 … +7.209349e-04 (ε de 3e-4 à 3e-5, étendue 0.01 %)\n╚═ pont adjoint ↔ noyau OK\n"
+  },
+  "seuil_7_1_um": {
+    "milieu_intervalles": 60,
+    "integree_intervalles": 10,
+    "gain_temps": 8.732912076132939
+  }
+}

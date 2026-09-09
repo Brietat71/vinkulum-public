@@ -1,0 +1,151 @@
+{
+  "date_utc": "2026-09-07T13:08:01.521757+00:00",
+  "version": "0.8.2",
+  "tag_annote": "v0.8.2",
+  "base_commit": "3c32b6a1fefc1efe3f0699a6673a6e043ade49f6",
+  "roue": {
+    "nom": "vinkulum-0.8.2-cp314-cp314-manylinux_2_39_x86_64.whl",
+    "sha256": "6d502562908920b5044fc31aa36e220616a5e6414daa5729bf97766d6ce5455d",
+    "octets": 2588138,
+    "entrees_record_verifiees": 76,
+    "readme_conforme": true,
+    "version": "0.8.2",
+    "extension_sha256": "63e7eec23977333afa73c4b3bbb4cb651e869dc48370c547f0184b5d7c584a1a"
+  },
+  "controle_roue": {
+    "version": "0.8.2",
+    "module": "/tmp/vinkulum-release-0.8.2/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+    "extension_sha256": "63e7eec23977333afa73c4b3bbb4cb651e869dc48370c547f0184b5d7c584a1a",
+    "import_hors_depot": true,
+    "exemple_readme_execute": true,
+    "readme_sha256": "bb5e154f5f712065225fd98e984fedbaf830850669512510c38738ad4c668add",
+    "angle_readme_rad": 0.02,
+    "statique_stricte": {
+      "statut": "tolerance",
+      "tol": 1e-10,
+      "strict": true,
+      "residu_libre": 0.0,
+      "contraintes": 0.0,
+      "echelle_force": 2.0,
+      "residu_relatif": 0.0,
+      "tolerance_finale_atteinte": true,
+      "evaluations": 2,
+      "tentatives": 1,
+      "paliers": 1,
+      "palier": 1,
+      "paliers_stagnation": 0,
+      "etat_restaure": false,
+      "message": null
+    },
+    "etat_precis_restaure": true
+  },
+  "verification_roue": {
+    "verification": 41,
+    "python": 78,
+    "installation_hors_depot": true
+  },
+  "ci": {
+    "commande": "ci/local.sh",
+    "code_sortie": 0,
+    "rust": 73,
+    "prototype_rust": 8,
+    "verification": 41,
+    "python": 78,
+    "api": 185,
+    "archive_tangente_verifiee_separement_apres_mesure": true
+  },
+  "bancs_etendus": {
+    "commande": "ci/local.sh --bancs",
+    "code_sortie": 0,
+    "bancs": 46,
+    "contacts": 9,
+    "phase": "Implémentation numérique finale testée avant la numérotation 0.8.2 ; seule une précision de commentaire Rust et la documentation ont ensuite changé, sans modification des équations."
+  },
+  "comparaison_interne": {
+    "configurations": 51,
+    "repetitions": 3,
+    "resolutions_chronometrees": 306,
+    "controles_reussis_par_version": 49,
+    "echecs_numeriques_communs": [
+      {
+        "famille": "poutre",
+        "formulation": "milieu",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          0.001,
+          1.0
+        ]
+      },
+      {
+        "famille": "poutre",
+        "formulation": "integree",
+        "n": 10,
+        "tourne": true,
+        "unites": [
+          0.001,
+          1.0
+        ]
+      }
+    ],
+    "regressions_de_convergence_observees": 0,
+    "ecart_position_max": 2.1508073100307e-12,
+    "ecart_rotation_max": 6.91602330959995e-12
+  },
+  "environnements": {
+    "reference": {
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "version": "0.8.1",
+      "extension": "/tmp/vinkulum-release-0.8.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "sha256": "d20b1e80039412c643ac319e1611c49f0af7fdadfe2de37ffb047257eeb91fe2"
+    },
+    "candidat": {
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "version": "0.8.2",
+      "extension": "/tmp/vinkulum-release-0.8.2/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "sha256": "63e7eec23977333afa73c4b3bbb4cb651e869dc48370c547f0184b5d7c584a1a"
+    }
+  },
+  "comparaison_externe_nouvelle": false,
+  "journaux_sha256": {
+    "version-0.8.2-ci.log": "6a2cfb1996169107e9d2eebf7a3136a653da80de9592ed6ed08b599566a1fa95",
+    "version-0.8.2-bancs-avant-numerotation.log": "1bad88fcb9e60e045bd6d5300d1303b384e23cb40046e2d3a8201177e6a956af",
+    "version-0.8.2-roue-tests-python.log": "47ac24bd0cabc48de346d9c15c967c05ea1959fdc67c7bff8901a686acb9871d",
+    "version-0.8.2-roue-verification.log": "bfb24924f3bc866c18bdc31be7f1fe81c4647adc0ca6e32a71c6eb5e6b96e7fd",
+    "version-0.8.2-installation.log": "7c0d98454c750599fa9522000a367fd22adbc01fd5d878fec6945862dc06e2d7",
+    "version-0.8.2-dependances.log": "6306a8fe9336ccf84ac7cc6f449d4c1cc972f2d9efb32b27e2f5ff85e9f7f324",
+    "version-0.8.2-construction.log": "803e1fd3dad30431e6b63699987c69b558cd045dde7db5178a30b90f63fc1e13",
+    "version-0.8.2-roue-controle.json": "a7a61feb1d1635bc4464d94fefbdcdbed2855cfccb3526bc0753b273dde587e1",
+    "tangente-poutre-0.8.2.log": "a503e569ff3c526d1ab66e4ae38de0bfdc479479e70ff31d9838a8c4af803356"
+  },
+  "archives_sha256": {
+    "tangente-poutre-0.8.2.json": "c4813f8ea14e3dab637e706a317bcb9bada29e824167b84a24dcceed6ed7231e",
+    "tangente-poutre-0.8.2-bilan.json": "8ad090ef2141edbc42a120fe11c726d8b1bfab3b03145d996d286fff1774ccc8",
+    "tangente-poutre-0.8.2-matrices.json": "1f1a80817bf9e46db0dbc107ec4555417e767797d62e3cd6fa059b34c687d5cf"
+  },
+  "sources_sha256": {
+    "Cargo.lock": "19d7f5845556d49af0c60cfd86fc58979db3b93fe9aaf9c8dbf7f4a7a986d961",
+    "Cargo.toml": "289c8c5e1cf79591990bbc04c3ed0d8770c46b70f71a209f488ddd47c34e79de",
+    "README.md": "bb5e154f5f712065225fd98e984fedbaf830850669512510c38738ad4c668add",
+    "ci/bilan_globalisation.py": "8b867e187f5d09327feb8575aff3be7110853a30ed818a1dffb391b2dd34d9a8",
+    "ci/diagnostic_globalisation.py": "1b363689cab865a3633e4183e70db98d2e703193b401dbe4c79ed6f25dab1aab",
+    "ci/github-actions.yml": "0ecf00339695c52f6b037dea2005fec26096ff07194cc6809bdcf4064f5dc776",
+    "ci/local.sh": "f117302b5d18dfc0318ba0fd4d88a1466671233f95aa46e903130869c55b09ce",
+    "ci/mesure_globalisation.py": "a34a52b598fcaa719c07ff18d15aeffb020eafeb17127bfaf9aaabd9df1b9cd5",
+    "ci/mesure_tangentes.py": "bc1eba492116ed4e04dfbe4b0edb655a9d0637be1fa1e44e25e1a6d94306cfd3",
+    "docs/API.md": "5ceba2b79d01ece37634ec36a58fb7d1c90b18b9d640b0c98cbb0318dbcae385",
+    "docs/COMPOSABILITE_SCIENTIFIQUE.md": "3aaadf65f92c00b47c12e890ab490f89fcddcd94a9738a1c1fc5dab620222494",
+    "docs/OBJECTIF_MBDYN.md": "818e833f33e5baf1a8a3a5f7dbb491f6edd06226c5ac68ae4cae849ccace41c7",
+    "docs/RECHERCHE_MATHEMATIQUE.md": "a8ce1f60b1f335b45b4a3ceea863fb04c7e197a95dcb019337534401dd254399",
+    "docs/TANGENTE_POUTRE_ANALYTIQUE.md": "dfa3ee798521df2e8d520d7ec7c8c2b0e9880ecccc712fd4957ff1fed7f371f9",
+    "docs/VERSION_0.8.2.md": "1b0d5857deff5bf451b1c8368153b1db1622b2ce6988f6b721ae61ac1fb6b9b3",
+    "pyproject.toml": "9277f2f4022e4ab1eb600f65f4eb8226abe84c84c520766a05c12ff35d6ecbf4",
+    "src/ad.rs": "1fd44c5469618d90d93ffa530639b44f6836deb992a5b24637b263026e5c75ff",
+    "src/lib.rs": "f589d33008e57a71eab1e1ccf30529ccb4516250216459e072446d009e519109",
+    "src/tangent.rs": "2818f9b0de142b039d10a8425542a28ad83d18777089096f106a5a67b036ffcf"
+  }
+}

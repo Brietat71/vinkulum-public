@@ -1,0 +1,131 @@
+{
+  "source": "docs/recherche/2026-09-07/report-source.md",
+  "source_sha256": "ffb105cbdbd60083f06a4ab4c263ed042fd89ca3bf854a578ceb9eba43c92611",
+  "pdf": "docs/ETUDE_SCIENTIFIQUE_VINKULUM_2001_2026.pdf",
+  "pdf_sha256": "baa071c5e4b74168726031f68f3cefcf3382850b069a5ced9c07e48f82fb0ae1",
+  "bytes": 149694,
+  "headings": [
+    {
+      "title": "Vinkulum : les avancées scientifiques capables de faire la différence",
+      "page": 1
+    },
+    {
+      "title": "1. Se mesurer aux meilleures références actuelles",
+      "page": 2
+    },
+    {
+      "title": "2. Le point de départ mesuré et le problème à gagner",
+      "page": 3
+    },
+    {
+      "title": "3. Le levier central : exploiter la structure mécanique",
+      "page": 4
+    },
+    {
+      "title": "4. Géométrie et intégration : une amélioration proche du noyau",
+      "page": 5
+    },
+    {
+      "title": "5. Flexibilité : précision, condensation et physique des sections",
+      "page": 6
+    },
+    {
+      "title": "6. Réduire les modèles flexibles sans perdre leurs propriétés",
+      "page": 7
+    },
+    {
+      "title": "7. Contact : résoudre une loi physique clairement définie",
+      "page": 8
+    },
+    {
+      "title": "8. Collisions et événements : des garanties utiles à l’utilisateur",
+      "page": 9
+    },
+    {
+      "title": "9. Différentiation : obtenir le gradient au coût du problème convergé",
+      "page": 10
+    },
+    {
+      "title": "10. Informatique de pointe : stabilité, matériel et apprentissage",
+      "page": 11
+    },
+    {
+      "title": "11. Physique et multiphysique : préserver les échanges utiles",
+      "page": 12
+    },
+    {
+      "title": "12. Programme d’expériences qui peut confirmer ou invalider les choix",
+      "page": 13
+    },
+    {
+      "title": "13. Protocole de comparaison et critères d’intégration",
+      "page": 14
+    },
+    {
+      "title": "14. Décision d’investissement et limites de l’étude",
+      "page": 15
+    },
+    {
+      "title": "Sources et accès",
+      "page": 16
+    }
+  ],
+  "report_date": "2026-09-07",
+  "pages": 18,
+  "source_records": 58,
+  "link_annotations": 168,
+  "unique_link_targets": 59,
+  "checked_source_blocks_or_cells": 277,
+  "checks": {
+    "all_source_blocks_extracted": true,
+    "all_ledger_sources_linked": true,
+    "link_rectangles_inside_pages": true,
+    "no_internal_tool_markers": true,
+    "no_empty_pages": true,
+    "metadata_date_correct": true
+  },
+  "tools": {
+    "reportlab": "5.0.1",
+    "pypdf": "6.17.0",
+    "rasterization": "pdftoppm, 110 dpi"
+  },
+  "visual_review": {
+    "scope": "toutes les pages",
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "scale": "images à 110 dpi examinées à leur taille de rendu",
+    "corrections_rechecked": [
+      5,
+      10,
+      17
+    ],
+    "result": "Aucun débordement, chevauchement, tableau coupé ou glyphe manquant observé après correction."
+  },
+  "provenance_sha256": {
+    "ci/rend_recherche.py": "6798cfeba312bda9e8255ad402b2e6acdd780a3861452d6f2bcd7b265cee7229",
+    "docs/recherche/2026-09-07/claim-source-ledger.json": "dbf40df94e1280fc111c5b02afc3978856de50b89af89fca6de212e0aadb3751",
+    "docs/recherche/2026-09-07/research-log.md": "ed483d161fc56de35900a25f289d1e5fbdbc8df1a5ecd6c317f7eba7c26fd920"
+  },
+  "validation_limits": [
+    "Les liens et leur géométrie sont vérifiés dans le PDF ; l’accès intégral à chaque destination n’est pas garanti.",
+    "Les contrôles du document ne démontrent pas les performances des transferts scientifiques proposés."
+  ]
+}

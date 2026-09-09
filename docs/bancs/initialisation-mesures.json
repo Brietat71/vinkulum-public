@@ -1,0 +1,4401 @@
+{
+  "date_utc": "2026-09-07T08:30:10.669340+00:00",
+  "machine": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+  "cpu": 0,
+  "affinite_disponible": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+  ],
+  "fils": 1,
+  "repetitions": 3,
+  "alternance": "AB / BA / AB",
+  "sources_sha256": {
+    "src/ad.rs": "1fd44c5469618d90d93ffa530639b44f6836deb992a5b24637b263026e5c75ff",
+    "src/analyse.rs": "18b0adaab5439b5b760714ce9d42ae7f165f58987ff3972f2b67862ec932c579",
+    "src/contraintes/equivalentes.rs": "d3c756e24ee532b6e5a214f4904a72d1ad2ac27140dde18737a7e03ca8db1761",
+    "src/contraintes/qr_creux.rs": "b05e0d434b15c62ec9da1d323a5c984dde28df4158a9bd7f644ded4561f9005e",
+    "src/contraintes.rs": "44c9f015ad27af1118aa8972b3f036a724c1d0930b6ec250af4b8ecd9b1a5431",
+    "src/equilibrage.rs": "3c5d0ad141e07152c3cd14213183e2ccb7c9754c118f301135e67771d9d56db0",
+    "src/initialisation/contact.rs": "c7599ec14c079f0aad4093554aad3bf326cab557c84f3fb6d2a63f3b96d540dd",
+    "src/initialisation.rs": "e2303468faa0adec6e5c0d595ee72b24c0d93336db43a57bdcc47576c23528a5",
+    "src/lib.rs": "c818a39816b4ebae7e2c94635f8001bfe6c30737a84434b7afad9ba124fc5ec1",
+    "src/moindres_carres.rs": "5f677b71e7556c26e37fae9e84fbc7a35292b2a363b9c51fa5e05862e8409238",
+    "src/numerique.rs": "6872219a7265400e069e8fa2317315376ee648ba08d83fbb97bb96410f79ffba",
+    "src/partition.rs": "24c59b9b2914f3a1999528937c5410bbb6eae78e1675cf51cebad1fbed4d3674",
+    "src/raffinement.rs": "1baaaac026bf585cc0045fbef8bf93e6094b1e9a150ca4557e19fdfdeec06848",
+    "src/robustesse.rs": "0b0490343581ca78e5fb637b96d8c727da6d694b96a8a917f0c9cef670003c2a",
+    "src/rotation.rs": "d2d3e922ef599c9000adb05ff4b5187902725243cf53332a7e8e723ac4b0ce2c",
+    "src/superelement.rs": "2769e6ac826754da3d8b9dc4d183d9f88f9c8c5b4acc3440e564d6c93f6385d3",
+    "src/svd.rs": "80464c440a12672ee419d064b5d605ceee737dc716d6dee215c08b00e64b48cc",
+    "src/tangent.rs": "57612cc6b9289969de6cba94bff9156c2da1b0006dd79be09f87e10711fb73bd"
+  },
+  "versions_sources_sha256": {
+    "Cargo.toml": "c9747ed339054588276d254f772ca85714e0315bb5e7a42f147b67a6bab2db54",
+    "Cargo.lock": "38257d5f3f1e5c32b255b4b83f8f36131b0ca81ef2ee333a1351fe9f3ba13061",
+    "pyproject.toml": "0660a7b12efd34b8131f275e729034cd8a539919b47971f3ff488d4840b8f25f"
+  },
+  "programme_sha256": "30e521d6cc22004f2d4f1ebd3cb59a99b3efc044b006192cf795a6581d410607",
+  "diagnostic_sha256": "a6a307038cec9f5e766809bdc26399a7d77b032488de0d01ec444f24f9af3e69",
+  "resultats": [
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.043031251057982445,
+      "rss_kib": 70876,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 1.4210854715202004e-14,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.3877787807814457e-16,
+        "erreur_parametrage": 5.551115123125783e-17,
+        "erreur_orthogonalite": 6.661338147750939e-16
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.03350504697300494,
+      "rss_kib": 71156,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 0.0,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.3877787807814457e-16,
+        "erreur_parametrage": 5.551115123125783e-17,
+        "erreur_orthogonalite": 6.661338147750939e-16
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.03369409800507128,
+      "rss_kib": 71084,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 0.0,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.3877787807814457e-16,
+        "erreur_parametrage": 5.551115123125783e-17,
+        "erreur_orthogonalite": 6.661338147750939e-16
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.035135659854859114,
+      "rss_kib": 70812,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 1.4210854715202004e-14,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.3877787807814457e-16,
+        "erreur_parametrage": 5.551115123125783e-17,
+        "erreur_orthogonalite": 6.661338147750939e-16
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.0347715150564909,
+      "rss_kib": 70784,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 1.4210854715202004e-14,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.3877787807814457e-16,
+        "erreur_parametrage": 5.551115123125783e-17,
+        "erreur_orthogonalite": 6.661338147750939e-16
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.039103392977267504,
+      "rss_kib": 71092,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 0.0,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.3877787807814457e-16,
+        "erreur_parametrage": 5.551115123125783e-17,
+        "erreur_orthogonalite": 6.661338147750939e-16
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.04457349609583616,
+      "rss_kib": 71144,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 6.938893903907228e-18,
+        "erreur_tangente_reduite": 2.842170943040401e-14,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 2.983724378680108e-16,
+        "erreur_parametrage": 1.6653345369377348e-16,
+        "erreur_orthogonalite": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.03403568989597261,
+      "rss_kib": 71188,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 6.938893903907228e-18,
+        "erreur_tangente_reduite": 2.842170943040401e-14,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 2.983724378680108e-16,
+        "erreur_parametrage": 1.6653345369377348e-16,
+        "erreur_orthogonalite": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.03440028615295887,
+      "rss_kib": 71148,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 6.938893903907228e-18,
+        "erreur_tangente_reduite": 2.842170943040401e-14,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 2.983724378680108e-16,
+        "erreur_parametrage": 1.6653345369377348e-16,
+        "erreur_orthogonalite": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.03554152394644916,
+      "rss_kib": 71068,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 6.938893903907228e-18,
+        "erreur_tangente_reduite": 2.842170943040401e-14,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 2.983724378680108e-16,
+        "erreur_parametrage": 1.6653345369377348e-16,
+        "erreur_orthogonalite": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.034650994930416346,
+      "rss_kib": 71060,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 6.938893903907228e-18,
+        "erreur_tangente_reduite": 2.842170943040401e-14,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 2.983724378680108e-16,
+        "erreur_parametrage": 1.6653345369377348e-16,
+        "erreur_orthogonalite": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.03444744599983096,
+      "rss_kib": 71180,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 1,
+        "erreur_masse": 6.938893903907228e-18,
+        "erreur_tangente_reduite": 2.842170943040401e-14,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 2.983724378680108e-16,
+        "erreur_parametrage": 1.6653345369377348e-16,
+        "erreur_orthogonalite": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.002950292080640793,
+      "rss_kib": 70448,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.04316743090748787,
+      "rss_kib": 74992,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 8,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 3.552713678800501e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 5.849682015212052e-16,
+        "erreur_parametrage": 1.0408340855860843e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.0620289861690253,
+      "rss_kib": 75144,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 8,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 3.552713678800501e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 5.849682015212052e-16,
+        "erreur_parametrage": 1.0408340855860843e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.0029542490374296904,
+      "rss_kib": 70472,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.0029973520431667566,
+      "rss_kib": 70384,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.04297344107180834,
+      "rss_kib": 74928,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 8,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 3.552713678800501e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 5.849682015212052e-16,
+        "erreur_parametrage": 1.0408340855860843e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.0028949871193617582,
+      "rss_kib": 70592,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.04328145901672542,
+      "rss_kib": 75308,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 8,
+        "erreur_masse": 8.673617379884035e-19,
+        "erreur_tangente_reduite": 3.552713678800501e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 3.405363295488887e-16,
+        "erreur_parametrage": 1.2162818131311974e-16,
+        "erreur_orthogonalite": 1.5543122344752192e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.04327079909853637,
+      "rss_kib": 75100,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 8,
+        "erreur_masse": 8.673617379884035e-19,
+        "erreur_tangente_reduite": 3.552713678800501e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 3.405363295488887e-16,
+        "erreur_parametrage": 1.2162818131311974e-16,
+        "erreur_orthogonalite": 1.5543122344752192e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.0027183890342712402,
+      "rss_kib": 71048,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.0027098827995359898,
+      "rss_kib": 71084,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.04183219303376973,
+      "rss_kib": 75328,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 8,
+        "erreur_masse": 8.673617379884035e-19,
+        "erreur_tangente_reduite": 3.552713678800501e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 3.405363295488887e-16,
+        "erreur_parametrage": 1.2162818131311974e-16,
+        "erreur_orthogonalite": 1.5543122344752192e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.021966391010209918,
+      "rss_kib": 71680,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.08103217091411352,
+      "rss_kib": 87492,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 16,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 2.6645352591003757e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 6.223796751323745e-16,
+        "erreur_parametrage": 1.0755285551056204e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.08192063681781292,
+      "rss_kib": 87484,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 16,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 2.6645352591003757e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 6.223796751323745e-16,
+        "erreur_parametrage": 1.0755285551056204e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.018125049071386456,
+      "rss_kib": 72192,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.01834136201068759,
+      "rss_kib": 72192,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.08169100899249315,
+      "rss_kib": 87480,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 16,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 2.6645352591003757e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 6.223796751323745e-16,
+        "erreur_parametrage": 1.0755285551056204e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.018242042046040297,
+      "rss_kib": 72192,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.0823944010771811,
+      "rss_kib": 87728,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 16,
+        "erreur_masse": 4.336808689942018e-19,
+        "erreur_tangente_reduite": 3.552713678800501e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 7.519357349357834e-16,
+        "erreur_parametrage": 2.1535454310506224e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.08373760501854122,
+      "rss_kib": 87716,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 16,
+        "erreur_masse": 4.336808689942018e-19,
+        "erreur_tangente_reduite": 3.552713678800501e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 7.519357349357834e-16,
+        "erreur_parametrage": 2.1535454310506224e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.017966415965929627,
+      "rss_kib": 72192,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.018003606935963035,
+      "rss_kib": 72192,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.08220010995864868,
+      "rss_kib": 87532,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 16,
+        "erreur_masse": 4.336808689942018e-19,
+        "erreur_tangente_reduite": 3.552713678800501e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 7.519357349357834e-16,
+        "erreur_parametrage": 2.1535454310506224e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.12705225800164044,
+      "rss_kib": 79872,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.30912293889559805,
+      "rss_kib": 136964,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 32,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 4.440892098500626e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 6.889154845521497e-16,
+        "erreur_parametrage": 1.0928757898653885e-16,
+        "erreur_orthogonalite": 3.1086244689504383e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.3124303228687495,
+      "rss_kib": 136888,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 32,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 4.440892098500626e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 6.889154845521497e-16,
+        "erreur_parametrage": 1.0928757898653885e-16,
+        "erreur_orthogonalite": 3.1086244689504383e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.12914701597765088,
+      "rss_kib": 80384,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.1278709708712995,
+      "rss_kib": 80896,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.312007405096665,
+      "rss_kib": 136980,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 32,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 4.440892098500626e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 6.889154845521497e-16,
+        "erreur_parametrage": 1.0928757898653885e-16,
+        "erreur_orthogonalite": 3.1086244689504383e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.12895639310590923,
+      "rss_kib": 80896,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.31179248495027423,
+      "rss_kib": 137284,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 32,
+        "erreur_masse": 2.168404344971009e-19,
+        "erreur_tangente_reduite": 2.220446049250313e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.0879483543183612e-15,
+        "erreur_parametrage": 1.5411864030655236e-16,
+        "erreur_orthogonalite": 2.6645352591003757e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.31940493709407747,
+      "rss_kib": 137260,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 32,
+        "erreur_masse": 2.168404344971009e-19,
+        "erreur_tangente_reduite": 2.220446049250313e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.0879483543183612e-15,
+        "erreur_parametrage": 1.5411864030655236e-16,
+        "erreur_orthogonalite": 2.6645352591003757e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.12798539898358285,
+      "rss_kib": 80896,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.13084823382087052,
+      "rss_kib": 80896,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.31081315502524376,
+      "rss_kib": 137176,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 32,
+        "erreur_masse": 2.168404344971009e-19,
+        "erreur_tangente_reduite": 2.220446049250313e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.0879483543183612e-15,
+        "erreur_parametrage": 1.5411864030655236e-16,
+        "erreur_orthogonalite": 2.6645352591003757e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.408656446961686,
+      "rss_kib": 95232,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 55 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.828220484778285,
+      "rss_kib": 219376,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 48,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 2.220446049250313e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.0333943580879294e-15,
+        "erreur_parametrage": 1.474514954580286e-16,
+        "erreur_orthogonalite": 2.886579864025407e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.8471283980179578,
+      "rss_kib": 219476,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 48,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 2.220446049250313e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.0333943580879294e-15,
+        "erreur_parametrage": 1.474514954580286e-16,
+        "erreur_orthogonalite": 2.886579864025407e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.40372388111427426,
+      "rss_kib": 95232,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 55 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.4007469080388546,
+      "rss_kib": 95232,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 55 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.8247810502070934,
+      "rss_kib": 219412,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 48,
+        "erreur_masse": 0.0,
+        "erreur_tangente_reduite": 2.220446049250313e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.0333943580879294e-15,
+        "erreur_parametrage": 1.474514954580286e-16,
+        "erreur_orthogonalite": 2.886579864025407e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.40293554589152336,
+      "rss_kib": 95232,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.8487369378563017,
+      "rss_kib": 219752,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 48,
+        "erreur_masse": 1.0842021724855044e-19,
+        "erreur_tangente_reduite": 3.1086244689504383e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.2620480663095109e-15,
+        "erreur_parametrage": 1.7988408404382787e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.8485956587828696,
+      "rss_kib": 219632,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 48,
+        "erreur_masse": 1.0842021724855044e-19,
+        "erreur_tangente_reduite": 3.1086244689504383e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.2620480663095109e-15,
+        "erreur_parametrage": 1.7988408404382787e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.4012345289811492,
+      "rss_kib": 95232,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.4019228129182011,
+      "rss_kib": 95232,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "analyse",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.8402469609864056,
+      "rss_kib": 219716,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "mobilites": 48,
+        "erreur_masse": 1.0842021724855044e-19,
+        "erreur_tangente_reduite": 3.1086244689504383e-15,
+        "erreur_amortissement": 0.0,
+        "erreur_noyau": 1.2620480663095109e-15,
+        "erreur_parametrage": 1.7988408404382787e-16,
+        "erreur_orthogonalite": 2.220446049250313e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.034600998973473907,
+      "rss_kib": 70644,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.881784197001252e-16
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.03394317300990224,
+      "rss_kib": 70736,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.881784197001252e-16
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.03417035797610879,
+      "rss_kib": 70804,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.881784197001252e-16
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.03450697008520365,
+      "rss_kib": 70356,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.881784197001252e-16
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.03406522609293461,
+      "rss_kib": 70488,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.881784197001252e-16
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": false,
+      "secondes": 0.03576868795789778,
+      "rss_kib": 70796,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.881784197001252e-16
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.03448493801988661,
+      "rss_kib": 70580,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 2.6645352591003757e-15
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.03428010595962405,
+      "rss_kib": 70940,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 2.6645352591003757e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.03452728898264468,
+      "rss_kib": 71168,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 2.6645352591003757e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.03451173799112439,
+      "rss_kib": 70656,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 2.6645352591003757e-15
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.034846998983994126,
+      "rss_kib": 70684,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 2.6645352591003757e-15
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 1,
+      "corps": 3,
+      "tourne": true,
+      "secondes": 0.033917134162038565,
+      "rss_kib": 71036,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 2.6645352591003757e-15
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.0018910991493612528,
+      "rss_kib": 70680,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.2878587085651816e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.0018916609697043896,
+      "rss_kib": 70764,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.2878587085651816e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.001920426031574607,
+      "rss_kib": 70976,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.2878587085651816e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.0019205058924853802,
+      "rss_kib": 70612,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.2878587085651816e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.001969439908862114,
+      "rss_kib": 70644,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.2878587085651816e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": false,
+      "secondes": 0.0019047060050070286,
+      "rss_kib": 70928,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.2878587085651816e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.0019148951396346092,
+      "rss_kib": 70856,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 3.730349362740526e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.0019532479345798492,
+      "rss_kib": 71044,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 3.730349362740526e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.00208925805054605,
+      "rss_kib": 71236,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 3.730349362740526e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.0019526369869709015,
+      "rss_kib": 70920,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 3.730349362740526e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.0019429291132837534,
+      "rss_kib": 70800,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 3.730349362740526e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 8,
+      "corps": 24,
+      "tourne": true,
+      "secondes": 0.0019477379973977804,
+      "rss_kib": 71096,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 3.730349362740526e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.011092022992670536,
+      "rss_kib": 71168,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 6.306066779870889e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.01082606497220695,
+      "rss_kib": 71168,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 6.306066779870889e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.010897592874243855,
+      "rss_kib": 71168,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 6.306066779870889e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.010835323948413134,
+      "rss_kib": 71168,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 6.306066779870889e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.011202194029465318,
+      "rss_kib": 71168,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 6.306066779870889e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": false,
+      "secondes": 0.01083887997083366,
+      "rss_kib": 71168,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 6.306066779870889e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.011330719105899334,
+      "rss_kib": 71168,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.970602038971265e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.01105918106622994,
+      "rss_kib": 71680,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.970602038971265e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.011258942075073719,
+      "rss_kib": 71680,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.970602038971265e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.011174781015142798,
+      "rss_kib": 71680,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.970602038971265e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.011364343110471964,
+      "rss_kib": 71168,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.970602038971265e-14
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 16,
+      "corps": 48,
+      "tourne": true,
+      "secondes": 0.011432162020355463,
+      "rss_kib": 71680,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 8.970602038971265e-14
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.07567922282032669,
+      "rss_kib": 77824,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.3855583347321954e-13
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.07545909215696156,
+      "rss_kib": 77824,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.3855583347321954e-13
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.07522493600845337,
+      "rss_kib": 78336,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.3855583347321954e-13
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.07598752086050808,
+      "rss_kib": 77824,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.3855583347321954e-13
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.07560234609991312,
+      "rss_kib": 77824,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.3855583347321954e-13
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": false,
+      "secondes": 0.07575306389480829,
+      "rss_kib": 77824,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.3855583347321954e-13
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.07597887399606407,
+      "rss_kib": 77824,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.4876988529977098e-13
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.07714684400707483,
+      "rss_kib": 78336,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.4876988529977098e-13
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.07626196509227157,
+      "rss_kib": 78336,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.4876988529977098e-13
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.07624170579947531,
+      "rss_kib": 77824,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.4876988529977098e-13
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.07646967098116875,
+      "rss_kib": 77824,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.4876988529977098e-13
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 32,
+      "corps": 96,
+      "tourne": true,
+      "secondes": 0.07624223688617349,
+      "rss_kib": 78336,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 1.4876988529977098e-13
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.0015622919891029596,
+      "rss_kib": 71328,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 55 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.33092279196716845,
+      "rss_kib": 141824,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 7.418066161335446e-12
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.3281478339340538,
+      "rss_kib": 141824,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 7.418066161335446e-12
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.0015214739833027124,
+      "rss_kib": 71260,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 55 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.0015455400571227074,
+      "rss_kib": 71180,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 55 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": false,
+      "secondes": 0.32727070106193423,
+      "rss_kib": 141824,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 7.418066161335446e-12
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.0021578888408839703,
+      "rss_kib": 72192,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.32635676581412554,
+      "rss_kib": 142336,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 6.0325078266032506e-12
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.3274687791708857,
+      "rss_kib": 142336,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 6.0325078266032506e-12
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.002082544844597578,
+      "rss_kib": 71680,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.002087073866277933,
+      "rss_kib": 71680,
+      "erreur": "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+      "controles": {
+        "etat_inchange": true
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "initialisation",
+      "cellules": 48,
+      "corps": 144,
+      "tourne": true,
+      "secondes": 0.32567986310459673,
+      "rss_kib": 142336,
+      "erreur": null,
+      "controles": {
+        "etat_inchange": true,
+        "erreur_acceleration": 6.0325078266032506e-12
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "libre",
+      "corps": 64,
+      "secondes": 0.00023061991669237614,
+      "rss_kib": 40540,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "libre",
+      "corps": 64,
+      "secondes": 0.00022918707691133022,
+      "rss_kib": 40780,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "libre",
+      "corps": 64,
+      "secondes": 0.00020187487825751305,
+      "rss_kib": 40732,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "libre",
+      "corps": 64,
+      "secondes": 0.0002247390802949667,
+      "rss_kib": 40676,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "libre",
+      "corps": 64,
+      "secondes": 0.00019814888946712017,
+      "rss_kib": 40540,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "libre",
+      "corps": 64,
+      "secondes": 0.00022812583483755589,
+      "rss_kib": 40676,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "libre",
+      "corps": 512,
+      "secondes": 0.0014327038079500198,
+      "rss_kib": 41472,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "libre",
+      "corps": 512,
+      "secondes": 0.0014259021263569593,
+      "rss_kib": 41468,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "libre",
+      "corps": 512,
+      "secondes": 0.0013990909792482853,
+      "rss_kib": 41536,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "libre",
+      "corps": 512,
+      "secondes": 0.0014216641429811716,
+      "rss_kib": 41472,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "libre",
+      "corps": 512,
+      "secondes": 0.0013804251793771982,
+      "rss_kib": 41492,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "libre",
+      "corps": 512,
+      "secondes": 0.0014280357863754034,
+      "rss_kib": 41552,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    },
+    {
+      "cas": "libre",
+      "corps": 2048,
+      "secondes": 0.005325616104528308,
+      "rss_kib": 45056,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 1
+    },
+    {
+      "cas": "libre",
+      "corps": 2048,
+      "secondes": 0.005234973039478064,
+      "rss_kib": 44544,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 1
+    },
+    {
+      "cas": "libre",
+      "corps": 2048,
+      "secondes": 0.005200466839596629,
+      "rss_kib": 44544,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 2
+    },
+    {
+      "cas": "libre",
+      "corps": 2048,
+      "secondes": 0.005372745916247368,
+      "rss_kib": 45056,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 2
+    },
+    {
+      "cas": "libre",
+      "corps": 2048,
+      "secondes": 0.00539494794793427,
+      "rss_kib": 45056,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.1",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/tmp/vinkulum-release-0.7.1/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "3af6f416a0254c22a221d42f9ca5b858e6f812c193ae5dc2a848c057ac9c2c38",
+      "version_comparaison": "avant",
+      "repetition": 3
+    },
+    {
+      "cas": "libre",
+      "corps": 2048,
+      "secondes": 0.005294115981087089,
+      "rss_kib": 44544,
+      "erreur": null,
+      "controles": {
+        "erreur_acceleration": 0.0
+      },
+      "version": "0.7.2",
+      "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "chemin_binaire": "/root/vinkulum/python/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+      "binaire_sha256": "239620435519bf967c69e237f8f0392353219a69c262ca4ba5570479b97d1f56",
+      "version_comparaison": "apres",
+      "repetition": 3
+    }
+  ],
+  "bilan": [
+    {
+      "cas": "analyse",
+      "taille": 1,
+      "tourne": false,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.035135659854859114,
+        "rss_kib_max": 70876,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 1.4210854715202004e-14,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.3877787807814457e-16,
+            "erreur_parametrage": 5.551115123125783e-17,
+            "erreur_orthogonalite": 6.661338147750939e-16
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 1.4210854715202004e-14,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.3877787807814457e-16,
+            "erreur_parametrage": 5.551115123125783e-17,
+            "erreur_orthogonalite": 6.661338147750939e-16
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 1.4210854715202004e-14,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.3877787807814457e-16,
+            "erreur_parametrage": 5.551115123125783e-17,
+            "erreur_orthogonalite": 6.661338147750939e-16
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.03369409800507128,
+        "rss_kib_max": 71156,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 0.0,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.3877787807814457e-16,
+            "erreur_parametrage": 5.551115123125783e-17,
+            "erreur_orthogonalite": 6.661338147750939e-16
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 0.0,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.3877787807814457e-16,
+            "erreur_parametrage": 5.551115123125783e-17,
+            "erreur_orthogonalite": 6.661338147750939e-16
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 0.0,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.3877787807814457e-16,
+            "erreur_parametrage": 5.551115123125783e-17,
+            "erreur_orthogonalite": 6.661338147750939e-16
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 1.0427838088905321
+    },
+    {
+      "cas": "analyse",
+      "taille": 1,
+      "tourne": true,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.03554152394644916,
+        "rss_kib_max": 71144,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 6.938893903907228e-18,
+            "erreur_tangente_reduite": 2.842170943040401e-14,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 2.983724378680108e-16,
+            "erreur_parametrage": 1.6653345369377348e-16,
+            "erreur_orthogonalite": 0.0
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 6.938893903907228e-18,
+            "erreur_tangente_reduite": 2.842170943040401e-14,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 2.983724378680108e-16,
+            "erreur_parametrage": 1.6653345369377348e-16,
+            "erreur_orthogonalite": 0.0
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 6.938893903907228e-18,
+            "erreur_tangente_reduite": 2.842170943040401e-14,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 2.983724378680108e-16,
+            "erreur_parametrage": 1.6653345369377348e-16,
+            "erreur_orthogonalite": 0.0
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.03440028615295887,
+        "rss_kib_max": 71188,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 6.938893903907228e-18,
+            "erreur_tangente_reduite": 2.842170943040401e-14,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 2.983724378680108e-16,
+            "erreur_parametrage": 1.6653345369377348e-16,
+            "erreur_orthogonalite": 0.0
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 6.938893903907228e-18,
+            "erreur_tangente_reduite": 2.842170943040401e-14,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 2.983724378680108e-16,
+            "erreur_parametrage": 1.6653345369377348e-16,
+            "erreur_orthogonalite": 0.0
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 1,
+            "erreur_masse": 6.938893903907228e-18,
+            "erreur_tangente_reduite": 2.842170943040401e-14,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 2.983724378680108e-16,
+            "erreur_parametrage": 1.6653345369377348e-16,
+            "erreur_orthogonalite": 0.0
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 1.0331752412876987
+    },
+    {
+      "cas": "analyse",
+      "taille": 8,
+      "tourne": false,
+      "avant": {
+        "valide": false,
+        "erreurs": [
+          "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 58 }"
+        ],
+        "secondes_mediane": 0.0029542490374296904,
+        "rss_kib_max": 70472,
+        "controles": [
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.04316743090748787,
+        "rss_kib_max": 75144,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 8,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 3.552713678800501e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 5.849682015212052e-16,
+            "erreur_parametrage": 1.0408340855860843e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 8,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 3.552713678800501e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 5.849682015212052e-16,
+            "erreur_parametrage": 1.0408340855860843e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 8,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 3.552713678800501e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 5.849682015212052e-16,
+            "erreur_parametrage": 1.0408340855860843e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": null
+    },
+    {
+      "cas": "analyse",
+      "taille": 8,
+      "tourne": true,
+      "avant": {
+        "valide": false,
+        "erreurs": [
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }"
+        ],
+        "secondes_mediane": 0.0027183890342712402,
+        "rss_kib_max": 71084,
+        "controles": [
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.04327079909853637,
+        "rss_kib_max": 75328,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 8,
+            "erreur_masse": 8.673617379884035e-19,
+            "erreur_tangente_reduite": 3.552713678800501e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 3.405363295488887e-16,
+            "erreur_parametrage": 1.2162818131311974e-16,
+            "erreur_orthogonalite": 1.5543122344752192e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 8,
+            "erreur_masse": 8.673617379884035e-19,
+            "erreur_tangente_reduite": 3.552713678800501e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 3.405363295488887e-16,
+            "erreur_parametrage": 1.2162818131311974e-16,
+            "erreur_orthogonalite": 1.5543122344752192e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 8,
+            "erreur_masse": 8.673617379884035e-19,
+            "erreur_tangente_reduite": 3.552713678800501e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 3.405363295488887e-16,
+            "erreur_parametrage": 1.2162818131311974e-16,
+            "erreur_orthogonalite": 1.5543122344752192e-15
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": null
+    },
+    {
+      "cas": "analyse",
+      "taille": 16,
+      "tourne": false,
+      "avant": {
+        "valide": false,
+        "erreurs": [
+          "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 58 }"
+        ],
+        "secondes_mediane": 0.01834136201068759,
+        "rss_kib_max": 72192,
+        "controles": [
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.08169100899249315,
+        "rss_kib_max": 87492,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 16,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 2.6645352591003757e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 6.223796751323745e-16,
+            "erreur_parametrage": 1.0755285551056204e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 16,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 2.6645352591003757e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 6.223796751323745e-16,
+            "erreur_parametrage": 1.0755285551056204e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 16,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 2.6645352591003757e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 6.223796751323745e-16,
+            "erreur_parametrage": 1.0755285551056204e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": null
+    },
+    {
+      "cas": "analyse",
+      "taille": 16,
+      "tourne": true,
+      "avant": {
+        "valide": false,
+        "erreurs": [
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }"
+        ],
+        "secondes_mediane": 0.018003606935963035,
+        "rss_kib_max": 72192,
+        "controles": [
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.0823944010771811,
+        "rss_kib_max": 87728,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 16,
+            "erreur_masse": 4.336808689942018e-19,
+            "erreur_tangente_reduite": 3.552713678800501e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 7.519357349357834e-16,
+            "erreur_parametrage": 2.1535454310506224e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 16,
+            "erreur_masse": 4.336808689942018e-19,
+            "erreur_tangente_reduite": 3.552713678800501e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 7.519357349357834e-16,
+            "erreur_parametrage": 2.1535454310506224e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 16,
+            "erreur_masse": 4.336808689942018e-19,
+            "erreur_tangente_reduite": 3.552713678800501e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 7.519357349357834e-16,
+            "erreur_parametrage": 2.1535454310506224e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": null
+    },
+    {
+      "cas": "analyse",
+      "taille": 32,
+      "tourne": false,
+      "avant": {
+        "valide": false,
+        "erreurs": [
+          "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 58 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 58 }"
+        ],
+        "secondes_mediane": 0.1278709708712995,
+        "rss_kib_max": 80896,
+        "controles": [
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.312007405096665,
+        "rss_kib_max": 136980,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 32,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 4.440892098500626e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 6.889154845521497e-16,
+            "erreur_parametrage": 1.0928757898653885e-16,
+            "erreur_orthogonalite": 3.1086244689504383e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 32,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 4.440892098500626e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 6.889154845521497e-16,
+            "erreur_parametrage": 1.0928757898653885e-16,
+            "erreur_orthogonalite": 3.1086244689504383e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 32,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 4.440892098500626e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 6.889154845521497e-16,
+            "erreur_parametrage": 1.0928757898653885e-16,
+            "erreur_orthogonalite": 3.1086244689504383e-15
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": null
+    },
+    {
+      "cas": "analyse",
+      "taille": 32,
+      "tourne": true,
+      "avant": {
+        "valide": false,
+        "erreurs": [
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }"
+        ],
+        "secondes_mediane": 0.12895639310590923,
+        "rss_kib_max": 80896,
+        "controles": [
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.31179248495027423,
+        "rss_kib_max": 137284,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 32,
+            "erreur_masse": 2.168404344971009e-19,
+            "erreur_tangente_reduite": 2.220446049250313e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.0879483543183612e-15,
+            "erreur_parametrage": 1.5411864030655236e-16,
+            "erreur_orthogonalite": 2.6645352591003757e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 32,
+            "erreur_masse": 2.168404344971009e-19,
+            "erreur_tangente_reduite": 2.220446049250313e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.0879483543183612e-15,
+            "erreur_parametrage": 1.5411864030655236e-16,
+            "erreur_orthogonalite": 2.6645352591003757e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 32,
+            "erreur_masse": 2.168404344971009e-19,
+            "erreur_tangente_reduite": 2.220446049250313e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.0879483543183612e-15,
+            "erreur_parametrage": 1.5411864030655236e-16,
+            "erreur_orthogonalite": 2.6645352591003757e-15
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": null
+    },
+    {
+      "cas": "analyse",
+      "taille": 48,
+      "tourne": false,
+      "avant": {
+        "valide": false,
+        "erreurs": [
+          "RuntimeError: LU creux : SymbolicSingular { index: 55 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 55 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 55 }"
+        ],
+        "secondes_mediane": 0.40372388111427426,
+        "rss_kib_max": 95232,
+        "controles": [
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.828220484778285,
+        "rss_kib_max": 219476,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 48,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 2.220446049250313e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.0333943580879294e-15,
+            "erreur_parametrage": 1.474514954580286e-16,
+            "erreur_orthogonalite": 2.886579864025407e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 48,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 2.220446049250313e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.0333943580879294e-15,
+            "erreur_parametrage": 1.474514954580286e-16,
+            "erreur_orthogonalite": 2.886579864025407e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 48,
+            "erreur_masse": 0.0,
+            "erreur_tangente_reduite": 2.220446049250313e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.0333943580879294e-15,
+            "erreur_parametrage": 1.474514954580286e-16,
+            "erreur_orthogonalite": 2.886579864025407e-15
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": null
+    },
+    {
+      "cas": "analyse",
+      "taille": 48,
+      "tourne": true,
+      "avant": {
+        "valide": false,
+        "erreurs": [
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }"
+        ],
+        "secondes_mediane": 0.4019228129182011,
+        "rss_kib_max": 95232,
+        "controles": [
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.8485956587828696,
+        "rss_kib_max": 219752,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "mobilites": 48,
+            "erreur_masse": 1.0842021724855044e-19,
+            "erreur_tangente_reduite": 3.1086244689504383e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.2620480663095109e-15,
+            "erreur_parametrage": 1.7988408404382787e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 48,
+            "erreur_masse": 1.0842021724855044e-19,
+            "erreur_tangente_reduite": 3.1086244689504383e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.2620480663095109e-15,
+            "erreur_parametrage": 1.7988408404382787e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          },
+          {
+            "etat_inchange": true,
+            "mobilites": 48,
+            "erreur_masse": 1.0842021724855044e-19,
+            "erreur_tangente_reduite": 3.1086244689504383e-15,
+            "erreur_amortissement": 0.0,
+            "erreur_noyau": 1.2620480663095109e-15,
+            "erreur_parametrage": 1.7988408404382787e-16,
+            "erreur_orthogonalite": 2.220446049250313e-15
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": null
+    },
+    {
+      "cas": "initialisation",
+      "taille": 1,
+      "tourne": false,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.03450697008520365,
+        "rss_kib_max": 70644,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.881784197001252e-16
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.881784197001252e-16
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.881784197001252e-16
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.03417035797610879,
+        "rss_kib_max": 70804,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.881784197001252e-16
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.881784197001252e-16
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.881784197001252e-16
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 1.0098509974443408
+    },
+    {
+      "cas": "initialisation",
+      "taille": 1,
+      "tourne": true,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.03451173799112439,
+        "rss_kib_max": 70684,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 2.6645352591003757e-15
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 2.6645352591003757e-15
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 2.6645352591003757e-15
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.03428010595962405,
+        "rss_kib_max": 71168,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 2.6645352591003757e-15
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 2.6645352591003757e-15
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 2.6645352591003757e-15
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 1.0067570395427938
+    },
+    {
+      "cas": "initialisation",
+      "taille": 8,
+      "tourne": false,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.0019205058924853802,
+        "rss_kib_max": 70680,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.2878587085651816e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.2878587085651816e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.2878587085651816e-14
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.0019047060050070286,
+        "rss_kib_max": 70976,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.2878587085651816e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.2878587085651816e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.2878587085651816e-14
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 1.0082951843679904
+    },
+    {
+      "cas": "initialisation",
+      "taille": 8,
+      "tourne": true,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.0019429291132837534,
+        "rss_kib_max": 70920,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 3.730349362740526e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 3.730349362740526e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 3.730349362740526e-14
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.0019532479345798492,
+        "rss_kib_max": 71236,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 3.730349362740526e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 3.730349362740526e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 3.730349362740526e-14
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 0.9947170960156088
+    },
+    {
+      "cas": "initialisation",
+      "taille": 16,
+      "tourne": false,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.011092022992670536,
+        "rss_kib_max": 71168,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 6.306066779870889e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 6.306066779870889e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 6.306066779870889e-14
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.01083887997083366,
+        "rss_kib_max": 71168,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 6.306066779870889e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 6.306066779870889e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 6.306066779870889e-14
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 1.0233550904261381
+    },
+    {
+      "cas": "initialisation",
+      "taille": 16,
+      "tourne": true,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.011330719105899334,
+        "rss_kib_max": 71680,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.970602038971265e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.970602038971265e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.970602038971265e-14
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.011258942075073719,
+        "rss_kib_max": 71680,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.970602038971265e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.970602038971265e-14
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 8.970602038971265e-14
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 1.006375113251939
+    },
+    {
+      "cas": "initialisation",
+      "taille": 32,
+      "tourne": false,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.07567922282032669,
+        "rss_kib_max": 77824,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.3855583347321954e-13
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.3855583347321954e-13
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.3855583347321954e-13
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.07545909215696156,
+        "rss_kib_max": 78336,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.3855583347321954e-13
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.3855583347321954e-13
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.3855583347321954e-13
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 1.0029172185494524
+    },
+    {
+      "cas": "initialisation",
+      "taille": 32,
+      "tourne": true,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.07624170579947531,
+        "rss_kib_max": 77824,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.4876988529977098e-13
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.4876988529977098e-13
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.4876988529977098e-13
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.07626196509227157,
+        "rss_kib_max": 78336,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.4876988529977098e-13
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.4876988529977098e-13
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 1.4876988529977098e-13
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 0.9997343460429883
+    },
+    {
+      "cas": "initialisation",
+      "taille": 48,
+      "tourne": false,
+      "avant": {
+        "valide": false,
+        "erreurs": [
+          "RuntimeError: LU creux : SymbolicSingular { index: 55 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 55 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 55 }"
+        ],
+        "secondes_mediane": 0.0015455400571227074,
+        "rss_kib_max": 71328,
+        "controles": [
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.3281478339340538,
+        "rss_kib_max": 141824,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 7.418066161335446e-12
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 7.418066161335446e-12
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 7.418066161335446e-12
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": null
+    },
+    {
+      "cas": "initialisation",
+      "taille": 48,
+      "tourne": true,
+      "avant": {
+        "valide": false,
+        "erreurs": [
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }",
+          "RuntimeError: LU creux : SymbolicSingular { index: 30 }"
+        ],
+        "secondes_mediane": 0.002087073866277933,
+        "rss_kib_max": 72192,
+        "controles": [
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          },
+          {
+            "etat_inchange": true
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.32635676581412554,
+        "rss_kib_max": 142336,
+        "controles": [
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 6.0325078266032506e-12
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 6.0325078266032506e-12
+          },
+          {
+            "etat_inchange": true,
+            "erreur_acceleration": 6.0325078266032506e-12
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": null
+    },
+    {
+      "cas": "libre",
+      "taille": 64,
+      "tourne": false,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.0002247390802949667,
+        "rss_kib_max": 40676,
+        "controles": [
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.00022812583483755589,
+        "rss_kib_max": 40780,
+        "controles": [
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 0.9851540070198501
+    },
+    {
+      "cas": "libre",
+      "taille": 512,
+      "tourne": false,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.0014216641429811716,
+        "rss_kib_max": 41492,
+        "controles": [
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.0014259021263569593,
+        "rss_kib_max": 41552,
+        "controles": [
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 0.9970278581555837
+    },
+    {
+      "cas": "libre",
+      "taille": 2048,
+      "tourne": false,
+      "avant": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.005372745916247368,
+        "rss_kib_max": 45056,
+        "controles": [
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          }
+        ]
+      },
+      "apres": {
+        "valide": true,
+        "erreurs": [],
+        "secondes_mediane": 0.005234973039478064,
+        "rss_kib_max": 44544,
+        "controles": [
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          },
+          {
+            "erreur_acceleration": 0.0
+          }
+        ]
+      },
+      "rapport_temps_avant_sur_apres": 1.0263177815301683
+    }
+  ]
+}

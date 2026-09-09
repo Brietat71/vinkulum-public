@@ -1,0 +1,24 @@
+n32-masse_comparee-p0 termine True [True, True] 0.14783056592568755 None
+n32-lu_corrigee-p0 termine True None 0.10073548508808017 None
+n128-masse_comparee-p0 termine True [True, True] 0.2281001911032945 None
+n128-lu_corrigee-p0 termine True None 0.23050742596387863 None
+n512-masse_comparee-p0 termine True [True, True] 0.5570943399798125 None
+n512-lu_corrigee-p0 termine True None 0.7304030819796026 None
+n32-masse_comparee-p1 termine True [True, True] 0.14771762094460428 None
+n32-lu_corrigee-p1 termine True None 0.10123693197965622 None
+n128-masse_comparee-p1 termine True [True, True] 0.22851058491505682 None
+n128-lu_corrigee-p1 termine True None 0.22961987182497978 None
+n512-masse_comparee-p1 termine True [True, True] 0.5588103050831705 None
+n512-lu_corrigee-p1 termine True None 0.7291116078849882 None
+n32-masse_comparee-p2 termine True [True, True] 0.1466083729173988 None
+n32-lu_corrigee-p2 termine True None 0.10099090193398297 None
+n128-masse_comparee-p2 termine True [True, True] 0.22681497898884118 None
+n128-lu_corrigee-p2 termine True None 0.23345774691551924 None
+n512-masse_comparee-p2 termine True [True, True] 0.5604292450007051 None
+n512-lu_corrigee-p2 termine True None 0.706166495801881 None
+n32-masse_comparee-p3 termine True [True, True] 0.1489714439958334 None
+n32-lu_corrigee-p3 termine True None 0.1019504729192704 None
+n128-masse_comparee-p3 termine True [True, True] 0.22797798900865018 None
+n128-lu_corrigee-p3 termine True None 0.229086423991248 None
+n512-masse_comparee-p3 termine True [True, True] 0.555356222903356 None
+n512-lu_corrigee-p3 termine True None 0.7333204699680209 None

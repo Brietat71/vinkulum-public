@@ -1,0 +1,516 @@
+{
+  "date_utc": "2026-09-07T00:25:06.503381+00:00",
+  "temoin_commit": "49bdaaa2f249dc008a8e93d6747b3752d8d1644e",
+  "binaires_sha256": {
+    "avant": "dfe9aba44f62dec2afa231fad90d02509a5cbd55954dd2774455998d44fa7d25",
+    "intermediaire_dual12": "4bdc4f852e398187c3886cab670fbace01c6647d704e5d675297da6a5083a65a",
+    "courant": "66f36f1af74288d1f5f198cc02025663c8f90d977311e355661f0926aa8815ca"
+  },
+  "sources_sha256": {
+    "Cargo.lock": "5a143572b13859a6954cda57d624a785eceb90ba5f1b9a204df7bfb1664c5343",
+    "Cargo.toml": "d27526bf96a1a7d46674f86a2475b433e562491df0552d749e715d77f262bb05",
+    "README.md": "d47e8236d5f26c6c0083157d69de136992f418fb2b8ab0314fa1391cd7714d47",
+    "ci/bilan_assemblage_local.py": "9fdc8c532de4d7d4cd76282fc76fcaeee56995980057cbcf642a044e1d185cdf",
+    "ci/confronte_mbdyn.py": "5b335dc114daad7e1739ec66ea2426245373123c559079c9eb8a3d6872e3a31c",
+    "ci/diagnostic_assemblage_local.py": "c8b60a647c5844d6884b04b053a2a2cc858a8ec0e5d166062e212a6c6218dde4",
+    "ci/diagnostic_cable.py": "6f7f9db7ab069eaf9eba533d2c86543095e4f5fb11230eab72d88fe0ad1750ed",
+    "ci/diagnostic_positions_compensees.py": "777b728c325b5974f703090ab77e5778a0c5660aace15830d334c32eae572a52",
+    "ci/local.sh": "260e4cf66d105a8a23fe4bc02d9c1746db1e96740528d2040ae842d55b5ac839",
+    "ci/mesure_dynamique_locale.py": "4361bac496115980ba219404fb347395c0e7fbafb07ee71a9346c360dee3d06d",
+    "ci/mesure_statique.py": "cc971d8cd0e6a2d92f4ef4ea8f794b31b0d9ce0e78c1c2cb729cba7635659bdf",
+    "ci/mesure_statique_alternee.py": "9b31d6d73999c86f06ff52ac5440e149bb5b1457bf792c8d62f213d99bb6a7fc",
+    "ci/mesure_tangentes.py": "7251b692025171e1c2316b6c68814da9f4ded1c8d3c5df4d5b72679d1b6c8275",
+    "ci/valide_assemblage_local.py": "a9c662c50e4b030a96cdf9b6ec42fa603eceb231c7e9ebe02db16df35b07ae59",
+    "docs/ASSEMBLAGE_LOCAL.md": "0fe3ad4203c0bd9cca262251f1cc75c07de1610587c6c02fe0b79db6cfd3e5d1",
+    "docs/OBJECTIF_MBDYN.md": "3e0001a46df28ec270eb2b926f0ec19df09fe21b916a2d1ec4b43f1b44a30560",
+    "pyproject.toml": "3826a6b2787be22b8c85a55ee29f191be2670482d5fa0d27186b54a720b75575",
+    "python/vinkulum/test_noyau.py": "1827b6ec6b10c97e824740d2a8a107828c4beeb5c96a03fd50b4d9eb8ff6d396",
+    "src/ad.rs": "1fd44c5469618d90d93ffa530639b44f6836deb992a5b24637b263026e5c75ff",
+    "src/analyse.rs": "18b0adaab5439b5b760714ce9d42ae7f165f58987ff3972f2b67862ec932c579",
+    "src/lib.rs": "d0d740c76b73306050251d063489de2396551d4fb1509e09167f0f83746f27c3",
+    "src/numerique.rs": "6872219a7265400e069e8fa2317315376ee648ba08d83fbb97bb96410f79ffba",
+    "src/partition.rs": "24c59b9b2914f3a1999528937c5410bbb6eae78e1675cf51cebad1fbed4d3674",
+    "src/robustesse.rs": "0b0490343581ca78e5fb637b96d8c727da6d694b96a8a917f0c9cef670003c2a",
+    "src/superelement.rs": "2769e6ac826754da3d8b9dc4d183d9f88f9c8c5b4acc3440e564d6c93f6385d3",
+    "src/tangent.rs": "3128fca6cee949ba0e5f72566fbf67d930864a0e13b9422865504084d3130fed"
+  },
+  "artefacts_sha256": {
+    "docs/bancs/assemblage-local-alterne.json": "d3c57821eceae667deed7d77057704909f620c3559477480d732392f13406acb",
+    "docs/bancs/assemblage-local-apres.json": "cb1c0fca658fe45cc8a3dff2b6964d10778dc5051951623f7b47f681a23e8941",
+    "docs/bancs/assemblage-local-avant.json": "6ff58d4228533e4dad69090c7ddf7a258bd4a6736dee028f106a40855a6564e0",
+    "docs/bancs/assemblage-local-cable.json": "a7bf2cc72a488d883532e10749b8225891a39178c9e439b9c1205ff68aa43cd3",
+    "docs/bancs/assemblage-local-ci.log": "0f7bfcd8c1af1fa91aa18808562257f8a3f578d80ec870fdf3966afe8022b8fc",
+    "docs/bancs/assemblage-local-comparaison.json": "e3581ea187f939d6c11f73f623e7acbe7e70186144884c36de7d029ebbd1db2b",
+    "docs/bancs/assemblage-local-dynamique-apres.json": "9f581954fc2c0f0773d62911c3156019433601f1b8788530aa87a0e8a6832dbd",
+    "docs/bancs/assemblage-local-dynamique-avant.json": "ccc9e6784042cdb21e3e418243effe706e2bffedc8f8e64b50958452a2730b05",
+    "docs/bancs/assemblage-local-dynamique-dual12.json": "78c9ffa91751f78955c84bd5b5b139e9199b2a7dac030f73489709de291dcbc7",
+    "docs/bancs/assemblage-local-princeton-strict.json": "22d8cca421a828203e0b174fad14e38e4a09e1ef99de75154b0c7503a08e258b",
+    "docs/bancs/assemblage-local-regressions-avant.log": "1a0812986b53fda641cf9e709e08aee09f1ec2af00de105858c3e7c0e666cf6d",
+    "docs/bancs/assemblage-local-statique-princeton.json": "c9f23b0d6c53be207ef456618a4c8b6b670f93ea2ecc8bba210b022ce86680fe",
+    "docs/bancs/assemblage-local-tangentes-princeton.json": "aea0cda533414d5dc1bdbf3a1c20b6b797aa3dfaf9382d3ce4c31f680be50a81",
+    "docs/bancs/assemblage-local-tests-python.log": "4a495ddee6767b397e599d4467379373ca9b515d1d1e0874d6d154da9eaf1d69",
+    "docs/bancs/assemblage-local-uniforme.json": "176204f381c31f113709b30c8ab5f2237e2cf4411dd630b782c6bf8684d96a40"
+  },
+  "ci": {
+    "commande": "PY=.venv314/bin/python PYO3_PYTHON=.venv314/bin/python UV_CACHE_DIR=/tmp/vinkulum-uv-cache ci/local.sh --bancs",
+    "code_sortie": 0,
+    "rust": 31,
+    "python": 59,
+    "verification": 41,
+    "bancs_rapides": 46,
+    "contacts": 9,
+    "api": 185
+  },
+  "controles": {
+    "statique_alternee": [
+      {
+        "intervalles": 240,
+        "repetitions": [
+          3,
+          3
+        ],
+        "avant_s": 2.2206768279429525,
+        "apres_s": 0.47367777209728956,
+        "gain": 4.688159248238576,
+        "rss_avant_mio": 92.25,
+        "rss_apres_mio": 61.9140625,
+        "ecart_positions_m": 0.0,
+        "pire_residu_libre_N": 4.209448371976045e-09,
+        "pire_contrainte": 1.4720717766291113e-21
+      },
+      {
+        "intervalles": 480,
+        "repetitions": [
+          3,
+          3
+        ],
+        "avant_s": 11.307559442007914,
+        "apres_s": 0.9429844829719514,
+        "gain": 11.991246564705405,
+        "rss_avant_mio": 191.421875,
+        "rss_apres_mio": 66.453125,
+        "ecart_positions_m": 0.0,
+        "pire_residu_libre_N": 2.9466560410659397e-09,
+        "pire_contrainte": 1.700029006457271e-16
+      }
+    ],
+    "portee_positions_statiques": "Trois coordonnées du bout ; équilibre et contraintes vérifiés sur tous les degrés libres.",
+    "dynamique": {
+      "uniforme": {
+        "avant_s": 0.002208119025453925,
+        "apres_s": 0.00225978996604681,
+        "variation_temps_pourcent": 2.3400432674711924,
+        "stats_avant": [
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ]
+        ],
+        "stats_apres": [
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ]
+        ],
+        "ecarts_max_par_composante": {
+          "temps_s": 0.0,
+          "position_haute_m": 0.0,
+          "orientation": 0.0,
+          "vitesse_m_s": 0.0,
+          "vitesse_angulaire_rad_s": 0.0,
+          "inflow_m_s": 0.0,
+          "position_basse_m": 0.0
+        },
+        "etat_exporte_identique_bit_a_bit": true
+      },
+      "harmoniques": {
+        "avant_s": 0.00241830013692379,
+        "apres_s": 0.002686144085600972,
+        "variation_temps_pourcent": 11.07571159541405,
+        "stats_avant": [
+          [
+            285,
+            0,
+            250,
+            0
+          ],
+          [
+            285,
+            0,
+            250,
+            0
+          ],
+          [
+            285,
+            0,
+            250,
+            0
+          ],
+          [
+            285,
+            0,
+            250,
+            0
+          ],
+          [
+            285,
+            0,
+            250,
+            0
+          ]
+        ],
+        "stats_apres": [
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ]
+        ],
+        "ecarts_max_par_composante": {
+          "temps_s": 0.0,
+          "position_haute_m": 1.7208456881689926e-15,
+          "orientation": 1.1102230246251565e-15,
+          "vitesse_m_s": 1.892930256985892e-14,
+          "vitesse_angulaire_rad_s": 1.301736496372996e-14,
+          "inflow_m_s": 0.0,
+          "position_basse_m": 3.67544536472586e-17
+        },
+        "etat_exporte_identique_bit_a_bit": false
+      },
+      "profil": {
+        "avant_s": 0.0027225210797041655,
+        "apres_s": 0.0030589669477194548,
+        "variation_temps_pourcent": 12.357879265781403,
+        "stats_avant": [
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ]
+        ],
+        "stats_apres": [
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ]
+        ],
+        "ecarts_max_par_composante": {
+          "temps_s": 0.0,
+          "position_haute_m": 1.0547118733938987e-15,
+          "orientation": 6.38378239159465e-16,
+          "vitesse_m_s": 1.5210055437364645e-14,
+          "vitesse_angulaire_rad_s": 1.326716514427062e-14,
+          "inflow_m_s": 0.0,
+          "position_basse_m": 7.752045533271357e-18
+        },
+        "etat_exporte_identique_bit_a_bit": false
+      },
+      "carte": {
+        "avant_s": 0.00374698918312788,
+        "apres_s": 0.0040930951945483685,
+        "variation_temps_pourcent": 9.236909809586603,
+        "stats_avant": [
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ]
+        ],
+        "stats_apres": [
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ]
+        ],
+        "ecarts_max_par_composante": {
+          "temps_s": 0.0,
+          "position_haute_m": 1.4432899320127035e-15,
+          "orientation": 1.1379786002407855e-15,
+          "vitesse_m_s": 7.327471962526033e-15,
+          "vitesse_angulaire_rad_s": 5.218048215738236e-15,
+          "inflow_m_s": 0.0,
+          "position_basse_m": 4.9873299934333204e-18
+        },
+        "etat_exporte_identique_bit_a_bit": false
+      },
+      "roulement": {
+        "avant_s": 0.002935908967629075,
+        "apres_s": 0.0026489729061722755,
+        "variation_temps_pourcent": -9.773329644090357,
+        "stats_avant": [
+          [
+            500,
+            0,
+            250,
+            0
+          ],
+          [
+            500,
+            0,
+            250,
+            0
+          ],
+          [
+            500,
+            0,
+            250,
+            0
+          ],
+          [
+            500,
+            0,
+            250,
+            0
+          ],
+          [
+            500,
+            0,
+            250,
+            0
+          ]
+        ],
+        "stats_apres": [
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ],
+          [
+            250,
+            0,
+            250,
+            0
+          ]
+        ],
+        "ecarts_max_par_composante": {
+          "temps_s": 0.0,
+          "position_haute_m": 2.3314683517128287e-15,
+          "orientation": 1.27675647831893e-15,
+          "vitesse_m_s": 1.0880185641326534e-14,
+          "vitesse_angulaire_rad_s": 1.3766765505351941e-14,
+          "inflow_m_s": 0.0,
+          "position_basse_m": 5.170627923219151e-17
+        },
+        "etat_exporte_identique_bit_a_bit": false
+      }
+    },
+    "paliers_princeton_tolerance": 400,
+    "paliers_stagnation": 0,
+    "barres_allongement_exact": 3,
+    "negative_ancienne_extension": {
+      "tests": 2,
+      "echecs_attendus": 2
+    },
+    "uniforme_dual9_dual12_identique_bit_a_bit": true,
+    "cable_integre": {
+      "originale": "echec",
+      "lineaire": "echec",
+      "fleche_reference_lineaire_m": 320350.39494797424
+    }
+  },
+  "limites": [
+    "Comparaison avant/après Vinkulum ; aucun nouveau classement MBDyn ou Simpack.",
+    "G, GG^T, matrices publiques et replis singuliers restent denses.",
+    "Blocs de poutre entre rotations encore approchés ; états internes aérodynamiques figés dans les dérivées.",
+    "Coût supplémentaire des jacobiens spatiaux publié dans les mesures dynamiques.",
+    "Câble condensé extrême toujours en échec ; validité physique non rétablie."
+  ]
+}

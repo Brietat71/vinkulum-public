@@ -1,0 +1,70 @@
+{
+  "schema": "vinkulum.diagnostic.trace_em.1",
+  "version": "0.17.0",
+  "extension_sha256": "57e730b8fb18772104ff48b99aaf98a14f2f62c72cd3ad78a3376c76cc5af54c",
+  "programme_sha256": "ae4a60b1abe159cee7a2ac1cfb8b6a6907ae434d3cbb14cf4065952481fab1c8",
+  "modele_sha256": "b4377840cb8301ecef793ec0954c3b1380d64d24e2cb39cfca98d12bf78407a5",
+  "propagation_certifiee": false,
+  "cas": [
+    {
+      "fichier": "initial-0.00100.json.gz",
+      "sha256": "d6666f55b44e6f1c2f9f91dc83d2f2bc8473836ae7f6b9cc1978a66e0c93faa1",
+      "points": 20001
+    },
+    {
+      "fichier": "spatial-0.00100.json.gz",
+      "sha256": "b55f7bdfc44b12f08728b589cc0d0891fe19a97887a793dd6679cc57ba1293f6",
+      "points": 20001
+    },
+    {
+      "fichier": "materiel-0.00100.json.gz",
+      "sha256": "34316d6654991873a05f761a7731cd521636a288d0f925c899ef019e062fbc66",
+      "points": 20001
+    },
+    {
+      "fichier": "combine-0.00100.json.gz",
+      "sha256": "315005e333cce2c94934c00850d00f9c5f19fd98a3300240f4ba765188415b45",
+      "points": 20001
+    },
+    {
+      "fichier": "initial-0.00050.json.gz",
+      "sha256": "eb7b1d9246903c076b63a9ae96fc99b2882aafec17dffede8a4eaf49a992a399",
+      "points": 40001
+    },
+    {
+      "fichier": "spatial-0.00050.json.gz",
+      "sha256": "ea20ab01bdeaa3ae2d49fb4f55e506d4a5ccce22f04e9bd71026780fc1e6a4a4",
+      "points": 40001
+    },
+    {
+      "fichier": "materiel-0.00050.json.gz",
+      "sha256": "48d4a85b1760f453c3bbbfd54e7f731875295dcac5ba55768a2fe46f6756ca58",
+      "points": 40001
+    },
+    {
+      "fichier": "combine-0.00050.json.gz",
+      "sha256": "0da90f126605aad8e2f645f85a1bbd5fd5e4d0e97bda29bdd01426c9c82ad205",
+      "points": 40001
+    },
+    {
+      "fichier": "initial-0.00025.json.gz",
+      "sha256": "649a87f364b6609a0284cd287f9ffe932d290f7b23def2e66e6c68e933806813",
+      "points": 80001
+    },
+    {
+      "fichier": "spatial-0.00025.json.gz",
+      "sha256": "c90aa77de9456ccea471e3568b4ccdce87f316bfa2b160ce8d7fdc07fa88eee8",
+      "points": 80001
+    },
+    {
+      "fichier": "materiel-0.00025.json.gz",
+      "sha256": "9bb1f6a546ceea46b4c839d858979fb9f8ec70ebfa2fd5a1b553465807d04be8",
+      "points": 80001
+    },
+    {
+      "fichier": "combine-0.00025.json.gz",
+      "sha256": "b5b0b63c17f8635627f6ff324cc48d12efce9a188e91323d46bc1083a940d809",
+      "points": 80001
+    }
+  ]
+}

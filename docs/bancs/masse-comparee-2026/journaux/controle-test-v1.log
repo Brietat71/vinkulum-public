@@ -1,0 +1,22 @@
+test_champs_identiques_ancien_sur_domaine_commun (ci.test_controle_masse_comparee.ControleMasseCompareePhysique.test_champs_identiques_ancien_sur_domaine_commun) ... FAIL
+test_controle_perime_et_comparaison_trop_large (ci.test_controle_masse_comparee.ControleMasseCompareePhysique.test_controle_perime_et_comparaison_trop_large) ... ok
+test_deux_contraintes_obliques_et_changement_unites (ci.test_controle_masse_comparee.ControleMasseCompareePhysique.test_deux_contraintes_obliques_et_changement_unites) ... ok
+test_masse_connectee_taille_huit_complement_incomplet (ci.test_controle_masse_comparee.ControleMasseCompareePhysique.test_masse_connectee_taille_huit_complement_incomplet) ... ok
+test_masse_psd_ports_sans_masse_et_poles (ci.test_controle_masse_comparee.ControleMasseCompareePhysique.test_masse_psd_ports_sans_masse_et_poles) ... ok
+
+======================================================================
+FAIL: test_champs_identiques_ancien_sur_domaine_commun (ci.test_controle_masse_comparee.ControleMasseCompareePhysique.test_champs_identiques_ancien_sur_domaine_commun)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/vinkulum-energie-native-travail/ci/test_controle_masse_comparee.py", line 60, in test_champs_identiques_ancien_sur_domaine_commun
+    x=a.reponses(w,self.forces());y=self.verifier_bornes(b,d,m,s,w,self.forces())
+                                    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/vinkulum-energie-native-travail/ci/test_controle_masse_comparee.py", line 31, in verifier_bornes
+    self.assertGreater(rep['marge'],0.);self.assertFalse(rep['certification_machine'])
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: -0.3338120901586171 not greater than 0.0
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.714s
+
+FAILED (failures=1)

@@ -1,0 +1,7 @@
+  statique it   0  ‖r‖ 8.6130e-1  (forces 8.613e-1 · Φ 0.000e0 · échelle libre 1.000e0)
+  statique temps forces=0.000251 raideur=0.000102 assemblage=0.000022 resolution=0.004493 recherche=0.000045
+  statique it   1  ‖r‖ 2.3531e-3  (forces 1.775e-3 · Φ 2.353e-3 · échelle libre 1.000e0)
+  statique temps forces=0.000471 raideur=0.000072 assemblage=0.000101 resolution=0.003868 recherche=0.000041
+  statique it   2  ‖r‖ 5.8634e-6  (forces 9.572e-7 · Φ 5.863e-6 · échelle libre 1.000e0)
+  statique temps forces=0.000484 raideur=0.000071 assemblage=0.000084 resolution=0.003810 recherche=0.000039
+  statique it   3  ‖r‖ 4.2607e-12  (forces 6.684e-14 · Φ 4.261e-12 · échelle libre 1.000e0)

@@ -1,0 +1,154 @@
+{
+  "date_utc": "2026-09-07T14:40:31.514434+00:00",
+  "version": "0.9.0",
+  "tag_annote": "v0.9.0",
+  "base_commit": "47c4eca168b3e4692d3b32222d4c39382b904268",
+  "roue": {
+    "nom": "vinkulum-0.9.0-cp314-cp314-manylinux_2_39_x86_64.whl",
+    "sha256": "4e6eebafa450305b6177af7c1162fcfacb8ca4b7a5e5127d6e4a7888bcd28f53",
+    "octets": 2601774,
+    "entrees_record_verifiees": 77,
+    "readme_conforme": true,
+    "saut_ligne_terminal_ajoute": true,
+    "version": "0.9.0",
+    "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+    "adjoint_python_sha256": "bec0890fb847d55e0ce5cab487a6871a7e757150e3889689179b4a35ffb8ed05",
+    "code_mesure_identique": true,
+    "roue_mesuree": {
+      "name": "vinkulum-0.9.0-cp314-cp314-manylinux_2_39_x86_64.whl",
+      "sha256": "1f59bf874de0ddad8a705fb6a053adcda56499ba9c4bf733c8117076e6a5885f",
+      "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+      "adjoint_python_sha256": "bec0890fb847d55e0ce5cab487a6871a7e757150e3889689179b4a35ffb8ed05"
+    },
+    "differences_roues": [
+      "vinkulum-0.9.0.dist-info/METADATA",
+      "vinkulum-0.9.0.dist-info/RECORD",
+      "vinkulum-0.9.0.dist-info/sboms/vinkulum.cyclonedx.json",
+      "vinkulum/test_operateurs.py"
+    ]
+  },
+  "controle_roue": {
+    "version": "0.9.0",
+    "module": "/tmp/vinkulum-release-0.9.0/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+    "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+    "import_hors_depot": true,
+    "exemple_readme_execute": true,
+    "readme_sha256": "87ff2b116207fca760bea982a82256cf51a4d4dda229d2e6411f338b97813a52",
+    "angle_readme_rad": 0.02,
+    "statique_stricte": {
+      "statut": "tolerance",
+      "tol": 1e-10,
+      "strict": true,
+      "residu_libre": 0.0,
+      "contraintes": 0.0,
+      "echelle_force": 2.0,
+      "residu_relatif": 0.0,
+      "tolerance_finale_atteinte": true,
+      "evaluations": 2,
+      "tentatives": 1,
+      "paliers": 1,
+      "palier": 1,
+      "paliers_stagnation": 0,
+      "etat_restaure": false,
+      "message": null
+    },
+    "etat_precis_restaure": true
+  },
+  "verification_roue": {
+    "python": 87,
+    "verification": 41,
+    "installation_hors_depot": true
+  },
+  "ci": {
+    "commande": "ci/local.sh --bancs",
+    "code_sortie": 0,
+    "rust": 74,
+    "prototype_rust": 8,
+    "python": 87,
+    "verification": 41,
+    "api": 187,
+    "bancs": 46,
+    "contacts": 9,
+    "tests_juge_adjoint": 7,
+    "tests_juge_exudyn": 8
+  },
+  "comparaison_interne": {
+    "reference": "0.8.2",
+    "version_mesuree": "0.9.0",
+    "configurations": 39,
+    "processus_finaux": 156,
+    "echauffements_finaux": 39,
+    "repetitions": 3,
+    "processus_precontrole": 156,
+    "tous_verifies": true,
+    "gradient_complet_pas": 20,
+    "ecart_relatif_normique_max_par_groupe": 3.3491039343824747e-10,
+    "ecart_positions_max": 0.0,
+    "erreur_arriere_adjoint_max": 8.939773062747035e-17,
+    "mesures_finales": "adjoint-operateurs-0.9.0-livraison.json",
+    "precontrole": "adjoint-operateurs-0.9.0.json",
+    "note_precontrole": "Premier lot avant le refus explicite des liaisons non holonomes ; seconde campagne intégrale après ce contrôle.",
+    "regressions": "Un produit isolé à 30 poutres est 3,63 fois plus lent avec le premier import SciPy ; mémoire supérieure sur certains petits cas.",
+    "note_roue": "La roue mesurée est une candidate locale figée ; la roue de livraison contient la documentation finale et un test flexible supplémentaire. Extension Rust et module adjoint sont identiques octet pour octet ; différences de SBOM limitées à UUID et date."
+  },
+  "environnements": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "cpu": "model name\t: AMD EPYC 7543 32-Core Processor",
+    "affinity": [
+      8
+    ],
+    "threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "RAYON_NUM_THREADS": "1"
+    }
+  },
+  "comparaison_externe_nouvelle": false,
+  "reference_externe": "docs/CONFRONTATION_EXUDYN_0.8.2.md",
+  "journaux_sha256": {
+    "vinkulum-version-0.9.0-ci-bancs.log": "474f6919fd0358e2dd4b99889a107352db9cb4d6f450efc46a313b4a35efae3f",
+    "vinkulum-version-0.9.0-roue-tests-python.log": "dd1a9c8fccdbd9d748e167c021876604bd8ec6384e181c8a40e4c7d762810e12",
+    "vinkulum-version-0.9.0-roue-verification.log": "ff3407bdb534feeab232ad8b021b5e67c88c35c21c241e33850b7b790cb79a54",
+    "vinkulum-version-0.9.0-construction.log": "efc7b9957b656d634977eadadcbe3b5501dc85d1914ebfe65c32b2c7d4492298",
+    "vinkulum-version-0.9.0-installation.log": "d6b76096b6fe247a18c2010d0f04f8664816ef7d1952b0ff5e65e0838673db4c",
+    "vinkulum-version-0.9.0-controle.json": "eec827c72fc4d1add2c871a8a0c2065b31670c9891197817e91a8429243cc09d",
+    "vinkulum-version-0.9.0-roue-identite.json": "80d7937cf6e119d3bc197105fbeb13a1757a35b042e8795070f2e14c493ecb2a",
+    "vinkulum-operateurs-candidate-holonome-build.log": "fcd5b1aee2cdecc303cb3339f74e8357446b87e21bd3f903795f2071cbe2d464",
+    "vinkulum-operateurs-candidate-holonome-installation.log": "6961969055395907d0413465e136120779fe8017f18342bce3e6152b0734c238",
+    "vinkulum-adjoint-0.9.0-livraison-mesures.log": "62f075419e44fcaae25ff68bb4d6d9da8e143fcb0a17ca8525d3038c10d0083c",
+    "vinkulum-adjoint-0.9.0-mesures.log": "e19afb61bd3a24fc21d0d4c5cabe459b692efa8cd6813da4684253843bc9244b"
+  },
+  "archives_sha256": {
+    "adjoint-operateurs-0.9.0-essais.json.gz": "0a6b24f319efd900391208546a94949b3b7f1c46b49a41c764038ac5ceca9839",
+    "adjoint-operateurs-0.9.0-livraison-essais.json.gz": "1bb26f27e6479aaa654ebf6c68d234b679dee067979b0659be479f3f4baf2120",
+    "adjoint-operateurs-0.9.0-livraison.json": "1c94f6eeb91de4a733bc6403b093d3bc346244804bbf8392fdf03e99ff0d46b1",
+    "adjoint-operateurs-0.9.0-livraison.png": "7ce4bbedb551d35dbea05801af1fe94ff8244f1e7aa96cf97cbfd92c773c3351",
+    "adjoint-operateurs-0.9.0-livraison.svg": "f2a1d5afadcc390934aa4bbea27d55cc053c88350402dbe867ff1885360b4901",
+    "adjoint-operateurs-0.9.0.json": "26413b85842d954afb9f4baac5fb788a33fa619d252ca44e85f02bcdde97cc40",
+    "version-0.9.0-journaux.json.gz": "bc4db1cba18266e2a92b0fc6ac77ad901140ef5db11d49c13e08f809329bd5c2"
+  },
+  "sources_sha256": {
+    "Cargo.lock": "68ac930de337d202f36c8e95a62eb09df77aa83759c08976d170387b2005a4d8",
+    "Cargo.toml": "02482c5b6d7eda04e3e784e36961764941ad46bcc8b499bb8068a7ae07be7533",
+    "pyproject.toml": "6290aa61b46151fca18d087eab5d1b6f280da0a63d0f81ef2e2489dee7da3e0a",
+    "README.md": "87ff2b116207fca760bea982a82256cf51a4d4dda229d2e6411f338b97813a52",
+    "src/analyse.rs": "2654e88f1da9f6d983f581d9acf8161ee5b3fa60c0591d1aa752fd0fca5733b2",
+    "src/lib.rs": "706b7edbfa24fbe30bdf299e3f8ad7a17434c5b98c6c28e3f6afd2e98a16d1f4",
+    "python/vinkulum/adjoint_temps.py": "bec0890fb847d55e0ce5cab487a6871a7e757150e3889689179b4a35ffb8ed05",
+    "python/vinkulum/test_operateurs.py": "8f3481f5252467ed2a07b609bd84c3dfac74dfc59fe96034073e76553d1bdda8",
+    "ci/local.sh": "03962db603c716ffcd2d728665c856213193c81682d3f068e3e5be22e329a608",
+    "ci/github-actions.yml": "83f03e184858417ea7b23de020fdd571af5fa0fedf5b4ca2cf9bdee7aa31b2b4",
+    "ci/mesure_adjoint_operateurs.py": "d8040104dabf5582cc05b5a1af414d4fad98e15cd784ee7f712f2768e49d7fa2",
+    "ci/test_adjoint_operateurs.py": "ce4aa5e80f9ceea4aae2b0c8818b8a3c4749a562f7da5ae326fcbdc175cab1a1",
+    "ci/trace_adjoint_operateurs.py": "a3682b1085f3fd75dc1621219a4262041ff31515b9ebf0ba2c6339e34da65802",
+    "ci/controle_roue_initialisation.py": "2f35c3b67defc80156525fc6930a08f6919c299bfb575f68b76c2745dffbf95b",
+    "docs/API.md": "d41b9458537dbb6075f66f6d7335f8b1ca10aa60c4a7eeecc262fe0691375e19",
+    "docs/OPERATEURS_ADJOINTS.md": "8763ace0dd70d63b51897361cec3ace3099c5fdb24de11abffb3dc3cac8397c2",
+    "docs/VERSION_0.9.0.md": "f2caa320b751077334c037bcff4b01a553e471fdaae9979b1d3d370e6401c554",
+    "docs/OBJECTIF_MBDYN.md": "4d6f095e670aa75b04d66cf6ac0f84dc7f4fd1ca360a0c417cf656ec883f5cda",
+    "docs/RECHERCHE_MATHEMATIQUE.md": "5bc62d1e6b6b58c3a9934ad76540f1b5f0a5e318dff3cfe5f35cd64638e0b105"
+  }
+}

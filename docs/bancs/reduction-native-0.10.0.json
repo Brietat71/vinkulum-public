@@ -1,0 +1,1795 @@
+{
+  "schema": 1,
+  "objet": "Témoin natif de réduction matérielle par ports, version 0.10.0",
+  "environnement": {
+    "date_utc": "2026-09-07T19:03:23.131981+00:00",
+    "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+    "executable": "/tmp/vinkulum-energie-native-venv/bin/python",
+    "vinkulum": "0.10.0",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "plateforme": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+    "cpu_affinite": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63
+    ],
+    "fils": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "RAYON_NUM_THREADS": "1"
+    },
+    "script_sha256": "80b97a8be33bd479167a050da12115cac03894fb92880159557ae3271c84d6b2",
+    "extension_sha256": "725237fce98bb62a6f6853c375abf1eb2250418b3eaab3dbcdad8a8d274aa024",
+    "sources_python_sha256": {
+      "reduction_ports.py": "cc50e932f46d076fac54df6d34f9b8060327a1c4cb170dae3fb9ae42b288f846",
+      "_ports/condensation_energie.py": "8cf95400d746f439ece96a6a984c2a6680ea3f4a4a444dffd500047969cac691",
+      "_ports/ports_krylov.py": "06f6c53478dce24e3103f84957a46dcbc09e0828505e321f8c585e22f977a5ad",
+      "_ports/ports_releves.py": "3101c9fa1299c75c40e6f0d39d7b4414dccc11c9309f67a41bd3e3a4b4e67af1",
+      "_ports/champ_interieur.py": "c77e01a6e1dddf5289b172c42060d54e28d8b2b261d9fd9ab95a9c09dc7a966a",
+      "_ports/inverse_selectionnee.py": "6658d460bfdcaf08d499da40f58cb87333f658ca69f138631c4c1f3d2ffbc65d",
+      "_ports/certificat_spectral.py": "5385bb6ca3322a32e24ee5fc738a39cef178f9b344a1339659e11bf8669d434a"
+    },
+    "git_head": "6f4fe4cc7827396526e77b8722fe6323b99a2f0b",
+    "git_statut": "M Cargo.lock\n M Cargo.toml\n M README.md\n M ci/champ_interieur.py\n M ci/condensation_energie.py\n M ci/condensation_energie_lu.py\n M ci/github-actions.yml\n M ci/local.sh\n M ci/ports_krylov.py\n M ci/ports_releves.py\n M docs/API.md\n M docs/FACTEURS_ENERGIE_NOYAU.md\n M docs/RECHERCHE_MATHEMATIQUE.md\n M pyproject.toml\n M python/vinkulum/doc.py\n M src/analyse.rs\n M src/lib.rs\n M src/tangent.rs\n?? ci/certificat_spectral.py\n?? ci/controle_roue_reduction.py\n?? ci/experience_reduction_native.py\n?? ci/inverse_selectionnee.py\n?? ci/test_inverse_selectionnee.py\n?? docs/INVERSE_SELECTIONNEE_PREUVES.md\n?? docs/REDUCTION_PORTS.md\n?? docs/VERSION_0.10.0.md\n?? docs/bancs/reduction-native-0.10.0.json\n?? python/vinkulum/_ports/\n?? python/vinkulum/reduction_ports.py\n?? python/vinkulum/test_reduction_ports.py"
+  },
+  "protocole": {
+    "commandes": [
+      "/tmp/vinkulum-energie-native-travail/ci/experience_reduction_native.py"
+    ],
+    "tailles_demandees": [
+      32,
+      128,
+      512
+    ],
+    "frequences_hz": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "repetitions": 1,
+    "echauffement": false,
+    "charge_concurrente": false,
+    "note_couts": "Durées murales observées une seule fois ; imports exclus, oracles séparés. Pas de mesure isolée ni de comparaison de vitesse avec un autre solveur.",
+    "tolerance_relative": 1e-06,
+    "tolerance_schur": 1e-10,
+    "bloc_initial": 1,
+    "max_directions": 64,
+    "max_etapes": 6,
+    "budget_qr": 10000000,
+    "budget_spectral": 10000000,
+    "precision_spectrale": 80
+  },
+  "limites": [
+    "Petites perturbations matérielles au repos : K=DᵀD, sans amortissement ni charges intérieures.",
+    "Masse nodale concentrée explicitement définie ; pas de revendication de convergence vers un continuum dynamique.",
+    "Certificat spectral pour D et M binary64 d'entrée ; contrôles de champ évalués en doubles non certifiés.",
+    "L'oracle reconstruit les coefficients physiques avant les racines du facteur natif : les modèles peuvent différer par arrondis.",
+    "Decimal 70/90 contrôle la convergence observée de l'oracle, sans certificat machine de cet oracle.",
+    "Acceptation adaptative aux seules fréquences demandées, sans garantie d'acceptation entre ces points.",
+    "Un seul passage par taille, sans classement de performances ni campagne exhaustive."
+  ],
+  "cas": [
+    {
+      "parametres": {
+        "n": 32,
+        "longueur_m": 1.0,
+        "largeur_y_m": 0.04,
+        "hauteur_z_m": 0.006,
+        "young_pa": 70000000000.0,
+        "poisson": 0.3,
+        "rho_kg_m3": 2700.0,
+        "facteur_cisaillement": 0.8333333333333334,
+        "pas_m": 0.03125,
+        "ea_n": 16800000.0,
+        "gay_n": 5384615.384615385,
+        "gaz_n": 5384615.384615385,
+        "gj_nm2": 70.21138310307693,
+        "eiy_nm2": 50.4,
+        "eiz_nm2": 2240.0,
+        "masse_noeud_interieur_kg": 0.02025,
+        "inerties_noeud_interieur_kg_m2": [
+          2.76075e-06,
+          1.70869921875e-06,
+          4.34794921875e-06
+        ],
+        "masse_totale_avant_encastrement_kg": 0.648,
+        "force_port_physique": [
+          0.0,
+          0.0,
+          0.1,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "masse_discrete": "Poids nodaux 1/2 aux deux extrémités, 1 ailleurs. Chaque inertie est ce même poids de celle d'un parallélépipède pas×largeur×hauteur. La masse de la racine est retirée avec ses six coordonnées. Masse concentrée diagonale, sans matrice de masse consistante."
+      },
+      "statut": "tolerance_aux_frequences_demandees",
+      "couts_observes_s": {
+        "construction_noyau": 0.0007650009356439114,
+        "reduction_native_et_certificat": 0.06185274804010987,
+        "reponses_initiales": 0.0037541380152106285,
+        "controle_sans_budget_enrichissement": 0.00208879797719419,
+        "adaptation_et_reponses_finales": 0.00732062803581357,
+        "oracles_independants": 0.004264913033694029,
+        "total_temoignage_avec_oracles": 0.08067096886225045
+      },
+      "metrique_ports": [
+        [
+          16800000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          26746.481564032347,
+          0.0,
+          0.0,
+          0.0,
+          -13373.240782016172
+        ],
+        [
+          0.0,
+          0.0,
+          604.7320764931679,
+          0.0,
+          302.36603824658397,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          70.21138310307693,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          302.36603824658397,
+          0.0,
+          201.583019123292,
+          0.0
+        ],
+        [
+          0.0,
+          -13373.240782016173,
+          0.0,
+          0.0,
+          0.0,
+          8926.620391008086
+        ]
+      ],
+      "dimension_physique": 192,
+      "dimension_interieure": 186,
+      "ports": 6,
+      "directions_initiales": 6,
+      "certificat_spectral": {
+        "precision_decimal": 80,
+        "operations_decimal": 49444,
+        "coefficients_gram_ecart": 548,
+        "produits_gram": 2122,
+        "coefficients_inverse": 546,
+        "trace_inferieure_decimal": "0.000031634558604289436354878512219838825892034429944901190506031589199546769660739322",
+        "trace_superieure_decimal": "0.000031634558604289436354878512219838825892034429944901190506031589199546769660741507",
+        "eta_superieur_decimal": "1.0810951297608239589049592478807161818005936923231470412904416329410599832982922E-11",
+        "modele": "D_I.T D_I et M_II : valeurs binary64 d'entrée interprétées exactement",
+        "portee": "minoration spectrale seule ; pas de certificat du modèle physique continu",
+        "preparation_s": 0.03307354892604053,
+        "lambda_min": 31610.998986835733,
+        "lambda_inferieur_decimal": "31610.998986835734778807084203576819125061983992467338519079733864466420439087742",
+        "eta_superieur": 1.081095129760824e-11,
+        "trace_superieure": 3.163455860428944e-05,
+        "minoration_D_original_etablie": true,
+        "certification_machine": true,
+        "eta_upper": 1.081095129760824e-11,
+        "trace_upper": 3.163455860428944e-05,
+        "precision": 80,
+        "operations_inverse_float": 5064
+      },
+      "audit_facteur": {
+        "ecart_energie_statique": 9.697654397346621e-16,
+        "defaut_equilibre_entree_dual": 1.236556416320446e-13,
+        "residu_lifting": 1.280931566119015e-13,
+        "rotations": 494,
+        "operations": 21408,
+        "nnz_R": 546,
+        "coefficients_ports": 1152,
+        "certification_machine": false
+      },
+      "domaine_natif": [
+        "multiplicateurs non initialisés : extraction sans calcul de réactions"
+      ],
+      "residu_contraintes_initial": 0.0,
+      "tolerance_contraintes": 1e-12,
+      "lambda_min": 31610.998986835733,
+      "nnz_D": 504,
+      "nnz_M": 192,
+      "controle_sans_enrichissement": {
+        "max_etapes": 0,
+        "statut": "budget_etapes",
+        "accepte": false,
+        "directions_avant": 6,
+        "directions_apres": 6,
+        "historique": [
+          {
+            "etape": 0,
+            "directions": 6,
+            "borne_schur": 7.762262166976682e-10,
+            "bornes_relatives": {
+              "masse": [
+                4.939722893527899e-06,
+                4.9341669544606295e-06,
+                4.918355121365247e-06
+              ],
+              "deformation": [
+                2.7932221520217083e-05,
+                2.7932047659400928e-05,
+                2.79290171965578e-05
+              ]
+            },
+            "accepte": false
+          }
+        ]
+      },
+      "historique": [
+        {
+          "etape": 0,
+          "directions": 6,
+          "borne_schur": 7.762262166976682e-10,
+          "bornes_relatives": {
+            "masse": [
+              4.939722893527899e-06,
+              4.9341669544606295e-06,
+              4.918355121365247e-06
+            ],
+            "deformation": [
+              2.7932221520217083e-05,
+              2.7932047659400928e-05,
+              2.79290171965578e-05
+            ]
+          },
+          "accepte": false
+        },
+        {
+          "etape": 1,
+          "directions": 12,
+          "borne_schur": 1.557438507460133e-15,
+          "bornes_relatives": {
+            "masse": [
+              2.1671449950081357e-10,
+              2.1646945418467124e-10,
+              2.1577078418900982e-10
+            ],
+            "deformation": [
+              1.2255615408142494e-09,
+              1.2255526386970683e-09,
+              1.2254147613243777e-09
+            ]
+          },
+          "accepte": true
+        }
+      ],
+      "directions_finales": 12,
+      "facteur_conserve": true,
+      "certificat_conserve": true,
+      "certification_champ_machine": false,
+      "references": {
+        "precision_decimal": [
+          70,
+          90
+        ],
+        "ecarts_relatifs_champ_70_90": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "statique_analytique_ports": [
+          0.0,
+          0.0,
+          0.0006613942328042329,
+          0.0,
+          -0.0009920634920634922,
+          0.0
+        ],
+        "ecart_relatif_statique_analytique_dynamique_zero": 0.0
+      },
+      "initiales": [
+        {
+          "omega_rad_s": 0.0,
+          "frequence_hz": 0.0,
+          "deplacement_ports_physique": [
+            1.3052698190712217e-69,
+            3.403129442221604e-66,
+            0.0006613942328042329,
+            -4.6220659653750394e-64,
+            -0.0009920634920634924,
+            8.569693543277199e-66
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0006613942328042329,
+            0.0,
+            -0.0009920634920634922,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            5.350014228926321e-66,
+            -1.4419915200490592e-64,
+            0.004066478658157281,
+            -3.8729322828949794e-63,
+            -0.007042952122737641,
+            4.0559192574993244e-64
+          ],
+          "borne_ports_normalises": 6.312748813192018e-12,
+          "erreur_ports_normalises_vers_reference": 3.0786990772151207e-18,
+          "erreur_relative_champ_euclidienne": 7.892120894540647e-16,
+          "masse": {
+            "norme_candidate": 0.00025867880467266653,
+            "borne_absolue": 1.2777953015572984e-09,
+            "borne_relative": 4.939722893527899e-06,
+            "defaut_interieur": 1.2775925441219203e-09,
+            "amplification_ports": 0.03211872377283022,
+            "erreur_vers_reference": 1.2591024305380747e-19,
+            "erreur_relative_vers_reference": 4.867435629801018e-16
+          },
+          "deformation": {
+            "norme_candidate": 0.008132614787411447,
+            "borne_absolue": 2.2715565281855557e-07,
+            "borne_relative": 2.7932221520217083e-05,
+            "defaut_interieur": 2.2714933989342312e-07,
+            "amplification_ports": 1.0000279306650859,
+            "erreur_vers_reference": 1.3319146748494318e-15,
+            "erreur_relative_vers_reference": 1.6377446979428018e-13
+          },
+          "certification_machine": false,
+          "marge": 0.9999999992237737,
+          "borne_schur": 7.762262166976682e-10,
+          "champ_float64_sha256": "fc8ba3d78a1ad590a30d5d62d7694f933ac524180a3b640a8a22515343550556"
+        },
+        {
+          "omega_rad_s": 6.283185307179586,
+          "frequence_hz": 1.0,
+          "deplacement_ports_physique": [
+            3.4003894758125895e-48,
+            -4.569563665799984e-43,
+            0.0006889430247486159,
+            1.1877035392419662e-42,
+            -0.0010300563831634475,
+            -5.619005054329565e-43
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0006889430247486222,
+            0.0,
+            -0.0010300563831634546,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            1.3937449417495509e-44,
+            -2.8784658665584016e-41,
+            0.004276791981141274,
+            9.952033168928593e-42,
+            -0.007312674892663181,
+            -2.659398576244296e-41
+          ],
+          "borne_ports_normalises": 6.855081371750684e-12,
+          "erreur_ports_normalises_vers_reference": 8.380679049248849e-17,
+          "erreur_relative_champ_euclidienne": 1.0782609319869908e-08,
+          "masse": {
+            "norme_candidate": 0.0002697628913038467,
+            "borne_absolue": 1.3310485761952957e-09,
+            "borne_relative": 4.9341669544606295e-06,
+            "defaut_interieur": 1.3308283155756007e-09,
+            "amplification_ports": 0.032131000020303495,
+            "erreur_vers_reference": 8.776970250630833e-13,
+            "erreur_relative_vers_reference": 3.2535869586084178e-09
+          },
+          "deformation": {
+            "norme_candidate": 0.008471553964451258,
+            "borne_absolue": 2.3662123976849296e-07,
+            "borne_relative": 2.7932047659400928e-05,
+            "defaut_interieur": 2.3661438444151237e-07,
+            "amplification_ports": 1.0000358287255222,
+            "erreur_vers_reference": 7.877438306239459e-10,
+            "erreur_relative_vers_reference": 9.298693414803196e-08
+          },
+          "certification_machine": false,
+          "marge": 0.9592584101455037,
+          "borne_schur": 7.762262166976682e-10,
+          "champ_float64_sha256": "df11b27a3b7f86f1c7fb529de3f06dfded0beff5546c95277f5fcd86039d2134"
+        },
+        {
+          "omega_rad_s": 12.566370614359172,
+          "frequence_hz": 2.0,
+          "deplacement_ports_physique": [
+            6.277080822415588e-47,
+            -6.005432531232719e-42,
+            0.000787845783977554,
+            2.5398186828669274e-41,
+            -0.0011664193183904697,
+            -7.301794902778495e-42
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0007878457839796758,
+            0.0,
+            -0.001166419318393059,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            2.5728375256496684e-43,
+            -3.8506894505944335e-40,
+            0.005032268505130908,
+            2.128170788401325e-40,
+            -0.00828075569777603,
+            -3.455840096373415e-40
+          ],
+          "borne_ports_normalises": 8.988001122105564e-12,
+          "erreur_ports_normalises_vers_reference": 2.7415962754809304e-14,
+          "erreur_relative_champ_euclidienne": 1.7465677032735294e-07,
+          "masse": {
+            "norme_candidate": 0.00030956175710111365,
+            "borne_absolue": 1.5225271650878069e-09,
+            "borne_relative": 4.918355121365247e-06,
+            "defaut_interieur": 1.5222380389560437e-09,
+            "amplification_ports": 0.0321680124240356,
+            "erreur_vers_reference": 1.6239943457933594e-11,
+            "erreur_relative_vers_reference": 5.246107791062392e-08
+          },
+          "deformation": {
+            "norme_candidate": 0.009691088980891584,
+            "borne_absolue": 2.7065503167165895e-07,
+            "borne_relative": 2.79290171965578e-05,
+            "defaut_interieur": 2.7064604227725283e-07,
+            "amplification_ports": 1.0001550160030874,
+            "erreur_vers_reference": 1.4568633469992842e-08,
+            "erreur_relative_vers_reference": 1.50330200234767e-06
+          },
+          "certification_machine": false,
+          "marge": 0.8368461882531875,
+          "borne_schur": 7.762262166976682e-10,
+          "champ_float64_sha256": "656096fa9ee615b47fae1444a5f3931f917290a3f13d169c1503f2ac0817497a"
+        }
+      ],
+      "finales": [
+        {
+          "omega_rad_s": 0.0,
+          "frequence_hz": 0.0,
+          "deplacement_ports_physique": [
+            1.3866043705984752e-67,
+            1.1243801349461086e-64,
+            0.0006613942328042329,
+            -1.3935162210483195e-59,
+            -0.0009920634920634924,
+            1.701708640004536e-64
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0006613942328042329,
+            0.0,
+            -0.0009920634920634922,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            5.683386686954789e-64,
+            4.473337344115986e-63,
+            0.004066478658157281,
+            -1.167658358765534e-58,
+            -0.007042952122737641,
+            8.053955265485423e-63
+          ],
+          "borne_ports_normalises": 1.2666047436254304e-17,
+          "erreur_ports_normalises_vers_reference": 3.0786990772151207e-18,
+          "erreur_relative_champ_euclidienne": 9.650755987569464e-16,
+          "masse": {
+            "norme_candidate": 0.00025867880467266653,
+            "borne_absolue": 5.6059447673956746e-14,
+            "borne_relative": 2.1671449950081357e-10,
+            "defaut_interieur": 5.6059040858667534e-14,
+            "amplification_ports": 0.03211856668479416,
+            "erreur_vers_reference": 9.621165446014638e-20,
+            "erreur_relative_vers_reference": 3.7193481925159315e-16
+          },
+          "deformation": {
+            "norme_candidate": 0.008132614787411447,
+            "borne_absolue": 9.967019897493526e-12,
+            "borne_relative": 1.2255615408142494e-09,
+            "defaut_interieur": 9.967007231446074e-12,
+            "amplification_ports": 1.0000000012255603,
+            "erreur_vers_reference": 1.2507224620466248e-15,
+            "erreur_relative_vers_reference": 1.5379093867603697e-13
+          },
+          "certification_machine": false,
+          "marge": 0.9999999999999984,
+          "borne_schur": 1.557438507460133e-15,
+          "champ_float64_sha256": "6ed49e3c17e621ebfc949929596529292f05200d35259f517958f5f4b85d0708"
+        },
+        {
+          "omega_rad_s": 6.283185307179586,
+          "frequence_hz": 1.0,
+          "deplacement_ports_physique": [
+            -1.7330405202203876e-47,
+            -4.1780512815668195e-42,
+            0.000688943024748622,
+            -1.0392956921623679e-42,
+            -0.0010300563831634549,
+            -5.332953736143887e-42
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0006889430247486222,
+            0.0,
+            -0.0010300563831634546,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            -7.103352354444528e-44,
+            -2.4720819399387065e-40,
+            0.004276791981141336,
+            -8.708490678848878e-42,
+            -0.007312674892663233,
+            -2.5240143826085134e-40
+          ],
+          "borne_ports_normalises": 1.4658394695393613e-17,
+          "erreur_ports_normalises_vers_reference": 8.145374097139141e-18,
+          "erreur_relative_champ_euclidienne": 2.2948120751594457e-14,
+          "masse": {
+            "norme_candidate": 0.00026976289130396585,
+            "borne_absolue": 5.839542582720746e-14,
+            "borne_relative": 2.1646945418467124e-10,
+            "defaut_interieur": 5.839495484062987e-14,
+            "amplification_ports": 0.03213084293228214,
+            "erreur_vers_reference": 1.2029173116581503e-18,
+            "erreur_relative_vers_reference": 4.459165253766192e-15
+          },
+          "deformation": {
+            "norme_candidate": 0.008471553964451444,
+            "borne_absolue": 1.0382335302273977e-11,
+            "borne_relative": 1.2255526386970683e-09,
+            "defaut_interieur": 1.038232064376349e-11,
+            "amplification_ports": 1.0000078992860115,
+            "erreur_vers_reference": 2.738544299315854e-15,
+            "erreur_relative_vers_reference": 3.2326351349556456e-13
+          },
+          "certification_machine": false,
+          "marge": 0.9592584109217194,
+          "borne_schur": 1.557438507460133e-15,
+          "champ_float64_sha256": "3432eb002afd57a51be0b5e918c15eb23763a048e3fe74fc4fa8b47abfe6009f"
+        },
+        {
+          "omega_rad_s": 12.566370614359172,
+          "frequence_hz": 2.0,
+          "deplacement_ports_physique": [
+            -3.160351750193575e-46,
+            -8.451609204672197e-41,
+            0.0007878457839796758,
+            -1.8032117805432708e-41,
+            -0.0011664193183930594,
+            -1.0463237878992954e-40
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0007878457839796758,
+            0.0,
+            -0.001166419318393059,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            -1.2953587514939125e-42,
+            -5.266085288460943e-39,
+            0.005032268505151245,
+            -1.5109514165481851e-40,
+            -0.008280755697794417,
+            -4.952108006533786e-39
+          ],
+          "borne_ports_normalises": 1.9499517179031372e-17,
+          "erreur_ports_normalises_vers_reference": 6.1573981544302414e-18,
+          "erreur_relative_champ_euclidienne": 1.4605294558607761e-12,
+          "masse": {
+            "norme_candidate": 0.00030956175711069095,
+            "borne_absolue": 6.679438307228929e-14,
+            "borne_relative": 2.1577078418900982e-10,
+            "defaut_interieur": 6.679375581464153e-14,
+            "amplification_ports": 0.03216785533695068,
+            "erreur_vers_reference": 8.76697713094716e-17,
+            "erreur_relative_vers_reference": 2.832060785794134e-13
+          },
+          "deformation": {
+            "norme_candidate": 0.009691088980950844,
+            "borne_absolue": 1.1875603476012645e-11,
+            "borne_relative": 1.2254147613243777e-09,
+            "defaut_interieur": 1.187558397401734e-11,
+            "amplification_ports": 1.0001270865673169,
+            "erreur_vers_reference": 1.7880211213753393e-13,
+            "erreur_relative_vers_reference": 1.8450156890416946e-11
+          },
+          "certification_machine": false,
+          "marge": 0.8368461890270039,
+          "borne_schur": 1.557438507460133e-15,
+          "champ_float64_sha256": "d058b12fd63fa44beffcade24a353712ea921cf8f703f955b2dab05a924b4bb4"
+        }
+      ],
+      "precision_reference_compatible_tolerance": true,
+      "acceptation_api": true
+    },
+    {
+      "parametres": {
+        "n": 128,
+        "longueur_m": 1.0,
+        "largeur_y_m": 0.04,
+        "hauteur_z_m": 0.006,
+        "young_pa": 70000000000.0,
+        "poisson": 0.3,
+        "rho_kg_m3": 2700.0,
+        "facteur_cisaillement": 0.8333333333333334,
+        "pas_m": 0.0078125,
+        "ea_n": 16800000.0,
+        "gay_n": 5384615.384615385,
+        "gaz_n": 5384615.384615385,
+        "gj_nm2": 70.21138310307693,
+        "eiy_nm2": 50.4,
+        "eiz_nm2": 2240.0,
+        "masse_noeud_interieur_kg": 0.0050625,
+        "inerties_noeud_interieur_kg_m2": [
+          6.901875e-07,
+          4.0936706542968756e-08,
+          7.007492065429688e-07
+        ],
+        "masse_totale_avant_encastrement_kg": 0.648,
+        "force_port_physique": [
+          0.0,
+          0.0,
+          0.1,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "masse_discrete": "Poids nodaux 1/2 aux deux extrémités, 1 ailleurs. Chaque inertie est ce même poids de celle d'un parallélépipède pas×largeur×hauteur. La masse de la racine est retirée avec ses six coordonnées. Masse concentrée diagonale, sans matrice de masse consistante."
+      },
+      "statut": "tolerance_aux_frequences_demandees",
+      "couts_observes_s": {
+        "construction_noyau": 0.0006294720806181431,
+        "reduction_native_et_certificat": 0.20458676596172154,
+        "reponses_initiales": 0.0036075380630791187,
+        "controle_sans_budget_enrichissement": 0.002176044974476099,
+        "adaptation_et_reponses_finales": 0.00898650917224586,
+        "oracles_independants": 0.015192147111520171,
+        "total_temoignage_avec_oracles": 0.2359310130123049
+      },
+      "metrique_ports": [
+        [
+          16800000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          26746.481564032347,
+          0.0,
+          0.0,
+          0.0,
+          -13373.240782016172
+        ],
+        [
+          0.0,
+          0.0,
+          604.7320764931679,
+          0.0,
+          302.36603824658397,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          70.21138310307693,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          302.36603824658397,
+          0.0,
+          201.583019123292,
+          0.0
+        ],
+        [
+          0.0,
+          -13373.240782016173,
+          0.0,
+          0.0,
+          0.0,
+          8926.620391008086
+        ]
+      ],
+      "dimension_physique": 768,
+      "dimension_interieure": 762,
+      "ports": 6,
+      "directions_initiales": 6,
+      "certificat_spectral": {
+        "precision_decimal": 80,
+        "operations_decimal": 206308,
+        "coefficients_gram_ecart": 2276,
+        "produits_gram": 8842,
+        "coefficients_inverse": 2274,
+        "trace_inferieure_decimal": "0.000031568020889451820367568374861971859442345911130745523351723879994474796579452351",
+        "trace_superieure_decimal": "0.000031568020889451820367568374861971859442345911130745523351723879994474796579474520",
+        "eta_superieur_decimal": "6.8295517501952143075152450861167649808309895303039666943759841154696393246816555E-10",
+        "modele": "D_I.T D_I et M_II : valeurs binary64 d'entrée interprétées exactement",
+        "portee": "minoration spectrale seule ; pas de certificat du modèle physique continu",
+        "preparation_s": 0.1364079189952463,
+        "lambda_min": 31677.62726776407,
+        "lambda_inferieur_decimal": "31677.627267764072207962464512171400789043753572573313991125724258676599125232723",
+        "eta_superieur": 6.829551750195215e-10,
+        "trace_superieure": 3.156802088945182e-05,
+        "minoration_D_original_etablie": true,
+        "certification_machine": true,
+        "eta_upper": 6.829551750195215e-10,
+        "trace_upper": 3.156802088945182e-05,
+        "precision": 80,
+        "operations_inverse_float": 21192
+      },
+      "audit_facteur": {
+        "ecart_energie_statique": 2.6423763659483047e-15,
+        "defaut_equilibre_entree_dual": 1.2706452867070254e-12,
+        "residu_lifting": 1.1259600621686017e-12,
+        "rotations": 2030,
+        "operations": 88224,
+        "nnz_R": 2274,
+        "coefficients_ports": 4608,
+        "certification_machine": false
+      },
+      "domaine_natif": [
+        "multiplicateurs non initialisés : extraction sans calcul de réactions"
+      ],
+      "residu_contraintes_initial": 0.0,
+      "tolerance_contraintes": 1e-12,
+      "lambda_min": 31677.62726776407,
+      "nnz_D": 2040,
+      "nnz_M": 768,
+      "controle_sans_enrichissement": {
+        "max_etapes": 0,
+        "statut": "budget_etapes",
+        "accepte": false,
+        "directions_avant": 6,
+        "directions_apres": 6,
+        "historique": [
+          {
+            "etape": 0,
+            "directions": 6,
+            "borne_schur": 1.0067439623181406e-09,
+            "bornes_relatives": {
+              "masse": [
+                5.623580429727985e-06,
+                5.617231665786026e-06,
+                5.599167874357345e-06
+              ],
+              "deformation": [
+                3.181057454005626e-05,
+                3.181038155630176e-05,
+                3.180694663257542e-05
+              ]
+            },
+            "accepte": false
+          }
+        ]
+      },
+      "historique": [
+        {
+          "etape": 0,
+          "directions": 6,
+          "borne_schur": 1.0067439623181406e-09,
+          "bornes_relatives": {
+            "masse": [
+              5.623580429727985e-06,
+              5.617231665786026e-06,
+              5.599167874357345e-06
+            ],
+            "deformation": [
+              3.181057454005626e-05,
+              3.181038155630176e-05,
+              3.180694663257542e-05
+            ]
+          },
+          "accepte": false
+        },
+        {
+          "etape": 1,
+          "directions": 12,
+          "borne_schur": 5.03089567701139e-15,
+          "bornes_relatives": {
+            "masse": [
+              1.350991713504289e-09,
+              1.3494562859565605e-09,
+              1.345080263504914e-09
+            ],
+            "deformation": [
+              7.642990964541467e-09,
+              7.64293454918296e-09,
+              7.642073293243251e-09
+            ]
+          },
+          "accepte": true
+        }
+      ],
+      "directions_finales": 12,
+      "facteur_conserve": true,
+      "certificat_conserve": true,
+      "certification_champ_machine": false,
+      "references": {
+        "precision_decimal": [
+          70,
+          90
+        ],
+        "ecarts_relatifs_champ_70_90": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "statique_analytique_ports": [
+          0.0,
+          0.0,
+          0.0006613942328042329,
+          0.0,
+          -0.0009920634920634922,
+          0.0
+        ],
+        "ecart_relatif_statique_analytique_dynamique_zero": 0.0
+      },
+      "initiales": [
+        {
+          "omega_rad_s": 0.0,
+          "frequence_hz": 0.0,
+          "deplacement_ports_physique": [
+            0.0,
+            1.059584670589581e-64,
+            0.0006613942328042318,
+            0.0,
+            -0.0009920634920634914,
+            1.6757050032370247e-64
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0006613942328042329,
+            0.0,
+            -0.0009920634920634922,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            0.0,
+            3.626285848206933e-63,
+            0.004066478658157268,
+            0.0,
+            -0.007042952122737634,
+            7.930883593671552e-63
+          ],
+          "borne_ports_normalises": 8.187460843328368e-12,
+          "erreur_ports_normalises_vers_reference": 1.714135455745764e-17,
+          "erreur_relative_champ_euclidienne": 6.811268524105453e-16,
+          "masse": {
+            "norme_candidate": 0.0002585031771203984,
+            "borne_absolue": 1.4537052328484814e-09,
+            "borne_relative": 5.623580429727985e-06,
+            "defaut_interieur": 1.4534424226371255e-09,
+            "amplification_ports": 0.03209911062598506,
+            "erreur_vers_reference": 2.170321210460625e-19,
+            "erreur_relative_vers_reference": 8.395723544433621e-16
+          },
+          "deformation": {
+            "norme_candidate": 0.008132614787411433,
+            "borne_absolue": 2.5869491966649e-07,
+            "borne_relative": 3.181057454005626e-05,
+            "defaut_interieur": 2.5868673194521534e-07,
+            "amplification_ports": 1.0000318085558844,
+            "erreur_vers_reference": 1.425846724071567e-14,
+            "erreur_relative_vers_reference": 1.7532451263751591e-12
+          },
+          "certification_machine": false,
+          "marge": 0.9999999989932556,
+          "borne_schur": 1.0067439623181406e-09,
+          "champ_float64_sha256": "9e4bae4fe8621d5f156633e56c13672245679912831a02477321b5f3df9ee719"
+        },
+        {
+          "omega_rad_s": 6.283185307179586,
+          "frequence_hz": 1.0,
+          "deplacement_ports_physique": [
+            0.0,
+            -1.5671679097519257e-42,
+            0.0006889042236160067,
+            0.0,
+            -0.0010299910292210766,
+            -1.9490734004141835e-42
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.000688904223616014,
+            0.0,
+            -0.0010299910292210848,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            0.0,
+            -9.692099158866725e-41,
+            0.0042766413800453765,
+            0.0,
+            -0.007312210925698533,
+            -9.22469899197406e-41
+          ],
+          "borne_ports_normalises": 8.889889578107751e-12,
+          "erreur_ports_normalises_vers_reference": 9.695520445728767e-17,
+          "erreur_relative_champ_euclidienne": 1.0943502748366687e-08,
+          "masse": {
+            "norme_candidate": 0.0002695659621722985,
+            "borne_absolue": 1.514205953086685e-09,
+            "borne_relative": 5.617231665786026e-06,
+            "defaut_interieur": 1.5139204862669455e-09,
+            "amplification_ports": 0.03211140219813781,
+            "erreur_vers_reference": 8.766592109870987e-13,
+            "erreur_relative_vers_reference": 3.252113894210333e-09
+          },
+          "deformation": {
+            "norme_candidate": 0.00847107746829632,
+            "borne_absolue": 2.694596348456982e-07,
+            "borne_relative": 3.181038155630176e-05,
+            "defaut_interieur": 2.6945074460310024e-07,
+            "amplification_ports": 1.000039710261905,
+            "erreur_vers_reference": 7.88896852380916e-10,
+            "erreur_relative_vers_reference": 9.312827740430972e-08
+          },
+          "certification_machine": false,
+          "marge": 0.959308178171926,
+          "borne_schur": 1.0067439623181406e-09,
+          "champ_float64_sha256": "63a212811a2a39d61b1b350afb37afabb0213f7383fcca8dec3a87f15f7f3a35"
+        },
+        {
+          "omega_rad_s": 12.566370614359172,
+          "frequence_hz": 2.0,
+          "deplacement_ports_physique": [
+            0.0,
+            -3.2196275196035957e-41,
+            0.0007876445148689462,
+            0.0,
+            -0.0011660877138373936,
+            -4.34872375088543e-41
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0007876445148710747,
+            0.0,
+            -0.0011660877138399918,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            0.0,
+            -1.7094641840318974e-39,
+            0.005031396329594008,
+            0.0,
+            -0.008278401538985106,
+            -2.058191733191874e-39
+          ],
+          "borne_ports_normalises": 1.16514537032652e-11,
+          "erreur_ports_normalises_vers_reference": 2.7499823048842493e-14,
+          "erreur_relative_champ_euclidienne": 1.7723598089362632e-07,
+          "masse": {
+            "norme_candidate": 0.00030927900950298225,
+            "borne_absolue": 1.7316953981689165e-09,
+            "borne_relative": 5.599167874357345e-06,
+            "defaut_interieur": 1.7313208218691522e-09,
+            "amplification_ports": 0.03214846055298614,
+            "erreur_vers_reference": 1.6217349328432303e-11,
+            "erreur_relative_vers_reference": 5.243598443357037e-08
+          },
+          "deformation": {
+            "norme_candidate": 0.009688624652823509,
+            "borne_absolue": 3.081557657814152e-07,
+            "borne_relative": 3.180694663257542e-05,
+            "defaut_interieur": 3.0814411247569105e-07,
+            "amplification_ports": 1.0001589519133955,
+            "erreur_vers_reference": 1.4586907649913619e-08,
+            "erreur_relative_vers_reference": 1.5055705192968903e-06
+          },
+          "certification_machine": false,
+          "marge": 0.8370451422889409,
+          "borne_schur": 1.0067439623181406e-09,
+          "champ_float64_sha256": "f02065ebd5e705f3acbaf039b21d3cba988c6bf1ebdc3685f8dc4e7328c4de4b"
+        }
+      ],
+      "finales": [
+        {
+          "omega_rad_s": 0.0,
+          "frequence_hz": 0.0,
+          "deplacement_ports_physique": [
+            -1.8521918906506386e-66,
+            -1.0418193059123522e-58,
+            0.0006613942328042318,
+            -7.5501505068745925e-65,
+            -0.0009920634920634914,
+            -1.3705692114309139e-58
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0006613942328042329,
+            0.0,
+            -0.0009920634920634922,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            -7.591727645042687e-63,
+            -5.830893837904948e-57,
+            0.004066478658157268,
+            -6.326439704202239e-64,
+            -0.007042952122737634,
+            -6.486717442468171e-57
+          ],
+          "borne_ports_normalises": 4.0914336576787353e-17,
+          "erreur_ports_normalises_vers_reference": 1.714135455745764e-17,
+          "erreur_relative_champ_euclidienne": 1.194072876498589e-15,
+          "masse": {
+            "norme_candidate": 0.0002585031771203984,
+            "borne_absolue": 3.4923564973237526e-13,
+            "borne_relative": 1.350991713504289e-09,
+            "defaut_interieur": 3.4923433642586967e-13,
+            "amplification_ports": 0.03209893195120134,
+            "erreur_vers_reference": 2.2720292893694535e-19,
+            "erreur_relative_vers_reference": 8.789173559407549e-16
+          },
+          "deformation": {
+            "norme_candidate": 0.008132614787411433,
+            "borne_absolue": 6.215750086321268e-11,
+            "borne_relative": 7.642990964541467e-09,
+            "defaut_interieur": 6.215745994887578e-11,
+            "amplification_ports": 1.0000000076429862,
+            "erreur_vers_reference": 1.455908628094948e-14,
+            "erreur_relative_vers_reference": 1.7902097494505248e-12
+          },
+          "certification_machine": false,
+          "marge": 0.999999999999993,
+          "borne_schur": 5.03089567701139e-15,
+          "champ_float64_sha256": "911f5811710710dfcdc9bcd88c00ab7cb82b69ebaf25376f0857f679e0fc7365"
+        },
+        {
+          "omega_rad_s": 6.283185307179586,
+          "frequence_hz": 1.0,
+          "deplacement_ports_physique": [
+            -8.450854147578031e-47,
+            1.8740965649093866e-42,
+            0.000688904223616013,
+            -3.5476002450718952e-43,
+            -0.001029991029221084,
+            2.3771568414395876e-42
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.000688904223616014,
+            0.0,
+            -0.0010299910292210848,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            -3.463819455221502e-43,
+            1.1211204745343722e-40,
+            0.004276641380045438,
+            -2.9726134630859246e-42,
+            -0.007312210925698585,
+            1.1250759624718149e-40
+          ],
+          "borne_ports_normalises": 4.4424505262482766e-17,
+          "erreur_ports_normalises_vers_reference": 1.4684397525939268e-17,
+          "erreur_relative_champ_euclidienne": 2.316876007880069e-14,
+          "masse": {
+            "norme_candidate": 0.0002695659621724181,
+            "borne_absolue": 3.6376748164260967e-13,
+            "borne_relative": 1.3494562859565605e-09,
+            "defaut_interieur": 3.637660551173913e-13,
+            "amplification_ports": 0.032111223523368836,
+            "erreur_vers_reference": 1.1905066569882529e-18,
+            "erreur_relative_vers_reference": 4.416383461005316e-15
+          },
+          "deformation": {
+            "norme_candidate": 0.008471077468296508,
+            "borne_absolue": 6.474389015641538e-11,
+            "borne_relative": 7.64293454918296e-09,
+            "defaut_interieur": 6.474384573155874e-11,
+            "amplification_ports": 1.0000079093490215,
+            "erreur_vers_reference": 1.6946569283894656e-14,
+            "erreur_relative_vers_reference": 2.0005211081256353e-12
+          },
+          "certification_machine": false,
+          "marge": 0.9593081791786556,
+          "borne_schur": 5.03089567701139e-15,
+          "champ_float64_sha256": "88567a4fb5912698f52a18a41a47730f9359f5f61dd3340d7e09edd54df4d1ce"
+        },
+        {
+          "omega_rad_s": 12.566370614359172,
+          "frequence_hz": 2.0,
+          "deplacement_ports_physique": [
+            -1.4121825157039464e-45,
+            3.23894775038267e-41,
+            0.0007876445148710734,
+            -6.979680946858827e-42,
+            -0.0011660877138399907,
+            4.147105313907503e-41
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0007876445148710747,
+            0.0,
+            -0.0011660877138399918,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            -5.788225884386922e-42,
+            1.9059281088900077e-39,
+            0.005031396329614386,
+            -5.848430521307619e-41,
+            -0.008278401539003544,
+            1.9627684724794534e-39
+          ],
+          "borne_ports_normalises": 5.926079701032517e-17,
+          "erreur_ports_normalises_vers_reference": 2.018826128531209e-17,
+          "erreur_relative_champ_euclidienne": 1.4873867964853501e-12,
+          "masse": {
+            "norme_candidate": 0.0003092790095125911,
+            "borne_absolue": 4.160050910521746e-13,
+            "borne_relative": 1.345080263504914e-09,
+            "defaut_interieur": 4.1600318591936793e-13,
+            "amplification_ports": 0.032148281879157005,
+            "erreur_vers_reference": 8.741789512100606e-17,
+            "erreur_relative_vers_reference": 2.8265059196475183e-13
+          },
+          "deformation": {
+            "norme_candidate": 0.009688624652882923,
+            "borne_absolue": 7.404117914222664e-11,
+            "borne_relative": 7.642073293243251e-09,
+            "defaut_interieur": 7.404111987389456e-11,
+            "amplification_ports": 1.0001271510042624,
+            "erreur_vers_reference": 1.802782253068913e-13,
+            "erreur_relative_vers_reference": 1.8607205022980005e-11
+          },
+          "certification_machine": false,
+          "marge": 0.8370451432932644,
+          "borne_schur": 5.03089567701139e-15,
+          "champ_float64_sha256": "f1192328f4b29d5aef582ba320ded632fd787ade05ea6336c250ca5c2660285b"
+        }
+      ],
+      "precision_reference_compatible_tolerance": true,
+      "acceptation_api": true
+    },
+    {
+      "parametres": {
+        "n": 512,
+        "longueur_m": 1.0,
+        "largeur_y_m": 0.04,
+        "hauteur_z_m": 0.006,
+        "young_pa": 70000000000.0,
+        "poisson": 0.3,
+        "rho_kg_m3": 2700.0,
+        "facteur_cisaillement": 0.8333333333333334,
+        "pas_m": 0.001953125,
+        "ea_n": 16800000.0,
+        "gay_n": 5384615.384615385,
+        "gaz_n": 5384615.384615385,
+        "gj_nm2": 70.21138310307693,
+        "eiy_nm2": 50.4,
+        "eiz_nm2": 2240.0,
+        "masse_noeud_interieur_kg": 0.001265625,
+        "inerties_noeud_interieur_kg_m2": [
+          1.72546875e-07,
+          4.199206352233887e-09,
+          1.691523313522339e-07
+        ],
+        "masse_totale_avant_encastrement_kg": 0.648,
+        "force_port_physique": [
+          0.0,
+          0.0,
+          0.1,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "masse_discrete": "Poids nodaux 1/2 aux deux extrémités, 1 ailleurs. Chaque inertie est ce même poids de celle d'un parallélépipède pas×largeur×hauteur. La masse de la racine est retirée avec ses six coordonnées. Masse concentrée diagonale, sans matrice de masse consistante."
+      },
+      "statut": "tolerance_aux_frequences_demandees",
+      "couts_observes_s": {
+        "construction_noyau": 0.002106051193550229,
+        "reduction_native_et_certificat": 0.8065910879522562,
+        "reponses_initiales": 0.004247049102559686,
+        "controle_sans_budget_enrichissement": 0.0027002058923244476,
+        "adaptation_et_reponses_finales": 0.015689226100221276,
+        "oracles_independants": 0.07686960091814399,
+        "total_temoignage_avec_oracles": 0.909545062109828
+      },
+      "metrique_ports": [
+        [
+          16800000.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          26746.481564032347,
+          0.0,
+          0.0,
+          0.0,
+          -13373.240782016172
+        ],
+        [
+          0.0,
+          0.0,
+          604.7320764931679,
+          0.0,
+          302.36603824658397,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          70.21138310307693,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          302.36603824658397,
+          0.0,
+          201.583019123292,
+          0.0
+        ],
+        [
+          0.0,
+          -13373.240782016173,
+          0.0,
+          0.0,
+          0.0,
+          8926.620391008086
+        ]
+      ],
+      "dimension_physique": 3072,
+      "dimension_interieure": 3066,
+      "ports": 6,
+      "directions_initiales": 6,
+      "certificat_spectral": {
+        "precision_decimal": 80,
+        "operations_decimal": 833764,
+        "coefficients_gram_ecart": 9188,
+        "produits_gram": 35722,
+        "coefficients_inverse": 9186,
+        "trace_inferieure_decimal": "0.000031563856183799046122766317502693412383287519072120352766971937686019451520826257",
+        "trace_superieure_decimal": "0.000031563856183799046122766317502693412383287519072120352766971937686019451521012146",
+        "eta_superieur_decimal": "3.0596876034875909473239554108824048993687498677818502832800579864863393273479964E-8",
+        "modele": "D_I.T D_I et M_II : valeurs binary64 d'entrée interprétées exactement",
+        "portee": "minoration spectrale seule ; pas de certificat du modèle physique continu",
+        "preparation_s": 0.5560934420209378,
+        "lambda_min": 31681.80603726104,
+        "lambda_inferieur_decimal": "31681.806037261044278905957380639255224912872807768664573033440702378503417877662",
+        "eta_superieur": 3.059687603487591e-08,
+        "trace_superieure": 3.156385618379905e-05,
+        "minoration_D_original_etablie": true,
+        "certification_machine": true,
+        "eta_upper": 3.059687603487591e-08,
+        "trace_upper": 3.156385618379905e-05,
+        "precision": 80,
+        "operations_inverse_float": 85704
+      },
+      "audit_facteur": {
+        "ecart_energie_statique": 5.8588337324162714e-15,
+        "defaut_equilibre_entree_dual": 6.607916035248368e-12,
+        "residu_lifting": 4.931050123887237e-12,
+        "rotations": 8174,
+        "operations": 355488,
+        "nnz_R": 9186,
+        "coefficients_ports": 18432,
+        "certification_machine": false
+      },
+      "domaine_natif": [
+        "multiplicateurs non initialisés : extraction sans calcul de réactions"
+      ],
+      "residu_contraintes_initial": 0.0,
+      "tolerance_contraintes": 1e-12,
+      "lambda_min": 31681.80603726104,
+      "nnz_D": 8184,
+      "nnz_M": 3072,
+      "controle_sans_enrichissement": {
+        "max_etapes": 0,
+        "statut": "budget_etapes",
+        "accepte": false,
+        "directions_avant": 6,
+        "directions_apres": 6,
+        "historique": [
+          {
+            "etape": 0,
+            "directions": 6,
+            "borne_schur": 1.0803297299621209e-09,
+            "bornes_relatives": {
+              "masse": [
+                5.825369721048106e-06,
+                5.818792882939732e-06,
+                5.8000813748553145e-06
+              ],
+              "deformation": [
+                3.295265202107736e-05,
+                3.295245368439228e-05,
+                3.294890098458342e-05
+              ]
+            },
+            "accepte": false
+          }
+        ]
+      },
+      "historique": [
+        {
+          "etape": 0,
+          "directions": 6,
+          "borne_schur": 1.0803297299621209e-09,
+          "bornes_relatives": {
+            "masse": [
+              5.825369721048106e-06,
+              5.818792882939732e-06,
+              5.8000813748553145e-06
+            ],
+            "deformation": [
+              3.295265202107736e-05,
+              3.295245368439228e-05,
+              3.294890098458342e-05
+            ]
+          },
+          "accepte": false
+        },
+        {
+          "etape": 1,
+          "directions": 12,
+          "borne_schur": 1.82651746228254e-14,
+          "bornes_relatives": {
+            "masse": [
+              1.815446474236783e-08,
+              1.8133823871608386e-08,
+              1.807499391810573e-08
+            ],
+            "deformation": [
+              1.0270824831796838e-07,
+              1.0270748807345609e-07,
+              1.0269590503182936e-07
+            ]
+          },
+          "accepte": true
+        }
+      ],
+      "directions_finales": 12,
+      "facteur_conserve": true,
+      "certificat_conserve": true,
+      "certification_champ_machine": false,
+      "references": {
+        "precision_decimal": [
+          70,
+          90
+        ],
+        "ecarts_relatifs_champ_70_90": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "statique_analytique_ports": [
+          0.0,
+          0.0,
+          0.0006613942328042329,
+          0.0,
+          -0.0009920634920634922,
+          0.0
+        ],
+        "ecart_relatif_statique_analytique_dynamique_zero": 0.0
+      },
+      "initiales": [
+        {
+          "omega_rad_s": 0.0,
+          "frequence_hz": 0.0,
+          "deplacement_ports_physique": [
+            2.8346583791362026e-67,
+            -6.572830850450225e-64,
+            0.0006613942328042318,
+            3.327600361482563e-81,
+            -0.0009920634920634903,
+            -1.2115764107395488e-63
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0006613942328042329,
+            0.0,
+            -0.0009920634920634922,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            1.1618641939729402e-63,
+            -8.421653668387476e-63,
+            0.0040664786581572805,
+            2.7882706480397688e-80,
+            -0.007042952122737626,
+            -5.7342261674053135e-62
+          ],
+          "borne_ports_normalises": 8.785905546661836e-12,
+          "erreur_ports_normalises_vers_reference": 1.4108937483335298e-17,
+          "erreur_relative_champ_euclidienne": 3.1642404339328044e-15,
+          "masse": {
+            "norme_candidate": 0.0002584921966906826,
+            "borne_absolue": 1.505803843864996e-09,
+            "borne_relative": 5.825369721048106e-06,
+            "defaut_interieur": 1.5055218348376641e-09,
+            "amplification_ports": 0.032097889720543005,
+            "erreur_vers_reference": 6.729617238006943e-19,
+            "erreur_relative_vers_reference": 2.6034121432531037e-15
+          },
+          "deformation": {
+            "norme_candidate": 0.008132614787411433,
+            "borne_absolue": 2.679823943804472e-07,
+            "borne_relative": 3.295265202107736e-05,
+            "defaut_interieur": 2.6797360818540063e-07,
+            "amplification_ports": 1.0000329504858145,
+            "erreur_vers_reference": 7.002883934468428e-14,
+            "erreur_relative_vers_reference": 8.61086393186637e-12
+          },
+          "certification_machine": false,
+          "marge": 0.9999999989196681,
+          "borne_schur": 1.0803297299621209e-09,
+          "champ_float64_sha256": "6047e0c2153947542e10e045e4872bd7bd64ffd03a4f3725ab8470d7ca6857c6"
+        },
+        {
+          "omega_rad_s": 6.283185307179586,
+          "frequence_hz": 1.0,
+          "deplacement_ports_physique": [
+            -3.8319914325581744e-48,
+            -1.5659027071614275e-42,
+            0.0006889017987528073,
+            -1.5023067552061954e-59,
+            -0.0010299869449784524,
+            -1.9442071468802732e-42
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0006889017987528147,
+            0.0,
+            -0.0010299869449784617,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            -1.5706491018001042e-44,
+            -9.711199801468643e-41,
+            0.004276631967924483,
+            -1.2588163766237319e-58,
+            -0.007312181930452271,
+            -9.201667676652937e-41
+          ],
+          "borne_ports_normalises": 9.53961225846793e-12,
+          "erreur_ports_normalises_vers_reference": 9.393946751609642e-17,
+          "erreur_relative_champ_euclidienne": 1.098062389834234e-08,
+          "masse": {
+            "norme_candidate": 0.00026955365111669107,
+            "borne_absolue": 1.5684677400992984e-09,
+            "borne_relative": 5.818792882939732e-06,
+            "defaut_interieur": 1.5681614214110818e-09,
+            "amplification_ports": 0.032110182250287306,
+            "erreur_vers_reference": 8.765937653310985e-13,
+            "erreur_relative_vers_reference": 3.2520196320814283e-09
+          },
+          "deformation": {
+            "norme_candidate": 0.00847104768987326,
+            "borne_absolue": 2.791326085544716e-07,
+            "borne_relative": 3.295245368439228e-05,
+            "defaut_interieur": 2.791230685524969e-07,
+            "amplification_ports": 1.000040852419289,
+            "erreur_vers_reference": 7.889687412655496e-10,
+            "erreur_relative_vers_reference": 9.313709120168292e-08
+          },
+          "certification_machine": false,
+          "marge": 0.9593112879497643,
+          "borne_schur": 1.0803297299621209e-09,
+          "champ_float64_sha256": "907c79c2d998fff06ea45ac320c1f47484b46d13626508b531691417affa3c3d"
+        },
+        {
+          "omega_rad_s": 12.566370614359172,
+          "frequence_hz": 2.0,
+          "deplacement_ports_physique": [
+            -7.01913604464344e-47,
+            -2.842215216555943e-41,
+            0.0007876319393871634,
+            -2.752164033991046e-58,
+            -0.0011660669949975237,
+            -4.044393050402311e-41
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0007876319393892929,
+            0.0,
+            -0.0011660669950001243,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            -2.876989658761349e-43,
+            -1.3410873981542252e-39,
+            0.005031341833750452,
+            -2.306099699769542e-57,
+            -0.008278254449813486,
+            -1.9141561568314962e-39
+          ],
+          "borne_ports_normalises": 1.250270692990851e-11,
+          "erreur_ports_normalises_vers_reference": 2.7507230828758036e-14,
+          "erreur_relative_champ_euclidienne": 1.778305544562151e-07,
+          "masse": {
+            "norme_candidate": 0.0003092613388523427,
+            "borne_absolue": 1.7937305276572662e-09,
+            "borne_relative": 5.8000813748553145e-06,
+            "defaut_interieur": 1.7933286000934754e-09,
+            "amplification_ports": 0.032147243476471354,
+            "erreur_vers_reference": 1.621592983204954e-11,
+            "erreur_relative_vers_reference": 5.243439057633994e-08
+          },
+          "deformation": {
+            "norme_candidate": 0.009688470679991805,
+            "borne_absolue": 3.1921394337847626e-07,
+            "borne_relative": 3.294890098458342e-05,
+            "defaut_interieur": 3.1920143866989467e-07,
+            "amplification_ports": 1.000160097463233,
+            "erreur_vers_reference": 1.4588037806087055e-08,
+            "erreur_relative_vers_reference": 1.505711095985882e-06
+          },
+          "certification_machine": false,
+          "marge": 0.8370575742117834,
+          "borne_schur": 1.0803297299621209e-09,
+          "champ_float64_sha256": "01003cde62a26a67a5ee3f6f1b1d5f2b3353038c3da79af882c530b418ba5706"
+        }
+      ],
+      "finales": [
+        {
+          "omega_rad_s": 0.0,
+          "frequence_hz": 0.0,
+          "deplacement_ports_physique": [
+            -8.069095850876718e-66,
+            4.924214021114596e-56,
+            0.0006613942328042318,
+            7.141390125347105e-65,
+            -0.0009920634920634903,
+            1.6562576526566813e-55
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0006613942328042329,
+            0.0,
+            -0.0009920634920634922,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            -3.3073451163897042e-62,
+            -5.490277244049864e-54,
+            0.0040664786581572805,
+            5.983930252921004e-64,
+            -0.007042952122737626,
+            7.838841931588975e-54
+          ],
+          "borne_ports_normalises": 1.485436292322449e-16,
+          "erreur_ports_normalises_vers_reference": 1.4108937483335298e-17,
+          "erreur_relative_champ_euclidienne": 3.0697212150741603e-15,
+          "masse": {
+            "norme_candidate": 0.0002584921966906826,
+            "borne_absolue": 4.692787385803164e-12,
+            "borne_relative": 1.815446474236783e-08,
+            "defaut_interieur": 4.6927826178935476e-12,
+            "amplification_ports": 0.0320977051760771,
+            "erreur_vers_reference": 6.57048848502832e-19,
+            "erreur_relative_vers_reference": 2.541851773146829e-15
+          },
+          "deformation": {
+            "norme_candidate": 0.008132614787411433,
+            "borne_absolue": 8.352865332690185e-10,
+            "borne_relative": 1.0270824831796838e-07,
+            "defaut_interieur": 8.35286384725374e-10,
+            "amplification_ports": 1.000000102708221,
+            "erreur_vers_reference": 7.079633150170908e-14,
+            "erreur_relative_vers_reference": 8.705236059046525e-12
+          },
+          "certification_machine": false,
+          "marge": 0.9999999999999795,
+          "borne_schur": 1.82651746228254e-14,
+          "champ_float64_sha256": "af260530fa14453145a6d9f701d8cc3d171af83992612a6d6035dc32c9fe1279"
+        },
+        {
+          "omega_rad_s": 6.283185307179586,
+          "frequence_hz": 1.0,
+          "deplacement_ports_physique": [
+            -1.2637223279134755e-46,
+            1.9348043385455964e-42,
+            0.0006889017987528135,
+            7.736225674978951e-43,
+            -0.0010299869449784597,
+            2.4920987224650208e-42
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0006889017987528147,
+            0.0,
+            -0.0010299869449784617,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            -5.179720190389294e-43,
+            1.1264141052254887e-40,
+            0.004276631967924544,
+            6.482356242606296e-42,
+            -0.007312181930452324,
+            1.1794763895570953e-40
+          ],
+          "borne_ports_normalises": 1.6128656112276845e-16,
+          "erreur_ports_normalises_vers_reference": 1.4845467021923775e-17,
+          "erreur_relative_champ_euclidienne": 2.3245301034620517e-14,
+          "masse": {
+            "norme_candidate": 0.00026955365111681065,
+            "borne_absolue": 4.888038344662393e-12,
+            "borne_relative": 1.8133823871608386e-08,
+            "defaut_interieur": 4.8880331657512854e-12,
+            "amplification_ports": 0.03210999770583619,
+            "erreur_vers_reference": 1.388136504841503e-18,
+            "erreur_relative_vers_reference": 5.149759608486819e-15
+          },
+          "deformation": {
+            "norme_candidate": 0.008471047689873452,
+            "borne_absolue": 8.700399402177387e-10,
+            "borne_relative": 1.0270748807345609e-07,
+            "defaut_interieur": 8.700397789298866e-10,
+            "amplification_ports": 1.0000080046417104,
+            "erreur_vers_reference": 7.804657291209001e-14,
+            "erreur_relative_vers_reference": 9.213331782488865e-12
+          },
+          "certification_machine": false,
+          "marge": 0.9593112890300662,
+          "borne_schur": 1.82651746228254e-14,
+          "champ_float64_sha256": "92ae2ff84db3e37b71fe76afa9a80b40b8acc1103ddf14282c9954a69d006d28"
+        },
+        {
+          "omega_rad_s": 12.566370614359172,
+          "frequence_hz": 2.0,
+          "deplacement_ports_physique": [
+            -2.3636523689810807e-45,
+            4.096926491531603e-41,
+            0.0007876319393892912,
+            1.3995176486293058e-41,
+            -0.0011660669950001215,
+            5.370267425915516e-41
+          ],
+          "reference_ports_physique": [
+            0.0,
+            0.0,
+            0.0007876319393892929,
+            0.0,
+            -0.0011660669950001243,
+            0.0
+          ],
+          "coordonnees_ports_normalisees": [
+            -9.68809178111716e-42,
+            2.3088955460545168e-39,
+            0.0050313418337708336,
+            1.1726870889472272e-40,
+            -0.008278254449831927,
+            2.5416744438637765e-39
+          ],
+          "borne_ports_normalises": 2.1241991298716985e-16,
+          "erreur_ports_normalises_vers_reference": 2.155163450584768e-17,
+          "erreur_relative_champ_euclidienne": 1.4923979865532167e-12,
+          "masse": {
+            "norme_candidate": 0.0003092613388619535,
+            "borne_absolue": 5.589896717997696e-12,
+            "borne_relative": 1.807499391810573e-08,
+            "defaut_interieur": 5.5898898893222345e-12,
+            "amplification_ports": 0.03214705893296029,
+            "erreur_vers_reference": 8.743368508337955e-17,
+            "erreur_relative_vers_reference": 2.827177991440032e-13
+          },
+          "deformation": {
+            "norme_candidate": 0.00968847068005122,
+            "borne_absolue": 9.949661626832527e-10,
+            "borne_relative": 1.0269590503182936e-07,
+            "defaut_interieur": 9.949659502363095e-10,
+            "amplification_ports": 1.0001272496894014,
+            "erreur_vers_reference": 2.0224163337111317e-13,
+            "erreur_relative_vers_reference": 2.0874464097572444e-11
+          },
+          "certification_machine": false,
+          "marge": 0.8370575752896792,
+          "borne_schur": 1.82651746228254e-14,
+          "champ_float64_sha256": "3ce060971f6da7e200db7e3ab922eb34a1f698b5009a5d98b736a7940cf4ac32"
+        }
+      ],
+      "precision_reference_compatible_tolerance": true,
+      "acceptation_api": true
+    }
+  ]
+}

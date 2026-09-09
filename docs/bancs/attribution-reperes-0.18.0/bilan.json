@@ -1,0 +1,163 @@
+{
+  "schema": "vinkulum.bilan.attribution_reperes_em.1",
+  "cas": [
+    {
+      "cadre": "spatial",
+      "pas": 0.001,
+      "pas_verifies": 20000,
+      "rotation_max": 1.774910681183593e-07,
+      "omega_max": 7.246259767175773e-07,
+      "contributions_au_pic_omega": [
+        5.7615182796154135e-11,
+        0.0,
+        7.246835925601036e-07,
+        1.165203697373041e-15
+      ],
+      "defauts_dominants_au_pic_omega": true,
+      "largeur_moment": 1.6133396436737219e-38,
+      "largeur_rotation": 1.1887287845755223e-35,
+      "largeur_omega": 4.2425484545201425e-34
+    },
+    {
+      "cadre": "materiel",
+      "pas": 0.001,
+      "pas_verifies": 20000,
+      "rotation_max": 9.135476297618726e-08,
+      "omega_max": 3.7296178808167176e-07,
+      "contributions_au_pic_omega": [
+        2.6387935910580754e-10,
+        1.894476531881339e-10,
+        3.7250846179717804e-07,
+        0.0
+      ],
+      "defauts_dominants_au_pic_omega": true,
+      "largeur_moment": 2.688889931575382e-38,
+      "largeur_rotation": 1.981204276739386e-35,
+      "largeur_omega": 7.070876791430358e-34
+    },
+    {
+      "cadre": "combine",
+      "pas": 0.001,
+      "pas_verifies": 20000,
+      "rotation_max": 3.120817059011613e-08,
+      "omega_max": 1.2741065645337592e-07,
+      "contributions_au_pic_omega": [
+        3.1563498922967174e-10,
+        2.0527429961176242e-10,
+        1.2793156668213736e-07,
+        1.8435209151321897e-15
+      ],
+      "defauts_dominants_au_pic_omega": true,
+      "largeur_moment": 2.6888899173434443e-38,
+      "largeur_rotation": 1.9812042762728796e-35,
+      "largeur_omega": 7.0708767907877795e-34
+    },
+    {
+      "cadre": "spatial",
+      "pas": 0.0005,
+      "pas_verifies": 40000,
+      "rotation_max": 3.5140526146008215e-07,
+      "omega_max": 1.4346115506198928e-06,
+      "contributions_au_pic_omega": [
+        5.761571165065351e-11,
+        0.0,
+        1.4345539346565701e-06,
+        9.233620145808452e-16
+      ],
+      "defauts_dominants_au_pic_omega": true,
+      "largeur_moment": 3.2268658150892107e-38,
+      "largeur_rotation": 2.3779119162544202e-35,
+      "largeur_omega": 8.481684516231661e-34
+    },
+    {
+      "cadre": "materiel",
+      "pas": 0.0005,
+      "pas_verifies": 40000,
+      "rotation_max": 6.838527666303256e-08,
+      "omega_max": 2.7918304602652995e-07,
+      "contributions_au_pic_omega": [
+        2.858979751382851e-10,
+        2.0527905101179727e-10,
+        2.7967422230272145e-07,
+        0.0
+      ],
+      "defauts_dominants_au_pic_omega": true,
+      "largeur_moment": 5.378100364947023e-38,
+      "largeur_rotation": 3.963176193818573e-35,
+      "largeur_omega": 1.4136103684536983e-33
+    },
+    {
+      "cadre": "combine",
+      "pas": 0.0005,
+      "pas_verifies": 40000,
+      "rotation_max": 9.823192643901396e-08,
+      "omega_max": 4.0103174560107556e-07,
+      "contributions_au_pic_omega": [
+        3.1563804521938276e-10,
+        2.0527892307703747e-10,
+        4.015526627118659e-07,
+        6.422966842120814e-16
+      ],
+      "defauts_dominants_au_pic_omega": true,
+      "largeur_moment": 5.37810042180635e-38,
+      "largeur_rotation": 3.963176234539088e-35,
+      "largeur_omega": 1.4136103829097553e-33
+    },
+    {
+      "cadre": "spatial",
+      "pas": 0.00025,
+      "pas_verifies": 80000,
+      "rotation_max": 1.692101299592833e-07,
+      "omega_max": 6.908010923623892e-07,
+      "contributions_au_pic_omega": [
+        5.761603598871191e-11,
+        0.0,
+        6.908587080359531e-07,
+        1.0648062310068081e-15
+      ],
+      "defauts_dominants_au_pic_omega": true,
+      "largeur_moment": 6.45383805099659e-38,
+      "largeur_rotation": 4.756094311829289e-35,
+      "largeur_omega": 1.6961597879713807e-33
+    },
+    {
+      "cadre": "materiel",
+      "pas": 0.00025,
+      "pas_verifies": 80000,
+      "rotation_max": 8.14509948225184e-08,
+      "omega_max": 3.3252361943711655e-07,
+      "contributions_au_pic_omega": [
+        2.638840183241619e-10,
+        1.894513610216659e-10,
+        3.320702848572737e-07,
+        0.0
+      ],
+      "defauts_dominants_au_pic_omega": true,
+      "largeur_moment": 1.0756387507378947e-37,
+      "largeur_rotation": 7.926813595227875e-35,
+      "largeur_omega": 2.8269292903992162e-33
+    },
+    {
+      "cadre": "combine",
+      "pas": 0.00025,
+      "pas_verifies": 80000,
+      "rotation_max": 8.101219637655408e-08,
+      "omega_max": 3.3073202930250204e-07,
+      "contributions_au_pic_omega": [
+        3.156398480011133e-10,
+        2.0527938087586858e-10,
+        3.312529494751728e-07,
+        1.2882014561986683e-15
+      ],
+      "defauts_dominants_au_pic_omega": true,
+      "largeur_moment": 1.0756387404607936e-37,
+      "largeur_rotation": 7.926813545047295e-35,
+      "largeur_omega": 2.826929273755703e-33
+    }
+  ],
+  "valeurs_flottantes": "approximations affich\u00e9es ; les bornes normatives sont les rationnels des r\u00e9sultats",
+  "pas_comparaisons": 420000,
+  "defauts_dominants_aux_neuf_pics_omega": true,
+  "definition_dominance": "borne inf\u00e9rieure de la norme de la contribution des d\u00e9fauts sup\u00e9rieure \u00e0 la somme des bornes sup\u00e9rieures des trois autres contributions, au pic de vitesse de chaque comparaison",
+  "borne_erreur_ode_continue": false
+}

@@ -1,0 +1,44 @@
+{
+  "famille": "cascade",
+  "taille": 20,
+  "variante": "qr_dense",
+  "forme": [
+    400,
+    360
+  ],
+  "nnz": 1268,
+  "python": "3.14.7",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "cpu": [
+    8
+  ],
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+  "modele_sha256": "6e1f90d98c2978fc07bc6493f73685ef5c464bd4e77126511f135174b5bd45dc",
+  "statut": "calcule",
+  "factorisation_s": 0.009213302982971072,
+  "projection_s": 0.0002551071811467409,
+  "reactions_s": 0.00040052388794720173,
+  "total_s": 0.009868934052065015,
+  "diagnostic": {
+    "rang": 340,
+    "coefficients_base_normales": 122400,
+    "base_dense": true
+  },
+  "rss_avant_oracle_kib": 83968,
+  "controles": {
+    "erreur_projection": 9.769962616701378e-15,
+    "erreur_force": 3.197442310920451e-14,
+    "fermeture": 2.6081567461311295e-15,
+    "idempotence": 3.497202527569243e-15,
+    "rang_attendu": 340,
+    "rang_correct": true
+  },
+  "accepte": true
+}

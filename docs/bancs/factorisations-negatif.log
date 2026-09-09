@@ -1,0 +1,14 @@
+E
+======================================================================
+ERROR: test_statique_cascade_de_parallelogrammes (vinkulum.test_noyau.AuditNoyau.test_statique_cascade_de_parallelogrammes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/vinkulum-cod-avant/vinkulum/test_noyau.py", line 114, in test_statique_cascade_de_parallelogrammes
+    n.statique(strict=True, tol=1e-8, iters=30, paliers_max=1)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: ValueError: statique : pas convergé en 30 itérations, ‖r‖ = 1.675e-1 pour une échelle de force de 1.000e0 (1.7e-1 en relatif)
+
+----------------------------------------------------------------------
+Ran 1 test in 1.273s
+
+FAILED (errors=1)

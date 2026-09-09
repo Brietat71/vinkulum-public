@@ -1,0 +1,27 @@
+{
+  "version": "0.8.2",
+  "module": "/tmp/vinkulum-release-0.8.2/venv/lib/python3.14/site-packages/vinkulum/_vinkulum.cpython-314-x86_64-linux-gnu.so",
+  "extension_sha256": "63e7eec23977333afa73c4b3bbb4cb651e869dc48370c547f0184b5d7c584a1a",
+  "import_hors_depot": true,
+  "exemple_readme_execute": true,
+  "readme_sha256": "bb5e154f5f712065225fd98e984fedbaf830850669512510c38738ad4c668add",
+  "angle_readme_rad": 0.02,
+  "statique_stricte": {
+    "statut": "tolerance",
+    "tol": 1e-10,
+    "strict": true,
+    "residu_libre": 0.0,
+    "contraintes": 0.0,
+    "echelle_force": 2.0,
+    "residu_relatif": 0.0,
+    "tolerance_finale_atteinte": true,
+    "evaluations": 2,
+    "tentatives": 1,
+    "paliers": 1,
+    "palier": 1,
+    "paliers_stagnation": 0,
+    "etat_restaure": false,
+    "message": null
+  },
+  "etat_precis_restaure": true
+}

@@ -1,0 +1,5 @@
+Using Python 3.14.7 environment at: /tmp/vinkulum-release-0.8.2/venv
+Resolved 1 package in 1ms
+Prepared 1 package in 30ms
+Installed 1 package in 1ms
+ + vinkulum==0.8.2 (from file:///tmp/vinkulum-release-0.8.2/wheels/vinkulum-0.8.2-cp314-cp314-manylinux_2_39_x86_64.whl)

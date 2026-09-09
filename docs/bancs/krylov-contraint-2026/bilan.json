@@ -1,0 +1,409 @@
+{
+  "cible": 1e-06,
+  "nombre_essais": 60,
+  "configurations": [
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "krylov_champs",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.06924768607132137,
+      "preparation_s_plage": [
+        0.069074033992365,
+        0.0710341848898679
+      ],
+      "reponses_s": 0.029449967900291085,
+      "reponses_s_plage": [
+        0.02923439582809806,
+        0.029622728005051613
+      ],
+      "total_s": 0.09852400189265609,
+      "total_s_plage": [
+        0.09848208189941943,
+        0.10065691289491951
+      ],
+      "erreur_mediane": 1.2948629948774126e-10,
+      "erreur_pire": 1.2948629948774126e-10
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "krylov_controle",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.07773184799589217,
+      "preparation_s_plage": [
+        0.07768943696282804,
+        0.07807200704701245
+      ],
+      "reponses_s": 0.12257512495853007,
+      "reponses_s_plage": [
+        0.12185436906293035,
+        0.12304523284547031
+      ],
+      "total_s": 0.20064713200554252,
+      "total_s_plage": [
+        0.19954380602575839,
+        0.20077708084136248
+      ],
+      "erreur_mediane": 5.017469115249478e-11,
+      "erreur_pire": 5.017469115249478e-11,
+      "controle_accepte_tous_essais": true,
+      "majorants_couvrent_oracles": true,
+      "eligible_controle": true,
+      "reponses_certifiees_machine": false
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "lu_corrigee",
+      "modes_demandes": 0,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.001075943000614643,
+      "preparation_s_plage": [
+        0.0009671458974480629,
+        0.0010812038090080023
+      ],
+      "reponses_s": 0.10113553586415946,
+      "reponses_s_plage": [
+        0.10082912095822394,
+        0.1020205351524055
+      ],
+      "total_s": 0.10221147886477411,
+      "total_s_plage": [
+        0.101796266855672,
+        0.1031017389614135
+      ],
+      "erreur_mediane": 3.497890611682929e-10,
+      "erreur_pire": 3.497890611682929e-10
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "hcb_standard",
+      "modes_demandes": 185,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.030712026869878173,
+      "preparation_s_plage": [
+        0.030274991877377033,
+        0.03125979192554951
+      ],
+      "reponses_s": 0.07809419906698167,
+      "reponses_s_plage": [
+        0.07785242795944214,
+        0.07827989407815039
+      ],
+      "total_s": 0.10880622593685985,
+      "total_s_plage": [
+        0.10855488595552742,
+        0.10911221988499165
+      ],
+      "erreur_mediane": 4.13754856479861e-08,
+      "erreur_pire": 4.1375486925395057e-08
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "hcb_energie",
+      "modes_demandes": 185,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.030336438911035657,
+      "preparation_s_plage": [
+        0.030074308859184384,
+        0.03083639405667782
+      ],
+      "reponses_s": 0.0779969641007483,
+      "reponses_s_plage": [
+        0.07761964411474764,
+        0.0783327950630337
+      ],
+      "total_s": 0.10840710392221808,
+      "total_s_plage": [
+        0.1079560830257833,
+        0.10883335815742612
+      ],
+      "erreur_mediane": 4.1375484142439165e-08,
+      "erreur_pire": 4.1375484457083655e-08
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "krylov_champs",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.21930614486336708,
+      "preparation_s_plage": [
+        0.218649661866948,
+        0.21981399413198233
+      ],
+      "reponses_s": 0.04374096402898431,
+      "reponses_s_plage": [
+        0.04359833081252873,
+        0.04427844914607704
+      ],
+      "total_s": 0.26341232494451106,
+      "total_s_plage": [
+        0.2623906258959323,
+        0.2635845940094441
+      ],
+      "erreur_mediane": 5.740980312371118e-10,
+      "erreur_pire": 5.740980312371118e-10
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "krylov_controle",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.2408495731651783,
+      "preparation_s_plage": [
+        0.24076146399602294,
+        0.24123527901247144
+      ],
+      "reponses_s": 0.1753197629004717,
+      "reponses_s_plage": [
+        0.17398672900162637,
+        0.1754760609474033
+      ],
+      "total_s": 0.4160812268964946,
+      "total_s_plage": [
+        0.41483630216680467,
+        0.41671133995987475
+      ],
+      "erreur_mediane": 3.995875951635128e-10,
+      "erreur_pire": 3.995875951635128e-10,
+      "controle_accepte_tous_essais": true,
+      "majorants_couvrent_oracles": true,
+      "eligible_controle": true,
+      "reponses_certifiees_machine": false
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "lu_corrigee",
+      "modes_demandes": 0,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.0011768259573727846,
+      "preparation_s_plage": [
+        0.0011642519384622574,
+        0.0012360699474811554
+      ],
+      "reponses_s": 0.22189216990955174,
+      "reponses_s_plage": [
+        0.22159032500348985,
+        0.22209563804790378
+      ],
+      "total_s": 0.223056421848014,
+      "total_s_plage": [
+        0.22276715096086264,
+        0.22333170799538493
+      ],
+      "erreur_mediane": 1.0539617861197251e-08,
+      "erreur_pire": 1.0539617861197251e-08
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "hcb_standard",
+      "modes_demandes": 761,
+      "eligible_champs": false,
+      "acceptations_champs": 2,
+      "chauffe_acceptee": false,
+      "preparation_s": 0.6627063120249659,
+      "preparation_s_plage": [
+        0.6623513051308692,
+        0.6675696650054306
+      ],
+      "reponses_s": 0.9725470200646669,
+      "reponses_s_plage": [
+        0.9710609540343285,
+        0.9789852588437498
+      ],
+      "total_s": 1.6401166850700974,
+      "total_s_plage": [
+        1.6334122591651976,
+        1.6416915708687156
+      ],
+      "erreur_mediane": 4.3940128755843743e-07,
+      "erreur_pire": 1.3258073505044258e-06
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "hcb_energie",
+      "modes_demandes": 761,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.654130324954167,
+      "preparation_s_plage": [
+        0.6506794979795814,
+        0.6573853970039636
+      ],
+      "reponses_s": 0.9856537960004061,
+      "reponses_s_plage": [
+        0.9660032109823078,
+        0.9912305688485503
+      ],
+      "total_s": 1.6363332939799875,
+      "total_s_plage": [
+        1.6201335359364748,
+        1.648615965852514
+      ],
+      "erreur_mediane": 4.050478473152318e-09,
+      "erreur_pire": 8.504846331942783e-09
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "krylov_champs",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.8382311868481338,
+      "preparation_s_plage": [
+        0.8330889719072729,
+        0.8444115740712732
+      ],
+      "reponses_s": 0.09880440193228424,
+      "reponses_s_plage": [
+        0.09838135610334575,
+        0.09906184510327876
+      ],
+      "total_s": 0.9372930319514126,
+      "total_s_plage": [
+        0.9314703280106187,
+        0.9432159760035574
+      ],
+      "erreur_mediane": 5.855425034105537e-09,
+      "erreur_pire": 5.855425034105537e-09
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "krylov_controle",
+      "modes_demandes": 1,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.9210452020633966,
+      "preparation_s_plage": [
+        0.9208937708754092,
+        0.9222198310308158
+      ],
+      "reponses_s": 0.38169281696900725,
+      "reponses_s_plage": [
+        0.3806284009478986,
+        0.3830168838612735
+      ],
+      "total_s": 1.3025865878444165,
+      "total_s_plage": [
+        1.3016736030112952,
+        1.3052367148920894
+      ],
+      "erreur_mediane": 2.1996338092299283e-09,
+      "erreur_pire": 2.1996338092299283e-09,
+      "controle_accepte_tous_essais": true,
+      "majorants_couvrent_oracles": true,
+      "eligible_controle": true,
+      "reponses_certifiees_machine": false
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "lu_corrigee",
+      "modes_demandes": 0,
+      "eligible_champs": true,
+      "acceptations_champs": 3,
+      "chauffe_acceptee": true,
+      "preparation_s": 0.0017815781757235527,
+      "preparation_s_plage": [
+        0.0017569009214639664,
+        0.0018331368919461966
+      ],
+      "reponses_s": 0.72356894495897,
+      "reponses_s_plage": [
+        0.6995174940675497,
+        0.7237050959374756
+      ],
+      "total_s": 0.7253505231346935,
+      "total_s_plage": [
+        0.7013506309594959,
+        0.7254619968589395
+      ],
+      "erreur_mediane": 1.1060932267566793e-08,
+      "erreur_pire": 1.1060932267566793e-08
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "hcb_standard",
+      "modes_demandes": 768,
+      "eligible_champs": false,
+      "acceptations_champs": 0,
+      "chauffe_acceptee": false,
+      "preparation_s": 4.974258547881618,
+      "preparation_s_plage": [
+        4.969068676000461,
+        4.992593112168834
+      ],
+      "reponses_s": 1.5346644998062402,
+      "reponses_s_plage": [
+        1.515284163178876,
+        1.5755479061044753
+      ],
+      "total_s": 6.527257611975074,
+      "total_s_plage": [
+        6.489542711060494,
+        6.544616582104936
+      ],
+      "erreur_mediane": 3.230001326273214e-05,
+      "erreur_pire": 3.2300014177996904e-05
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "hcb_energie",
+      "modes_demandes": 768,
+      "eligible_champs": false,
+      "acceptations_champs": 0,
+      "chauffe_acceptee": false,
+      "preparation_s": 4.964394330047071,
+      "preparation_s_plage": [
+        4.950534779112786,
+        5.009868199937046
+      ],
+      "reponses_s": 1.5291946588549763,
+      "reponses_s_plage": [
+        1.4951368789188564,
+        1.5735118889715523
+      ],
+      "total_s": 6.479729437967762,
+      "total_s_plage": [
+        6.459531208965927,
+        6.583380088908598
+      ],
+      "erreur_mediane": 3.2300012694880885e-05,
+      "erreur_pire": 3.230001292458696e-05
+    }
+  ],
+  "portee": "consoles natives, réponses matricielles ; HCB officiel avec pont de réponse local, aucune simulation FFRF"
+}

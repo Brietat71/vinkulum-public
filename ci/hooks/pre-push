@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# pre-push : la CI locale juge ce qui part (cf. ci/local.sh)
+exec "$(git rev-parse --show-toplevel)/ci/local.sh"

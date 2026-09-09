@@ -1,0 +1,103 @@
+{
+  "cas": {
+    "nom": "chaine2048",
+    "famille": "chaine",
+    "n": 2048
+  },
+  "variante": "qr",
+  "oracle_sha256": "b688d8edc7ed125a390ba7a20dbba895eb80f961cbb80961f13643e3f510d46b",
+  "date": "2026-09-07T17:37:55.294903+00:00",
+  "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "extension_sha256": "7ddca67ab1d61d49421ea4cc168181b5506b1d15cb6ffc5a3f333b5829e48532",
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "cpu": [
+    8
+  ],
+  "tolerance": 1e-10,
+  "lambda_min": 2.3507434995839616e-06,
+  "omega_max": 0.0010737864462397862,
+  "directions": 5,
+  "ports": 1,
+  "nombre_requetes": 257,
+  "nombre_frequences_audit": 17,
+  "preparation_s": 0.06641099904663861,
+  "requetes_s": 0.007160994922742248,
+  "reconstruction_s": 6.722798570990562e-05,
+  "total_s": 0.07363922195509076,
+  "rss_avant_oracle_kib": 71168,
+  "borne_uniforme": 2.3875093756567115e-13,
+  "erreur_D": 5.10702591327572e-15,
+  "erreur_physique": 4.884981308350689e-15,
+  "ecart_energie": 4.884981308350689e-15,
+  "diagnostic": {
+    "statut": "tolerance_estimee",
+    "historique": [
+      {
+        "blocs": 1,
+        "directions": 1,
+        "borne_uniforme": 0.154559627734819,
+        "defaut_gram": 2.220446049250313e-15
+      },
+      {
+        "blocs": 2,
+        "directions": 2,
+        "borne_uniforme": 0.0007097728658376725,
+        "defaut_gram": 3.908385094583634e-15
+      },
+      {
+        "blocs": 3,
+        "directions": 3,
+        "borne_uniforme": 7.627825830270886e-07,
+        "defaut_gram": 4.030392563619718e-15
+      },
+      {
+        "blocs": 4,
+        "directions": 4,
+        "borne_uniforme": 2.6785320484123335e-10,
+        "defaut_gram": 4.130516211617921e-15
+      },
+      {
+        "blocs": 5,
+        "directions": 5,
+        "borne_uniforme": 3.847232893209988e-14,
+        "defaut_gram": 4.183273626261258e-15
+      }
+    ],
+    "audit_bande": {
+      "majorant_total": 2.3875093756567115e-13,
+      "majorant_residu": 1.9830713286017247e-13,
+      "ecart_modele": 4.044380470549866e-14,
+      "enveloppes": [
+        0.06408877235443183,
+        4.302650564726974e-05,
+        7.092213676034099e-08,
+        2.2898434973999122e-10,
+        1.7974186074341234e-12,
+        1.9830713286017247e-13
+      ],
+      "norme_champ_dynamique": 1.4135762588907224,
+      "certification_machine": false
+    },
+    "borne_reduction": 4.772803726966385e-14,
+    "audit_modele": {
+      "ecart_energie_statique": 3.9968028886505635e-15,
+      "defaut_equilibre_entree_dual": 1.644593674718319e-13,
+      "residu_lifting": 1.711307316849351e-13,
+      "rotations": 4094,
+      "operations": 36840,
+      "nnz_R": 4093,
+      "coefficients_ports": 2048,
+      "certification_machine": false
+    },
+    "audit_ponctuel_total": 1.540103759637257e-13
+  },
+  "accepte": true,
+  "certification_machine": false
+}

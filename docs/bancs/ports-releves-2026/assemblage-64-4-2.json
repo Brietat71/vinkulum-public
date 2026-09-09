@@ -1,0 +1,29 @@
+{
+  "n": 64,
+  "segments": 4,
+  "variante": "assemblage_qr",
+  "fils": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "cpu": [
+    8
+  ],
+  "preparation_s": 0.04300216096453369,
+  "requetes_s": 0.027638353873044252,
+  "reconstruction_s": 0.00014888402074575424,
+  "total_s": 0.0707893988583237,
+  "directions": 24,
+  "ports": 4,
+  "borne_uniforme": 1.3075315067855832e-14,
+  "erreur_port_max": 1.1827675363059692e-11,
+  "erreur_relative_port_max": 1.427834749850964e-13,
+  "rapport_erreur_borne_max": 0.13865293368305365,
+  "nombre_frequences": 129,
+  "reponses_non_bornees": 0,
+  "erreur_champ_final": 1.41845482162384e-11,
+  "accepte": true,
+  "certification_machine": false
+}

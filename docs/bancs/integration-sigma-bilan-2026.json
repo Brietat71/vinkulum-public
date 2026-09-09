@@ -1,0 +1,1727 @@
+{
+  "archive_sha256": "8d2ef97d0ea85d570ef8f38c9bd3c93157d05920e7e0889667817d9060b02075",
+  "essais": 252,
+  "echec": 0,
+  "configurations": [
+    {
+      "cas": "affine",
+      "h": 0.04,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.0001351916358501678,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 5.023812659714201e-13
+      },
+      "mediane_s": 0.00014408491551876068,
+      "min_s": 0.00013780314475297928,
+      "max_s": 0.0001460679341107607,
+      "newton": 25
+    },
+    {
+      "cas": "affine",
+      "h": 0.04,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 7.743933949583168e-09,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 5.02378237224844e-13
+      },
+      "mediane_s": 0.00020476989448070526,
+      "min_s": 0.00020392006263136864,
+      "max_s": 0.00022281496785581112,
+      "newton": 24
+    },
+    {
+      "cas": "affine",
+      "h": 0.04,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 6.8104070032741e-05,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 5.023908611945041e-13
+      },
+      "mediane_s": 0.00020807702094316483,
+      "min_s": 0.00020787585526704788,
+      "max_s": 0.00021001091226935387,
+      "newton": 25
+    },
+    {
+      "cas": "affine",
+      "h": 0.02,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 3.3796826478939905e-05,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 8.955852324985024e-13
+      },
+      "mediane_s": 0.0002555679529905319,
+      "min_s": 0.0002523409202694893,
+      "max_s": 0.00027059600688517094,
+      "newton": 49
+    },
+    {
+      "cas": "affine",
+      "h": 0.02,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 4.841906943411782e-10,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 8.955285266575697e-13
+      },
+      "mediane_s": 0.0003533540293574333,
+      "min_s": 0.00035192188806831837,
+      "max_s": 0.0003593659494072199,
+      "newton": 50
+    },
+    {
+      "cas": "affine",
+      "h": 0.02,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 1.702501347648882e-05,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 8.954571322607296e-13
+      },
+      "mediane_s": 0.0003514911513775587,
+      "min_s": 0.00035106996074318886,
+      "max_s": 0.00035185087472200394,
+      "newton": 50
+    },
+    {
+      "cas": "affine",
+      "h": 0.01,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 8.449138935969373e-06,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 8.957424692965783e-13
+      },
+      "mediane_s": 0.00048190890811383724,
+      "min_s": 0.00046350504271686077,
+      "max_s": 0.00048342207446694374,
+      "newton": 100
+    },
+    {
+      "cas": "affine",
+      "h": 0.01,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 3.0397186604009226e-11,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 8.957292886972276e-13
+      },
+      "mediane_s": 0.0006636760663241148,
+      "min_s": 0.0006573640275746584,
+      "max_s": 0.000674727838486433,
+      "newton": 100
+    },
+    {
+      "cas": "affine",
+      "h": 0.01,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 4.256247714062027e-06,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 8.958879538702554e-13
+      },
+      "mediane_s": 0.0006602099165320396,
+      "min_s": 0.0006594990845769644,
+      "max_s": 0.000662545207887888,
+      "newton": 98
+    },
+    {
+      "cas": "affine",
+      "h": 0.005,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 2.112280474409388e-06,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 8.958338608032649e-13
+      },
+      "mediane_s": 0.0009193948935717344,
+      "min_s": 0.0009143850766122341,
+      "max_s": 0.0009271888993680477,
+      "newton": 200
+    },
+    {
+      "cas": "affine",
+      "h": 0.005,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 2.03509347374583e-12,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 8.957986640942664e-13
+      },
+      "mediane_s": 0.0012025050818920135,
+      "min_s": 0.0011933280620723963,
+      "max_s": 0.0012055998668074608,
+      "newton": 200
+    },
+    {
+      "cas": "affine",
+      "h": 0.005,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 1.0640687331026702e-06,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 8.956671543798149e-13
+      },
+      "mediane_s": 0.0013020250480622053,
+      "min_s": 0.0012995400466024876,
+      "max_s": 0.0013071948196738958,
+      "newton": 199
+    },
+    {
+      "cas": "libre",
+      "h": 0.04,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.009777930854219076,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.035012839822274384
+      },
+      "mediane_s": 0.00036641000770032406,
+      "min_s": 0.0003505989443510771,
+      "max_s": 0.00037923408672213554,
+      "newton": 150
+    },
+    {
+      "cas": "libre",
+      "h": 0.04,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.008133026231845948,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.029026429252800596
+      },
+      "mediane_s": 0.0005462130066007376,
+      "min_s": 0.0005366448312997818,
+      "max_s": 0.0005589870270341635,
+      "newton": 150
+    },
+    {
+      "cas": "libre",
+      "h": 0.04,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.0073103675866698055,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.025941851407421872
+      },
+      "mediane_s": 0.0005557900294661522,
+      "min_s": 0.0005448099691420794,
+      "max_s": 0.0005563809536397457,
+      "newton": 150
+    },
+    {
+      "cas": "libre",
+      "h": 0.02,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.0024514708824823917,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.008839215158858698
+      },
+      "mediane_s": 0.00067668198607862,
+      "min_s": 0.0006766710430383682,
+      "max_s": 0.0006890448275953531,
+      "newton": 300
+    },
+    {
+      "cas": "libre",
+      "h": 0.02,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.0020374104740041106,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.007322398839226856
+      },
+      "mediane_s": 0.001038410933688283,
+      "min_s": 0.0010366491042077541,
+      "max_s": 0.0010408670641481876,
+      "newton": 300
+    },
+    {
+      "cas": "libre",
+      "h": 0.02,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.0018314586700322792,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.006549788735245008
+      },
+      "mediane_s": 0.001041978131979704,
+      "min_s": 0.001039423979818821,
+      "max_s": 0.0010433611460030079,
+      "newton": 300
+    },
+    {
+      "cas": "libre",
+      "h": 0.01,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.0006132668261901014,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.002215164513966942
+      },
+      "mediane_s": 0.0011258290614932775,
+      "min_s": 0.0011185749899595976,
+      "max_s": 0.0011264688801020384,
+      "newton": 400
+    },
+    {
+      "cas": "libre",
+      "h": 0.01,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.0005096033552331217,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.001834713683274961
+      },
+      "mediane_s": 0.0017437178175896406,
+      "min_s": 0.0017435678746551275,
+      "max_s": 0.0017521041445434093,
+      "newton": 400
+    },
+    {
+      "cas": "libre",
+      "h": 0.01,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.0004581291130855952,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.0016420026318302535
+      },
+      "mediane_s": 0.001730642979964614,
+      "min_s": 0.0017279682215303183,
+      "max_s": 0.0017326569650322199,
+      "newton": 400
+    },
+    {
+      "cas": "libre",
+      "h": 0.005,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.00015334143709041923,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.0005541292835061903
+      },
+      "mediane_s": 0.0021891880314797163,
+      "min_s": 0.002179739996790886,
+      "max_s": 0.0021965219639241695,
+      "newton": 800
+    },
+    {
+      "cas": "libre",
+      "h": 0.005,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.00012742109042880007,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.0004589379374792841
+      },
+      "mediane_s": 0.0031077410094439983,
+      "min_s": 0.003105415962636471,
+      "max_s": 0.0031162069644778967,
+      "newton": 800
+    },
+    {
+      "cas": "libre",
+      "h": 0.005,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 0.00011455731384990164,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.00041085468341009245
+      },
+      "mediane_s": 0.003114313818514347,
+      "min_s": 0.0031141231302171946,
+      "max_s": 0.0031229599844664335,
+      "newton": 800
+    },
+    {
+      "cas": "plan",
+      "h": 0.02,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0004592786868106851,
+        "orientation_rad": 0.00045927869084730837,
+        "vitesse_m_s": 0.0022016164240735137,
+        "rotation_rad_s": 0.002201117966060956,
+        "norme_reaction_N": 0.0019088014865784597
+      },
+      "mediane_s": 0.0006701790262013674,
+      "min_s": 0.0006584769580513239,
+      "max_s": 0.0006839251145720482,
+      "newton": 137
+    },
+    {
+      "cas": "plan",
+      "h": 0.02,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0004592786868106851,
+        "orientation_rad": 0.00045927869084730837,
+        "vitesse_m_s": 0.0022016164240735137,
+        "rotation_rad_s": 0.002201117966060956,
+        "norme_reaction_N": 0.0019088014865784597
+      },
+      "mediane_s": 0.0007331189699470997,
+      "min_s": 0.000725465128198266,
+      "max_s": 0.0007352340035140514,
+      "newton": 137
+    },
+    {
+      "cas": "plan",
+      "h": 0.02,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0004592786868106851,
+        "orientation_rad": 0.00045927869084730837,
+        "vitesse_m_s": 0.0022016164240735137,
+        "rotation_rad_s": 0.002201117966060956,
+        "norme_reaction_N": 0.0019088014865784597
+      },
+      "mediane_s": 0.0007409239187836647,
+      "min_s": 0.0007363660261034966,
+      "max_s": 0.0007465449161827564,
+      "newton": 137
+    },
+    {
+      "cas": "plan",
+      "h": 0.01,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0001149230483869956,
+        "orientation_rad": 0.000114923048450236,
+        "vitesse_m_s": 0.0005505159003050457,
+        "rotation_rad_s": 0.0005503649337859351,
+        "norme_reaction_N": 0.00047765235480046186
+      },
+      "mediane_s": 0.0011833978351205587,
+      "min_s": 0.0011745018418878317,
+      "max_s": 0.0011907631997019053,
+      "newton": 200
+    },
+    {
+      "cas": "plan",
+      "h": 0.01,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0001149230483869956,
+        "orientation_rad": 0.000114923048450236,
+        "vitesse_m_s": 0.0005505159003050457,
+        "rotation_rad_s": 0.0005503649337859351,
+        "norme_reaction_N": 0.00047765235480046186
+      },
+      "mediane_s": 0.001285633072257042,
+      "min_s": 0.0012850828934460878,
+      "max_s": 0.0012909539509564638,
+      "newton": 200
+    },
+    {
+      "cas": "plan",
+      "h": 0.01,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0001149230483869956,
+        "orientation_rad": 0.000114923048450236,
+        "vitesse_m_s": 0.0005505159003050457,
+        "rotation_rad_s": 0.0005503649337859351,
+        "norme_reaction_N": 0.00047765235480046186
+      },
+      "mediane_s": 0.0012891101650893688,
+      "min_s": 0.0012840910349041224,
+      "max_s": 0.001305500976741314,
+      "newton": 200
+    },
+    {
+      "cas": "plan",
+      "h": 0.005,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 2.873161966713073e-05,
+        "orientation_rad": 2.873161966807932e-05,
+        "vitesse_m_s": 0.00013763636238425963,
+        "rotation_rad_s": 0.0001375982727621211,
+        "norme_reaction_N": 0.00011944134268437878
+      },
+      "mediane_s": 0.002283046953380108,
+      "min_s": 0.002280972898006439,
+      "max_s": 0.002291934099048376,
+      "newton": 399
+    },
+    {
+      "cas": "plan",
+      "h": 0.005,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 2.873161966713073e-05,
+        "orientation_rad": 2.873161966807932e-05,
+        "vitesse_m_s": 0.00013763636238425963,
+        "rotation_rad_s": 0.0001375982727621211,
+        "norme_reaction_N": 0.00011944134268437878
+      },
+      "mediane_s": 0.002491824794560671,
+      "min_s": 0.002485011937096715,
+      "max_s": 0.002499290043488145,
+      "newton": 399
+    },
+    {
+      "cas": "plan",
+      "h": 0.005,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 2.873161966713073e-05,
+        "orientation_rad": 2.873161966807932e-05,
+        "vitesse_m_s": 0.00013763636238425963,
+        "rotation_rad_s": 0.0001375982727621211,
+        "norme_reaction_N": 0.00011944134268437878
+      },
+      "mediane_s": 0.002480223076418042,
+      "min_s": 0.0024726788979023695,
+      "max_s": 0.0024836999364197254,
+      "newton": 399
+    },
+    {
+      "cas": "plan",
+      "h": 0.0025,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 7.18295050555078e-06,
+        "orientation_rad": 7.182950505517968e-06,
+        "vitesse_m_s": 3.440961021113765e-05,
+        "rotation_rad_s": 3.440006841330667e-05,
+        "norme_reaction_N": 2.9862105636491165e-05
+      },
+      "mediane_s": 0.004505588905885816,
+      "min_s": 0.004498374881222844,
+      "max_s": 0.004535455955192447,
+      "newton": 798
+    },
+    {
+      "cas": "plan",
+      "h": 0.0025,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 7.18295050555078e-06,
+        "orientation_rad": 7.182950505517968e-06,
+        "vitesse_m_s": 3.440961021113765e-05,
+        "rotation_rad_s": 3.440006841330667e-05,
+        "norme_reaction_N": 2.9862105636491165e-05
+      },
+      "mediane_s": 0.00491733499802649,
+      "min_s": 0.0049069649539887905,
+      "max_s": 0.004925509914755821,
+      "newton": 798
+    },
+    {
+      "cas": "plan",
+      "h": 0.0025,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 7.18295050555078e-06,
+        "orientation_rad": 7.182950505517968e-06,
+        "vitesse_m_s": 3.440961021113765e-05,
+        "rotation_rad_s": 3.440006841330667e-05,
+        "norme_reaction_N": 2.9862105636491165e-05
+      },
+      "mediane_s": 0.0049122050404548645,
+      "min_s": 0.004907336086034775,
+      "max_s": 0.004943705163896084,
+      "newton": 798
+    },
+    {
+      "cas": "toupie",
+      "h": 0.001,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0002011770523552614,
+        "orientation_rad": 0.004028342028780294,
+        "vitesse_m_s": 0.009616048666186861,
+        "rotation_rad_s": 1.0690437633501073,
+        "norme_reaction_N": 0.018832049709567533
+      },
+      "mediane_s": 0.002374080941081047,
+      "min_s": 0.002334805903956294,
+      "max_s": 0.0023880370426923037,
+      "newton": 400
+    },
+    {
+      "cas": "toupie",
+      "h": 0.001,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 3.070413527946332e-05,
+        "orientation_rad": 0.0006150469239792238,
+        "vitesse_m_s": 0.001535112226361455,
+        "rotation_rad_s": 0.15377364978163796,
+        "norme_reaction_N": 0.03944406356090102
+      },
+      "mediane_s": 0.003011696971952915,
+      "min_s": 0.003008261090144515,
+      "max_s": 0.0030309148132801056,
+      "newton": 400
+    },
+    {
+      "cas": "toupie",
+      "h": 0.001,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 7.530517108938826e-05,
+        "orientation_rad": 0.0015065833197278207,
+        "vitesse_m_s": 0.00266657695097398,
+        "rotation_rad_s": 0.42865804488748616,
+        "norme_reaction_N": 0.06154140857286006
+      },
+      "mediane_s": 0.0030185701325535774,
+      "min_s": 0.0030054859817028046,
+      "max_s": 0.0030392399057745934,
+      "newton": 404
+    },
+    {
+      "cas": "toupie",
+      "h": 0.0005,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 4.859562532953752e-05,
+        "orientation_rad": 0.0009731170194636345,
+        "vitesse_m_s": 0.002406327992164694,
+        "rotation_rad_s": 0.2578966932610156,
+        "norme_reaction_N": 0.00453264899779815
+      },
+      "mediane_s": 0.00458492012694478,
+      "min_s": 0.004550303798168898,
+      "max_s": 0.0046097279991954565,
+      "newton": 800
+    },
+    {
+      "cas": "toupie",
+      "h": 0.0005,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 7.674803755558284e-06,
+        "orientation_rad": 0.00015373611864999472,
+        "vitesse_m_s": 0.00038404827966469186,
+        "rotation_rad_s": 0.038429566718054226,
+        "norme_reaction_N": 0.011293285779286455
+      },
+      "mediane_s": 0.005825808038935065,
+      "min_s": 0.005824927007779479,
+      "max_s": 0.005847229855135083,
+      "newton": 800
+    },
+    {
+      "cas": "toupie",
+      "h": 0.0005,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 1.8539412597631733e-05,
+        "orientation_rad": 0.0003709354479345547,
+        "vitesse_m_s": 0.000653783411193834,
+        "rotation_rad_s": 0.10563068533076331,
+        "norme_reaction_N": 0.019760435208085236
+      },
+      "mediane_s": 0.005830027163028717,
+      "min_s": 0.0058100479654967785,
+      "max_s": 0.005843011196702719,
+      "newton": 799
+    },
+    {
+      "cas": "toupie",
+      "h": 0.00025,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 1.2035806170842689e-05,
+        "orientation_rad": 0.00024101761048520948,
+        "vitesse_m_s": 0.0006015108162958887,
+        "rotation_rad_s": 0.06385239409997266,
+        "norme_reaction_N": 0.0011341657102970082
+      },
+      "mediane_s": 0.008353172102943063,
+      "min_s": 0.008351539028808475,
+      "max_s": 0.008354964898899198,
+      "newton": 1166
+    },
+    {
+      "cas": "toupie",
+      "h": 0.00025,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 1.9186355857204023e-06,
+        "orientation_rad": 3.843265282206097e-05,
+        "vitesse_m_s": 9.602835421869688e-05,
+        "rotation_rad_s": 0.009606612627384159,
+        "norme_reaction_N": 0.0029439261604748967
+      },
+      "mediane_s": 0.01065457402728498,
+      "min_s": 0.010643562069162726,
+      "max_s": 0.010714258067309856,
+      "newton": 1227
+    },
+    {
+      "cas": "toupie",
+      "h": 0.00025,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 4.600117273164252e-06,
+        "orientation_rad": 9.204271320449267e-05,
+        "vitesse_m_s": 0.00016244051843991,
+        "rotation_rad_s": 0.02622527693661735,
+        "norme_reaction_N": 0.005381188300444428
+      },
+      "mediane_s": 0.010682757943868637,
+      "min_s": 0.01063124998472631,
+      "max_s": 0.010705831926316023,
+      "newton": 1212
+    },
+    {
+      "cas": "toupie",
+      "h": 0.000125,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 3.001776148113849e-06,
+        "orientation_rad": 6.0110919281278174e-05,
+        "vitesse_m_s": 0.0001503699152648591,
+        "rotation_rad_s": 0.015923676637212815,
+        "norme_reaction_N": 0.0002835987907179316
+      },
+      "mediane_s": 0.015467538964003325,
+      "min_s": 0.01545024593360722,
+      "max_s": 0.015486003831028938,
+      "newton": 1600
+    },
+    {
+      "cas": "toupie",
+      "h": 0.000125,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 4.796558242178144e-07,
+        "orientation_rad": 9.6080967310844e-06,
+        "vitesse_m_s": 2.400811032030521e-05,
+        "rotation_rad_s": 0.002401610598864615,
+        "norme_reaction_N": 0.0007449228070596225
+      },
+      "mediane_s": 0.018483745865523815,
+      "min_s": 0.01844598399475217,
+      "max_s": 0.018549760803580284,
+      "newton": 1600
+    },
+    {
+      "cas": "toupie",
+      "h": 0.000125,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 1.1457245077629382e-06,
+        "orientation_rad": 2.2925039295494503e-05,
+        "vitesse_m_s": 4.0516724091006714e-05,
+        "rotation_rad_s": 0.006533984142076261,
+        "norme_reaction_N": 0.0013775898032932776
+      },
+      "mediane_s": 0.01851901295594871,
+      "min_s": 0.018499305937439203,
+      "max_s": 0.01855104393325746,
+      "newton": 1600
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.02,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 2.8182660098145455e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.0019997903515477514
+      },
+      "mediane_s": 0.0013614981435239315,
+      "min_s": 0.0013152500614523888,
+      "max_s": 0.0013650250621140003,
+      "newton": 150
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.02,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 2.9972915437888543e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.0008040424994173913
+      },
+      "mediane_s": 0.0015694249887019396,
+      "min_s": 0.0015570619143545628,
+      "max_s": 0.0015773200429975986,
+      "newton": 147
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.02,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 2.406241606763002e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.0007249603526246189
+      },
+      "mediane_s": 0.001570416847243905,
+      "min_s": 0.0015703970566391945,
+      "max_s": 0.0015867080073803663,
+      "newton": 150
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.01,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 3.519026770485685e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.0004999500050470205
+      },
+      "mediane_s": 0.0024510070215910673,
+      "min_s": 0.002443843986839056,
+      "max_s": 0.0024513890966773033,
+      "newton": 239
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.01,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 2.8409240424401695e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.00020100265490710311
+      },
+      "mediane_s": 0.002716494956985116,
+      "min_s": 0.0027150120586156845,
+      "max_s": 0.00271979090757668,
+      "newton": 200
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.01,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 3.032469589347081e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.00018119423745585644
+      },
+      "mediane_s": 0.002738795941695571,
+      "min_s": 0.0027330161537975073,
+      "max_s": 0.0027451489586383104,
+      "newton": 206
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.005,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 3.3257387227466035e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 0.0001249876522134053
+      },
+      "mediane_s": 0.004475962137803435,
+      "min_s": 0.004466403974220157,
+      "max_s": 0.004476533038541675,
+      "newton": 353
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.005,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 3.163548209904228e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 5.0250165910581716e-05
+      },
+      "mediane_s": 0.004954174859449267,
+      "min_s": 0.004951779963448644,
+      "max_s": 0.004963723011314869,
+      "newton": 337
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.005,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 3.0224008651159997e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 4.529569329124143e-05
+      },
+      "mediane_s": 0.004974062088876963,
+      "min_s": 0.004971016896888614,
+      "max_s": 0.0049899129662662745,
+      "newton": 341
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.0025,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 4.106274224347106e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 3.124692248642203e-05
+      },
+      "mediane_s": 0.008360915817320347,
+      "min_s": 0.008333024103194475,
+      "max_s": 0.008412515046074986,
+      "newton": 519
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.0025,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 4.626933425274483e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 1.2562510368230565e-05
+      },
+      "mediane_s": 0.009300529025495052,
+      "min_s": 0.009269750909879804,
+      "max_s": 0.009383508004248142,
+      "newton": 496
+    },
+    {
+      "cas": "axes_commandes",
+      "h": 0.0025,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0,
+        "orientation_rad": 3.9113112440801575e-16,
+        "vitesse_m_s": 0.0,
+        "rotation_rad_s": 1.1323744186202423e-05
+      },
+      "mediane_s": 0.009312822949141264,
+      "min_s": 0.009312181966379285,
+      "max_s": 0.009346827864646912,
+      "newton": 510
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.002,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 1.9315392402998052e-05,
+        "orientation_rad": 0.00027602873128569725,
+        "vitesse_m_s": 0.0016427811043241488,
+        "rotation_rad_s": 0.04205430408007325
+      },
+      "mediane_s": 0.010265190852805972,
+      "min_s": 0.010194305097684264,
+      "max_s": 0.010346665978431702,
+      "newton": 200
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.002,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 1.9313809437239836e-05,
+        "orientation_rad": 0.00027602972503962356,
+        "vitesse_m_s": 0.0016427052188125791,
+        "rotation_rad_s": 0.04205430397903438
+      },
+      "mediane_s": 0.010993028990924358,
+      "min_s": 0.010985634988173842,
+      "max_s": 0.02235085587017238,
+      "newton": 200
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.002,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 1.9313013700733266e-05,
+        "orientation_rad": 0.00027603023747153915,
+        "vitesse_m_s": 0.0016426670684797833,
+        "rotation_rad_s": 0.042054304107506664
+      },
+      "mediane_s": 0.010784952901303768,
+      "min_s": 0.010767449159175158,
+      "max_s": 0.010785524034872651,
+      "newton": 200
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.001,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 4.849824199923757e-06,
+        "orientation_rad": 6.927047183434614e-05,
+        "vitesse_m_s": 0.00041454795261448515,
+        "rotation_rad_s": 0.010736865701020483
+      },
+      "mediane_s": 0.02011049003340304,
+      "min_s": 0.020088217919692397,
+      "max_s": 0.020123094087466598,
+      "newton": 392
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.001,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 4.8494145333252215e-06,
+        "orientation_rad": 6.92707605110431e-05,
+        "vitesse_m_s": 0.0004145282624725609,
+        "rotation_rad_s": 0.010736874467899594
+      },
+      "mediane_s": 0.02104358095675707,
+      "min_s": 0.02100638998672366,
+      "max_s": 0.02105096518062055,
+      "newton": 392
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.001,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 4.849208484611993e-06,
+        "orientation_rad": 6.927090880076464e-05,
+        "vitesse_m_s": 0.0004145183578064471,
+        "rotation_rad_s": 0.010736879054497803
+      },
+      "mediane_s": 0.02105590491555631,
+      "min_s": 0.02103632688522339,
+      "max_s": 0.021078767953440547,
+      "newton": 392
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.0005,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 1.2117635882015882e-06,
+        "orientation_rad": 1.732652970389546e-05,
+        "vitesse_m_s": 0.00010377994225161309,
+        "rotation_rad_s": 0.0026947748336436576
+      },
+      "mediane_s": 0.03728614002466202,
+      "min_s": 0.037264887942001224,
+      "max_s": 0.03738360479474068,
+      "newton": 400
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.0005,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 1.2116612505057598e-06,
+        "orientation_rad": 1.7326569458715395e-05,
+        "vitesse_m_s": 0.00010377501422491056,
+        "rotation_rad_s": 0.002694777736142228
+      },
+      "mediane_s": 0.03946045902557671,
+      "min_s": 0.039458975894376636,
+      "max_s": 0.03947174991481006,
+      "newton": 400
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.0005,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 1.2116097655618422e-06,
+        "orientation_rad": 1.732659011768039e-05,
+        "vitesse_m_s": 0.0001037725346605118,
+        "rotation_rad_s": 0.0026947792466640746
+      },
+      "mediane_s": 0.038930055918172,
+      "min_s": 0.03888911893591285,
+      "max_s": 0.03894237894564867,
+      "newton": 400
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.00025,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 3.0213943852366203e-07,
+        "orientation_rad": 4.321762063428156e-06,
+        "vitesse_m_s": 2.5882000295322896e-05,
+        "rotation_rad_s": 0.0006724752859118649
+      },
+      "mediane_s": 0.07425787812098861,
+      "min_s": 0.07410277309827507,
+      "max_s": 0.07440146198496222,
+      "newton": 800
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.00025,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 3.021136188969323e-07,
+        "orientation_rad": 4.321774383269402e-06,
+        "vitesse_m_s": 2.5880768036362105e-05,
+        "rotation_rad_s": 0.0006724760586953078
+      },
+      "mediane_s": 0.07732678484171629,
+      "min_s": 0.07730747782625258,
+      "max_s": 0.07747882488183677,
+      "newton": 800
+    },
+    {
+      "cas": "branche_flexible",
+      "h": 0.00025,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 3.02100628081623e-07,
+        "orientation_rad": 4.321780748690367e-06,
+        "vitesse_m_s": 2.5880147933627485e-05,
+        "rotation_rad_s": 0.000672476460582929
+      },
+      "mediane_s": 0.07741341996006668,
+      "min_s": 0.07735380716621876,
+      "max_s": 0.07745527988299727,
+      "newton": 800
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.004,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.0006370256702476284,
+        "orientation_rad": 0.01566568798814422,
+        "vitesse_m_s": 0.01680922008375799,
+        "rotation_rad_s": 0.5271066632709218
+      },
+      "mediane_s": 0.03711604420095682,
+      "min_s": 0.03701602388173342,
+      "max_s": 0.03718082793056965,
+      "newton": 736
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.004,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0006465744685387495,
+        "orientation_rad": 0.015900688374072828,
+        "vitesse_m_s": 0.01708553748737668,
+        "rotation_rad_s": 0.5349882628127028
+      },
+      "mediane_s": 0.03821702487766743,
+      "min_s": 0.038211334962397814,
+      "max_s": 0.03822821704670787,
+      "newton": 737
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.004,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0006523293088144203,
+        "orientation_rad": 0.016042320220511188,
+        "vitesse_m_s": 0.017249207681817334,
+        "rotation_rad_s": 0.5399569551425597
+      },
+      "mediane_s": 0.0382178770378232,
+      "min_s": 0.038214640924707055,
+      "max_s": 0.03823225409723818,
+      "newton": 737
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.002,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 0.00015959052969055973,
+        "orientation_rad": 0.003922462434144423,
+        "vitesse_m_s": 0.004218396192021128,
+        "rotation_rad_s": 0.13233417971911265
+      },
+      "mediane_s": 0.07258537597954273,
+      "min_s": 0.07252421998418868,
+      "max_s": 0.07260304014198482,
+      "newton": 1156
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.002,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 0.0001619922632425197,
+        "orientation_rad": 0.00398150400620683,
+        "vitesse_m_s": 0.004288619278568026,
+        "rotation_rad_s": 0.1343379321865073
+      },
+      "mediane_s": 0.07516018999740481,
+      "min_s": 0.07505500898696482,
+      "max_s": 0.0752546398434788,
+      "newton": 1156
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.002,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 0.0001633204712211209,
+        "orientation_rad": 0.004014155349206207,
+        "vitesse_m_s": 0.004327105593472067,
+        "rotation_rad_s": 0.13547858040220565
+      },
+      "mediane_s": 0.07437755609862506,
+      "min_s": 0.07437670486979187,
+      "max_s": 0.07444570609368384,
+      "newton": 1156
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.001,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 3.986545751265821e-05,
+        "orientation_rad": 0.0009802557151098062,
+        "vitesse_m_s": 0.0010548203428047368,
+        "rotation_rad_s": 0.0330652191509685
+      },
+      "mediane_s": 0.14392222906462848,
+      "min_s": 0.14373363903723657,
+      "max_s": 0.14396592206321657,
+      "newton": 2141
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.001,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 4.046608385216645e-05,
+        "orientation_rad": 0.0009950419399332412,
+        "vitesse_m_s": 0.001072412407661199,
+        "rotation_rad_s": 0.033567829538043124
+      },
+      "mediane_s": 0.14692785497754812,
+      "min_s": 0.14680121396668255,
+      "max_s": 0.1470447292085737,
+      "newton": 2140
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.001,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 4.078331541996312e-05,
+        "orientation_rad": 0.0010028572199987603,
+        "vitesse_m_s": 0.0010816686960585988,
+        "rotation_rad_s": 0.03383889243364632
+      },
+      "mediane_s": 0.1470490861684084,
+      "min_s": 0.1469851250294596,
+      "max_s": 0.1470943030435592,
+      "newton": 2143
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.0005,
+      "sigma": 0.0,
+      "erreurs": {
+        "position_m": 9.934689672664483e-06,
+        "orientation_rad": 0.0002442529491452249,
+        "vitesse_m_s": 0.00026285273488005893,
+        "rotation_rad_s": 0.008239119010375245
+      },
+      "mediane_s": 0.28731859498657286,
+      "min_s": 0.287286682985723,
+      "max_s": 0.2875116129871458,
+      "newton": 4082
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.0005,
+      "sigma": 0.665,
+      "erreurs": {
+        "position_m": 1.0084936742296526e-05,
+        "orientation_rad": 0.00024794979185912945,
+        "vitesse_m_s": 0.00026725943836040624,
+        "rotation_rad_s": 0.008364849528386831
+      },
+      "mediane_s": 0.2955198569688946,
+      "min_s": 0.29293754789978266,
+      "max_s": 0.29555763909593225,
+      "newton": 4072
+    },
+    {
+      "cas": "boucle_spatiale",
+      "h": 0.0005,
+      "sigma": 1.0,
+      "erreurs": {
+        "position_m": 1.0162463568416743e-05,
+        "orientation_rad": 0.00024985789659433375,
+        "vitesse_m_s": 0.00026953019355546346,
+        "rotation_rad_s": 0.00843078712128426
+      },
+      "mediane_s": 0.29338490194641054,
+      "min_s": 0.2932490729726851,
+      "max_s": 0.29360660491511226,
+      "newton": 4089
+    }
+  ],
+  "seuils_exploratoires": [
+    {
+      "cas": "affine",
+      "seuils": {
+        "orientation_rad": 1e-05
+      },
+      "choix": {
+        "0.0": {
+          "cas": "affine",
+          "h": 0.01,
+          "sigma": 0.0,
+          "erreurs": {
+            "position_m": 0.0,
+            "orientation_rad": 8.449138935969373e-06,
+            "vitesse_m_s": 0.0,
+            "rotation_rad_s": 8.957424692965783e-13
+          },
+          "mediane_s": 0.00048190890811383724,
+          "min_s": 0.00046350504271686077,
+          "max_s": 0.00048342207446694374,
+          "newton": 100
+        },
+        "0.665": {
+          "cas": "affine",
+          "h": 0.04,
+          "sigma": 0.665,
+          "erreurs": {
+            "position_m": 0.0,
+            "orientation_rad": 7.743933949583168e-09,
+            "vitesse_m_s": 0.0,
+            "rotation_rad_s": 5.02378237224844e-13
+          },
+          "mediane_s": 0.00020476989448070526,
+          "min_s": 0.00020392006263136864,
+          "max_s": 0.00022281496785581112,
+          "newton": 24
+        },
+        "1.0": {
+          "cas": "affine",
+          "h": 0.01,
+          "sigma": 1.0,
+          "erreurs": {
+            "position_m": 0.0,
+            "orientation_rad": 4.256247714062027e-06,
+            "vitesse_m_s": 0.0,
+            "rotation_rad_s": 8.958879538702554e-13
+          },
+          "mediane_s": 0.0006602099165320396,
+          "min_s": 0.0006594990845769644,
+          "max_s": 0.000662545207887888,
+          "newton": 98
+        }
+      }
+    },
+    {
+      "cas": "libre",
+      "seuils": {
+        "orientation_rad": 0.001
+      },
+      "choix": {
+        "0.0": {
+          "cas": "libre",
+          "h": 0.01,
+          "sigma": 0.0,
+          "erreurs": {
+            "position_m": 0.0,
+            "orientation_rad": 0.0006132668261901014,
+            "vitesse_m_s": 0.0,
+            "rotation_rad_s": 0.002215164513966942
+          },
+          "mediane_s": 0.0011258290614932775,
+          "min_s": 0.0011185749899595976,
+          "max_s": 0.0011264688801020384,
+          "newton": 400
+        },
+        "0.665": {
+          "cas": "libre",
+          "h": 0.01,
+          "sigma": 0.665,
+          "erreurs": {
+            "position_m": 0.0,
+            "orientation_rad": 0.0005096033552331217,
+            "vitesse_m_s": 0.0,
+            "rotation_rad_s": 0.001834713683274961
+          },
+          "mediane_s": 0.0017437178175896406,
+          "min_s": 0.0017435678746551275,
+          "max_s": 0.0017521041445434093,
+          "newton": 400
+        },
+        "1.0": {
+          "cas": "libre",
+          "h": 0.01,
+          "sigma": 1.0,
+          "erreurs": {
+            "position_m": 0.0,
+            "orientation_rad": 0.0004581291130855952,
+            "vitesse_m_s": 0.0,
+            "rotation_rad_s": 0.0016420026318302535
+          },
+          "mediane_s": 0.001730642979964614,
+          "min_s": 0.0017279682215303183,
+          "max_s": 0.0017326569650322199,
+          "newton": 400
+        }
+      }
+    },
+    {
+      "cas": "plan",
+      "seuils": {
+        "position_m": 0.0001
+      },
+      "choix": {
+        "0.0": {
+          "cas": "plan",
+          "h": 0.005,
+          "sigma": 0.0,
+          "erreurs": {
+            "position_m": 2.873161966713073e-05,
+            "orientation_rad": 2.873161966807932e-05,
+            "vitesse_m_s": 0.00013763636238425963,
+            "rotation_rad_s": 0.0001375982727621211,
+            "norme_reaction_N": 0.00011944134268437878
+          },
+          "mediane_s": 0.002283046953380108,
+          "min_s": 0.002280972898006439,
+          "max_s": 0.002291934099048376,
+          "newton": 399
+        },
+        "0.665": {
+          "cas": "plan",
+          "h": 0.005,
+          "sigma": 0.665,
+          "erreurs": {
+            "position_m": 2.873161966713073e-05,
+            "orientation_rad": 2.873161966807932e-05,
+            "vitesse_m_s": 0.00013763636238425963,
+            "rotation_rad_s": 0.0001375982727621211,
+            "norme_reaction_N": 0.00011944134268437878
+          },
+          "mediane_s": 0.002491824794560671,
+          "min_s": 0.002485011937096715,
+          "max_s": 0.002499290043488145,
+          "newton": 399
+        },
+        "1.0": {
+          "cas": "plan",
+          "h": 0.005,
+          "sigma": 1.0,
+          "erreurs": {
+            "position_m": 2.873161966713073e-05,
+            "orientation_rad": 2.873161966807932e-05,
+            "vitesse_m_s": 0.00013763636238425963,
+            "rotation_rad_s": 0.0001375982727621211,
+            "norme_reaction_N": 0.00011944134268437878
+          },
+          "mediane_s": 0.002480223076418042,
+          "min_s": 0.0024726788979023695,
+          "max_s": 0.0024836999364197254,
+          "newton": 399
+        }
+      }
+    },
+    {
+      "cas": "toupie",
+      "seuils": {
+        "orientation_rad": 0.001
+      },
+      "choix": {
+        "0.0": {
+          "cas": "toupie",
+          "h": 0.0005,
+          "sigma": 0.0,
+          "erreurs": {
+            "position_m": 4.859562532953752e-05,
+            "orientation_rad": 0.0009731170194636345,
+            "vitesse_m_s": 0.002406327992164694,
+            "rotation_rad_s": 0.2578966932610156,
+            "norme_reaction_N": 0.00453264899779815
+          },
+          "mediane_s": 0.00458492012694478,
+          "min_s": 0.004550303798168898,
+          "max_s": 0.0046097279991954565,
+          "newton": 800
+        },
+        "0.665": {
+          "cas": "toupie",
+          "h": 0.001,
+          "sigma": 0.665,
+          "erreurs": {
+            "position_m": 3.070413527946332e-05,
+            "orientation_rad": 0.0006150469239792238,
+            "vitesse_m_s": 0.001535112226361455,
+            "rotation_rad_s": 0.15377364978163796,
+            "norme_reaction_N": 0.03944406356090102
+          },
+          "mediane_s": 0.003011696971952915,
+          "min_s": 0.003008261090144515,
+          "max_s": 0.0030309148132801056,
+          "newton": 400
+        },
+        "1.0": {
+          "cas": "toupie",
+          "h": 0.0005,
+          "sigma": 1.0,
+          "erreurs": {
+            "position_m": 1.8539412597631733e-05,
+            "orientation_rad": 0.0003709354479345547,
+            "vitesse_m_s": 0.000653783411193834,
+            "rotation_rad_s": 0.10563068533076331,
+            "norme_reaction_N": 0.019760435208085236
+          },
+          "mediane_s": 0.005830027163028717,
+          "min_s": 0.0058100479654967785,
+          "max_s": 0.005843011196702719,
+          "newton": 799
+        }
+      }
+    },
+    {
+      "cas": "toupie",
+      "seuils": {
+        "orientation_rad": 0.001,
+        "norme_reaction_N": 0.005
+      },
+      "choix": {
+        "0.0": {
+          "cas": "toupie",
+          "h": 0.0005,
+          "sigma": 0.0,
+          "erreurs": {
+            "position_m": 4.859562532953752e-05,
+            "orientation_rad": 0.0009731170194636345,
+            "vitesse_m_s": 0.002406327992164694,
+            "rotation_rad_s": 0.2578966932610156,
+            "norme_reaction_N": 0.00453264899779815
+          },
+          "mediane_s": 0.00458492012694478,
+          "min_s": 0.004550303798168898,
+          "max_s": 0.0046097279991954565,
+          "newton": 800
+        },
+        "0.665": {
+          "cas": "toupie",
+          "h": 0.00025,
+          "sigma": 0.665,
+          "erreurs": {
+            "position_m": 1.9186355857204023e-06,
+            "orientation_rad": 3.843265282206097e-05,
+            "vitesse_m_s": 9.602835421869688e-05,
+            "rotation_rad_s": 0.009606612627384159,
+            "norme_reaction_N": 0.0029439261604748967
+          },
+          "mediane_s": 0.01065457402728498,
+          "min_s": 0.010643562069162726,
+          "max_s": 0.010714258067309856,
+          "newton": 1227
+        },
+        "1.0": {
+          "cas": "toupie",
+          "h": 0.000125,
+          "sigma": 1.0,
+          "erreurs": {
+            "position_m": 1.1457245077629382e-06,
+            "orientation_rad": 2.2925039295494503e-05,
+            "vitesse_m_s": 4.0516724091006714e-05,
+            "rotation_rad_s": 0.006533984142076261,
+            "norme_reaction_N": 0.0013775898032932776
+          },
+          "mediane_s": 0.01851901295594871,
+          "min_s": 0.018499305937439203,
+          "max_s": 0.01855104393325746,
+          "newton": 1600
+        }
+      }
+    },
+    {
+      "cas": "axes_commandes",
+      "seuils": {
+        "rotation_rad_s": 0.0001
+      },
+      "choix": {
+        "0.0": {
+          "cas": "axes_commandes",
+          "h": 0.0025,
+          "sigma": 0.0,
+          "erreurs": {
+            "position_m": 0.0,
+            "orientation_rad": 4.106274224347106e-16,
+            "vitesse_m_s": 0.0,
+            "rotation_rad_s": 3.124692248642203e-05
+          },
+          "mediane_s": 0.008360915817320347,
+          "min_s": 0.008333024103194475,
+          "max_s": 0.008412515046074986,
+          "newton": 519
+        },
+        "0.665": {
+          "cas": "axes_commandes",
+          "h": 0.005,
+          "sigma": 0.665,
+          "erreurs": {
+            "position_m": 0.0,
+            "orientation_rad": 3.163548209904228e-16,
+            "vitesse_m_s": 0.0,
+            "rotation_rad_s": 5.0250165910581716e-05
+          },
+          "mediane_s": 0.004954174859449267,
+          "min_s": 0.004951779963448644,
+          "max_s": 0.004963723011314869,
+          "newton": 337
+        },
+        "1.0": {
+          "cas": "axes_commandes",
+          "h": 0.005,
+          "sigma": 1.0,
+          "erreurs": {
+            "position_m": 0.0,
+            "orientation_rad": 3.0224008651159997e-16,
+            "vitesse_m_s": 0.0,
+            "rotation_rad_s": 4.529569329124143e-05
+          },
+          "mediane_s": 0.004974062088876963,
+          "min_s": 0.004971016896888614,
+          "max_s": 0.0049899129662662745,
+          "newton": 341
+        }
+      }
+    },
+    {
+      "cas": "branche_flexible",
+      "seuils": {
+        "position_m": 1e-06
+      },
+      "choix": {
+        "0.0": {
+          "cas": "branche_flexible",
+          "h": 0.00025,
+          "sigma": 0.0,
+          "erreurs": {
+            "position_m": 3.0213943852366203e-07,
+            "orientation_rad": 4.321762063428156e-06,
+            "vitesse_m_s": 2.5882000295322896e-05,
+            "rotation_rad_s": 0.0006724752859118649
+          },
+          "mediane_s": 0.07425787812098861,
+          "min_s": 0.07410277309827507,
+          "max_s": 0.07440146198496222,
+          "newton": 800
+        },
+        "0.665": {
+          "cas": "branche_flexible",
+          "h": 0.00025,
+          "sigma": 0.665,
+          "erreurs": {
+            "position_m": 3.021136188969323e-07,
+            "orientation_rad": 4.321774383269402e-06,
+            "vitesse_m_s": 2.5880768036362105e-05,
+            "rotation_rad_s": 0.0006724760586953078
+          },
+          "mediane_s": 0.07732678484171629,
+          "min_s": 0.07730747782625258,
+          "max_s": 0.07747882488183677,
+          "newton": 800
+        },
+        "1.0": {
+          "cas": "branche_flexible",
+          "h": 0.00025,
+          "sigma": 1.0,
+          "erreurs": {
+            "position_m": 3.02100628081623e-07,
+            "orientation_rad": 4.321780748690367e-06,
+            "vitesse_m_s": 2.5880147933627485e-05,
+            "rotation_rad_s": 0.000672476460582929
+          },
+          "mediane_s": 0.07741341996006668,
+          "min_s": 0.07735380716621876,
+          "max_s": 0.07745527988299727,
+          "newton": 800
+        }
+      }
+    },
+    {
+      "cas": "boucle_spatiale",
+      "seuils": {
+        "position_m": 0.0001
+      },
+      "choix": {
+        "0.0": {
+          "cas": "boucle_spatiale",
+          "h": 0.001,
+          "sigma": 0.0,
+          "erreurs": {
+            "position_m": 3.986545751265821e-05,
+            "orientation_rad": 0.0009802557151098062,
+            "vitesse_m_s": 0.0010548203428047368,
+            "rotation_rad_s": 0.0330652191509685
+          },
+          "mediane_s": 0.14392222906462848,
+          "min_s": 0.14373363903723657,
+          "max_s": 0.14396592206321657,
+          "newton": 2141
+        },
+        "0.665": {
+          "cas": "boucle_spatiale",
+          "h": 0.001,
+          "sigma": 0.665,
+          "erreurs": {
+            "position_m": 4.046608385216645e-05,
+            "orientation_rad": 0.0009950419399332412,
+            "vitesse_m_s": 0.001072412407661199,
+            "rotation_rad_s": 0.033567829538043124
+          },
+          "mediane_s": 0.14692785497754812,
+          "min_s": 0.14680121396668255,
+          "max_s": 0.1470447292085737,
+          "newton": 2140
+        },
+        "1.0": {
+          "cas": "boucle_spatiale",
+          "h": 0.001,
+          "sigma": 1.0,
+          "erreurs": {
+            "position_m": 4.078331541996312e-05,
+            "orientation_rad": 0.0010028572199987603,
+            "vitesse_m_s": 0.0010816686960585988,
+            "rotation_rad_s": 0.03383889243364632
+          },
+          "mediane_s": 0.1470490861684084,
+          "min_s": 0.1469851250294596,
+          "max_s": 0.1470943030435592,
+          "newton": 2143
+        }
+      }
+    }
+  ]
+}

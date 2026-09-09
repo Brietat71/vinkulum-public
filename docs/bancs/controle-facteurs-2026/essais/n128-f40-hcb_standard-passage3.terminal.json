@@ -1,0 +1,17 @@
+{
+  "pid": 80,
+  "retour": 0,
+  "attente_terminee": true,
+  "date_utc": "2026-09-08T13:43:17.425356+00:00",
+  "processus_s": 2.341039318125695,
+  "commande": [
+    "/tmp/vinkulum-exudyn-1.11.0/venv/bin/python",
+    "/tmp/vinkulum-campagne-controle-facteurs-2026/sources/experience_controle_facteurs.py",
+    "--worker",
+    "/tmp/vinkulum-campagne-controle-facteurs-2026/entrees/n128-f40.npz",
+    "/tmp/vinkulum-confrontation-ports-0.10.0-corrigee/n128-f40.ref.npy",
+    "hcb_standard",
+    "128",
+    "/tmp/vinkulum-campagne-controle-facteurs-2026/essais/n128-f40-hcb_standard-passage3"
+  ]
+}

@@ -1,0 +1,6 @@
+n32-masse_comparee-p0 termine True [True, True] 0.1463519639801234 None
+n32-lu_corrigee-p0 termine True None 0.10130441095679998 None
+n128-masse_comparee-p0 termine True [True, True] 0.2250762500334531 None
+n128-lu_corrigee-p0 termine True None 0.22993004391901195 None
+n512-masse_comparee-p0 termine True [True, True] 0.55780083918944 None
+n512-lu_corrigee-p0 termine True None 0.7281072100158781 None

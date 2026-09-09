@@ -1,0 +1,45 @@
+{
+  "version": "0.15.0",
+  "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "paquet": "/tmp/vinkulum-0.15.0/isolated/lib/python3.14/site-packages/vinkulum",
+  "roue_sha256": "057f89c7256b5bfcb15abee35c831778c64edd3c167e6500ce01280d6fb3a89c",
+  "cas": {
+    "micro": {
+      "sha256": "62dddd7340b745c1496de5b61716a061699c9679c7d5df5d0bd0e243f58c9a66",
+      "dimension": 7,
+      "etat_inchange": true,
+      "verification_autonome": "Certificat g\u00e9om\u00e9trique v\u00e9rifi\u00e9 : dimension 7, existence et unicit\u00e9 locales."
+    },
+    "metre": {
+      "sha256": "43b3ff61044591b63279207c480db17ee8dab65c7d99aa8dd323115565c090ad",
+      "dimension": 7,
+      "etat_inchange": true,
+      "verification_autonome": "Certificat g\u00e9om\u00e9trique v\u00e9rifi\u00e9 : dimension 7, existence et unicit\u00e9 locales."
+    },
+    "grand": {
+      "sha256": "678737cd4ad5e1fd28e1c2fd5311f254668159a1c33e4d8fc2f1daffe6de0132",
+      "dimension": 7,
+      "etat_inchange": true,
+      "verification_autonome": "Certificat g\u00e9om\u00e9trique v\u00e9rifi\u00e9 : dimension 7, existence et unicit\u00e9 locales."
+    },
+    "repere-tourne": {
+      "sha256": "f8205a40671d555aae7db456ad7a8f7918f5d499ae5b6ca2c32224c7a2fe9180",
+      "dimension": 7,
+      "etat_inchange": true,
+      "verification_autonome": "Certificat g\u00e9om\u00e9trique v\u00e9rifi\u00e9 : dimension 7, existence et unicit\u00e9 locales."
+    },
+    "double": {
+      "sha256": "63a8d46124ea541262762871256e7e225c5e9f4a9c4319af65509bab6aaae63c",
+      "dimension": 14,
+      "etat_inchange": true,
+      "verification_autonome": "Certificat g\u00e9om\u00e9trique v\u00e9rifi\u00e9 : dimension 14, existence et unicit\u00e9 locales."
+    }
+  },
+  "modules_sha256": {
+    "_verification_lineaire.py": "1ca0478d84d89b5952fdf5112494f3941c6d6a0a8bec9a18741efdc3145ede54",
+    "_verification_assemblage.py": "d7c348340837b5a307b159e3645fe890789fb51107c97d373882b30a42ea4530",
+    "_oracle_assemblage.py": "44a0d4a054ffe0d1efa3ce38bdd09c50417d3b29cb54bd5373d54061b9d5f249",
+    "_geometrie_certifiee.py": "8e64b0a3011b2660afcef76efee0c85c1476e7643aad4021be9ba3d5f8a02f82",
+    "certification.py": "e642e876da10810aa6a3eeb63aaae51765071263fd3d89a69e7b5b27b2e64fb5"
+  }
+}

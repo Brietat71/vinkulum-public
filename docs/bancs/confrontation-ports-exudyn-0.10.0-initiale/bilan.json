@@ -1,0 +1,1158 @@
+{
+  "configurations": [
+    {
+      "n": 32,
+      "max_hz": 2.0,
+      "variante": "vinkulum_api",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.05882951500825584,
+      "reponses_s": 1.7361013810150325,
+      "total_s": 1.7949308960232884,
+      "rss_avant_oracle_kib": 73732,
+      "directions": 12,
+      "erreurs_max": {
+        "masse": 2.8319554105075224e-13,
+        "deformation": 1.845827482683443e-11,
+        "port": 1.0364191412009048e-15
+      },
+      "erreurs_operateur_max": {
+        "masse": 7.688567222578597e-13,
+        "deformation": 1.9722843429406207e-11,
+        "port": 1.7561452486851048e-15
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 2.0,
+      "variante": "vinkulum_reduit",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.058786544017493725,
+      "reponses_s": 0.0457327498588711,
+      "total_s": 0.10456844698637724,
+      "rss_avant_oracle_kib": 72716,
+      "directions": 12,
+      "erreurs_max": {
+        "masse": 2.831971974335489e-13,
+        "deformation": 1.8474209336744528e-11,
+        "port": 1.057271743096401e-15
+      },
+      "erreurs_operateur_max": {
+        "masse": 7.68819135131053e-13,
+        "deformation": 1.9746077153730338e-11,
+        "port": 1.8131676212717162e-15
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 2.0,
+      "variante": "lu",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.001017883187159896,
+      "reponses_s": 0.06079799309372902,
+      "total_s": 0.06182224699296057,
+      "rss_avant_oracle_kib": 66864,
+      "directions": 186,
+      "erreurs_max": {
+        "masse": 1.6691083482920922e-10,
+        "deformation": 1.6406669354785512e-10,
+        "port": 1.6363006334017045e-10
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.6937738331495678e-10,
+        "deformation": 1.651074119266601e-10,
+        "port": 1.6465804072384196e-10
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 2.0,
+      "variante": "lu_corrigee",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.001001681899651885,
+      "reponses_s": 0.10340296290814877,
+      "total_s": 0.10440464480780065,
+      "rss_avant_oracle_kib": 68464,
+      "directions": 186,
+      "erreurs_max": {
+        "masse": 1.4283656531392867e-15,
+        "deformation": 1.952218807745537e-13,
+        "port": 1.3108186149246507e-15
+      },
+      "erreurs_operateur_max": {
+        "masse": 2.4958609820878712e-14,
+        "deformation": 4.830663528066909e-13,
+        "port": 3.0157565063650482e-15
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 2.0,
+      "variante": "hcb_standard",
+      "modes": 185,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.03302234201692045,
+      "reponses_s": 0.025922253029420972,
+      "total_s": 0.05896923202089965,
+      "rss_avant_oracle_kib": 87828,
+      "directions": 185,
+      "erreurs_max": {
+        "masse": 1.7153138936619942e-08,
+        "deformation": 1.7071301897412566e-08,
+        "port": 1.6893638550274686e-08
+      },
+      "erreurs_operateur_max": {
+        "masse": 2.354482477726685e-08,
+        "deformation": 1.7397082336435438e-08,
+        "port": 1.7215622967729632e-08
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 2.0,
+      "variante": "hcb_energie",
+      "modes": 185,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0335309230722487,
+      "reponses_s": 0.025825006887316704,
+      "total_s": 0.05918553494848311,
+      "rss_avant_oracle_kib": 88328,
+      "directions": 185,
+      "erreurs_max": {
+        "masse": 1.3960648917780738e-08,
+        "deformation": 7.269368595281378e-09,
+        "port": 7.246127015696609e-09
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.7384303755863197e-08,
+        "deformation": 7.585832194922817e-09,
+        "port": 7.55904770624678e-09
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 20.0,
+      "variante": "vinkulum_api",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0621628079097718,
+      "reponses_s": 1.7490621688775718,
+      "total_s": 1.8110804008319974,
+      "rss_avant_oracle_kib": 125440,
+      "directions": 18,
+      "erreurs_max": {
+        "masse": 1.7421734681928086e-10,
+        "deformation": 4.50351873941069e-09,
+        "port": 2.1772295962304048e-13
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.742320466676026e-10,
+        "deformation": 5.515553616455464e-09,
+        "port": 2.6672656408457e-13
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 20.0,
+      "variante": "vinkulum_reduit",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.061974467942491174,
+      "reponses_s": 0.04613389680162072,
+      "total_s": 0.10812681098468602,
+      "rss_avant_oracle_kib": 127644,
+      "directions": 18,
+      "erreurs_max": {
+        "masse": 1.7421735802188814e-10,
+        "deformation": 4.503518067258427e-09,
+        "port": 2.1772295962304048e-13
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.742320583390103e-10,
+        "deformation": 5.5155479965905785e-09,
+        "port": 2.6672656408456993e-13
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 20.0,
+      "variante": "lu",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.001015978865325451,
+      "reponses_s": 0.06050258898176253,
+      "total_s": 0.06151856784708798,
+      "rss_avant_oracle_kib": 129332,
+      "directions": 186,
+      "erreurs_max": {
+        "masse": 1.1227327283197947e-08,
+        "deformation": 1.1227268998461679e-08,
+        "port": 1.1226933035077713e-08
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.2925128878468682e-08,
+        "deformation": 1.1244626580680744e-08,
+        "port": 1.1243436961851304e-08
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 20.0,
+      "variante": "lu_corrigee",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0010215200018137693,
+      "reponses_s": 0.10236080503091216,
+      "total_s": 0.10337904887273908,
+      "rss_avant_oracle_kib": 131240,
+      "directions": 186,
+      "erreurs_max": {
+        "masse": 3.338378865480083e-14,
+        "deformation": 2.0314239444477863e-13,
+        "port": 3.3267211476160075e-14
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.0870879621782236e-10,
+        "deformation": 7.541498370354924e-11,
+        "port": 1.1063697948022591e-11
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 20.0,
+      "variante": "hcb_standard",
+      "modes": 185,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 0.03366228495724499,
+      "reponses_s": 0.026049925945699215,
+      "total_s": 0.05971221090294421,
+      "rss_avant_oracle_kib": 132612,
+      "directions": 185,
+      "erreurs_max": {
+        "masse": 5.342394269578205e-06,
+        "deformation": 5.342366576617005e-06,
+        "port": 5.342161948497561e-06
+      },
+      "erreurs_operateur_max": {
+        "masse": 5.865764412002924e-06,
+        "deformation": 5.349614499406424e-06,
+        "port": 5.349299242008967e-06
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 20.0,
+      "variante": "hcb_energie",
+      "modes": 185,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 0.033515615155920386,
+      "reponses_s": 0.02598370984196663,
+      "total_s": 0.05960584804415703,
+      "rss_avant_oracle_kib": 134076,
+      "directions": 185,
+      "erreurs_max": {
+        "masse": 2.3312649441023605e-06,
+        "deformation": 2.2466086269311856e-06,
+        "port": 2.2465286185729537e-06
+      },
+      "erreurs_operateur_max": {
+        "masse": 3.448625991665446e-06,
+        "deformation": 2.2471888209120694e-06,
+        "port": 2.2470559958502387e-06
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "vinkulum_api",
+      "modes": 0,
+      "eligible": false,
+      "complet": true
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "vinkulum_reduit",
+      "modes": 0,
+      "eligible": false,
+      "complet": true
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "lu",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0010316590778529644,
+      "reponses_s": 0.060342533979564905,
+      "total_s": 0.06134889484383166,
+      "rss_avant_oracle_kib": 177416,
+      "directions": 186,
+      "erreurs_max": {
+        "masse": 1.1254061713118387e-08,
+        "deformation": 1.125405295202019e-08,
+        "port": 1.1253865979912096e-08
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.1470477555321007e-08,
+        "deformation": 1.1256122941480258e-08,
+        "port": 2.613887460870499e-08
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "lu_corrigee",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0010208480525761843,
+      "reponses_s": 0.10313850082457066,
+      "total_s": 0.10415532090701163,
+      "rss_avant_oracle_kib": 178492,
+      "directions": 186,
+      "erreurs_max": {
+        "masse": 6.412210144947627e-14,
+        "deformation": 1.7999844979224459e-13,
+        "port": 6.35893427427868e-14
+      },
+      "erreurs_operateur_max": {
+        "masse": 3.497890611682929e-10,
+        "deformation": 1.0839551695853327e-10,
+        "port": 3.074246270664154e-10
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "hcb_standard",
+      "modes": 185,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 0.03324197302572429,
+      "reponses_s": 0.02589725493453443,
+      "total_s": 0.059113678988069296,
+      "rss_avant_oracle_kib": 179524,
+      "directions": 185,
+      "erreurs_max": {
+        "masse": 3.353144135880346e-07,
+        "deformation": 3.353160883970893e-07,
+        "port": 3.3527638839608494e-07
+      },
+      "erreurs_operateur_max": {
+        "masse": 6.015276782538129e-07,
+        "deformation": 3.390602053226464e-07,
+        "port": 1.132334185148128e-05
+      }
+    },
+    {
+      "n": 32,
+      "max_hz": 40.0,
+      "variante": "hcb_energie",
+      "modes": 185,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 0.033533559180796146,
+      "reponses_s": 0.025914708152413368,
+      "total_s": 0.05954508204013109,
+      "rss_avant_oracle_kib": 180892,
+      "directions": 185,
+      "erreurs_max": {
+        "masse": 5.46651865894534e-07,
+        "deformation": 3.2296822242916713e-07,
+        "port": 3.2314658584973835e-07
+      },
+      "erreurs_operateur_max": {
+        "masse": 6.99210887029107e-07,
+        "deformation": 3.239299217103807e-07,
+        "port": 7.732525169505427e-06
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 2.0,
+      "variante": "vinkulum_api",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.20988333690911531,
+      "reponses_s": 1.8153043778147548,
+      "total_s": 2.0261144938413054,
+      "rss_avant_oracle_kib": 220432,
+      "directions": 12,
+      "erreurs_max": {
+        "masse": 2.8265197891239435e-13,
+        "deformation": 1.860053281896993e-11,
+        "port": 2.6155435197466093e-15
+      },
+      "erreurs_operateur_max": {
+        "masse": 7.688123685867232e-13,
+        "deformation": 1.9917756849467015e-11,
+        "port": 2.9240874981749677e-15
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 2.0,
+      "variante": "vinkulum_reduit",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.2101032380014658,
+      "reponses_s": 0.05869152396917343,
+      "total_s": 0.2683357549831271,
+      "rss_avant_oracle_kib": 222232,
+      "directions": 12,
+      "erreurs_max": {
+        "masse": 2.8265767455402293e-13,
+        "deformation": 1.8584749028083955e-11,
+        "port": 2.6260869541107926e-15
+      },
+      "erreurs_operateur_max": {
+        "masse": 7.687792668089817e-13,
+        "deformation": 1.9882831269112588e-11,
+        "port": 3.1849059244351313e-15
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 2.0,
+      "variante": "lu",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0012724690604954958,
+      "reponses_s": 0.12728663883171976,
+      "total_s": 0.12855910789221525,
+      "rss_avant_oracle_kib": 223960,
+      "directions": 762,
+      "erreurs_max": {
+        "masse": 1.5853248812992317e-08,
+        "deformation": 1.5489613463536892e-08,
+        "port": 1.5451921181687905e-08
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.6175736890415805e-08,
+        "deformation": 1.5557523990002278e-08,
+        "port": 1.551896780574004e-08
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 2.0,
+      "variante": "lu_corrigee",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0011837591882795095,
+      "reponses_s": 0.22184976586140692,
+      "total_s": 0.22303352504968643,
+      "rss_avant_oracle_kib": 225328,
+      "directions": 762,
+      "erreurs_max": {
+        "masse": 3.4978201441366202e-15,
+        "deformation": 1.512686221233956e-12,
+        "port": 2.7872393463216517e-15
+      },
+      "erreurs_operateur_max": {
+        "masse": 5.41408457762862e-14,
+        "deformation": 3.909537573321439e-12,
+        "port": 6.16658871179019e-15
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 2.0,
+      "variante": "hcb_standard",
+      "modes": 384,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.5136432501021773,
+      "reponses_s": 0.10013607190921903,
+      "total_s": 0.6125514891464263,
+      "rss_avant_oracle_kib": 226728,
+      "directions": 384,
+      "erreurs_max": {
+        "masse": 6.318659140219269e-08,
+        "deformation": 2.3074751356314726e-07,
+        "port": 6.210138189812317e-08
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.0158194904765262e-07,
+        "deformation": 2.3075308100933833e-07,
+        "port": 6.376056598714294e-08
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 2.0,
+      "variante": "hcb_energie",
+      "modes": 384,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.5125462170690298,
+      "reponses_s": 0.09937134198844433,
+      "total_s": 0.6119175590574741,
+      "rss_avant_oracle_kib": 228188,
+      "directions": 384,
+      "erreurs_max": {
+        "masse": 9.125043649741841e-08,
+        "deformation": 2.3268358360107702e-07,
+        "port": 6.922418198795576e-08
+      },
+      "erreurs_operateur_max": {
+        "masse": 9.68696271906177e-08,
+        "deformation": 2.326917182244696e-07,
+        "port": 7.035442640746577e-08
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 20.0,
+      "variante": "vinkulum_api",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.21371487295255065,
+      "reponses_s": 1.8337258968967944,
+      "total_s": 2.047464265022427,
+      "rss_avant_oracle_kib": 272832,
+      "directions": 18,
+      "erreurs_max": {
+        "masse": 1.7330892702260015e-10,
+        "deformation": 4.529035039842728e-09,
+        "port": 1.2323436693323187e-13
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.7333190398936196e-10,
+        "deformation": 5.551367565170503e-09,
+        "port": 2.2193103813515527e-13
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 20.0,
+      "variante": "vinkulum_reduit",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.2142054990399629,
+      "reponses_s": 0.05996654904447496,
+      "total_s": 0.2743202911224216,
+      "rss_avant_oracle_kib": 275032,
+      "directions": 18,
+      "erreurs_max": {
+        "masse": 1.7330892717426054e-10,
+        "deformation": 4.529029223189959e-09,
+        "port": 1.2323436693323187e-13
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.7333190412890374e-10,
+        "deformation": 5.551351598709474e-09,
+        "port": 2.6241263712235216e-13
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 20.0,
+      "variante": "lu",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0011648130603134632,
+      "reponses_s": 0.12893704185262322,
+      "total_s": 0.1301018549129367,
+      "rss_avant_oracle_kib": 276048,
+      "directions": 762,
+      "erreurs_max": {
+        "masse": 9.292671342627658e-07,
+        "deformation": 9.292667440750977e-07,
+        "port": 9.29218079705855e-07
+      },
+      "erreurs_operateur_max": {
+        "masse": 9.314970402552472e-07,
+        "deformation": 9.292954347236261e-07,
+        "port": 9.292549990542067e-07
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 20.0,
+      "variante": "lu_corrigee",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0011855631601065397,
+      "reponses_s": 0.22079518693499267,
+      "total_s": 0.2219807500950992,
+      "rss_avant_oracle_kib": 277504,
+      "directions": 762,
+      "erreurs_max": {
+        "masse": 6.56384510886399e-14,
+        "deformation": 1.5080235930456322e-12,
+        "port": 6.547784821156493e-14
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.7389056009945525e-10,
+        "deformation": 5.303475876113326e-10,
+        "port": 1.7679178807761133e-11
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 20.0,
+      "variante": "hcb_standard",
+      "modes": 761,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 0.6810731759760529,
+      "reponses_s": 0.228875779081136,
+      "total_s": 0.9101778580807149,
+      "rss_avant_oracle_kib": 278772,
+      "directions": 761,
+      "erreurs_max": {
+        "masse": 4.1633757977633654e-05,
+        "deformation": 4.163339856829628e-05,
+        "port": 4.1631939839438054e-05
+      },
+      "erreurs_operateur_max": {
+        "masse": 5.417016112284623e-05,
+        "deformation": 4.173926608174223e-05,
+        "port": 4.1735832271885875e-05
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 20.0,
+      "variante": "hcb_energie",
+      "modes": 761,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 0.6789790771435946,
+      "reponses_s": 0.22724269214086235,
+      "total_s": 0.907077772077173,
+      "rss_avant_oracle_kib": 280044,
+      "directions": 761,
+      "erreurs_max": {
+        "masse": 3.620530016155348e-05,
+        "deformation": 3.6204985780359944e-05,
+        "port": 3.620353580808809e-05
+      },
+      "erreurs_operateur_max": {
+        "masse": 3.92710205153627e-05,
+        "deformation": 3.625174675220341e-05,
+        "port": 3.6249168875675784e-05
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "vinkulum_api",
+      "modes": 0,
+      "eligible": false,
+      "complet": true
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "vinkulum_reduit",
+      "modes": 0,
+      "eligible": false,
+      "complet": true
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "lu",
+      "modes": 0,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 0.0011867647990584373,
+      "reponses_s": 0.1288637239485979,
+      "total_s": 0.13003991800360382,
+      "rss_avant_oracle_kib": 319704,
+      "directions": 762,
+      "erreurs_max": {
+        "masse": 1.9144827389667074e-07,
+        "deformation": 1.9144629982509406e-07,
+        "port": 1.9148206139992576e-07
+      },
+      "erreurs_operateur_max": {
+        "masse": 2.0325498498411782e-07,
+        "deformation": 1.9151727044985606e-07,
+        "port": 9.8137337178897e-06
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "lu_corrigee",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.001186855137348175,
+      "reponses_s": 0.22032191697508097,
+      "total_s": 0.22150877211242914,
+      "rss_avant_oracle_kib": 320740,
+      "directions": 762,
+      "erreurs_max": {
+        "masse": 3.498106509439548e-13,
+        "deformation": 1.5080235930456322e-12,
+        "port": 3.498897461196985e-13
+      },
+      "erreurs_operateur_max": {
+        "masse": 3.932839487904309e-10,
+        "deformation": 3.2030866854769276e-10,
+        "port": 1.0539617861197251e-08
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "hcb_standard",
+      "modes": 761,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 0.6820054680574685,
+      "reponses_s": 0.2288055771496147,
+      "total_s": 0.9113091269973665,
+      "rss_avant_oracle_kib": 322116,
+      "directions": 761,
+      "erreurs_max": {
+        "masse": 9.298875969354371e-06,
+        "deformation": 9.297626323554624e-06,
+        "port": 9.300199099197335e-06
+      },
+      "erreurs_operateur_max": {
+        "masse": 9.774521851967504e-06,
+        "deformation": 9.298195348955402e-06,
+        "port": 0.0001999484904084605
+      }
+    },
+    {
+      "n": 128,
+      "max_hz": 40.0,
+      "variante": "hcb_energie",
+      "modes": 761,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 0.6861136278603226,
+      "reponses_s": 0.22867444809526205,
+      "total_s": 0.9161244630813599,
+      "rss_avant_oracle_kib": 323080,
+      "directions": 761,
+      "erreurs_max": {
+        "masse": 5.982945488761646e-06,
+        "deformation": 4.713917769706096e-06,
+        "port": 4.715818596047503e-06
+      },
+      "erreurs_operateur_max": {
+        "masse": 6.306504607903036e-06,
+        "deformation": 4.71812463963524e-06,
+        "port": 0.00032500505789836276
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 2.0,
+      "variante": "vinkulum_api",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.8021474711131305,
+      "reponses_s": 2.11803344078362,
+      "total_s": 2.917437932919711,
+      "rss_avant_oracle_kib": 362800,
+      "directions": 12,
+      "erreurs_max": {
+        "masse": 2.827108544283509e-13,
+        "deformation": 2.0480064601494362e-11,
+        "port": 4.995164150888194e-15
+      },
+      "erreurs_operateur_max": {
+        "masse": 7.689283811129572e-13,
+        "deformation": 2.3602687569194148e-11,
+        "port": 5.819233588357769e-15
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 2.0,
+      "variante": "vinkulum_reduit",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.8046400179155171,
+      "reponses_s": 0.11263576406054199,
+      "total_s": 0.9224841890390962,
+      "rss_avant_oracle_kib": 364344,
+      "directions": 12,
+      "erreurs_max": {
+        "masse": 2.8270830414824574e-13,
+        "deformation": 2.0474135370091344e-11,
+        "port": 4.995164150888194e-15
+      },
+      "erreurs_operateur_max": {
+        "masse": 7.689410760762671e-13,
+        "deformation": 2.3735269190999447e-11,
+        "port": 5.8170325805120616e-15
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 2.0,
+      "variante": "lu",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.002113272901624441,
+      "reponses_s": 0.43190733692608774,
+      "total_s": 0.43402453791350126,
+      "rss_avant_oracle_kib": 365740,
+      "directions": 3066,
+      "erreurs_max": {
+        "masse": 2.83139608373024e-07,
+        "deformation": 2.79846910056091e-07,
+        "port": 2.786126100049752e-07
+      },
+      "erreurs_operateur_max": {
+        "masse": 2.832122069249239e-07,
+        "deformation": 2.821243765916563e-07,
+        "port": 2.8084697992799614e-07
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 2.0,
+      "variante": "lu_corrigee",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0021201169583946466,
+      "reponses_s": 0.7070545079186559,
+      "total_s": 0.7091959649696946,
+      "rss_avant_oracle_kib": 366772,
+      "directions": 3066,
+      "erreurs_max": {
+        "masse": 5.2748769628639895e-15,
+        "deformation": 7.015464128093117e-12,
+        "port": 4.906403738478697e-15
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.272786270904267e-13,
+        "deformation": 1.9281601436223884e-11,
+        "port": 1.5696564633309272e-14
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 2.0,
+      "variante": "hcb_standard",
+      "modes": 384,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 1.1413347229827195,
+      "reponses_s": 0.2867838069796562,
+      "total_s": 1.4286947238724679,
+      "rss_avant_oracle_kib": 368128,
+      "directions": 384,
+      "erreurs_max": {
+        "masse": 4.3240592114311476e-08,
+        "deformation": 7.17979522716245e-07,
+        "port": 3.0022147168768614e-08
+      },
+      "erreurs_operateur_max": {
+        "masse": 6.038944375914004e-08,
+        "deformation": 7.181296214271673e-07,
+        "port": 3.0333573299107145e-08
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 2.0,
+      "variante": "hcb_energie",
+      "modes": 384,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 1.137354149017483,
+      "reponses_s": 0.28727890201844275,
+      "total_s": 1.4246330510359257,
+      "rss_avant_oracle_kib": 369448,
+      "directions": 384,
+      "erreurs_max": {
+        "masse": 4.282732715072277e-08,
+        "deformation": 7.185951219092374e-07,
+        "port": 4.229061368046505e-08
+      },
+      "erreurs_operateur_max": {
+        "masse": 4.416204909004757e-08,
+        "deformation": 7.187424669458495e-07,
+        "port": 4.258302381257609e-08
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 20.0,
+      "variante": "vinkulum_api",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.8146918050479144,
+      "reponses_s": 2.148787759942934,
+      "total_s": 2.961360601009801,
+      "rss_avant_oracle_kib": 414892,
+      "directions": 18,
+      "erreurs_max": {
+        "masse": 1.732556626874471e-10,
+        "deformation": 4.530819535976585e-09,
+        "port": 4.618549767614454e-13
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.7327921224541464e-10,
+        "deformation": 5.553844151444754e-09,
+        "port": 4.653183131354545e-13
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 20.0,
+      "variante": "vinkulum_reduit",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.814259379170835,
+      "reponses_s": 0.11537482403218746,
+      "total_s": 0.9297801209613681,
+      "rss_avant_oracle_kib": 416548,
+      "directions": 18,
+      "erreurs_max": {
+        "masse": 1.732556580636951e-10,
+        "deformation": 4.53082368639735e-09,
+        "port": 4.618549767614454e-13
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.7327920760211876e-10,
+        "deformation": 5.553840338416688e-09,
+        "port": 4.653183131354545e-13
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 20.0,
+      "variante": "lu",
+      "modes": 0,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 0.0019564139656722546,
+      "reponses_s": 0.43094469886273146,
+      "total_s": 0.43303128099069,
+      "rss_avant_oracle_kib": 417860,
+      "directions": 3066,
+      "erreurs_max": {
+        "masse": 3.9509580855138135e-05,
+        "deformation": 3.9509564017667596e-05,
+        "port": 3.950717730404508e-05
+      },
+      "erreurs_operateur_max": {
+        "masse": 4.0149385943652896e-05,
+        "deformation": 3.9516902474210216e-05,
+        "port": 3.951531293149985e-05
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 20.0,
+      "variante": "lu_corrigee",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0021092859096825123,
+      "reponses_s": 0.7085753350984305,
+      "total_s": 0.710684621008113,
+      "rss_avant_oracle_kib": 419320,
+      "directions": 3066,
+      "erreurs_max": {
+        "masse": 2.240656495541508e-13,
+        "deformation": 6.7846209050520855e-12,
+        "port": 2.2457320230986299e-13
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.4966273586762035e-10,
+        "deformation": 2.254581562322427e-09,
+        "port": 1.551382683688646e-11
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 20.0,
+      "variante": "hcb_standard",
+      "modes": 768,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 5.0910769931506366,
+      "reponses_s": 0.5772504291962832,
+      "total_s": 5.6714709480293095,
+      "rss_avant_oracle_kib": 420568,
+      "directions": 768,
+      "erreurs_max": {
+        "masse": 1.7989052062071824e-05,
+        "deformation": 1.8080209928216662e-05,
+        "port": 1.7987784247874475e-05
+      },
+      "erreurs_operateur_max": {
+        "masse": 2.16170276490257e-05,
+        "deformation": 1.8136282528086698e-05,
+        "port": 1.8044742259328666e-05
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 20.0,
+      "variante": "hcb_energie",
+      "modes": 768,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 5.086686072172597,
+      "reponses_s": 0.5739894651342183,
+      "total_s": 5.662671676138416,
+      "rss_avant_oracle_kib": 422032,
+      "directions": 768,
+      "erreurs_max": {
+        "masse": 1.6992675627091358e-05,
+        "deformation": 1.2490739396521263e-05,
+        "port": 1.2358044616441952e-05
+      },
+      "erreurs_operateur_max": {
+        "masse": 1.8204829050919065e-05,
+        "deformation": 1.3126092808986053e-05,
+        "port": 1.239291304186862e-05
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "vinkulum_api",
+      "modes": 0,
+      "eligible": false,
+      "complet": true
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "vinkulum_reduit",
+      "modes": 0,
+      "eligible": false,
+      "complet": true
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "lu",
+      "modes": 0,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 0.002083976985886693,
+      "reponses_s": 0.43149146786890924,
+      "total_s": 0.43359317001886666,
+      "rss_avant_oracle_kib": 481336,
+      "directions": 3066,
+      "erreurs_max": {
+        "masse": 4.4552088762515744e-06,
+        "deformation": 4.4552108575494356e-06,
+        "port": 4.46128854947141e-06
+      },
+      "erreurs_operateur_max": {
+        "masse": 4.456951279564219e-06,
+        "deformation": 4.457278629918135e-06,
+        "port": 0.00026441796381612785
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "lu_corrigee",
+      "modes": 0,
+      "eligible": true,
+      "complet": true,
+      "preparation_s": 0.0019350938964635134,
+      "reponses_s": 0.7143173119984567,
+      "total_s": 0.7161949661094695,
+      "rss_avant_oracle_kib": 482716,
+      "directions": 3066,
+      "erreurs_max": {
+        "masse": 2.0220081627649841e-13,
+        "deformation": 6.531122436266905e-12,
+        "port": 2.0205015680359055e-13
+      },
+      "erreurs_operateur_max": {
+        "masse": 8.551717574850074e-10,
+        "deformation": 1.6719263830227577e-09,
+        "port": 1.1060932267566793e-08
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "hcb_standard",
+      "modes": 768,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 5.059571851976216,
+      "reponses_s": 0.5764589449390769,
+      "total_s": 5.636901289923117,
+      "rss_avant_oracle_kib": 483896,
+      "directions": 768,
+      "erreurs_max": {
+        "masse": 4.0274030375318025e-06,
+        "deformation": 2.2625662643930762e-05,
+        "port": 4.028411829338288e-06
+      },
+      "erreurs_operateur_max": {
+        "masse": 5.564923514583151e-06,
+        "deformation": 3.2300014203255914e-05,
+        "port": 0.00019782764437281861
+      }
+    },
+    {
+      "n": 512,
+      "max_hz": 40.0,
+      "variante": "hcb_energie",
+      "modes": 768,
+      "eligible": false,
+      "complet": true,
+      "preparation_s": 5.083130009006709,
+      "reponses_s": 0.5785471210256219,
+      "total_s": 5.661677130032331,
+      "rss_avant_oracle_kib": 484888,
+      "directions": 768,
+      "erreurs_max": {
+        "masse": 1.9269007059803725e-06,
+        "deformation": 2.2625662798442372e-05,
+        "port": 1.927448951296061e-06
+      },
+      "erreurs_operateur_max": {
+        "masse": 3.5056282775708574e-06,
+        "deformation": 3.2300013578602875e-05,
+        "port": 0.00015075416337878068
+      }
+    }
+  ],
+  "cible": 1e-06,
+  "portee": "routines matricielles sur consoles ; aucune simulation FFRF ou comparaison généraliste"
+}

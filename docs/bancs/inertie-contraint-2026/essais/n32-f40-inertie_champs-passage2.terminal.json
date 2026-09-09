@@ -1,0 +1,17 @@
+{
+  "pid": 36,
+  "retour": 0,
+  "attente_terminee": true,
+  "date_utc": "2026-09-08T12:51:30.561337+00:00",
+  "processus_s": 0.6759315768722445,
+  "commande": [
+    "/tmp/vinkulum-release-0.11.0-final/venv/bin/python",
+    "/tmp/vinkulum-campagne-inertie-contrainte-2026/sources/experience_inertie_contrainte.py",
+    "--worker",
+    "/tmp/vinkulum-campagne-inertie-contrainte-2026/entrees/n32-f40.npz",
+    "/tmp/vinkulum-confrontation-ports-0.10.0-corrigee/n32-f40.ref.npy",
+    "inertie_champs",
+    "32",
+    "/tmp/vinkulum-campagne-inertie-contrainte-2026/essais/n32-f40-inertie_champs-passage2"
+  ]
+}

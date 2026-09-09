@@ -1,0 +1,494 @@
+diff --git a/src/lib.rs b/src/lib.rs
+index bad5074..1b2d4bc 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -55,9 +55,11 @@
+ pub mod ad;
+ mod analyse;
+ mod contraintes;
++mod equilibrage;
+ mod moindres_carres;
+ mod numerique;
+ mod partition;
++mod raffinement;
+ use partition::{Indices, Reduction};
+ mod robustesse;
+ mod rotation;
+@@ -8803,6 +8805,7 @@ impl Noyau {
+         let mut motif_precedent = Vec::new();
+         let mut dimension_precedente = 0;
+         let mut projection = contraintes::Projection::default();
++        let mut raffinement = raffinement::Cache::default();
+         for it in 0..iters {
+             let chrono = trace.then(std::time::Instant::now);
+             let temps = || chrono.map_or(0.0, |c| c.elapsed().as_secs_f64());
+@@ -8910,29 +8913,14 @@ impl Noyau {
+             if mr > 0 {
+                 b.rows_mut(n, mr).copy_from(&(-pr));
+             }
+-            // ÉQUILIBRAGE DE JACOBI avant de résoudre. Les raideurs d'une
+-            // structure réelle couvrent plusieurs ordres de grandeur — sur la
+-            // poutre de Princeton, EA = 2,8e6 contre GJ = 3,1, soit SIX — et
+-            // le système augmenté hérite de ce conditionnement. Sans mise à
+-            // l'échelle, le LU perd les directions molles : mesuré, le résidu
+-            // PLAFONNE vers 0,7 N dès que la charge sort du plan, et Newton
+-            // n'avance plus même par paliers de charge.
+-            //
+-            // D⁻¹AD⁻¹ avec D = √|diag| ramène la diagonale à l'unité ; on
+-            // résout en variables mises à l'échelle, puis on revient.
+-            let mut d = DVector::from_element(n + mr, 1.0);
+-            for v in &trip {
+-                if v.row == v.col && v.row < n {
+-                    let echelle = v.val.abs().sqrt();
+-                    if echelle > 1e-30 {
+-                        d[v.row] = echelle;
+-                    }
+-                }
+-            }
+-            for v in &mut trip {
+-                v.val /= d[v.row] * d[v.col];
+-            }
++            // D⁻¹ A D⁻¹, à partir des lignes et colonnes : une diagonale
++            // presque nulle ne doit pas amplifier les termes de liaison.
++            // Les trois composantes de chaque vecteur spatial partagent
++            // leur échelle ; les coefficients gardent leur valeur par
++            // multiplication exacte par des puissances de deux.
++            let d = equilibrage::statique(&mut trip, n, n + mr).map_err(err)?;
+             let b_s = DVector::from_iterator(n + mr, (0..(n + mr)).map(|i| b[i] / d[i]));
++            fini(b_s.as_slice(), "second membre statique équilibré").map_err(err)?;
+             let t_assemblage = temps();
+             if trip.iter().any(|v| !v.val.is_finite()) {
+                 return Err(err("matrice statique équilibrée : valeur non finie".into()));
+@@ -8956,11 +8944,12 @@ impl Noyau {
+             } else {
+                 None
+             };
+-            // Densifier seulement les petits problèmes ou les replis.
+-            // Le chemin creux ne construit ni K dense ni le système augmenté dense.
+-            let a_s = optimisee.is_none().then(|| analyse::dense(&trip, dim));
++            // Le refus du LU creux ne déclenche pas un second LU dense
++            // avant d'essayer le raffinement. Seul le repli orthogonal
++            // ci-dessous densifie un grand système non résolu.
++            let a_s = (dim <= DENSE_MAX).then(|| analyse::dense(&trip, dim));
+             let lu = a_s.as_ref().map(|a| a.clone().lu());
+-            let resout = |rhs: &DVector<f64>| {
++            let resout_direct = |rhs: &DVector<f64>| {
+                 if let Some(f) = &optimisee {
+                     let x = f.solve(rhs);
+                     if x.iter().all(|v| v.is_finite())
+@@ -8971,10 +8960,27 @@ impl Noyau {
+                         None
+                     }
+                 } else {
+-                    lu.as_ref().and_then(|lu| lu.solve(rhs))
++                    lu.as_ref().and_then(|lu| lu.solve(rhs)).filter(|x| {
++                        x.iter().all(|v| v.is_finite())
++                            && (trip_mv(&trip, dim, x) - rhs).norm() <= 1e-9 * (1.0 + rhs.norm())
++                    })
+                 }
+             };
+-            let solution = resout(&b_s);
++            let mut solution = resout_direct(&b_s);
++            // Régulariser uniquement la factorisation auxiliaire, puis
++            // résoudre le système original par résidus compensés. Si le
++            // raffinement ne converge pas, conserver le repli COD/SVD.
++            let auxiliaire = if solution.is_none() && dim > DENSE_MAX && mr > 0 {
++                raffinement::Facteur::nouveau(&trip, n, dim, &mut raffinement).ok()
++            } else {
++                None
++            };
++            if let Some(f) = &auxiliaire {
++                solution = f.resout(&trip, &b_s);
++            }
++            let resout = |rhs: &DVector<f64>| {
++                resout_direct(rhs).or_else(|| auxiliaire.as_ref()?.resout(&trip, rhs))
++            };
+             let naturel = solution.is_some();
+             let dx = match solution {
+                 Some(v) => DVector::from_iterator(dim, (0..dim).map(|i| v[i] / d[i])),
+diff --git a/src/equilibrage.rs b/src/equilibrage.rs
+new file mode 100644
+index 0000000..ed875c8
+--- /dev/null
++++ b/src/equilibrage.rs
+@@ -0,0 +1,192 @@
++//! Équilibrage par congruence, avec une échelle commune par vecteur spatial.
++//! Les blocs de trois coordonnées physiques tournent ensemble. Leurs normes
++//! de Frobenius ne dépendent pas du choix des axes du repère.
++use crate::{DVector, Triplets};
++
++fn change_exposant(mut x: f64, mut exposant: i32) -> f64 {
++    // L'échelle totale peut dépasser celle d'un f64 alors que x mis à
++    // l'échelle reste représentable. Les étapes vont toutes dans le même
++    // sens ; aucun produit intermédiaire des deux échelles n'est formé.
++    while exposant > 1023 {
++        x *= 2.0_f64.powi(1023);
++        exposant -= 1023;
++    }
++    while exposant < -1022 {
++        x *= 2.0_f64.powi(-1022);
++        exposant += 1022;
++    }
++    x * 2.0_f64.powi(exposant)
++}
++
++#[derive(Clone, Copy, Default)]
++struct Norme {
++    maximum: f64,
++    somme: f64,
++}
++
++impl Norme {
++    fn ajoute(&mut self, v: f64) {
++        let a = v.abs();
++        if a > self.maximum {
++            self.somme = 1. + self.somme * (self.maximum / a).powi(2);
++            self.maximum = a;
++        } else if a != 0. {
++            self.somme += (a / self.maximum).powi(2);
++        }
++    }
++
++    // Racine de la norme de Frobenius moyenne par ligne du bloc.
++    // Ne former ni les carrés non normalisés, ni une norme qui déborderait
++    // alors que sa racine est représentable.
++    fn facteur(&self, taille: usize) -> f64 {
++        self.maximum.sqrt() * (self.somme / taille as f64).sqrt().sqrt()
++    }
++}
++
++pub(crate) fn statique(
++    trip: &mut Triplets,
++    physiques: usize,
++    dimension: usize,
++) -> Result<DVector<f64>, String> {
++    debug_assert!(physiques.is_multiple_of(3));
++    let np = physiques / 3;
++    let nb = np + dimension - physiques;
++    let bloc = |i: usize| {
++        if i < physiques {
++            i / 3
++        } else {
++            np + i - physiques
++        }
++    };
++    let mut d = DVector::from_element(dimension, 1.);
++    let mut lignes = vec![Norme::default(); nb];
++    let mut colonnes = lignes.clone();
++    let mut exposants = vec![0; nb];
++    for _ in 0..8 {
++        lignes.fill(Norme::default());
++        colonnes.fill(Norme::default());
++        for t in trip.iter() {
++            if !t.val.is_finite() {
++                return Err("équilibrage statique : coefficient non fini".into());
++            }
++            lignes[bloc(t.row)].ajoute(t.val);
++            colonnes[bloc(t.col)].ajoute(t.val);
++        }
++        let mut change = false;
++        for i in 0..nb {
++            let taille = if i < np { 3 } else { 1 };
++            let facteur = lignes[i].facteur(taille).max(colonnes[i].facteur(taille));
++            // Puissances de deux : pas d'arrondi de coefficient tant que
++            // l'exposant reste dans le domaine représentable. Une grille
++            // grossière suffit pour équilibrer, sans rechercher l'égalité.
++            exposants[i] = if facteur == 0. {
++                0
++            } else {
++                facteur.log2().round() as i32
++            };
++            change |= exposants[i] != 0;
++        }
++        if !change {
++            break;
++        }
++        for i in 0..dimension {
++            d[i] = change_exposant(d[i], exposants[bloc(i)]);
++            if !d[i].is_finite() || d[i] == 0. {
++                return Err("équilibrage statique : échelle non représentable".into());
++            }
++        }
++        for t in trip.iter_mut() {
++            let e = exposants[bloc(t.row)] + exposants[bloc(t.col)];
++            let v = change_exposant(t.val, -e);
++            if !v.is_finite() || change_exposant(v, e) != t.val {
++                return Err("équilibrage statique : perte d'un coefficient".into());
++            }
++            t.val = v;
++        }
++    }
++    Ok(d)
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    use crate::{DMatrix, M3, V3};
++
++    fn triplets(a: &DMatrix<f64>) -> Triplets {
++        let mut t = Triplets::new();
++        for j in 0..a.ncols() {
++            for i in 0..a.nrows() {
++                if a[(i, j)] != 0. {
++                    t.push(faer::sparse::Triplet {
++                        row: i,
++                        col: j,
++                        val: a[(i, j)],
++                    });
++                }
++            }
++        }
++        t
++    }
++
++    #[test]
++    fn diagonale_presque_nulle_et_changements_de_repere() {
++        let a = DMatrix::from_fn(9, 9, |i, j| {
++            if i >= 6 && j >= 6 {
++                0.
++            } else if i == 0 && j == 0 {
++                1e-24
++            } else {
++                ((i * j + i + j + 1) as f64).sin() * 3.
++            }
++        });
++        let mut reference = triplets(&a);
++        let d = statique(&mut reference, 6, 9).unwrap();
++        assert!(d.min() >= 0.5 && d.max() <= 8.);
++        let equilibree = crate::analyse::dense(&reference, 9);
++        for j in 0..9 {
++            for i in 0..9 {
++                assert_eq!((equilibree[(i, j)] * d[i]) * d[j], a[(i, j)]);
++            }
++        }
++        for axe in [V3::new(0.31, -0.47, 0.22), V3::new(-1.1, 0.6, 2.2)] {
++            let q: M3 = nalgebra::Rotation3::from_scaled_axis(axe).into_inner();
++            let mut s = DMatrix::identity(9, 9);
++            s.view_mut((0, 0), (3, 3)).copy_from(&q);
++            s.view_mut((3, 3), (3, 3)).copy_from(&q);
++            let tournee = &s * &a * s.transpose();
++            let mut t = triplets(&tournee);
++            let dt = statique(&mut t, 6, 9).unwrap();
++            assert_eq!(dt, d);
++            assert!(
++                (crate::analyse::dense(&t, 9) - &s * &equilibree * s.transpose()).amax() < 2e-15
++            );
++        }
++    }
++
++    #[test]
++    fn zeros_et_etendues_extremes() {
++        let mut t = Triplets::new();
++        assert_eq!(
++            statique(&mut t, 6, 9).unwrap(),
++            DVector::from_element(9, 1.)
++        );
++        let a = DMatrix::from_diagonal(&DVector::from_vec(vec![f64::MAX, f64::from_bits(1)]));
++        let mut t = triplets(&a);
++        let d = statique(&mut t, 0, 2).unwrap();
++        assert!(t
++            .iter()
++            .all(|v| v.val.is_finite() && v.val >= 0.5 && v.val <= 2.));
++        for v in t {
++            let e = 2 * d[v.row].log2() as i32;
++            assert_eq!(change_exposant(v.val, e), a[(v.row, v.col)]);
++        }
++        assert_eq!(
++            change_exposant(2.0_f64.powi(-500), 1500),
++            2.0_f64.powi(1000)
++        );
++        assert_eq!(
++            change_exposant(2.0_f64.powi(1000), -1500),
++            2.0_f64.powi(-500)
++        );
++    }
++}
+diff --git a/src/raffinement.rs b/src/raffinement.rs
+new file mode 100644
+index 0000000..7656f2a
+--- /dev/null
++++ b/src/raffinement.rs
+@@ -0,0 +1,182 @@
++//! Résolution d'un système de Newton par raffinement d'une factorisation
++//! auxiliaire. La diagonale des multiplicateurs n'est modifiée que dans le
++//! préconditionneur ; tous les résidus portent sur le système original.
++use crate::{numerique::deux_sommes, DVector, Facto, Triplets};
++
++#[derive(Default)]
++pub(crate) struct Cache {
++    dimension: usize,
++    motif: Vec<(usize, usize)>,
++    symbolique: Option<std::sync::Arc<faer::sparse::linalg::lu::SymbolicLu<usize>>>,
++}
++
++pub(crate) struct Facteur {
++    lu: Facto,
++}
++
++fn norme(v: &DVector<f64>) -> f64 {
++    v.iter().fold(0.0_f64, |s, &x| s.hypot(x))
++}
++
++// Les petits résidus ne doivent pas être jugés par la soustraction de
++// grands produits déjà arrondis. TwoSum et le reste du produit par FMA
++// accumulent b-Ax en deux composantes, puis le résultat est arrondi en f64.
++fn residu(a: &Triplets, b: &DVector<f64>, x: &DVector<f64>) -> DVector<f64> {
++    let mut haut = b.clone();
++    let mut bas = DVector::zeros(b.len());
++    for t in a {
++        let p = -t.val * x[t.col];
++        let e = (-t.val).mul_add(x[t.col], -p);
++        let (s, r) = deux_sommes(haut[t.row], p);
++        (haut[t.row], bas[t.row]) = deux_sommes(s, bas[t.row] + r + e);
++    }
++    haut += bas;
++    haut
++}
++
++impl Facteur {
++    pub fn nouveau(
++        a: &Triplets,
++        physiques: usize,
++        dimension: usize,
++        cache: &mut Cache,
++    ) -> Result<Self, String> {
++        let mut b = a.clone();
++        let maximum = a.iter().map(|t| t.val.abs()).fold(0.0_f64, f64::max);
++        let decalage = f64::EPSILON.sqrt() * maximum;
++        if !decalage.is_finite() || decalage == 0. {
++            return Err("raffinement : échelle du préconditionneur invalide".into());
++        }
++        for i in physiques..dimension {
++            b.push(faer::sparse::Triplet {
++                row: i,
++                col: i,
++                val: -decalage,
++            });
++        }
++        crate::analyse::regroupe(&mut b);
++        let motif: Vec<_> = b.iter().map(|t| (t.row, t.col)).collect();
++        if cache.dimension != dimension || cache.motif != motif {
++            cache.dimension = dimension;
++            cache.motif = motif;
++            cache.symbolique = None;
++        }
++        let lu = Facto::creux(&b, dimension, &mut cache.symbolique)?;
++        Ok(Self { lu })
++    }
++
++    pub fn resout(&self, a: &Triplets, b: &DVector<f64>) -> Option<DVector<f64>> {
++        let nb = norme(b);
++        if nb == 0. {
++            return Some(DVector::zeros(b.len()));
++        }
++        if !nb.is_finite() {
++            return None;
++        }
++        let mut x = self.lu.solve(b);
++        let mut precedent = f64::INFINITY;
++        for _ in 0..8 {
++            if !x.iter().all(|v| v.is_finite()) {
++                return None;
++            }
++            let r = residu(a, b, &x);
++            let nr = norme(&r);
++            if !nr.is_finite() {
++                return None;
++            }
++            if nr <= 1e-12 * nb {
++                return Some(x);
++            }
++            if nr >= 0.75 * precedent {
++                return None;
++            }
++            precedent = nr;
++            x += self.lu.solve(&r);
++        }
++        None
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    use crate::DMatrix;
++
++    fn triplets(a: &DMatrix<f64>) -> Triplets {
++        let mut t = Triplets::new();
++        for j in 0..a.ncols() {
++            for i in 0..a.nrows() {
++                if a[(i, j)] != 0. {
++                    t.push(faer::sparse::Triplet {
++                        row: i,
++                        col: j,
++                        val: a[(i, j)],
++                    });
++                }
++            }
++        }
++        t
++    }
++
++    #[test]
++    fn residu_produits_et_sommes_compenses() {
++        let a = DMatrix::from_row_slice(1, 3, &[1., 2.0_f64.powi(53), -2.0_f64.powi(53)]);
++        let b = DVector::from_element(1, 0.);
++        let x = DVector::from_element(3, 1.);
++        assert_eq!(residu(&triplets(&a), &b, &x)[0], -1.);
++        let a = DMatrix::from_element(1, 1, 1. - 2.0_f64.powi(-27));
++        let b = DVector::from_element(1, 1.);
++        let x = DVector::from_element(1, 1. + 2.0_f64.powi(-27));
++        assert_eq!(residu(&triplets(&a), &b, &x)[0], 2.0_f64.powi(-54));
++    }
++
++    #[test]
++    fn systeme_singulier_compatible_et_reutilisation() {
++        // G a quatre lignes dont deux combinaisons générales. La partie
++        // multiplicateur de la référence est G*y, donc de norme minimale.
++        let g = DMatrix::from_row_slice(
++            4,
++            6,
++            &[
++                1., 2., 0., 0., 0., 0., 0., 0., 1., -1., 0., 0., 1., 2., 1., -1., 0., 0., 2., 4.,
++                -1., 1., 0., 0.,
++            ],
++        );
++        let mut a = DMatrix::zeros(10, 10);
++        for i in 0..6 {
++            a[(i, i)] = 2. + i as f64;
++        }
++        a[(4, 5)] = 0.7; // K non symétrique.
++        a.view_mut((6, 0), (4, 6)).copy_from(&g);
++        a.view_mut((0, 6), (6, 4)).copy_from(&g.transpose());
++        let t = triplets(&a);
++        let mut cache = Cache::default();
++        let f = Facteur::nouveau(&t, 6, 10, &mut cache).unwrap();
++        for scale in [1e-20, 1., 1e20] {
++            let q = DVector::from_iterator(6, (0..6).map(|i| (i as f64 + 1.).sin() * scale));
++            let mut attendu = DVector::zeros(10);
++            attendu.rows_mut(0, 6).copy_from(&q);
++            attendu.rows_mut(6, 4).copy_from(&(&g * &q));
++            let b = &a * &attendu;
++            let x = f.resout(&t, &b).expect("raffinement compatible");
++            assert!((&a * &x - &b).norm() <= 2e-12 * b.norm());
++            assert!((x - attendu).norm() < 2e-7 * scale);
++        }
++    }
++
++    #[test]
++    fn contraintes_contradictoires_et_direction_physique_libre() {
++        let a = DMatrix::from_row_slice(3, 3, &[2., 1., 1., 1., 0., 0., 1., 0., 0.]);
++        let t = triplets(&a);
++        let f = Facteur::nouveau(&t, 1, 3, &mut Cache::default()).unwrap();
++        let b = DVector::from_vec(vec![0., 1., -1.]);
++        assert!(f.resout(&t, &b).is_none());
++        let a = DMatrix::from_row_slice(3, 3, &[0., 0., 0., 0., 0., 1., 0., 1., 0.]);
++        let t = triplets(&a);
++        let b = DVector::from_vec(vec![1., 0., 0.]);
++        assert!(Facteur::nouveau(&t, 2, 3, &mut Cache::default())
++            .ok()
++            .and_then(|f| f.resout(&t, &b))
++            .is_none());
++    }
++}

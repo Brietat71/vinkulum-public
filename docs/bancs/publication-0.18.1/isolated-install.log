@@ -1,0 +1,11 @@
+Using Python 3.14.7 environment at: /tmp/vinkulum-public-isolated
+Resolved 3 packages in 117ms
+Downloading numpy (15.9MiB)
+Downloading scipy (33.7MiB)
+ Downloaded numpy
+ Downloaded scipy
+Prepared 3 packages in 728ms
+Installed 3 packages in 60ms
+ + numpy==2.5.3
+ + scipy==1.18.1
+ + vinkulum==0.18.1 (from file:///tmp/vinkulum-public-audit/final-wheels/vinkulum-0.18.1-cp314-cp314-manylinux_2_39_x86_64.whl)

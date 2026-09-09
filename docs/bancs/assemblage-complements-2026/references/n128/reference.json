@@ -1,0 +1,30 @@
+{
+  "precisions": [
+    70,
+    90
+  ],
+  "maxima": {
+    "masse": 0.0,
+    "deformation": 0.0,
+    "port": 0.0
+  },
+  "maxima_operateurs": {
+    "masse": 0.0,
+    "deformation": 0.0,
+    "port": 0.0
+  },
+  "ecart_relatif_max": 0.0,
+  "reference_sha256": "49ff6330dbc3361dafeebefe4eaa5c439eb4f70782431fa16ea2b12471b450fb",
+  "audit_masse": {
+    "produits_rationnels": 6882,
+    "largeur_bande": 6,
+    "nnz_facteur": 4596,
+    "rho_numerateur": "128160679057014127",
+    "rho_denominateur": "162259276829213363391578010288128",
+    "alpha": 0.25,
+    "correction_relative": 1.0000000000000033,
+    "portee": "défaut du facteur exact encadré ; calcul des champs pondérés et QR du juge non certifiés"
+  },
+  "certification_machine": false,
+  "temps_hors_mesure_s": 57.559133168077096
+}
