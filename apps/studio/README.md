@@ -28,6 +28,10 @@ embarquant Qt n'est fourni ici. Le code original de Studio est sous Apache-2.0,
 comme le dépôt. L'installation nécessite un accès réseau aux dépendances ;
 l'application installée fonctionne localement sans réseau.
 
+Sous Ubuntu 24.04 minimal, installer aussi `libegl1` et `libgl1`
+(`sudo apt-get install --no-install-recommends libegl1 libgl1`). Qt charge
+ces bibliothèques même pour la recette sans écran (`QT_QPA_PLATFORM=offscreen`).
+
 ## Premier parcours
 
 1. Ouvrir Studio puis cliquer **Lancer le calcul**.

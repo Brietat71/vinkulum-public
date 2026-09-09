@@ -97,6 +97,10 @@ jobs:
           path: dist/*.whl
           if-no-files-found: error
           retention-days: 14
+      - name: Installer les bibliothèques graphiques Qt
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y libegl1 libgl1
       - name: Construire et vérifier Studio G0 hors du dépôt
         env:
           QT_QPA_PLATFORM: offscreen

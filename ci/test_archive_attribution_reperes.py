@@ -13,6 +13,30 @@ from archive_attribution_reperes import judge,verifier,verifier_observations,sha
 ARCHIVE=Path(__file__).resolve().parents[1]/'docs/bancs/attribution-reperes-0.18.0'
 
 
+class ArrondisHistoriques(unittest.TestCase):
+    def test_produit_fusionne_et_vecteur_non_fusionne(self):
+        from observations_reperes_archivees import ecarts
+        from math import fma
+        epsilon=2.**-27
+        monde=[[-1.,0.,0.],[1.+epsilon,1.,0.],[0.,0.,1.]]
+        identite=[[1.,0.,0.],[0.,1.,0.],[0.,0.,1.]]
+        rotation=[1.,0.,0.,1.-epsilon,1.,0.,0.,0.,1.]
+        a=[0.,[],[[0.]*9],[[0.]*3]]
+        b=[0.,[],[rotation],[[1.,1.-epsilon,0.]]]
+        dr,dw=ecarts(a,b,monde,identite)
+        exact=F(1.+epsilon)*F(1.-epsilon)-1
+        self.assertEqual(F(dr[0]),exact)
+        self.assertEqual(dr[0],fma(1.+epsilon,1.-epsilon,-1.))
+        self.assertEqual(dw[0],0.)
+        self.assertNotEqual(dr[0],dw[0])
+
+    def test_norme_somme_sequentielle_non_compensee(self):
+        from observations_reperes_archivees import norme
+        values=[1.]+[2.**-27]*8
+        self.assertEqual(norme(values),1.)
+        self.assertGreater(sum(x*x for x in values),1.)
+
+
 class ArchiveAttribution(unittest.TestCase):
     def fixture(self):
         budget=encoder(F(64,2**52));zero=encoder(F(0))

@@ -143,7 +143,7 @@ def verifier(directory):
 
 def verifier_observations(directory):
     """Relit les points aux pics ; ne remplace pas les identités de chaque pas."""
-    import numpy as np
+    from observations_reperes_archivees import ecarts
     from attribue_rotation_em import norm_bounds,sqrt_bounds
     from attribue_moments_em import iadd
     directory=Path(directory);verifier(directory)
@@ -154,16 +154,14 @@ def verifier_observations(directory):
         base=load('initial')['trace']['echantillons']
         for frame in FRAMES:
             data=load(frame);rows=data['trace']['echantillons']
-            world,material=np.asarray(data['monde']),np.asarray(data['matiere'])
             rv=read(directory/'resultats'/f'rotation-{frame}-{h}.json')['rotation_vitesse']
             for mode in ('pics_tous_pas','pics_echantillonnage_historique'):
                 for field in ('rotation','omega'):
                     peak=rv[mode][field];index=peak['pas']
                     require(type(index)==int and 0<=index<len(rows),'indice de pic invalide')
                     a,b=base[index],rows[index]
-                    if field=='rotation':
-                        observed=(world.T@np.asarray(b[2][0]).reshape(3,3)@material.T-np.asarray(a[2][0]).reshape(3,3)).ravel()
-                    else:observed=world.T@np.asarray(b[3][0])-np.asarray(a[3][0])
+                    dr,dw=ecarts(a,b,data['monde'],data['matiere'])
+                    observed=dr if field=='rotation' else dw
                     exact=[F(v) for v in observed]
                     square=sum(v*v for v in exact)
                     require(rational(peak['carre'])==square,'pic différent de la trace')
