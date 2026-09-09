@@ -4,7 +4,7 @@ import numpy as np
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QVBoxLayout, QWidget
 
-from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
+from .render_interactor import RenderInteractor
 from vtkmodules.vtkCommonMath import vtkMatrix4x4
 from vtkmodules.vtkCommonTransforms import vtkTransform
 from vtkmodules.vtkFiltersGeneral import vtkTransformFilter
@@ -56,7 +56,7 @@ class Viewport(QWidget):
         self.setAccessibleName("Scène mécanique 3D")
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
-        self.view = QVTKRenderWindowInteractor(self)
+        self.view = RenderInteractor(self)
         layout.addWidget(self.view)
         self.renderer = vtkRenderer()
         self.renderer.SetBackground(0.075, 0.10, 0.14)

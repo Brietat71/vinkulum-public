@@ -5,6 +5,7 @@ import unittest
 
 from PySide6.QtCore import QPoint, Qt
 from PySide6.QtTest import QTest
+from PySide6.QtGui import QPaintEvent
 from PySide6.QtWidgets import QApplication
 
 from vinkulum_studio.document import Body, new_id, pendulum
@@ -42,6 +43,23 @@ class ViewportTests(unittest.TestCase):
             view.show()
             view.set_project(project, fit=True)
             QTest.qWait(100)
+            # Model Cocoa's feedback: an unsolicited paint must not cause yet
+            # another VTK render; an explicit update must still repaint.
+            view.view._coalesce_paints = True
+            renders = []
+            window = view.view.GetRenderWindow()
+            observer = window.AddObserver("StartEvent", lambda *_: renders.append(1))
+            view.view.update()
+            QTest.qWait(30)
+            self.assertTrue(renders)
+            before = len(renders)
+            for _ in range(20):
+                self.app.sendEvent(view.view, QPaintEvent(view.view.rect()))
+            self.assertEqual(len(renders), before)
+            view.view.update()
+            QTest.qWait(30)
+            self.assertGreater(len(renders), before)
+            window.RemoveObserver(observer)
             camera_before = view.renderer.GetActiveCamera().GetPosition()
             QTest.mousePress(view.view, Qt.MouseButton.LeftButton, pos=QPoint(40, 40))
             QTest.mouseMove(view.view, QPoint(110, 90), 20)
