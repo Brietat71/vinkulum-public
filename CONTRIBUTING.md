@@ -12,7 +12,8 @@ secrets ni de données confidentielles.
 Installer le projet selon le README et préparer Lean 4.19.0/Mathlib selon
 [`preuves/README.md`](preuves/README.md), puis exécuter `ci/local.sh` avant une
 pull request. Pour une modification mécanique, ajouter `ci/local.sh --bancs`
-et les contre-épreuves pertinentes. La CI est locale ; les campagnes externes
+et les contre-épreuves pertinentes. Le workflow GitHub Actions appelle la
+même CI avec `--bancs` et teste une roue installée hors du dépôt. Les campagnes externes
 peuvent exiger des solveurs installés séparément. Décrire les contrôles exécutés
 et ceux qui n'ont pas pu l'être.
 

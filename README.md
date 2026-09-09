@@ -610,6 +610,14 @@ critères et leurs échecs. Les journaux et empreintes sont dans le
 
 Depuis le dépôt, avec le venv de développement activé :
 
+Le [workflow GitHub Actions](.github/workflows/ci.yml) est configuré pour les
+pushes sur `main`, les pull requests et les déclenchements manuels. Il appelle
+`ci/local.sh --bancs` avec Lean 4.19.0, puis un second job construit et teste
+une roue CPython 3.14 hors du dépôt. Les journaux et la roue vérifiée sont
+conservés comme artefacts pendant 14 jours. Consulter les
+[exécutions GitHub](https://github.com/Brietat71/vinkulum-public/actions/workflows/ci.yml)
+pour leur état réel ; la réussite locale ne vaut pas réussite sur GitHub.
+
 ```bash
 ci/installe_hook.sh          # branche la CI locale avant chaque push
 ci/local.sh                 # formatage, Clippy, tests, installation, vérification, API

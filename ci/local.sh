@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# CI LOCALE — la même chaîne que ci/github-actions.yml, sans GitHub (pas de
-# crédit : décision Paul, 7 sept. 2026). Branchée en `pre-push` par
+# CI LOCALE — également appelée par .github/workflows/ci.yml. Branchée en `pre-push` par
 # `git config core.hooksPath ci/hooks` (fait par ci/installe_hook.sh).
 #
 #   ci/local.sh            fmt · clippy -D · cargo test · roue → venv · verification · doc

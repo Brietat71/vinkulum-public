@@ -81,9 +81,9 @@ ou une divergence interrompt la CI. Aucun téléchargement automatique ni
 contournement si Lean manque. Ajouter le toolchain au `PATH` avant la CI.
 Les dépendances et leurs objets peuvent être récupérés par
 `lake exe cache get` lors de la première installation ; conserver le manifeste
-versionné sans le régénérer. Le modèle désactivé `ci/github-actions.yml`
-contient aussi le contrôle et l’installation figée ; il n’a pas été exécuté
-sur GitHub.
+versionné sans le régénérer. Le workflow `.github/workflows/ci.yml`
+installe le toolchain vérifié par SHA-256, prépare Mathlib puis appelle
+la même chaîne de vérification.
 
 Archive Linux utilisée pour cette qualification :
 `lean-4.19.0-linux.tar.zst`, distribution officielle

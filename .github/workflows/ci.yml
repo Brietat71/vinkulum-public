@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# La CI locale fait foi : aucune liste de tests dupliquée ici.
+env:
+  CARGO_BUILD_JOBS: "2"
+  VINKULUM_BANCS_JOBS: "2"
+  VINKULUM_BANCS_CPUS: "2"
+  OPENBLAS_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  noyau:
+    name: Noyau, preuves et bancs
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.14"
+      - name: Préparer Rust et Python
+        run: |
+          rustup toolchain install 1.98.0 --profile minimal --component clippy --component rustfmt
+          rustup default 1.98.0
+          python -m venv .venv
+          .venv/bin/python -m pip install 'maturin>=1.15,<2' 'numpy>=1.26' 'scipy>=1.11'
+      - name: Installer Lean 4.19.0 vérifié
+        run: |
+          curl --fail --location --retry 3 https://github.com/leanprover/lean4/releases/download/v4.19.0/lean-4.19.0-linux.tar.zst -o "$RUNNER_TEMP/lean.tar.zst"
+          echo "6fe3ce97a58f44e2b3567d455b994eacec5bfe9ae7774f2a573444480ba813fe  $RUNNER_TEMP/lean.tar.zst" | sha256sum --check
+          tar --no-same-owner --use-compress-program=unzstd -xf "$RUNNER_TEMP/lean.tar.zst" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/lean-4.19.0-linux/bin" >> "$GITHUB_PATH"
+      - name: Préparer Mathlib depuis le manifeste figé
+        working-directory: preuves
+        run: lake exe cache get
+      - name: Vérifier les notices et la provenance
+        run: .venv/bin/python ci/verifie_distribution.py
+      - name: CI complète, bancs mécaniques et contacts
+        run: |
+          PY="$GITHUB_WORKSPACE/.venv/bin/python" MATURIN="$GITHUB_WORKSPACE/.venv/bin/maturin" ci/local.sh --bancs 2>&1 | tee "$RUNNER_TEMP/ci.log"
+      - name: Conserver le journal
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: journal-ci
+          path: ${{ runner.temp }}/ci.log
+          if-no-files-found: ignore
+          retention-days: 14
+
+  roue:
+    name: Roue CPython 3.14 installée
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.14"
+      - name: Construire la roue
+        run: |
+          rustup toolchain install 1.98.0 --profile minimal
+          rustup default 1.98.0
+          python -m pip install 'maturin>=1.15,<2'
+          maturin build --release --locked --interpreter python --out dist
+      - name: Installer et vérifier hors du dépôt
+        run: |
+          python -m venv "$RUNNER_TEMP/roue-venv"
+          "$RUNNER_TEMP/roue-venv/bin/python" -m pip install dist/*.whl 'scipy>=1.11'
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/roue-venv/bin/python" -m vinkulum.verification
+          "$RUNNER_TEMP/roue-venv/bin/python" -c 'from importlib.metadata import metadata; from pathlib import Path; import vinkulum; p = Path(vinkulum.__file__).parent; assert metadata("vinkulum")["License-Expression"] == "Apache-2.0"; assert (p / "licences/modeles.json").is_file(); assert (p / "licences/rust.json").is_file()'
+      - name: Conserver la roue vérifiée
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: roue-cpython314-linux
+          path: dist/*.whl
+          if-no-files-found: error
+          retention-days: 14
