@@ -1,0 +1,21 @@
+test_GUI02_GUI07_strict_inputs_and_version (test_studio.Contracts.test_GUI02_GUI07_strict_inputs_and_version) ... ok
+test_GUI05_reject_mismatched_corrupt_and_partial_result (test_studio.Contracts.test_GUI05_reject_mismatched_corrupt_and_partial_result) ... ok
+test_GUI07_export_records_captured_inputs_and_units (test_studio.Contracts.test_GUI07_export_records_captured_inputs_and_units) ... ok
+test_T07_reference_and_temporal_refinement (test_studio.Contracts.test_T07_reference_and_temporal_refinement) ... 
+T07 errors(rad): [0.001161747282113712, 0.00029058330339071237, 7.26491249149197e-05] ratios: [3.9979836024909194, 3.999818356119473]
+ok
+test_T10_failed_replace_preserves_previous_file (test_studio.Contracts.test_T10_failed_replace_preserves_previous_file) ... ok
+test_GUI05_controlled_failure_cancel_and_crash_keep_result (test_studio.GuiRecipe.test_GUI05_controlled_failure_cancel_and_crash_keep_result) ... This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+This plugin does not support propagateSizeHints()
+ok
+test_GUI05_worker_unavailable_reenables_launch (test_studio.GuiRecipe.test_GUI05_worker_unavailable_reenables_launch) ... ok
+test_T00_GUI01_to_GUI08_real_window_recipe (test_studio.GuiRecipe.test_T00_GUI01_to_GUI08_real_window_recipe) ... This plugin does not support propagateSizeHints()
+ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.324s
+
+OK

@@ -1,0 +1,6 @@
+Vinkulum Studio — experimental desktop application
+Copyright 2026 Paul Brintet and Vinkulum contributors
+
+Original Studio code is licensed under Apache-2.0; see LICENSE.
+Vinkulum and PySide6 are installed as separate dependencies, under their own licenses.
+No Qt binaries or third-party models are included in this Studio wheel.

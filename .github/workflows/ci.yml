@@ -97,3 +97,24 @@ jobs:
           path: dist/*.whl
           if-no-files-found: error
           retention-days: 14
+      - name: Construire et vérifier Studio G0 hors du dépôt
+        env:
+          QT_QPA_PLATFORM: offscreen
+          RAYON_NUM_THREADS: "2"
+          VINKULUM_STUDIO_SCREENSHOT: ${{ runner.temp }}/studio-g0.png
+        run: |
+          python -m pip wheel --no-deps ./apps/studio --wheel-dir "$RUNNER_TEMP/studio-dist"
+          "$RUNNER_TEMP/roue-venv/bin/python" -m pip install "$RUNNER_TEMP"/studio-dist/*.whl 'scipy==1.18.1'
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/roue-venv/bin/python" -X faulthandler -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -v 2>&1 | tee "$RUNNER_TEMP/studio-g0.log"
+      - name: Conserver la recette Studio
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: studio-g0
+          path: |
+            ${{ runner.temp }}/studio-dist/*.whl
+            ${{ runner.temp }}/studio-g0.log
+            ${{ runner.temp }}/studio-g0.png
+          if-no-files-found: ignore
+          retention-days: 14

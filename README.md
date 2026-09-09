@@ -24,6 +24,12 @@ ci-dessous. Aucun paquet n'est publié sur PyPI.
 
 ## Démarrer
 
+Une [interface graphique expérimentale G0](apps/studio/README.md) est disponible
+dans le paquet optionnel **Vinkulum Studio 0.1.0** : pendule, paramètres,
+calcul séparé, animation, courbe et export. Voir sa [recette et ses limites](docs/STUDIO_G0.md).
+Le [cahier des charges v1.1](outputs/Cahier_des_charges_suite_ingenierie_Vinkulum.md)
+décrit aussi les lots futurs de la suite généraliste ; ils ne sont pas livrés par G0.
+
 Les commandes suivantes s'exécutent dans un clone du dépôt, sous un shell
 Bash, avec **Python 3.14+, Rust/Cargo, un compilateur C++17 et un éditeur de liens
 système, ainsi que uv** disponibles. L'installation compile l'extension en

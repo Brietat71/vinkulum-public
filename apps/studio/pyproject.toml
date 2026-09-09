@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vinkulum-studio"
+version = "0.1.0"
+description = "Interface expérimentale G0 pour le noyau Vinkulum"
+readme = "README.md"
+requires-python = ">=3.14"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+dependencies = ["vinkulum==0.18.1", "PySide6==6.11.2"]
+
+[project.optional-dependencies]
+test = ["scipy==1.18.1"]
+
+[project.scripts]
+vinkulum-studio = "vinkulum_studio.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["vinkulum_studio*"]

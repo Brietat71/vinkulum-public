@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-09",
+  "base_commit": "2da2f443788c9534e77dccd273de6b5717f03ef7",
+  "platform": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "python": "3.14.7",
+  "packages": {
+    "vinkulum-studio": "0.1.0",
+    "vinkulum": "0.18.1",
+    "PySide6": "6.11.2",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1"
+  },
+  "installed_app": "/tmp/vinkulum-studio-installed/lib/python3.14/site-packages/vinkulum_studio/__init__.py",
+  "installed_kernel": "/tmp/vinkulum-studio-installed/lib/python3.14/site-packages/vinkulum/__init__.py",
+  "kernel_binary_sha256": "ce81b3ca7d46f9947ad1982434b5daeca776be76f83f448ef1d23ee0ee741d0c",
+  "artifacts_sha256": {
+    ".gitignore": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+    "recette.log": "cedc623bdd68db2894448092730b85c4bedd9d43a4051b78a6a4cb8136bcb4bd",
+    "studio-g0.png": "1e545d9638fc6d7d4c43f3891d113b191b2ef1d58f478c5a4f5ce6c1ed340bf6",
+    "vinkulum_studio-0.1.0-py3-none-any.whl": "9972c77fab81107e1644e1c08b11fc65f903990e3e37e21d3fbaf64bba64442c"
+  },
+  "app_source_sha256": {
+    "apps/studio/vinkulum_studio/__init__.py": "68f7808e1f5fb82c5005a12ba5f1b48a3a6461f3b86f934761a4bfcdff91d518",
+    "apps/studio/vinkulum_studio/__main__.py": "7b75307e6a68ac12e2fa61452ad7337a4984cb685bc3560e7f2f4a01b7211ba7",
+    "apps/studio/vinkulum_studio/controller.py": "1af1e563ef8d2e124c983b15b9781ef596486db39405a45e87b07019667b5f22",
+    "apps/studio/vinkulum_studio/model.py": "50ca722000c7ef2e56728d6b3a8d6cfc64a268a6ec3b91281120957ace109da3",
+    "apps/studio/vinkulum_studio/views.py": "2e206b2382b6102e4b96be0f0ecdb818bef6482358daa02d60e6e3a350e0e1de",
+    "apps/studio/vinkulum_studio/window.py": "cf54c2363d393a326b8c60afbabcab6a53b9f93a2afc613a56d07f526ab321ca",
+    "apps/studio/vinkulum_studio/worker.py": "378affe4572029b6d47686bdb4af15f42161c0a34c3ecf5e1fbbd8dc209c9892",
+    "apps/studio/tests/test_studio.py": "896927c178870b090eeddb66db40f159c6ef174929a38a4b11acb8754039e95a",
+    "apps/studio/pyproject.toml": "9d905c7c1984b9371581a0b34f43140dd82d88ffa78eded2c16da0bc4a36340d",
+    "apps/studio/README.md": "41acfe8d92420d0d97da114fc3c5cd98b697a80191672d798dbf3fec1473ee59"
+  },
+  "verification": {
+    "tests": 8,
+    "status": "passed",
+    "qt_platform": "offscreen",
+    "reference": "DOP853, theta_ddot = -m*g*L/(m*L^2+J)*sin(theta), rtol=1e-12, atol=1e-14",
+    "steps_s": [
+      0.02,
+      0.01,
+      0.005
+    ],
+    "max_angle_errors_rad": [
+      0.001161747282113712,
+      0.00029058330339071237,
+      7.26491249149197e-05
+    ],
+    "refinement_ratios": [
+      3.9979836024909194,
+      3.999818356119473
+    ],
+    "predefined_limits": {
+      "fine_angle_error_rad": 0.0004,
+      "minimum_refinement_ratio": 3.5
+    },
+    "elapsed_seconds": 2.324
+  },
+  "limits": [
+    "Linux offscreen recipe only; no interactive desktop qualification",
+    "macOS ARM64 not tested",
+    "GitHub workflow linted locally; new Studio steps not executed remotely",
+    "Full core CI not rerun: no change to numerical core or core package",
+    "No general certification or validated error bound"
+  ]
+}
