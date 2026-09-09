@@ -3,7 +3,8 @@ from PyInstaller.utils.hooks import collect_data_files, copy_metadata
 
 root = Path(SPECPATH).parents[2]
 datas = collect_data_files('vinkulum')
-for distribution in ('vinkulum', 'vinkulum-studio', 'PySide6', 'PySide6_Essentials', 'shiboken6', 'vtk', 'numpy'):
+datas += [(str(Path(SPECPATH) / 'licenses'), 'licenses')]
+for distribution in ('vinkulum', 'vinkulum-studio', 'PySide6', 'PySide6_Essentials', 'shiboken6', 'vtk', 'numpy', 'pyinstaller'):
     datas += copy_metadata(distribution)
 a = Analysis([str(Path(SPECPATH) / 'launcher.py')],
     pathex=[str(root / 'apps/studio')], datas=datas,

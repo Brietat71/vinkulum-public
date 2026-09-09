@@ -16,6 +16,8 @@ mkdir -p dist/dmg-root
 /usr/bin/ditto "$APP" 'dist/dmg-root/Vinkulum Studio.app'
 ln -s /Applications dist/dmg-root/Applications
 cp apps/studio/packaging/INSTALLATION.txt dist/dmg-root/
+cp -R apps/studio/packaging/licenses dist/dmg-root/Licences
+cp LICENSE NOTICE THIRD_PARTY_NOTICES.md dist/dmg-root/Licences/
 hdiutil create -volname 'Vinkulum Studio' -srcfolder dist/dmg-root -ov -format UDZO dist/macos/Vinkulum-Studio-0.2.0-apple-silicon.dmg
 hdiutil verify dist/macos/Vinkulum-Studio-0.2.0-apple-silicon.dmg
 shasum -a 256 dist/macos/*.dmg > dist/macos/SHA256SUMS
