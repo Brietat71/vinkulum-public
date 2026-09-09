@@ -2,7 +2,7 @@
 
 Objectif : une mise à niveau majeure de l'interface de travail, depuis l'édition
 d'un mécanisme jusqu'à l'examen de résultats traçables. La qualification porte
-sur des parcours réels dans l'application et dans son paquet macOS, pas sur une
+sur des parcours réels dans l'application et ses paquets exécutables, pas sur une
 maquette ni sur une revendication de parité universelle avec les outils CAO.
 
 ## Exigences et preuves attendues
@@ -18,7 +18,7 @@ maquette ni sur une revendication de parité universelle avec les outils CAO.
 | UX-07 | États intelligibles du document et du calcul, diagnostics navigables, provenance et erreurs accessibles | Calcul réussi, modèle invalide, erreur, annulation et résultat antérieur conservé |
 | UX-08 | Thèmes contrastés, mise à l'échelle, focus visible, noms accessibles, disposition persistante | Captures à 100 % et 200 %, parcours clavier ; limites des essais d'accessibilité documentées |
 | UX-09 | Exécution réactive, budgets mémoire conservés, fichiers et résultats intègres | Tests existants et nouveaux, mesures de rendu et de grandes courbes |
-| UX-10 | Version publique, documentation à jour, DMG Apple Silicon réellement exécuté | CI macOS, rapport du bundle, empreinte du DMG et release publique |
+| UX-10 | Documentation à jour et paquet réellement exécuté ; priorité au build Linux local, publication ensuite | Archive Linux extraite et testée, rapport du bundle, empreinte ; DMG Apple Silicon à qualifier ultérieurement |
 
 Les exigences GUI-01 à GUI-08 et UI-01 à UI-06 du cahier des charges v1.1 restent
 applicables. La refonte ne change pas les garanties scientifiques du noyau.
@@ -94,8 +94,9 @@ nettoyage du wrapper VTK a été corrigé après sa détection dans les journaux
 
 Restent à qualifier avant clôture : ergonomie finale des outils contextuels,
 accessibilité et écrans à forte densité, performances mesurées, robustesse de la
-restauration des panneaux sur plusieurs écrans, exécution du nouveau bundle macOS
-et livraison publique de la nouvelle version. Les fonctions et preuves ci-dessus
+restauration des panneaux sur plusieurs écrans et livraison publique de la
+nouvelle version. Le build local Linux est désormais prioritaire ; le nouveau
+bundle macOS sera qualifié ultérieurement. Les fonctions et preuves ci-dessus
 ne déclarent pas le grand objectif achevé.
 
 Recette à 200 % : [rapport Linux](bancs/studio-gui-2026/linux-hidpi.json),
@@ -107,3 +108,40 @@ Avec trois corps et deux courbes, le rendu logiciel de cet environnement mesure
 36,2 ms par image en médiane et 56,1 ms au 95e centile. Ce n’est ni une mesure GPU
 sur le Mac utilisateur ni une garantie de fréquence. La recette vérifie aussi la
 présence des commandes de lecture dans une fenêtre logique de 1280×800.
+
+### Ajustements du rendu, vérifiés depuis les sources
+
+À la suite du retour sur la capture du double pendule : grille XY métrique
+atténuée et masquable, éclairage moins saturé, repère d'orientation compact
+adapté à la densité d'écran, pivots représentés par deux anneaux aux positions
+réelles des attaches. Les traits de construction sont réservés à la liaison
+sélectionnée. Les volumes mécaniques et les entrées du noyau sont inchangés.
+Les projections orthographique et perspective se sélectionnent dans Vues.
+
+Les 38 tests ont été rejoués avec succès ; les quatre parcours de capture à
+200 % et les deux calculs natifs ont également passé la recette. Une option
+FXAA essayée causait un rendu principal noir malgré le widget d'orientation
+visible : elle a été retirée. Le contrôle du bundle détecte désormais ce cas
+par des sondes dans l'image du scénario de référence ; ce contrôle ne prétend
+pas mesurer la qualité visuelle générale.
+
+L'archive Linux 0.3.0 construite localement et testée après extraction précède
+ces derniers ajustements. Les itérations de présentation se font désormais
+directement depuis les sources ; la prochaine archive sera construite au
+moment de livrer une version stabilisée.
+
+## Passe de précision et densité — 10 septembre 2026
+
+Studio 0.4.0 resserre les espacements des commandes, des lignes de l'explorateur
+et des propriétés. Les commandes CAD portent un libellé ; les menus réservent
+la place de leur indicateur. L'inspecteur affiche une précision adaptée à la
+largeur, conserve la valeur exacte séparément du texte, et expose cette valeur
+au focus et en infobulle. Modifier le nom d'un corps ne reconstruit pas sa
+rotation et n'arrondit ni sa position ni sa masse.
+
+La recette complète compte 48 tests réussis, avec un contrôle dédié du focus,
+des redimensionnements et des petites composantes en notation scientifique.
+Les captures à 1280×844 et en haute densité confirment la présence des exposants
+complets dans les champs au repos. Voir le [dossier de qualification CAD et
+interface](bancs/studio-cad-040/README.md). Ces contrôles ne valent pas encore
+une étude d'utilisabilité ou une parité fonctionnelle avec les grandes suites CAO/IAO.

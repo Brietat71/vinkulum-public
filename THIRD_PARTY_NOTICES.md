@@ -37,6 +37,20 @@ MuJoCo n'est embarqué pour constituer le noyau.
 
 ## Dépendances de construction et d'exécution
 
+Studio 0.4.0 embarque OCCT 8.0.1 via les bindings OCP. OCCT conserve sa licence
+LGPL-2.1 avec exception Open CASCADE ; les textes sont inclus dans
+`apps/studio/packaging/licenses/OCCT-*`. Sources :
+<https://github.com/Open-Cascade-SAS/OCCT/tree/V8_0_1> et
+<https://github.com/CadQuery/OCP>. Le composant OCCT n'est pas modifié.
+
+build123d 0.11.1 et ocpsvg 0.6.0 sont adaptés à OCCT 8 dans des distributions
+locales portant le suffixe `+vinkulum.occt8`. Leurs licences et notices amont
+restent incluses dans les métadonnées du paquet. Les sources vérifiées,
+modifications et versions exactes sont documentées dans
+[Studio CAD](docs/STUDIO_CAD.md) et `ci/patches/`.
+ocp_gordon 0.3.1 est utilisé sans modification. Les paquets autonomes incluent
+également Python, NumPy, Qt/PySide6, VTK et leurs dépendances, avec leurs notices.
+
 Le [registre Rust](python/vinkulum/licences/rust.json) recense les 150 paquets
 tiers du graphe Cargo verrouillé, y compris les dépendances de construction
 et celles d'autres plateformes. Les notices sont conservées dans

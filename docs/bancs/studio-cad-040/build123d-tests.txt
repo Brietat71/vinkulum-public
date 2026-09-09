@@ -1,0 +1,113 @@
+Fontconfig warning: "/usr/share/fontconfig/conf.avail/05-reset-dirs-sample.conf", line 6: unknown element "reset-dirs"
+test_basic_bounding_box (tests.test_direct_api.test_bound_box.TestBoundBox.test_basic_bounding_box) ... ok
+test_bounding_box_repr (tests.test_direct_api.test_bound_box.TestBoundBox.test_bounding_box_repr) ... ok
+test_center_of_boundbox (tests.test_direct_api.test_bound_box.TestBoundBox.test_center_of_boundbox) ... ok
+test_clean_boundbox (tests.test_direct_api.test_bound_box.TestBoundBox.test_clean_boundbox) ... ok
+test_combined_center_of_boundbox (tests.test_direct_api.test_bound_box.TestBoundBox.test_combined_center_of_boundbox) ... ok
+test_constructor_errors (tests.test_direct_api.test_bound_box.TestBoundBox.test_constructor_errors) ... ok
+test_cube (tests.test_direct_api.test_mass_properties.TestMassProperties.test_cube) ... ok
+test_cylinder (tests.test_direct_api.test_mass_properties.TestMassProperties.test_cylinder) ... ok
+test_sphere (tests.test_direct_api.test_mass_properties.TestMassProperties.test_sphere) ... ok
+test_as_json (tests.test_direct_api.test_location.TestLocation.test_as_json) ... ok
+test_center (tests.test_direct_api.test_location.TestLocation.test_center) ... ok
+test_copy (tests.test_direct_api.test_location.TestLocation.test_copy) ... ok
+test_equal (tests.test_direct_api.test_location.TestLocation.test_equal) ... ok
+test_intersection (tests.test_direct_api.test_location.TestLocation.test_intersection) ... ok
+test_location (tests.test_direct_api.test_location.TestLocation.test_location) ... ok
+test_location_inverted (tests.test_direct_api.test_location.TestLocation.test_location_inverted) ... ok
+test_location_kwarg_parameters (tests.test_direct_api.test_location.TestLocation.test_location_kwarg_parameters) ... ok
+test_location_parameters (tests.test_direct_api.test_location.TestLocation.test_location_parameters) ... ok
+test_location_repr_and_str (tests.test_direct_api.test_location.TestLocation.test_location_repr_and_str) ... ok
+test_mirror_location (tests.test_direct_api.test_location.TestLocation.test_mirror_location) ... ok
+test_mult_iterable (tests.test_direct_api.test_location.TestLocation.test_mult_iterable) ... ok
+test_neg (tests.test_direct_api.test_location.TestLocation.test_neg) ... ok
+test_not_equal (tests.test_direct_api.test_location.TestLocation.test_not_equal) ... ok
+test_pos (tests.test_direct_api.test_location.TestLocation.test_pos) ... ok
+test_set (tests.test_direct_api.test_location.TestLocation.test_set) ... ok
+test_set_orientation (tests.test_direct_api.test_location.TestLocation.test_set_orientation) ... ok
+test_set_position (tests.test_direct_api.test_location.TestLocation.test_set_position) ... ok
+test_align (tests.test_build_part.TestAlign.test_align) ... ok
+test_add_pending_edges (tests.test_build_part.TestBuildPart.test_add_pending_edges) ... ok
+test_add_pending_faces (tests.test_build_part.TestBuildPart.test_add_pending_faces) ... ok
+test_add_pending_location_count (tests.test_build_part.TestBuildPart.test_add_pending_location_count) ... ok
+test_invalid_add_to_context_input (tests.test_build_part.TestBuildPart.test_invalid_add_to_context_input) ... ok
+test_mode_add_multiple (tests.test_build_part.TestBuildPart.test_mode_add_multiple) ... ok
+test_mode_intersect (tests.test_build_part.TestBuildPart.test_mode_intersect)
+Note that a negative volume is created ... ok
+test_mode_replace (tests.test_build_part.TestBuildPart.test_mode_replace) ... ok
+test_mode_subtract (tests.test_build_part.TestBuildPart.test_mode_subtract) ... ok
+test_named_plane (tests.test_build_part.TestBuildPart.test_named_plane) ... ok
+test_obj_name (tests.test_build_part.TestBuildPart.test_obj_name) ... ok
+test_part_transfer_on_exit (tests.test_build_part.TestBuildPart.test_part_transfer_on_exit) ... ok
+test_select_edges (tests.test_build_part.TestBuildPart.test_select_edges)
+Test edges() ... ok
+test_select_faces (tests.test_build_part.TestBuildPart.test_select_faces)
+Test faces() ... ok
+test_select_solids (tests.test_build_part.TestBuildPart.test_select_solids)
+Test faces() ... ok
+test_select_vertices (tests.test_build_part.TestBuildPart.test_select_vertices)
+Test vertices() ... ok
+test_invalid_intersect (tests.test_build_part.TestBuildPartExceptions.test_invalid_intersect) ... ok
+test_invalid_subtract (tests.test_build_part.TestBuildPartExceptions.test_invalid_subtract) ... ok
+test_convex_polyhedron (tests.test_build_part.TestConvexPolyhedron.test_convex_polyhedron) ... ok
+test_fixed_depth (tests.test_build_part.TestCounterBoreHole.test_fixed_depth) ... ok
+test_through_hole (tests.test_build_part.TestCounterBoreHole.test_through_hole) ... ok
+test_fixed_depth (tests.test_build_part.TestCounterSinkHole.test_fixed_depth) ... ok
+test_through_hole (tests.test_build_part.TestCounterSinkHole.test_through_hole) ... ok
+test_simple_cylinder (tests.test_build_part.TestCylinder.test_simple_cylinder) ... ok
+test_extrude_both (tests.test_build_part.TestExtrude.test_extrude_both) ... ok
+test_extrude_face (tests.test_build_part.TestExtrude.test_extrude_face) ... ok
+test_extrude_non_planar_face (tests.test_build_part.TestExtrude.test_extrude_non_planar_face) ... ok
+test_extrude_until (tests.test_build_part.TestExtrude.test_extrude_until) ... ok
+test_extrude_until2 (tests.test_build_part.TestExtrude.test_extrude_until2) ... ok
+test_extrude_until3 (tests.test_build_part.TestExtrude.test_extrude_until3) ... ok
+test_extrude_until_errors (tests.test_build_part.TestExtrude.test_extrude_until_errors) ... ok
+test_extrude_until_invalid_sewn_shape (tests.test_build_part.TestExtrude.test_extrude_until_invalid_sewn_shape) ... ok
+test_extrude_until_invalid_split (tests.test_build_part.TestExtrude.test_extrude_until_invalid_split) ... ok
+test_extrude_with_face_input (tests.test_build_part.TestExtrude.test_extrude_with_face_input) ... ok
+test_no_faces (tests.test_build_part.TestExtrude.test_no_faces) ... ok
+test_fixed_depth (tests.test_build_part.TestHole.test_fixed_depth) ... ok
+test_through_hole (tests.test_build_part.TestHole.test_through_hole) ... ok
+test_loft_all_vertices_assert (tests.test_build_part.TestLoft.test_loft_all_vertices_assert) ... ok
+test_loft_invalid_vertex (tests.test_build_part.TestLoft.test_loft_invalid_vertex) ... ok
+test_loft_no_sections_assert (tests.test_build_part.TestLoft.test_loft_no_sections_assert) ... ok
+test_loft_vertex (tests.test_build_part.TestLoft.test_loft_vertex) ... ok
+test_loft_vertex_face (tests.test_build_part.TestLoft.test_loft_vertex_face) ... ok
+test_loft_vertex_middle_assert (tests.test_build_part.TestLoft.test_loft_vertex_middle_assert) ... ok
+test_loft_vertices (tests.test_build_part.TestLoft.test_loft_vertices) ... ok
+test_loft_with_hole (tests.test_build_part.TestLoft.test_loft_with_hole) ... ok
+test_loft_with_inconsistent_holes (tests.test_build_part.TestLoft.test_loft_with_inconsistent_holes) ... ok
+test_loft_with_two_holes (tests.test_build_part.TestLoft.test_loft_with_two_holes) ... ok
+test_simple_loft (tests.test_build_part.TestLoft.test_simple_loft) ... ok
+test_make_brake_formed (tests.test_build_part.TestMakeBrakeFormed.test_make_brake_formed) ... ok
+test_bad_draft_faces (tests.test_build_part.TestPartOperationDraft.test_bad_draft_faces) ... ok
+test_draftangleerror_from_solid_draft (tests.test_build_part.TestPartOperationDraft.test_draftangleerror_from_solid_draft)
+Simulate a failure in AddDone and catch DraftAngleError ... ok
+test_faces_from_multiple_parts (tests.test_build_part.TestPartOperationDraft.test_faces_from_multiple_parts)
+Test that using faces from different solids raises an error ... ok
+test_faces_from_multiple_solids (tests.test_build_part.TestPartOperationDraft.test_faces_from_multiple_solids)
+Test that using faces from different solids raises an error ... ok
+test_invalid_face_type (tests.test_build_part.TestPartOperationDraft.test_invalid_face_type)
+Test that a ValueError is raised for unsupported face types ... ok
+test_successful_draft (tests.test_build_part.TestPartOperationDraft.test_successful_draft)
+Test that a draft operation completes successfully ... ok
+test_revolve_size (tests.test_build_part.TestRevolve.test_revolve_size)
+Verify revolution result matches revolution_arc size and direction ... ok
+test_revolve_with_axis (tests.test_build_part.TestRevolve.test_revolve_with_axis) ... ok
+test_simple_revolve (tests.test_build_part.TestRevolve.test_simple_revolve) ... ok
+test_circle (tests.test_build_part.TestSection.test_circle) ... ok
+test_custom_plane (tests.test_build_part.TestSection.test_custom_plane) ... ok
+test_moved_object (tests.test_build_part.TestSection.test_moved_object) ... ok
+test_custom_plane (tests.test_build_part.TestSplit.test_custom_plane) ... ok
+test_split (tests.test_build_part.TestSplit.test_split) ... ok
+test_split_both (tests.test_build_part.TestSplit.test_split_both) ... ok
+test_wrapped_object (tests.test_build_part.TestSplit.test_wrapped_object) ... ok
+test_thicken (tests.test_build_part.TestThicken.test_thicken) ... ok
+test_simple_torus (tests.test_build_part.TestTorus.test_simple_torus) ... ok
+test_invalid_wedge (tests.test_build_part.TestWedge.test_invalid_wedge) ... ok
+test_simple_wedge (tests.test_build_part.TestWedge.test_simple_wedge) ... ok
+
+----------------------------------------------------------------------
+Ran 96 tests in 0.979s
+
+OK

@@ -1,19 +1,29 @@
 from pathlib import Path
-from PyInstaller.utils.hooks import collect_data_files, copy_metadata
+import sys
+from PyInstaller.utils.hooks import collect_data_files, collect_dynamic_libs, collect_submodules, copy_metadata
+import OCP
+
+assert int(OCP.__version__.split('.')[0]) >= 8, 'OCCT 8 minimum required for Studio CAD'
 
 root = Path(SPECPATH).parents[2]
 datas = collect_data_files('vinkulum')
 datas += [(str(Path(SPECPATH) / 'licenses'), 'licenses')]
-for distribution in ('vinkulum', 'vinkulum-studio', 'PySide6', 'PySide6_Essentials', 'shiboken6', 'vtk', 'numpy', 'pyinstaller'):
+datas += [(str(root / 'ci' / 'patches'), 'licenses/cad-patches')]
+datas += copy_metadata('build123d', recursive=True)
+for package in ('OCP', 'build123d', 'ocpsvg', 'ocp_gordon', 'lib3mf'):
+    datas += collect_data_files(package)
+for distribution in ('vinkulum', 'vinkulum-studio', 'PySide6', 'PySide6_Essentials', 'shiboken6', 'vtk', 'numpy', 'pyinstaller', 'cadquery-ocp-novtk', 'cadquery-ocp-proxy', 'build123d', 'ocpsvg', 'ocp_gordon', 'lib3mf'):
     datas += copy_metadata(distribution)
 a = Analysis([str(Path(SPECPATH) / 'launcher.py')],
-    pathex=[str(root / 'apps/studio')], datas=datas,
-    hiddenimports=['vinkulum._vinkulum', 'vtkmodules.vtkRenderingOpenGL2', 'vtkmodules.vtkInteractionStyle'],
+    pathex=[str(root / 'apps/studio')], datas=datas, binaries=collect_dynamic_libs('lib3mf'),
+    hiddenimports=['vinkulum._vinkulum', 'vtkmodules.vtkRenderingOpenGL2', 'vtkmodules.vtkInteractionStyle', 'vinkulum_studio.cad_worker'] + collect_submodules('OCP'),
     excludes=['PyQt5', 'PyQt6', 'PySide2', 'tkinter'], noarchive=False)
 pyz = PYZ(a.pure)
 exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name='Vinkulum Studio',
-          console=False, target_arch='arm64', codesign_identity=None)
+          console=False, target_arch='arm64' if sys.platform == 'darwin' else None,
+          codesign_identity=None)
 coll = COLLECT(exe, a.binaries, a.datas, name='Vinkulum Studio')
-app = BUNDLE(coll, name='Vinkulum Studio.app', bundle_identifier='org.vinkulum.studio',
-             version='0.3.0', info_plist={'NSHighResolutionCapable': True,
-             'LSMinimumSystemVersion': '14.0', 'CFBundleShortVersionString': '0.3.0'})
+if sys.platform == 'darwin':
+    app = BUNDLE(coll, name='Vinkulum Studio.app', bundle_identifier='org.vinkulum.studio',
+                 version='0.4.0', info_plist={'NSHighResolutionCapable': True,
+                 'LSMinimumSystemVersion': '14.0', 'CFBundleShortVersionString': '0.4.0'})

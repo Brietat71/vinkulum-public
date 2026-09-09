@@ -1,8 +1,20 @@
 # Contribuer à Vinkulum
 
+**New here?** Start with the [contributor projects](docs/CONTRIBUTOR_PROJECTS.md):
+concrete first deliverables for CAD, dynamics, Pinocchio, numerical verification,
+Rust performance, Qt and documentation. Contributions can be discussed in English
+or French. Describe the problem, your reference and how the result can be checked.
+
 Vinkulum est un noyau multicorps généraliste en phase alpha. Les contributions
 peuvent porter sur un défaut reproductible, une référence physique indépendante,
 une preuve, une documentation ou une amélioration mesurée des performances.
+
+Pour Studio, suivre [l'installation locale](apps/studio/README.md) et exécuter
+`PY="$VIRTUAL_ENV/bin/python" bash ci/studio.sh`. Les modifications de la CAD
+doivent utiliser [l'environnement OCCT 8 adapté](docs/STUDIO_CAD.md). Les retouches
+Python/Qt se vérifient depuis les sources ; réserver le binaire autonome aux
+livraisons. Pour un nouveau solveur, commencer par un contrat de conversion et
+un cas de référence, comme dans le [plan Pinocchio](docs/PINOCCHIO_INTEGRATION.md).
 
 Ouvrir une issue avec la version, la plateforme, un modèle minimal, le résultat
 observé et le résultat attendu avec sa source. Pour un problème numérique,

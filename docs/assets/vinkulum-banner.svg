@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="300" viewBox="0 0 1280 300" role="img" aria-labelledby="title desc">
+  <title id="title">Vinkulum — the open engineering workbench</title>
+  <desc id="desc">A connected mechanism beside the Vinkulum wordmark. Design, simulate, verify.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#11151e"/><stop offset="1" stop-color="#222b3a"/></linearGradient>
+    <linearGradient id="rod"><stop stop-color="#c8d9f5"/><stop offset="1" stop-color="#7598ca"/></linearGradient>
+  </defs>
+  <rect width="1280" height="300" rx="20" fill="url(#bg)"/>
+  <g fill="none" stroke="#425773" opacity=".25"><path d="M750 230h460M790 190h420M830 150h380M870 110h340M910 70h300M800 250l160-200M900 250l140-200M1000 250l120-200M1100 250l100-200"/></g>
+  <g stroke-linecap="round"><path d="M870 75l100 150 165-128" fill="none" stroke="url(#rod)" stroke-width="17"/>
+    <path d="M870 75l265 22" stroke="#90a7c8" stroke-width="2" stroke-dasharray="5 8"/>
+    <g fill="#192230" stroke="#b8d0f6" stroke-width="3"><circle cx="870" cy="75" r="13"/><circle cx="970" cy="225" r="13"/><circle cx="1135" cy="97" r="13"/></g>
+    <circle cx="970" cy="225" r="5" fill="#ddb979"/>
+  </g>
+  <text x="64" y="112" fill="#f1f5fc" font-family="Inter,Arial,sans-serif" font-size="60" font-weight="600" letter-spacing="-2">Vinkulum</text>
+  <text x="67" y="160" fill="#c0cfe3" font-family="Inter,Arial,sans-serif" font-size="25">The open engineering workbench.</text>
+  <text x="68" y="231" fill="#90abd3" font-family="Inter,Arial,sans-serif" font-size="15" letter-spacing="3">DESIGN  /  SIMULATE  /  VERIFY</text>
+</svg>

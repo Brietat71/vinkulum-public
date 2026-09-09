@@ -2,6 +2,11 @@ import sys
 
 
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == "--cad-worker":
+        from .cad_worker import main as cad_main
+
+        del sys.argv[1]
+        return cad_main()
     if len(sys.argv) > 1 and sys.argv[1] == "--worker":
         from .worker import main as worker_main
 

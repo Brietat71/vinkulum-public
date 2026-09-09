@@ -1,0 +1,86 @@
+test_failed_cad_process_keeps_document (test_cad.CadDesktopRecipe.test_failed_cad_process_keeps_document) ... ok
+test_real_cad_process_then_mechanical_worker_and_render (test_cad.CadDesktopRecipe.test_real_cad_process_then_mechanical_worker_and_render) ... ok
+test_actual_occt_version_and_analytic_box_sphere_cylinder (test_cad.CadKernelRecipe.test_actual_occt_version_and_analytic_box_sphere_cylinder) ... Fontconfig warning: "/usr/share/fontconfig/conf.avail/05-reset-dirs-sample.conf", line 6: unknown element "reset-dirs"
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1242: DeprecationWarning: Due to '_pack_', the 'Triangle' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Triangle(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1249: DeprecationWarning: Due to '_pack_', the 'TriangleProperties' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class TriangleProperties(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1257: DeprecationWarning: Due to '_pack_', the 'Position' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Position(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1264: DeprecationWarning: Due to '_pack_', the 'Position2D' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Position2D(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1271: DeprecationWarning: Due to '_pack_', the 'CompositeConstituent' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class CompositeConstituent(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1279: DeprecationWarning: Due to '_pack_', the 'MultiPropertyLayer' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class MultiPropertyLayer(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1287: DeprecationWarning: Due to '_pack_', the 'Tex2Coord' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Tex2Coord(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1295: DeprecationWarning: Due to '_pack_', the 'Transform' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Transform(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1302: DeprecationWarning: Due to '_pack_', the 'Box' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Box(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1310: DeprecationWarning: Due to '_pack_', the 'Color' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Color(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1320: DeprecationWarning: Due to '_pack_', the 'Beam' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Beam(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1329: DeprecationWarning: Due to '_pack_', the 'Ball' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Ball(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1337: DeprecationWarning: Due to '_pack_', the 'Vector' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Vector(ctypes.Structure):
+/tmp/vinkulum-cad-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1344: DeprecationWarning: Due to '_pack_', the 'Matrix4x4' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Matrix4x4(ctypes.Structure):
+ok
+test_boolean_volume_and_failed_operation (test_cad.CadKernelRecipe.test_boolean_volume_and_failed_operation) ... ok
+test_extrusion_center_and_mass_scaling (test_cad.CadKernelRecipe.test_extrusion_center_and_mass_scaling) ... ok
+test_fillet_and_rotated_inertia (test_cad.CadKernelRecipe.test_fillet_and_rotated_inertia) ... ok
+test_project_brep_persistence_and_invalid_mesh (test_cad.CadKernelRecipe.test_project_brep_persistence_and_invalid_mesh) ... ok
+test_rebase_attachments_preserves_world_and_history (test_cad.CadKernelRecipe.test_rebase_attachments_preserves_world_and_history) ... ok
+test_step_round_trip_and_unit_conversion (test_cad.CadKernelRecipe.test_step_round_trip_and_unit_conversion) ... ok
+test_budget_scales_with_bodies (test_document.MechanicalDocument.test_budget_scales_with_bodies) ... ok
+test_g0_import_preserves_original_inertia_and_parameters (test_document.MechanicalDocument.test_g0_import_preserves_original_inertia_and_parameters) ... ok
+test_homogeneous_inertias_and_physical_custom_tensor (test_document.MechanicalDocument.test_homogeneous_inertias_and_physical_custom_tensor) ... ok
+test_inputs_are_deeply_immutable (test_document.MechanicalDocument.test_inputs_are_deeply_immutable) ... ok
+test_joint_frames_and_allowed_free_translation (test_document.MechanicalDocument.test_joint_frames_and_allowed_free_translation) ... ok
+test_json_round_trip_and_unknown_types (test_document.MechanicalDocument.test_json_round_trip_and_unknown_types) ... ok
+test_laws_and_invalid_tables (test_document.MechanicalDocument.test_laws_and_invalid_tables) ... ok
+test_move_invalidates_joint_undo_restores_with_new_revision (test_document.MechanicalDocument.test_move_invalidates_joint_undo_restores_with_new_revision) ... ok
+test_rename_reorder_and_delete_preserve_references (test_document.MechanicalDocument.test_rename_reorder_and_delete_preserve_references) ... ok
+test_author_save_run_edit_cancel_and_captured_scene (test_editor3d.EditorRecipe.test_author_save_run_edit_cancel_and_captured_scene) ... ok
+test_double_pendulum_authored_through_properties_and_joint_dialogs (test_editor3d.EditorRecipe.test_double_pendulum_authored_through_properties_and_joint_dialogs) ... ok
+test_pending_fields_selection_and_drag_survive_completion (test_editor3d.EditorRecipe.test_pending_fields_selection_and_drag_survive_completion) ... ok
+test_replacing_visible_result_updates_scene_before_slider_signals (test_editor3d.EditorRecipe.test_replacing_visible_result_updates_scene_before_slider_signals) ... ok
+test_commanded_slider_initial_velocity_and_motion (test_mechanism.MechanismAdapter.test_commanded_slider_initial_velocity_and_motion) ... ok
+test_double_pendulum_against_independent_lagrange_equations (test_mechanism.MechanismAdapter.test_double_pendulum_against_independent_lagrange_equations) ... 
+Double pendulum maximum angle errors: [0.000981345933501021, 0.0002454339142479167, 6.137847110349037e-05]
+ok
+test_invalid_anchores_refused_before_build (test_mechanism.MechanismAdapter.test_invalid_anchores_refused_before_build) ... ok
+test_pendulum_adapter_and_immutable_arrays (test_mechanism.MechanismAdapter.test_pendulum_adapter_and_immutable_arrays) ... ok
+test_result_identity_hash_and_archive_shape_guards (test_mechanism.MechanismAdapter.test_result_identity_hash_and_archive_shape_guards) ... ok
+test_slider_crank_against_geometric_closure (test_mechanism.MechanismAdapter.test_slider_crank_against_geometric_closure) ... ok
+test_temporal_load_and_export (test_mechanism.MechanismAdapter.test_temporal_load_and_export) ... ok
+test_GUI02_GUI07_strict_inputs_and_version (test_studio.Contracts.test_GUI02_GUI07_strict_inputs_and_version) ... ok
+test_GUI05_reject_mismatched_corrupt_and_partial_result (test_studio.Contracts.test_GUI05_reject_mismatched_corrupt_and_partial_result) ... ok
+test_GUI07_export_records_captured_inputs_and_units (test_studio.Contracts.test_GUI07_export_records_captured_inputs_and_units) ... ok
+test_T07_reference_and_temporal_refinement (test_studio.Contracts.test_T07_reference_and_temporal_refinement) ... 
+T07 errors(rad): [0.001161747282113712, 0.00029058330339071237, 7.26491249149197e-05] ratios: [3.9979836024909194, 3.999818356119473]
+ok
+test_T10_failed_replace_preserves_previous_file (test_studio.Contracts.test_T10_failed_replace_preserves_previous_file) ... ok
+test_GUI05_controlled_failure_cancel_and_crash_keep_result (test_studio.GuiRecipe.test_GUI05_controlled_failure_cancel_and_crash_keep_result) ... ok
+test_GUI05_worker_unavailable_reenables_launch (test_studio.GuiRecipe.test_GUI05_worker_unavailable_reenables_launch) ... ok
+test_T00_GUI01_to_GUI08_real_window_recipe (test_studio.GuiRecipe.test_T00_GUI01_to_GUI08_real_window_recipe) ... ok
+test_scene_picking_manipulation_result_and_shutdown (test_viewport3d.ViewportTests.test_scene_picking_manipulation_result_and_shutdown) ... ok
+test_memory_budget_evicts_oldest_without_copying_arrays (test_workspace.RunArchiveContracts.test_memory_budget_evicts_oldest_without_copying_arrays) ... ok
+test_comparison_keeps_run_identities_samples_and_model_differences (test_workspace.WorkspaceRecipe.test_comparison_keeps_run_identities_samples_and_model_differences) ... ok
+test_curve_zoom_and_native_samples_remain_exact (test_workspace.WorkspaceRecipe.test_curve_zoom_and_native_samples_remain_exact) ... ok
+test_inspector_resize_and_focus_preserve_exact_numbers (test_workspace.WorkspaceRecipe.test_inspector_resize_and_focus_preserve_exact_numbers) ... ok
+test_native_time_sync_and_readonly_result_after_pending_edit (test_workspace.WorkspaceRecipe.test_native_time_sync_and_readonly_result_after_pending_edit) ... ok
+test_palette_keyboard_search_and_disabled_commands (test_workspace.WorkspaceRecipe.test_palette_keyboard_search_and_disabled_commands) ... ok
+test_save_discard_cancel_protect_document (test_workspace.WorkspaceRecipe.test_save_discard_cancel_protect_document) ... ok
+test_search_visibility_isolation_and_transform_are_view_state (test_workspace.WorkspaceRecipe.test_search_visibility_isolation_and_transform_are_view_state) ... ok
+test_vector_display_never_rounds_untouched_model_components (test_workspace.WorkspaceRecipe.test_vector_display_never_rounds_untouched_model_components) ... ok
+test_workspace_persistence_and_small_window (test_workspace.WorkspaceRecipe.test_workspace_persistence_and_small_window) ... ok
+
+----------------------------------------------------------------------
+Ran 48 tests in 27.733s
+
+OK

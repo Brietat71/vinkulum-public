@@ -109,7 +109,9 @@ jobs:
           VINKULUM_3D_SCREENSHOT: ${{ runner.temp }}/viewport-3d.png
         run: |
           python -m pip wheel --no-deps ./apps/studio --wheel-dir "$RUNNER_TEMP/studio-dist"
-          "$RUNNER_TEMP/roue-venv/bin/python" -m pip install "$RUNNER_TEMP"/studio-dist/*.whl 'scipy==1.18.1'
+          python ci/prepare_cad.py "$RUNNER_TEMP/cad-sources"
+          "$RUNNER_TEMP/roue-venv/bin/python" -m pip install "$RUNNER_TEMP"/studio-dist/*.whl "$RUNNER_TEMP/cad-sources/build123d-0.11.1" "$RUNNER_TEMP/cad-sources/ocpsvg-0.6.0" 'scipy==1.18.1'
+          "$RUNNER_TEMP/roue-venv/bin/python" -c 'import OCP, build123d; assert int(OCP.__version__.split(".")[0]) >= 8'
           cd "$RUNNER_TEMP"
           PY="$RUNNER_TEMP/roue-venv/bin/python" bash "$GITHUB_WORKSPACE/ci/studio.sh" 2>&1 | tee "$RUNNER_TEMP/studio-3d.log"
       - name: Conserver la recette Studio

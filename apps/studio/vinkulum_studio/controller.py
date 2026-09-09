@@ -10,7 +10,7 @@ import zipfile
 from PySide6.QtCore import QObject, QProcess, QProcessEnvironment, QTimer, Signal
 
 from .model import MAX_RESULT_BYTES, Result, read_json, write_json
-from .document import Project
+from .document import MAX_PROJECT_BYTES, Project
 from .mechanism import MechanicalResult
 
 
@@ -121,7 +121,9 @@ class Controller(QObject):
             elif status == QProcess.ExitStatus.CrashExit:
                 message = f"Le processus de calcul s'est interrompu anormalement (code {code})."
             else:
-                data = read_json(self._output, MAX_RESULT_BYTES)
+                data = read_json(
+                    self._output, max(MAX_RESULT_BYTES, MAX_PROJECT_BYTES * 2)
+                )
                 if code != 0:
                     detail = str(data.get("message", "Erreur sans diagnostic"))[:2000]
                     message = f"Échec du calcul : {detail}"

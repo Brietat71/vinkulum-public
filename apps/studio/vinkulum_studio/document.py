@@ -10,6 +10,8 @@ import uuid
 
 import numpy as np
 
+from .cad_data import CadGeometry
+
 from .model import Parameters, finite_number, load_parameters, read_json, write_json
 
 IDENTITY = (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)
@@ -18,6 +20,7 @@ MAX_BODIES = 32
 MAX_JOINTS = 64
 MAX_LOADS = 128
 MAX_BODY_SAMPLES = 100_000
+MAX_PROJECT_BYTES = 32 * 1024 * 1024
 
 
 def new_id():
@@ -109,17 +112,18 @@ class Body:
     orientation: tuple = IDENTITY
     inertia_mode: str = "homogeneous"
     explicit_inertia: tuple = IDENTITY
+    cad: CadGeometry | None = None
 
     def __post_init__(self):
         named(self.id, self.name)
-        if self.shape not in {"box", "cylinder", "sphere"}:
+        if self.shape not in {"box", "cylinder", "sphere", "cad"}:
             raise ValueError("Primitive inconnue.")
         object.__setattr__(
             self,
             "dimensions",
             vector(
                 self.dimensions,
-                {"box": 3, "cylinder": 2, "sphere": 1}[self.shape],
+                {"box": 3, "cylinder": 2, "sphere": 1, "cad": 3}[self.shape],
                 "Dimensions",
             ),
         )
@@ -134,6 +138,10 @@ class Body:
         )
         if self.inertia_mode not in {"homogeneous", "explicit"}:
             raise ValueError("Mode d'inertie inconnu.")
+        if (self.shape == "cad" and not isinstance(self.cad, CadGeometry)) or (
+            self.shape != "cad" and self.cad is not None
+        ):
+            raise ValueError("Géométrie CAD incohérente avec le corps.")
         if self.inertia_mode == "explicit":
             j = np.array(self.explicit_inertia).reshape(3, 3)
             if (
@@ -150,6 +158,8 @@ class Body:
     def inertia(self):
         if self.inertia_mode == "explicit":
             return self.explicit_inertia
+        if self.cad is not None:
+            return tuple(self.mass * v for v in self.cad.unit_inertia_m2)
         if self.shape == "box":
             x, y, z = self.dimensions
             diagonal = (
@@ -167,9 +177,15 @@ class Body:
 
     @classmethod
     def from_dict(cls, data):
+        # Schema 1 bodies predate the optional BREP payload.
+        if isinstance(data, dict) and "cad" not in data:
+            data = {**data, "cad": None}
         data = dict(strict(data, cls))
         for key in ("dimensions", "position", "orientation", "explicit_inertia"):
             data[key] = tuple(data[key])
+        data["cad"] = (
+            None if data["cad"] is None else CadGeometry.from_dict(data["cad"])
+        )
         return cls(**data)
 
 
@@ -284,6 +300,14 @@ class Project:
                     f"Collection {kind.__name__} invalide ou limite {limit} dépassée."
                 )
         ids = [o.id for o in (*self.bodies, *self.joints, *self.loads)]
+        cad_parts = [b.cad for b in self.bodies if b.cad is not None]
+        if (
+            sum(len(c.brep_mm) for c in cad_parts) > 4_000_000
+            or sum(len(c.triangles) + len(c.vertices_m) for c in cad_parts) > 100_000
+        ):
+            raise ValueError(
+                "Budget CAD du document dépassé (4 Mo BREP, 100 000 éléments de maillage)."
+            )
         if len(ids) != len(set(ids)):
             raise ValueError("Identités dupliquées.")
         if not isinstance(self.deleted, tuple) or len(set(self.deleted)) != len(
@@ -453,24 +477,30 @@ class History:
 
 
 def save_project(path, project):
+    data = asdict(project)
+    for body in data["bodies"]:
+        if body["cad"] is None:
+            del body["cad"]
     write_json(
         path,
         {
             "format": "vinkulum-studio-project",
-            "schema_version": 1,
-            "project": asdict(project),
+            "schema_version": 2
+            if any(b.cad is not None for b in project.bodies)
+            else 1,
+            "project": data,
         },
     )
 
 
 def load_project(path):
-    data = read_json(path, 4 * 1024 * 1024)
+    data = read_json(path, MAX_PROJECT_BYTES)
     if (
         not isinstance(data, dict)
         or set(data) != {"format", "schema_version", "project"}
         or data["format"] != "vinkulum-studio-project"
         or type(data["schema_version"]) is not int
-        or data["schema_version"] != 1
+        or data["schema_version"] not in (1, 2)
     ):
         raise ValueError(
             "Format de projet inconnu. Utilisez l'import G0 pour un ancien pendule."
@@ -506,3 +536,33 @@ def pendulum(parameters=Parameters()):
 
 def import_g0(path):
     return pendulum(load_parameters(path))
+
+
+def replace_cad_body(project, body):
+    """Rebase attachment coordinates when a CAD edit moves the mass centre."""
+    old = next((b for b in project.bodies if b.id == body.id), None)
+    if old is None:
+        return project.replace_object(body)
+    old_r = np.array(old.orientation).reshape(3, 3)
+    new_r = np.array(body.orientation).reshape(3, 3)
+    delta = np.array(old.position) - body.position
+
+    def point(p):
+        return tuple(new_r.T @ (old_r @ p + delta))
+
+    def frame(r):
+        return tuple((new_r.T @ old_r @ np.array(r).reshape(3, 3)).flat)
+
+    joints = []
+    for joint in project.joints:
+        values = {}
+        for side in ("a", "b"):
+            if getattr(joint, side) == body.id:
+                values["p" + side] = point(getattr(joint, "p" + side))
+                values["r" + side] = frame(getattr(joint, "r" + side))
+        joints.append(replace(joint, **values))
+    loads = tuple(
+        replace(load, point=point(load.point)) if load.body == body.id else load
+        for load in project.loads
+    )
+    return replace(project.replace_object(body), joints=tuple(joints), loads=loads)

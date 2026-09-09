@@ -3,3 +3,6 @@ target/
 __pycache__/
 .venv/
 .venv*/
+dist/
+build/studio-*/
+build/cad-*/

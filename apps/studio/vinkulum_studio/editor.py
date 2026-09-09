@@ -26,7 +26,7 @@ from PySide6.QtWidgets import (
 
 from . import __version__
 from .controller import Controller
-from .controls import VectorField, line_icon
+from .controls import NumberField, VectorField, line_icon
 from .dialogs import JointDialog, LawDialog, numbers
 from .document import (
     Body,
@@ -121,6 +121,50 @@ class EditorWindow(Workspace, QMainWindow):
     def project(self):
         return self.history.current
 
+    def open_cad(self):
+        if self.mode.currentIndex() != 0 or self.controller.process is not None:
+            return
+        if not self.apply_properties():
+            return
+        from importlib.metadata import PackageNotFoundError, version
+
+        try:
+            if int(version("cadquery-ocp-novtk").split(".")[0]) < 8:
+                raise ValueError("OCCT 8 minimum requis.")
+            version("build123d")
+        except PackageNotFoundError, ValueError:
+            self.status.setText(
+                "Module CAD indisponible : installez l’environnement Studio CAD (OCCT 8 minimum)."
+            )
+            return
+        from .cad_dialog import CadDialog
+        from .document import replace_cad_body
+        from .model import atomic_text
+
+        dialog = CadDialog(self.project, self.selection, self)
+        captured = self.project
+        if dialog.exec() != QDialog.DialogCode.Accepted or not dialog.result_data:
+            return
+        try:
+            if "step" in dialog.result_data:
+                atomic_text(dialog.output_path, dialog.result_data["step"])
+                self.status.setText(
+                    "Pièce exportée en STEP, pose du monde et unités millimétriques incluses."
+                )
+            else:
+                if self.project != captured:
+                    raise ValueError(
+                        "Le document a changé pendant l’opération CAD ; résultat non appliqué."
+                    )
+                body = Body.from_dict(dialog.result_data["body"])
+                self._commit(replace_cad_body(self.project, body), fit=True)
+                self.select_object(body.id)
+                self.status.setText(
+                    "Solide CAD ajouté · masse et inertie calculées sur le BREP, en unités SI."
+                )
+        except (ValueError, OSError) as error:
+            self.status.setText(str(error))
+
     @property
     def display_project(self):
         return (
@@ -156,9 +200,12 @@ class EditorWindow(Workspace, QMainWindow):
                 self.tree.addTopLevelItem(group)
                 for obj in objects:
                     kind = (
-                        {"box": "Boîte", "sphere": "Sphère", "cylinder": "Cylindre"}[
-                            obj.shape
-                        ]
+                        {
+                            "box": "Boîte",
+                            "sphere": "Sphère",
+                            "cylinder": "Cylindre",
+                            "cad": "Solide CAD",
+                        }[obj.shape]
                         if isinstance(obj, Body)
                         else obj.kind
                         if isinstance(obj, Joint)
@@ -216,15 +263,20 @@ class EditorWindow(Workspace, QMainWindow):
             if isinstance(value, tuple)
             else repr(value)
         )
-        if isinstance(value, tuple) and len(value) > 1:
+        if isinstance(value, tuple):
             axes = (
                 tuple("XYZ")
                 if len(value) == 3
                 else ("R", "H")
                 if len(value) == 2
+                else ("R",)
+                if len(value) == 1
                 else tuple(str(i + 1) for i in range(len(value)))
             )
             field = VectorField(value, axes)
+            text = field.text()
+        elif isinstance(value, (int, float)):
+            field = NumberField(value)
             text = field.text()
         else:
             field = QLineEdit(text)
@@ -279,9 +331,22 @@ class EditorWindow(Workspace, QMainWindow):
                         "box": "Dimensions [m]",
                         "sphere": "Rayon [m]",
                         "cylinder": "Rayon, hauteur [m]",
+                        "cad": "Encombrement BREP [m]",
                     }[obj.shape],
                     obj.dimensions,
                 )
+                if obj.cad:
+                    self.fields["dimensions"].setEnabled(False)
+                    summary = QLabel(
+                        f"Volume : {obj.cad.volume_m3:.6g} m³ · Repère au centre de masse"
+                    )
+                    summary.setToolTip(
+                        f"Géométrie exacte BREP · OCCT {obj.cad.occt_version}\n"
+                        f"build123d {obj.cad.build123d_version}\nVolume exact : {obj.cad.volume_m3!r} m³"
+                    )
+                    summary.setWordWrap(True)
+                    summary.setObjectName("muted")
+                    self.form.addRow(summary)
                 self._text("mass", "Masse [kg]", obj.mass)
                 self._section("Transformation · monde")
                 self._text("position", "Position [m]", obj.position)
@@ -386,6 +451,8 @@ class EditorWindow(Workspace, QMainWindow):
             return field.currentData()
         if isinstance(field, VectorField):
             return field.values()
+        if isinstance(field, NumberField):
+            return field.value()
         text = field.text()
         if text == self.original_fields[key][0]:
             return self.original_fields[key][1]
@@ -414,8 +481,8 @@ class EditorWindow(Workspace, QMainWindow):
                         explicit_inertia=self._value("explicit_inertia", 9),
                     )
                     if (
-                        self.fields["orientation"].text()
-                        != self.original_fields["orientation"][0]
+                        self.fields["orientation"].values()
+                        != self.original_fields["orientation"][1]
                     ):
                         values["orientation"] = euler_matrix(
                             self._value("orientation", 3)
@@ -428,7 +495,7 @@ class EditorWindow(Workspace, QMainWindow):
                         pb=self._value("pb", 3),
                     )
                     for key in ("ra", "rb"):
-                        if self.fields[key].text() != self.original_fields[key][0]:
+                        if self.fields[key].values() != self.original_fields[key][1]:
                             values[key] = euler_matrix(self._value(key, 3))
                 else:
                     values.update(

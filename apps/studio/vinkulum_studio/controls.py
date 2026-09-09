@@ -5,7 +5,86 @@ from functools import lru_cache
 from PySide6.QtCore import QByteArray, Qt, Signal
 from PySide6.QtGui import QIcon, QPainter, QPixmap
 from PySide6.QtSvg import QSvgRenderer
-from PySide6.QtWidgets import QGridLayout, QHBoxLayout, QLabel, QLineEdit, QWidget
+from PySide6.QtWidgets import (
+    QGridLayout,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QStyle,
+    QStyleOptionFrame,
+    QWidget,
+)
+
+
+class NumberField(QLineEdit):
+    """Fit a numeric preview without changing the exact value or editing text."""
+
+    def __init__(self, value, parent=None):
+        super().__init__(parent)
+        self._original = value
+        self._raw = repr(float(value))
+        self._edited = False
+        self.setMinimumWidth(24)
+        self.textEdited.connect(self._capture)
+        self._present()
+
+    def value(self):
+        return float(self._raw) if self._edited else self._original
+
+    def _capture(self, text):
+        self._raw = text
+        self._edited = True
+        self.setToolTip("Valeur saisie : " + text)
+
+    def setText(self, text):
+        # Programmatic edits have the same numeric semantics as keyboard edits.
+        self._capture(text)
+        self._present()
+
+    def available_width(self):
+        option = QStyleOptionFrame()
+        self.initStyleOption(option)
+        rect = self.style().subElementRect(
+            QStyle.SubElement.SE_LineEditContents, option, self
+        )
+        margins = self.textMargins()
+        return max(0, rect.width() - margins.left() - margins.right() - 4)
+
+    def _present(self):
+        text = self._raw
+        if not self.hasFocus():
+            try:
+                value = self.value()
+            except ValueError:
+                pass  # Keep invalid input visible so the user can correct it.
+            else:
+                text = "…"
+                for digits in range(6, 0, -1):
+                    candidate = format(value, f".{digits}g")
+                    if "e" in candidate:
+                        mantissa, exponent = candidate.split("e")
+                        candidate = f"{mantissa}e{int(exponent):+d}"
+                    if (
+                        self.fontMetrics().horizontalAdvance(candidate)
+                        <= self.available_width()
+                    ):
+                        text = candidate
+                        break
+        super().setText(text)
+        self.setCursorPosition(0)
+        self.setToolTip("Valeur exacte : " + self._raw)
+
+    def focusInEvent(self, event):
+        super().focusInEvent(event)
+        self._present()
+
+    def focusOutEvent(self, event):
+        super().focusOutEvent(event)
+        self._present()
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self._present()
 
 
 class VectorField(QWidget):
@@ -15,27 +94,23 @@ class VectorField(QWidget):
         super().__init__(parent)
         layout = QGridLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
-        layout.setHorizontalSpacing(6)
-        layout.setVerticalSpacing(6)
+        layout.setHorizontalSpacing(4)
+        layout.setVerticalSpacing(4)
         self.components = []
         self.original_values = tuple(values)
-        self.original_texts = []
         for i, (value, label) in enumerate(zip(values, labels)):
             cell = QWidget()
             cell.setObjectName("vector_cell")
             row = QHBoxLayout(cell)
-            row.setContentsMargins(7, 0, 0, 0)
-            row.setSpacing(3)
+            row.setContentsMargins(5, 0, 0, 0)
+            row.setSpacing(2)
             axis = QLabel(label)
             axis.setObjectName("axis_label")
             row.addWidget(axis)
-            field = QLineEdit(format(value, ".6g"))
-            self.original_texts.append(field.text())
-            field.setCursorPosition(0)
+            field = NumberField(value)
             field.setObjectName("component")
             field.setMinimumWidth(20)
             field.setAccessibleName(label)
-            field.setToolTip(f"{label} · {value:.17g}")
             field.textEdited.connect(lambda _: self.textEdited.emit(self.text()))
             row.addWidget(field, 1)
             self.components.append(field)
@@ -46,12 +121,7 @@ class VectorField(QWidget):
         return ", ".join(field.text() for field in self.components)
 
     def values(self):
-        return tuple(
-            original if field.text() == text else float(field.text())
-            for field, text, original in zip(
-                self.components, self.original_texts, self.original_values
-            )
-        )
+        return tuple(field.value() for field in self.components)
 
     def setText(self, text):
         values = text.split(",")
@@ -67,6 +137,7 @@ class VectorField(QWidget):
 
 
 PATHS = {
+    "cad": '<path d="M12 2l9 5v10l-9 5-9-5V7z M3 7l9 5 9-5 M12 12v10"/><ellipse cx="12" cy="7" rx="3" ry="1.6"/>',
     "open": '<path d="M3 7h6l2 3h10l-3 10H3z M3 7V4h7l2 3h7v3"/>',
     "save": '<path d="M4 3h14l3 3v15H3V3z M7 3v6h10V3 M7 21v-8h10v8"/>',
     "undo": '<path d="M9 5L3 11l6 6 M3 11h11a6 6 0 0 1 6 6"/>',

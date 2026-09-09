@@ -1,8 +1,6 @@
 name: Studio macOS Apple Silicon DMG
 on:
   workflow_dispatch:
-  push:
-    branches: [build/studio-macos-dmg]
 permissions:
   contents: read
 concurrency:
@@ -36,7 +34,8 @@ jobs:
           rustup default 1.98.0
           python -m pip install 'maturin>=1.15,<2' 'pyinstaller==6.22.2'
           maturin build --release --locked --interpreter python --out dist/wheels
-          python -m pip install dist/wheels/*.whl './apps/studio[test]'
+          python ci/prepare_cad.py build/cad-sources
+          python -m pip install dist/wheels/*.whl build/cad-sources/build123d-0.11.1 build/cad-sources/ocpsvg-0.6.0 './apps/studio[cad,test]'
       - name: Test native mechanics and desktop
         timeout-minutes: 5
         run: |
@@ -48,5 +47,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          tag="studio-v0.3.0-macos-${GITHUB_RUN_NUMBER}"
-          gh release create "$tag" dist/macos/*.dmg dist/macos/SHA256SUMS dist/macos/check/bundle-check.json dist/macos/check/scene.png --target "$GITHUB_SHA" --prerelease --title "Vinkulum Studio 0.3.0 — Apple Silicon preview ${GITHUB_RUN_NUMBER}" --notes-file apps/studio/packaging/RELEASE.md
+          tag="studio-v0.4.0-macos-${GITHUB_RUN_NUMBER}"
+          gh release create "$tag" dist/macos/*.dmg dist/macos/SHA256SUMS dist/macos/check/bundle-check.json dist/macos/check/scene.png --target "$GITHUB_SHA" --prerelease --title "Vinkulum Studio 0.4.0 — Apple Silicon preview ${GITHUB_RUN_NUMBER}" --notes-file apps/studio/packaging/RELEASE.md

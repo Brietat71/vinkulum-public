@@ -1,0 +1,243 @@
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -8,7 +8,7 @@
+ 
+ [project]
+ name = "build123d"
+-dynamic = ["version"]
++version = "0.11.1+vinkulum.occt8"
+ authors = [
+     {name = "Roger Maitland", email = "gumyr9@gmail.com"},
+ ]
+@@ -33,15 +33,15 @@
+ ]
+ 
+ dependencies = [
+-    "cadquery-ocp-novtk >= 7.9, < 8.0",
++    "cadquery-ocp-novtk == 8.0.1.0.0",
+     "typing_extensions >= 4.6.0, < 5",
+     "numpy >= 2, < 3",
+     "svgpathtools >= 1.5.1, < 2",
+     "anytree >= 2.8.0, < 3",
+     "ezdxf >= 1.1.0, < 2",
+     "ipython >= 8.0.0, < 10",
+-    "ocpsvg >= 0.6, < 0.7",
+-    "ocp_gordon >= 0.2, < 0.3",
++    "ocpsvg == 0.6.0+vinkulum.occt8",
++    "ocp_gordon == 0.3.1",
+     "trianglesolver",
+     "sympy",
+     "scipy",
+@@ -82,7 +82,7 @@
+ 
+ # typing stubs for the OCP CAD kernel
+ stubs = [
+-    "cadquery-ocp-stubs >= 7.9, < 8.0",
++    "cadquery-ocp-stubs >= 8.0, < 8.1",
+ ]
+ 
+ # dependencies to build the docs
+@@ -108,8 +108,6 @@
+ # exclude build123d._dev from wheels
+ exclude = ["build123d._dev"]
+ 
+-[tool.setuptools_scm]
+-write_to = "src/build123d/_version.py"
+ 
+ [tool.black]
+ target-version = ["py310", "py311", "py312", "py313", "py314"]
+--- a/src/build123d/exporters3d.py
++++ b/src/build123d/exporters3d.py
+@@ -57,7 +57,7 @@
+     TCollection_ExtendedString,
+     TCollection_HAsciiString,
+ )
+-from OCP.TColStd import TColStd_IndexedDataMapOfStringString
++from OCP.collections import IndexedDataMap_TCollection_AsciiString_TCollection_AsciiString as TColStd_IndexedDataMapOfStringString
+ from OCP.TDataStd import TDataStd_Name
+ from OCP.TDF import TDF_Label
+ from OCP.TDocStd import TDocStd_Document
+--- a/src/build123d/geometry.py
++++ b/src/build123d/geometry.py
+@@ -1094,7 +1094,8 @@
+         if bounding_box.IsVoid():
+             x_min, y_min, z_min, x_max, y_max, z_max = (0.0,) * 6
+         else:
+-            x_min, y_min, z_min, x_max, y_max, z_max = bounding_box.Get()
++            x_min, y_min, z_min = bounding_box.CornerMin().Coord()
++            x_max, y_max, z_max = bounding_box.CornerMax().Coord()
+         self.wrapped = None if bounding_box.IsVoid() else bounding_box
+         self.min = Vector(x_min, y_min, z_min)  #: location of minimum corner
+         self.max = Vector(x_max, y_max, z_max)  #: location of maximum corner
+--- a/src/build123d/importers.py
++++ b/src/build123d/importers.py
+@@ -49,7 +49,8 @@
+ from OCP.STEPCAFControl import STEPCAFControl_Reader
+ from OCP.TCollection import TCollection_AsciiString, TCollection_ExtendedString
+ from OCP.TDataStd import TDataStd_Name
+-from OCP.TDF import TDF_Label, TDF_LabelSequence
++from OCP.TDF import TDF_Label
++from OCP.collections import Sequence_TDF_Label as TDF_LabelSequence
+ from OCP.TDocStd import TDocStd_Document
+ from OCP.TopAbs import TopAbs_FACE
+ from OCP.TopExp import TopExp_Explorer
+--- a/src/build123d/text.py
++++ b/src/build123d/text.py
+@@ -26,7 +26,7 @@
+     Font_SystemFont,
+ )
+ from OCP.TCollection import TCollection_AsciiString
+-from OCP.TColStd import TColStd_SequenceOfHAsciiString
++from OCP.collections import Sequence_TCollection_HAsciiString as TColStd_SequenceOfHAsciiString
+ 
+ from build123d.build_enums import FontStyle
+ 
+--- a/src/build123d/topology/composite.py
++++ b/src/build123d/topology/composite.py
+@@ -75,7 +75,7 @@
+     Graphic3d_VTA_TOPFIRSTLINE,
+ )
+ from OCP.GProp import GProp_GProps
+-from OCP.NCollection import NCollection_Utf8String
++from OCP.NCollection import NCollection_String as NCollection_Utf8String
+ from OCP.StdPrs import StdPrs_BRepTextBuilder as Font_BRepTextBuilder, StdPrs_BRepFont
+ from OCP.TopAbs import TopAbs_ShapeEnum
+ from OCP.TopoDS import (
+--- a/src/build123d/topology/one_d.py
++++ b/src/build123d/topology/one_d.py
+@@ -165,13 +165,13 @@
+ from OCP.ShapeAnalysis import ShapeAnalysis_FreeBounds
+ from OCP.ShapeFix import ShapeFix_Shape, ShapeFix_Wireframe
+ from OCP.Standard import Standard_ConstructionError
+-from OCP.TColgp import TColgp_Array1OfPnt, TColgp_Array1OfVec, TColgp_HArray1OfPnt
+-from OCP.TColStd import (
+-    TColStd_Array1OfInteger,
+-    TColStd_Array1OfReal,
+-    TColStd_HArray1OfBoolean,
+-    TColStd_HArray1OfReal,
+-)
++from OCP.collections import Array1_gp_Pnt as TColgp_Array1OfPnt
++from OCP.collections import Array1_gp_Vec as TColgp_Array1OfVec
++from OCP.collections import HArray1_gp_Pnt as TColgp_HArray1OfPnt
++from OCP.collections import Array1_int as TColStd_Array1OfInteger
++from OCP.collections import Array1_double as TColStd_Array1OfReal
++from OCP.collections import HArray1_bool as TColStd_HArray1OfBoolean
++from OCP.collections import HArray1_double as TColStd_HArray1OfReal
+ from OCP.TopAbs import TopAbs_Orientation, TopAbs_ShapeEnum
+ from OCP.TopExp import TopExp, TopExp_Explorer
+ from OCP.TopLoc import TopLoc_Location
+@@ -184,12 +184,10 @@
+     TopoDS_Vertex,
+     TopoDS_Wire,
+ )
+-from OCP.TopTools import (
+-    TopTools_HSequenceOfShape,
+-    TopTools_IndexedDataMapOfShapeListOfShape,
+-    TopTools_IndexedMapOfShape,
+-    TopTools_ListOfShape,
+-)
++from OCP.collections import HSequence_TopoDS_Shape as TopTools_HSequenceOfShape
++from OCP.collections import IndexedDataMap_TopoDS_Shape_List_TopoDS_Shape_TopTools_ShapeMapHasher as TopTools_IndexedDataMapOfShapeListOfShape
++from OCP.collections import IndexedMap_TopoDS_Shape_TopTools_ShapeMapHasher as TopTools_IndexedMapOfShape
++from OCP.collections import List_TopoDS_Shape as TopTools_ListOfShape
+ from scipy.optimize import minimize_scalar
+ from scipy.spatial import ConvexHull
+ from typing_extensions import Self, deprecated
+--- a/src/build123d/topology/shape_core.py
++++ b/src/build123d/topology/shape_core.py
+@@ -129,12 +129,10 @@
+     TopoDS_Vertex,
+     TopoDS_Wire,
+ )
+-from OCP.TopTools import (
+-    TopTools_IndexedDataMapOfShapeListOfShape,
+-    TopTools_ListOfShape,
+-    TopTools_SequenceOfShape,
+-    TopTools_ShapeMapHasher,
+-)
++from OCP.TopTools import TopTools_ShapeMapHasher
++from OCP.collections import IndexedDataMap_TopoDS_Shape_List_TopoDS_Shape_TopTools_ShapeMapHasher as TopTools_IndexedDataMapOfShapeListOfShape
++from OCP.collections import List_TopoDS_Shape as TopTools_ListOfShape
++from OCP.collections import Sequence_TopoDS_Shape as TopTools_SequenceOfShape
+ from typing_extensions import Self, deprecated
+ 
+ from build123d.build_enums import CenterOf, GeomType, Keep, SortBy, Transition
+--- a/src/build123d/topology/three_d.py
++++ b/src/build123d/topology/three_d.py
+@@ -98,7 +98,8 @@
+     TopoDS_Solid,
+     TopoDS_Wire,
+ )
+-from OCP.TopTools import TopTools_IndexedDataMapOfShapeListOfShape, TopTools_ListOfShape
++from OCP.collections import IndexedDataMap_TopoDS_Shape_List_TopoDS_Shape_TopTools_ShapeMapHasher as TopTools_IndexedDataMapOfShapeListOfShape
++from OCP.collections import List_TopoDS_Shape as TopTools_ListOfShape
+ from typing_extensions import Self
+ 
+ from build123d.build_enums import CenterOf, GeomType, Keep, Kind, Transition, Until
+--- a/src/build123d/topology/two_d.py
++++ b/src/build123d/topology/two_d.py
+@@ -115,20 +115,17 @@
+     Standard_TypeMismatch,
+ )
+ from OCP.StdFail import StdFail_NotDone
+-from OCP.TColgp import TColgp_Array1OfPnt, TColgp_HArray2OfPnt
+-from OCP.TColStd import (
+-    TColStd_Array1OfInteger,
+-    TColStd_Array1OfReal,
+-    TColStd_HArray2OfReal,
+-)
++from OCP.collections import Array1_gp_Pnt as TColgp_Array1OfPnt
++from OCP.collections import HArray2_gp_Pnt as TColgp_HArray2OfPnt
++from OCP.collections import Array1_int as TColStd_Array1OfInteger
++from OCP.collections import Array1_double as TColStd_Array1OfReal
++from OCP.collections import HArray2_double as TColStd_HArray2OfReal
+ from OCP.TopAbs import TopAbs_Orientation
+ from OCP.TopExp import TopExp
+ from OCP.TopoDS import TopoDS, TopoDS_Face, TopoDS_Shape, TopoDS_Shell, TopoDS_Solid
+-from OCP.TopTools import (
+-    TopTools_IndexedDataMapOfShapeListOfShape,
+-    TopTools_ListOfShape,
+-    TopTools_SequenceOfShape,
+-)
++from OCP.collections import IndexedDataMap_TopoDS_Shape_List_TopoDS_Shape_TopTools_ShapeMapHasher as TopTools_IndexedDataMapOfShapeListOfShape
++from OCP.collections import List_TopoDS_Shape as TopTools_ListOfShape
++from OCP.collections import Sequence_TopoDS_Shape as TopTools_SequenceOfShape
+ from ocp_gordon import interpolate_curve_network
+ from typing_extensions import Self, deprecated
+ 
+--- a/src/build123d/topology/utils.py
++++ b/src/build123d/topology/utils.py
+@@ -66,7 +66,7 @@
+ from OCP.ShapeFix import ShapeFix_Face, ShapeFix_Shape
+ from OCP.TopAbs import TopAbs_ShapeEnum
+ from OCP.TopExp import TopExp_Explorer
+-from OCP.TopTools import TopTools_ListOfShape
++from OCP.collections import List_TopoDS_Shape as TopTools_ListOfShape
+ from OCP.TopoDS import (
+     TopoDS,
+     TopoDS_Compound,
+--- a/src/build123d/version.py
++++ b/src/build123d/version.py
+@@ -1,20 +1,2 @@
+-"""
+-Export a version string.
+-"""
+-
+-try:
+-    try:
+-        from ._dev.scm_version import version  # pylint: disable=unused-import
+-    except ImportError:
+-        from ._version import version
+-except Exception:  # pylint: disable=broad-exception-caught
+-    import warnings
+-
+-    warnings.warn(
+-        f'could not determine {__name__.split(".", maxsplit=1)[0]} package version; '
+-        "this indicates a broken installation",
+-        stacklevel=2,
+-    )
+-    del warnings
+-
+-    version = "0.0.0"  # pylint: disable=invalid-name
++"""Version of the explicitly adapted Vinkulum OCCT 8 distribution."""
++version = "0.11.1+vinkulum.occt8"

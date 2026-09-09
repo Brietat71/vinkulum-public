@@ -123,6 +123,10 @@ class Workspace:
             )
         create.addSeparator()
         create.addAction(
+            self._action("cad", "Conception CAD…", self.open_cad, "Alt+G", design=True)
+        )
+        create.addSeparator()
+        create.addAction(
             self._action(
                 "joint",
                 "Ajouter une liaison…",
@@ -160,6 +164,12 @@ class Workspace:
         add.setMenu(create)
         add.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
         toolbar.addWidget(add)
+        cad_button = QToolButton()
+        cad_button.setToolTip("Conception de solides · Alt+G")
+        cad_button.setDefaultAction(self.commands["cad"])
+        cad_button.setText("CAD")
+        cad_button.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
+        toolbar.addWidget(cad_button)
         example_button = QToolButton()
         example_button.setText("Exemples")
         example_button.setMenu(examples)
@@ -184,6 +194,8 @@ class Workspace:
 
         objects = QWidget()
         objects_layout = QVBoxLayout(objects)
+        objects_layout.setContentsMargins(8, 8, 8, 6)
+        objects_layout.setSpacing(6)
         self.project_label = QLabel()
         self.project_label.setWordWrap(True)
         objects_layout.addWidget(self.project_label)
@@ -222,8 +234,10 @@ class Workspace:
 
         inspector = QWidget()
         inspector_layout = QVBoxLayout(inspector)
+        inspector_layout.setContentsMargins(8, 8, 8, 6)
+        inspector_layout.setSpacing(4)
         self.inspector_title = QLabel("Paramètres du projet")
-        self.inspector_title.setObjectName("section")
+        self.inspector_title.setObjectName("inspector_title")
         inspector_layout.addWidget(self.inspector_title)
         self.inspector_hint = QLabel()
         self.inspector_hint.setWordWrap(True)
@@ -236,8 +250,8 @@ class Workspace:
             QFormLayout.FieldGrowthPolicy.AllNonFixedFieldsGrow
         )
         self.form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapAllRows)
-        self.form.setVerticalSpacing(7)
-        self.form.setContentsMargins(4, 0, 4, 16)
+        self.form.setVerticalSpacing(4)
+        self.form.setContentsMargins(0, 2, 0, 8)
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
         scroll.setWidget(self.properties)
@@ -254,6 +268,7 @@ class Workspace:
         layout.setContentsMargins(0, 0, 0, 0)
         self.setCentralWidget(central)
         top = QHBoxLayout()
+        top.setSpacing(4)
         layout.addLayout(top)
         self.mode = QComboBox()
         self.mode.setAccessibleName("Espace de travail")
@@ -294,6 +309,30 @@ class Workspace:
         camera_button.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
         top.addWidget(camera_button)
         self.viewport = Viewport()
+        camera_menu.addSeparator()
+        for key, label, parallel in (
+            ("orthographic", "Projection orthographique", True),
+            ("perspective", "Projection perspective", False),
+        ):
+            action = self._action(
+                key,
+                label,
+                lambda checked=False, p=parallel: self.viewport.set_parallel_projection(
+                    p
+                ),
+            )
+            camera_menu.addAction(action)
+            view.addAction(action)
+        grid = self._action(
+            "grid", "Grille de référence XY", self.viewport.set_grid_visible
+        )
+        grid.setCheckable(True)
+        grid.setChecked(True)
+        grid.setIcon(line_icon("grid"))
+        view.addAction(grid)
+        grid_button = QToolButton()
+        grid_button.setDefaultAction(grid)
+        top.addWidget(grid_button)
         layout.addWidget(self.viewport, 1)
         self.navigation_hint = QLabel(
             "Orbite : glisser · Panoramique : Maj + glisser · Zoom : molette · F : cadrer"

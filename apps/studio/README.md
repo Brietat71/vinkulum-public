@@ -1,4 +1,4 @@
-# Vinkulum Studio 0.3.0 — conception et analyse de mécanismes 3D
+# Vinkulum Studio 0.4.0 — conception et analyse de mécanismes 3D
 
 Application locale PySide6 / VTK : création de corps et de liaisons, déplacement
 à la souris, propriétés numériques, lois de mouvement et charges temporelles.
@@ -6,6 +6,12 @@ Le noyau Vinkulum 0.19.0 calcule dans un processus séparé ; Studio affiche ses
 positions, orientations, vitesses et coordonnées de liaison.
 
 ## Installer et lancer
+
+Studio **0.4.0** ajoute la conception CAD avec **OCCT 8.0.1** (version 8 minimum) et une
+adaptation de **build123d**. Le bouton **CAD** ouvre primitives, extrusions,
+opérations booléennes, congés et échanges STEP. La procédure d'installation des
+composants adaptés, leurs versions et les limites sont dans
+[Studio CAD](../../docs/STUDIO_CAD.md).
 
 Depuis la racine du dépôt, avec Python **3.14**, Rust/Cargo, un compilateur C++17
 et un éditeur de liens système :
@@ -18,10 +24,19 @@ python -m pip install './apps/studio[test]'
 vinkulum-studio
 ```
 
+Pour activer la CAD dans ce même environnement :
+
+```sh
+python ci/prepare_cad.py build/cad-sources
+python -m pip install build/cad-sources/build123d-0.11.1 \
+  build/cad-sources/ocpsvg-0.6.0 './apps/studio[cad,test]'
+python -m vinkulum_studio
+```
+
 Une roue du noyau **0.19.0 compatible avec Python et la plateforme** peut remplacer
 la compilation `pip install .`. Une roue Linux ne fonctionne pas sur macOS.
 PySide6 **6.11.2** et VTK **9.7.0** sont des dépendances séparées avec leurs propres
-licences ; le code original de Studio est sous Apache-2.0. Un DMG autonome Apple Silicon est proposé dans les
+licences ; le code original de Studio est sous Apache-2.0. Un DMG autonome Apple Silicon d’une version antérieure est proposé dans les
 [releases publiques](https://github.com/Brietat71/vinkulum-public/releases) ;
 il embarque Python, le noyau, Qt et VTK, et exige macOS 14 minimum. La signature
 est ad hoc, sans notarisation Apple. Après installation, Studio fonctionne sans réseau.
@@ -29,9 +44,41 @@ est ad hoc, sans notarisation Apple. Après installation, Studio fonctionne sans
 Sous Linux, Qt/X11 exige notamment `libxcb-cursor0`, `libxcb-icccm4`,
 `libxcb-keysyms1`, `libxcb-image0`, `libxcb-render-util0`, `libxcb-util1` et un
 pilote OpenGL. Les tests automatisés utilisent également `xvfb` et `xauth`.
-La qualification macOS ARM64 sur un bureau réel reste à effectuer.
+La qualification de Studio 0.4.0 CAD sur macOS ARM64 reste à effectuer.
 
-## Nouvelle interface 0.3.0
+### Binaire Linux et construction locale
+
+La livraison prioritaire de Studio 0.4.0 est une archive autonome
+`Vinkulum-Studio-0.4.0-linux-x86_64.tar.gz`. Extraire puis lancer
+`./Vinkulum\ Studio/Vinkulum\ Studio` ; conserver `_internal` avec l'exécutable.
+La plateforme testée est Linux x86-64 avec glibc 2.39, X11 et Mesa OpenGL
+(Ubuntu 24.04). Les versions antérieures de glibc et Wayland natif ne sont pas
+qualifiés. Voir les [instructions Linux](packaging/INSTALLATION-LINUX.txt).
+
+Pour construire depuis l'environnement Python ci-dessus, avec le noyau natif
+et Studio CAD installés à leurs versions courantes :
+
+```sh
+python -m pip install 'pyinstaller==6.22.2'
+PY=$(command -v python) bash ci/linux_bundle.sh
+```
+
+Cette commande travaille localement, sans déclencher GitHub Actions. Elle
+construit l'application, crée puis extrait l'archive et teste cet exécutable
+hors du dépôt : calcul réel avec le worker embarqué, rendu 3D et versions.
+Sans écran, elle utilise Xvfb. `dist/linux/` reçoit l'archive vérifiée,
+`SHA256SUMS`, la provenance de construction et le rapport `check/`.
+`VINKULUM_LINUX_OUT` permet de choisir un autre dossier de livraison.
+Le paquet dépend toujours des bibliothèques graphiques du système ; il ne
+constitue pas une qualification sur toutes les distributions Linux.
+
+Pour itérer sur l'interface, installer Studio en mode éditable
+(`python -m pip install -e './apps/studio[test]'`) puis lancer
+`python -m vinkulum_studio`. Relancer le processus après une modification Python
+suffit ; le noyau natif déjà compilé est réutilisé. La fabrication de l'archive
+est réservée aux versions à livrer, après les essais depuis les sources.
+
+## Nouvelle interface 0.4.0
 
 Trois ateliers structurent le travail : **Modéliser**, **Simuler** et **Examiner**.
 La vue 3D occupe l’espace principal ; l’explorateur, l’inspecteur, les diagnostics
@@ -41,6 +88,10 @@ et les résultats sont redimensionnables, détachables et accessibles dans
 
 - **Ctrl/Cmd+K** : rechercher une commande ; **S** : outils pour la sélection.
   Les raccourcis de fichier et d’édition suivent la plateforme.
+- La grille de référence XY s'atténue vers ses limites et peut être masquée.
+  Le menu **Vues** propose les projections perspective et orthographique.
+  Les anneaux et axes des pivots sont des symboles de liaison, sans volume
+  mécanique ajouté ; les traits d'attachement apparaissent à leur sélection.
 - L’explorateur filtre par nom, type ou identifiant. Son menu contextuel permet
   d’isoler ou de masquer un objet ; ces actions n’affectent pas le calcul.
 - L’inspecteur présente les composantes X/Y/Z séparément. Les valeurs compactes

@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "app": "0.4.0",
+  "occt": "8.0.1.0",
+  "build123d": "0.11.1+vinkulum.occt8",
+  "mass_kg": 1.3267053771417465,
+  "volume_m3": 0.00017009043296689058,
+  "triangles": 11656,
+  "operations": [
+    {
+      "operation": "box",
+      "wall_ms": 2376.31227215752,
+      "import": 1684.3822472728789,
+      "request_read": 0.14036893844604492,
+      "geometry_and_capture": 7.6033249497413635
+    },
+    {
+      "operation": "cylinder",
+      "wall_ms": 2357.2223130613565,
+      "import": 1693.5360310599208,
+      "request_read": 0.6793229840695858,
+      "geometry_and_capture": 11.326217092573643
+    },
+    {
+      "operation": "cut",
+      "wall_ms": 2367.0617532916367,
+      "import": 1690.5430019833148,
+      "request_read": 0.9609726257622242,
+      "geometry_and_capture": 21.02548209950328
+    },
+    {
+      "operation": "fillet",
+      "wall_ms": 2457.246837671846,
+      "import": 1669.3228567019105,
+      "request_read": 1.4350023120641708,
+      "geometry_and_capture": 153.186677955091
+    }
+  ]
+}

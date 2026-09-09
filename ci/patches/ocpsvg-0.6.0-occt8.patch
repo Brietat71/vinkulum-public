@@ -1,0 +1,34 @@
+--- a/ocpsvg/ocp.py
++++ b/ocpsvg/ocp.py
+@@ -50,7 +50,7 @@
+ from OCP.ShapeFix import ShapeFix_Face
+ from OCP.Standard import Standard_Failure
+ from OCP.StdFail import StdFail_NotDone
+-from OCP.TColgp import TColgp_Array1OfPnt
++from OCP.collections import Array1_gp_Pnt as TColgp_Array1OfPnt
+ from OCP.TopAbs import TopAbs_Orientation
+ from OCP.TopoDS import (
+     TopoDS,
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -2,17 +2,17 @@
+ [project]
+ name = "ocpsvg"
+ readme = "readme-pypi.md"
+-version = "0.6.0"
++version = "0.6.0+vinkulum.occt8"
+ requires-python = ">=3.10"
+ dependencies = [
+-    "cadquery_ocp_proxy >= 7.9, < 8.0",
++    "cadquery_ocp_proxy == 8.0.1.0.0",
+     "svgelements >= 1.9.1, <2",
+ ]
+ 
+ 
+ [project.optional-dependencies]
+ dev = [
+-    "cadquery_ocp_novtk >=7.9, < 8.0",
++    "cadquery_ocp_novtk == 8.0.1.0.0",
+     "pytest",
+     "coverage",
+     "mypy",

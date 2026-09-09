@@ -69,21 +69,23 @@ def apply_theme(window, name):
         QMenuBar::item:selected { background: %(hover)s; }
         QMainWindow, QDialog { background: %(bg)s; color: %(text)s; }
         QToolButton { border: 0; }
-        QToolBar { background: %(panel)s; border: 0; spacing: 8px; padding: 10px; }
+        QToolBar { background: %(panel)s; border: 0; spacing: 4px; padding: 6px 8px; }
         QToolBar::separator { background: %(border)s; width: 1px; margin: 5px; }
         QDockWidget { font-weight: 600; color: %(text)s; }
-        QDockWidget::title { background: %(panel)s; padding: 12px; border-bottom: 1px solid %(border)s; }
-        QMainWindow::separator { background: %(bg)s; width: 6px; height: 6px; }
+        QDockWidget::title { background: %(panel)s; padding: 8px; border-bottom: 1px solid %(border)s; }
+        QMainWindow::separator { background: %(bg)s; width: 4px; height: 4px; }
         QLineEdit, QComboBox, QDoubleSpinBox, QSpinBox, QTextEdit {
             background: %(field)s; color: %(text)s; border: 1px solid transparent;
-            border-radius: 5px; padding: 7px; min-height: 18px;
+            border-radius: 3px; padding: 4px 6px; min-height: 20px;
         }
         QLineEdit:focus, QComboBox:focus, QDoubleSpinBox:focus, QSpinBox:focus,
         QTreeWidget:focus, QTableView:focus, QListWidget:focus {
             border: 1px solid %(accent)s;
         }
         QPushButton, QToolButton { color: %(text)s; background: %(panel)s;
-            border: 1px solid transparent; border-radius: 5px; padding: 7px 10px; }
+            border: 1px solid transparent; border-radius: 3px; padding: 4px 8px; min-height: 20px; }
+        QToolButton::menu-indicator { subcontrol-position: right center; right: 3px; }
+        QToolButton:has-menu { padding-right: 16px; }
         QPushButton:hover, QToolButton:hover { background: %(hover)s; }
         QPushButton:focus, QToolButton:focus { border: 1px solid %(accent)s; }
         QPushButton:checked, QToolButton:checked { background: %(hover)s; border-color: %(accent)s; }
@@ -92,19 +94,20 @@ def apply_theme(window, name):
         QPushButton#primary:disabled { background: %(hover)s; color: %(muted)s; }
         QTreeWidget, QListWidget, QTableView { background: %(panel)s; color: %(text)s;
             border: 1px solid transparent; border-radius: 4px; alternate-background-color: %(field)s; }
-        QTreeWidget::item, QListWidget::item { padding: 8px 3px; }
+        QTreeWidget::item, QListWidget::item { padding: 4px 3px; }
         QTreeWidget::item:selected, QListWidget::item:selected { background: %(hover)s; color: %(text)s; }
-        QHeaderView::section { background: %(panel)s; color: %(muted)s; padding: 7px; border: 0; }
+        QHeaderView::section { background: %(panel)s; color: %(muted)s; padding: 5px; border: 0; }
         QScrollArea { border: 0; }
         QTabWidget::pane { border: 1px solid %(border)s; }
-        QTabBar::tab { color: %(muted)s; background: %(panel)s; padding: 8px 16px; }
+        QTabBar::tab { color: %(muted)s; background: %(panel)s; padding: 6px 12px; }
         QTabBar::tab:selected { color: %(text)s; border-bottom: 2px solid %(accent)s; }
         QLabel#brand { color: %(text)s; font-weight: 600; }
-        QLabel#section { color: %(muted)s; font-weight: 600; padding-top: 16px; padding-bottom: 4px; }
+        QLabel#section { color: %(muted)s; font-weight: 600; padding-top: 10px; padding-bottom: 3px; }
+        QLabel#inspector_title { color: %(text)s; font-weight: 600; padding: 2px 0; }
         QLabel#muted { color: %(muted)s; }
         QLabel#badge { color: %(text)s; background: %(hover)s; border-radius: 5px; padding: 6px; }
-        QWidget#vector_cell { background: %(field)s; border-radius: 5px; }
-        QLineEdit#component { border: 1px solid transparent; padding: 6px 3px; }
+        QWidget#vector_cell { background: %(field)s; border-radius: 3px; }
+        QLineEdit#component { border: 1px solid transparent; padding: 4px 2px; }
         QLineEdit#component:focus { border: 1px solid %(accent)s; }
         QLabel#axis_label { color: %(muted)s; font-size: 10px; }
         QScrollBar:vertical { background: transparent; width: 8px; margin: 0; }

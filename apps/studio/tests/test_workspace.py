@@ -1,11 +1,11 @@
 """Desktop acceptance checks for the 2026 workspace, not just widget construction."""
 
-from dataclasses import replace
 import os
-from pathlib import Path
 import tempfile
 import time
 import unittest
+from dataclasses import replace
+from pathlib import Path
 from unittest.mock import patch
 
 import numpy as np
@@ -102,6 +102,60 @@ class WorkspaceRecipe(unittest.TestCase):
         self.assertFalse(window.apply_properties())
         self.assertEqual(window.project, before)
         self.assertEqual(vector.components[0].text(), "nan")
+
+    def test_inspector_resize_and_focus_preserve_exact_numbers(self):
+        from vinkulum_studio.editor import euler_matrix
+
+        window = self.make_window()
+        window.resize(1280, 844)
+        window.activateWindow()
+        self.assertTrue(QTest.qWaitForWindowActive(window))
+        window.new_project()
+        window.add_body("box")
+        exact = (-0.00134987654321, -2.01565123456e-19, 1234567.891234)
+        body = replace(
+            window.project.bodies[0],
+            position=exact,
+            mass=1.3267053771417465,
+            orientation=euler_matrix((13.123456789, -21.2, 35.7)),
+        )
+        window._commit(window.project.replace_object(body))
+        for theme in ("light", "dark"):
+            window.set_theme(theme)
+            for width in (280, 320, 420):
+                window.resizeDocks(
+                    [window.docks["inspector"]], [width], Qt.Orientation.Horizontal
+                )
+                window.fields["name"].setFocus()
+                QTest.qWait(20)
+                for key in ("position", "orientation"):
+                    for field in window.fields[key].components:
+                        self.assertNotEqual(field.text(), "…")
+                        self.assertLessEqual(
+                            field.fontMetrics().horizontalAdvance(field.text()),
+                            field.available_width(),
+                        )
+                        field.setFocus()
+                        QTest.qWait(1)
+                        self.assertTrue(field.hasFocus())
+                        self.assertEqual(float(field.text()), field.value())
+                        window.fields["name"].setFocus()
+                self.assertFalse(window.dirty_fields)
+                self.assertEqual(window.fields["position"].values(), exact)
+        # Applying an unrelated edit must not round the mass or reconstruct SO(3).
+        window.fields["name"].selectAll()
+        QTest.keyClicks(window.fields["name"], "Precision")
+        self.assertTrue(window.apply_properties())
+        self.assertEqual(window.project.bodies[0], replace(body, name="Precision"))
+        # A new high-precision value also survives compact preview and refocus.
+        field = window.fields["position"].components[1]
+        field.setFocus()
+        field.selectAll()
+        QTest.keyClicks(field, "-2.123456789123456e-19")
+        window.fields["name"].setFocus()
+        self.assertEqual(field.value(), -2.123456789123456e-19)
+        self.assertTrue(window.apply_properties())
+        self.assertEqual(window.project.bodies[0].position[1], -2.123456789123456e-19)
 
     def test_search_visibility_isolation_and_transform_are_view_state(self):
         window = self.make_window()
@@ -283,7 +337,8 @@ class WorkspaceRecipe(unittest.TestCase):
 class RunArchiveContracts(unittest.TestCase):
     def test_memory_budget_evicts_oldest_without_copying_arrays(self):
         from types import SimpleNamespace
-        from vinkulum_studio.run_archive import RunArchive, ARRAYS, result_bytes
+
+        from vinkulum_studio.run_archive import ARRAYS, RunArchive, result_bytes
 
         array = np.zeros(10)
 

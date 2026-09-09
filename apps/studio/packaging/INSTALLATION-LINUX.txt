@@ -1,0 +1,40 @@
+Vinkulum Studio 0.4.0 — Linux x86-64
+
+Extraire l'archive, ouvrir un terminal dans le dossier extrait puis lancer :
+  ./Vinkulum\ Studio/Vinkulum\ Studio
+
+Conserver l'exécutable et son dossier _internal ensemble. Python, le noyau
+Vinkulum 0.19.0, Qt et VTK sont embarqués ; aucun environnement Python ni aucune
+compilation ne sont nécessaires sur la machine de destination.
+La conception CAD embarque OCCT 8.0.1 et build123d 0.11.1+vinkulum.occt8.
+Bouton CAD : primitives, extrusions, booleans, congés et import/export STEP.
+Un solide par pièce ; les projets CAD conservent le BREP et ses propriétés SI.
+
+Plateforme testée : Linux x86-64, glibc 2.39 (Ubuntu 24.04), X11 et Mesa OpenGL.
+Ce paquet n'est pas qualifié sur les distributions à glibc antérieure, sur
+Linux ARM64 ni sur Wayland natif. Une session Wayland doit fournir XWayland.
+Le système doit fournir ses bibliothèques graphiques et son pilote OpenGL.
+Sur Ubuntu 24.04, les dépendances Qt/X11 comprennent notamment :
+  libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0
+  libxcb-render-util0 libxcb-util1 libxkbcommon-x11-0 libgl1
+Pour sélectionner XWayland explicitement :
+  QT_QPA_PLATFORM=xcb ./Vinkulum\ Studio/Vinkulum\ Studio
+
+Contrôle autonome facultatif, depuis une session graphique :
+  ./Vinkulum\ Studio/Vinkulum\ Studio --bundle-check ./verification
+Il lance un calcul du double pendule et produit un rapport et une capture 3D.
+Il vérifie aussi une pièce CAD percée et son aller-retour STEP avec OCCT 8.
+Ce contrôle de distribution ne certifie pas les trajectoires en général.
+
+La nouvelle interface propose les ateliers Modéliser, Simuler et Examiner,
+des thèmes clair et graphite, une palette de commandes (Ctrl+K), ainsi que
+la comparaison de calculs et leurs échantillons natifs. Version expérimentale.
+
+Sources du projet : https://github.com/Brietat71/vinkulum-public
+La version locale peut précéder la publication ; build-info.json indique
+le commit de base et la présence de modifications locales lors du build.
+Code original Apache-2.0. Voir Licences/ et _internal/ pour les notices et
+licences des dépendances. Les bibliothèques partagées restent remplaçables.
+Qt/PySide6 : https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.11.2-src/
+Qt 6.11.2 : https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/
+VTK 9.7.0 : https://gitlab.kitware.com/vtk/vtk/-/tree/v9.7.0

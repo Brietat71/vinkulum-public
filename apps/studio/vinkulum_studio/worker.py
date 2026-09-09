@@ -82,7 +82,9 @@ def main():
             "Usage: python -m vinkulum_studio.worker input.json output.json"
         )
     try:
-        data = read_json(sys.argv[1], 4 * 1024 * 1024)
+        from .document import MAX_PROJECT_BYTES
+
+        data = read_json(sys.argv[1], MAX_PROJECT_BYTES)
         if data.get("kind") == "mechanism":
             from .document import Project
             from .mechanism import simulate_project

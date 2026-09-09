@@ -1,18 +1,24 @@
 """Qt/VTK viewport. Rendering and mouse previews never mutate a Project."""
 
+import math
+
 import numpy as np
 import vtkmodules.vtkInteractionStyle  # Registers trackball interaction.
 import vtkmodules.vtkRenderingOpenGL2
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QVBoxLayout, QWidget
+from vtkmodules.vtkCommonCore import vtkPoints, vtkUnsignedCharArray
+from vtkmodules.vtkCommonDataModel import vtkCellArray, vtkPolyData
 from vtkmodules.vtkCommonMath import vtkMatrix4x4
 from vtkmodules.vtkCommonTransforms import vtkTransform
+from vtkmodules.vtkFiltersCore import vtkTubeFilter, vtkPolyDataNormals
 from vtkmodules.vtkFiltersGeneral import vtkTransformFilter
 from vtkmodules.vtkFiltersSources import (
     vtkArrowSource,
     vtkCubeSource,
     vtkCylinderSource,
     vtkLineSource,
+    vtkRegularPolygonSource,
     vtkSphereSource,
 )
 from vtkmodules.vtkInteractionWidgets import (
@@ -64,8 +70,8 @@ class Viewport(QWidget):
         self.view = RenderInteractor(self)
         layout.addWidget(self.view)
         self.renderer = vtkRenderer()
-        self.renderer.SetBackground(0.095, 0.105, 0.13)
-        self.renderer.SetBackground2(0.20, 0.22, 0.26)
+        self.renderer.SetBackground(0.075, 0.084, 0.10)
+        self.renderer.SetBackground2(0.16, 0.18, 0.21)
         self.renderer.GradientBackgroundOn()
         self.view.GetRenderWindow().AddRenderer(self.renderer)
         self.view.GetRenderWindow().SetMultiSamples(4)
@@ -74,17 +80,36 @@ class Viewport(QWidget):
         )
         self.view.Initialize()
         self.lights = vtkLightKit()
-        self.lights.SetKeyLightIntensity(0.6)
+        self.lights.SetKeyLightIntensity(0.7)
+        self.lights.SetKeyToFillRatio(2.0)
+        self.lights.SetKeyToBackRatio(3.0)
         self.lights.AddLightsToRenderer(self.renderer)
         self.orientation_widget = vtkCameraOrientationWidget()
         self.orientation_widget.SetParentRenderer(self.renderer)
         self.orientation_widget.AnimateOff()
+        compass = self.orientation_widget.GetRepresentation()
+        compass.SetSize(96, 96)
+        compass.SetPadding(16, 16)
+        compass.SetXAxisColor(0.82, 0.39, 0.39)
+        compass.SetYAxisColor(0.46, 0.70, 0.52)
+        compass.SetZAxisColor(0.43, 0.62, 0.88)
+        compass.SetNormalizedHandleDia(0.30)
+        for axis in ("X", "Y", "Z"):
+            for side in ("Plus", "Minus"):
+                label = getattr(compass, f"Get{axis}{side}LabelProperty")()
+                label.SetFontFamilyToArial()
+                label.ItalicOff()
+                label.BoldOff()
+                label.SetColor(0.94, 0.96, 0.99)
         self.orientation_widget.On()
         self._actors = {}
         self._colors = {}
         self._bounds = {}
         self._body_ids = set()
         self._joint_parts = []
+        self._construction = set()
+        self._grid_actor = None
+        self.grid_visible = True
         self._load_glyphs = []
         self._time = 0.0
         self._local_axes = None
@@ -143,13 +168,32 @@ class Viewport(QWidget):
         self._bounds.clear()
         self._sources.clear()
         self._joint_parts.clear()
+        self._construction.clear()
         self._load_glyphs.clear()
         self._time = 0.0
         self._project = project
         self._body_ids = {b.id for b in project.bodies}
         self._poses = {b.id: (b.position, b.orientation) for b in project.bodies}
         for body in project.bodies:
-            if body.shape == "box":
+            if body.cad is not None:
+                points, cells = vtkPoints(), vtkCellArray()
+                for point in body.cad.vertices_m:
+                    points.InsertNextPoint(*point)
+                for triangle in body.cad.triangles:
+                    cells.InsertNextCell(3)
+                    for index in triangle:
+                        cells.InsertCellPoint(index)
+                mesh = vtkPolyData()
+                mesh.SetPoints(points)
+                mesh.SetPolys(cells)
+                normals = vtkPolyDataNormals()
+                normals.SetInputData(mesh)
+                normals.SetFeatureAngle(35)
+                normals.SplittingOn()
+                normals.ConsistencyOn()
+                normals.Update()
+                source = normals
+            elif body.shape == "box":
                 source = vtkCubeSource()
                 source.SetXLength(body.dimensions[0])
                 source.SetYLength(body.dimensions[1])
@@ -157,13 +201,13 @@ class Viewport(QWidget):
             elif body.shape == "sphere":
                 source = vtkSphereSource()
                 source.SetRadius(body.dimensions[0])
-                source.SetThetaResolution(32)
-                source.SetPhiResolution(24)
+                source.SetThetaResolution(64)
+                source.SetPhiResolution(48)
             else:
                 cylinder = vtkCylinderSource()
                 cylinder.SetRadius(body.dimensions[0])
                 cylinder.SetHeight(body.dimensions[1])
-                cylinder.SetResolution(32)
+                cylinder.SetResolution(64)
                 transform = vtkTransform()
                 transform.RotateX(90)
                 source = vtkTransformFilter()
@@ -171,14 +215,16 @@ class Viewport(QWidget):
                 source.SetTransform(transform)
             source.Update()
             self._bounds[body.id] = source.GetOutput().GetBounds()
-            color = ((0.58, 0.66, 0.80), (0.78, 0.81, 0.86), (0.42, 0.62, 0.67))[
-                len(self._bounds) % 3
+            color = ((0.56, 0.67, 0.81), (0.69, 0.75, 0.80), (0.40, 0.61, 0.64))[
+                (len(self._bounds) - 1) % 3
             ]
             actor = self._add(source, color, body.id)
-            actor.GetProperty().SetSpecular(0.25)
-            actor.GetProperty().SetSpecularPower(40)
-            actor.GetProperty().SetEdgeColor(0.15, 0.20, 0.28)
-            actor.GetProperty().EdgeVisibilityOn()
+            actor.GetProperty().SetAmbient(0.15)
+            actor.GetProperty().SetDiffuse(0.75)
+            actor.GetProperty().SetSpecular(0.18)
+            actor.GetProperty().SetSpecularPower(55)
+            actor.GetProperty().SetEdgeColor(0.22, 0.29, 0.37)
+            actor.GetProperty().SetEdgeVisibility(body.shape == "box")
             actor.SetUserMatrix(vtk_matrix(body.position, body.orientation))
         extent = max(
             (np.linalg.norm(b.position) + max(b.dimensions) for b in project.bodies),
@@ -198,21 +244,45 @@ class Viewport(QWidget):
                 for ref in (joint.a, joint.b)
             ):
                 continue
-            color = (0.95, 0.35, 0.3) if joint.id in invalid else (0.96, 0.72, 0.28)
+            color = (0.95, 0.35, 0.3) if joint.id in invalid else (0.84, 0.64, 0.32)
             # Each attachment is drawn separately, so mismatched anchors remain visible.
-            for ref, point, frame in (
-                (joint.a, joint.pa, joint.ra),
-                (joint.b, joint.pb, joint.rb),
+            for side, (ref, point, frame) in enumerate(
+                (
+                    (joint.a, joint.pa, joint.ra),
+                    (joint.b, joint.pb, joint.rb),
+                )
             ):
-                sphere = vtkSphereSource()
-                sphere.SetRadius(self._extent * 0.015)
-                actor = self._add(sphere, color, joint.id)
-                self._joint_parts.append((actor, ref, point, frame, False))
+                if joint.kind == "pivot":
+                    # Two concentric symbols at the actual attachment positions.
+                    # Their radii differ to avoid coincident surfaces; neither is
+                    # physical geometry or a modification of the joint anchors.
+                    ring = vtkRegularPolygonSource()
+                    ring.SetNumberOfSides(48)
+                    ring.SetRadius(self._extent * (0.022 if side == 0 else 0.014))
+                    ring.GeneratePolygonOff()
+                    tube = vtkTubeFilter()
+                    tube.SetInputConnection(ring.GetOutputPort())
+                    tube.SetRadius(self._extent * 0.0025)
+                    tube.SetNumberOfSides(10)
+                    actor = self._add(tube, color, joint.id)
+                    self._joint_parts.append((actor, ref, point, frame, True))
+                else:
+                    sphere = vtkSphereSource()
+                    sphere.SetRadius(self._extent * (0.014 if side == 0 else 0.010))
+                    sphere.SetThetaResolution(24)
+                    sphere.SetPhiResolution(16)
+                    actor = self._add(sphere, color, joint.id)
+                    self._joint_parts.append((actor, ref, point, frame, False))
                 if joint.kind in {"pivot", "glissiere"}:
                     axis = vtkLineSource()
-                    axis.SetPoint1(0.0, 0.0, -0.08 * self._extent)
-                    axis.SetPoint2(0.0, 0.0, 0.08 * self._extent)
-                    actor = self._add(axis, color, joint.id, 4.0)
+                    axis.SetPoint1(0.0, 0.0, 0.0)
+                    axis.SetPoint2(0.0, 0.0, (1 if side else -1) * 0.05 * self._extent)
+                    tube = vtkTubeFilter()
+                    tube.SetInputConnection(axis.GetOutputPort())
+                    tube.SetRadius(self._extent * 0.0025)
+                    tube.SetNumberOfSides(10)
+                    tube.CappingOn()
+                    actor = self._add(tube, color, joint.id)
                     self._joint_parts.append((actor, ref, point, frame, True))
             # Link body centre to anchor as a visual attachment, not a mass-bearing rod.
             for ref, point in ((joint.a, joint.pa), (joint.b, joint.pb)):
@@ -221,6 +291,7 @@ class Viewport(QWidget):
                     line.SetPoint1(0.0, 0.0, 0.0)
                     line.SetPoint2(*point)
                     actor = self._add(line, color, joint.id)
+                    self._construction.add(actor)
                     self._joint_parts.append(
                         (
                             actor,
@@ -263,18 +334,70 @@ class Viewport(QWidget):
         self.render()
 
     def _draw_grid(self):
-        extent = self._extent
-        for i in range(-5, 6):
+        # One segmented actor: a metric XY grid fading towards its boundary.
+        # It stays on z=0 and is never presented as a contact/support surface.
+        base = 10 ** math.floor(math.log10(self._extent / 5))
+        self.grid_step = (
+            min((1, 2, 5, 10), key=lambda n: abs(n * base - self._extent / 5)) * base
+        )
+        radius = 8 * self.grid_step
+        points, lines = vtkPoints(), vtkCellArray()
+        colors = vtkUnsignedCharArray()
+        colors.SetNumberOfComponents(4)
+        for i in range(-8, 9):
             for transpose in (False, True):
-                a = [i * extent / 5, -extent, 0.0]
-                b = [i * extent / 5, extent, 0.0]
-                if transpose:
-                    a[:2] = reversed(a[:2])
-                    b[:2] = reversed(b[:2])
-                line = vtkLineSource()
-                line.SetPoint1(*a)
-                line.SetPoint2(*b)
-                self._add(line, (0.25, 0.29, 0.34), width=1.0)
+                for segment in range(32):
+                    a = [i * self.grid_step, -radius + segment * radius / 16, 0.0]
+                    b = [a[0], a[1] + radius / 16, 0.0]
+                    distance = math.hypot(a[0], (a[1] + b[1]) / 2) / radius
+                    alpha = round((65 if i == 0 else 36) * max(0, 1 - distance) ** 1.5)
+                    if not alpha:
+                        continue
+                    if transpose:
+                        a[:2], b[:2] = a[1::-1], b[1::-1]
+                    lines.InsertNextCell(2)
+                    lines.InsertCellPoint(points.InsertNextPoint(*a))
+                    lines.InsertCellPoint(points.InsertNextPoint(*b))
+                    colors.InsertNextTuple4(125, 143, 163, alpha)
+        data = vtkPolyData()
+        data.SetPoints(points)
+        data.SetLines(lines)
+        data.GetCellData().SetScalars(colors)
+        mapper = vtkPolyDataMapper()
+        mapper.SetInputData(data)
+        mapper.SetColorModeToDirectScalars()
+        actor = vtkActor()
+        actor.SetMapper(mapper)
+        actor.GetProperty().LightingOff()
+        actor.PickableOff()
+        actor.SetVisibility(self.grid_visible)
+        self.renderer.AddActor(actor)
+        self._grid_actor = actor
+
+    def set_grid_visible(self, visible):
+        self.grid_visible = bool(visible)
+        if self._grid_actor is not None:
+            self._grid_actor.SetVisibility(visible)
+        self.render()
+
+    def set_parallel_projection(self, parallel):
+        camera = self.renderer.GetActiveCamera()
+        if bool(camera.GetParallelProjection()) == bool(parallel):
+            return
+        # Preserve the apparent scale when switching projection at the focal plane.
+        tangent = math.tan(math.radians(camera.GetViewAngle()) / 2)
+        if parallel:
+            camera.SetParallelScale(camera.GetDistance() * tangent)
+        else:
+            direction = np.array(camera.GetDirectionOfProjection())
+            position = (
+                np.array(camera.GetFocalPoint())
+                - direction * camera.GetParallelScale() / tangent
+            )
+            camera.SetPosition(*position)
+        camera.SetParallelProjection(parallel)
+        self.renderer.ResetCameraClippingRange()
+        self.render()
 
     def _update_attachments(self):
         for actor, reference, point, frame, oriented in self._joint_parts:
@@ -338,9 +461,12 @@ class Viewport(QWidget):
                 self._local_axes.SetUserMatrix(vtk_matrix(*self._poses[identifier]))
         for key, actors in self._actors.items():
             if key in self._body_ids:
-                actors[0].GetProperty().SetColor(*self._colors[key][0])
+                color = np.array(self._colors[key][0])
+                if key == identifier:
+                    color = 0.7 * color + 0.3 * np.array((0.6, 0.73, 1.0))
+                actors[0].GetProperty().SetColor(*color)
                 actors[0].GetProperty().SetEdgeColor(
-                    *((0.6, 0.73, 1.0) if key == identifier else (0.15, 0.20, 0.28))
+                    *((0.6, 0.73, 1.0) if key == identifier else (0.22, 0.29, 0.37))
                 )
                 actors[0].GetProperty().SetLineWidth(2.0 if key == identifier else 1.0)
             else:
@@ -359,6 +485,7 @@ class Viewport(QWidget):
             transform.SetMatrix(self._actors[identifier][0].GetMatrix())
             self.box_rep.SetTransform(transform)
             self.box.On()
+        self._apply_visibility()
         self.render()
 
     def set_transform_mode(self, mode):
@@ -373,6 +500,8 @@ class Viewport(QWidget):
             for actor in actors:
                 if identifier in self.hidden_objects:
                     actor.VisibilityOff()
+                elif actor in self._construction:
+                    actor.SetVisibility(identifier == self._selected)
                 elif actor not in glyphs:
                     actor.VisibilityOn()
 
@@ -487,6 +616,15 @@ class Viewport(QWidget):
             self.orientation_widget.Off()
             self.view.Finalize()
             self._closed = True
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        if hasattr(self, "orientation_widget"):
+            # VTK display coordinates are physical pixels, Qt sizes are logical.
+            ratio = self.devicePixelRatioF()
+            compass = self.orientation_widget.GetRepresentation()
+            compass.SetSize(round(96 * ratio), round(96 * ratio))
+            compass.SetPadding(round(16 * ratio), round(16 * ratio))
 
     def closeEvent(self, event):
         self.shutdown()
