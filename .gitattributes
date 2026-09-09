@@ -1,2 +1,6 @@
 *.pdf binary
 python/vinkulum/licences/** -text
+# Preserve upstream licence text, patch context and raw qualification journals.
+apps/studio/packaging/licenses/** -whitespace
+ci/patches/*.patch -whitespace
+docs/bancs/studio-cad-040/*-tests.txt -whitespace
