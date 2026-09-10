@@ -75,6 +75,36 @@ Suggested title: **Vinkulum: an open engineering workbench for CAD and inspectab
 >
 > Source and download: https://github.com/Brietat71/vinkulum-public
 
+## A research demonstration from the developing source version
+
+The source tree's **Studio 0.6.0.dev1** adds a Pinocchio workspace. Show the
+[actual application capture](assets/studio-pinocchio.png) alongside the
+[small captured two-link calculation](../examples/studio/articulated/double-pendulum/README.md).
+The example can be inspected in the new workspace without installing Pinocchio;
+recomputation requires its separate qualified environment. **This feature is
+not in the published Studio 0.5.0 Linux binary.**
+
+The [operator guide](PINOCCHIO_OPERATORS.md) includes the screenshot recipe,
+coordinate/frame conventions and independent two-link Lagrange equations. A
+useful research contribution is to derive and qualify the missing configuration
+derivative of applied point loads. The existing intrinsic RNEA derivative must
+remain clearly distinguished from the derivative of a loaded problem.
+
+Suggested technical introduction:
+
+> What should an engineering workbench preserve behind a displayed number?
+> Vinkulum's experimental Pinocchio workspace captures a mechanism and its
+> articulated state, then exposes mass matrices, inverse/forward dynamics and
+> body Jacobians with units and provenance. The source includes independent
+> Lagrange references and a saved example that can be inspected without the
+> engine. We are looking for dynamics and numerical-analysis contributors to
+> extend that evidence, starting with derivatives of applied point loads.
+>
+> This is a source preview of Studio 0.6.0, limited to fixed-base rigid trees;
+> it does not yet integrate Pinocchio trajectories. The ready-to-download Linux
+> release is Studio 0.5.0, with CAD, native dynamics and CalculiX inspection.
+> Source and examples: https://github.com/Brietat71/vinkulum-public
+
 ## Short introduction
 
 > Vinkulum is an open engineering workbench combining OCCT 8 CAD, a Rust
@@ -99,8 +129,9 @@ Suggested title: **Vinkulum: an open engineering workbench for CAD and inspectab
 > Studio 0.5.0 also adds an experimental CalculiX statics workspace with
 > captured mesh studies, displacement display and checked result reopening.
 > Its first domain is affine C3D8 linear elasticity; it requires an installed
-> solver and does not automatically mesh CAD parts. Pinocchio and other engine
-> workflows remain integration work.
+> solver and does not automatically mesh CAD parts. The developing Studio 0.6.0
+> source adds a Pinocchio operator workspace; other engine workflows remain
+> integration work.
 >
 > This is research software. Numerical guarantees have explicit domains; the
 > complete kernel is not certified. The source, limits and contributor projects

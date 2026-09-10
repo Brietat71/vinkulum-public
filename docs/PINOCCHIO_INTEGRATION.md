@@ -1,7 +1,11 @@
 # Pinocchio integration
 
-Status: planned connector, added to the target architecture on 10 September
-2026. Pinocchio is not yet installed, bundled or selectable in Studio.
+Status: experimental source adapter with a separate Linux Pinocchio 4.1.0
+environment. The [operator CLI and mathematical contract](PINOCCHIO_OPERATORS.md)
+are implemented and checked against independent references. Studio 0.6.0.dev1
+adds supervised GUI execution, state editing, operator inspection and checked
+result reopening. A trajectory integrator and standalone distribution remain to be built.
+Pinocchio is not bundled or selectable in the published Studio 0.5.0 archive.
 
 ## Role in Vinkulum
 
@@ -13,7 +17,7 @@ analysis, robotics, optimisation and control. See the
 [upstream project](https://github.com/stack-of-tasks/pinocchio) and
 [algorithm overview](https://stack-of-tasks.github.io/pinocchio/).
 
-The first integration should expose kinematics, inverse dynamics (RNEA),
+The first integration exposes kinematics, inverse dynamics (RNEA),
 generalised mass matrices (CRBA), forward dynamics (ABA) and selected
 derivatives. Pinocchio computes dynamics operators; a Studio trajectory also
 needs an explicitly chosen time integrator, initialisation and output contract.
@@ -98,6 +102,6 @@ minimal reproducible failure, version the patch and pursue an upstreamable fix.
 Rust work should target measured conversion, data-transfer or other bottlenecks;
 Pinocchio's existing numerical algorithms are already implemented in C++.
 
-This is a concrete contributor project: the first reviewable deliverable is
-the pinned Linux environment, the one-link adapter and its analytic comparison.
+Next contributor projects include derivatives of applied world loads with an
+independent reference, operator comparisons and a smaller worker distribution.
 See [contributor projects](CONTRIBUTOR_PROJECTS.md).

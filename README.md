@@ -14,6 +14,10 @@ ambition of becoming a home for the open solvers engineers and researchers rely 
 [Scientific guarantees](docs/CERTIFICATION_NOYAU.md) ·
 [Support the project](docs/FUNDING.md) · [Documentation technique en français](README.fr.md)
 
+**Try it:** [download the Linux desktop preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.5.0-linux)
+or [inspect a saved FEM example without installing CalculiX](docs/SHARE_VINKULUM.md#try-a-captured-finite-element-result).
+The release contains Studio 0.5.0; the source tree is developing 0.6.0.
+
 <p align="center">
   <img src="docs/assets/studio-cad.png" alt="Vinkulum Studio: a perforated, filleted CAD plate, model tree, mass and inertia inspector" width="100%">
 </p>
@@ -37,6 +41,19 @@ amplified; exported values retain their physical units. The
 
 </details>
 
+<details>
+<summary><strong>In the developing source: inspect Pinocchio operators behind a mechanism</strong></summary>
+
+![Studio 0.6.0.dev1: two-link captured state and body Jacobian with explicit units](docs/assets/studio-pinocchio.png)
+
+Edit an articulated state, evaluate dynamics operators and inspect mass matrices,
+derivatives and Jacobians. The [captured example](examples/studio/articulated/double-pendulum/README.md)
+opens without the engine; recomputation uses a separate Pinocchio environment.
+The [guide](docs/PINOCCHIO_OPERATORS.md) includes independent Lagrange references.
+Source version **0.6.0.dev1** only; the **0.5.0 Linux download** predates this workspace.
+
+</details>
+
 ## What you can do today
 
 | Layer | Available in the source tree |
@@ -45,10 +62,11 @@ amplified; exported values retain their physical units. The
 | **Model** | A Qt/VTK workbench for rigid mechanisms: bodies, joints, loads, numerical properties, 3D manipulation, undo/redo and project files. |
 | **Simulate** | The native Rust kernel computes in a separate process. Studio captures the model and settings associated with each run. |
 | **Linear statics** | An experimental CalculiX workspace loads a mesh study, edits material/load settings, runs a separate installed solver and inspects captured displacements, integration-point stresses and energy. Saved calculations can be reopened and checked. |
+| **Articulated operators** | A Pinocchio analysis window edits a captured rigid-tree state and inspects dynamics operators, derivatives and body Jacobians. Separate optional worker; CSV export and engine-free result reopening. |
 | **Examine** | Animate results, inspect curves and samples, compare captured runs on their native time grids, and export with units and provenance. |
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
-**Kernel 0.19.0 · Studio 0.5.0 · Research software under active development.**
+**Kernel 0.19.0 · Studio source 0.6.0.dev1 · Linux release 0.5.0.** Research software under active development.
 Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
 workflow; interactive constrained sketches and a regenerating feature tree are
 future work. The complete kernel is not certified. Each guarantee has a stated
@@ -65,7 +83,7 @@ and physical assumptions.
 |---|---|---|
 | **Vinkulum** | General-purpose mechanics and verifiable numerical research | Native kernel; rigid-mechanism Studio adapter available |
 | **OCCT 8 + build123d** | Exact CAD and mass properties | Integrated; local compatibility patches and qualification corpus included |
-| **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Connector planned](docs/PINOCCHIO_INTEGRATION.md); first target: qualified rigid trees |
+| **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Experimental workspace and CLI](docs/PINOCCHIO_OPERATORS.md) for fixed-base rigid trees, with independent references; separate Python environment, source workflow only |
 | **MBDyn** | Multibody workflows and independent reference calculations | Existing comparison work; Studio connector planned |
 | **CalculiX** | Finite-element workflows | [Experimental static-study workspace and CLI](docs/CALCULIX_INTEGRATION.md): affine C3D8, cancellable solve, captured displacement and integration-point values; external executable required |
 | **DUST** | Aerodynamic workflows and future coupling | Planned |
@@ -130,6 +148,7 @@ agreeing with another solver does not certify every trajectory.
 - [CAD adaptation, analytic checks and upstream test subset](docs/STUDIO_CAD.md)
 - [Studio interaction and rendering qualification](docs/STUDIO_GUI_2026.md)
 - [CalculiX statics contract and reproducible tension study](docs/CALCULIX_INTEGRATION.md)
+- [Pinocchio conversion, independent Lagrange references and captured-state workspace](docs/PINOCCHIO_OPERATORS.md)
 - [Lean proof workspace](preuves/README.md)
 
 Performance contributions start with a reproducible workload and a profile.

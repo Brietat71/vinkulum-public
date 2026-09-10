@@ -1,0 +1,17 @@
+# Dedicated Linux x86-64 / CPython 3.14 Pinocchio worker environment.
+# Qualified separately from Studio/Qt/OCCT. Do not install into the CAD env.
+cmeel==0.61.0
+cmeel-assimp==6.0.5
+cmeel-boost==1.90.0
+cmeel-console-bridge==1.0.2.3
+cmeel-octomap==1.10.0
+cmeel-qhull==8.0.2.1
+cmeel-tinyxml2==11.0.0
+cmeel-urdfdom==6.0.0
+cmeel-zlib==1.3.2
+coal==3.0.3
+eigenpy==3.13.0
+libcoal==3.0.3
+libpinocchio==4.1.0
+numpy==2.5.3
+pin==4.1.0
