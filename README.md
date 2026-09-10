@@ -52,7 +52,7 @@ and physical assumptions.
 | **OCCT 8 + build123d** | Exact CAD and mass properties | Integrated; local compatibility patches and qualification corpus included |
 | **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Connector planned](docs/PINOCCHIO_INTEGRATION.md); first target: qualified rigid trees |
 | **MBDyn** | Multibody workflows and independent reference calculations | Existing comparison work; Studio connector planned |
-| **CalculiX** | Finite-element workflows | Planned |
+| **CalculiX** | Finite-element workflows | [Experimental linear statics CLI](docs/CALCULIX_INTEGRATION.md): affine C3D8, analytic patch tests; GUI integration pending |
 | **DUST** | Aerodynamic workflows and future coupling | Planned |
 | **NeuralFoil** | Airfoil polar workflows | Used by optional validation tooling; Studio workflow planned |
 
@@ -111,6 +111,7 @@ agreeing with another solver does not certify every trajectory.
 - [Numerical benchmarks and historical comparisons](README.fr.md#résultats-mesurés-et-comparaison-externe)
 - [CAD adaptation, analytic checks and upstream test subset](docs/STUDIO_CAD.md)
 - [Studio interaction and rendering qualification](docs/STUDIO_GUI_2026.md)
+- [CalculiX statics contract and reproducible tension study](docs/CALCULIX_INTEGRATION.md)
 - [Lean proof workspace](preuves/README.md)
 
 Performance contributions start with a reproducible workload and a profile.

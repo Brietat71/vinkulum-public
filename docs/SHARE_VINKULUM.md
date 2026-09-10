@@ -8,7 +8,8 @@ Repository: [Brietat71/vinkulum-public](https://github.com/Brietat71/vinkulum-pu
 
 ## A demonstration you can reproduce
 
-Install Studio with CAD using the [guide](../apps/studio/README.md), then open
+Download the [Linux x86_64 preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.4.1-linux)
+or install Studio with CAD using the [guide](../apps/studio/README.md), then open
 [the machined plate project](../examples/studio/platine-percee.vinkulum.json).
 Inspect its dimensions, mass and inertia, or export the solid as STEP from the
 CAD dialog. Load the double-pendulum example separately to try simulation,

@@ -15,7 +15,7 @@ These are proposed projects, not funded positions or scheduled commitments.
 | Verifiable numerics | Numerical analysis, exact arithmetic, Lean | A sharply stated guarantee, executable verifier and adversarial counterexamples |
 | [Pinocchio connector](PINOCCHIO_INTEGRATION.md) | Rigid-body dynamics, robotics, Python/C++ | A pinned Linux environment and a one-link adapter checked against analytic gravity torque and acceleration |
 | MBDyn connector | Multibody simulation | Map a small mechanism, units, frames, solver version and result channels through an explicit adapter |
-| CalculiX connector | FEM | A documented model/export/result round-trip with material units and mesh provenance |
+| [CalculiX workflow](CALCULIX_INTEGRATION.md) | FEM, Python/Qt | Extend the experimental statics CLI with a cancellable GUI controller and a reproducible result view; qualify mesh provenance before CAD meshing |
 | DUST connector | Aerodynamics | A minimal reproducible coupling contract and an uncoupled reference case first |
 | NeuralFoil workflow | Aerodynamics, Python | A traceable polar workflow, including model version and limits, connected to Studio |
 | Accessible desktop | Qt, UX | One keyboard-complete workflow, tested at normal and high DPI |
