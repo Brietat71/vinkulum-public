@@ -1,9 +1,17 @@
-# Vinkulum Studio 0.6.0a1 — CAD and mechanism analysis
+# Vinkulum Studio 0.6.0a2.dev1 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.19.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
+
+Source version **0.6.0a2.dev1** adds sampled boundary-direction symbols to the
+CAD study: open pressure arrows, solid force arrows and bars for constrained
+world axes. Their nominal screen size stays readable during zoom; effective
+SI values in the condition list follow the signed load multiplier. See the
+[symbol guide and verification](../../docs/STUDIO_CAD_MESHING.md#boundary-direction-symbols).
+These additions require the source installation; the published Linux binary
+remains **0.6.0a1**.
 
 Source version **0.6.0.dev4** introduced the [CAD-to-statics workspace](../../docs/STUDIO_CAD_MESHING.md):
 generate an OCCT 8 / Gmsh mesh, select boundary faces in 3D, add supports,

@@ -11,18 +11,19 @@ from pathlib import Path
 from unittest.mock import patch
 
 from PySide6.QtCore import QPoint, Qt
+from PySide6.QtGui import QImage
 from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication, QFileDialog
 from shiboken6 import isValid
 from test_meshing import condition, solid
 from vinkulum_studio.calculix import load_study, study_document
-from vinkulum_studio.mesh_binding import MeshBinding, mesh_measurements
+from vinkulum_studio.mesh_binding import MeshBinding
 from vinkulum_studio.mesh_view import SURFACE_COLORS
 from vinkulum_studio.mesh_window import (
     ConditionDialog,
     ConditionEdit,
     MeshWindow,
-    surface_areas,
+    mesh_presentation,
 )
 
 
@@ -30,6 +31,217 @@ from vinkulum_studio.mesh_window import (
     os.environ.get("VINKULUM_3D_TESTS") == "1", "Requires a desktop OpenGL context"
 )
 class MeshWorkspace(unittest.TestCase):
+    def test_rendered_symbols_remain_distinct_from_colored_faces(self):
+        w = self.window()
+        v = w.viewport
+        w.edges.setChecked(False)
+        camera = v.renderer.GetActiveCamera()
+        camera.SetParallelProjection(True)
+        camera.SetParallelScale(0.8)
+        camera.SetPosition(0.4, -3, 2)
+        camera.SetFocalPoint(0.3, 0, 0.3)
+        camera.SetViewUp(0, 0, 1)
+
+        def luminance(color):
+            channels = (color.redF(), color.greenF(), color.blueF())
+            linear = [
+                c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+                for c in channels
+            ]
+            return sum(
+                c * weight for c, weight in zip(linear, (0.2126, 0.7152, 0.0722))
+            )
+
+        for row in (
+            condition("pressure", (2,), values=(10.0,)),
+            condition("total_force", (2,), values=(10.0, 0.0, 0.0)),
+            condition("support", (2,), axes=(1, 3)),
+        ):
+            with self.subTest(kind=row.kind):
+                w._set_conditions((row,))
+                pictures = []
+                for enabled in (False, True):
+                    w.symbols.setChecked(enabled)
+                    path = self.root / f"contrast-{row.kind}-{enabled}.png"
+                    v.screenshot(path)
+                    pictures.append(QImage(str(path)))
+                point = v._frames[2][0].point
+                v.renderer.SetWorldPoint(*point, 1)
+                v.renderer.WorldToDisplay()
+                x, y, _ = v.renderer.GetDisplayPoint()
+                x, y = round(x), pictures[0].height() - 1 - round(y)
+                radius = round(45 * pictures[0].width() / v.view.width())
+                distinct = 0
+                for a in range(x - radius, x + radius):
+                    for b in range(y - radius, y + radius):
+                        first, second = (
+                            luminance(im.pixelColor(a, b)) for im in pictures
+                        )
+                        if (max(first, second) + 0.05) / (
+                            min(first, second) + 0.05
+                        ) >= 1.8:
+                            distinct += 1
+                self.assertGreater(
+                    distinct, 12, "Symbols are lost against their face colour"
+                )
+
+    def test_rendered_force_arrow_changes_world_axis_without_pickable_geometry(self):
+        w = self.window()
+        v = w.viewport
+        v.actor.VisibilityOff()
+        v.edge_actor.VisibilityOff()
+        camera = v.renderer.GetActiveCamera()
+        camera.SetParallelProjection(True)
+        camera.SetParallelScale(0.8)
+        camera.SetPosition(0.4, 0.4, 3)
+        camera.SetFocalPoint(0.4, 0.4, 0)
+        camera.SetViewUp(0, 1, 0)
+        camera.SetClippingRange(0.01, 10)
+        for axis, values in ((0, (5.0, 0.0, 0.0)), (1, (0.0, 5.0, 0.0))):
+            w._set_conditions((condition("total_force", (2,), values=values),))
+            v.render()
+            group = v.glyph_layer.groups["total_force"]
+            v.renderer.SetWorldPoint(*group["positions"][0], 1)
+            v.renderer.WorldToDisplay()
+            x, y, _ = v.renderer.GetDisplayPoint()
+            path = self.root / f"force-axis-{axis}.png"
+            v.screenshot(path)
+            image = QImage(str(path))
+            self.assertFalse(image.isNull())
+            ratio = image.width() / v.view.width()
+            x, y = round(x), image.height() - 1 - round(y)
+            radius = round(45 * ratio)
+            colored = []
+            for a in range(max(0, x - radius), min(image.width(), x + radius)):
+                for b in range(max(0, y - radius), min(image.height(), y + radius)):
+                    r, g, blue, _ = image.pixelColor(a, b).getRgb()
+                    if r > 70 and r > 1.15 * g and r > 1.1 * blue:
+                        colored.append((a, b))
+            self.assertGreater(len(colored), 10)
+            widths = [
+                (max(p[i] for p in colored) - min(p[i] for p in colored) + 1) / ratio
+                for i in (0, 1)
+            ]
+            self.assertAlmostEqual(widths[axis], 30, delta=3)
+            self.assertLess(widths[1 - axis], 12)
+            self.assertFalse(group["actor"].GetPickable())
+
+    def test_boundary_symbols_follow_multiplier_and_preserve_physical_conditions(self):
+        w = self.window()
+        conditions = (
+            condition("support", (1,), axes=(1, 3)),
+            condition("pressure", (2,), values=(20.0,)),
+            condition("total_force", (3,), values=(3.0, 4.0, 0.0)),
+        )
+        w._set_conditions(conditions)
+        layer = w.viewport.glyph_layer
+        before = {
+            kind: [g.direction for g in group["rows"]]
+            for kind, group in layer.groups.items()
+        }
+        w.load_factor.setText("-2")
+        for kind, group in layer.groups.items():
+            expected = (
+                before[kind]
+                if kind == "support"
+                else [tuple(-v for v in d) for d in before[kind]]
+            )
+            self.assertEqual([g.direction for g in group["rows"]], expected)
+            self.assertFalse(group["actor"].GetPickable())
+        self.assertIn("Pressure -40 Pa", w.condition_list.item(1).text())
+        self.assertEqual(w.conditions, conditions)
+        w.load_factor.setText("1.000000000000001")
+        displayed, tooltip = w.load_factor.text(), w.condition_list.item(1).toolTip()
+        w.load_factor.setText("1.000000000000002")
+        self.assertEqual(w.load_factor.text(), displayed)
+        self.assertNotEqual(w.condition_list.item(1).toolTip(), tooltip)
+        self.assertIn(
+            repr(20.0 * w.load_factor.value()), w.condition_list.item(1).toolTip()
+        )
+        for value in ("invalid", "nan", "inf"):
+            w.load_factor.setText(value)
+            self.assertFalse(layer.groups["pressure"]["rows"])
+            self.assertFalse(layer.groups["total_force"]["rows"])
+            self.assertTrue(layer.groups["support"]["rows"])
+            self.assertFalse(w.save.isEnabled() or w.open_calculix.isEnabled())
+            self.assertIn("Correct", w.symbol_hint.text())
+        w.load_factor.setText("0")
+        self.assertFalse(
+            layer.groups["pressure"]["rows"] or layer.groups["total_force"]["rows"]
+        )
+        self.assertTrue(w.save.isEnabled())
+        w.load_factor.setText("1")
+        w.symbols.setFocus()
+        QTest.keyClick(w.symbols, Qt.Key.Key_Space)
+        self.assertFalse(any(g["actor"].GetVisibility() for g in layer.groups.values()))
+        QTest.keyClick(w.symbols, Qt.Key.Key_Space)
+        self.assertTrue(all(g["actor"].GetVisibility() for g in layer.groups.values()))
+        visible = []
+        for identifier, frames in w.viewport._frames.items():
+            for frame in frames:
+                point = self.screen_point(w.viewport, frame.point)
+                if w.viewport.pick_surface(point.x(), point.y()) == identifier:
+                    visible.append((point, identifier))
+        self.assertTrue(visible)
+        point, identifier = visible[0]
+        QTest.mouseClick(w.viewport.view, Qt.MouseButton.LeftButton, pos=point)
+        self.assertEqual(w.selected_faces, {identifier})
+        self.assertEqual(w.conditions, conditions)
+
+    def test_direction_symbol_projection_keeps_logical_size_during_zoom_and_resize(
+        self,
+    ):
+        import numpy as np
+
+        w = self.window()
+        w._set_conditions((condition("total_force", (2,), values=(3.0, 4.0, 0.0)),))
+        v = w.viewport
+        camera = v.renderer.GetActiveCamera()
+        camera.SetPosition(0.4, 0.4, 3)
+        camera.SetFocalPoint(0.4, 0.4, 0)
+        camera.SetViewUp(0, 1, 0)
+
+        def projected(point):
+            v.renderer.SetWorldPoint(*point, 1)
+            v.renderer.WorldToDisplay()
+            x, y, _ = v.renderer.GetDisplayPoint()
+            width, height = v.view.GetRenderWindow().GetSize()
+            return np.array((x * v.view.width() / width, y * v.view.height() / height))
+
+        for parallel in (True, False):
+            camera.SetParallelProjection(parallel)
+            camera.SetParallelScale(0.8)
+            camera.SetViewAngle(35)
+            for zoom, size in ((1, (1280, 850)), (2, (1100, 740)), (0.5, (1400, 950))):
+                camera.Zoom(zoom)
+                w.resize(*size)
+                QTest.qWait(30)
+                v.render()
+                group = v.glyph_layer.groups["total_force"]
+                data = group["mapper"].GetInput()
+                start = np.array(data.GetPoint(0))
+                length = data.GetPointData().GetArray("symbol_scale").GetValue(0)
+                direction = np.array(
+                    data.GetPointData().GetArray("direction").GetTuple3(0)
+                )
+                self.assertAlmostEqual(
+                    np.linalg.norm(
+                        projected(start + length * direction) - projected(start)
+                    ),
+                    30,
+                    delta=0.1,
+                )
+        # The fitting bounds belong to the captured geometry, independently of
+        # symbol size or the magnitude of the total-force components.
+        v.camera("iso")
+        before = camera.GetPosition(), camera.GetFocalPoint(), camera.GetParallelScale()
+        w._set_conditions((condition("total_force", (2,), values=(3e300, 4e300, 0.0)),))
+        v.fit_scene()
+        self.assertEqual(
+            before,
+            (camera.GetPosition(), camera.GetFocalPoint(), camera.GetParallelScale()),
+        )
+
     @classmethod
     def setUpClass(cls):
         cls.app = QApplication.instance() or QApplication([])
@@ -65,7 +277,7 @@ class MeshWorkspace(unittest.TestCase):
         window = MeshWindow(s.request.body, capture=capture)
         self.windows.append(window)
         window.show()
-        window._present_mesh((s, self.root, surface_areas(s), mesh_measurements(s)))
+        window._present_mesh(mesh_presentation(s, self.root))
         QTest.qWait(60)
         return window
 

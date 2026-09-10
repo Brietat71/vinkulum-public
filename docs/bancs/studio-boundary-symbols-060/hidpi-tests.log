@@ -1,0 +1,14 @@
+test_boundary_symbols_follow_multiplier_and_preserve_physical_conditions (test_mesh_workspace.MeshWorkspace.test_boundary_symbols_follow_multiplier_and_preserve_physical_conditions) ... ok
+test_close_waits_for_background_checks_and_does_not_publish_after_cancel (test_mesh_workspace.MeshWorkspace.test_close_waits_for_background_checks_and_does_not_publish_after_cancel) ... ok
+test_condition_dialog_validates_and_keeps_identity_and_world_components (test_mesh_workspace.MeshWorkspace.test_condition_dialog_validates_and_keeps_identity_and_world_components) ... ok
+test_direction_symbol_projection_keeps_logical_size_during_zoom_and_resize (test_mesh_workspace.MeshWorkspace.test_direction_symbol_projection_keeps_logical_size_during_zoom_and_resize) ... ok
+test_invalid_archive_is_transactional_and_new_source_clears_conditions (test_mesh_workspace.MeshWorkspace.test_invalid_archive_is_transactional_and_new_source_clears_conditions) ... ok
+test_real_face_pick_toggle_orbit_and_true_quadratic_edge_display (test_mesh_workspace.MeshWorkspace.test_real_face_pick_toggle_orbit_and_true_quadratic_edge_display) ... ok
+test_rendered_force_arrow_changes_world_axis_without_pickable_geometry (test_mesh_workspace.MeshWorkspace.test_rendered_force_arrow_changes_world_axis_without_pickable_geometry) ... ok
+test_rendered_symbols_remain_distinct_from_colored_faces (test_mesh_workspace.MeshWorkspace.test_rendered_symbols_remain_distinct_from_colored_faces) ... ok
+test_undo_save_reopen_multiplier_and_handoff_preserve_captured_intent (test_mesh_workspace.MeshWorkspace.test_undo_save_reopen_multiplier_and_handoff_preserve_captured_intent) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 13.476s
+
+OK

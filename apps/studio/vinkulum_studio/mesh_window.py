@@ -32,6 +32,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from .boundary_display import boundary_frames, effective_values
 from .calculix import load_study, study_document
 from .controls import NumberField, VectorField, line_icon
 from .mesh_binding import (
@@ -43,7 +44,7 @@ from .mesh_binding import (
 from .mesh_view import SURFACE_COLORS, MeshViewport
 from .meshing import MeshRequest, load_mesh
 from .meshing_controller import MeshingController
-from .model import write_json
+from .model import finite_number, write_json
 from .theme import apply_theme
 
 KIND_NAMES = {
@@ -173,6 +174,17 @@ def surface_areas(solid):
     }
 
 
+def mesh_presentation(solid, root=None):
+    """Prepare geometric display data with the mesh's background checks."""
+    return (
+        solid,
+        root,
+        surface_areas(solid),
+        mesh_measurements(solid),
+        boundary_frames(solid),
+    )
+
+
 class MeshWindow(QMainWindow):
     closed = Signal()
 
@@ -262,6 +274,13 @@ class MeshWindow(QMainWindow):
         self.edges = QCheckBox("Mesh edges")
         self.edges.setChecked(True)
         viewbar.addWidget(self.edges)
+        self.symbols = QCheckBox("Symbols")
+        self.symbols.setChecked(True)
+        self.symbols.setAccessibleName("Show boundary direction symbols")
+        self.symbols.setToolTip(
+            "Sampled directions: open arrows for pressure, solid arrows for total force, bars for constrained world axes. Symbol lengths do not encode force magnitudes."
+        )
+        viewbar.addWidget(self.symbols)
         views = QComboBox()
         views.setAccessibleName("Mesh camera direction")
         for label, direction in (
@@ -282,6 +301,7 @@ class MeshWindow(QMainWindow):
         self.viewport.surface_picked.connect(self._picked)
         self.viewport.surface_hovered.connect(self._hovered)
         self.edges.toggled.connect(self.viewport.set_edges)
+        self.symbols.toggled.connect(self.viewport.glyph_layer.set_visible)
         fit.clicked.connect(self.viewport.fit_scene)
         views.currentIndexChanged.connect(
             lambda _: self.viewport.camera(views.currentData())
@@ -302,6 +322,13 @@ class MeshWindow(QMainWindow):
             legend.addWidget(label)
         legend.addStretch(1)
         layout.addLayout(legend)
+        self.symbol_hint = QLabel(
+            "Sampled directions · open arrows: pressure · solid arrows: force · bars: fixed axes"
+        )
+        self.symbol_hint.setObjectName("muted")
+        self.symbol_hint.setWordWrap(True)
+        self.symbol_hint.setContentsMargins(10, 0, 10, 2)
+        layout.addWidget(self.symbol_hint)
         self.face_hint = QLabel(
             "  Click a face · Ctrl/Shift+click to toggle · Drag to orbit · Wheel to zoom"
         )
@@ -508,6 +535,7 @@ class MeshWindow(QMainWindow):
         self.status.setWordWrap(True)
         self.statusBar().addWidget(self.status, 1)
         self.undo.indexChanged.connect(self._update_busy)
+        self.load_factor.valueChanged.connect(self._refresh_condition_display)
 
     def _state(self):
         return (
@@ -543,7 +571,6 @@ class MeshWindow(QMainWindow):
         size = min(1e6, max(0.001, max(body.dimensions) * 1000 / 3))
         MeshRequest(body, size)  # Validate before changing any current state.
         self.source, self.solid, self.mesh_root = body, None, None
-        self.load_factor.setText("1.0")
         self.source_title.setText(body.name)
         self.source_info.setText(
             f"Captured OCCT {body.cad.occt_version} solid\nCAD volume: {body.cad.volume_m3:.7g} m³\nChanges in the model require a new capture."
@@ -556,6 +583,7 @@ class MeshWindow(QMainWindow):
         self.faces.clear()
         self.set_selected_faces(())
         self._set_conditions(())
+        self.load_factor.setText("1.0")
         self.undo.clear()
         self._saved_state = self._state()
         self._update_busy()
@@ -611,7 +639,7 @@ class MeshWindow(QMainWindow):
             return
         solid, root = result
         self._background(
-            lambda: (solid, root, surface_areas(solid), mesh_measurements(solid)),
+            lambda: mesh_presentation(solid, root),
             self._present_mesh,
             "Measuring captured boundary surfaces…",
         )
@@ -644,7 +672,7 @@ class MeshWindow(QMainWindow):
         self._update_busy()
 
     def _present_mesh(self, capture):
-        solid, root, areas, measurements = capture
+        solid, root, areas, measurements, frames = capture
         self.source, self.solid, self.mesh_root = solid.request.body, solid, root
         self.source_title.setText(self.source.name)
         self.source_info.setText(
@@ -652,7 +680,7 @@ class MeshWindow(QMainWindow):
         )
         self.size.setText(repr(solid.request.size_mm))
         self.order.setCurrentIndex(self.order.findData(solid.request.order))
-        self.viewport.set_solid(solid)
+        self.viewport.set_solid(solid, frames=frames)
         self._areas = areas
         self.faces.blockSignals(True)
         self.faces.clear()
@@ -734,32 +762,70 @@ class MeshWindow(QMainWindow):
         if self.solid is not None:
             MeshBinding(self.solid, tuple(conditions))
         self.conditions = tuple(conditions)
+        current = self.condition_list.currentItem()
+        selected_id = current.data(Qt.ItemDataRole.UserRole) if current else None
         self.condition_list.blockSignals(True)
         self.condition_list.clear()
         for condition in self.conditions:
-            detail = (
-                "Fix " + " / ".join("XYZ"[a - 1] for a in condition.axes)
-                if condition.kind == "support"
-                else f"{condition.values[0]:.6g} Pa"
-                if condition.kind == "pressure"
-                else "(" + ", ".join(f"{v:.5g}" for v in condition.values) + ") N"
-            )
-            item = QListWidgetItem(
-                f"{condition.name} · {detail}\n{len(condition.surfaces)} mesh face(s)"
-            )
+            item = QListWidgetItem()
             item.setData(Qt.ItemDataRole.UserRole, condition.id)
-            item.setForeground(QColor(*SURFACE_COLORS[condition.kind]))
-            item.setToolTip(
-                f"{KIND_NAMES[condition.kind]} · faces "
-                + ", ".join(map(str, condition.surfaces))
-            )
             self.condition_list.addItem(item)
+            if condition.id == selected_id:
+                self.condition_list.setCurrentItem(item)
         self.condition_list.blockSignals(False)
-        self.viewport.set_conditions(self.conditions)
+        self._refresh_condition_display()
         supports = sum(c.kind == "support" for c in self.conditions)
         self.study_info.setText(
             f"{supports} support(s) · {len(self.conditions) - supports} load(s)\nStudy and transported geometry are checked before opening the solver workspace."
         )
+        self._update_busy()
+
+    def _refresh_condition_display(self):
+        try:
+            factor = self.load_factor.value()
+        except ValueError, TypeError:
+            factor = None
+        invalid = self.viewport.set_conditions(self.conditions, factor)
+        for index, condition in enumerate(self.conditions):
+            values = effective_values(condition, factor)
+            detail = (
+                "Fix " + " / ".join("XYZ"[a - 1] for a in condition.axes)
+                if condition.kind == "support"
+                else "Invalid multiplier or load range"
+                if values is None
+                else f"Pressure {values[0]:.6g} Pa"
+                if condition.kind == "pressure"
+                else "Total force (" + ", ".join(f"{v:.5g}" for v in values) + ") N"
+            )
+            item = self.condition_list.item(index)
+            item.setText(
+                f"{condition.name} · {detail}\n{len(condition.surfaces)} mesh face(s)"
+            )
+            item.setForeground(
+                QColor(
+                    *(
+                        SURFACE_COLORS[condition.kind]
+                        if values is not None
+                        else (246, 143, 143)
+                    )
+                )
+            )
+            item.setToolTip(
+                f"{KIND_NAMES[condition.kind]} · world frame\nFaces: "
+                + ", ".join(map(str, condition.surfaces))
+                + (
+                    "\nZero displacement on the selected world axes."
+                    if condition.kind == "support"
+                    else f"\nStored values: {condition.values!r}\nLoad multiplier: {factor!r}\nApplied values: {values!r}\nSymbol size is independent of magnitude; arrows are not nodal forces."
+                )
+            )
+        self._multiplier_valid = finite_number(factor)
+        self.symbol_hint.setText(
+            "Correct the load multiplier or load values to display their directions."
+            if invalid or not self._multiplier_valid
+            else "Sampled directions · open arrows: pressure · solid arrows: force · bars: fixed axes"
+        )
+        self._invalid_symbol_loads = invalid
         self._update_busy()
 
     def _condition_selected(self, index):
@@ -880,7 +946,7 @@ class MeshWindow(QMainWindow):
 
             def read():
                 solid, root = load_mesh(path)
-                return solid, root, surface_areas(solid), mesh_measurements(solid)
+                return mesh_presentation(solid, root)
 
             self._background(
                 read, self._present_mesh, "Rechecking captured CAD mesh and raw files…"
@@ -900,15 +966,14 @@ class MeshWindow(QMainWindow):
                     raise ValueError(
                         "This study has no CAD mesh capture. Open it in the CalculiX workspace."
                     )
-                solid = study.mesh_binding.solid
-                return study, surface_areas(solid), mesh_measurements(solid)
+                return study, mesh_presentation(study.mesh_binding.solid)
 
             def present(value):
-                study, areas, measurements = value
+                study, presentation = value
                 binding = study.mesh_binding
-                self._present_mesh((binding.solid, None, areas, measurements))
-                self._set_conditions(binding.conditions)
+                self._present_mesh(presentation)
                 self.load_factor.setText(repr(binding.load_factor))
+                self._set_conditions(binding.conditions)
                 self.young.setText(repr(study.young_pa))
                 self.poisson.setText(repr(study.poisson))
                 self._saved_state = self._state()
@@ -953,6 +1018,8 @@ class MeshWindow(QMainWindow):
             not busy
             and self.solid is not None
             and any(c.kind == "support" for c in self.conditions)
+            and not getattr(self, "_invalid_symbol_loads", ())
+            and getattr(self, "_multiplier_valid", True)
         )
         self.save.setEnabled(ready)
         self.open_calculix.setEnabled(ready)

@@ -1,0 +1,38 @@
+{
+  "studio_version": "0.6.0a2.dev1",
+  "mesh": "meshes/a981e1f6-e6b3-4098-bb42-c0e8f2352d89",
+  "calculation": "calculations/static-b533af93ec254952",
+  "nodes": 4084,
+  "elements": 2115,
+  "face_groups": 29,
+  "clamp_face": 1,
+  "pressure_face": 11,
+  "energy_J": 0.002297249949073421,
+  "input_transport": {
+    "format": "calculix-f20-v1",
+    "field_width": 20,
+    "max_rounding_ulps": 64,
+    "solver_study_sha256": "5207a1134a3c771b7f00a4fcd1a1b0cfbddf0c7473b5f05c8c8f0afa53fc7f25",
+    "coordinates_m": {
+      "changed_values": 393,
+      "max_absolute_change": 8.673617379884035e-19
+    },
+    "forces_N": {
+      "changed_values": 13,
+      "max_absolute_change": 8.673617379884035e-19
+    },
+    "young_Pa": {
+      "changed_values": 0,
+      "max_absolute_change": 0.0
+    },
+    "poisson": {
+      "changed_values": 0,
+      "max_absolute_change": 0.0
+    }
+  },
+  "surface_area_quadrature_m2": 0.02551940465641798,
+  "signed_mesh_volume_m3": 0.00016995880392269128,
+  "cad_volume_m3": 0.00017009043296689058,
+  "relative_volume_difference": 0.0007738768248354289,
+  "qualification": "Workflow, local geometry and balance checks; no mesh-convergence claim for this plate."
+}

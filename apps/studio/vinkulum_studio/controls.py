@@ -19,6 +19,8 @@ from PySide6.QtWidgets import (
 class NumberField(QLineEdit):
     """Fit a numeric preview without changing the exact value or editing text."""
 
+    valueChanged = Signal()
+
     def __init__(self, value, parent=None):
         super().__init__(parent)
         self._original = value
@@ -35,6 +37,7 @@ class NumberField(QLineEdit):
         self._raw = text
         self._edited = True
         self.setToolTip("Entered value: " + text)
+        self.valueChanged.emit()
 
     def setText(self, text):
         # Programmatic edits have the same numeric semantics as keyboard edits.
