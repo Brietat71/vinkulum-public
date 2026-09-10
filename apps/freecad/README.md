@@ -1,10 +1,14 @@
-# Vinkulum for FreeCAD 0.1.0a1
+# Vinkulum for FreeCAD 0.1.0a2
 
 FreeCAD is Vinkulum's primary desktop interface. The extension adds a **Vinkulum
 menu and native task panel** while keeping the current FreeCAD workbench. It
 captures a selected solid, runs the existing mechanics backend in a separate
 process and displays native poses on a temporary copy. Development of Studio's
 custom GUI is paused.
+
+Opening the example now completes its initial view setup before queued document
+closures run. The [retained before/after regression](../../docs/bancs/freecad-example-close-2026/README.md)
+records the original native crash and the corrected installed extension.
 
 The first domain is one top-level rigid solid with one explicit revolute joint,
 starting from rest under gravity -Z. Pivot coordinates, axis, density, duration,
@@ -38,6 +42,14 @@ slider and **Play captured motion** use actual native samples without
 interpolating a new physical trajectory. The original design placement stays
 unchanged. See [complete installation and controls](INSTALLATION.txt).
 
+The command creates a **Motion object in the native document tree**. Its source
+link, density, pivot, axis, time settings and thread budget are saved in `.FCStd`.
+Double-click it or use its **Edit motion analysis** context action to resume.
+Panel edits participate in FreeCAD Undo/Redo. Opening the panel preserves stored
+values; the worker reads document properties directly, independently of display
+rounding. Saving uses FreeCAD's native numeric serialization precision.
+The engine executable remains a machine-local preference.
+
 One job can run at a time in this FreeCAD process. Cancel and source-document
 close retire its worker. A failed start releases admission. Newer geometry
 invalidates old-motion playback. Saving the native `.FCStd` file stops playback,
@@ -45,13 +57,18 @@ removes the temporary copy and restores the original visibility before writing.
 The `.FCStd` design and calculation folders remain separate files. A saved
 calculation can reopen without the engine when the selected source still
 matches its captured geometry.
+The Motion object remembers its last capture folder for **Reopen last
+calculation**. This is an absolute external path, not an embedded result; use
+**Open saved calculation** if the folder moves. Opening a document starts no
+solver or replay. Completed calculations retain their captured settings and do
+not overwrite newer edits. Changing the source link cancels its active task.
 
 ## Package and qualify
 
 Build a ZIP from reviewed, committed source:
 
 ```sh
-python3 apps/freecad/package.py /tmp/Vinkulum-FreeCAD-0.1.0a1.zip --require-clean
+python3 apps/freecad/package.py /tmp/Vinkulum-FreeCAD-0.1.0a2.zip --require-clean
 ```
 
 The ZIP contains original extension code, the editable pendulum example,
@@ -61,6 +78,9 @@ requires restarting FreeCAD, not rebuilding FreeCAD or the native kernel.
 
 [qualify_extension.FCMacro](qualify_extension.FCMacro) tests the actual installed
 extension in a fresh FreeCAD process with isolated user directories. The
+[persistent-analysis record](../../docs/bancs/freecad-analysis-010a2/README.md)
+covers native documents, Undo/Redo, precision, resumption and input changes
+during a real calculation. The earlier
 [retained extension record](../../docs/bancs/freecad-extension-010/README.md)
 contains the exact runtime, commands, outputs, screenshot and limits. It exercises
 real calculation, capture reopening without an engine, save-time preview removal,

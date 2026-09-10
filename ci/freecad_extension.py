@@ -11,11 +11,11 @@ import zipfile
 from pathlib import Path
 
 
-def qualify(freecad, engine_python, output, archive=None):
+def qualify(freecad, engine_python, output, archive=None, recipe="extension"):
     root = Path(__file__).resolve().parents[1]
     output = output.absolute()
     output.mkdir(parents=True, exist_ok=False)
-    payload = output / "Vinkulum-FreeCAD-0.1.0a1.zip"
+    payload = output / "Vinkulum-FreeCAD.zip"
     if archive is None:
         subprocess.run(
             [sys.executable, str(root / "apps/freecad/package.py"), str(payload)],
@@ -52,6 +52,7 @@ def qualify(freecad, engine_python, output, archive=None):
             "XDG_DATA_HOME": str(output / "data"),
             "XDG_CACHE_HOME": str(output / "cache"),
             "VINKULUM_FREECAD_EXTENSION_CHECK": str(output),
+            "VINKULUM_CLOSE_CAPTURE": str(output / "example-close"),
             "VINKULUM_FREECAD_PYTHON": str(engine_python.absolute()),
             "VINKULUM_FREECAD_BARRIER_PYTHON": str(barrier),
             "VINKULUM_FREECAD_OUTPUT_ROOT": str(output / "runs"),
@@ -61,7 +62,7 @@ def qualify(freecad, engine_python, output, archive=None):
     )
     command = [
         str(freecad.absolute()),
-        str(root / "apps/freecad/qualify_extension.FCMacro"),
+        str(root / "apps/freecad" / f"qualify_{recipe.replace('-', '_')}.FCMacro"),
     ]
     if not environment.get("DISPLAY"):
         command = ["xvfb-run", "-a", "-s", "-screen 0 1600x1100x24", *command]
@@ -85,7 +86,12 @@ def qualify(freecad, engine_python, output, archive=None):
             raise
     if code:
         raise RuntimeError(f"FreeCAD exited with {code}; see {output / 'console.log'}")
-    report = json.loads((output / "extension-check.json").read_text())
+    report_path = (
+        output / "extension-check.json"
+        if recipe == "extension"
+        else output / "example-close/report.json"
+    )
+    report = json.loads(report_path.read_text())
     if report["status"] != "passed":
         raise RuntimeError(f"FreeCAD qualification failed: {report}")
     print(json.dumps(report, indent=2))
@@ -97,5 +103,8 @@ if __name__ == "__main__":
     parser.add_argument("--engine-python", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--archive", type=Path)
+    parser.add_argument(
+        "--recipe", choices=("extension", "example-close"), default="extension"
+    )
     args = parser.parse_args()
-    qualify(args.freecad, args.engine_python, args.output, args.archive)
+    qualify(args.freecad, args.engine_python, args.output, args.archive, args.recipe)

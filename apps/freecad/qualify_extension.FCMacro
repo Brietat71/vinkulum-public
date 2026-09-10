@@ -56,6 +56,111 @@ def exception(kind, error, trace):
 sys.excepthook = exception
 
 
+def check_document_model(source):
+    from vinkulum_freecad import analysis as model
+    from vinkulum_freecad import host
+
+    document = source.Document
+    document.UndoMode = 1
+    obj = model.create(source)
+    name = obj.Name
+    document.undo()
+    assert document.getObject(name) is None
+    document.redo()
+    obj = document.getObject(name)
+    assert model.validate(obj) is source
+    panel = host.MotionPanel(obj)
+    state["panel"] = panel
+    Gui.Control.showDialog(panel)
+    precise = 7800.000000123456
+    obj.Density = precise
+    obj.Step = 0.005000000000012345
+    obj.Pivot = App.Vector(1.234567890123, 2.345678901234, 3.456789012345)
+    obj.Axis = App.Vector(0.123456789012, 0.987654321098, 0.111111111111)
+    obj.Duration = 1.234567890123
+    obj.Threads = 3
+    before = model.inputs(obj)
+    panel.duration.setValue(1.5)
+    assert obj.Duration.Value == 1.5
+    document.undo()
+    assert model.inputs(obj) == before
+    assert abs(panel.duration.value() - before["duration"]) < 1e-6
+    document.redo()
+    assert obj.Duration.Value == 1.5
+    panel.pivot[0].setValue(4)
+    assert list(obj.Pivot)[1:] == before["pivot_mm"][1:]
+    assert obj.Density == precise
+    assert obj.Step.Value == before["step"]
+    saved_inputs = model.inputs(obj)
+    panel.reject()
+    assert model.inputs(obj) == saved_inputs
+    saved = root / "persistent-analysis.FCStd"
+    document.saveAs(str(saved))
+    App.closeDocument(document.Name)
+    document = App.openDocument(str(saved))
+    obj = document.getObject(name)
+    restored = model.inputs(obj)
+    numeric_errors = []
+    for key, expected in saved_inputs.items():
+        actual = restored[key]
+        if isinstance(expected, list):
+            numeric_errors.extend(abs(a - b) for a, b in zip(actual, expected))
+        elif isinstance(expected, float):
+            numeric_errors.append(abs(actual - expected))
+        else:
+            assert actual == expected, (key, actual, expected)
+    # Native FCStd writes these values with 16 fractional decimal places.
+    # Test its round-trip budget separately from exact in-memory UI preservation.
+    assert max(numeric_errors) < 1e-15, (restored, saved_inputs)
+    report["native_document_roundtrip_max_absolute_error"] = max(numeric_errors)
+    saved_inputs = restored
+    assert isinstance(obj.ViewObject.Proxy, model.MotionView)
+    assert host._active_job is None
+    assert not Gui.Control.activeDialog()
+    assert not list((root / "runs").glob("*/request.json"))
+    report["checks"].append(
+        "native analysis creation undo/redo and FCStd round trip retain links and IDs; numeric error below 1e-15; no solver starts"
+    )
+    opened = []
+    original_open = host.open_analysis
+
+    def observe_open(selected):
+        panel = original_open(selected)
+        opened.append(panel)
+        return panel
+
+    host.open_analysis = observe_open
+    try:
+        assert obj.ViewObject.Proxy.doubleClicked(obj.ViewObject)
+        panel = opened[-1]
+        assert panel.analysis is obj and panel.source is obj.Source
+        assert model.inputs(obj) == saved_inputs
+        panel.reject()
+        menu = QtWidgets.QMenu()
+        obj.ViewObject.Proxy.setupContextMenu(obj.ViewObject, menu)
+        menu.actions()[0].trigger()
+        panel = opened[-1]
+        assert panel.analysis is obj
+        assert len(opened) == 2
+        panel.reject()
+    finally:
+        host.open_analysis = original_open
+    report["checks"].append(
+        "restored native double-click and context-menu callbacks reopen the same analysis without rounding inputs"
+    )
+    report["checks"].append(
+        "task edits support native undo/redo and preserve unedited vector components and scalar precision"
+    )
+    obj.Duration = 2
+    obj.Step = 0.005
+    obj.Pivot = App.Vector()
+    obj.Axis = App.Vector(0, 1, 0)
+    obj.Threads = 2
+    state["precise_density"] = precise
+    state["analysis_id"] = obj.AnalysisId
+    return obj.Source
+
+
 def advance():
     if time.monotonic() - state["started"] > 100:
         raise AssertionError("Extension qualification timed out: " + state["phase"])
@@ -87,12 +192,15 @@ def advance():
         report["checks"].append("installed menu survives native workbench activation")
         host.open_example()
         Gui.getMainWindow().resize(1440, 1000)
-        source = host.selected_solid()
+        source = check_document_model(host.selected_solid())
         panel = host.MotionPanel(source)
         state.update(panel=panel, source=source, signature=bridge.signature(source))
         Gui.Control.showDialog(panel)
         QtTest.QTest.mouseClick(panel.run_button, QtCore.Qt.MouseButton.LeftButton)
         assert panel.job is not None, panel.status.text()
+        assert panel.job.request["density_kg_m3"] == state["precise_density"]
+        assert panel.job.request["project_id"] == state["analysis_id"]
+        panel.analysis.Density = 8100.123456789
         state["phase"] = "calculate"
     elif phase == "calculate":
         panel = state["panel"]
@@ -102,7 +210,20 @@ def advance():
         assert panel.result["manifest"]["threads"] == panel.threads.value()
         report["kernel_version"] = panel.result["manifest"]["kernel_version"]
         report["backend_manifest"] = panel.result["manifest"]
-        assert abs(panel.result["properties_si"]["mass_kg"] - 3.744) < 1e-10
+        assert (
+            abs(
+                panel.result["properties_si"]["mass_kg"]
+                - 0.00048 * state["precise_density"]
+            )
+            < 1e-10
+        )
+        assert panel.analysis.Density == 8100.123456789
+        assert panel.request["density_kg_m3"] == state["precise_density"]
+        assert panel.analysis.LastCapture == str(panel.directory)
+        report["checks"].append(
+            "worker consumes full document precision and its completion does not overwrite newer analysis inputs"
+        )
+        panel.analysis.Density = state["precise_density"]
         state["captured"] = panel.result
         state["directory"] = panel.directory
         panel.slider.setValue(173)
@@ -127,10 +248,23 @@ def advance():
         state["panel"] = panel
         Gui.Control.showDialog(panel)
         panel.interpreter.setText("/not-an-installed-engine")
-        panel.load_capture(state["directory"])
+        panel.reopen_capture()
         assert panel.result is not None, panel.status.text()
         assert panel.result["run_id"] == state["captured"]["run_id"]
         report["checks"].append("saved capture reopens against current source")
+        obj = panel.analysis
+        obj.Source = None
+        assert panel.closed and panel.preview is None
+        assert state["source"].Visibility
+        obj.Source = state["source"]
+        panel = host.MotionPanel(obj)
+        state["panel"] = panel
+        Gui.Control.showDialog(panel)
+        panel.reopen_capture()
+        assert panel.result is not None, panel.status.text()
+        report["checks"].append(
+            "unlinking the source during preview removes temporary geometry and restores the original visibility"
+        )
         panel.display_sample(5)
         assert panel.preview is not None
         saved = root / "saved-during-preview.FCStd"
@@ -150,11 +284,13 @@ def advance():
         panel = host.MotionPanel(state["source"])
         state["panel"] = panel
         Gui.Control.showDialog(panel)
-        panel.load_capture(state["directory"])
+        assert panel.analysis.AnalysisId == state["analysis_id"]
+        assert panel.analysis.LastCapture == str(state["directory"])
+        panel.reopen_capture()
         assert panel.result is not None, panel.status.text()
         assert panel.result["run_id"] == state["captured"]["run_id"]
         report["checks"].append(
-            "closing and reopening the native FCStd design preserves capture admission"
+            "closing and reopening FCStd preserves the analysis and its last-capture reference for explicit replay"
         )
         state["source"].Placement.Base.x += 1
         panel.slider.setValue(20)
@@ -266,6 +402,33 @@ def advance():
         report["checks"].append(
             "real-process cancellation releases admission and preserves previous capture"
         )
+        (root / "barrier-entered").unlink()
+        panel.run()
+        assert panel.job is not None, panel.status.text()
+        state["phase"] = "change_source"
+    elif phase == "change_source":
+        if not (root / "barrier-entered").exists():
+            return
+        panel = state["panel"]
+        state["linked_analysis"] = panel.analysis
+        state["last_capture"] = panel.analysis.LastCapture
+        panel.analysis.Source = None
+        assert panel.closed
+        state["phase"] = "source_changed"
+    elif phase == "source_changed":
+        if host._active_job is not None:
+            return
+        obj = state["linked_analysis"]
+        assert obj.LastCapture == state["last_capture"]
+        assert obj.Source is None
+        obj.Source = state["source"]
+        report["checks"].append(
+            "changing the source link closes its task and cancels the real worker without replacing the last capture"
+        )
+        panel = host.MotionPanel(obj)
+        state["panel"] = panel
+        Gui.Control.showDialog(panel)
+        panel.interpreter.setText(os.environ["VINKULUM_FREECAD_BARRIER_PYTHON"])
         (root / "barrier-entered").unlink()
         panel.run()
         assert panel.job is not None, panel.status.text()

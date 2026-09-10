@@ -1,0 +1,97 @@
+{
+  "status": "passed",
+  "checks": [
+    "installed extension files match the packaged source manifest",
+    "installed menu survives native workbench activation",
+    "native analysis creation undo/redo and FCStd round trip retain links and IDs; numeric error below 1e-15; no solver starts",
+    "restored native double-click and context-menu callbacks reopen the same analysis without rounding inputs",
+    "task edits support native undo/redo and preserve unedited vector components and scalar precision",
+    "worker consumes full document precision and its completion does not overwrite newer analysis inputs",
+    "actual worker, thread allocation, mass, native pose and source preservation",
+    "saved capture reopens against current source",
+    "unlinking the source during preview removes temporary geometry and restores the original visibility",
+    "native FreeCAD save omits the temporary motion shape and restores visibility",
+    "closing and reopening FCStd preserves the analysis and its last-capture reference for explicit replay",
+    "editing source placement refuses stale playback",
+    "translated pivot and rotated hinge preserve the baseline trajectory with one engine thread",
+    "failed process start releases admission and preserves previous capture",
+    "a second task cannot overtake the application-wide running job",
+    "real-process cancellation releases admission and preserves previous capture",
+    "changing the source link closes its task and cancels the real worker without replacing the last capture",
+    "closing the source document cancels and settles its worker"
+  ],
+  "extension": {
+    "extension_version": "0.1.0a2",
+    "source_commit": "0493d34e939d76e0e29ecb8a2e8e1ac535e04d26",
+    "source_dirty": true,
+    "files_sha256": {
+      "InitGui.py": "19d2b4cc0081bbebbf52f744d068719d5487af7a0154426091510fd6f944fa66",
+      "host.py": "c829705a7bc8a67bf54aac2a3ae26aa66551f0e7fd2bd07b5e2c5c7f043df2f3",
+      "analysis.py": "8ebdce98c024426608eea3c22ac0fb76e127fead0b0d292483ffc473d677e54a",
+      "bridge.py": "dad2419aed3d9ce01438cff5b0f19779e51c3c36a5aaaa6e2ab9343fb2736b02",
+      "worker.py": "a6d5ae0cd7d54c522f13901fe126a13f68ee270bd8233aefe8f78834d323f3e0",
+      "INSTALLATION.txt": "ac03b5841a0880ec702769513e0056c1029207607dfbc38e3f593bc7424bca65"
+    },
+    "runtime_scope": "FreeCAD 1.1.3 / Qt 6 on Linux; separate Vinkulum 0.20 / OCCT 8 Python environment"
+  },
+  "freecad_version": [
+    "1",
+    "1",
+    "3",
+    "20260725 (Git shallow)",
+    "Unknown",
+    "2026/07/25 04:52:02",
+    "grafted,grafted",
+    "145529fe741292ff0b3977a01195bf0247425794"
+  ],
+  "freecad_python": "3.11.14 | packaged by conda-forge | (main, Oct 13 2025, 14:25:33) [GCC 14.3.0]",
+  "native_document_roundtrip_max_absolute_error": 4.5102810375396984e-17,
+  "kernel_version": "0.20.0",
+  "backend_manifest": {
+    "app_version": "0.6.0a2.dev7",
+    "kernel_version": "0.20.0",
+    "kernel_sha256": "efac1081707b3f61f6d0b90a6cc6277937b9241fb603d6996ac21ed1638167cf",
+    "python": "3.14.7",
+    "platform": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "completed_utc": "2026-09-10T17:17:26.522980+00:00",
+    "method": "generalized-alpha / SO(3)",
+    "rho_infinity": 0.9,
+    "threads": 2,
+    "execution": {
+      "threads": 2,
+      "budget": 2,
+      "backend": "rayon",
+      "pool_id": 1,
+      "worker_available_cpus": 64
+    },
+    "units": {
+      "time": "s",
+      "position": "m",
+      "rotation": "1",
+      "velocity": "m/s",
+      "angular_velocity": "rad/s"
+    },
+    "frame": "world; row-major body-to-world rotation matrices",
+    "initial_velocities": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "initial_angular_velocities": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "joint_angles": "principal angles [-pi,pi]; no turn-count inference",
+    "scientific_status": "NotAssessed",
+    "sampling": "native steps plus initialized state",
+    "limitations": "No trajectory error bound or checkpoint; rigid mechanisms only."
+  },
+  "transformed_position_error_m": 1.6388279622248092e-13,
+  "transformed_rotation_error": 3.022027073029676e-13
+}

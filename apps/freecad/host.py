@@ -13,6 +13,7 @@ import FreeCAD as App
 import FreeCADGui as Gui
 from PySide6 import QtCore, QtGui, QtWidgets
 
+from . import analysis as model
 from . import bridge
 
 _active_job = None
@@ -54,6 +55,9 @@ class MotionPanel:
     """Inputs for the next calculation and an explicitly captured native result."""
 
     def __init__(self, source):
+        self.analysis = model.for_selection(source)
+        self.analysis_name = self.analysis.Name
+        source = model.validate(self.analysis)
         self.source = source
         self.source_name = source.Name
         self.document = source.Document
@@ -101,7 +105,7 @@ class MotionPanel:
                 boxes.addWidget(control)
             fields.addRow(label, row)
         self.threads = QtWidgets.QSpinBox()
-        self.threads.setRange(1, min(64, os.cpu_count() or 1))
+        self.threads.setRange(1, 64)
         self.threads.setValue(min(2, self.threads.maximum()))
         fields.addRow("Engine threads", self.threads)
         layout.addWidget(self.inputs)
@@ -149,6 +153,9 @@ class MotionPanel:
         self.open_button = QtWidgets.QPushButton("Open saved calculation…")
         self.open_button.clicked.connect(self.open_capture)
         layout.addWidget(self.open_button)
+        self.reopen_button = QtWidgets.QPushButton("Reopen last calculation")
+        self.reopen_button.clicked.connect(self.reopen_capture)
+        layout.addWidget(self.reopen_button)
         self.play_button = QtWidgets.QPushButton("Play captured motion")
         self.play_button.setEnabled(False)
         self.play_button.clicked.connect(self.toggle_playback)
@@ -172,7 +179,48 @@ class MotionPanel:
         self.timer = QtCore.QTimer(self.form)
         self.timer.setInterval(16)
         self.timer.timeout.connect(self.tick)
+        self.bind_inputs()
         App.addDocumentObserver(self)
+
+    def bind_inputs(self):
+        self.property_fields = {
+            "Density": [self.density],
+            "Duration": [self.duration],
+            "Step": [self.step],
+            "Threads": [self.threads],
+            "Pivot": self.pivot,
+            "Axis": self.axis,
+        }
+        self.refresh_inputs()
+        for name, controls in self.property_fields.items():
+            for index, control in enumerate(controls):
+                component = index if name in ("Pivot", "Axis") else None
+                control.valueChanged.connect(
+                    lambda value, name=name, component=component: model.update(
+                        self.analysis, name, value, component
+                    )
+                )
+
+    def refresh_inputs(self, name=None):
+        for property_name, controls in self.property_fields.items():
+            if name is not None and name != property_name:
+                continue
+            value = getattr(self.analysis, property_name)
+            values = (
+                list(value)
+                if property_name in ("Pivot", "Axis")
+                else [value.Value if property_name in ("Duration", "Step") else value]
+            )
+            for control, value in zip(controls, values):
+                previous = control.blockSignals(True)
+                try:
+                    control.setValue(value)
+                    control.setToolTip(f"Stored document value: {value!r}")
+                finally:
+                    control.blockSignals(previous)
+        self.reopen_button.setEnabled(
+            bool(self.analysis.LastCapture) and self.job is None
+        )
 
     def getStandardButtons(self):
         return QtWidgets.QDialogButtonBox.StandardButton.Close.value
@@ -197,10 +245,18 @@ class MotionPanel:
         if name:
             self.output.setText(name)
 
-    def source_is_current(self):
+    def source_exists(self):
         document = App.listDocuments().get(self.document_name)
         return (
             document is not None and document.getObject(self.source_name) is self.source
+        )
+
+    def source_is_current(self):
+        document = App.listDocuments().get(self.document_name)
+        return (
+            self.source_exists()
+            and document.getObject(self.analysis_name) is self.analysis
+            and self.analysis.Source is self.source
         )
 
     def run(self):
@@ -230,14 +286,7 @@ class MotionPanel:
             request = bridge.capture(
                 self.source,
                 directory,
-                density=self.density.value(),
-                body_id=str(uuid.uuid4()),
-                project_id=str(uuid.uuid4()),
-                duration=self.duration.value(),
-                step=self.step.value(),
-                pivot_mm=[field.value() for field in self.pivot],
-                axis_world=[field.value() for field in self.axis],
-                threads=self.threads.value(),
+                **model.inputs(self.analysis),
             )
             prefs = App.ParamGet(PREFERENCES)
             prefs.SetString("EnginePython", str(interpreter))
@@ -262,6 +311,7 @@ class MotionPanel:
             return
         for widget in (self.inputs, self.run_button, self.open_button):
             widget.setEnabled(not busy)
+        self.reopen_button.setEnabled(not busy and bool(self.analysis.LastCapture))
         self.cancel_button.setEnabled(busy)
 
     def cancel(self):
@@ -282,8 +332,9 @@ class MotionPanel:
         job.deleteLater()
 
     def completed(self, directory, request, result):
-        if self.closed:
+        if self.closed or not self.source_is_current():
             return
+        model.remember_capture(self.analysis, directory)
         self.directory, self.request, self.result = directory, request, result
         self.geometry_dirty = True
         self.slider.setRange(0, len(result["time_s"]) - 1)
@@ -292,8 +343,13 @@ class MotionPanel:
         self.slider.setValue(0)
         self.display_sample(0)
         self.status.setText(
-            f"Captured calculation saved in {directory}. Original geometry retained."
+            f"Captured calculation saved in {directory}. "
+            "Playback uses captured inputs; document inputs configure the next run."
         )
+
+    def reopen_capture(self):
+        if not self.closed and self.job is None and self.analysis.LastCapture:
+            self.load_capture(Path(self.analysis.LastCapture))
 
     def open_capture(self):
         if self.closed or self.job is not None:
@@ -305,6 +361,8 @@ class MotionPanel:
             self.load_capture(Path(name))
 
     def load_capture(self, directory):
+        if self.closed or self.job is not None:
+            return
         try:
             path = directory / "request.json"
             if path.stat().st_size > 100_000:
@@ -325,7 +383,7 @@ class MotionPanel:
                 and document.getObject(self.preview.Name) is self.preview
             ):
                 document.removeObject(self.preview.Name)
-            if self.source_visibility is not None and self.source_is_current():
+            if self.source_visibility is not None and self.source_exists():
                 self.source.Visibility = self.source_visibility
         self.preview = None
         self.source_visibility = None
@@ -423,6 +481,13 @@ class MotionPanel:
             Gui.Control.closeDialog()
 
     def slotChangedObject(self, obj, property_name):
+        if self.closed:
+            return
+        if obj is self.analysis:
+            if property_name == "Source" and obj.Source is not self.source:
+                self.reject()
+                return
+            self.refresh_inputs(property_name)
         if obj is not self.preview and property_name in ("Shape", "Placement", "Group"):
             self.geometry_dirty = True
 
@@ -438,10 +503,10 @@ class MotionPanel:
     def slotDeletedObject(self, obj):
         if obj is self.preview:
             self.preview = None
-            if self.source_visibility is not None and self.source_is_current():
+            if self.source_visibility is not None and self.source_exists():
                 self.source.Visibility = self.source_visibility
             self.source_visibility = None
-        elif obj is self.source and not self.closed:
+        elif (obj is self.source or obj is self.analysis) and not self.closed:
             self.dispose()
             Gui.Control.closeDialog()
 
@@ -454,24 +519,42 @@ class MotionCommand:
         }
 
     def Activated(self):
-        try:
-            if Gui.Control.activeDialog():
-                raise ValueError("Finish or close the current FreeCAD task first.")
-            Gui.Control.showDialog(MotionPanel(selected_solid()))
-        except Exception as error:  # noqa: BLE001 - report native errors at the process/UI boundary
-            QtWidgets.QMessageBox.information(
-                Gui.getMainWindow(), "Vinkulum", str(error)
-            )
+        selection = Gui.Selection.getSelection()
+        open_analysis(selection[0] if len(selection) == 1 else None)
 
     def IsActive(self):
         return App.ActiveDocument is not None
 
 
+def open_analysis(selected):
+    try:
+        if Gui.Control.activeDialog():
+            raise ValueError("Finish or close the current FreeCAD task first.")
+        if selected is None:
+            raise ValueError(
+                "Select one solid, PartDesign Body or motion analysis first."
+            )
+        panel = MotionPanel(selected)
+        Gui.Control.showDialog(panel)
+        return panel
+    except Exception as error:  # noqa: BLE001 - native UI boundary
+        QtWidgets.QMessageBox.information(Gui.getMainWindow(), "Vinkulum", str(error))
+        return None
+
+
 def open_example():
     path = Path(__file__).parent / "Examples" / "Pendulum.FCStd"
     document = App.openDocument(str(path))
-    Gui.activeDocument().activeView().viewFront()
-    Gui.activeDocument().activeView().fitAll()
+    view = Gui.activeDocument().activeView()
+    animated = view.isAnimationEnabled()
+    view.setAnimationEnabled(False)
+    try:
+        view.viewFront()
+        # An explicit margin fits immediately. Animated fitting enters a nested
+        # event loop that can outlive this viewer if its document is closed.
+        view.fitAll(1.15)
+    finally:
+        view.setAnimationEnabled(animated)
     Gui.Selection.clearSelection()
     Gui.Selection.addSelection(document.getObject("Rod"))
 

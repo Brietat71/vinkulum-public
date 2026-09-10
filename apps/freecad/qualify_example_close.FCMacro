@@ -1,0 +1,107 @@
+"""Close an example during view fitting in an isolated installed FreeCAD host.
+
+SPDX-License-Identifier: Apache-2.0
+This recipe opens/closes its own documents and exits its FreeCAD session.
+"""
+
+import hashlib
+import json
+import os
+import sys
+import traceback
+from pathlib import Path
+
+import FreeCAD as App
+from PySide6.QtCore import QTimer
+from PySide6.QtWidgets import QApplication
+
+root = Path(os.environ["VINKULUM_CLOSE_CAPTURE"])
+root.mkdir(exist_ok=False)
+report = {"status": "running", "iterations": []}
+state = {"iteration": 0, "finished": False}
+
+
+def save():
+    (root / "report.json").write_text(json.dumps(report, indent=2) + "\n")
+
+
+def finish(error=None):
+    if state["finished"]:
+        return
+    state["finished"] = True
+    report["status"] = "failed" if error else "passed"
+    if error:
+        report["error"] = str(error)
+    save()
+    for name in list(App.listDocuments()):
+        App.closeDocument(name)
+    QApplication.instance().quit()
+
+
+def failed(kind, error, trace):
+    (root / "exception.log").write_text(
+        "".join(traceback.format_exception(kind, error, trace))
+    )
+    finish(error)
+
+
+sys.excepthook = failed
+
+
+def close_document():
+    if state["finished"]:
+        return
+    if App.ActiveDocument is not None:
+        report["iterations"][-1]["closed"] = App.ActiveDocument.Name
+        save()
+        App.closeDocument(App.ActiveDocument.Name)
+        QTimer.singleShot(100, next_iteration)
+    else:
+        QTimer.singleShot(10, close_document)
+
+
+def next_iteration():
+    from vinkulum_freecad import host
+
+    if state["finished"]:
+        return
+    assert not App.listDocuments()
+    if state["iteration"] == 5:
+        if not all(row.get("open_returned") for row in report["iterations"]):
+            QTimer.singleShot(100, next_iteration)
+            return
+        finish()
+        return
+    state["iteration"] += 1
+    row = {"number": state["iteration"]}
+    report["iterations"].append(row)
+    save()
+    QTimer.singleShot(50, close_document)
+    host.open_example()
+    row["open_returned"] = True
+    save()
+
+
+def start():
+    assert not App.listDocuments()
+    from vinkulum_freecad import host
+
+    report["installed_module"] = host.__file__
+    report["manifest"] = json.loads(
+        (Path(host.__file__).parents[1] / "extension-info.json").read_text()
+    )
+    report["freecad_version"] = App.Version()
+    report["freecad_python"] = sys.version
+    addon = Path(host.__file__).parents[1]
+    for name, expected in report["manifest"]["files_sha256"].items():
+        path = (
+            addon / name
+            if name in ("InitGui.py", "INSTALLATION.txt")
+            else Path(host.__file__).parent / name
+        )
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, name
+    next_iteration()
+
+
+QTimer.singleShot(30000, lambda: finish("timeout"))
+QTimer.singleShot(800, start)
