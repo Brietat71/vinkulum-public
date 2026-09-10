@@ -1,11 +1,11 @@
-# Vinkulum Studio 0.6.0.dev4 — CAD and mechanism analysis
+# Vinkulum Studio 0.6.0a1 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.19.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
 
-The **0.6.0.dev4 source version** adds the [CAD-to-statics workspace](../../docs/STUDIO_CAD_MESHING.md):
+Source version **0.6.0.dev4** introduced the [CAD-to-statics workspace](../../docs/STUDIO_CAD_MESHING.md):
 generate an OCCT 8 / Gmsh mesh, select boundary faces in 3D, add supports,
 pressure or total forces, save the captured study and open CalculiX. Meshing and
 numerical admission run outside the GUI thread. The [input transport contract](../../docs/CALCULIX_NUMERIC_TRANSPORT.md)
@@ -15,8 +15,7 @@ The **0.6.0.dev3 source version** extended CalculiX studies to linear and quadra
 tetrahedra, including curved C3D10 geometry. The
 [tetrahedral guide](../../docs/STUDIO_TETRAHEDRA.md) provides an independent
 bending reference and the exact local Jacobian-positivity check. This is the
-element contract now used by the CAD meshing workspace. The existing 0.5.0
-binary accepts affine C3D8 studies only.
+element contract now used by the CAD meshing workspace.
 
 The **0.6.0.dev2 source version** adds [editable solid features](../../docs/STUDIO_CAD_HISTORY.md):
 change an upstream dimension or placement, preview the regenerated part and apply
@@ -27,7 +26,9 @@ The **0.6.0.dev1 source version** adds an **Articulated operators / Pinocchio**
 workspace: edit a captured state, run a separate Pinocchio 4.1 worker, inspect
 mass matrices, inverse/forward dynamics and Jacobians, export CSV, and reopen
 results without the engine. See the [installation and operator guide](../../docs/PINOCCHIO_OPERATORS.md).
-The published Linux standalone remains **0.5.0**, without this new workspace.
+These workspaces are included in the **0.6.0a1 Linux preview**, along with
+[examples to try in five minutes](packaging/EXAMPLES.md). New Gmsh, CalculiX
+and Pinocchio computations require separately installed engines.
 
 Studio 0.5.0 adds an experimental **Linear statics / CalculiX** workspace,
 captured displacement/stress inspection, CSV export and checked reopening of
@@ -99,16 +100,19 @@ kernel, Studio CAD and PyInstaller:
 
 ```sh
 python -m pip install 'pyinstaller==6.22.2'
-PY=$(command -v python) bash ci/linux_bundle.sh
+# First build the external mesher with ci/build_mesher.py; see the CAD meshing guide.
+VINKULUM_BUNDLE_GMSH=/absolute/path/to/gmsh-install/bin/gmsh \
+  PY=$(command -v python) bash ci/linux_bundle.sh
 ```
 
 This runs locally. It builds, archives and extracts the application, then tests
 the extracted executable outside the repository: real CAD, STEP round-trip,
-native simulation, OpenGL rendering and version checks. Without a display it
+CAD feature regeneration, native simulation, OpenGL rendering, Gmsh/OCCT 8,
+CalculiX, and the delivered CAD/FEM/Pinocchio captures. Without a display it
 uses Xvfb. `dist/linux/` receives the verified archive, `SHA256SUMS`, build
 provenance and the `check/` report. Set `VINKULUM_LINUX_OUT` for another destination.
 
-Extract `Vinkulum-Studio-0.5.0-linux-x86_64.tar.gz`, then run
+Extract `Vinkulum-Studio-0.6.0a1-linux-x86_64.tar.gz`, then run
 `./Vinkulum\ Studio/Vinkulum\ Studio`. Keep `_internal` beside the executable.
 The qualified 0.4.0 baseline used Linux x86-64, glibc 2.39, X11 and Mesa OpenGL
 on Ubuntu 24.04; each new package must pass its own extracted-binary checks.

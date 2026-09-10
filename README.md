@@ -14,18 +14,19 @@ ambition of becoming a home for the open solvers engineers and researchers rely 
 [Scientific guarantees](docs/CERTIFICATION_NOYAU.md) ·
 [Support the project](docs/FUNDING.md) · [Documentation technique en français](README.fr.md)
 
-**Try it:** [download the Linux desktop preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.5.0-linux)
-or [inspect a saved FEM example without installing CalculiX](docs/SHARE_VINKULUM.md#try-a-captured-finite-element-result).
-The release contains Studio 0.5.0; the source tree is developing 0.6.0.
+**Try it:** [download the Linux desktop preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux)
+and [try the included examples in five minutes](apps/studio/packaging/EXAMPLES.md).
+**Studio 0.6.0a1 is a research alpha.** CAD, the native kernel and saved CAD/FEM/Pinocchio
+examples are included. New Gmsh, CalculiX and Pinocchio computations use separate engines.
 
 <p align="center">
-  <img src="docs/assets/studio-cad.png" alt="Vinkulum Studio: a perforated, filleted CAD plate, model tree, mass and inertia inspector" width="100%">
+  <img src="docs/assets/studio-cad-mesh.png" alt="Vinkulum Studio: a CAD plate meshed with quadratic tetrahedra, a clamped end, a top pressure load and editable face conditions" width="100%">
 </p>
 
-*An actual Studio session: create a plate, subtract a cylinder, fillet the edges,
-then obtain mass and inertia from the exact solid. The
-[example project](examples/studio/platine-percee.vinkulum.json) and
-[reproducible CAD recipe](ci/studio_cad_recipe.py) are included.*
+*A real CAD-to-statics session: mesh the plate, pick its faces, add a clamp and
+pressure, then open CalculiX. The [captured example](docs/bancs/studio-cad-meshing-060/README.md)
+keeps the solid, conditions, input deck and raw output behind the display.
+The plate demonstrates the workflow; it is not a certified stress solution.*
 
 <details>
 <summary><strong>See the new CalculiX workspace — a calculation you can reproduce</strong></summary>
@@ -42,7 +43,7 @@ amplified; exported values retain their physical units. The
 </details>
 
 <details>
-<summary><strong>In the developing source: inspect Pinocchio operators behind a mechanism</strong></summary>
+<summary><strong>Inspect Pinocchio operators behind a mechanism</strong></summary>
 
 ![Studio 0.6.0.dev1: two-link captured state and body Jacobian with explicit units](docs/assets/studio-pinocchio.png)
 
@@ -50,12 +51,12 @@ Edit an articulated state, evaluate dynamics operators and inspect mass matrices
 derivatives and Jacobians. The [captured example](examples/studio/articulated/double-pendulum/README.md)
 opens without the engine; recomputation uses a separate Pinocchio environment.
 The [guide](docs/PINOCCHIO_OPERATORS.md) includes independent Lagrange references.
-Introduced in source version **0.6.0.dev1**; the **0.5.0 Linux download** predates this workspace.
+Included in the **0.6.0a1 Linux preview**. The example opens without installing Pinocchio.
 
 </details>
 
 <details>
-<summary><strong>In the developing source: change a CAD dimension and regenerate the part</strong></summary>
+<summary><strong>Change a CAD dimension and regenerate the part</strong></summary>
 
 ![Studio 0.6.0.dev2: a 150 mm plate regenerated from an editable feature graph](docs/assets/studio-cad-history.png)
 
@@ -64,7 +65,7 @@ fillets. The solid supplies the new mass and inertia; applying the preview is
 one undoable change. Try the [parametric plate](examples/studio/platine-parametrique.vinkulum.json)
 with the [editing guide](docs/STUDIO_CAD_HISTORY.md) and inspect the
 [installed-package checks](docs/bancs/studio-cad-history-060/README.md).
-This requires source version **0.6.0.dev2**. Constrained sketches and persistent
+Included in the **0.6.0a1 Linux preview**. Constrained sketches and persistent
 face/edge references are still future work.
 
 </details>
@@ -84,15 +85,15 @@ solution accuracy is assessed separately.
 [Inspect the qualification](docs/bancs/studio-tetrahedra-060/README.md) ·
 [Contribute a convergence study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4)
 
-Requires **Studio 0.6.0.dev3 source**; the downloadable **0.5.0 Linux preview**
-predates tetrahedral studies.
+Included in the **0.6.0a1 Linux preview**, with the captured calculation in
+`Examples/tetra-bending`. Recalculation requires an installed `ccx`.
 
 </details>
 
 <details>
-<summary><strong>In the developing source: take a CAD part into a finite-element study</strong></summary>
+<summary><strong>Inspect the calculation behind the CAD study</strong></summary>
 
-![Studio 0.6.0.dev4: captured plate mesh, clamped end and top pressure](docs/assets/studio-cad-mesh.png)
+![Captured CalculiX plate result: displacement in metres, amplified deformation and raw-value table](docs/assets/studio-cad-mesh-static.png)
 
 Generate a tetrahedral mesh with **Gmsh / OCCT 8**, pick its boundary faces in
 3D, add supports and pressure, and open the captured study in **CalculiX**.
@@ -100,9 +101,8 @@ The [workflow guide](docs/STUDIO_CAD_MESHING.md) includes installation and limit
 the [saved example](docs/bancs/studio-cad-meshing-060/README.md) includes the solid,
 mesh, physical conditions and raw calculation behind the display.
 
-Requires **Studio 0.6.0.dev4 source** and separate engines for new computations.
-The **0.5.0 Linux download** predates this workflow. The saved example can be
-reopened in the new workspace without running an engine.
+Included in the **0.6.0a1 Linux preview**. New computations require the separate
+engines. The shipped example reopens without running an engine.
 
 </details>
 
@@ -118,7 +118,7 @@ reopened in the new workspace without running an engine.
 | **Examine** | Animate results, inspect curves and samples, compare captured runs on their native time grids, and export with units and provenance. |
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
-**Kernel 0.19.0 · Studio source 0.6.0.dev4 · Linux release 0.5.0.** Research software under active development.
+**Kernel 0.19.0 · Studio 0.6.0a1 · Linux x86-64 preview.** Research software under active development.
 Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
 workflow; interactive constrained sketches and persistent face/edge references
 remain future work. The [CAD-to-FEM workspace](docs/STUDIO_CAD_MESHING.md) now captures
@@ -136,8 +136,8 @@ and physical assumptions.
 |---|---|---|
 | **Vinkulum** | General-purpose mechanics and verifiable numerical research | Native kernel; rigid-mechanism Studio adapter available |
 | **OCCT 8 + build123d** | Exact CAD and mass properties | Integrated; local compatibility patches and qualification corpus included |
-| **Gmsh** | Tetrahedral CAD meshing | Source workflow requires an external OCCT 8 build; captures boundary groups for supports, pressure and total forces |
-| **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Experimental workspace and CLI](docs/PINOCCHIO_OPERATORS.md) for fixed-base rigid trees, with independent references; separate Python environment, source workflow only |
+| **Gmsh** | Tetrahedral CAD meshing | Requires an external OCCT 8 build; captures boundary groups for supports, pressure and total forces |
+| **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Experimental workspace and CLI](docs/PINOCCHIO_OPERATORS.md) for fixed-base rigid trees, with independent references; separate Python environment for recomputation |
 | **MBDyn** | Multibody workflows and independent reference calculations | Existing comparison work; Studio connector planned |
 | **CalculiX** | Finite-element workflows | [Experimental static-study workspace and CLI](docs/CALCULIX_INTEGRATION.md): C3D4, curved C3D10 and affine C3D8, cancellable solve, captured displacement and integration-point values; external executable required |
 | **DUST** | Aerodynamic workflows and future coupling | Planned |
@@ -150,12 +150,15 @@ this table are not part of the current desktop binary.
 ## Get started
 
 **Try the desktop without compiling:**
-[Studio 0.5.0 Linux preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.5.0-linux)
+[Studio 0.6.0a1 Linux preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux)
 includes the standalone archive, checksums and extracted-binary qualification.
 It targets Linux x86-64 / Ubuntu 24.04 / glibc 2.39 / X11.
 CalculiX calculations additionally require an installed `ccx` executable
 (`calculix-ccx` on Ubuntu 24.04). The [FEM guide](docs/CALCULIX_INTEGRATION.md)
-explains supported meshes, result meanings and the separation from CAD meshing.
+explains supported meshes and result meanings. New CAD meshes require Gmsh
+built with OCCT 8 or newer; the [build recipe](docs/STUDIO_CAD_MESHING.md) is included.
+Start with `Examples/README.md` in the application folder to inspect the shipped
+CAD/FEM/Pinocchio captures without installing these external engines.
 
 For development, use **Python 3.14**, Rust/Cargo, a C++17 compiler, a system
 linker and [uv](https://docs.astral.sh/uv/). Linux desktop prerequisites and the

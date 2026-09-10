@@ -46,7 +46,7 @@ def main(directory, *, app=None, window=None):
     import faulthandler
 
     # Covers Cocoa initialization too, before the Qt timer can run.
-    faulthandler.dump_traceback_later(90, exit=True)
+    faulthandler.dump_traceback_later(300, exit=True)
     output = Path(directory)
     output.mkdir(parents=True, exist_ok=True)
     # Exercise the same separate CAD worker the installed GUI launches.
@@ -150,6 +150,19 @@ def main(directory, *, app=None, window=None):
                 manifest=json.loads(result.manifest_json),
                 opengl=window.viewport.view.GetRenderWindow().ReportCapabilities(),
             )
+            examples = (
+                Path(sys.executable).parent / "Examples"
+                if getattr(sys, "frozen", False) and sys.platform == "linux"
+                else Path(os.environ["VINKULUM_BUNDLE_EXAMPLES"])
+                if os.environ.get("VINKULUM_BUNDLE_EXAMPLES")
+                else None
+            )
+            if examples is not None:
+                if not examples.is_dir():
+                    raise RuntimeError("The delivered Examples directory is missing.")
+                from .bundle_previews import check_previews
+
+                report["source_previews"] = check_previews(window, output, examples)
             if os.environ.get("VINKULUM_BUNDLE_CALCULIX") == "1":
                 window.open_static_study()
                 static = window._static_window
@@ -171,5 +184,5 @@ def main(directory, *, app=None, window=None):
     window.controller.problem.connect(finish)
     window.show()
     QTimer.singleShot(0, window.run)
-    QTimer.singleShot(60000, lambda: finish("Worker timeout"))
+    QTimer.singleShot(270000, lambda: finish("Bundle qualification timeout"))
     return app.exec()

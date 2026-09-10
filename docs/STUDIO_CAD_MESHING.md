@@ -1,9 +1,12 @@
 # From a CAD solid to a CalculiX study
 
-**Studio 0.6.0.dev4 source; experimental.** Select a CAD solid, generate a
+**Experimental; included in Studio 0.6.0a1.** Select a CAD solid, generate a
 tetrahedral mesh with a separate Gmsh executable using **OCCT 8 or newer**, assign
 supports and loads to its captured faces, then open the CalculiX workspace.
-This workflow is not in the published Studio 0.5.0 Linux binary.
+The [Linux alpha](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux)
+includes the workspace and a saved example. Follow
+[Examples/README.md](../apps/studio/packaging/EXAMPLES.md) to inspect it without
+installing the separate engines. This workflow was introduced in source 0.6.0.dev4.
 
 ![Captured plate mesh with an end support and top pressure](assets/studio-cad-mesh.png)
 

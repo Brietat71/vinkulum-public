@@ -2,6 +2,7 @@
 
 from PySide6.QtCore import QObject, QProcess, QThread, QTimer, Signal
 
+from .engine_environment import external_engine_environment
 from .meshing import (
     MeshRequest,
     finish_mesh,
@@ -75,6 +76,7 @@ class MeshingController(QObject):
         process = QProcess(self)
         self.process = process
         self._stage = stage
+        process.setProcessEnvironment(external_engine_environment())
         process.setProcessChannelMode(QProcess.ProcessChannelMode.MergedChannels)
         if stage == "mesh":
             process.setWorkingDirectory(str(self.run.root))
