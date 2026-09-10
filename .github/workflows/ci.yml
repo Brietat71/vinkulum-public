@@ -138,6 +138,7 @@ jobs:
         run: |
           cd "$RUNNER_TEMP"
           xvfb-run -a -s '-screen 0 1600x1100x24' "$RUNNER_TEMP/roue-venv/bin/python" -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -p test_pinocchio_workspace.py -v 2>&1 | tee "$RUNNER_TEMP/pinocchio-workspace.log"
+          xvfb-run -a -s '-screen 0 1600x1100x24' "$RUNNER_TEMP/roue-venv/bin/python" -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -p test_cad_history_workspace.py -k parametric -v 2>&1 | tee "$RUNNER_TEMP/cad-pinocchio.log"
       - name: Conserver la recette Studio
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -151,5 +152,6 @@ jobs:
             ${{ runner.temp }}/viewport-3d.png
             ${{ runner.temp }}/pinocchio.log
             ${{ runner.temp }}/pinocchio-workspace.log
+            ${{ runner.temp }}/cad-pinocchio.log
           if-no-files-found: ignore
           retention-days: 14

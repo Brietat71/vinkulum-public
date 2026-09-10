@@ -77,7 +77,13 @@ Suggested title: **Vinkulum: an open engineering workbench for CAD and inspectab
 
 ## A research demonstration from the developing source version
 
-The source tree's **Studio 0.6.0.dev1** adds a Pinocchio workspace. Show the
+Studio **0.6.0.dev2 source** also supports [editing a CAD feature history](STUDIO_CAD_HISTORY.md):
+change the plate's stock length, preview the downstream cut and fillet, then
+apply one undoable change. Use its real capture and before/after recipe when
+introducing the project to CAD developers. The public 0.5.0 binary predates this
+feature editor; the original CAD creation demonstration above works in that release.
+
+Source version **Studio 0.6.0.dev1** introduced a Pinocchio workspace. Show the
 [actual application capture](assets/studio-pinocchio.png) alongside the
 [small captured two-link calculation](../examples/studio/articulated/double-pendulum/README.md).
 The example can be inspected in the new workspace without installing Pinocchio;

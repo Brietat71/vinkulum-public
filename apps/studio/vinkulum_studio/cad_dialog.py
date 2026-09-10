@@ -1,11 +1,9 @@
 """CAD operation dialog. Native geometry runs outside the desktop process."""
 
-import sys
-import tempfile
 from dataclasses import asdict
 from pathlib import Path
 
-from PySide6.QtCore import QProcess, QTimer, Signal
+from PySide6.QtCore import Signal
 from PySide6.QtWidgets import (
     QComboBox,
     QDialog,
@@ -19,8 +17,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
-from .document import MAX_PROJECT_BYTES
-from .model import read_json, write_json
+from .cad_controller import CadController
 
 
 class CadDialog(QDialog):
@@ -31,9 +28,12 @@ class CadDialog(QDialog):
         self.setWindowTitle("CAD design · OCCT 8 / build123d")
         self.setMinimumWidth(430)
         self.project = project
-        self.process = None
-        self.temporary = None
-        self._log = b""
+        self.controller = CadController(self)
+        self.controller.completed.connect(self._completed)
+        self.controller.failed.connect(
+            lambda kind, message: self.status.setText(message)
+        )
+        self.controller.busy_changed.connect(self._busy)
         self.input_path = None
         self.output_path = None
         self.result_data = None
@@ -98,12 +98,20 @@ class CadDialog(QDialog):
         self.apply_button.clicked.connect(self.start)
         self.buttons.rejected.connect(self.reject)
         layout.addWidget(self.buttons)
-        self.timer = QTimer(self)
-        self.timer.setSingleShot(True)
-        self.timer.timeout.connect(self._timeout)
         self.operation.currentIndexChanged.connect(self._fields)
         self.a.currentIndexChanged.connect(self._density_from_body)
         self._fields()
+
+    @property
+    def process(self):
+        return self.controller.process
+
+    def _busy(self, busy):
+        self.apply_button.setEnabled(not busy)
+        for row in range(self.form.rowCount()):
+            item = self.form.itemAt(row, QFormLayout.ItemRole.FieldRole)
+            if item and item.widget():
+                item.widget().setEnabled(not busy)
 
     @staticmethod
     def number(value, minimum, maximum, suffix):
@@ -224,74 +232,17 @@ class CadDialog(QDialog):
             if not path:
                 return
             self.output_path = Path(path)
-        self.temporary = tempfile.TemporaryDirectory(prefix="vinkulum-cad-")
-        directory = Path(self.temporary.name)
-        write_json(directory / "input.json", request)
-        self.process = process = QProcess(self)
-        process.setProcessChannelMode(QProcess.ProcessChannelMode.MergedChannels)
-        process.readyReadStandardOutput.connect(self._drain)
-        process.finished.connect(self._finish)
-        process.errorOccurred.connect(self._error)
-        arguments = (
-            ["--cad-worker"]
-            if getattr(sys, "frozen", False)
-            else ["-m", "vinkulum_studio.cad_worker"]
-        )
-        self.apply_button.setEnabled(False)
-        self.operation.setEnabled(False)
         self.status.setText("CAD operation in progress…")
-        self.timer.start(60000)
-        process.start(
-            sys.executable,
-            [*arguments, str(directory / "input.json"), str(directory / "output.json")],
-        )
-
-    def _drain(self):
-        if self.process:
-            self._log = (self._log + bytes(self.process.readAllStandardOutput()))[
-                -8192:
-            ]
-
-    def _error(self, error):
-        if error == QProcess.ProcessError.FailedToStart:
-            self._finish(-1, QProcess.ExitStatus.CrashExit)
-
-    def _timeout(self):
-        if self.process:
-            self.status.setText("CAD timeout (60 s). Document preserved.")
-            self.process.kill()
-
-    def _finish(self, code, status):
-        if self.process is None:
-            return
-        self.timer.stop()
-        process, self.process = self.process, None
         try:
-            path = Path(self.temporary.name) / "output.json"
-            result = read_json(path, MAX_PROJECT_BYTES) if path.exists() else {}
-            if (
-                code != 0
-                or status != QProcess.ExitStatus.NormalExit
-                or result.get("status") != "completed"
-            ):
-                raise ValueError(
-                    result.get("error")
-                    or "CAD operation interrupted. Document preserved."
-                )
-            self.result_data = result
-            self.completed.emit(result)
-            self.accept()
-        except (OSError, ValueError) as error:
+            self.controller.start(request)
+        except (OSError, ValueError, TypeError, RuntimeError) as error:
             self.status.setText(str(error))
-        finally:
-            process.deleteLater()
-            self.temporary.cleanup()
-            self.temporary = None
-            self.apply_button.setEnabled(True)
-            self.operation.setEnabled(True)
+
+    def _completed(self, result):
+        self.result_data = result
+        self.completed.emit(result)
+        self.accept()
 
     def reject(self):
-        if self.process:
-            self.process.kill()
-            self.process.waitForFinished(2000)
+        self.controller.shutdown()
         super().reject()

@@ -200,6 +200,34 @@ class EditorWindow(Workspace, QMainWindow):
         except (ValueError, OSError) as error:
             self.status.setText(str(error))
 
+    def open_cad_history(self):
+        if self.mode.currentIndex() != 0 or self.controller.process is not None:
+            return
+        if not self.apply_properties():
+            return
+        from .cad_history_dialog import CadHistoryDialog
+        from .document import replace_cad_body
+
+        try:
+            captured = self.project
+            dialog = CadHistoryDialog(captured, self.selection, self)
+            if (
+                dialog.exec() != QDialog.DialogCode.Accepted
+                or dialog.result_body is None
+            ):
+                return
+            if self.project != captured:
+                raise ValueError(
+                    "The document changed during CAD editing; preview not applied."
+                )
+            self._commit(replace_cad_body(self.project, dialog.result_body), fit=True)
+            self.select_object(dialog.result_body.id)
+            self.status.setText(
+                "CAD features regenerated · mass, inertia and attachments updated."
+            )
+        except (ValueError, TypeError, OSError) as error:
+            self.status.setText(str(error))
+
     @property
     def display_project(self):
         return (
@@ -382,6 +410,13 @@ class EditorWindow(Workspace, QMainWindow):
                     summary.setWordWrap(True)
                     summary.setObjectName("muted")
                     self.form.addRow(summary)
+                    edit_features = QPushButton("Edit CAD features…")
+                    edit_features.clicked.connect(self.open_cad_history)
+                    edit_features.setEnabled(
+                        self.mode.currentIndex() == 0
+                        and self.controller.process is None
+                    )
+                    self.form.addRow(edit_features)
                 self._text("mass", "Mass [kg]", obj.mass)
                 self._section("Transform · world")
                 self._text("position", "Position [m]", obj.position)

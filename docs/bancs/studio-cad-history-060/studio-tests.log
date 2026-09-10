@@ -1,0 +1,135 @@
+Qt/X11 startup OK before importing CAD or VTK
+test_saved_example_in_a_fresh_engine_free_process (test_articulated_result.CapturedOperators.test_saved_example_in_a_fresh_engine_free_process) ... ok
+test_failed_cad_process_keeps_document (test_cad.CadDesktopRecipe.test_failed_cad_process_keeps_document) ... ok
+test_real_cad_process_then_mechanical_worker_and_render (test_cad.CadDesktopRecipe.test_real_cad_process_then_mechanical_worker_and_render) ... ok
+test_actual_occt_version_and_analytic_box_sphere_cylinder (test_cad.CadKernelRecipe.test_actual_occt_version_and_analytic_box_sphere_cylinder) ... Fontconfig warning: "/usr/share/fontconfig/conf.avail/05-reset-dirs-sample.conf", line 6: unknown element "reset-dirs"
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1242: DeprecationWarning: Due to '_pack_', the 'Triangle' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Triangle(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1249: DeprecationWarning: Due to '_pack_', the 'TriangleProperties' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class TriangleProperties(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1257: DeprecationWarning: Due to '_pack_', the 'Position' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Position(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1264: DeprecationWarning: Due to '_pack_', the 'Position2D' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Position2D(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1271: DeprecationWarning: Due to '_pack_', the 'CompositeConstituent' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class CompositeConstituent(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1279: DeprecationWarning: Due to '_pack_', the 'MultiPropertyLayer' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class MultiPropertyLayer(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1287: DeprecationWarning: Due to '_pack_', the 'Tex2Coord' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Tex2Coord(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1295: DeprecationWarning: Due to '_pack_', the 'Transform' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Transform(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1302: DeprecationWarning: Due to '_pack_', the 'Box' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Box(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1310: DeprecationWarning: Due to '_pack_', the 'Color' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Color(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1320: DeprecationWarning: Due to '_pack_', the 'Beam' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Beam(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1329: DeprecationWarning: Due to '_pack_', the 'Ball' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Ball(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1337: DeprecationWarning: Due to '_pack_', the 'Vector' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Vector(ctypes.Structure):
+/tmp/vinkulum-cad-history-wheel-env/lib/python3.14/site-packages/lib3mf/Lib3MF.py:1344: DeprecationWarning: Due to '_pack_', the 'Matrix4x4' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+  class Matrix4x4(ctypes.Structure):
+ok
+test_boolean_volume_and_failed_operation (test_cad.CadKernelRecipe.test_boolean_volume_and_failed_operation) ... ok
+test_extrusion_center_and_mass_scaling (test_cad.CadKernelRecipe.test_extrusion_center_and_mass_scaling) ... ok
+test_fillet_and_rotated_inertia (test_cad.CadKernelRecipe.test_fillet_and_rotated_inertia) ... ok
+test_project_brep_persistence_and_invalid_mesh (test_cad.CadKernelRecipe.test_project_brep_persistence_and_invalid_mesh) ... ok
+test_rebase_attachments_preserves_world_and_history (test_cad.CadKernelRecipe.test_rebase_attachments_preserves_world_and_history) ... ok
+test_step_round_trip_and_unit_conversion (test_cad.CadKernelRecipe.test_step_round_trip_and_unit_conversion) ... ok
+test_identity_ordering_and_invalid_dependencies (test_cad_history.FeatureGraph.test_identity_ordering_and_invalid_dependencies) ... ok
+test_extrusion_design_plane_and_exact_inertia_after_height_edit (test_cad_history.ParametricSolids.test_extrusion_design_plane_and_exact_inertia_after_height_edit) ... ok
+test_failed_feature_and_attachment_preservation_with_undo (test_cad_history.ParametricSolids.test_failed_feature_and_attachment_preservation_with_undo) ... ok
+test_schema_round_trip_legacy_snapshot_and_downgrade_rejection (test_cad_history.ParametricSolids.test_schema_round_trip_legacy_snapshot_and_downgrade_rejection) ... ok
+test_tool_placement_after_asymmetric_cut_and_rotated_body_frame (test_cad_history.ParametricSolids.test_tool_placement_after_asymmetric_cut_and_rotated_body_frame) ... ok
+test_upstream_edit_propagates_to_cut_and_fillet_with_stable_ids (test_cad_history.ParametricSolids.test_upstream_edit_propagates_to_cut_and_fillet_with_stable_ids) ... ok
+test_editor_shortcut_commits_one_undoable_transaction (test_cad_history_workspace.CadFeatureWorkspace.test_editor_shortcut_commits_one_undoable_transaction) ... ok
+test_failure_causes_and_cancellation_preserve_previous_result (test_cad_history_workspace.CadFeatureWorkspace.test_failure_causes_and_cancellation_preserve_previous_result) ... ok
+test_input_hash_does_not_admit_wrong_mass_frame_or_recipe (test_cad_history_workspace.CadFeatureWorkspace.test_input_hash_does_not_admit_wrong_mass_frame_or_recipe) ... ok
+test_invalid_inputs_keep_selection_and_disable_preview (test_cad_history_workspace.CadFeatureWorkspace.test_invalid_inputs_keep_selection_and_disable_preview) ... ok
+test_parametric_cad_to_pinocchio_retains_mass_tensor_and_design_history (test_cad_history_workspace.CadFeatureWorkspace.test_parametric_cad_to_pinocchio_retains_mass_tensor_and_design_history) ... ok
+test_real_preview_is_not_a_commit_and_keeps_exact_edits (test_cad_history_workspace.CadFeatureWorkspace.test_real_preview_is_not_a_commit_and_keeps_exact_edits) ... ok
+test_archive_moves_and_reopens_without_solver_or_writes (test_calculix.CalculixReferences.test_archive_moves_and_reopens_without_solver_or_writes) ... ok
+test_archive_rejects_contract_corruption_and_missing_files (test_calculix.CalculixReferences.test_archive_rejects_contract_corruption_and_missing_files) ... ok
+test_parser_rejects_missing_duplicate_nonfinite_and_unsupported_reactions (test_calculix.CalculixReferences.test_parser_rejects_missing_duplicate_nonfinite_and_unsupported_reactions) ... ok
+test_uniform_strain_displacement_stress_energy_and_balance (test_calculix.CalculixReferences.test_uniform_strain_displacement_stress_energy_and_balance) ... ok
+test_world_axis_permutation_and_translation_preserve_physics (test_calculix.CalculixReferences.test_world_axis_permutation_and_translation_preserve_physics) ... ok
+test_changed_input_deck_is_rejected_before_publishing (test_calculix.StaticContracts.test_changed_input_deck_is_rejected_before_publishing) ... ok
+test_missing_error_and_timeout_preserve_diagnostics (test_calculix.StaticContracts.test_missing_error_and_timeout_preserve_diagnostics) ... ok
+test_reject_material_geometry_connectivity_and_free_rigid_modes (test_calculix.StaticContracts.test_reject_material_geometry_connectivity_and_free_rigid_modes) ... ok
+test_study_schema_rejects_other_documents_and_unknown_fields (test_calculix.StaticContracts.test_study_schema_rejects_other_documents_and_unknown_fields) ... ok
+test_thin_element_cannot_hide_warping_below_long_edge_tolerance (test_calculix.StaticContracts.test_thin_element_cannot_hide_warping_below_long_edge_tolerance) ... ok
+test_zero_forces_do_not_generate_an_empty_cload_card (test_calculix.StaticContracts.test_zero_forces_do_not_generate_an_empty_cload_card) ... ok
+test_budget_scales_with_bodies (test_document.MechanicalDocument.test_budget_scales_with_bodies) ... ok
+test_g0_import_preserves_original_inertia_and_parameters (test_document.MechanicalDocument.test_g0_import_preserves_original_inertia_and_parameters) ... ok
+test_homogeneous_inertias_and_physical_custom_tensor (test_document.MechanicalDocument.test_homogeneous_inertias_and_physical_custom_tensor) ... ok
+test_inputs_are_deeply_immutable (test_document.MechanicalDocument.test_inputs_are_deeply_immutable) ... ok
+test_joint_frames_and_allowed_free_translation (test_document.MechanicalDocument.test_joint_frames_and_allowed_free_translation) ... ok
+test_json_round_trip_and_unknown_types (test_document.MechanicalDocument.test_json_round_trip_and_unknown_types) ... ok
+test_laws_and_invalid_tables (test_document.MechanicalDocument.test_laws_and_invalid_tables) ... ok
+test_move_invalidates_joint_undo_restores_with_new_revision (test_document.MechanicalDocument.test_move_invalidates_joint_undo_restores_with_new_revision) ... ok
+test_rename_reorder_and_delete_preserve_references (test_document.MechanicalDocument.test_rename_reorder_and_delete_preserve_references) ... ok
+test_author_save_run_edit_cancel_and_captured_scene (test_editor3d.EditorRecipe.test_author_save_run_edit_cancel_and_captured_scene) ... ok
+test_double_pendulum_authored_through_properties_and_joint_dialogs (test_editor3d.EditorRecipe.test_double_pendulum_authored_through_properties_and_joint_dialogs) ... ok
+test_pending_fields_selection_and_drag_survive_completion (test_editor3d.EditorRecipe.test_pending_fields_selection_and_drag_survive_completion) ... ok
+test_replacing_visible_result_updates_scene_before_slider_signals (test_editor3d.EditorRecipe.test_replacing_visible_result_updates_scene_before_slider_signals) ... ok
+test_commanded_slider_initial_velocity_and_motion (test_mechanism.MechanismAdapter.test_commanded_slider_initial_velocity_and_motion) ... ok
+test_double_pendulum_against_independent_lagrange_equations (test_mechanism.MechanismAdapter.test_double_pendulum_against_independent_lagrange_equations) ...
+Double pendulum maximum angle errors: [0.000981345933501021, 0.0002454339142479167, 6.137847110349037e-05]
+ok
+test_invalid_anchores_refused_before_build (test_mechanism.MechanismAdapter.test_invalid_anchores_refused_before_build) ... ok
+test_pendulum_adapter_and_immutable_arrays (test_mechanism.MechanismAdapter.test_pendulum_adapter_and_immutable_arrays) ... ok
+test_result_identity_hash_and_archive_shape_guards (test_mechanism.MechanismAdapter.test_result_identity_hash_and_archive_shape_guards) ... ok
+test_slider_crank_against_geometric_closure (test_mechanism.MechanismAdapter.test_slider_crank_against_geometric_closure) ... ok
+test_temporal_load_and_export (test_mechanism.MechanismAdapter.test_temporal_load_and_export) ... ok
+test_cli_runs_outside_source_and_keeps_graphics_out_of_worker_imports (test_pinocchio.PinocchioReferences.test_cli_runs_outside_source_and_keeps_graphics_out_of_worker_imports) ... skipped 'Install the separate qualified Pinocchio environment'
+test_ground_on_side_b_and_independent_branches (test_pinocchio.PinocchioReferences.test_ground_on_side_b_and_independent_branches) ... skipped 'Install the separate qualified Pinocchio environment'
+test_mixed_revolute_prismatic_lagrange_reference (test_pinocchio.PinocchioReferences.test_mixed_revolute_prismatic_lagrange_reference) ... skipped 'Install the separate qualified Pinocchio environment'
+test_one_link_absolute_pose_full_inertia_and_scalar_matrix_shapes (test_pinocchio.PinocchioReferences.test_one_link_absolute_pose_full_inertia_and_scalar_matrix_shapes) ... skipped 'Install the separate qualified Pinocchio environment'
+test_prismatic_initial_coordinate_and_world_point_load (test_pinocchio.PinocchioReferences.test_prismatic_initial_coordinate_and_world_point_load) ... skipped 'Install the separate qualified Pinocchio environment'
+test_reversed_edges_preserve_declared_sign_and_document_order_independence (test_pinocchio.PinocchioReferences.test_reversed_edges_preserve_declared_sign_and_document_order_independence) ... skipped 'Install the separate qualified Pinocchio environment'
+test_snapshot_files_reject_overwrite_and_invalid_state (test_pinocchio.PinocchioReferences.test_snapshot_files_reject_overwrite_and_invalid_state) ... skipped 'Install the separate qualified Pinocchio environment'
+test_two_link_lagrange_operators_derivatives_and_kinematics (test_pinocchio.PinocchioReferences.test_two_link_lagrange_operators_derivatives_and_kinematics) ... skipped 'Install the separate qualified Pinocchio environment'
+test_world_load_virtual_work_and_intrinsic_derivatives_remain_explicit (test_pinocchio.PinocchioReferences.test_world_load_virtual_work_and_intrinsic_derivatives_remain_explicit) ... skipped 'Install the separate qualified Pinocchio environment'
+test_world_rotation_translation_and_full_body_inertia_reframing (test_pinocchio.PinocchioReferences.test_world_rotation_translation_and_full_body_inertia_reframing) ... skipped 'Install the separate qualified Pinocchio environment'
+test_loops_detached_unsupported_motion_and_bad_anchors_are_rejected (test_pinocchio.TreeAdmission.test_loops_detached_unsupported_motion_and_bad_anchors_are_rejected) ... ok
+test_cancel_timeout_start_failure_and_environment_isolation (test_pinocchio_workspace.PinocchioWorkspace.test_cancel_timeout_start_failure_and_environment_isolation) ... ok
+test_editor_shortcut_close_veto_and_real_cancel_button (test_pinocchio_workspace.PinocchioWorkspace.test_editor_shortcut_close_veto_and_real_cancel_button) ... ok
+test_real_worker_capture_and_rejection_of_inconsistent_results (test_pinocchio_workspace.PinocchioWorkspace.test_real_worker_capture_and_rejection_of_inconsistent_results) ... ok
+test_unavailable_worker_invalid_edits_and_model_admission (test_pinocchio_workspace.PinocchioWorkspace.test_unavailable_worker_invalid_edits_and_model_admission) ... ok
+test_workspace_evaluate_export_and_reopen_preserves_current_inputs (test_pinocchio_workspace.PinocchioWorkspace.test_workspace_evaluate_export_and_reopen_preserves_current_inputs) ... ok
+test_module_launcher_creates_the_normal_window (test_startup.NormalStartup.test_module_launcher_creates_the_normal_window) ... ok
+test_direct_process_cancel_timeout_failure_and_old_result (test_static_workspace.StaticWorkspace.test_direct_process_cancel_timeout_failure_and_old_result) ... ok
+test_open_archive_keeps_edited_study_and_rejects_bad_archive_transactionally (test_static_workspace.StaticWorkspace.test_open_archive_keeps_edited_study_and_rejects_bad_archive_transactionally) ... ok
+test_shutdown_stops_the_actual_solver (test_static_workspace.StaticWorkspace.test_shutdown_stops_the_actual_solver) ... ok
+test_studio_entry_real_solve_scaled_view_capture_and_export (test_static_workspace.StaticWorkspace.test_studio_entry_real_solve_scaled_view_capture_and_export) ... ok
+test_GUI02_GUI07_strict_inputs_and_version (test_studio.Contracts.test_GUI02_GUI07_strict_inputs_and_version) ... ok
+test_GUI05_reject_mismatched_corrupt_and_partial_result (test_studio.Contracts.test_GUI05_reject_mismatched_corrupt_and_partial_result) ... ok
+test_GUI07_export_records_captured_inputs_and_units (test_studio.Contracts.test_GUI07_export_records_captured_inputs_and_units) ... ok
+test_T07_reference_and_temporal_refinement (test_studio.Contracts.test_T07_reference_and_temporal_refinement) ...
+T07 errors(rad): [0.001161747282113712, 0.00029058330339071237, 7.26491249149197e-05] ratios: [3.9979836024909194, 3.999818356119473]
+ok
+test_T10_failed_replace_preserves_previous_file (test_studio.Contracts.test_T10_failed_replace_preserves_previous_file) ... ok
+test_GUI05_controlled_failure_cancel_and_crash_keep_result (test_studio.GuiRecipe.test_GUI05_controlled_failure_cancel_and_crash_keep_result) ... ok
+test_GUI05_worker_unavailable_reenables_launch (test_studio.GuiRecipe.test_GUI05_worker_unavailable_reenables_launch) ... ok
+test_T00_GUI01_to_GUI08_real_window_recipe (test_studio.GuiRecipe.test_T00_GUI01_to_GUI08_real_window_recipe) ... ok
+test_fit_includes_anchors_respects_visibility_and_world_translation (test_viewport3d.ViewportTests.test_fit_includes_anchors_respects_visibility_and_world_translation) ... ok
+test_scene_picking_manipulation_result_and_shutdown (test_viewport3d.ViewportTests.test_scene_picking_manipulation_result_and_shutdown) ... ok
+test_memory_budget_evicts_oldest_without_copying_arrays (test_workspace.RunArchiveContracts.test_memory_budget_evicts_oldest_without_copying_arrays) ... ok
+test_comparison_keeps_run_identities_samples_and_model_differences (test_workspace.WorkspaceRecipe.test_comparison_keeps_run_identities_samples_and_model_differences) ... ok
+test_curve_zoom_and_native_samples_remain_exact (test_workspace.WorkspaceRecipe.test_curve_zoom_and_native_samples_remain_exact) ... ok
+test_english_labels_preserve_saved_joint_and_law_types (test_workspace.WorkspaceRecipe.test_english_labels_preserve_saved_joint_and_law_types) ... ok
+test_inspector_resize_and_focus_preserve_exact_numbers (test_workspace.WorkspaceRecipe.test_inspector_resize_and_focus_preserve_exact_numbers) ... ok
+test_native_time_sync_and_readonly_result_after_pending_edit (test_workspace.WorkspaceRecipe.test_native_time_sync_and_readonly_result_after_pending_edit) ... ok
+test_palette_keyboard_search_and_disabled_commands (test_workspace.WorkspaceRecipe.test_palette_keyboard_search_and_disabled_commands) ... ok
+test_save_discard_cancel_protect_document (test_workspace.WorkspaceRecipe.test_save_discard_cancel_protect_document) ... ok
+test_search_visibility_isolation_and_transform_are_view_state (test_workspace.WorkspaceRecipe.test_search_visibility_isolation_and_transform_are_view_state) ... ok
+test_statics_shortcut_opens_window_and_commands_leave_menu_mnemonics_free (test_workspace.WorkspaceRecipe.test_statics_shortcut_opens_window_and_commands_leave_menu_mnemonics_free) ... ok
+test_vector_display_never_rounds_untouched_model_components (test_workspace.WorkspaceRecipe.test_vector_display_never_rounds_untouched_model_components) ... ok
+test_workspace_persistence_and_small_window (test_workspace.WorkspaceRecipe.test_workspace_persistence_and_small_window) ... ok
+
+----------------------------------------------------------------------
+Ran 96 tests in 59.091s
+
+OK (skipped=10)

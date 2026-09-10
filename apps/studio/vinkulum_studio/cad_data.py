@@ -5,6 +5,8 @@ from dataclasses import dataclass, fields
 
 import numpy as np
 
+from .cad_history import CadRecipe
+
 
 @dataclass(frozen=True)
 class CadGeometry:
@@ -16,14 +18,17 @@ class CadGeometry:
     operations: tuple
     occt_version: str
     build123d_version: str
+    recipe: CadRecipe | None = None
 
     def __post_init__(self):
+        if self.recipe is not None and not isinstance(self.recipe, CadRecipe):
+            raise ValueError("Invalid parametric CAD recipe.")
         if not isinstance(self.brep_mm, str) or not 1 <= len(self.brep_mm) <= 2_000_000:
             raise ValueError("Missing or oversized BREP (2 MB maximum).")
         if not self.brep_mm.isascii() or "CASCADE Topology" not in self.brep_mm[:200]:
             raise ValueError("An ASCII OCCT BREP is required.")
         if (
-            not isinstance(self.volume_m3, (int, float))
+            type(self.volume_m3) not in (int, float)
             or not math.isfinite(self.volume_m3)
             or self.volume_m3 <= 0
         ):
@@ -42,8 +47,15 @@ class CadGeometry:
             inertia, inertia.T, rtol=1e-10, atol=1e-16
         ):
             raise ValueError("The CAD tensor must be finite and symmetric.")
-        eigen = np.linalg.eigvalsh(inertia)
-        if eigen[0] <= 0 or eigen[2] > sum(eigen[:2]) * (1 + 1e-10):
+        try:
+            eigen = np.linalg.eigvalsh(inertia)
+        except np.linalg.LinAlgError as error:
+            raise ValueError("The CAD inertia tensor could not be resolved.") from error
+        if (
+            not np.isfinite(eigen).all()
+            or eigen[0] <= 0
+            or eigen[2] > sum(eigen[:2]) * (1 + 1e-10)
+        ):
             raise ValueError("Nonphysical CAD inertia tensor.")
         if (
             not isinstance(self.vertices_m, tuple)
@@ -55,7 +67,7 @@ class CadGeometry:
                 not isinstance(point, tuple)
                 or len(point) != 3
                 or not all(
-                    isinstance(v, (int, float)) and math.isfinite(v) and abs(v) <= 1000
+                    type(v) in (int, float) and math.isfinite(v) and abs(v) <= 1000
                     for v in point
                 )
             ):
@@ -89,9 +101,14 @@ class CadGeometry:
 
     @classmethod
     def from_dict(cls, data):
+        if isinstance(data, dict) and "recipe" not in data:
+            data = {**data, "recipe": None}
         if not isinstance(data, dict) or set(data) != {f.name for f in fields(cls)}:
             raise ValueError("Unknown or missing CAD fields.")
         data = dict(data)
+        data["recipe"] = (
+            None if data["recipe"] is None else CadRecipe.from_dict(data["recipe"])
+        )
         for key in ("unit_inertia_m2", "operations"):
             data[key] = tuple(data[key])
         for key in ("vertices_m", "triangles"):

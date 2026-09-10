@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vinkulum-studio"
-version = "0.6.0.dev1"
+version = "0.6.0.dev2"
 description = "Open 3D CAD and multibody workbench for the Vinkulum kernel"
 readme = "README.md"
 requires-python = ">=3.14"

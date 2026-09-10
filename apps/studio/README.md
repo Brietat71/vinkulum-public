@@ -1,9 +1,14 @@
-# Vinkulum Studio 0.6.0.dev1 — CAD and mechanism analysis
+# Vinkulum Studio 0.6.0.dev2 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.19.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
+
+The **0.6.0.dev2 source version** adds [editable solid features](../../docs/STUDIO_CAD_HISTORY.md):
+change an upstream dimension or placement, preview the regenerated part and apply
+one undoable transaction. New CAD parts retain a feature graph; old BREP parts
+remain readable as captured solid inputs. This workflow requires project schema 3.
 
 The **0.6.0.dev1 source version** adds an **Articulated operators / Pinocchio**
 workspace: edit a captured state, run a separate Pinocchio 4.1 worker, inspect
@@ -110,6 +115,8 @@ preserves the theme and layout. **Restore layout** restores the active workspace
 - **Run → Articulated operators · Pinocchio…** (**Ctrl+Shift+P**) opens a
   captured-state study. **Ctrl+Return** evaluates supported tree operators;
   this workspace does not integrate a trajectory.
+- **Create → Edit CAD features…** (**Ctrl+Shift+H**) edits the selected part's
+  feature parameters. Preview a complete regeneration before applying it to the model.
 - The XY reference grid fades towards its edges and can be hidden. **Views**
   provides perspective and orthographic projections. Joint rings and axes are
   symbols, not added mechanical volume; attachment lines appear on selection.

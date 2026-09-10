@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "studio_version": "0.6.0.dev2",
+  "occt_version": "8.0.1.0",
+  "edited_parameter": "Stock length: 120 mm \u2192 150 mm",
+  "features": 4,
+  "mass_before_kg": 1.3267053771417463,
+  "mass_after_kg": 1.676901907865507,
+  "recipe_sha256": "55fea541d35853cfce5700c2c2e92677a7c8f93fd16cb14384b7cf02911b9682"
+}

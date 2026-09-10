@@ -1,147 +1,160 @@
-# Refonte de Vinkulum Studio — septembre 2026
+# Vinkulum Studio interface programme — September 2026
 
-Objectif : une mise à niveau majeure de l'interface de travail, depuis l'édition
-d'un mécanisme jusqu'à l'examen de résultats traçables. La qualification porte
-sur des parcours réels dans l'application et ses paquets exécutables, pas sur une
-maquette ni sur une revendication de parité universelle avec les outils CAO.
+The objective is a major upgrade of the engineering workflow, from mechanism
+authoring to inspection of traceable results. Qualification concerns real
+application interactions and executable packages. Screenshots and visual style
+alone do not establish parity with a mature CAD/CAE suite.
 
-## Exigences et preuves attendues
+## Requirements and expected evidence
 
-| ID | Livraison attendue | Preuve de recette |
+| ID | Required behaviour | Acceptance evidence |
 |---|---|---|
-| UX-01 | Espace 3D dégagé, panneaux réorganisables et restaurables, menus natifs, commandes regroupées | Captures conception/résultats, fenêtres 1280×800 et 1440×950, restauration après fermeture |
-| UX-02 | Palette de commandes filtrable, raccourcis natifs et accès clavier aux fonctions essentielles | Tests clavier réels ; commandes indisponibles non exécutables |
-| UX-03 | Explorateur filtrable, sélection cohérente arbre/scène/propriétés, visibilité et isolation réversibles | Recherche par nom/type ; objets masqués conservés dans le modèle et le calcul |
-| UX-04 | Inspecteur structuré, unités et repères explicites, modifications en attente visibles, validation sans perte des champs | Recette saisie invalide, changement de sélection, annulation et résultat reçu pendant la saisie |
-| UX-05 | Pilotage 3D précis : orientation, cadrage, projection, modes de manipulation et informations de navigation | Essais VTK/Qt, manipulation numérique et souris, rendu macOS et Linux |
-| UX-06 | Espace résultats : courbes interactives, tableau des échantillons, lecture contrôlée, comparaison identifiée | Sélection temporelle synchronisée scène/courbe/table ; modèles et unités des calculs visibles |
-| UX-07 | États intelligibles du document et du calcul, diagnostics navigables, provenance et erreurs accessibles | Calcul réussi, modèle invalide, erreur, annulation et résultat antérieur conservé |
-| UX-08 | Thèmes contrastés, mise à l'échelle, focus visible, noms accessibles, disposition persistante | Captures à 100 % et 200 %, parcours clavier ; limites des essais d'accessibilité documentées |
-| UX-09 | Exécution réactive, budgets mémoire conservés, fichiers et résultats intègres | Tests existants et nouveaux, mesures de rendu et de grandes courbes |
-| UX-10 | Documentation à jour et paquet réellement exécuté ; priorité au build Linux local, publication ensuite | Archive Linux extraite et testée, rapport du bundle, empreinte ; DMG Apple Silicon à qualifier ultérieurement |
+| UX-01 | An uncluttered 3D area, rearrangeable/restorable panels, native menus and grouped commands | Model/result captures, 1280×800 and 1440×950 windows, layout restoration after closing |
+| UX-02 | Searchable command palette, native shortcuts and keyboard access to essential functions | Real keyboard tests; unavailable commands cannot execute |
+| UX-03 | Filterable Browser, consistent tree/scene/property selection and reversible visibility/isolation | Name/type search; hidden objects remain in the model and calculation |
+| UX-04 | Structured Inspector, explicit units/frames, visible pending edits and validation without losing fields | Invalid input, selection change, cancellation and results arriving during editing |
+| UX-05 | Precise 3D interaction: orientation, framing, projection, manipulation modes and navigation information | Qt/VTK tests, numerical and mouse manipulation, Linux and macOS rendering |
+| UX-06 | Interactive curves, sample tables, playback controls and identified comparisons | Time synchronises scene/curve/table; each calculation's model and units remain visible |
+| UX-07 | Clear document/calculation state, navigable diagnostics, accessible provenance and errors | Successful run, invalid model, failure, cancellation and preservation of previous results |
+| UX-08 | Contrasting themes, display scaling, visible focus, accessible names and persistent layout | 100%/200% captures and keyboard workflows; accessibility limits documented |
+| UX-09 | Responsive execution, enforced memory budgets and intact files/results | Existing and new tests, rendering and large-curve measurements |
+| UX-10 | Current documentation and a genuinely executed package; local Linux builds first | Extracted/tested Linux archive, bundle report and fingerprint; Apple Silicon DMG qualified separately |
 
-Les exigences GUI-01 à GUI-08 et UI-01 à UI-06 du cahier des charges v1.1 restent
-applicables. La refonte ne change pas les garanties scientifiques du noyau.
-Un modèle dont les contrôles d'entrée passent n'est pas une trajectoire certifiée.
-Les fonctions futures de CAO, de collaboration et de multiphysique du cahier des
-charges ne deviennent pas disponibles par un changement de présentation.
+GUI-01–GUI-08 and UI-01–UI-06 of the
+[engineering specification v1.1](../outputs/Cahier_des_charges_suite_ingenierie_Vinkulum.md)
+also apply. An interface redesign does not change the kernel's scientific
+guarantees. Passing model-input checks does not certify a trajectory. Future
+CAD, collaboration and multiphysics functions need implementations and evidence
+beyond a change of presentation.
 
-## Références consultées le 9 septembre 2026
+## Current status
 
-- [FreeCAD 1.1, publié le 24 mars 2026](https://freecad.github.io/Website/download/releases/1-1/) : transformation précise, navigation, recherche, thèmes et retours visuels. Ces directions motivent UX-03 à UX-05 ; elles ne prouvent pas leur implémentation dans Studio.
-- [ParaView 6, personnalisation](https://docs.paraview.org/en/v6.0.0/ReferenceManual/customizingParaView.html) : recherche des propriétés, séparation simple/avancé, préférences persistantes et restauration. Application à UX-01 et UX-04.
-- [Qt 6.11, accessibilité](https://doc.qt.io/qt-6/accessible.html) : navigation clavier, adaptation de la taille, contrastes et sémantique des composants. Application à UX-02 et UX-08.
+Work remains in progress. Studio 0.2.0 is the historical baseline before this
+redesign, not the current desktop release. The
+[public Linux 0.5.0 preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.5.0-linux)
+includes CAD, native dynamics, CalculiX studies and checked result reopening.
+Its extracted application was tested through both normal startup and actual
+result-opening interaction.
 
-## État de réalisation
+The source subsequently adds the [Pinocchio operator workspace](PINOCCHIO_OPERATORS.md)
+and [parametric CAD feature editing](STUDIO_CAD_HISTORY.md). Their documentation
+distinguishes source functionality from features in published binaries. Every
+requirement above must be checked against its actual evidence before declaring
+the overall upgrade complete.
 
-Travail en cours. La version 0.2.0 publiée constitue la référence avant refonte.
-Chaque exigence devra être confrontée aux preuves effectives avant de déclarer
-la mise à niveau terminée.
+## Design direction and primary references
 
-## Direction précisée par l’utilisateur
+The requested direction goes beyond recolouring forms: the scene should dominate,
+values should remain readable, commands should use consistent icons, and density
+should suit the active workspace. Real captures help identify clipping, alignment
+errors and weak visual hierarchy.
 
-La première présentation a été jugée « cheap et pas sérieuse ». Une simple
-recoloration de formulaires ne satisfait donc pas la cible. La scène doit dominer,
-l’inspecteur doit présenter des valeurs lisibles, les commandes doivent avoir une
-iconographie cohérente et la densité doit s’adapter à l’atelier actif. Les captures
-réelles servent à éliminer les débordements et les incohérences de hiérarchie.
+References reviewed on 9 September 2026:
 
-Les références demandées orientent des choix précis. Elles ne sont ni des
-bibliothèques intégrées, ni une promesse de reproduire toutes leurs capacités :
+- [FreeCAD 1.1 release](https://freecad.github.io/Website/download/releases/1-1/): precise transforms, navigation, search, themes and feedback inform UX-03–UX-05. These directions are not evidence that Studio implements them completely.
+- [ParaView 6 customisation](https://docs.paraview.org/en/v6.0.0/ReferenceManual/customizingParaView.html): property search, basic/advanced separation, persistent preferences and restoration inform UX-01/UX-04.
+- [Qt accessibility](https://doc.qt.io/qt-6/accessible.html): keyboard navigation, size adaptation, contrast and component semantics inform UX-02/UX-08.
 
-| Référence primaire | Principe retenu pour Studio | Traduction dans la refonte |
+The requested products guide specific choices. They are not integrated libraries
+or a promise to reproduce every capability of those products.
+
+| Primary reference | Principle used for Studio | Application in the redesign |
 |---|---|---|
-| [Plasticity : interface](https://doc.plasticity.xyz/plasticity-essentials/plasticity-interface/user-interface-overview), [palette](https://doc.plasticity.xyz/plasticity-essentials/plasticity-interface/command-palette) | Scène dominante, outils compacts, accès direct aux commandes | Chrome graphite, icônes vectorielles, palette recherchable |
-| [Blender : outils et ateliers](https://docs.blender.org/manual/en/4.5/interface/tool_system.html) | Un outil actif et un contexte de travail explicite | Ateliers Modéliser / Simuler / Examiner, sélection / déplacement / rotation |
-| [Shapr3D : interface adaptative](https://support.shapr3d.com/hc/en-us/articles/7873882619548-Adaptive-user-interface) | Actions pertinentes pour la sélection | Outils contextuels et commandes indisponibles explicitement désactivées |
-| [Abaqus/CAE : gestion et visualisation](https://www.3ds.com/fileadmin/Products/Simulia/PDF/datasheets/Abaqus_CAE_Datasheet.pdf) | Séparer modèle, exécution et examen des résultats | Instantanés en lecture seule, historique des calculs, provenance |
-| [Onshape : recherche d’outils](https://cad.onshape.com/help/Content/Home/search_tools.htm) | Une commande reste découvrable sans connaître sa position | Recherche par mots, raccourcis visibles et activation clavier |
-| [NX : accès aux commandes](https://blogs.sw.siemens.com/designcenter/designcenter-x-nx-tips-and-tricks-copilot/) | Aider à trouver l’opération pertinente dans un outil riche | Registre commun de commandes et contexte ; aucun assistant IA fictif |
-| [STAR-CCM+ 2606](https://blogs.sw.siemens.com/simcenter/simcenter-star-ccm-2606-released/) | Faciliter l’examen des différences entre simulations | Superposition de séries, identité des objets et différences de réglages |
-| [SolidWorks : raccourcis et menus contextuels](https://blogs.solidworks.com/products/solidworks/useful-keyboard-shortcuts-workflow-customizations-solidworks/) | Réduire le trajet jusqu’aux outils courants | Palette contextuelle S, menus natifs et outils près de la scène |
-| [3DEXPERIENCE : arbre, zone 3D et barre d’action](https://3dswym.3dexperience.3ds.com/wiki/solidworks-news-info/getting-started-with-3dexperience-simulation-solidpractices_rFZtKhrBSdO2cIlYITOksg) | Lier sélection et contexte d’action | Arbre, scène et inspecteur partagent les identités stables |
-| [Autodesk Fusion : interface](https://help.autodesk.com/view/fusion360/ENU/?contextId=LP-STEPS-P13N-SNP-GS-OTH-CRD-1) | Ateliers et navigation spatiale directement accessibles | Ateliers persistants, orientation interactive de caméra, isolation |
-| [Rhino : Gumball](https://www.rhino3d.com/en/docs/guides/user-guide/gumball-basics/), [dispositions](https://www.rhino3d.com/features/user-interface/window-layouts/) | Concilier manipulation et précision numérique | Modes du manipulateur, composantes X/Y/Z, panneaux restaurables |
-| [Creo : recherche](https://support.ptc.com/help/creo/creo_pma/r12/usascii/fundamentals/fundamentals/to_search_a_command.html) | Retrouver une commande par son nom et son aide | Recherche sans distinction d’accents, actions issues du même registre |
+| [Plasticity interface](https://doc.plasticity.xyz/plasticity-essentials/plasticity-interface/user-interface-overview), [command palette](https://doc.plasticity.xyz/plasticity-essentials/plasticity-interface/command-palette) | A dominant scene, compact tools and direct command access | Graphite interface, vector icons and searchable palette |
+| [Blender tools/workspaces](https://docs.blender.org/manual/en/4.5/interface/tool_system.html) | An explicit active tool and work context | Model/Simulate/Inspect workspaces; select/move/rotate modes |
+| [Shapr3D adaptive interface](https://support.shapr3d.com/hc/en-us/articles/7873882619548-Adaptive-user-interface) | Actions relevant to the selection | Contextual tools and explicitly disabled unavailable commands |
+| [Abaqus/CAE management and visualisation](https://www.3ds.com/fileadmin/Products/Simulia/PDF/datasheets/Abaqus_CAE_Datasheet.pdf) | Separate authoring, execution and examination | Read-only captures, run history and provenance |
+| [Onshape tool search](https://cad.onshape.com/help/Content/Home/search_tools.htm) | Discover a command without knowing its location | Word search, visible shortcuts and keyboard activation |
+| [NX command access](https://blogs.sw.siemens.com/designcenter/designcenter-x-nx-tips-and-tricks-copilot/) | Find relevant operations in a rich application | Shared command registry and contextual access; no simulated AI assistant |
+| [STAR-CCM+ 2606](https://blogs.sw.siemens.com/simcenter/simcenter-star-ccm-2606-released/) | Inspect differences between simulations | Overlaid series, object identity and differences in settings |
+| [SolidWorks shortcuts and contextual menus](https://blogs.solidworks.com/products/solidworks/useful-keyboard-shortcuts-workflow-customizations-solidworks/) | Reduce the distance to common tools | S palette, native menus and tools near the scene |
+| [3DEXPERIENCE tree, scene and actions](https://3dswym.3dexperience.3ds.com/wiki/solidworks-news-info/getting-started-with-3dexperience-simulation-solidpractices_rFZtKhrBSdO2cIlYITOksg) | Connect selection with action context | Stable identities shared by Browser, scene and Inspector |
+| [Autodesk Fusion interface](https://help.autodesk.com/view/fusion360/ENU/?contextId=LP-STEPS-P13N-SNP-GS-OTH-CRD-1) | Direct workspace and spatial navigation access | Persistent workspaces, interactive orientation and isolation |
+| [Rhino Gumball](https://www.rhino3d.com/en/docs/guides/user-guide/gumball-basics/), [layouts](https://www.rhino3d.com/features/user-interface/window-layouts/) | Combine direct manipulation and numerical precision | Manipulator modes, X/Y/Z components and restorable panels |
+| [Creo command search](https://support.ptc.com/help/creo/creo_pma/r12/usascii/fundamentals/fundamentals/to_search_a_command.html) | Locate commands by name and help | Accent-insensitive search through one command registry |
 
-Les principes plus anciens toujours utiles ne sont pas présentés comme des
-inventions de 2026. Les pages consultées sont un état de documentation, pas une
-évaluation exhaustive de licences commerciales exécutées localement.
+Established principles are not presented as inventions of 2026. These references
+document interface patterns, not a comprehensive local evaluation of commercial
+products or an assertion of functional parity.
 
-## Première itération implémentée
+## Implemented interaction baseline
 
-- Espace principal Qt/VTK réorganisé, menus natifs, ateliers et panneaux.
-- Palette globale Ctrl/Cmd+K et palette contextuelle S ; filtres de l’explorateur.
-- Thèmes graphite et clair, icônes originales vectorielles et focus visible.
-- Champs vectoriels par composante. L’affichage compact conserve chaque valeur
-  binaire originale tant que sa composante n’est pas modifiée.
-- Orientation de caméra interactive, sélection / translation / rotation,
-  masquage et isolation sans changement du document ou du calcul.
-- Historique de session : huit calculs et 128 Mio de tableaux au maximum. Les plus
-  anciens sont évincés lorsque le budget est atteint. Les exports restent explicites.
-- Courbes avec sélection temporelle, zoom, déplacement et lecture à vitesse réglable ;
-  tableau paresseux des échantillons, sans copie de chaque cellule.
-- Comparaison par UUID et grandeur physique, avec chaque série sur ses temps natifs.
-  Les noms peuvent changer ; les identités différentes ne sont pas appariées par
-  position. Aucun rééchantillonnage ni calcul d’écart interpolé n’est implicite.
-- Sauvegarde proposée avant abandon, document modifié signalé, champs invalides
-  conservés et fin de calcul incapable d’écraser une saisie en attente.
+- Reorganised Qt/VTK editor, native menus, workspaces and panels.
+- Global Ctrl/Cmd+K and contextual S palettes; Browser filtering.
+- Graphite/light themes, original vector icons and visible focus.
+- Separate vector components. Compact numeric presentation retains each original
+  binary value until that component is edited.
+- Interactive orientation, selection/move/rotate, visibility and isolation
+  without changing document or calculation inputs.
+- Session history of up to eight calculations within a 128 MiB array budget.
+  Older calculations are evicted at the limit; exports remain explicit.
+- Curves with sample selection, zoom, pan and adjustable playback; lazy sample
+  tables avoid copying every cell.
+- Comparisons use UUIDs and physical channels on each run's native time grid.
+  Renamed objects retain identity; different identities are not matched by array
+  position. No resampling or interpolated numerical difference is implicit.
+- Save/discard handling, document dirty state, retained invalid fields and
+  protection of pending edits when a calculation finishes.
 
-Tests Linux réalisés : 38 tests, comprenant les 29 tests antérieurs et neuf tests
-supplémentaires. Les tests de GUI surveillent aussi les exceptions Qt différées,
-car un résumé unittest « OK » seul ne suffit pas à les détecter. Un défaut de
-nettoyage du wrapper VTK a été corrigé après sa détection dans les journaux.
+## Historical qualification records
 
-Restent à qualifier avant clôture : ergonomie finale des outils contextuels,
-accessibilité et écrans à forte densité, performances mesurées, robustesse de la
-restauration des panneaux sur plusieurs écrans et livraison publique de la
-nouvelle version. Le build local Linux est désormais prioritaire ; le nouveau
-bundle macOS sera qualifié ultérieurement. Les fonctions et preuves ci-dessus
-ne déclarent pas le grand objectif achevé.
+The first Linux redesign baseline passed 38 tests: 29 previous cases and nine
+new cases. GUI tests also watch deferred Qt exceptions because an **OK** unittest
+summary alone does not detect every callback failure. A VTK-wrapper cleanup
+defect discovered in the logs was corrected.
 
-Recette à 200 % : [rapport Linux](bancs/studio-gui-2026/linux-hidpi.json),
-[modélisation](bancs/studio-gui-2026/modeling-dark.png),
-[comparaison](bancs/studio-gui-2026/comparison-dark.png),
-[écran portable](bancs/studio-gui-2026/comparison-light-1280.png).
-La capture mesure 2880×1900 pixels pour une fenêtre logique 1440×950.
-Avec trois corps et deux courbes, le rendu logiciel de cet environnement mesure
-36,2 ms par image en médiane et 56,1 ms au 95e centile. Ce n’est ni une mesure GPU
-sur le Mac utilisateur ni une garantie de fréquence. La recette vérifie aussi la
-présence des commandes de lecture dans une fenêtre logique de 1280×800.
+The [200% Linux report](bancs/studio-gui-2026/linux-hidpi.json) includes
+[modelling](bancs/studio-gui-2026/modeling-dark.png),
+[comparison](bancs/studio-gui-2026/comparison-dark.png) and a
+[small light-theme window](bancs/studio-gui-2026/comparison-light-1280.png).
+The large capture is 2880×1900 pixels for a logical 1440×950 window. With three
+bodies and two curves, software rendering measured 36.2 ms median and 56.1 ms
+at the 95th percentile in that environment. This is not a GPU measurement on
+the user's Mac or a frame-rate guarantee. The recipe also checks that playback
+controls remain present in a logical 1280×800 window.
 
-### Ajustements du rendu, vérifiés depuis les sources
+Subsequent source refinements added a faded, hideable metric XY grid, less
+saturated lighting, a compact orientation widget, and revolute symbols at both
+actual attachment positions. Construction lines appear for the selected joint.
+Perspective/orthographic projection is selected through Views. These changes
+do not alter mechanical volumes or kernel inputs.
 
-À la suite du retour sur la capture du double pendule : grille XY métrique
-atténuée et masquable, éclairage moins saturé, repère d'orientation compact
-adapté à la densité d'écran, pivots représentés par deux anneaux aux positions
-réelles des attaches. Les traits de construction sont réservés à la liaison
-sélectionnée. Les volumes mécaniques et les entrées du noyau sont inchangés.
-Les projections orthographique et perspective se sélectionnent dans Vues.
+Those 38 tests, four 200% captures and two native calculations passed again.
+An attempted FXAA setting produced a black main scene while leaving the
+orientation widget visible; it was removed. The bundle check now samples the
+reference scene image to catch that failure. It does not measure overall visual
+quality. The historical Linux 0.3.0 archive preceded those final refinements;
+presentation edits subsequently ran from source before milestone packaging.
 
-Les 38 tests ont été rejoués avec succès ; les quatre parcours de capture à
-200 % et les deux calculs natifs ont également passé la recette. Une option
-FXAA essayée causait un rendu principal noir malgré le widget d'orientation
-visible : elle a été retirée. Le contrôle du bundle détecte désormais ce cas
-par des sondes dans l'image du scénario de référence ; ce contrôle ne prétend
-pas mesurer la qualité visuelle générale.
+## Precision and density pass — 10 September 2026
 
-L'archive Linux 0.3.0 construite localement et testée après extraction précède
-ces derniers ajustements. Les itérations de présentation se font désormais
-directement depuis les sources ; la prochaine archive sera construite au
-moment de livrer une version stabilisée.
+Studio 0.4.0 reduced command, Browser and property spacing. CAD commands acquired
+labels, and menu indicators retained their own space. Inspector fields choose
+a readable preview for the available width while storing the exact value
+separately; focus and tooltips expose that value. Renaming a body does not rebuild
+its rotation or round its position and mass.
 
-## Passe de précision et densité — 10 septembre 2026
+The [CAD/interface qualification](bancs/studio-cad-040/README.md) passed 48 tests,
+including focus, resizing and small components in scientific notation. Captures
+at 1280×844 and high DPI retained complete exponents. These checks are not a
+usability study or proof of parity with mature engineering applications.
 
-Studio 0.4.0 resserre les espacements des commandes, des lignes de l'explorateur
-et des propriétés. Les commandes CAD portent un libellé ; les menus réservent
-la place de leur indicateur. L'inspecteur affiche une précision adaptée à la
-largeur, conserve la valeur exacte séparément du texte, et expose cette valeur
-au focus et en infobulle. Modifier le nom d'un corps ne reconstruit pas sa
-rotation et n'arrondit ni sa position ni sa masse.
+Studio 0.4.1 translated the interface, and 0.4.2 qualified normal startup through
+the real application entry point. Studio 0.5.0 added the CalculiX workspace,
+checked saved-result reopening and framing of visible bodies/attachments.
+The [Pinocchio installed-package record](bancs/studio-pinocchio-060/README.md)
+covers its separate worker, captured-state editor and operator inspection.
+The [CAD feature guide](STUDIO_CAD_HISTORY.md) explains subsequent parametric
+previews, source-file compatibility and remaining topological-reference work.
 
-La recette complète compte 48 tests réussis, avec un contrôle dédié du focus,
-des redimensionnements et des petites composantes en notation scientifique.
-Les captures à 1280×844 et en haute densité confirment la présence des exposants
-complets dans les champs au repos. Voir le [dossier de qualification CAD et
-interface](bancs/studio-cad-040/README.md). Ces contrôles ne valent pas encore
-une étude d'utilisabilité ou une parité fonctionnelle avec les grandes suites CAO/IAO.
+## Still required before closing the overall objective
+
+Final contextual-tool ergonomics, broader accessibility and display-scale
+coverage, measured performance on representative models, robust layout
+restoration across multiple monitors and a current Apple Silicon package remain
+open. Each new source milestone needs its own extracted Linux application checks
+before it becomes a downloadable standalone release.
+
+Constrained sketches, persistent face/edge references, collaboration and broader
+multiphysics workflows also remain substantive implementation work. These
+interaction records do not declare the full engineering-suite objective achieved.

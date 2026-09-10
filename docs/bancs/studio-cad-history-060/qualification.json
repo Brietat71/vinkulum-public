@@ -1,0 +1,78 @@
+{
+  "composition_reference": {
+    "gravity_m_s2": 9.81,
+    "initial_fixture_error": "Initial expected effort assumed 9.81 while document used default 9.80665; final fixture makes gravity explicit. No production physics change."
+  },
+  "evidence_sha256": {
+    "pinocchio-tests.log": "4cf973c284371e224ad768f79045e2e10faefc3543c1054cff3a7fa13346835c",
+    "recipe.json": "f5560e1351533ad80b81521c6ea088705dcbb4334632b73b9b0c968d1a99c7ca",
+    "studio-tests.log": "0149ef938c26ac4114f91c9430249610a1d43a803557f5e1e65feb059f037a16"
+  },
+  "example_sha256": "ecf2652d7c8d66d2fc5c886bb1fe659bc5e1f574486264b82066c1ed780c473b",
+  "installed_python_sources_match_wheel": true,
+  "log_normalization": "Trailing whitespace removed from desktop log; result content unchanged",
+  "platform": "Linux x86_64",
+  "qualification": "Installed Studio wheel outside source tree; OCCT 8.0.1 CAD/GUI with separate installed Pinocchio 4.1.0 worker",
+  "screenshot_sha256": "1518729e76c19ae9e5819d707c5b76e924464b8103af66026da8b8d9f40512bd",
+  "source_files_sha256": {
+    "apps/studio/vinkulum_studio/__init__.py": "2a0c1b2c3944f583f3b2cc5f7bcc6629c4f550984dc02519f32ed3576ef18d2a",
+    "apps/studio/vinkulum_studio/__main__.py": "a50101110e565f0bab29261b7bb31bc01fab8c0cbcb0e752a2d4cf83199288d8",
+    "apps/studio/vinkulum_studio/articulated.py": "2a7d057dddea24e78dfb23c1e81f3ccc5941efd9add6383b8528803625abc858",
+    "apps/studio/vinkulum_studio/articulated_result.py": "64bfe1f10775aeba2a329a09ba6649b3ebdf3bb839306654cb62e213774f38ff",
+    "apps/studio/vinkulum_studio/articulated_window.py": "86b72f6bb0e2ea30c1d93a225371e7449cd32fec8e9147eeb57a62cc95bc81b2",
+    "apps/studio/vinkulum_studio/bundle_check.py": "850ccccacceba84e7ad00c50a57e0e1dfc8e773828d7815ae517da9518b5f161",
+    "apps/studio/vinkulum_studio/cad.py": "706166f5defadda54dad7a35ca040059981cfce48529de61d4656965d735a9c0",
+    "apps/studio/vinkulum_studio/cad_controller.py": "cd7f3f8992a2c22fba78e1d7270927ce7c41b16e00a9877cf42ce00d77232b05",
+    "apps/studio/vinkulum_studio/cad_data.py": "1042f2b1a72ab78947f2761b0e85d4db11cfac454eefd03714d45008c0bdfebf",
+    "apps/studio/vinkulum_studio/cad_dialog.py": "c028c379aa64ceb75f80adba3e0abc18e62aebe0e7ec7efeecc93b735f27e6ec",
+    "apps/studio/vinkulum_studio/cad_history.py": "bc8dbb593fa56f8d2a7b2cd60c6f6f8097f71155af4756f9656018e8f52d689d",
+    "apps/studio/vinkulum_studio/cad_history_dialog.py": "9ca3fe3350d5de58644392c85cff181968de81fc08909f92229f27d4530e199e",
+    "apps/studio/vinkulum_studio/cad_worker.py": "70262a1154aeb6cdf0b76067c5930e4d8d58db02b58009d5ab5bebaaebb1db25",
+    "apps/studio/vinkulum_studio/calculix.py": "83cd41719ca8ef8221d3bc6e1dcb42ef61e75f83929c460ae0075b55d3579917",
+    "apps/studio/vinkulum_studio/commands.py": "ccf370da728ef086ca714c4be5be0934c999a3162cc8e30e13afd97641e528a2",
+    "apps/studio/vinkulum_studio/controller.py": "4b0a56a72ba0f1e59743d20d95a419be4606ab27edbc51319ef7502021934e0d",
+    "apps/studio/vinkulum_studio/controls.py": "b76aaa3f50397773244df9186887acc60eb43945a690da1fe7c8a9b2e350c531",
+    "apps/studio/vinkulum_studio/dialogs.py": "50ae34a6361f1b6c026f64f7c9a6f37d209a53c94b6c407ca178c99562502562",
+    "apps/studio/vinkulum_studio/document.py": "142fea01b216412e10e1289c638ac8695813434c28191f2ca270a5e8e32c3222",
+    "apps/studio/vinkulum_studio/editor.py": "3debf2a7081fa5da0b1abc699f88b0844fe21be2f9f560eda2941545a7fdee33",
+    "apps/studio/vinkulum_studio/examples3d.py": "1286b54444172564e901ffebfad03d401fb6ceaba88fd0f835fa4b1161b62acb",
+    "apps/studio/vinkulum_studio/labels.py": "77e6b678549b717c8eb2b3812501b5cfc103eb2def8c5d127a93bc83edf2fa4a",
+    "apps/studio/vinkulum_studio/mechanism.py": "0687337aab8633f9fa534ddb0b4324883caeef7ab7a097cf0053e5e8af15b81b",
+    "apps/studio/vinkulum_studio/model.py": "98cca6430a5e4c64e46071a83f673140931b71e8a34accc29a1baef459f87a99",
+    "apps/studio/vinkulum_studio/pinocchio_backend.py": "40fcfff8bd9b36c7e84c567502275b1f0541d8d29f948c6d15d74697babe1dc6",
+    "apps/studio/vinkulum_studio/pinocchio_controller.py": "0ac744409e4c7d79a3d0976131f8136379e362aa8af4dc14ea7b9e49622883c4",
+    "apps/studio/vinkulum_studio/render_interactor.py": "27f2cf8fbc2c7178d75e2ea8b88ac4b101f9e89650fed58ce1e642bb09d75854",
+    "apps/studio/vinkulum_studio/run_archive.py": "c569609343a822aa174ff3aa84055018a80b6f07e8be49e5133a77915eabfcfd",
+    "apps/studio/vinkulum_studio/series_view.py": "bc8082084bc00e84198a41a681bbb776933ad660d3b17db396f43e7bf7ad0c59",
+    "apps/studio/vinkulum_studio/startup_check.py": "c5088994d5c5774e57bbbd85e8d1b93bd17b3c91d0e1faff58a23fefce4b39bb",
+    "apps/studio/vinkulum_studio/static_controller.py": "48da0d88f3780a0529509a7aa796bf1de37383b5a58003f51d8c477a6a3d732b",
+    "apps/studio/vinkulum_studio/static_view.py": "d6ecde24b211365ae2ef12acfb38451f6770f5f48bd2e2e5b53cd2866ee211c1",
+    "apps/studio/vinkulum_studio/static_window.py": "c8805b7287c1c9f700199ad1e328232dcbdc14ae5be05e0adcef140fa2fa8b4a",
+    "apps/studio/vinkulum_studio/theme.py": "f217ac202c24d2f2ab947418987a830bc93d4c1a3da296a7f90733e7d3bc11b3",
+    "apps/studio/vinkulum_studio/viewport.py": "a47a01cf8af3e6e835f74a5f4267fae51dd77aa15071cf0eddb4f6ff5b65f516",
+    "apps/studio/vinkulum_studio/views.py": "699c60a9b7d11e90204182690b3013987dae082ba1caa6770c3e359a04f097ca",
+    "apps/studio/vinkulum_studio/window.py": "a8012f0a29f8ea05a349775e1932520e119913006bdd9365053e81ee64e61baa",
+    "apps/studio/vinkulum_studio/worker.py": "ee71bb6ba84e27477ae8bdecb1e7c807f143f4d116fa27df0dbdf77273d73a9f",
+    "apps/studio/vinkulum_studio/workspace.py": "1c75d15960541ff3f1ec3fb8125d749ec49ef845df914a3cfeb2f5cab4fda3f2"
+  },
+  "standalone_archive_qualified": false,
+  "status": "passed",
+  "studio_version": "0.6.0.dev2",
+  "tests": {
+    "desktop": {
+      "passed": 86,
+      "run": 96,
+      "skip_reason": "Pinocchio engine intentionally absent from CAD/GUI environment; numerical tests run separately",
+      "skipped": 10
+    },
+    "pinocchio_worker": {
+      "passed": 11,
+      "run": 11,
+      "skipped": 0
+    }
+  },
+  "wheel": {
+    "name": "vinkulum_studio-0.6.0.dev2-py3-none-any.whl",
+    "sha256": "642ae3b1ab25ba545893bcbeeb7192d5ce9c388a78e5dd0ac856573763e3c3f6"
+  }
+}

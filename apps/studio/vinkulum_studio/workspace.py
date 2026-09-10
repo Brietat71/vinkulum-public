@@ -126,6 +126,7 @@ class Workspace:
         create.addAction(
             self._action("cad", "CAD design…", self.open_cad, "Alt+G", design=True)
         )
+        create.addAction(self._action("cad_history", "Edit CAD features…", self.open_cad_history, "Ctrl+Shift+H", design=True))
         create.addSeparator()
         create.addAction(
             self._action(
