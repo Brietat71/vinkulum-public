@@ -116,6 +116,7 @@ class EditorWindow(Workspace, QMainWindow):
         self.controller.busy_changed.connect(self._busy)
         self.controller.completed.connect(self._completed)
         self.controller.problem.connect(self._problem)
+        self.controller.stage_changed.connect(self.status.setText)
         self.viewport.selected.connect(self.select_object)
         self.viewport.pose_committed.connect(self.move_body)
         self._refresh(fit=True)
@@ -770,15 +771,15 @@ class EditorWindow(Workspace, QMainWindow):
             )
             self.history.commit(project)
             self._refresh()
-            self.controller.start(self.project)
             self.status.setText("Running on a snapshot. The design remains editable.")
+            self.controller.start(self.project)
         except (ValueError, RuntimeError, OSError) as exc:
             self._problem(str(exc))
 
     def stop(self):
-        self.controller.cancel()
         self.stop_button.setEnabled(False)
         self.status.setText("Stopping…")
+        self.controller.cancel()
 
     def _busy(self, busy):
         allowed = not busy and not self.project.diagnostics()

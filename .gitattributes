@@ -8,3 +8,4 @@ docs/bancs/studio-tetrahedra-060/calculation/*.dat -text -whitespace
 docs/bancs/studio-tetrahedra-060/calculation/solver.log -text -whitespace
 docs/bancs/studio-cad-meshing-060/*tests.log -text -whitespace
 docs/bancs/studio-sketch-060/*.log -text -whitespace
+docs/bancs/native-threads-020/*.log -text -whitespace

@@ -4,7 +4,7 @@
 Toute édition à la main est écrasée et fait rougir la CI — une
 documentation recopiée finit par décrire une autre bibliothèque.
 
-Version : `0.19.0`
+Version : `0.20.0`
 
 ## Le noyau — `vinkulum.Noyau`
 
@@ -89,6 +89,21 @@ Le modèle vu de Python : on déclare, on simule, on lit
 | `torseur_moyen` | (F, M) aérodynamiques MOYENS depuis `t0`, réduits à l'origine du monde, |
 | `vent` | Vitesse de l'air ambiant (repère monde). Le rotor de banc étant encastré, |
 | `vis` | VIS–ÉCROU : la translation relative le long de `axe` est liée à la |
+
+## Native CPU execution — `vinkulum.ExecutionPool`
+
+A fixed-size native Rayon executor, shareable between independent `Noyau`.
+Create `ExecutionPool(threads)` and pass it as `Noyau(executor=pool)`.
+The pool limits native workers, not the amount of parallel work in a model.
+
+```python
+pool = vinkulum.ExecutionPool(4)
+model = vinkulum.Noyau(executor=pool)
+```
+
+`threads` and `pool_id` expose the pool size and process-local identity.
+`Noyau.execution_threads` and `Noyau.execution_pool_id` expose its executor.
+See [native threading](NATIVE_THREADING.md) for scope and guarantees.
 
 ## Les modules d'analyse
 

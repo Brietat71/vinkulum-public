@@ -155,6 +155,7 @@ class MainWindow(QMainWindow):
         self.controller.busy_changed.connect(self._busy)
         self.controller.completed.connect(self._completed)
         self.controller.problem.connect(self._problem)
+        self.controller.stage_changed.connect(self.status.setText)
         self._edited()
 
     def parameters(self):
@@ -198,19 +199,19 @@ class MainWindow(QMainWindow):
     def run(self):
         try:
             parameters = self.parameters()
-            self.controller.start(parameters)
             self._previous = self.result is not None
             self._result_caption()
             self.status.setText(
                 "Running in a separate process. Fields remain editable."
             )
+            self.controller.start(parameters)
         except (ValueError, RuntimeError, OSError) as exc:
             self._problem(str(exc))
 
     def stop(self):
-        self.controller.cancel()
         self.stop_button.setEnabled(False)
         self.status.setText("Stopping…")
+        self.controller.cancel()
 
     def _busy(self, busy):
         self.run_button.setEnabled(not busy)

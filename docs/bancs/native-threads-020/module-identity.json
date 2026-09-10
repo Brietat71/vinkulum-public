@@ -1,0 +1,10 @@
+{
+  "modules": 56,
+  "wheel_matches_source": true,
+  "/tmp/vinkulum-threading-studio-env": true,
+  "/tmp/vinkulum-threading-pin-env": true,
+  "wheel_sha256": {
+    "vinkulum_studio-0.6.0a2.dev3-py3-none-any.whl": "fc415647a9ebc9fed7227edf1ff3577f0206880871eb23edd41db2b9a88c3562",
+    "vinkulum-0.20.0-cp314-cp314-manylinux_2_39_x86_64.whl": "958bdb8b0eb32285e622e395bd703d8c5c1c44de81135030ee1f8d10cdef6381"
+  }
+}

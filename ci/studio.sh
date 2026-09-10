@@ -5,6 +5,7 @@ VINKULUM_SOURCE_ROOT=$(cd "$(dirname "$0")/.." && pwd)
 PY=${PY:-python}
 export VINKULUM_3D_TESTS=1
 export RAYON_NUM_THREADS=${RAYON_NUM_THREADS:-2}
+export VINKULUM_STUDIO_CPUS=${VINKULUM_STUDIO_CPUS:-2}
 export OPENBLAS_NUM_THREADS=1
 export OMP_NUM_THREADS=1
 case "$(uname -s)" in

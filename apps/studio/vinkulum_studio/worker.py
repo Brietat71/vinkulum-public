@@ -5,7 +5,7 @@ import math
 import platform
 import sys
 from dataclasses import asdict
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from . import __version__
@@ -21,7 +21,7 @@ from .model import (
 )
 
 
-def simulate(parameters, run_id):
+def simulate(parameters, run_id, execution=None):
     # Import the native library exclusively in the compute process.
     import vinkulum
     import vinkulum._vinkulum as native
@@ -29,7 +29,9 @@ def simulate(parameters, run_id):
     p = parameters
     angle = math.radians(p.angle_deg)
     x, z = p.length * math.sin(angle), -p.length * math.cos(angle)
-    solver = vinkulum.Noyau(g=[0.0, 0.0, -G])
+    solver = vinkulum.Noyau(
+        g=[0.0, 0.0, -G], executor=execution.executor() if execution else None
+    )
     body = solver.corps(
         "masse",
         p.mass,
@@ -60,13 +62,14 @@ def simulate(parameters, run_id):
             "python": platform.python_version(),
             "platform": platform.platform(),
             "machine": platform.machine(),
-            "completed_utc": datetime.now(timezone.utc).isoformat(),
+            "completed_utc": datetime.now(UTC).isoformat(),
             "method": "generalized-alpha / SO(3)",
             "rho_infinity": RHO,
             "gravity_m_s2": G,
             "body_inertia_kg_m2": INERTIA,
             "initial_angular_velocity_rad_s": 0.0,
-            "threads": 2,
+            "threads": solver.execution_threads,
+            "execution": execution.manifest(solver) if execution else None,
             "units": UNITS,
             "parameter_units": PARAMETER_UNITS,
             "sampling": "native solver steps plus explicit initial state; no interpolation",
@@ -83,8 +86,10 @@ def main():
         )
     try:
         from .document import MAX_PROJECT_BYTES
+        from .execution import ExecutionPlan
 
         data = read_json(sys.argv[1], MAX_PROJECT_BYTES)
+        execution = ExecutionPlan.from_dict(data["execution"])
         if data.get("kind") == "mechanism":
             from .document import Project
             from .mechanism import simulate_project
@@ -93,9 +98,12 @@ def main():
                 Project.from_dict(data["parameters"]),
                 data["run_id"],
                 Path(sys.argv[2]).parent,
+                execution=execution,
             )
         else:
-            result = simulate(Parameters.from_dict(data["parameters"]), data["run_id"])
+            result = simulate(
+                Parameters.from_dict(data["parameters"]), data["run_id"], execution
+            )
         write_json(sys.argv[2], result)
     except Exception as exc:
         write_json(
