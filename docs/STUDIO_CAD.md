@@ -92,10 +92,12 @@ check rotations and centres of mass, booleans, fillets, STEP metre/millimetre
 conversion, BREP persistence, attachment rebasing, worker failure and the
 CAD → mechanics → Qt/VTK rendering workflow.
 
-The [CAD service experiment](CAD_SERVICE_EXPERIMENT.md) measures sequential
-process reuse against fresh workers, with independent mass/inertia references,
-memory counters and failure-recovery probes. It records the integration contract
-for a future service; the desktop still starts one process per CAD operation.
+Studio dev6 implements [supervised process reuse](CAD_PROCESS_REUSE.md) following
+the [CAD service experiment](CAD_SERVICE_EXPERIMENT.md). One compatible idle worker
+is retained for 15 seconds by default. Each operation receives its own CPU lease,
+captured request and validated result. The retained GUI qualification compares
+fresh and reused workers through document application and rendering, with
+independent mass/inertia references and memory measurements.
 
 **96 targeted upstream tests** pass for build123d 0.11.1's `test_bound_box`,
 `test_mass_properties`, `test_location` and `test_build_part`. This qualifies

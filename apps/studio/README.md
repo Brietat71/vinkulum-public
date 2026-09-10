@@ -1,11 +1,16 @@
-# Vinkulum Studio 0.6.0a2.dev5 — CAD and mechanism analysis
+# Vinkulum Studio 0.6.0a2.dev6 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.20.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
 
-Source **0.6.0a2.dev5** moves CAD response validation, document preparation and
+Source **0.6.0a2.dev6** reuses one idle CAD worker between operations and feature
+previews, for 15 seconds by default. Idle retention holds no CPU reservation;
+cancellation and failures retire the worker. See [CAD process reuse](../../docs/CAD_PROCESS_REUSE.md)
+for memory controls, transaction checks and measured GUI performance.
+
+Version **0.6.0a2.dev5** moves CAD response validation, document preparation and
 stored CalculiX/Pinocchio input and result reads to background threads. Cancelling
 or closing keeps the previous data and lets the active reader finish before its
 resources are released. See [background admission](../../docs/STUDIO_BACKGROUND_ADMISSION.md).

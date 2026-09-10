@@ -209,11 +209,17 @@ class EditorWindow(Workspace, QMainWindow):
         if isinstance(operation, str):
             dialog.operation.setCurrentIndex(dialog.operation.findData(operation))
         captured = self.project
-        if dialog.exec() != QDialog.DialogCode.Accepted or not dialog.result_data:
+        try:
+            outcome = dialog.exec()
+            result_data, output_path = dialog.result_data, dialog.output_path
+            body, prepared = dialog.result_body, dialog.result_project
+        finally:
+            dialog.deleteLater()
+        if outcome != QDialog.DialogCode.Accepted or not result_data:
             return
         try:
-            if "step" in dialog.result_data:
-                atomic_text(dialog.output_path, dialog.result_data["step"])
+            if "step" in result_data:
+                atomic_text(output_path, result_data["step"])
                 self.status.setText(
                     "Part exported to STEP with its world pose and millimetre units."
                 )
@@ -222,10 +228,9 @@ class EditorWindow(Workspace, QMainWindow):
                     raise ValueError(
                         "The document changed during the CAD operation; result not applied."
                     )
-                body = dialog.result_body
-                if body is None or dialog.result_project is None:
+                if body is None or prepared is None:
                     raise ValueError("No validated CAD document returned.")
-                self._commit(dialog.result_project, fit=True)
+                self._commit(prepared, fit=True)
                 self.select_object(body.id)
                 self.status.setText(
                     "CAD solid added · mass and inertia computed from BREP in SI units."
@@ -243,19 +248,21 @@ class EditorWindow(Workspace, QMainWindow):
         try:
             captured = self.project
             dialog = CadHistoryDialog(captured, self.selection, self)
-            if (
-                dialog.exec() != QDialog.DialogCode.Accepted
-                or dialog.result_body is None
-            ):
+            try:
+                outcome = dialog.exec()
+                result_body, prepared = dialog.result_body, dialog.result_project
+            finally:
+                dialog.deleteLater()
+            if outcome != QDialog.DialogCode.Accepted or result_body is None:
                 return
             if self.project is not captured:
                 raise ValueError(
                     "The document changed during CAD editing; preview not applied."
                 )
-            if dialog.result_project is None:
+            if prepared is None:
                 raise ValueError("No validated CAD document returned.")
-            self._commit(dialog.result_project, fit=True)
-            self.select_object(dialog.result_body.id)
+            self._commit(prepared, fit=True)
+            self.select_object(result_body.id)
             self.status.setText(
                 "CAD features regenerated · mass, inertia and attachments updated."
             )

@@ -71,7 +71,12 @@ class KeyboardCadRecipe(unittest.TestCase):
         def handle():
             handled.append(True)
             try:
-                interact(self.app.activeModalWidget())
+                dialog = self.app.activeModalWidget()
+                self.assertIsNotNone(dialog, "Shortcut did not open a modal dialog")
+                # The launch timer is not a window-manager activation barrier.
+                # Dispatch keys only once the modal is active; do not move focus.
+                self.assertTrue(QTest.qWaitForWindowActive(dialog, 1000))
+                interact(dialog)
             except Exception as error:
                 errors.append(error)
                 dialog = self.app.activeModalWidget()

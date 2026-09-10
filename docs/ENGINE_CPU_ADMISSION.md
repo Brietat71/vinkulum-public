@@ -36,6 +36,12 @@ size and captured allocation; the controller rejects inconsistent responses.
 Parallel Boolean operations supplied by the adapted build123d package can use
 this pool. Serial geometry operations remain serial.
 
+Studio dev6 [retains one compatible idle CAD worker](CAD_PROCESS_REUSE.md) for
+15 seconds by default. Idle retention holds no lease. Each new operation goes
+through FIFO admission, and a changed native allocation replaces the worker.
+The lease covers background response validation too; cancellation releases it
+only after both the process and the validator have finished.
+
 New GUI meshes default to HXT (`Mesh.Algorithm3D = 10`). Gmsh must report both
 `Hxt` and `OpenMP` in its build options, in addition to OCCT 8 or newer.
 Legacy Delaunay remains selectable. The new `HxtMeshRequest` has an explicit
