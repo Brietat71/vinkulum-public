@@ -1,6 +1,6 @@
 # Linear static analysis inside FreeCAD
 
-Development **0.1.0a3.dev4** adds **Vinkulum → Static analysis…** to the current
+Development **0.1.0a3.dev5** adds **Vinkulum → Static analysis…** to the current
 FreeCAD workbench. It uses native document objects, face selection, properties
 and task controls. FreeCAD 1.1.3 / Qt 6 on Linux is the qualified host. It is not
 yet included in the public 0.1.0a2 extension release; build the development
@@ -78,3 +78,13 @@ Python tracebacks in the native console in addition to checking its report.
 
 The [boundary editing record](bancs/freecad-boundary-edit-2026/README.md) checks
 selection, MPa values, Undo and the displayed context menu on development dev4.
+
+The [fingerprint cost record](bancs/freecad-fingerprint-2026/README.md) compares dev5
+with the previous geometry-check expression and retains the unchanged numerical
+and invalidation checks. Its local measurements are not a general GUI latency bound.
+
+Known reopening limitation: some saved static results retain their mesh and data,
+but a fresh geometry check marks their capture stale even without a physical edit.
+The [retained counterexample](bancs/freecad-fingerprint-2026/README.md#separate-pre-existing-reopening-limitation)
+occurs in both dev4 and dev5. A stored “Current capture” label alone is not proof
+that a reopened result passes the current geometry checks.

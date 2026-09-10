@@ -157,6 +157,35 @@ def start():
     report["checks"].append(
         "pressure edit button and native Undo preserve pressure units"
     )
+    from vinkulum_freecad import bridge
+    from vinkulum_freecad import static_analysis as model
+
+    expected = bridge.sha(
+        json.dumps(
+            {
+                "geometry": bridge.signature(panel.source),
+                "inputs": model.inputs(panel.analysis),
+            },
+            sort_keys=True,
+            allow_nan=False,
+        ).encode()
+    )
+    original = bridge.signature
+    calls = []
+
+    def measured(source):
+        calls.append(source.Name)
+        return original(source)
+
+    bridge.signature = measured
+    try:
+        assert model.signature(panel.analysis) == expected
+        assert calls == [panel.source.Name]
+    finally:
+        bridge.signature = original
+    report["checks"].append(
+        "unchanged static fingerprint with one fresh geometry serialization"
+    )
     QtCore.QTimer.singleShot(400, launch_after_display)
 
 

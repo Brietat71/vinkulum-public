@@ -21,7 +21,7 @@ def qualify(args):
         "apps/freecad/qualify_static.FCMacro",
         "apps/freecad/bridge.py",
     ]
-    if args.recipe == "static-task":
+    if args.recipe in ("static-task", "static-fingerprint"):
         sources += [
             "apps/freecad/qualify_static_task.FCMacro",
             "apps/freecad/static_host.py",
@@ -32,6 +32,8 @@ def qualify(args):
             "apps/freecad/host.py",
             "apps/freecad/package.py",
         ]
+        if args.recipe == "static-fingerprint":
+            sources.append("apps/freecad/qualify_static_fingerprint.FCMacro")
         payload = output / "Vinkulum-FreeCAD.zip"
         subprocess.run(
             ["python3", str(root / "apps/freecad/package.py"), str(payload)], check=True
@@ -122,5 +124,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     for option in ("freecad", "engine-python", "gmsh", "ccx", "output"):
         parser.add_argument("--" + option, type=Path, required=True)
-    parser.add_argument("--recipe", choices=("static", "static-task"), default="static")
+    parser.add_argument(
+        "--recipe",
+        choices=("static", "static-task", "static-fingerprint"),
+        default="static",
+    )
     qualify(parser.parse_args())

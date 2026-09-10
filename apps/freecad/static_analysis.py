@@ -160,6 +160,11 @@ def add_boundary(obj, refs, kind, pressure_pa=0):
 
 
 def inputs(obj):
+    return _input_snapshot(obj)[0]
+
+
+def _input_snapshot(obj):
+    """Validate inputs against one freshly serialized geometry, without caching."""
     if not is_analysis(obj) or obj.SchemaVersion != 1:
         raise ValueError("Unsupported static analysis document schema.")
     source = obj.Source
@@ -206,13 +211,14 @@ def inputs(obj):
         "poisson": obj.Poisson,
         "mesh_size_mm": obj.MeshSizeMm,
         "threads": obj.Threads,
-    }
+    }, digest
 
 
 def signature(obj):
+    arguments, digest = _input_snapshot(obj)
     return bridge.sha(
         json.dumps(
-            {"geometry": bridge.signature(obj.Source), "inputs": inputs(obj)},
+            {"geometry": digest, "inputs": arguments},
             sort_keys=True,
             allow_nan=False,
         ).encode()

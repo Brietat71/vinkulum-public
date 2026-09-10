@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "checks": [
+    "five rapid static example open/close cycles without a calculation or workbench change",
+    "static example menu creates and selects a configured native analysis without starting a solver",
+    "native menu, face selection, boundary buttons and unchanged workbench",
+    "native boundary Undo/Redo",
+    "pressure selection loads MPa, survives update and Undo, and gates editing actions",
+    "pressure edit button and native Undo preserve pressure units",
+    "unchanged static fingerprint with one fresh geometry serialization",
+    "native context-menu event and visible Edit pressure action",
+    "visible native Close button disposes the task",
+    "native input save/reopen with source face links",
+    "actual asynchronous CalculiX solve and native coloured displacement result",
+    "deleting only the result mesh restores source visibility and invalidates the result",
+    "saved native result reopens; material edit hides stale result without an open task",
+    "changed geometry requires explicit boundary reselection",
+    "cancelled: worker and spawned child terminated, global slot released",
+    "closed: worker and spawned child terminated, global slot released",
+    "material edited during a real solve refuses late result import"
+  ],
+  "maximum_displacement_error_m": 4.761904763739115e-13,
+  "heartbeat_ticks_during_solve": 151
+}
