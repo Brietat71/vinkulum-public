@@ -16,14 +16,15 @@ def build(destination, require_clean=False):
     dirty = bool(subprocess.check_output(["git", "status", "--porcelain"], cwd=root))
     if require_clean and dirty:
         raise ValueError("Commit the reviewed extension before a release build")
-    names = (
-        "InitGui.py",
+    modules = (
         "host.py",
         "analysis.py",
         "bridge.py",
         "worker.py",
-        "INSTALLATION.txt",
+        "assembly_capture.py",
+        "assembly_worker.py",
     )
+    names = ("InitGui.py", *modules, "INSTALLATION.txt")
     report = {
         "extension_version": VERSION,
         "source_commit": subprocess.check_output(
@@ -47,7 +48,7 @@ def build(destination, require_clean=False):
             "Vinkulum/vinkulum_freecad/__init__.py",
             f'"""FreeCAD host for Vinkulum."""\n__version__ = "{VERSION}"\n',
         )
-        for name in ("host.py", "analysis.py", "bridge.py", "worker.py"):
+        for name in modules:
             archive.write(source / name, "Vinkulum/vinkulum_freecad/" + name)
         for name in ("LICENSE", "NOTICE"):
             archive.write(root / name, "Vinkulum/" + name)
