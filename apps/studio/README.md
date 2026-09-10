@@ -42,8 +42,8 @@ CAD study: open pressure arrows, solid force arrows and bars for constrained
 world axes. Their nominal screen size stays readable during zoom; effective
 SI values in the condition list follow the signed load multiplier. See the
 [symbol guide and verification](../../docs/STUDIO_CAD_MESHING.md#boundary-direction-symbols).
-These additions require the source installation; the published Linux binary
-remains **0.6.0a1**.
+These additions are included in the **0.6.0a2.dev5 Apple Silicon DMG** and current
+source. The published Linux binary remains **0.6.0a1**.
 
 Source version **0.6.0.dev4** introduced the [CAD-to-statics workspace](../../docs/STUDIO_CAD_MESHING.md):
 generate an OCCT 8 / Gmsh mesh, select boundary faces in 3D, add supports,
@@ -125,9 +125,14 @@ sudo apt-get install xvfb xauth
 An OpenGL driver is required. PySide6 **6.11.2** and VTK **9.7.0** have their own
 licences; original Studio code is Apache-2.0. Check the platform and version in
 [public releases](https://github.com/Brietat71/vinkulum-public/releases).
-An older Apple Silicon DMG predates the current CAD/UI changes. It requires
-macOS 14 and uses ad-hoc signing without Apple notarisation. Qualification of
-the current CAD release on macOS ARM64 is still pending.
+The [Apple Silicon DMG 0.6.0a2.dev5](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a2.dev5-macos-9)
+includes kernel 0.20.0, OCCT 8.0.1 and adapted build123d. It requires macOS 14
+or newer and uses ad-hoc signing without Apple notarisation. Native mechanics
+and desktop tests passed on ARM64, followed by startup, simulation, CAD/STEP,
+feature regeneration and saved capture checks on the app copied from the DMG.
+The release contains the reports, source commit, checksums and actual screenshots.
+External Gmsh, CalculiX and Pinocchio engines are not bundled or live-qualified
+in this macOS release. Dev6 CAD process reuse remains source-only.
 
 ### Local development and Linux packaging
 
