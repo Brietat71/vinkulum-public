@@ -1,0 +1,77 @@
+Vinkulum for FreeCAD 0.1.0a1 — Linux research preview
+
+This extension adds a Vinkulum menu and a native task panel to FreeCAD.
+Keep your usual FreeCAD workbench: no switch to a Vinkulum workbench is needed.
+The qualified host is FreeCAD 1.1.3, Qt 6, Linux x86-64 / Ubuntu 24.04.
+FreeCAD, its native libraries and the Vinkulum engine are not bundled in this ZIP.
+
+Install
+-------
+Close FreeCAD, then extract the Vinkulum folder into your user Mod directory.
+With the qualified Linux runtime the usual location is:
+  ~/.local/share/FreeCAD/Mod/Vinkulum
+For a custom XDG_DATA_HOME, use its FreeCAD/Mod directory instead.
+The Vinkulum folder must directly contain Init.py and InitGui.py.
+Restart FreeCAD. A Vinkulum menu should appear beside the existing menus.
+To remove the extension, close FreeCAD and remove only that Vinkulum folder.
+
+Prepare the separate engine once
+-------------------------------
+Use a Python environment with Vinkulum 0.20, the Studio backend package,
+OCCT 8 and adapted build123d. Installation instructions:
+  https://github.com/Brietat71/vinkulum-public/blob/main/docs/STUDIO_CAD.md
+The existing vinkulum_studio package supplies the CAD and mechanical adapters;
+this extension never opens its GUI. Do not install its OCCT binding inside
+FreeCAD's own Python interpreter. The two processes retain separate libraries.
+
+In the motion panel, select that environment's executable Python, for example:
+  /absolute/path/to/vinkulum-environment/bin/python
+Choose a directory where calculation captures should be saved. These two
+settings are remembered for later sessions. No calculation starts automatically.
+VINKULUM_FREECAD_PYTHON and VINKULUM_FREECAD_OUTPUT_ROOT can also supply them.
+
+Try the included example
+------------------------
+1. Vinkulum > Open pendulum example opens an editable PartDesign document.
+2. Select its Rod body, then Vinkulum > Motion analysis.
+3. Choose the engine environment and click Run motion. The defaults match the
+   independent physical-pendulum reference: 7800 kg/m3, 2 s, a 5 ms native step,
+   world-origin pivot and world-Y revolute axis, gravity toward -Z.
+4. Move the sample slider or press Play captured motion. The displayed shape
+   is a temporary copy. The original feature graph and placement are retained.
+5. Close the task to return to ordinary modelling. Edit the pad, then calculate
+   again. Geometry changed after capture is refused for old-motion playback.
+
+Pivot coordinates are world coordinates in mm. The axis is a direction vector;
+it is normalised before transmission. Density uses kg/m3, time uses seconds.
+The worker recomputes STEP mass properties with OCCT 8 and compares volume,
+centre and full inertia against the FreeCAD capture before native simulation.
+
+Cancellation, saving and reopening
+---------------------------------
+One Vinkulum job can run at a time in this FreeCAD process. Engine threads are
+explicit. Cancel stops the worker and keeps the previous captured result.
+Closing the task or its source document cancels the active job; late results
+cannot update a closed panel. A native FreeCAD save stops the preview and removes
+the temporary motion shape before writing the .FCStd file.
+
+Each successful run keeps request.json, part.step, project.vinkulum.json,
+worker.log and result/ in its own folder. Keep that folder together.
+Open saved calculation reads it without starting the engine. The selected
+source solid must still match the captured geometry. The native .FCStd model
+and calculation captures remain separate files.
+
+Scope
+-----
+This first host covers one top-level rigid solid and one explicit revolute
+joint, starting from rest, with gravity -Z. Limit: 10 s and 2001 native samples.
+It does not yet convert FreeCAD Assembly constraints, support multi-body host
+models or expose CalculiX/Pinocchio controls in FreeCAD. The broader Vinkulum
+backend remains available separately. No general trajectory bound is claimed.
+The qualified FreeCAD host uses its own OCCT 7.8.1; the separate Vinkulum worker
+uses OCCT 8.0.1. STEP and SI-property checks are the boundary between them.
+Other host versions, macOS and Windows have not been qualified for this ZIP.
+
+Original extension code and example model: Apache-2.0. See LICENSE and NOTICE.
+FreeCAD and external engines keep their own licences. extension-info.json
+identifies the exact source and packaged-file hashes.
