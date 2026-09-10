@@ -1,0 +1,25 @@
+{
+  "engine": "gmsh-hxt",
+  "threads": 2,
+  "elapsed_s": 0.6899373279884458,
+  "nodes": 2036,
+  "elements": 1100,
+  "archive": "/tmp/vinkulum-engine-final-probes/gmsh-hxt-2",
+  "provenance": {
+    "studio": "0.6.0a2.dev4",
+    "occt": "8.0.1.0.0",
+    "build123d": "0.11.1+vinkulum.occt8",
+    "script_sha256": "48750d705beee4eb8dafbaa54cfed7fa8249dc6e818ca47b7e51b2b04af30350",
+    "thread_policy_sha256": "a8c8d7fd89b64c796a9f66d89ad96cce45154068f6291b0c9180b04c4e038bd2",
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  }
+}

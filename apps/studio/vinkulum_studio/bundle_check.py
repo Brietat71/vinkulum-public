@@ -55,7 +55,13 @@ def main(directory, *, app=None, window=None):
             Path(cad_directory) / "request.json",
             Path(cad_directory) / "response.json",
         )
-        request.write_text(json.dumps({"operation": "self_check"}))
+        from .engine_threads import process_environment
+
+        request.write_text(
+            json.dumps(
+                {"operation": "self_check", "execution": {"threads": 1, "budget": 1}}
+            )
+        )
         arguments = (
             ["--cad-worker"]
             if getattr(sys, "frozen", False)
@@ -66,6 +72,7 @@ def main(directory, *, app=None, window=None):
             capture_output=True,
             timeout=45,
             check=False,
+            env=process_environment(1, engine="occt"),
         )
         if completed.returncode != 0 or not response.exists():
             raise RuntimeError(
@@ -87,6 +94,7 @@ def main(directory, *, app=None, window=None):
         "machine": platform.machine(),
         "frozen": bool(getattr(sys, "frozen", False)),
         "cad": cad_report["cad_check"],
+        "cad_execution": cad_report["execution"],
         "calculix": {"status": "not_requested"},
     }
     finished = False

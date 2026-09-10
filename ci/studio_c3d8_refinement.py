@@ -170,7 +170,10 @@ def run(output, executable):
             compression=zipfile.ZIP_DEFLATED,
             compresslevel=9,
         ) as archive:
-            for filename in FILES:
+            captured_files = FILES + (
+                ("execution.json",) if (root / "execution.json").is_file() else ()
+            )
+            for filename in captured_files:
                 archive.write(root / filename, filename)
         report["cases"].append(row)
         print(json.dumps(row), flush=True)
@@ -199,12 +202,13 @@ def verify(directory):
             tempfile.TemporaryDirectory() as temporary,
             zipfile.ZipFile(archive_path) as archive,
         ):
-            if sorted(archive.namelist()) != sorted(FILES):
+            names = sorted(archive.namelist())
+            if names not in (sorted(FILES), sorted(FILES + ("execution.json",))):
                 raise ValueError(
-                    "Archive contents must match the five original calculation files."
+                    "Archive contents must match the calculation files and optional CPU allocation."
                 )
             root = Path(temporary)
-            for name in FILES:
+            for name in names:
                 if archive.getinfo(name).file_size > 32 * 1024 * 1024:
                     raise ValueError("Archived calculation exceeds the adapter budget.")
                 (root / name).write_bytes(archive.read(name))
@@ -268,7 +272,9 @@ def plot(directory):
             ha=(
                 "left"
                 if index == 0
-                else "right" if index == len(counts) - 1 else "center"
+                else "right"
+                if index == len(counts) - 1
+                else "center"
             ),
         )
     axis.set(

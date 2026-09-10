@@ -98,6 +98,7 @@ class CadDialog(QDialog):
         layout.addWidget(self.explanation)
         self.status = QLabel()
         self.status.setWordWrap(True)
+        self.controller.stage_changed.connect(self.status.setText)
         layout.addWidget(self.status)
         self.buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Cancel)
         self.apply_button = QPushButton("Create part")

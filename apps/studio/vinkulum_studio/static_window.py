@@ -7,7 +7,7 @@ from dataclasses import replace
 from pathlib import Path
 
 import numpy as np
-from PySide6.QtCore import Qt, QUrl, Signal
+from PySide6.QtCore import Qt, QTimer, QUrl, Signal
 from PySide6.QtGui import QAction, QDesktopServices
 from PySide6.QtWidgets import (
     QAbstractItemView,
@@ -22,6 +22,7 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QPushButton,
     QScrollArea,
+    QSpinBox,
     QTableView,
     QTextEdit,
     QToolButton,
@@ -71,6 +72,7 @@ class StaticWindow(QMainWindow):
         self.study = None
         self.result = None
         self._loading = False
+        self._close_pending = False
         self.controller = StaticController(self)
         self._build()
         apply_theme(self, "dark")
@@ -141,11 +143,15 @@ class StaticWindow(QMainWindow):
             form.addRow(name, field)
         layout.addLayout(form)
         execution = QWidget()
+        self.threads = QSpinBox()
+        self.threads.setRange(1, self.controller.scheduler.capacity)
+        self.threads.setValue(min(4, self.controller.scheduler.capacity))
         advanced = QFormLayout(execution)
         advanced.setContentsMargins(0, 0, 0, 0)
         advanced.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapAllRows)
         for name, field in (
             ("CalculiX executable", self.executable),
+            ("CPU threads", self.threads),
             ("Timeout [s]", self.timeout),
             ("Calculation folder", self.output),
         ):
@@ -405,6 +411,7 @@ class StaticWindow(QMainWindow):
                 root,
                 executable=self.executable.text(),
                 timeout=self.timeout.value(),
+                threads=self.threads.value(),
             )
         except (OSError, ValueError, TypeError, RuntimeError) as error:
             self.status.setText(str(error))
@@ -419,15 +426,19 @@ class StaticWindow(QMainWindow):
             self.poisson,
             self.load_factor,
             self.executable,
+            self.threads,
             self.timeout,
             self.output,
             self.run_button,
         ):
             item.setEnabled(not busy)
         self.cancel_button.setEnabled(busy)
+        if not busy and self._close_pending:
+            QTimer.singleShot(0, self.close)
 
     def _completed(self, result):
-        self._present_result(result)
+        if not self._close_pending:
+            self._present_result(result)
 
     def _present_result(self, result, *, archived=False):
         self.result = result
@@ -466,7 +477,7 @@ class StaticWindow(QMainWindow):
                     self.mode.setCurrentIndex(0)
                     return
                 study, report, _ = self.result
-                if report.get("schema") == 3:
+                if report.get("schema") in (3, 4):
                     study = study.solver_study
                 self.viewport.set_study(study, report, scale=scale, fit=fit)
                 self.status.setText(
@@ -499,7 +510,7 @@ class StaticWindow(QMainWindow):
         captured = self.result if self.mode.currentIndex() == 1 else None
         if captured:
             study, report, _ = captured
-            if report.get("schema") == 3:
+            if report.get("schema") in (3, 4):
                 study = study.solver_study
         else:
             try:
@@ -615,7 +626,12 @@ class StaticWindow(QMainWindow):
             QDesktopServices.openUrl(QUrl.fromLocalFile(str(self.result[2])))
 
     def closeEvent(self, event):
-        if not self._discard_allowed():
+        if not self._close_pending and not self._discard_allowed():
+            event.ignore()
+            return
+        if self.controller.process is not None:
+            self._close_pending = True
+            self.controller.cancel("Window closed. Calculation stopped.")
             event.ignore()
             return
         self.controller.shutdown()

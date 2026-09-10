@@ -90,9 +90,10 @@ class ExternalEngineEnvironment(unittest.TestCase):
                             try:
                                 deadline = time.monotonic() + 10
                                 while (
-                                    controller.process is not None
-                                    and time.monotonic() < deadline
-                                ):
+                                    controller.busy
+                                    if kind == "gmsh"
+                                    else controller.process is not None
+                                ) and time.monotonic() < deadline:
                                     QTest.qWait(10)
                                 self.assertIsNone(controller.process)
                                 self.assertTrue(
