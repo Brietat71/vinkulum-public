@@ -23,6 +23,12 @@ def build(destination, require_clean=False):
         "worker.py",
         "assembly_capture.py",
         "assembly_worker.py",
+        "static_analysis.py",
+        "static_bridge.py",
+        "static_host.py",
+        "static_job.py",
+        "static_guard.py",
+        "static_worker.py",
     )
     names = ("InitGui.py", *modules, "INSTALLATION.txt")
     report = {

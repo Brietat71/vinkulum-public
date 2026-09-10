@@ -5,6 +5,8 @@ This source-only experiment transfers a native solid and explicit boundary faces
 through the existing OCCT 8 / Gmsh HXT / CalculiX adapters, then imports native
 FreeCAD FEM mesh and displacement objects. It is **not an interactive FEM command**
 and is not included in the published FreeCAD 0.1.0a2 extension ZIP.
+The separate [development task](FREECAD_STATIC_TASK.md) now uses this transfer
+from native face selection and persistent static inputs.
 
 ## Run on Linux
 
@@ -66,8 +68,9 @@ The result is a snapshot linked to its source with the captured geometry hash.
 Geometry is rechecked on import, but editing it later does not automatically
 invalidate the already imported result. Preview hashes bind the request identity;
 they are not a cryptographic attestation of solver output against hostile edits.
-Interactive face selection, boundary-condition editing, progress/cancellation,
-post-import stale-result handling and FEM task-panel integration remain to be built.
+The standalone experiment provides no interactive job manager. The separate
+development task handles face selection, boundary editing, cancellation and
+conservative invalidation for its own linked results.
 
 The [retained qualification](bancs/freecad-static-2026/README.md) records the measured
 errors, runtime versions and actual artifacts.

@@ -1,0 +1,298 @@
+"""Installed native static task: real solve, persistence, stale inputs and cancellation.
+
+SPDX-License-Identifier: Apache-2.0
+Dedicated empty FreeCAD process only; creates/closes documents and exits.
+"""
+
+import json
+import os
+import sys
+import traceback
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide6 import QtCore, QtWidgets
+
+root = Path(os.environ["VINKULUM_STATIC_CHECK"])
+report = {"status": "running", "checks": []}
+state = {"phase": "start", "panel": None, "beats": 0, "done": False}
+
+
+def finish(error=None):
+    if state["done"]:
+        return
+    state["done"] = True
+    timer.stop()
+    if state["panel"] and not state["panel"].closed:
+        state["panel"].reject()
+
+    def settled():
+        from vinkulum_freecad import host
+
+        if host._active_job is not None:
+            QtCore.QTimer.singleShot(20, settled)
+            return
+        for name in tuple(App.listDocuments()):
+            App.closeDocument(name)
+        report["status"] = "failed" if error else "passed"
+        if error:
+            report["error"] = str(error)
+            report["phase"] = state["phase"]
+        (root / "static-check.json").write_text(json.dumps(report, indent=2) + "\n")
+        QtWidgets.QApplication.instance().quit()
+
+    settled()
+
+
+def exception(kind, error, trace):
+    (root / "exception.log").write_text(
+        "".join(traceback.format_exception(kind, error, trace))
+    )
+    finish(error)
+
+
+sys.excepthook = exception
+
+
+def configured_panel(document_name):
+    from vinkulum_freecad import static_host
+
+    doc = App.newDocument(document_name)
+    doc.UndoMode = 1
+    source = doc.addObject("Part::Box", "Bar")
+    source.Length, source.Width, source.Height = 120, 20, 15
+    doc.recompute()
+    panel = static_host.open_analysis(source)
+    assert panel is not None
+    state["panel"] = panel
+    panel.fields["Poisson"].setValue(0)
+    for face, button in (("Face1", panel.fixed), ("Face2", panel.add_pressure)):
+        Gui.Selection.clearSelection()
+        Gui.Selection.addSelection(source, face)
+        panel.pressure.setValue(-2)
+        button.click()
+    assert len(panel.analysis.Boundaries) == 2, panel.status.text()
+    for name, value in (
+        ("EnginePython", os.environ["VINKULUM_STATIC_PYTHON"]),
+        ("Gmsh", os.environ["VINKULUM_STATIC_GMSH"]),
+        ("Calculix", os.environ["VINKULUM_STATIC_CCX"]),
+        ("OutputRoot", str(root / "runs")),
+    ):
+        panel.paths[name].setText(value)
+    return panel
+
+
+def start():
+    assert not App.listDocuments(), "Use an empty dedicated FreeCAD process."
+    Gui.getMainWindow().resize(1440, 1050)
+    assert "Vinkulum_Static" in Gui.listCommands()
+    menu = Gui.getMainWindow().findChild(QtWidgets.QMenu, "VinkulumMenu")
+    assert any(a.text() == "Static analysis…" for a in menu.actions())
+    workbench = Gui.activeWorkbench().name()
+    panel = configured_panel("StaticTask")
+    assert Gui.activeWorkbench().name() == workbench
+    report["checks"].append(
+        "native menu, face selection, boundary buttons and unchanged workbench"
+    )
+    doc = panel.document
+    doc.undo()
+    assert len(panel.analysis.Boundaries) == 1
+    doc.redo()
+    assert len(panel.analysis.Boundaries) == 2
+    report["checks"].append("native boundary Undo/Redo")
+    panel.boundaries.setCurrentRow(1)
+    panel.pressure.setValue(-3)
+    panel.edit_pressure.click()
+    assert panel.analysis.Boundaries[1].PressurePa == -3e6
+    doc.undo()
+    assert panel.analysis.Boundaries[1].PressurePa == -2e6
+    report["checks"].append(
+        "pressure edit button and native Undo preserve pressure units"
+    )
+    QtCore.QTimer.singleShot(400, launch_after_display)
+
+
+def launch_after_display():
+    panel = state["panel"]
+    doc = panel.document
+    assert Gui.Control.activeDialog(), "Native task closed unexpectedly"
+    close_buttons = [
+        box.button(QtWidgets.QDialogButtonBox.StandardButton.Close)
+        for box in Gui.getMainWindow().findChildren(QtWidgets.QDialogButtonBox)
+    ]
+    close_buttons = [
+        button for button in close_buttons if button and button.isVisible()
+    ]
+    assert len(close_buttons) == 1, [
+        (b.text(), b.isVisible())
+        for b in Gui.getMainWindow().findChildren(QtWidgets.QPushButton)
+    ]
+    close_buttons[0].click()
+    assert panel.closed and not Gui.Control.activeDialog()
+    report["checks"].append("visible native Close button disposes the task")
+    doc.saveAs(str(root / "inputs.FCStd"))
+    App.closeDocument(doc.Name)
+    restored = App.openDocument(str(root / "inputs.FCStd"))
+    from vinkulum_freecad import static_analysis as model
+    from vinkulum_freecad import static_host
+
+    obj = restored.getObject("VinkulumStatic")
+    assert model.inputs(obj)["conditions"][1]["values"] == [-2e6]
+    assert obj.Boundaries[0].Faces[0] is obj.Source
+    panel = static_host.open_analysis(obj)
+    state["panel"] = panel
+    # Paths become preferences on launch; set them explicitly in this fresh task.
+    for name, value in (
+        ("EnginePython", "PYTHON"),
+        ("Gmsh", "GMSH"),
+        ("Calculix", "CCX"),
+    ):
+        panel.paths[name].setText(os.environ["VINKULUM_STATIC_" + value])
+    panel.paths["OutputRoot"].setText(str(root / "runs"))
+    report["checks"].append("native input save/reopen with source face links")
+    panel.run_button.click()
+    assert panel.job is not None, panel.status.text()
+    state["phase"] = "solve"
+    timer.start(20)
+
+
+def alive(pid):
+    path = Path(f"/proc/{pid}/stat")
+    return path.exists() and path.read_text().split()[2] != "Z"
+
+
+def barrier(panel):
+    path = root / "barrier-engine"
+    pidfile = root / "barrier-pids.json"
+    pidfile.unlink(missing_ok=True)
+    path.write_text(
+        "#!/usr/bin/python3\nimport json,os,subprocess,sys,time\n"
+        "from pathlib import Path\n"
+        'child=subprocess.Popen([sys.executable,"-c","import time; time.sleep(600)"])\n'
+        + f"Path({str(pidfile)!r}).write_text(json.dumps([os.getpid(),child.pid]))\n"
+        "time.sleep(600)\n"
+    )
+    path.chmod(0o755)
+    panel.paths["EnginePython"].setText(str(path))
+    panel.run_button.click()
+    assert panel.job is not None, panel.status.text()
+
+
+def tick():
+    from vinkulum_freecad import host
+    from vinkulum_freecad import static_analysis as model
+
+    state["beats"] += 1
+    panel = state["panel"]
+    if state["phase"] == "solve":
+        if panel.job is not None:
+            return
+        obj = panel.analysis
+        assert obj.Result is not None, panel.status.text()
+        assert obj.ResultState == "Current capture", obj.ResultState
+        assert state["beats"] > 10
+        result = obj.Result
+        mesh = result.Mesh.FemMesh
+        error = max(
+            (u - App.Vector(2e6 / 210e9 * mesh.getNodeById(i).x, 0, 0)).Length * 1e-3
+            for i, u in zip(result.NodeNumbers, result.DisplacementVectors)
+        )
+        assert error < 1e-10, error
+        report["maximum_displacement_error_m"] = error
+        report["heartbeat_ticks_during_solve"] = state["beats"]
+        assert not panel.source.Visibility and result.Mesh.Visibility
+        view = Gui.activeDocument().activeView()
+        view.setAnimationEnabled(False)
+        view.viewAxonometric()
+        view.fitAll(1.15)
+        state["phase"] = "snapshot"
+    elif state["phase"] == "snapshot":
+        window = Gui.getMainWindow()
+        assert (
+            window.screen()
+            .grabWindow(window.winId())
+            .save(str(root / "static-task.png"))
+        )
+        report["checks"].append(
+            "actual asynchronous CalculiX solve and native coloured displacement result"
+        )
+        doc = panel.document
+        panel.reject()
+        doc.saveAs(str(root / "result.FCStd"))
+        App.closeDocument(doc.Name)
+        doc = App.openDocument(str(root / "result.FCStd"))
+        obj = doc.getObject("VinkulumStatic")
+        assert obj.Result.Mesh.FemMesh.NodeCount > 4
+        obj.YoungPa *= 2
+        doc.recompute()
+        assert obj.ResultState.startswith("Out of date"), obj.ResultState
+        assert not obj.Result.Mesh.Visibility and obj.Source.Visibility
+        report["checks"].append(
+            "saved native result reopens; material edit hides stale result without an open task"
+        )
+        obj.Source.Length = obj.Source.Length.Value + 1
+        doc.recompute()
+        try:
+            model.inputs(obj)
+        except ValueError as error:
+            assert "Geometry changed" in str(error)
+        else:
+            raise AssertionError("Changed face geometry accepted")
+        report["checks"].append(
+            "changed geometry requires explicit boundary reselection"
+        )
+        App.closeDocument(doc.Name)
+        panel = configured_panel("CancelStatic")
+        barrier(panel)
+        state["phase"] = "cancel-start"
+    elif state["phase"] in ("cancel-start", "close-start"):
+        path = root / "barrier-pids.json"
+        if not path.exists():
+            return
+        state["pids"] = json.loads(path.read_text())
+        assert all(alive(p) for p in state["pids"])
+        if state["phase"] == "cancel-start":
+            panel.cancel_button.click()
+            state["phase"] = "cancelled"
+        else:
+            App.closeDocument(panel.document_name)
+            state["phase"] = "closed"
+    elif state["phase"] in ("cancelled", "closed"):
+        if host._active_job is not None or any(alive(p) for p in state["pids"]):
+            return
+        report["checks"].append(
+            state["phase"]
+            + ": worker and spawned child terminated, global slot released"
+        )
+        if state["phase"] == "cancelled":
+            assert panel.analysis.Result is None
+            panel.reject()
+            App.closeDocument(panel.document_name)
+            panel = configured_panel("CloseStatic")
+            barrier(panel)
+            state["phase"] = "close-start"
+        else:
+            panel = configured_panel("ChangedInputs")
+            panel.run_button.click()
+            assert panel.job is not None, panel.status.text()
+            panel.analysis.YoungPa *= 2
+            state["phase"] = "changed-inputs"
+    elif state["phase"] == "changed-inputs":
+        if panel.job is not None:
+            return
+        assert panel.analysis.Result is None
+        assert "Inputs changed" in panel.status.text(), panel.status.text()
+        assert not any(
+            o.Name.startswith("VinkulumStaticResult") for o in panel.document.Objects
+        )
+        report["checks"].append(
+            "material edited during a real solve refuses late result import"
+        )
+        finish()
+
+
+timer = QtCore.QTimer(Gui.getMainWindow())
+timer.timeout.connect(tick)
+QtCore.QTimer.singleShot(240000, lambda: finish("Static task qualification timeout"))
+QtCore.QTimer.singleShot(1200, start)

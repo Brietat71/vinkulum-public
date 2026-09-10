@@ -570,6 +570,10 @@ def install():
     action.triggered.connect(lambda: Gui.runCommand("Vinkulum_Motion"))
     menu.addAction(action)
     menu.addAction("Open pendulum example", open_example)
+    from .static_host import StaticCommand
+
+    Gui.addCommand("Vinkulum_Static", StaticCommand())
+    menu.addAction("Static analysis…", lambda: Gui.runCommand("Vinkulum_Static"))
 
     def attach_menu(*_):
         menubar = Gui.getMainWindow().menuBar()

@@ -223,3 +223,9 @@ FreeCAD runtime remains available from its upstream project with its own licence
 A [source-only FreeCAD → CalculiX experiment](../../docs/FREECAD_STATIC_EXPERIMENT.md)
 checks captured boundary faces and imports native FEM results. It is a qualification
 prototype, not an additional command in the published extension.
+
+## Development: native linear static task
+
+The [static analysis task](../../docs/FREECAD_STATIC_TASK.md) adds native face
+selection, fixed supports, pressure, persistent inputs and asynchronous CalculiX
+results. This development workflow is not in the published 0.1.0a2 release ZIP.
