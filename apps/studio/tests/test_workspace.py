@@ -103,6 +103,50 @@ class WorkspaceRecipe(unittest.TestCase):
             for shortcut in action.shortcuts():
                 self.assertNotIn(shortcut.toString(), mnemonics, name)
 
+    def test_apply_properties_keeps_keyboard_focus_inside_rebuilt_inspector(self):
+        window = self.make_window()
+        window.activateWindow()
+        self.assertTrue(QTest.qWaitForWindowActive(window))
+        window.new_project()
+        window.add_body("box")
+        mass = window.fields["mass"]
+        mass.setFocus()
+        mass.selectAll()
+        QTest.keyClicks(mass, "1.3267053771417465")
+        window.apply_button.setFocus()
+        QTest.qWait(30)
+        self.assertTrue(window.apply_button.hasFocus())
+        QTest.keyClick(window.apply_button, Qt.Key.Key_Space)
+        QTest.qWait(20)
+        self.assertIs(self.app.focusWidget(), window.fields["name"])
+        self.assertEqual(window.project.bodies[0].mass, 1.3267053771417465)
+        self.assertFalse(window.apply_button.isEnabled())
+        QTest.keyClick(window.fields["name"], Qt.Key.Key_Tab)
+        self.assertIsNotNone(self.app.focusWidget())
+        self.assertTrue(window.properties.isAncestorOf(self.app.focusWidget()))
+
+        # Applying from elsewhere must not steal the user's focus.
+        mass = window.fields["mass"]
+        mass.setFocus()
+        mass.selectAll()
+        QTest.keyClicks(mass, "2")
+        window.viewport.setFocus()
+        self.assertTrue(window.apply_properties())
+        self.assertIs(self.app.focusWidget(), window.viewport)
+
+        # The project inspector starts with a vector rather than a Name field.
+        window.new_project()
+        gravity = window.fields["gravity"].components[2]
+        gravity.setFocus()
+        gravity.selectAll()
+        QTest.keyClicks(gravity, "-9.81")
+        window.apply_button.setFocus()
+        QTest.qWait(30)
+        self.assertTrue(window.apply_button.hasFocus())
+        QTest.keyClick(window.apply_button, Qt.Key.Key_Space)
+        self.assertIs(self.app.focusWidget(), window.fields["gravity"].components[0])
+        self.assertEqual(window.project.gravity[2], -9.81)
+
     def test_vector_display_never_rounds_untouched_model_components(self):
         window = self.make_window()
         window.new_project()
