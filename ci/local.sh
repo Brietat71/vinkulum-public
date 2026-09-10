@@ -45,6 +45,7 @@ etape() { printf '\n══ %s\n' "$*"; }
 
 etape "isolation du hook Git : checkout et worktree"
 "$PY" ci/test_pre_push.py
+"$PY" ci/test_freecad_engine.py
 
 etape "format et lint"
 cargo fmt --check

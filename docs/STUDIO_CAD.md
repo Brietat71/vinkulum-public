@@ -1,5 +1,10 @@
 # Studio CAD — OCCT 8 minimum
 
+**FreeCAD users:** start with the [dedicated Linux engine installation](FREECAD_ENGINE.md).
+It creates and checks the separate environment used by the FreeCAD extension.
+The Studio GUI workflows and release milestones below are historical; new
+interface development targets FreeCAD.
+
 Studio 0.4.0 introduced solid modelling in the multibody editor; 0.4.1 translates
 the interface into English. The mechanics kernel remains **Vinkulum 0.19.0**.
 [Parametric solid features](STUDIO_CAD_HISTORY.md), regeneration previews and an
