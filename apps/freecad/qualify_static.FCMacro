@@ -1,0 +1,253 @@
+"""Actual FreeCAD faces → OCCT 8 mesh → CalculiX → native FEM result.
+
+SPDX-License-Identifier: Apache-2.0
+Dedicated process only: creates/closes documents and exits FreeCAD.
+"""
+
+import json
+import os
+import sys
+import traceback
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide6 import QtCore, QtWidgets
+
+source_root = Path(os.environ["VINKULUM_STATIC_SOURCE"])
+root = Path(os.environ["VINKULUM_STATIC_CHECK"])
+sys.path.insert(0, str(source_root / "apps/freecad"))
+import bridge
+import static_bridge
+
+report = {"status": "running", "cases": []}
+state = {"index": 0, "process": None, "done": False}
+pressure, young = 2e6, 210e9
+
+
+def finish(error=None):
+    if state["done"]:
+        return
+    state["done"] = True
+    report["status"] = "failed" if error else "passed"
+    if error:
+        report["error"] = str(error)
+    process = state["process"]
+    if (
+        process is not None
+        and process.state() != QtCore.QProcess.ProcessState.NotRunning
+    ):
+        process.kill()
+        process.waitForFinished(5000)
+    for name in tuple(App.listDocuments()):
+        App.closeDocument(name)
+    (root / "static-check.json").write_text(json.dumps(report, indent=2) + "\n")
+    QtWidgets.QApplication.instance().quit()
+
+
+def exception(kind, error, trace):
+    (root / "exception.log").write_text(
+        "".join(traceback.format_exception(kind, error, trace))
+    )
+    finish(error)
+
+
+sys.excepthook = exception
+
+
+def start_case():
+    index = state["index"]
+    if index == 2:
+        finish()
+        return
+    document = App.newDocument(f"StaticReference{index}")
+    source = document.addObject("Part::Box", "Bar")
+    source.Length, source.Width, source.Height = 120, 20, 15
+    transform = (
+        App.Placement()
+        if index == 0
+        else App.Placement(
+            App.Vector(250, -100, 500), App.Rotation(App.Vector(1, 2, 3), 37)
+        )
+    )
+    source.Placement = transform
+    document.recompute()
+    refs = []
+    for point in (App.Vector(0, 10, 7.5), App.Vector(120, 10, 7.5)):
+        target = transform.multVec(point)
+        ref = min(
+            range(len(source.Shape.Faces)),
+            key=lambda i: (source.Shape.Faces[i].CenterOfMass - target).Length,
+        )
+        assert (source.Shape.Faces[ref].CenterOfMass - target).Length < 1e-7
+        refs.append(ref + 1)
+    directory = root / f"case-{index}"
+    request = static_bridge.capture(
+        source,
+        directory,
+        [
+            {
+                "name": "Fixed end",
+                "kind": "support",
+                "faces": [refs[0]],
+                "axes": [1, 2, 3],
+            },
+            {
+                "name": "Axial traction",
+                "kind": "pressure",
+                "faces": [refs[1]],
+                "values": [-pressure],
+            },
+        ],
+        young_pa=young,
+        poisson=0.0,
+        mesh_size_mm=10,
+        threads=2,
+    )
+    document.saveAs(str(directory / "source.FCStd"))
+    process = QtCore.QProcess(Gui.getMainWindow())
+    environment = QtCore.QProcessEnvironment.systemEnvironment()
+    for name in (
+        "PYTHONHOME",
+        "PYTHONPATH",
+        "LD_LIBRARY_PATH",
+        "QT_PLUGIN_PATH",
+        "QT_QPA_PLATFORM_PLUGIN_PATH",
+    ):
+        environment.remove(name)
+    environment.insert("OPENBLAS_NUM_THREADS", "1")
+    environment.insert("OMP_NUM_THREADS", "1")
+    process.setProcessEnvironment(environment)
+    process.setProgram(os.environ["VINKULUM_STATIC_PYTHON"])
+    process.setArguments(
+        [
+            str(source_root / "apps/freecad/static_worker.py"),
+            str(directory),
+            "--gmsh",
+            os.environ["VINKULUM_STATIC_GMSH"],
+            "--ccx",
+            os.environ["VINKULUM_STATIC_CCX"],
+        ]
+    )
+    process.setProcessChannelMode(QtCore.QProcess.ProcessChannelMode.MergedChannels)
+    process.setStandardOutputFile(str(directory / "worker.log"))
+    process.finished.connect(completed)
+    state.update(
+        document=document,
+        source=source,
+        transform=transform,
+        directory=directory,
+        request=request,
+        process=process,
+    )
+    process.start()
+
+
+def completed(code, status):
+    assert code == 0 and status == QtCore.QProcess.ExitStatus.NormalExit, (
+        state["directory"] / "worker.log"
+    ).read_text()[-8000:]
+    source, document, transform = state["source"], state["document"], state["transform"]
+    result, data = static_bridge.import_result(
+        source, state["directory"], state["request"]
+    )
+    state["data"] = data
+    inverse = transform.inverse()
+    error = 0.0
+    for point, displacement, native in zip(
+        data["nodes_m"], data["displacements_m"], result.DisplacementVectors
+    ):
+        local = inverse.multVec(App.Vector(*(v * 1000 for v in point)))
+        expected = transform.Rotation.multVec(
+            App.Vector(pressure / young * local.x * 1e-3, 0, 0)
+        )
+        error = max(error, (App.Vector(*displacement) - expected).Length)
+        assert (native - App.Vector(*(v * 1000 for v in displacement))).Length < 1e-12
+    assert error < 1e-10, error
+    expected_energy = pressure**2 * (0.12 * 0.02 * 0.015) / (2 * young)
+    energy_error = abs(data["strain_energy_J"] / expected_energy - 1)
+    assert energy_error < 5e-6, energy_error
+    reaction = App.Vector(
+        *(sum(row[i] for row in data["reactions_N"]) for i in range(3))
+    )
+    expected_reaction = transform.Rotation.multVec(
+        App.Vector(-pressure * 0.02 * 0.015, 0, 0)
+    )
+    reaction_error = (reaction - expected_reaction).Length
+    assert reaction_error < 5e-6 * expected_reaction.Length, reaction_error
+    assert bridge.signature(source) == state["request"]["source_geometry_sha256"]
+    case = {
+        "maximum_displacement_error_m": error,
+        "relative_energy_error": energy_error,
+        "reaction_error_N": reaction_error,
+        "nodes": len(data["nodes_m"]),
+        "elements": len(data["elements"]),
+        "face_mapping": data["face_mapping"],
+        "gmsh": data["gmsh_version"],
+        "gmsh_occt": data["gmsh_occt"],
+        "calculix": data["calculix_version"],
+    }
+    report["cases"].append(case)
+    result.Mesh.ViewObject.setNodeColorByScalars(
+        result.NodeNumbers, result.DisplacementLengths
+    )
+    source.Visibility = False
+    view = Gui.activeDocument().activeView()
+    view.setAnimationEnabled(False)
+    view.viewAxonometric()
+    view.fitAll(1.15)
+    document.saveAs(str(state["directory"] / "result.FCStd"))
+    before = len(document.Objects)
+    placement = App.Placement(source.Placement)
+    source.Placement.Base.x += 1
+    try:
+        static_bridge.import_result(source, state["directory"], state["request"])
+    except ValueError as error:
+        assert "Source geometry changed" in str(error)
+    else:
+        raise AssertionError("Changed source accepted for result import")
+    assert len(document.Objects) == before
+    source.Placement = placement
+    case["changed_source_refused_before_document_mutation"] = True
+    if state["index"] == 0:
+        QtCore.QTimer.singleShot(200, screenshot_and_continue)
+    else:
+        next_case()
+
+
+def screenshot_and_continue():
+    window = Gui.getMainWindow()
+    assert (
+        window.screen()
+        .grabWindow(window.winId())
+        .save(str(root / "freecad-static.png"))
+    )
+    next_case()
+
+
+def next_case():
+    state["process"].deleteLater()
+    state["process"] = None
+    App.closeDocument(state["document"].Name)
+    restored = App.openDocument(str(state["directory"] / "result.FCStd"))
+    result = restored.getObject("VinkulumStaticResult")
+    assert result.Source is restored.getObject("Bar")
+    expected = state["data"]["displacements_m"]
+    assert len(result.NodeNumbers) == len(expected)
+    assert result.Mesh.FemMesh.NodeCount == len(expected)
+    for value, reference in zip(result.DisplacementVectors, expected):
+        assert (value - App.Vector(*(v * 1000 for v in reference))).Length < 1e-12
+    report["cases"][-1]["native_fem_result_saved_and_reopened"] = True
+    App.closeDocument(restored.Name)
+    state["index"] += 1
+    QtCore.QTimer.singleShot(50, start_case)
+
+
+def start():
+    assert not App.listDocuments(), "Use a dedicated FreeCAD process."
+    Gui.getMainWindow().resize(1440, 1000)
+    start_case()
+
+
+QtCore.QTimer.singleShot(1000, start)
+QtCore.QTimer.singleShot(240000, lambda: finish("Static qualification timeout"))

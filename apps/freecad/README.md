@@ -205,3 +205,9 @@ geometry; the original FreeCAD feature graph remains in `.FCStd`.
 All bridge code, models, reference calculations and capture data are original
 Vinkulum contributions under [Apache-2.0](../../LICENSE). The unchanged official
 FreeCAD runtime remains available from its upstream project with its own licence.
+
+## Static FEM experiment
+
+A [source-only FreeCAD → CalculiX experiment](../../docs/FREECAD_STATIC_EXPERIMENT.md)
+checks captured boundary faces and imports native FEM results. It is a qualification
+prototype, not an additional command in the published extension.
