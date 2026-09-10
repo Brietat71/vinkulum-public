@@ -1,3 +1,16 @@
+# Archived Studio GUI; maintained engine adapters
+
+The standalone Vinkulum Studio GUI is retired. Interface development and new
+desktop deliveries target [FreeCAD on Linux](../freecad/README.md). There are no
+planned Studio GUI features or new standalone Studio releases.
+
+The `vinkulum_studio` package remains in use: FreeCAD workers depend on its CAD,
+meshing and solver adapters. These backend modules and their scientific tests
+continue to be maintained. The old GUI source, recipes and qualification records
+are retained for reproducibility, not as an alternative active product.
+
+The following version history describes the archived application.
+
 # Vinkulum Studio 0.6.0a2.dev6 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating

@@ -1,6 +1,6 @@
 # FreeCAD to CalculiX: captured-face experiment
 
-FreeCAD is the primary interface; custom Studio GUI development is paused.
+FreeCAD is the primary interface; custom Studio GUI development has ended.
 This source-only experiment transfers a native solid and explicit boundary faces
 through the existing OCCT 8 / Gmsh HXT / CalculiX adapters, then imports native
 FreeCAD FEM mesh and displacement objects. It is **not an interactive FEM command**

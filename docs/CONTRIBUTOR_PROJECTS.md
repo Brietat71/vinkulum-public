@@ -7,7 +7,7 @@ is a useful starting point. Larger projects should begin with a scoped proposal.
 These are proposed projects, not funded positions or scheduled commitments.
 
 New interface work targets **FreeCAD on Linux**. The standalone Studio GUI is
-paused. [Browse current issues](https://github.com/Brietat71/vinkulum-public/issues?q=is%3Aissue+is%3Aopen)
+retired. [Browse current issues](https://github.com/Brietat71/vinkulum-public/issues?q=is%3Aissue+is%3Aopen)
 before starting; the table below proposes directions rather than claiming an
 issue is unassigned or a feature is still missing.
 
