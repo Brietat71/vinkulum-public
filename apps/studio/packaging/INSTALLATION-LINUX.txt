@@ -1,9 +1,9 @@
-Vinkulum Studio 0.6.0a1 — Linux x86-64
+Vinkulum Studio 0.6.0a2.dev7 — Linux x86-64
 
 Extract the archive, open a terminal in the extracted directory and run:
   ./Vinkulum\ Studio/Vinkulum\ Studio
 
-Keep the executable and _internal directory together. Python, Vinkulum 0.19.0,
+Keep the executable and _internal directory together. Python, Vinkulum 0.20.0,
 Qt and VTK are bundled; no Python environment or compilation is needed on the
 destination machine. CAD includes OCCT 8.0.1 and build123d 0.11.1+vinkulum.occt8.
 The CAD button opens primitives, extrusions, booleans, fillets and STEP exchange.
@@ -12,7 +12,7 @@ Edit CAD features (Ctrl+Shift+H) regenerates a captured feature history.
 Start with Examples/README.md: editable CAD, captured face conditions, a
 quadratic-element calculation and Pinocchio operators are included.
 
-For the optional CalculiX workspace, install the external solver separately:
+For the optional CalculiX analysis, install the external solver separately:
   sudo apt-get install calculix-ccx
 Open Run → Linear statics · CalculiX, then run the built-in tension example or
 load a study JSON. Open result… reopens a saved calculation without a solver.
@@ -56,9 +56,13 @@ VINKULUM_BUNDLE_GMSH to a qualified executable to additionally generate a
 mesh, and VINKULUM_BUNDLE_CALCULIX=1 to calculate the tension example. This
 packaging check does not certify arbitrary mechanical trajectories.
 
-The English interface offers Model, Simulate and Inspect workspaces, light
-and graphite themes, a command palette (Ctrl+K), and comparisons of captured
-runs on their native samples. This is experimental research software.
+The English interface keeps geometry, analyses and motion results in one project
+window. Select an item in the persistent browser; + Analysis adds or selects an
+analysis. Right-click objects for actions. Click a mesh face to expose boundary
+controls. Inputs, cameras and captured results survive navigation. Save targets
+the displayed mechanism or analysis; their files remain separate. Light and
+graphite themes, a command palette (Ctrl+K) and native-sample comparisons are
+available. This is experimental research software.
 
 Project source: https://github.com/Brietat71/vinkulum-public
 build-info.json identifies the source commit and whether the build used local

@@ -23,6 +23,17 @@ cleanup() {
   fi
 }
 trap cleanup EXIT
+# The frozen app must use exactly the installed, qualified Studio modules.
+"$PY" - <<'PY_CHECK'
+from pathlib import Path
+import vinkulum_studio
+source = Path("apps/studio/vinkulum_studio")
+installed = Path(vinkulum_studio.__file__).parent
+names = {p.name for p in source.glob("*.py")}
+assert names == {p.name for p in installed.glob("*.py")}
+for name in names:
+    assert (source / name).read_bytes() == (installed / name).read_bytes(), name
+PY_CHECK
 "$PY" -m PyInstaller --noconfirm --clean --distpath "$BUILD_DIR/dist" \
   --workpath "$BUILD_DIR/build" apps/studio/packaging/studio.spec
 APP="$BUILD_DIR/dist/Vinkulum Studio"
@@ -47,6 +58,7 @@ report = {
     "packages": {name: importlib.metadata.version(name) for name in
                  ("vinkulum", "vinkulum-studio", "PySide6", "vtk", "numpy", "pyinstaller", "cadquery-ocp-novtk", "build123d", "ocpsvg", "ocp_gordon")},
 }
+assert not report["source_dirty"], "Commit the reviewed source before packaging"
 Path(sys.argv[1]).write_text(json.dumps(report, indent=2) + "\n")
 PY
 # Test the archived payload after extraction, outside the source/build trees.
@@ -82,6 +94,7 @@ assert not report["calculix"]["bundled_engine"]
 previews = report["source_previews"]
 for name in ("pinocchio_capture", "cad_history", "gmsh", "cad_mesh_capture", "quadratic_static_capture"):
     assert previews[name]["status"] == "passed", name
+assert previews["project_navigation"]["status"] == "passed"
 assert previews["example_files_unchanged"]
 assert previews["gmsh"]["archive_reopened"] and not previews["gmsh"]["bundled_engine"]
 from pathlib import Path

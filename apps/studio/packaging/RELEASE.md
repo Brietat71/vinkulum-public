@@ -1,9 +1,16 @@
-Vinkulum Studio 0.6.0a1 — a CAD part, its loads and the files behind the result.
+Vinkulum Studio 0.6.0a2.dev7 — one project window, from geometry to analysis.
 
-This Linux alpha preview brings the developing 0.6 workspaces into one
-standalone application. Python, the native Vinkulum 0.19.0 kernel, Qt/VTK,
+This Linux alpha preview keeps geometry, analyses and motion results in a
+persistent project browser. Python, the native Vinkulum 0.20.0 kernel, Qt/VTK,
 OCCT 8.0.1 and the adapted build123d are included. No Python installation or
 compilation is needed to launch Studio, edit CAD or inspect the shipped examples.
+
+Select a body to edit its properties or an analysis to show its parameters in
+the same window. Returning preserves pending inputs and camera position. Right-click
+opens object or scene actions; selecting mesh faces exposes boundary controls.
+Save and Undo follow the active context. Mechanism and analysis inputs still use
+separate files. A background CAD preparation cannot overwrite newer target input.
+Scene draws are coalesced and compatible CAD requests reuse a supervised worker.
 
 Start with Examples/README.md inside the extracted application folder:
 
