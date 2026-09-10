@@ -1,0 +1,80 @@
+{
+  "boundary": "QAction/tab action to synchronous return and next event-loop opportunity; Linux/X11 local diagnostic, not Mac qualification",
+  "rows": [
+    {
+      "action": "open-articulated-first",
+      "synchronous_ms": 128.2708328217268,
+      "next_event_ms": 128.33348289132118
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 3.8262750022113323,
+      "next_event_ms": 3.8379570469260216
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 0.3582942299544811,
+      "next_event_ms": 0.37267105653882027
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 1.7415452748537064,
+      "next_event_ms": 1.7503220587968826
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 0.45257387682795525,
+      "next_event_ms": 0.47118961811065674
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 2.154543064534664,
+      "next_event_ms": 2.163871191442013
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 0.36920467391610146,
+      "next_event_ms": 0.3812778741121292
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 2.3410399444401264,
+      "next_event_ms": 2.3527718149125576
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 0.4364629276096821,
+      "next_event_ms": 0.4504099488258362
+    },
+    {
+      "action": "open-articulated-again",
+      "synchronous_ms": 0.2183760516345501,
+      "next_event_ms": 0.2343570813536644
+    },
+    {
+      "action": "open-statics-first",
+      "synchronous_ms": 139.31329734623432,
+      "next_event_ms": 139.33113124221563
+    },
+    {
+      "action": "open-statics-again",
+      "synchronous_ms": 0.18416205421090126,
+      "next_event_ms": 0.19667576998472214
+    },
+    {
+      "action": "load-parametric-plate",
+      "synchronous_ms": 100.10812385007739,
+      "next_event_ms": 100.1255470328033
+    },
+    {
+      "action": "open-cad-study-first",
+      "synchronous_ms": 150.1513491384685,
+      "next_event_ms": 154.65620020404458
+    },
+    {
+      "action": "open-cad-study-again",
+      "synchronous_ms": 0.1668180339038372,
+      "next_event_ms": 4.298756830394268
+    }
+  ]
+}

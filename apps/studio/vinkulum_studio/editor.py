@@ -105,6 +105,8 @@ class EditorWindow(Workspace, QMainWindow):
         self._path = None
         self._saved = self.history.current
         self._rendered_settings = None
+        self._diagnostic_project = None
+        self._diagnostic_cache = ()
         self._static_window = None
         self._mesh_window = None
         self._articulated_window = None
@@ -344,7 +346,7 @@ class EditorWindow(Workspace, QMainWindow):
             for action in self._design_actions:
                 action.setEnabled(self.mode.currentIndex() == 0)
             self.diagnostics.clear()
-            for diagnostic in self.project.diagnostics():
+            for diagnostic in self.project_diagnostics():
                 obj = self.object(diagnostic.object_id)
                 item = QTreeWidgetItem(
                     [obj.name if obj else self.project.name, diagnostic.message]
@@ -647,7 +649,32 @@ class EditorWindow(Workspace, QMainWindow):
             self.viewport.select(self.selection)
             return
         self.selection = identifier
-        self._refresh()
+        # Selection changes no geometry or topology. Preserve the browser's
+        # expansion/scroll state and the existing actors instead of rebuilding
+        # the entire project UI for each click.
+        self.tree.blockSignals(True)
+        try:
+            current = None
+            for group_index in range(self.tree.topLevelItemCount()):
+                group = self.tree.topLevelItem(group_index)
+                for index in range(group.childCount()):
+                    item = group.child(index)
+                    if item.data(0, Qt.ItemDataRole.UserRole) == identifier:
+                        current = item
+            self.tree.setCurrentItem(current)
+        finally:
+            self.tree.blockSignals(False)
+        self._properties()
+        self.viewport.select(identifier)
+        self._workspace_state()
+
+    def project_diagnostics(self):
+        # Project values are immutable. Recheck every changed document, not
+        # every selection, visibility toggle or keystroke in an uncommitted field.
+        if self.project is not self._diagnostic_project:
+            self._diagnostic_cache = self.project.diagnostics()
+            self._diagnostic_project = self.project
+        return self._diagnostic_cache
 
     def _commit(self, project, selection=None, fit=False):
         self.history.commit(project)
@@ -795,7 +822,7 @@ class EditorWindow(Workspace, QMainWindow):
         self.controller.cancel()
 
     def _busy(self, busy):
-        allowed = not busy and not self.project.diagnostics()
+        allowed = not busy and not self.project_diagnostics()
         self.run_button.setEnabled(allowed)
         self.stop_button.setEnabled(busy)
         self.commands["run"].setEnabled(allowed)
@@ -803,6 +830,7 @@ class EditorWindow(Workspace, QMainWindow):
         self.run_state.setText(
             "Running · captured snapshot" if busy else "Ready to run"
         )
+        self._workspace_state()
 
     def _completed(self, result):
         removed = self.run_archive.add(result)

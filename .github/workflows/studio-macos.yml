@@ -44,6 +44,9 @@ jobs:
           PY=$(command -v python) bash ci/studio.sh
       - name: Package and test standalone application
         run: bash ci/macos_dmg.sh
+      - name: Record installed desktop transition timings
+        timeout-minutes: 3
+        run: python ci/studio_interaction_recipe.py dist/macos/check/installed-interaction-timings.json
       - name: Publish tested DMG as a public prerelease
         env:
           GH_TOKEN: ${{ github.token }}

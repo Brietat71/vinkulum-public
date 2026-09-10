@@ -42,6 +42,7 @@ from .examples3d import double_pendulum
 from .model import finite_number, write_json
 from .pinocchio_controller import PinocchioController
 from .theme import apply_theme
+from .workspace_link import add_workspace_return
 from .viewport import Viewport
 
 
@@ -116,6 +117,7 @@ class ArticulatedWindow(QMainWindow):
 
     def _build(self):
         toolbar = self.addToolBar("Articulated analysis")
+        add_workspace_return(self, toolbar)
         toolbar.setMovable(False)
         toolbar.addWidget(QLabel("Vinkulum  /  Articulated operators"))
         toolbar.addSeparator()

@@ -142,7 +142,8 @@ engines. The shipped example reopens without running an engine.
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
 **Kernel 0.19.0 · Studio 0.6.0a1 · Linux x86-64 preview.** Research software under active development.
-Current source **Kernel 0.20.0 · Studio 0.6.0a2.dev6** adds
+Current source **Kernel 0.20.0 · Studio 0.6.0a2.dev7** adds
+[context actions and workspace navigation](docs/STUDIO_INTERACTION.md),
 [supervised CAD process reuse](docs/CAD_PROCESS_REUSE.md),
 [shared engine CPU admission](docs/ENGINE_CPU_ADMISSION.md) and
 [background CAD and archive validation](docs/STUDIO_BACKGROUND_ADMISSION.md),

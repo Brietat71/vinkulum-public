@@ -1,9 +1,16 @@
-# Vinkulum Studio 0.6.0a2.dev6 — CAD and mechanism analysis
+# Vinkulum Studio 0.6.0a2.dev7 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.20.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
+
+Source **0.6.0a2.dev7** adds object actions on right-click, continuous camera
+navigation and a visible return path between analysis workspaces. Selection
+preserves the browser's state; switching Model/Simulate keeps the camera, and
+repeated scene updates share a final paint. See [interaction behaviour and its
+qualification](../../docs/STUDIO_INTERACTION.md). The downloadable Mac preview
+remains dev5 until the new native qualification and packaging succeed.
 
 Source **0.6.0a2.dev6** reuses one idle CAD worker between operations and feature
 previews, for 15 seconds by default. Idle retention holds no CPU reservation;

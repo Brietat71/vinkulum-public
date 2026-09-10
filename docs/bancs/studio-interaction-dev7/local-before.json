@@ -1,0 +1,80 @@
+{
+  "boundary": "QAction/tab action to synchronous return and next event-loop opportunity; Linux/X11 local diagnostic, not Mac qualification",
+  "rows": [
+    {
+      "action": "open-articulated-first",
+      "synchronous_ms": 115.40556140244007,
+      "next_event_ms": 115.4757752083242
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 4.202443175017834,
+      "next_event_ms": 5.294458009302616
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 0.2554170787334442,
+      "next_event_ms": 3.316582180559635
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 3.714001737535,
+      "next_event_ms": 3.7393500097095966
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 0.44174306094646454,
+      "next_event_ms": 2.5464422069489956
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 4.368461202830076,
+      "next_event_ms": 4.388169385492802
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 0.4342691972851753,
+      "next_event_ms": 2.536382060497999
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 4.330608993768692,
+      "next_event_ms": 4.349625203758478
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 0.4236586391925812,
+      "next_event_ms": 2.530160825699568
+    },
+    {
+      "action": "open-articulated-again",
+      "synchronous_ms": 0.24902494624257088,
+      "next_event_ms": 0.2664988860487938
+    },
+    {
+      "action": "open-statics-first",
+      "synchronous_ms": 157.50432992354035,
+      "next_event_ms": 157.52398688346148
+    },
+    {
+      "action": "open-statics-again",
+      "synchronous_ms": 0.27584657073020935,
+      "next_event_ms": 0.2903738059103489
+    },
+    {
+      "action": "load-parametric-plate",
+      "synchronous_ms": 286.89364762976766,
+      "next_event_ms": 286.94792184978724
+    },
+    {
+      "action": "open-cad-study-first",
+      "synchronous_ms": 169.7964882478118,
+      "next_event_ms": 174.5381010696292
+    },
+    {
+      "action": "open-cad-study-again",
+      "synchronous_ms": 0.15873275697231293,
+      "next_event_ms": 6.271724123507738
+    }
+  ]
+}

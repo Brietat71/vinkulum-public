@@ -47,6 +47,7 @@ from .meshing import HxtMeshRequest, MeshRequest, load_mesh
 from .meshing_controller import MeshingController
 from .model import finite_number, write_json
 from .theme import apply_theme
+from .workspace_link import add_workspace_return
 
 KIND_NAMES = {
     "support": "Support",
@@ -239,6 +240,7 @@ class MeshWindow(QMainWindow):
 
     def _build(self):
         bar = self.addToolBar("CAD study")
+        add_workspace_return(self, bar)
         bar.setMovable(False)
         brand = QLabel("Vinkulum  /  CAD → Linear statics")
         brand.setObjectName("brand")

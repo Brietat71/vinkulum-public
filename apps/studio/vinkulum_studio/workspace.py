@@ -188,6 +188,16 @@ class Workspace:
         example_button.setMenu(examples)
         example_button.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
         toolbar.addWidget(example_button)
+        workspaces = QToolButton()
+        workspaces.setText("Workspaces")
+        workspaces.setAccessibleName("Open an analysis workspace")
+        workspaces.setToolTip("Open or return to an existing analysis; keep its edited inputs")
+        workspace_menu = QMenu(workspaces)
+        for key in ("cad_study", "static_study", "articulated"):
+            workspace_menu.addAction(self.commands[key])
+        workspaces.setMenu(workspace_menu)
+        workspaces.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
+        toolbar.addWidget(workspaces)
         stretch = QWidget()
         from PySide6.QtWidgets import QSizePolicy
 
@@ -307,7 +317,7 @@ class Workspace:
         fit = self._action(
             "fit",
             "Fit selection",
-            lambda: self.viewport.camera("iso", selection=True),
+            lambda: self.viewport.fit_scene(selection=True),
             "F",
         )
         camera_menu.addAction(fit)
@@ -318,6 +328,10 @@ class Workspace:
         camera_button.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
         top.addWidget(camera_button)
         self.viewport = Viewport()
+        self.viewport.context_handler = self._scene_menu
+        view.addAction(self._action(
+            "fit_all", "Fit all visible objects", self.viewport.fit_scene, "Shift+F"
+        ))
         camera_menu.addSeparator()
         for key, label, parallel in (
             ("orthographic", "Orthographic projection", True),
@@ -342,10 +356,15 @@ class Workspace:
         top.addWidget(grid_button)
         layout.addWidget(self.viewport, 1)
         self.navigation_hint = QLabel(
-            "Orbit: drag · Pan: Shift + drag · Zoom: scroll · F: fit"
+            "Click: select · Right-click: actions · Drag: orbit · Shift + drag: pan · F: frame"
         )
         self.navigation_hint.setObjectName("muted")
         self.navigation_hint.setWordWrap(True)
+        self.navigation_hint.setToolTip(
+            "Mouse: click to select, drag to orbit, Shift-drag or middle-drag to pan, wheel to zoom.\n"
+            "Mac trackpad: two-finger scroll to pan, pinch to zoom, secondary click for actions.\n"
+            "F frames the selection; Shift+F frames all visible objects."
+        )
         layout.addWidget(self.navigation_hint)
         self.transform_mode = QComboBox()
         self.transform_mode.setAccessibleName("3D manipulation mode")
@@ -606,7 +625,6 @@ class Workspace:
             self.pause()
             self.mode.setCurrentIndex(0)
         self.viewport.setMinimumHeight(210 if index == 2 else 300)
-        QTimer.singleShot(0, self.viewport.fit_scene)
         self.docks["analysis"].setVisible(index == 1)
         self.docks["results"].setVisible(index == 2)
         self.docks["diagnostics"].setVisible(index == 1)
@@ -699,12 +717,53 @@ class Workspace:
 
     def _tree_menu(self, point):
         item = self.tree.itemAt(point)
-        if item:
-            self.select_object(item.data(0, Qt.ItemDataRole.UserRole))
+        identifier = item.data(0, Qt.ItemDataRole.UserRole) if item else None
+        self.select_object(identifier)
+        self._object_menu(self.tree.viewport().mapToGlobal(point))
+
+    def _scene_menu(self, identifier, global_point):
+        self.select_object(identifier)
+        self._object_menu(global_point)
+
+    def _object_menu(self, global_point):
         menu = QMenu(self)
-        for key in ("fit", "hide", "isolate", "show_all", "duplicate", "delete"):
-            menu.addAction(self.commands[key])
-        menu.exec(self.tree.viewport().mapToGlobal(point))
+        menu.setObjectName("object_context_menu")
+        obj = self.object(display=True)
+        if obj is not None:
+            menu.addSection(obj.name)
+            if self.mode.currentIndex() == 0:
+                menu.addAction("Edit properties…", self.focus_properties)
+                if isinstance(obj, Body) and obj.cad:
+                    menu.addAction(self.commands["cad_history"])
+                    menu.addAction(self.commands["cad_study"])
+                menu.addSeparator()
+            for key in ("fit", "hide", "isolate"):
+                menu.addAction(self.commands[key])
+            if self.mode.currentIndex() == 0:
+                menu.addSeparator()
+                for key in ("duplicate", "delete"):
+                    menu.addAction(self.commands[key])
+        else:
+            menu.addSection("Scene")
+            if self.mode.currentIndex() == 0:
+                for key in ("cad", "sketch", "joint"):
+                    menu.addAction(self.commands[key])
+                menu.addSeparator()
+        menu.addSeparator()
+        menu.addAction(self.commands["show_all"])
+        menu.addAction(self.commands["fit_all"])
+        menu.addAction(self.commands["commands"])
+        # Keep the normal event loop running while the menu is open; async
+        # completion and cancellation must not enter a nested dialog loop.
+        menu.aboutToHide.connect(menu.deleteLater)
+        menu.popup(global_point)
+
+    def focus_properties(self):
+        self.docks["inspector"].show()
+        self.docks["inspector"].raise_()
+        if "name" in self.fields:
+            self.fields["name"].setFocus()
+            self.fields["name"].selectAll()
 
     def toggle_visibility(self):
         if self.selection:
@@ -735,7 +794,7 @@ class Workspace:
             repr(self.project.step),
         )
         pending = self.dirty_fields or settings_pending
-        issues = self.project.diagnostics()
+        issues = self.project_diagnostics()
         self.validation_label.setText(
             "Draft · unapplied properties"
             if pending
@@ -776,6 +835,14 @@ class Workspace:
             self.commands[key].setEnabled(not result_mode and obj is not None)
         self.commands["load"].setEnabled(not result_mode and isinstance(obj, Body))
         self.commands["joint"].setEnabled(not result_mode and bool(self.project.bodies))
+        cad_editable = not result_mode and self.controller.process is None
+        self.commands["cad"].setEnabled(cad_editable)
+        self.commands["sketch"].setEnabled(cad_editable)
+        self.commands["cad_history"].setEnabled(cad_editable and isinstance(obj, Body))
+        self.commands["cad_study"].setEnabled(
+            self._mesh_window is not None
+            or (not result_mode and isinstance(obj, Body) and obj.cad is not None)
+        )
         for key in ("hide", "isolate", "fit"):
             self.commands[key].setEnabled(obj is not None)
 
@@ -894,5 +961,15 @@ class Workspace:
         QMessageBox.information(
             self,
             "Navigation and editing",
-            "Drag: orbit around the model.\nShift + drag: pan the camera. Scroll: zoom.\n0 / 1 / 3 / 7: isometric / front / side / top views. F: fit selection.\nChoose Select, Move or Rotate to set the manipulator.\nPositions are also editable in the inspector, in metres and degrees.\n\nMoving a body does not solve constraints. The grid is not a contact surface.\nOrange forces and purple moments: world directions, symbolic lengths.\nResults display native samples; their accuracy is not certified.",
+            "Click: select. Right-click: actions for the pointed object or scene.\n"
+            "Drag: orbit. Shift + drag or middle-drag: pan. Mouse wheel: zoom.\n"
+            "Mac trackpad: two-finger scroll pans; pinch zooms.\n"
+            "0 / 1 / 3 / 7: isometric / front / side / top views.\n"
+            "F: frame selection. Shift+F: frame all. The viewing direction is retained.\n"
+            "Workspaces opens an analysis. Back returns without closing its study.\n"
+            "Choose Select, Move or Rotate to set the manipulator.\n"
+            "Positions are also editable in the inspector, in metres and degrees.\n\n"
+            "Moving a body does not solve constraints. The grid is not a contact surface.\n"
+            "Orange forces and purple moments: world directions, symbolic lengths.\n"
+            "Results display native samples; their accuracy is not certified.",
         )

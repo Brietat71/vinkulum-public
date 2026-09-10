@@ -38,6 +38,7 @@ from .model import write_json
 from .static_controller import StaticController
 from .static_view import StaticTable, StaticViewport
 from .theme import apply_theme
+from .workspace_link import add_workspace_return
 
 
 def tension_example():
@@ -92,6 +93,7 @@ class StaticWindow(QMainWindow):
     def _build(self):
         self.setCorner(Qt.Corner.BottomLeftCorner, Qt.DockWidgetArea.LeftDockWidgetArea)
         toolbar = self.addToolBar("Static study")
+        add_workspace_return(self, toolbar)
         toolbar.setMovable(False)
         toolbar.addWidget(QLabel("Vinkulum  /  Linear statics"))
         toolbar.addSeparator()

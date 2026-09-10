@@ -6,6 +6,12 @@ simulations, and inspect saved CAD/FEM/Pinocchio captures without a Python
 installation. The release title, DMG filename and build-info.json identify the
 exact Studio version and source commit; build-info.json also lists dependencies.
 
+Right-click opens actions for the pointed object or the scene. Dragging orbits
+without changing selection; F frames without resetting the viewing direction.
+The Workspaces menu opens analyses, and Back retains the study for a quick return.
+Mac trackpad scrolling pans and pinching zooms. Scene updates are coalesced,
+and compatible CAD operations reuse one supervised worker with a short idle expiry.
+
 The current desktop runs CAD admission and saved-result validation in background
 threads. Its shared CPU budget bounds admitted native engine jobs. The packaged
 examples cover parametric CAD, boundary conditions, a CalculiX displacement and

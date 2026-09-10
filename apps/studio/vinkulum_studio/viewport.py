@@ -122,6 +122,8 @@ class Viewport(QWidget):
         self._project = None
         self._poses = {}
         self._sources = []
+        self._gizmo_interacted = False
+        self.context_handler = None
         self.box = vtkBoxWidget2()
         self.box.SetInteractor(self.view.GetRenderWindow().GetInteractor())
         self.box.ScalingEnabledOff()
@@ -132,11 +134,29 @@ class Viewport(QWidget):
         self.box_rep.SetPlaceFactor(1.15)
         self.box.SetRepresentation(self.box_rep)
         self.box.AddObserver("InteractionEvent", self._preview_pose)
-        self.box.AddObserver(
-            "StartInteractionEvent", lambda *_: setattr(self, "dragging", True)
-        )
+        self.box.AddObserver("StartInteractionEvent", self._start_manipulation)
         self.box.AddObserver("EndInteractionEvent", self._commit_pose)
-        self.view.AddObserver("LeftButtonPressEvent", self._pick, 0.1)
+        self.view.pressed.connect(self._pointer_started)
+        self.view.clicked.connect(self._clicked)
+        self.view.context_handler = self._context_at
+
+    def _pointer_started(self):
+        self._gizmo_interacted = False
+
+    def _start_manipulation(self, *_):
+        self.dragging = self._gizmo_interacted = True
+
+    def _clicked(self, point):
+        if not self._gizmo_interacted:
+            self._pick(None, None)
+
+    def _context_at(self, global_point):
+        if self.context_handler is None:
+            self.view._navigation_menu(global_point)
+            return
+        point = self.view.mapFromGlobal(global_point)
+        self.view._setEventInformation(point.x(), point.y(), False, False, chr(0))
+        self.context_handler(self._pick_identifier(), global_point)
 
     def _add(self, source, color, identifier=None, width=2.0):
         mapper = vtkPolyDataMapper()
@@ -544,7 +564,7 @@ class Viewport(QWidget):
         self._apply_visibility()
         self.select(self._selected)
 
-    def _pick(self, interactor, event):
+    def _pick_identifier(self):
         picker = vtkCellPicker()
         picker.SetTolerance(0.005)
         x, y = self.view.GetEventPosition()
@@ -552,10 +572,14 @@ class Viewport(QWidget):
         actor = picker.GetActor()
         for identifier, actors in self._actors.items():
             if actor in actors:
-                if identifier != self._selected:
-                    self.select(identifier)
-                    self.selected.emit(identifier)
-                return
+                return identifier
+        return None
+
+    def _pick(self, interactor, event):
+        identifier = self._pick_identifier()
+        if identifier != self._selected:
+            self.select(identifier)
+            self.selected.emit(identifier)
 
     def _preview_pose(self, widget, event):
         if self._selected not in self._body_ids or not self._editable:
@@ -629,7 +653,9 @@ class Viewport(QWidget):
 
     def render(self):
         if not self._closed and self.isVisible():
-            self.view.GetRenderWindow().Render()
+            # One document transaction updates geometry, editability, selection
+            # and poses. Qt coalesces their paint requests into the final frame.
+            self.view.update()
 
     def screenshot(self, path):
         self.view.GetRenderWindow().Render()
