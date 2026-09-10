@@ -324,9 +324,7 @@ class MotionPanel:
                 "Calculating captured geometry. FreeCAD remains available."
             )
             job.start()
-        except (
-            Exception
-        ) as error:  # noqa: BLE001 - report native errors at the process/UI boundary
+        except Exception as error:  # noqa: BLE001 - report native errors at the process/UI boundary
             self.status.setText(str(error))
 
     def set_busy(self, busy):
@@ -395,9 +393,7 @@ class MotionPanel:
             self.stop_playback()
             self.remove_preview()
             self.completed(directory, request, result)
-        except (
-            Exception
-        ) as error:  # noqa: BLE001 - report native errors at the process/UI boundary
+        except Exception as error:  # noqa: BLE001 - report native errors at the process/UI boundary
             self.status.setText(str(error))
 
     def remove_preview(self, deleted=None):
@@ -502,9 +498,7 @@ class MotionPanel:
             self.time_label.setText(
                 f"Captured time: {self.result['time_s'][index]:.6g} s · native sample {index}"
             )
-        except (
-            Exception
-        ) as error:  # noqa: BLE001 - report native errors at the process/UI boundary
+        except Exception as error:  # noqa: BLE001 - report native errors at the process/UI boundary
             self.stop_playback()
             self.remove_preview()
             self.status.setText(str(error))
@@ -672,6 +666,10 @@ def install():
     menu.addAction(action)
     menu.addAction("Open pendulum example", open_example)
     menu.addAction("Open double-pendulum assembly", open_assembly_example)
+    from .static_host import StaticCommand
+
+    Gui.addCommand("Vinkulum_Static", StaticCommand())
+    menu.addAction("Static analysis…", lambda: Gui.runCommand("Vinkulum_Static"))
 
     def attach_menu(*_):
         menubar = Gui.getMainWindow().menuBar()

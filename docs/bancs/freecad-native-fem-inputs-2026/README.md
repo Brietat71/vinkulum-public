@@ -53,3 +53,19 @@ The adapter requires a dedicated input analysis: existing solver objects, meshes
 additional physics and non-global materials are refused. Results are snapshots;
 post-import invalidation, job progress/cancellation and a complete interactive
 FEM execution workflow remain future work.
+
+## Integration with the native static task
+
+After merging the shared runner from #38, the native-input mode passes both cases
+and the installed interactive task passes twelve checks. Their execution records
+and sources are in `integration-record.zip`; see `integration.json`. The two
+real-process guardian regressions pass. Combining `--native-inputs` with
+`--recipe static-task` is refused before creating the output directory.
+
+Two initial task runs failed because the native Close button was still hidden at
+the qualification's fixed 400 ms observation. The qualification now waits up to
+five seconds for actual visibility, then keeps the same visible-button click
+assertions. The accepted integrated run needed one additional 100 ms observation.
+The old failure reports are retained; they are not successful qualifications.
+This changes test synchronization, not task behavior or numerical tolerances,
+and makes no GUI latency claim.

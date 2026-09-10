@@ -10,7 +10,10 @@ import math
 import uuid
 from pathlib import Path
 
-import bridge
+if __package__:
+    from . import bridge
+else:
+    import bridge
 import FreeCAD as App
 
 

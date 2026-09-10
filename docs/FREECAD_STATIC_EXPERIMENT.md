@@ -5,6 +5,8 @@ This source-only experiment transfers a native solid and explicit boundary faces
 through the existing OCCT 8 / Gmsh HXT / CalculiX adapters, then imports native
 FreeCAD FEM mesh and displacement objects. It is **not an interactive FEM command**
 and is not included in the published FreeCAD 0.1.0a2 extension ZIP.
+The separate [development task](FREECAD_STATIC_TASK.md) now uses this transfer
+from native face selection and persistent static inputs.
 
 ## Run on Linux
 
@@ -33,7 +35,7 @@ process group. This is test-runner cleanup, not an interactive job manager.
 
 ## Native FEM inputs (development sources)
 
-Add `--native-inputs` to the runner command above to create and read a native
+Add `--native-inputs` (with the default `--recipe static`) to the runner command above to create and read a native
 `Fem::FemAnalysis`, `Fem::ConstraintFixed`, `Fem::ConstraintPressure` and one
 solid material. This mode uses the same STEP capture, worker and native result
 import. The input objects remain editable in FreeCAD and are retained in the
@@ -58,7 +60,8 @@ also refused. This adapter does not translate a complete existing solver setup.
 The qualification runs the original and rotated tensile bars, saves/reopens both
 native inputs and results, and rejects changed pressure magnitude/direction,
 changed modulus, edge references and enabled amplitudes before document mutation.
-Post-import result invalidation and an interactive job manager remain future work.
+Post-import result invalidation and an interactive job manager are not provided
+by this adapter. The separate development task uses its own input model.
 Measured results and exact executed sources are retained in the
 [native-input qualification](bancs/freecad-native-fem-inputs-2026/README.md).
 
@@ -117,8 +120,10 @@ Geometry is rechecked on import, but editing it later does not automatically
 invalidate the already imported result. Preview hashes bind the request identity;
 they are not a cryptographic attestation of solver output against hostile edits.
 Native FEM face selection and boundary-condition objects can supply the development
-adapter above. Progress/cancellation, post-import stale-result handling and a
-complete interactive FEM execution workflow remain to be built.
+adapter above. This standalone adapter provides no interactive job manager or
+post-import invalidation. The separate [development task](FREECAD_STATIC_TASK.md)
+handles face selection, boundary editing, cancellation and conservative invalidation
+for its own input model and linked results.
 
 The [retained qualification](bancs/freecad-static-2026/README.md) records the measured
 errors, runtime versions and actual artifacts.
