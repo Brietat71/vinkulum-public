@@ -1,13 +1,55 @@
 # CalculiX integration — first linear statics adapter
 
-**Status: experimental Python/CLI adapter on the `feat/calculix-static` branch.**
-It is not yet connected to Studio's graphical workspaces and is not included in
-the published Studio 0.4.1 binary. The native multibody kernel remains unchanged.
+**Status: experimental Studio workspace and Python/CLI adapter on the
+`feat/calculix-static` branch.** It is not included in the Studio 0.4.2 maintenance
+binary. The native multibody kernel remains unchanged.
 
 This first adapter generates a CalculiX input deck from a validated mesh study,
 runs an installed `ccx` executable and reads the final displacement, external
 force, integration-point stress and energy tables. Every run retains its input,
 raw output, solver log and versioned result metadata.
+
+## Studio workspace
+
+From a source installation of this branch, choose **Run → Linear statics ·
+CalculiX…** (`Alt+E`), or find the command in the command palette. The study
+opens in a separate native window and leaves the rigid-mechanism project intact.
+
+- Try the built-in one-element tension example, or **Open study…** to load the
+  eight-element JSON example below. A study captures a mesh, supports and loads;
+  opening a CAD body does not automatically create a finite-element model.
+- Set Young modulus in Pa, Poisson ratio and the multiplier applied to captured
+  nodal loads. **Save study…** persists the edited study. Unsaved changes require
+  an explicit discard when closing or replacing the study.
+- Expand **Execution settings** to select an installed `ccx`, timeout and output
+  parent folder. Every run creates a new child folder; completed runs retain the
+  edited study even when the original document has not been overwritten.
+- **Run CalculiX** uses a directly supervised process. **Cancel**, timeout and
+  closing the window stop that process. Failure keeps its diagnostics and the
+  previous displayed result. The version probe accepts the documented behaviour
+  observed in 2.21: `ccx -v` prints its version and exits with code 201.
+- Switch between **Study mesh** and **Captured result**. The latter keeps its
+  own mesh, material and nodal loads, even after another study is loaded or
+  current settings are edited.
+- The 3D colour field shows nodal displacement magnitude in metres, interpolated
+  for display. The deformation multiplier changes geometry presentation only;
+  its value is explicit. The grey wireframe shows the undeformed mesh. Numeric
+  tables and CSV exports remain unscaled. A zero field has no artificial legend.
+- Inspect displacement/reactions, supports/applied forces, integration-point
+  stress/energy or captured provenance. Stress remains at integration points:
+  this first workspace does not recover or colour an extrapolated nodal stress.
+
+The controller is asynchronous during version identification and solving. Final
+file validation and table preparation currently run on the GUI thread within
+the bounded adapter domain. Large-output responsiveness, interactive mesh and
+support editing, CAD meshing and result-archive reopening remain follow-up work.
+
+Reproduce a real screen capture and preserve the associated calculation:
+
+```sh
+xvfb-run -a -s '-screen 0 1600x1100x24' \
+  python ci/studio_static_recipe.py /tmp/vinkulum-static-demo
+```
 
 ## Reproduce a study
 
@@ -121,11 +163,14 @@ failed execution, timeout and protection of previous results. The public Linux
 CI installs `calculix-ccx` so these reference tests run against a real solver;
 local runs without `ccx` explicitly skip the three solver-dependent test methods.
 
-The next integration steps are an asynchronous GUI controller with cancellation,
-mesh and support selection, a read-only static-result view, and explicit CAD
-mesh provenance. These need their own qualification before a graphical solver
-choice is enabled. Refinement studies for bending and validated meshing should
-precede a broader element/geometry contract.
+The Qt tests verify termination of the actual solver process, timeout, protection
+of a previous result, the Studio menu entry, a real solve, changed-study versus
+captured-result identity, deformation scaling, unscaled CSV values and actual
+OpenGL output. These cover this first workflow, not arbitrary CAD-to-FEM use.
+
+The next integration steps are interactive mesh/support selection, archived
+result reopening and explicit CAD mesh provenance. Refinement studies for
+bending and validated meshing should precede a broader element/geometry contract.
 
 CalculiX's [official project](https://www.calculix.de/) and
 [upstream documentation](https://www.dhondt.de/) describe its much wider scope.

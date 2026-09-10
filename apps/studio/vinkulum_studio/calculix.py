@@ -313,12 +313,7 @@ def parse_dat(text, study):
     return {name: value.tolist() for name, value in tables.items()}
 
 
-def run_static(study, directory, *, executable="ccx", timeout=60):
-    """Run in a new directory. Keep the input, raw output and diagnostics on failure."""
-    if not isinstance(study, StaticStudy):
-        raise TypeError("A validated StaticStudy is required.")
-    if not finite(timeout) or not 0 < timeout <= 300:
-        raise ValueError("Timeout must be between 0 and 300 seconds.")
+def identify_engine(executable):
     found = shutil.which(str(executable))
     if not found:
         raise FileNotFoundError(
@@ -326,14 +321,32 @@ def run_static(study, directory, *, executable="ccx", timeout=60):
         )
     engine = Path(found).resolve()
     engine_hash = hashlib.sha256(engine.read_bytes()).hexdigest()
-    version_run = subprocess.run(
-        [str(engine), "-v"], capture_output=True, text=True, timeout=10, check=False
-    )
-    version = re.search(r"Version\s+([0-9.]+)", version_run.stdout)
+    return engine, engine_hash
+
+
+def parse_version(text):
+    version = re.search(r"Version\s+([0-9.]+)", text)
     if not version:
         raise ValueError(
             "The executable did not identify itself as a supported CalculiX CLI."
         )
+    return version[1]
+
+
+@dataclass(frozen=True)
+class PreparedRun:
+    study: StaticStudy
+    root: Path
+    engine: Path
+    engine_hash: str
+    version: str
+    deck: str
+
+
+def prepare_run(study, directory, engine, engine_hash, version):
+    """Capture inputs once, shared by synchronous CLI and direct Qt supervision."""
+    if not isinstance(study, StaticStudy):
+        raise TypeError("A validated StaticStudy is required.")
     root = Path(directory).resolve()
     root.mkdir(parents=True, exist_ok=False)
     deck = study.input_deck()
@@ -342,27 +355,20 @@ def run_static(study, directory, *, executable="ccx", timeout=60):
         root / "study.json",
         {"format": "vinkulum-static-study", "schema": 1, "study": asdict(study)},
     )
-    with (root / "solver.log").open("wb") as log:
-        result = subprocess.run(
-            [str(engine), "-i", "study"],
-            cwd=root,
-            stdout=log,
-            stderr=subprocess.STDOUT,
-            timeout=timeout,
-            check=False,
-            env={
-                **os.environ,
-                "OMP_NUM_THREADS": "1",
-                "CCX_NPROC_RESULTS": "1",
-                "CCX_NPROC_EQUATION_SOLVER": "1",
-            },
-        )
+    return PreparedRun(study, root, engine, engine_hash, version, deck)
+
+
+def finish_run(run, returncode):
+    """Validate raw files and publish a result only after successful completion."""
+    study, root, engine = run.study, run.root, run.engine
+    if (root / "study.inp").read_bytes() != run.deck.encode("ascii"):
+        raise ValueError("CalculiX input deck changed during the calculation.")
     log_path, dat_path = root / "solver.log", root / "study.dat"
     if log_path.stat().st_size > MAX_OUTPUT_BYTES:
         raise ValueError("CalculiX log exceeded the output budget.")
     log_text = log_path.read_text(errors="replace")
     if (
-        result.returncode != 0
+        returncode != 0
         or "Job finished" not in log_text
         or "*ERROR" in log_text.upper()
     ):
@@ -371,16 +377,16 @@ def run_static(study, directory, *, executable="ccx", timeout=60):
         raise ValueError("Missing or oversized CalculiX result.")
     raw = dat_path.read_text(encoding="ascii")
     values = parse_dat(raw, study)
-    if hashlib.sha256(engine.read_bytes()).hexdigest() != engine_hash:
+    if hashlib.sha256(engine.read_bytes()).hexdigest() != run.engine_hash:
         raise RuntimeError("CalculiX executable changed during the calculation.")
     report = {
         "format": "vinkulum-calculix-static",
         "schema": 1,
         "engine": "CalculiX",
-        "engine_version": version[1],
+        "engine_version": run.version,
         "adapter_version": "0.1.0",
-        "engine_sha256": engine_hash,
-        "input_sha256": hashlib.sha256(deck.encode("ascii")).hexdigest(),
+        "engine_sha256": run.engine_hash,
+        "input_sha256": hashlib.sha256(run.deck.encode("ascii")).hexdigest(),
         "dat_sha256": hashlib.sha256(dat_path.read_bytes()).hexdigest(),
         "units": {
             "displacements": "m",
@@ -401,6 +407,37 @@ def run_static(study, directory, *, executable="ccx", timeout=60):
     }
     write_json(root / "result.json", report)
     return report
+
+
+def run_static(study, directory, *, executable="ccx", timeout=60):
+    """Run in a new directory. Keep the input, raw output and diagnostics on failure."""
+    if not isinstance(study, StaticStudy):
+        raise TypeError("A validated StaticStudy is required.")
+    if not finite(timeout) or not 0 < timeout <= 300:
+        raise ValueError("Timeout must be between 0 and 300 seconds.")
+    engine, engine_hash = identify_engine(executable)
+    version_run = subprocess.run(
+        [str(engine), "-v"], capture_output=True, text=True, timeout=10, check=False
+    )
+    run = prepare_run(
+        study, directory, engine, engine_hash, parse_version(version_run.stdout)
+    )
+    with (run.root / "solver.log").open("wb") as log:
+        result = subprocess.run(
+            [str(engine), "-i", "study"],
+            cwd=run.root,
+            stdout=log,
+            stderr=subprocess.STDOUT,
+            timeout=timeout,
+            check=False,
+            env={
+                **os.environ,
+                "OMP_NUM_THREADS": "1",
+                "CCX_NPROC_RESULTS": "1",
+                "CCX_NPROC_EQUATION_SOLVER": "1",
+            },
+        )
+    return finish_run(run, result.returncode)
 
 
 def main():

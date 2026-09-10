@@ -74,6 +74,21 @@ def specimen(
 
 
 class StaticContracts(unittest.TestCase):
+    def test_changed_input_deck_is_rejected_before_publishing(self):
+        from vinkulum_studio.calculix import finish_run, identify_engine, prepare_run
+
+        with tempfile.TemporaryDirectory() as directory:
+            engine, fingerprint = identify_engine(sys.executable)
+            run = prepare_run(
+                specimen(), Path(directory) / "run", engine, fingerprint, "test"
+            )
+            (run.root / "study.inp").write_text(
+                run.deck + "** Modified after capture\n"
+            )
+            with self.assertRaisesRegex(ValueError, "input deck changed"):
+                finish_run(run, 0)
+            self.assertFalse((run.root / "result.json").exists())
+
     def test_thin_element_cannot_hide_warping_below_long_edge_tolerance(self):
         study = specimen(width=1.0, height=1.0)
         points = [(x, y, z * 2e-12) for x, y, z in study.nodes]

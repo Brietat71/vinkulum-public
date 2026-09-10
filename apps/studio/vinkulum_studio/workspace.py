@@ -72,6 +72,8 @@ class Workspace:
         view = self.menuBar().addMenu("&View")
         analysis = self.menuBar().addMenu("&Run")
         help_menu = self.menuBar().addMenu("&Help")
+        analysis.addAction(self._action("static_study", "Linear statics · CalculiX…", self.open_static_study, "Alt+E"))
+        analysis.addSeparator()
         for key, label, slot, shortcut in (
             ("new", "New project", self.new_project, QKeySequence.StandardKey.New),
             (

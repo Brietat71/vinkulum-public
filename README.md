@@ -52,7 +52,7 @@ and physical assumptions.
 | **OCCT 8 + build123d** | Exact CAD and mass properties | Integrated; local compatibility patches and qualification corpus included |
 | **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Connector planned](docs/PINOCCHIO_INTEGRATION.md); first target: qualified rigid trees |
 | **MBDyn** | Multibody workflows and independent reference calculations | Existing comparison work; Studio connector planned |
-| **CalculiX** | Finite-element workflows | [Experimental linear statics CLI](docs/CALCULIX_INTEGRATION.md): affine C3D8, analytic patch tests; GUI integration pending |
+| **CalculiX** | Finite-element workflows | [Experimental static-study workspace and CLI](docs/CALCULIX_INTEGRATION.md): affine C3D8, cancellable solve, captured displacement and integration-point values; external executable required |
 | **DUST** | Aerodynamic workflows and future coupling | Planned |
 | **NeuralFoil** | Airfoil polar workflows | Used by optional validation tooling; Studio workflow planned |
 
