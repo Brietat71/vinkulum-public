@@ -2,6 +2,8 @@
 
 import os
 import tempfile
+import threading
+import time
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -204,6 +206,53 @@ class WorkspaceNavigation(unittest.TestCase):
                 button.mapTo(mesh.faces_dock, button.rect().center())
             )
         )
+
+    def test_background_handoff_keeps_newer_target_input(self):
+        from test_meshing import condition, solid
+        from vinkulum_studio.mesh_binding import MeshBinding
+        from vinkulum_studio.mesh_window import mesh_presentation
+        from vinkulum_studio.static_window import tension_example
+
+        w = self.window
+        capture = solid(curve=0.05)
+        w._commit(w.project.replace_object(capture.request.body))
+        w.select_object(capture.request.body.id)
+        w.open_cad_study()
+        mesh = w._mesh_window
+        mesh._present_mesh(mesh_presentation(capture, Path(self.directory.name)))
+        mesh._set_conditions((condition("support", (1,), axes=(1, 2, 3)),))
+        mesh._study_ready(tension_example(), "open")
+        page = mesh._static_window
+        captured = page.study
+        entered, release = threading.Event(), threading.Event()
+        original = MeshBinding.study
+
+        def gated(binding, *args):
+            entered.set()
+            if not release.wait(5):
+                raise RuntimeError("Test preparation barrier timed out")
+            return original(binding, *args)
+
+        def wait(predicate):
+            deadline = time.monotonic() + 8
+            while not predicate() and time.monotonic() < deadline:
+                QTest.qWait(10)
+            self.assertTrue(predicate())
+
+        with patch.object(MeshBinding, "study", gated):
+            try:
+                w.activate_analysis("cad")
+                mesh.prepare_study("open")
+                wait(entered.is_set)
+                w.activate_analysis("cad_static")
+                page.young.setText("123e9")
+            finally:
+                release.set()
+            wait(lambda: not mesh.busy)
+        self.assertIs(page.study, captured)
+        self.assertEqual(page.young.value(), 123e9)
+        self.assert_integrated(page)
+        self.assertIn("inputs were kept", mesh.status.text())
 
     def test_context_close_honours_pending_analysis_guard(self):
         from PySide6.QtWidgets import QMessageBox

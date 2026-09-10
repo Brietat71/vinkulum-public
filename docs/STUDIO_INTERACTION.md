@@ -21,7 +21,9 @@ windows or Back buttons in this path.
 An analysis view is created on first use and retained while selecting other
 items. Its pending inputs, captured results and camera survive navigation. The
 CAD-to-statics handoff also stays in the project window. Background completion
-never replaces an unrelated analysis being edited. Right-click an analysis to
+never replaces an unrelated analysis being edited. A CAD-to-statics preparation
+also refuses to replace a target whose inputs, captured result or running work
+changed while validation was in progress. Right-click an analysis to
 show or close it; closing retains the existing cancellation and unsaved-input guards.
 
 Save targets the displayed mechanism or analysis. Analysis inputs still use their

@@ -939,6 +939,8 @@ class MeshWindow(QMainWindow):
             self.status.setText(str(error))
             return
 
+        target_state = self._solver_target_state()
+
         def validate():
             study = binding.study(young, poisson)
             _ = study.input_transport
@@ -946,9 +948,35 @@ class MeshWindow(QMainWindow):
 
         self._background(
             validate,
-            lambda study: self._study_ready(study, action),
+            lambda study: self._publish_study(study, action, target_state),
             "Checking supports, material and actual solver geometry…",
         )
+
+    def _solver_target_state(self):
+        page = self._static_window
+        if page is None:
+            return None
+        return (page, page.study, page.result, page.young.text(),
+                page.poisson.text(), page.load_factor.text())
+
+    def _publish_study(self, study, action, target_state):
+        # Preparation runs in a thread while another view can still be edited.
+        # The earlier discard decision cannot authorise overwriting newer input.
+        page = self._static_window
+        current = self._solver_target_state()
+        changed = (current is None) != (target_state is None)
+        if current is not None and target_state is not None:
+            changed = any(a is not b for a, b in zip(current[:3], target_state[:3])) or current[3:] != target_state[3:]
+        if action == "open" and (
+            changed
+            or (page is not None and (page.controller.process is not None or page.archive.busy))
+        ):
+            self.status.setText(
+                "The target analysis changed or started work during preparation. "
+                "Its inputs were kept. Prepare linear statics again when ready."
+            )
+            return
+        self._study_ready(study, action)
 
     def _study_ready(self, study, action):
         if action == "save":
