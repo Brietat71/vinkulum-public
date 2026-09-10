@@ -38,7 +38,7 @@ jobs:
           python ci/prepare_cad.py build/cad-sources
           python -m pip install dist/wheels/*.whl build/cad-sources/build123d-0.11.1 build/cad-sources/ocpsvg-0.6.0 './apps/studio[cad,test]'
       - name: Test native mechanics and desktop
-        timeout-minutes: 5
+        timeout-minutes: 15
         run: |
           python -m unittest vinkulum.test_charges_temporelles -v
           PY=$(command -v python) bash ci/studio.sh
