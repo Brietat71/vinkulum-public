@@ -33,7 +33,7 @@ then obtain mass and inertia from the exact solid. The
 | **Examine** | Animate results, inspect curves and samples, compare captured runs on their native time grids, and export with units and provenance. |
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
-**Kernel 0.19.0 · Studio 0.4.1 · Research software under active development.**
+**Kernel 0.19.0 · Studio 0.4.2 · Research software under active development.**
 Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
 workflow; interactive constrained sketches and a regenerating feature tree are
 future work. The complete kernel is not certified. Each guarantee has a stated
@@ -63,7 +63,7 @@ this table are not part of the current desktop binary.
 ## Get started
 
 **Try the desktop without compiling:**
-[Studio 0.4.1 Linux preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.4.1-linux)
+[Studio 0.4.2 Linux preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.4.2-linux)
 includes the standalone archive, checksums and extracted-binary qualification.
 It targets Linux x86-64 / Ubuntu 24.04 / glibc 2.39 / X11.
 

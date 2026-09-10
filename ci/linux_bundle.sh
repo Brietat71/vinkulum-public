@@ -44,13 +44,16 @@ tar -czf "$BUILD_DIR/$ARCHIVE" -C "$BUILD_DIR/dist" 'Vinkulum Studio'
 mkdir "$BUILD_DIR/extracted"
 tar -xzf "$BUILD_DIR/$ARCHIVE" -C "$BUILD_DIR/extracted"
 cd "$BUILD_DIR/extracted"
-CHECK=(env -u PYTHONPATH -u PYTHONHOME -u VIRTUAL_ENV
+COMMAND=(env -u PYTHONPATH -u PYTHONHOME -u VIRTUAL_ENV
   XDG_CONFIG_HOME="$BUILD_DIR/config" QT_QPA_PLATFORM=xcb
-  "$BUILD_DIR/extracted/Vinkulum Studio/Vinkulum Studio"
-  --bundle-check "$BUILD_DIR/check")
+  "$BUILD_DIR/extracted/Vinkulum Studio/Vinkulum Studio")
+STARTUP=("${COMMAND[@]}" --startup-check "$BUILD_DIR/check")
+CHECK=("${COMMAND[@]}" --bundle-check "$BUILD_DIR/check")
 if [[ -n "${DISPLAY:-}" ]]; then
+  timeout 30s "${STARTUP[@]}"
   "${CHECK[@]}"
 else
+  xvfb-run -a -s '-screen 0 1600x1100x24' timeout 30s "${STARTUP[@]}"
   xvfb-run -a -s '-screen 0 1600x1100x24' "${CHECK[@]}"
 fi
 "$PY" - "$BUILD_DIR/check/bundle-check.json" "$VERSION" <<'PY'
@@ -61,11 +64,16 @@ with open(sys.argv[1]) as stream:
 assert report["status"] == "passed" and report["frozen"]
 assert report["machine"] == "x86_64"
 assert report["manifest"]["app_version"] == sys.argv[2]
+from pathlib import Path
+startup = json.loads(Path(sys.argv[1]).with_name("startup-check.json").read_text())
+assert startup["status"] == "passed" and startup["frozen"]
+assert startup["app_version"] == sys.argv[2] and startup["locale"] == "en_GB"
 PY
 # Only deliver an archive whose extracted executable passed the check.
 cp "$BUILD_DIR/$ARCHIVE" "$VINKULUM_LINUX_OUT/"
 mkdir -p "$VINKULUM_LINUX_OUT/check"
 cp "$BUILD_DIR/check/bundle-check.json" "$BUILD_DIR/check/scene.png" "$VINKULUM_LINUX_OUT/check/"
+cp "$BUILD_DIR/check/startup-check.json" "$BUILD_DIR/check/startup-scene.png" "$VINKULUM_LINUX_OUT/check/"
 cp "$APP/build-info.json" "$VINKULUM_LINUX_OUT/"
 cd "$VINKULUM_LINUX_OUT"
 sha256sum "$ARCHIVE" > SHA256SUMS

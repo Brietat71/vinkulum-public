@@ -1,4 +1,4 @@
-Vinkulum Studio 0.4.1 — Linux x86-64
+Vinkulum Studio 0.4.2 — Linux x86-64
 
 Extract the archive, open a terminal in the extracted directory and run:
   ./Vinkulum\ Studio/Vinkulum\ Studio
