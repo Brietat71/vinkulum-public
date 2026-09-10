@@ -12,7 +12,7 @@ from pathlib import Path
 
 import FreeCAD as App
 import FreeCADGui as Gui
-from PySide6 import QtCore, QtWidgets
+from PySide6 import QtCore, QtGui, QtTest, QtWidgets
 
 root = Path(os.environ["VINKULUM_STATIC_CHECK"])
 report = {"status": "running", "checks": []}
@@ -135,12 +135,25 @@ def start():
     doc.redo()
     assert len(panel.analysis.Boundaries) == 2
     report["checks"].append("native boundary Undo/Redo")
+    assert not panel.edit_pressure.isEnabled() and not panel.remove.isEnabled()
+    panel.boundaries.setCurrentRow(0)
+    assert not panel.edit_pressure.isEnabled() and panel.remove.isEnabled()
     panel.boundaries.setCurrentRow(1)
+    assert panel.pressure.value() == -2
+    assert panel.edit_pressure.isEnabled()
+    selected_name = panel.selected_boundary().Name
     panel.pressure.setValue(-3)
     panel.edit_pressure.click()
     assert panel.analysis.Boundaries[1].PressurePa == -3e6
+    assert panel.selected_boundary().Name == selected_name
+    assert panel.pressure.value() == -3
     doc.undo()
     assert panel.analysis.Boundaries[1].PressurePa == -2e6
+    assert panel.selected_boundary().Name == selected_name
+    assert panel.pressure.value() == -2
+    report["checks"].append(
+        "pressure selection loads MPa, survives update and Undo, and gates editing actions"
+    )
     report["checks"].append(
         "pressure edit button and native Undo preserve pressure units"
     )
@@ -151,6 +164,38 @@ def launch_after_display():
     panel = state["panel"]
     doc = panel.document
     assert Gui.Control.activeDialog(), "Native task closed unexpectedly"
+    # Deliver the native context-menu event to the displayed viewport, then click
+    # its real menu action. This tests Qt event routing, not only a direct handler.
+    point = panel.boundaries.visualItemRect(panel.boundaries.item(1)).center()
+    menu_checks = []
+
+    def choose_pressure():
+        popup = QtWidgets.QApplication.activePopupWidget()
+        try:
+            assert isinstance(popup, QtWidgets.QMenu)
+            action = next(a for a in popup.actions() if a.text() == "Edit pressure…")
+            QtTest.QTest.mouseClick(
+                popup,
+                QtCore.Qt.MouseButton.LeftButton,
+                pos=popup.actionGeometry(action).center(),
+            )
+            menu_checks.append(True)
+        finally:
+            if popup:
+                popup.close()
+
+    QtCore.QTimer.singleShot(100, choose_pressure)
+    event = QtGui.QContextMenuEvent(
+        QtGui.QContextMenuEvent.Reason.Mouse,
+        point,
+        panel.boundaries.viewport().mapToGlobal(point),
+    )
+    QtWidgets.QApplication.sendEvent(panel.boundaries.viewport(), event)
+    assert menu_checks and panel.pressure.value() == -2
+    assert panel.pressure.hasFocus()
+    report["checks"].append(
+        "native context-menu event and visible Edit pressure action"
+    )
     close_buttons = [
         box.button(QtWidgets.QDialogButtonBox.StandardButton.Close)
         for box in Gui.getMainWindow().findChildren(QtWidgets.QDialogButtonBox)

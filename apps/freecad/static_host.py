@@ -75,6 +75,7 @@ class StaticPanel:
         fields.addRow(self.edit_pressure)
         self.remove = QtWidgets.QPushButton("Remove selected condition")
         self.remove.clicked.connect(self.remove_boundary)
+        self.boundaries.currentRowChanged.connect(self.select_boundary)
         fields.addRow(self.remove)
         layout.addWidget(self.controls)
         self.settings = QtWidgets.QGroupBox("Engine executables and saved calculations")
@@ -143,13 +144,37 @@ class StaticPanel:
         if value:
             self.paths[name].setText(value)
 
+    def selected_boundary(self):
+        item = self.boundaries.currentItem()
+        if item is None:
+            return None
+        name = item.data(QtCore.Qt.ItemDataRole.UserRole)
+        return next((row for row in self.analysis.Boundaries if row.Name == name), None)
+
+    def select_boundary(self, _index=-1):
+        row = self.selected_boundary()
+        pressure = row is not None and row.Kind == "Pressure"
+        self.edit_pressure.setEnabled(pressure)
+        self.remove.setEnabled(row is not None)
+        if pressure:
+            self.pressure.setValue(row.PressurePa / 1e6)
+
     def refresh(self):
+        current = self.boundaries.currentItem()
+        name = current.data(QtCore.Qt.ItemDataRole.UserRole) if current else None
+        blocker = QtCore.QSignalBlocker(self.boundaries)
         self.boundaries.clear()
         for row in self.analysis.Boundaries:
-            self.boundaries.addItem(
+            item = QtWidgets.QListWidgetItem(
                 row.Label
                 + (f" · {row.PressurePa / 1e6:g} MPa" if row.Kind == "Pressure" else "")
             )
+            item.setData(QtCore.Qt.ItemDataRole.UserRole, row.Name)
+            self.boundaries.addItem(item)
+            if row.Name == name:
+                self.boundaries.setCurrentItem(item)
+        del blocker
+        self.select_boundary()
 
     def add(self, kind):
         try:
@@ -167,8 +192,16 @@ class StaticPanel:
             return
         self.boundaries.setCurrentItem(self.boundaries.itemAt(point))
         menu = QtWidgets.QMenu(self.boundaries)
+        row = self.selected_boundary()
+        if row is not None and row.Kind == "Pressure":
+            menu.addAction("Edit pressure…", self.focus_pressure)
         menu.addAction("Remove condition", self.remove_boundary)
         menu.exec(self.boundaries.viewport().mapToGlobal(point))
+
+    def focus_pressure(self):
+        self.select_boundary()
+        self.pressure.setFocus()
+        self.pressure.selectAll()
 
     def update_pressure(self):
         index = self.boundaries.currentRow()

@@ -1,7 +1,7 @@
 # Your first Vinkulum calculation in FreeCAD
 
 The published **0.1.0a2** extension contains the single-solid pendulum workflow.
-Development **0.1.0a3.dev3** adds native Assembly motion, a linear-static task and
+Development **0.1.0a3.dev4** adds native Assembly motion, a linear-static task and
 a preconfigured tension example. Use a source checkout containing this guide for
 the development features; they are not in the released 0.1.0a2 ZIP.
 
@@ -76,8 +76,10 @@ explain the qualified mechanism and current limits.
    folder as well if you want the STEP, mesh and raw solver evidence.
 
 The task displays pressure in MPa: positive acts inward, negative pulls outward.
-The example therefore contains **−2 MPa**. Edit a pressure by selecting its row,
-entering a value and clicking **Update selected pressure**. To try your own part,
+The example therefore contains **−2 MPa**. Selecting its row loads that value;
+enter a new value and click **Update selected pressure**. Right-click →
+**Edit pressure…** focuses the value field. Undo restores both the stored pressure
+and the selected row's displayed value. To try your own part,
 select a top-level solid and open Static analysis; select faces in the 3D view
 before adding supports and pressure. The [static task guide](FREECAD_STATIC_TASK.md)
 covers units, executable requirements, persistence and scientific limits.
