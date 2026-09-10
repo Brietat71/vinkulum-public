@@ -7,8 +7,11 @@ below records the preceding dev3 increment.
 
 **Source: kernel 0.20.0 / Studio 0.6.0a2.dev3.** Native parallel execution is an
 architecture requirement. The implementation below is the first explicit
-resource-management increment. The downloadable Studio 0.6.0a1 still contains
-kernel 0.19.0; it does not contain these changes.
+resource-management increment. The downloadable Linux Studio 0.6.0a1 still contains
+kernel 0.19.0; it does not contain these changes. The
+[Apple Silicon DMG 0.6.0a2.dev5](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a2.dev5-macos-9)
+contains kernel 0.20.0 and this execution foundation. Its published qualification
+checks functional ARM64 execution, not parallel speedup on user hardware.
 
 ## Kernel execution
 

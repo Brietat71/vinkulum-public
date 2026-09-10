@@ -15,9 +15,10 @@ ambition of becoming a home for the open solvers engineers and researchers rely 
 [Scientific guarantees](docs/CERTIFICATION_NOYAU.md) ·
 [Support the project](docs/FUNDING.md) · [Documentation technique en français](README.fr.md)
 
-**Try it:** [download the Linux desktop preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux)
-and [try the included examples in five minutes](apps/studio/packaging/EXAMPLES.md).
-**Studio 0.6.0a1 is a research alpha.** CAD, the native kernel and saved CAD/FEM/Pinocchio
+**Try it:** [Apple Silicon DMG · 0.6.0a2.dev5](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a2.dev5-macos-9) ·
+[Linux preview · 0.6.0a1](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux) ·
+[included examples in five minutes](apps/studio/packaging/EXAMPLES.md).
+**Studio is a research alpha.** CAD, the native kernel and saved CAD/FEM/Pinocchio
 examples are included. New Gmsh, CalculiX and Pinocchio computations use separate engines.
 
 <p align="center">
@@ -42,8 +43,9 @@ expose remaining degrees of freedom and conflicting dimensions.
 [Try the sketch workflow](docs/STUDIO_SKETCH.md) ·
 [Inspect the saved projects and checks](docs/bancs/studio-sketch-060/README.md)
 
-Requires **0.6.0a2.dev2 from source**; the downloadable Linux alpha remains
-**0.6.0a1**. This first sketch domain covers closed line profiles with horizontal,
+Included in the **0.6.0a2.dev5 Apple Silicon DMG**, or install **0.6.0a2.dev2
+or later from source**; the downloadable Linux alpha remains **0.6.0a1**. This
+first sketch domain covers closed line profiles with horizontal,
 vertical, fixed-point and signed X/Y dimensions.
 
 </details>
@@ -140,12 +142,15 @@ engines. The shipped example reopens without running an engine.
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
 **Kernel 0.19.0 · Studio 0.6.0a1 · Linux x86-64 preview.** Research software under active development.
-Current source **Kernel 0.20.0 · Studio 0.6.0a2.dev5** adds
+Current source **Kernel 0.20.0 · Studio 0.6.0a2.dev6** adds
+[supervised CAD process reuse](docs/CAD_PROCESS_REUSE.md),
 [shared engine CPU admission](docs/ENGINE_CPU_ADMISSION.md) and
 [background CAD and archive validation](docs/STUDIO_BACKGROUND_ADMISSION.md),
 alongside [interactive constrained line sketches](docs/STUDIO_SKETCH.md)
 and [3D pressure, force and support symbols](docs/STUDIO_CAD_MESHING.md#boundary-direction-symbols).
-These increments are not yet in the downloadable binary.
+The **Apple Silicon DMG 0.6.0a2.dev5 / kernel 0.20.0** includes sketches, boundary
+symbols, native CPU admission and background validation. CAD process reuse
+remains a dev6 source feature; the Linux preview remains 0.6.0a1.
 Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
 workflow; curved sketches, nonlinear dimensions and persistent face/edge references
 remain future work. The [CAD-to-FEM workspace](docs/STUDIO_CAD_MESHING.md) now captures
@@ -177,6 +182,11 @@ this table are not part of the current desktop binary.
 ## Get started
 
 **Try the desktop without compiling:**
+[Studio 0.6.0a2.dev5 Apple Silicon DMG](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a2.dev5-macos-9)
+targets macOS 14 or newer on ARM64. The mounted-and-copied app was checked for
+startup, native simulation, OCCT/STEP, CAD regeneration and saved result display.
+It has an ad-hoc signature without Apple notarisation.
+
 [Studio 0.6.0a1 Linux preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux)
 includes the standalone archive, checksums and extracted-binary qualification.
 It targets Linux x86-64 / Ubuntu 24.04 / glibc 2.39 / X11.

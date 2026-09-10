@@ -27,7 +27,9 @@ class CadAdmission:
     project: Project | None
 
 
-def admit_cad_response(path, request, input_sha256, plan, code, source_project=None):
+def admit_cad_response(
+    path, request, input_sha256, plan, code, source_project=None, service_id=None
+):
     path = Path(path)
     body = None
     result = read_json(path, MAX_PROJECT_BYTES) if path.is_file() else {}
@@ -46,6 +48,7 @@ def admit_cad_response(path, request, input_sha256, plan, code, source_project=N
     if (
         result.get("status") != "completed"
         or result.get("request_sha256") != input_sha256
+        or (service_id is not None and result.get("service_request_id") != service_id)
     ):
         raise ValueError("CAD response does not match the captured operation.")
     if "body" in result:
