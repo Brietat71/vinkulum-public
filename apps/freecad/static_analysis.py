@@ -226,14 +226,15 @@ def refresh_result(obj):
         restore_source(obj)
         return
     try:
-        current = signature(obj) == obj.CapturedInputsSha256
+        current = bool(obj.Result.Mesh) and signature(obj) == obj.CapturedInputsSha256
     except Exception:  # noqa: BLE001 - invalid or deleted native dependencies make results stale
         current = False
     value = "Current capture" if current else "Out of date — recalculate"
     if obj.ResultState != value:
         obj.ResultState = value
-    if not current and obj.Result.Mesh:
-        obj.Result.Mesh.Visibility = False
+    if not current:
+        if obj.Result.Mesh:
+            obj.Result.Mesh.Visibility = False
         restore_source(obj)
 
 

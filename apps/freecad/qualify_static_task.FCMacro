@@ -224,6 +224,16 @@ def tick():
         doc = App.openDocument(str(root / "result.FCStd"))
         obj = doc.getObject("VinkulumStatic")
         assert obj.Result.Mesh.FemMesh.NodeCount > 4
+        doc.removeObject(obj.Result.Mesh.Name)
+        doc.recompute()
+        assert obj.ResultState.startswith("Out of date")
+        assert obj.Source.Visibility and not obj.Result.Mesh
+        report["checks"].append(
+            "deleting only the result mesh restores source visibility and invalidates the result"
+        )
+        App.closeDocument(doc.Name)
+        doc = App.openDocument(str(root / "result.FCStd"))
+        obj = doc.getObject("VinkulumStatic")
         obj.YoungPa *= 2
         doc.recompute()
         assert obj.ResultState.startswith("Out of date"), obj.ResultState

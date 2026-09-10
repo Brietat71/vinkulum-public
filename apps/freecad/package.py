@@ -7,7 +7,7 @@ import subprocess
 import zipfile
 from pathlib import Path
 
-VERSION = "0.1.0a3.dev1"
+VERSION = "0.1.0a3.dev2"
 
 
 def build(destination, require_clean=False):
