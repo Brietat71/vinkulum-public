@@ -28,6 +28,7 @@ def qualify(args):
             "apps/freecad/static_job.py",
             "apps/freecad/static_guard.py",
             "apps/freecad/static_analysis.py",
+            "apps/freecad/static_examples.py",
             "apps/freecad/host.py",
             "apps/freecad/package.py",
         ]

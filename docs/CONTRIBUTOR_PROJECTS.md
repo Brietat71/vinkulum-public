@@ -6,25 +6,25 @@ is a useful starting point. Larger projects should begin with a scoped proposal.
 
 These are proposed projects, not funded positions or scheduled commitments.
 
-Scoped contribution briefs cover [an analytic STEP fixture (#1)](https://github.com/Brietat71/vinkulum-public/issues/1),
-[keyboard and high-DPI behaviour (#2)](https://github.com/Brietat71/vinkulum-public/issues/2),
-[a CalculiX bending refinement study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4),
-and [applied-load derivatives for Pinocchio (#6)](https://github.com/Brietat71/vinkulum-public/issues/6).
-Each records the deliverable, acceptance evidence and current status.
+New interface work targets **FreeCAD on Linux**. The standalone Studio GUI is
+paused. [Browse current issues](https://github.com/Brietat71/vinkulum-public/issues?q=is%3Aissue+is%3Aopen)
+before starting; the table below proposes directions rather than claiming an
+issue is unassigned or a feature is still missing.
 
 | Project | Useful background | A reviewable first result |
 |---|---|---|
 | [CAD regression corpus](../apps/studio/tests/fixtures/analytic_step_corpus/README.md) | CAD, mechanical design | Extend the three analytic parts with a redistributable vendor export or trimmed curved surface; include independent volume/inertia references and a failure case |
-| [Responsive CAD service](CAD_PROCESS_REUSE.md) | Python, processes, profiling | Extend the supervised service qualification to long edit sessions or packaged macOS/Windows builds; report memory, UI latency and interruption behaviour |
+| [FreeCAD first run](FREECAD_FIRST_RUN.md) | Python, Qt, usability | Reproduce installation on a clean Linux machine; improve one measured setup or keyboard obstacle with a native-session regression |
+| [Capture performance](CAD_PROCESS_REUSE.md) | CAD, processes, profiling | Measure a representative FreeCAD model from capture through worker completion; report GUI latency, memory and interruption behaviour |
 | Rust mesh/data path | Rust, Python FFI, VTK | Profile a reproducible large model; improve a demonstrated bottleneck with numerical equivalence and memory measurements |
 | Mechanism validation | Dynamics, experimental mechanics | An analytic or published benchmark, convergence study and independent reference |
 | Verifiable numerics | Numerical analysis, exact arithmetic, Lean | A sharply stated guarantee, executable verifier and adversarial counterexamples |
 | [Pinocchio operators](PINOCCHIO_OPERATORS.md) | Rigid-body dynamics, robotics, Python/C++ | Extend independent references for captured operators and [applied-load derivatives](PINOCCHIO_LOADS.md), or compare supported observables with the native kernel |
 | MBDyn connector | Multibody simulation | Map a small mechanism, units, frames, solver version and result channels through an explicit adapter |
-| [CalculiX workflow](STUDIO_CAD_MESHING.md) | FEM, Python/Qt | Qualify a CAD-derived study under mesh refinement, with an independent reference and explicit locations for reported displacement/stress |
+| [CalculiX workflow](FREECAD_STATIC_TASK.md) | FEM, Python/Qt | Qualify a CAD-derived study under mesh refinement, with an independent reference and explicit locations for reported displacement/stress |
 | DUST connector | Aerodynamics | A minimal reproducible coupling contract and an uncoupled reference case first |
-| NeuralFoil workflow | Aerodynamics, Python | A traceable polar workflow, including model version and limits, connected to Studio |
-| Accessible desktop | Qt, UX | One keyboard-complete workflow, tested at normal and high DPI |
+| NeuralFoil workflow | Aerodynamics, Python | A traceable polar workflow, including model version and limits, connected through an explicit external-engine contract |
+| Accessible FreeCAD tasks | Qt, UX | One keyboard-complete native workflow, tested on Linux at normal and high DPI |
 | Teach with Vinkulum | Teaching, technical writing | A runnable lab exercise with expected observations and a worked explanation |
 
 Start an [issue](https://github.com/Brietat71/vinkulum-public/issues/new) with:

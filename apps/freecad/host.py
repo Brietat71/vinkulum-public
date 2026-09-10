@@ -666,10 +666,12 @@ def install():
     menu.addAction(action)
     menu.addAction("Open pendulum example", open_example)
     menu.addAction("Open double-pendulum assembly", open_assembly_example)
+    from .static_examples import open_tension_reference
     from .static_host import StaticCommand
 
     Gui.addCommand("Vinkulum_Static", StaticCommand())
     menu.addAction("Static analysis…", lambda: Gui.runCommand("Vinkulum_Static"))
+    menu.addAction("Open static tension example", open_tension_reference)
 
     def attach_menu(*_):
         menubar = Gui.getMainWindow().menuBar()

@@ -7,7 +7,7 @@ import subprocess
 import zipfile
 from pathlib import Path
 
-VERSION = "0.1.0a3.dev2"
+VERSION = "0.1.0a3.dev3"
 
 
 def build(destination, require_clean=False):
@@ -24,6 +24,7 @@ def build(destination, require_clean=False):
         "assembly_capture.py",
         "assembly_worker.py",
         "static_analysis.py",
+        "static_examples.py",
         "static_bridge.py",
         "static_host.py",
         "static_job.py",

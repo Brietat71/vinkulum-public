@@ -55,23 +55,44 @@ def exception(kind, error, trace):
 sys.excepthook = exception
 
 
-def configured_panel(document_name):
+def configured_panel(document_name, reference=False):
     from vinkulum_freecad import static_host
 
-    doc = App.newDocument(document_name)
-    doc.UndoMode = 1
-    source = doc.addObject("Part::Box", "Bar")
-    source.Length, source.Width, source.Height = 120, 20, 15
-    doc.recompute()
-    panel = static_host.open_analysis(source)
+    if reference:
+        from vinkulum_freecad import host
+        from vinkulum_freecad import static_analysis as model
+
+        menu = Gui.getMainWindow().findChild(QtWidgets.QMenu, "VinkulumMenu")
+        action = next(
+            a for a in menu.actions() if a.text() == "Open static tension example"
+        )
+        action.trigger()
+        analysis = Gui.Selection.getSelection()[0]
+        assert model.is_analysis(analysis)
+        assert host._active_job is None and not Gui.Control.activeDialog()
+        assert analysis.YoungPa == 210e9 and analysis.Poisson == 0
+        assert analysis.Source.Length.Value == 120
+        assert model.inputs(analysis)["conditions"][1]["values"] == [-2e6]
+        panel = static_host.open_analysis(analysis)
+        report["checks"].append(
+            "static example menu creates and selects a configured native analysis without starting a solver"
+        )
+    else:
+        doc = App.newDocument(document_name)
+        doc.UndoMode = 1
+        source = doc.addObject("Part::Box", "Bar")
+        source.Length, source.Width, source.Height = 120, 20, 15
+        doc.recompute()
+        panel = static_host.open_analysis(source)
+        assert panel is not None
+        panel.fields["Poisson"].setValue(0)
+        for face, button in (("Face1", panel.fixed), ("Face2", panel.add_pressure)):
+            Gui.Selection.clearSelection()
+            Gui.Selection.addSelection(source, face)
+            panel.pressure.setValue(-2)
+            button.click()
     assert panel is not None
     state["panel"] = panel
-    panel.fields["Poisson"].setValue(0)
-    for face, button in (("Face1", panel.fixed), ("Face2", panel.add_pressure)):
-        Gui.Selection.clearSelection()
-        Gui.Selection.addSelection(source, face)
-        panel.pressure.setValue(-2)
-        button.click()
     assert len(panel.analysis.Boundaries) == 2, panel.status.text()
     for name, value in (
         ("EnginePython", os.environ["VINKULUM_STATIC_PYTHON"]),
@@ -90,7 +111,20 @@ def start():
     menu = Gui.getMainWindow().findChild(QtWidgets.QMenu, "VinkulumMenu")
     assert any(a.text() == "Static analysis…" for a in menu.actions())
     workbench = Gui.activeWorkbench().name()
-    panel = configured_panel("StaticTask")
+    from vinkulum_freecad import host
+
+    example = next(
+        a for a in menu.actions() if a.text() == "Open static tension example"
+    )
+    for _ in range(5):
+        example.trigger()
+        assert App.ActiveDocument.getObject("VinkulumStatic") is not None
+        assert host._active_job is None
+        App.closeDocument(App.ActiveDocument.Name)
+    report["checks"].append(
+        "five rapid static example open/close cycles without a calculation or workbench change"
+    )
+    panel = configured_panel("StaticTask", reference=True)
     assert Gui.activeWorkbench().name() == workbench
     report["checks"].append(
         "native menu, face selection, boundary buttons and unchanged workbench"
