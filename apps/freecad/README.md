@@ -1,4 +1,6 @@
-# Vinkulum for FreeCAD 0.1.0a2
+# Vinkulum for FreeCAD
+
+Published extension: **0.1.0a2**. Development source: **0.1.0a3.dev1**.
 
 FreeCAD is Vinkulum's primary desktop interface. The extension adds a **Vinkulum
 menu and native task panel** while keeping the current FreeCAD workbench. It
@@ -10,10 +12,11 @@ Opening the example now completes its initial view setup before queued document
 closures run. The [retained before/after regression](../../docs/bancs/freecad-example-close-2026/README.md)
 records the original native crash and the corrected installed extension.
 
-The first domain is one top-level rigid solid with one explicit revolute joint,
+The published 0.1.0a2 release covers one top-level rigid solid with one explicit revolute joint,
 starting from rest under gravity -Z. Pivot coordinates, axis, density, duration,
-time step and engine threads are explicit. Assembly conversion, multi-body host
-models, FreeCAD FEM controls and other platforms remain future work.
+time step and engine threads are explicit. The development Assembly workflow
+and native linear-static task are described below. General constraints and other
+platforms remain outside the host qualification.
 
 ![Actual FreeCAD Linux extension](../../docs/bancs/freecad-extension-010/freecad-extension.png)
 
@@ -88,17 +91,22 @@ source changes, frame transport and process lifecycle. The two existing
 [external-worker regressions](../studio/tests/test_freecad_bridge.py) continue
 to check the independent pendulum reference and rejection of corrupted mass.
 
-## Experimental native Assembly conversion
+## Native Assembly analyses (development)
 
-The extension also includes a bounded native Assembly capture API and
-[executable double-pendulum qualification](../../docs/bancs/freecad-assembly-2026/README.md).
-It reads the existing Assembly workbench's linked solids, grounding and Revolute
-joints, checks all imported physical properties and replays actual multi-body
-samples in FreeCAD. The source Assembly remains editable and unchanged by playback.
-This conversion is available to the qualification recipe and Python API;
-selecting an Assembly in the Motion task is not yet implemented. Its supported
-scope and independent mechanics evidence are recorded separately from the
-single-solid release workflow.
+Build and install the extension from this source branch to use native Assembly
+analyses; the published 0.1.0a2 ZIP retains its single-solid workflow. The existing
+**Motion analysis** task accepts an Assembly and reads its native Revolute joints.
+**Vinkulum → Open double-pendulum assembly** opens the included editable example.
+The task stores the source link, density, time controls and last capture in the
+native document. Playback displays copies of moving solids and the fixed part;
+saving or closing removes those copies and preserves the original Assembly.
+
+The [native task qualification](../../docs/bancs/freecad-assembly-analysis-2026/README.md)
+covers actual menu/task controls, calculations, persistence, stale-source
+rejection and worker cleanup. The [conversion reference](../../docs/bancs/freecad-assembly-2026/README.md)
+defines the bounded Revolute/flat-assembly scope and independent mechanics
+checks. General assembly constraints, nonuniform component densities, topology
+persistence and other platforms remain outside this qualification.
 
 ## Retained transport prototype
 

@@ -61,6 +61,10 @@ def is_analysis(obj):
     return isinstance(getattr(obj, "Proxy", None), MotionAnalysis)
 
 
+def is_assembly(obj):
+    return getattr(obj, "TypeId", "") == "Assembly::AssemblyObject"
+
+
 def validate(obj):
     if not is_analysis(obj) or obj.SchemaVersion != 1:
         raise ValueError("This motion analysis requires a supported document schema.")
@@ -68,10 +72,10 @@ def validate(obj):
     if (
         source is None
         or source.Document is not obj.Document
-        or not hasattr(source, "Shape")
+        or not (hasattr(source, "Shape") or is_assembly(source))
     ):
         raise ValueError(
-            "Assign a solid in this document to the analysis Source property."
+            "Assign a solid or native Assembly in this document to the analysis Source property."
         )
     return source
 
@@ -97,7 +101,13 @@ def create(source):
                 "Stable captured body UUID",
                 str(uuid.uuid4()),
             ),
-            ("App::PropertyLink", "Source", "Motion", "Top-level rigid solid", source),
+            (
+                "App::PropertyLink",
+                "Source",
+                "Motion",
+                "Rigid solid or native Assembly",
+                source,
+            ),
             (
                 "App::PropertyFloat",
                 "Density",
@@ -153,18 +163,29 @@ def create(source):
             setattr(obj, name, value)
         for name in ("SchemaVersion", "AnalysisId", "BodyId", "LastCapture"):
             obj.setEditorMode(name, 1)
+        if is_assembly(source):
+            for name in ("BodyId", "Pivot", "Axis"):
+                obj.setEditorMode(name, 2)
         obj.Proxy = MotionAnalysis()
         obj.ViewObject.Proxy = MotionView()
     return obj
 
 
+def configure_source_fields(obj, source):
+    for name in ("BodyId", "Pivot", "Axis"):
+        obj.setEditorMode(
+            name, 2 if is_assembly(source) else (1 if name == "BodyId" else 0)
+        )
+
+
 def for_selection(selected):
     if is_analysis(selected):
-        validate(selected)
+        source = validate(selected)
+        configure_source_fields(selected, source)
         return selected
-    if not hasattr(selected, "Shape"):
+    if not (hasattr(selected, "Shape") or is_assembly(selected)):
         raise ValueError(
-            "Select one solid, PartDesign Body or Vinkulum motion analysis."
+            "Select one solid, native Assembly or Vinkulum motion analysis."
         )
     matches = [
         obj
@@ -174,13 +195,22 @@ def for_selection(selected):
     if len(matches) > 1:
         raise ValueError("Select the desired motion analysis in the document tree.")
     obj = matches[0] if matches else create(selected)
-    validate(obj)
+    source = validate(obj)
+    configure_source_fields(obj, source)
     return obj
 
 
 def inputs(obj):
     """Read full document precision, independent of the task panel's formatting."""
     validate(obj)
+    if is_assembly(obj.Source):
+        return {
+            "density": obj.Density,
+            "project_id": obj.AnalysisId,
+            "duration": obj.Duration.Value,
+            "step": obj.Step.Value,
+            "threads": obj.Threads,
+        }
     return {
         "density": obj.Density,
         "body_id": obj.BodyId,

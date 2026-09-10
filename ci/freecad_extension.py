@@ -52,6 +52,10 @@ def qualify(freecad, engine_python, output, archive=None, recipe="extension"):
             "XDG_DATA_HOME": str(output / "data"),
             "XDG_CACHE_HOME": str(output / "cache"),
             "VINKULUM_FREECAD_EXTENSION_CHECK": str(output),
+            "VINKULUM_ASSEMBLY_ANALYSIS_CHECK": str(output / "assembly-analysis"),
+            "VINKULUM_ASSEMBLY_RECORD": str(
+                root / "docs/bancs/freecad-assembly-2026/record.zip"
+            ),
             "VINKULUM_CLOSE_CAPTURE": str(output / "example-close"),
             "VINKULUM_FREECAD_PYTHON": str(engine_python.absolute()),
             "VINKULUM_FREECAD_BARRIER_PYTHON": str(barrier),
@@ -87,9 +91,12 @@ def qualify(freecad, engine_python, output, archive=None, recipe="extension"):
     if code:
         raise RuntimeError(f"FreeCAD exited with {code}; see {output / 'console.log'}")
     report_path = (
-        output / "extension-check.json"
-        if recipe == "extension"
-        else output / "example-close/report.json"
+        output
+        / {
+            "extension": "extension-check.json",
+            "example-close": "example-close/report.json",
+            "assembly-analysis": "assembly-analysis/report.json",
+        }[recipe]
     )
     report = json.loads(report_path.read_text())
     if report["status"] != "passed":
@@ -104,7 +111,9 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--archive", type=Path)
     parser.add_argument(
-        "--recipe", choices=("extension", "example-close"), default="extension"
+        "--recipe",
+        choices=("extension", "example-close", "assembly-analysis"),
+        default="extension",
     )
     args = parser.parse_args()
     qualify(args.freecad, args.engine_python, args.output, args.archive, args.recipe)

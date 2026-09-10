@@ -58,6 +58,14 @@ class MotionPanel:
         self.analysis = model.for_selection(source)
         self.analysis_name = self.analysis.Name
         source = model.validate(self.analysis)
+        self.assembly = model.is_assembly(source)
+        self.adapter = bridge
+        if self.assembly:
+            from . import assembly_capture
+
+            self.adapter = assembly_capture
+        self.preview_poses = []
+        self.preview_static = []
         self.source = source
         self.source_name = source.Name
         self.document = source.Document
@@ -77,7 +85,10 @@ class MotionPanel:
         title.setWordWrap(True)
         layout.addWidget(title)
         scope = QtWidgets.QLabel(
-            "One rigid solid, one revolute joint, gravity −Z. "
+            "Native Assembly solids and Revolute joints, gravity −Z. "
+            "Joint frames come from the Assembly; all moving solids use this density."
+            if self.assembly
+            else "One rigid solid, one revolute joint, gravity −Z. "
             "Pivot coordinates use the FreeCAD world frame in mm."
         )
         scope.setWordWrap(True)
@@ -103,7 +114,8 @@ class MotionPanel:
             for axis, control in zip("XYZ", controls):
                 control.setPrefix(axis + " ")
                 boxes.addWidget(control)
-            fields.addRow(label, row)
+            if not self.assembly:
+                fields.addRow(label, row)
         self.threads = QtWidgets.QSpinBox()
         self.threads.setRange(1, 64)
         self.threads.setValue(min(2, self.threads.maximum()))
@@ -191,6 +203,9 @@ class MotionPanel:
             "Pivot": self.pivot,
             "Axis": self.axis,
         }
+        if self.assembly:
+            self.property_fields.pop("Pivot")
+            self.property_fields.pop("Axis")
         self.refresh_inputs()
         for name, controls in self.property_fields.items():
             for index, control in enumerate(controls):
@@ -283,7 +298,7 @@ class MotionPanel:
                 raise ValueError("Choose an absolute directory for saved calculations.")
             output.mkdir(parents=True, exist_ok=True)
             directory = output / str(uuid.uuid4())
-            request = bridge.capture(
+            request = self.adapter.capture(
                 self.source,
                 directory,
                 **model.inputs(self.analysis),
@@ -291,7 +306,13 @@ class MotionPanel:
             prefs = App.ParamGet(PREFERENCES)
             prefs.SetString("EnginePython", str(interpreter))
             prefs.SetString("OutputRoot", str(output))
-            job = bridge.Job(self.source, directory, request, interpreter)
+            job = bridge.Job(
+                self.source,
+                directory,
+                request,
+                interpreter,
+                adapter=self.adapter if self.assembly else None,
+            )
             self.job = _active_job = job
             job.completed.connect(
                 lambda result: self.completed(directory, request, result)
@@ -365,59 +386,115 @@ class MotionPanel:
             return
         try:
             path = directory / "request.json"
-            if path.stat().st_size > 100_000:
+            if path.stat().st_size > (2_000_000 if self.assembly else 100_000):
                 raise ValueError("Captured request exceeds the input budget.")
             request = json.loads(path.read_text())
-            result = bridge.admit(self.source, directory, request)
+            result = self.adapter.admit(self.source, directory, request)
             self.stop_playback()
             self.remove_preview()
             self.completed(directory, request, result)
         except Exception as error:  # noqa: BLE001 - report native errors at the process/UI boundary
             self.status.setText(str(error))
 
-    def remove_preview(self):
+    def remove_preview(self, deleted=None):
         document = App.listDocuments().get(self.document_name)
-        if document is not None:
-            if (
-                self.preview is not None
-                and document.getObject(self.preview.Name) is self.preview
-            ):
-                document.removeObject(self.preview.Name)
-            if self.source_visibility is not None and self.source_exists():
-                self.source.Visibility = self.source_visibility
+        preview, poses, visibility = (
+            self.preview,
+            self.preview_poses,
+            self.source_visibility,
+        )
+        static = self.preview_static
         self.preview = None
+        self.preview_poses = []
+        self.preview_static = []
         self.source_visibility = None
+        if document is not None:
+            for obj in [part for part, _, _ in poses] + static:
+                if (
+                    obj is not preview
+                    and obj is not deleted
+                    and document.getObject(obj.Name) is obj
+                ):
+                    document.removeObject(obj.Name)
+            if (
+                preview is not None
+                and preview is not deleted
+                and document.getObject(preview.Name) is preview
+            ):
+                document.removeObject(preview.Name)
+            if visibility is not None and self.source_exists():
+                self.source.Visibility = visibility
 
     def display_sample(self, index):
         if self.closed or self.result is None:
             return
         try:
             if self.geometry_dirty:
-                if (
-                    bridge.signature(self.source)
-                    != self.request["source_geometry_sha256"]
-                ):
+                if self.assembly:
+                    snapshot, _ = self.adapter.snapshot(self.source)
+                    current = bridge.sha(bridge.request_bytes(snapshot))
+                    expected = self.request["source_state_sha256"]
+                else:
+                    current = bridge.signature(self.source)
+                    expected = self.request["source_geometry_sha256"]
+                if current != expected:
                     raise ValueError(
                         "Geometry changed. Run again before displaying captured motion."
                     )
                 self.geometry_dirty = False
             if self.preview is None:
-                self.preview = self.document.addObject(
-                    "Part::Feature", "VinkulumPlayback"
-                )
+                if self.assembly:
+                    self.preview = self.document.addObject(
+                        "App::DocumentObjectGroup", "VinkulumPlayback"
+                    )
+                    _, shapes = self.adapter.snapshot(self.source)
+                    ground_name = self.request["source_state"]["grounded_name"]
+                    ground = self.document.addObject(
+                        "Part::Feature", "VinkulumCapturedBase"
+                    )
+                    self.preview.addObject(ground)
+                    ground.Label = self.document.getObject(ground_name).Label
+                    ground.Shape = shapes[ground_name].copy()
+                    self.preview_static.append(ground)
+                    captures = [
+                        (body, shapes[body["name"]]) for body in self.request["bodies"]
+                    ]
+                else:
+                    self.preview = self.document.addObject(
+                        "Part::Feature", "VinkulumPlayback"
+                    )
+                    captures = [(self.request, self.source.Shape.copy())]
                 self.preview.Label = "Vinkulum captured motion"
-                self.preview.Shape = self.source.Shape.copy()
-                self.original_placement = App.Placement(self.preview.Placement)
+                for body, shape in captures:
+                    obj = self.preview
+                    if self.assembly:
+                        obj = self.document.addObject(
+                            "Part::Feature", "VinkulumCapturedBody"
+                        )
+                        self.preview.addObject(obj)
+                        obj.Label = body["label"]
+                    obj.Shape = shape.copy()
+                    placement = App.Placement(obj.Placement)
+                    self.preview_poses.append(
+                        (obj, placement, body["properties_si"]["centre_m"])
+                    )
+                    obj.ViewObject.ShapeColor = (0.92, 0.58, 0.18)
+                self.original_placement = self.preview_poses[0][1]
                 self.source_visibility = self.source.Visibility
                 self.source.Visibility = False
-                self.preview.ViewObject.ShapeColor = (0.92, 0.58, 0.18)
-            bridge.set_pose(
-                self.preview,
-                self.original_placement,
-                self.request["properties_si"]["centre_m"],
-                self.result["position_m"][index],
-                self.result["rotation"][index],
-            )
+                # Recompute only the independent copies. A document recompute can
+                # execute pending source features and alter native joint frames.
+                for obj in [
+                    part for part, _, _ in self.preview_poses
+                ] + self.preview_static:
+                    obj.recompute()
+                self.preview.recompute()
+            for body_index, (obj, placement, centre) in enumerate(self.preview_poses):
+                position = self.result["position_m"][index]
+                rotation = self.result["rotation"][index]
+                if self.assembly:
+                    position, rotation = position[body_index], rotation[body_index]
+                bridge.set_pose(obj, placement, centre, position, rotation)
             self.time_label.setText(
                 f"Captured time: {self.result['time_s'][index]:.6g} s · native sample {index}"
             )
@@ -488,7 +565,14 @@ class MotionPanel:
                 self.reject()
                 return
             self.refresh_inputs(property_name)
-        if obj is not self.preview and property_name in ("Shape", "Placement", "Group"):
+        is_preview = (
+            obj is self.preview
+            or obj in self.preview_static
+            or any(obj is part for part, _, _ in self.preview_poses)
+        )
+        if not is_preview and (
+            self.assembly or property_name in ("Shape", "Placement", "Group")
+        ):
             self.geometry_dirty = True
 
     def slotRecomputedDocument(self, document):
@@ -501,11 +585,13 @@ class MotionPanel:
             self.remove_preview()
 
     def slotDeletedObject(self, obj):
-        if obj is self.preview:
-            self.preview = None
-            if self.source_visibility is not None and self.source_exists():
-                self.source.Visibility = self.source_visibility
-            self.source_visibility = None
+        if (
+            obj is self.preview
+            or obj in self.preview_static
+            or any(obj is part for part, _, _ in self.preview_poses)
+        ):
+            self.stop_playback()
+            self.remove_preview(deleted=obj)
         elif (obj is self.source or obj is self.analysis) and not self.closed:
             self.dispose()
             Gui.Control.closeDialog()
@@ -515,7 +601,7 @@ class MotionCommand:
     def GetResources(self):
         return {
             "MenuText": "Motion analysis…",
-            "ToolTip": "Calculate the selected solid with Vinkulum",
+            "ToolTip": "Calculate the selected solid or native Assembly with Vinkulum",
         }
 
     def Activated(self):
@@ -532,7 +618,7 @@ def open_analysis(selected):
             raise ValueError("Finish or close the current FreeCAD task first.")
         if selected is None:
             raise ValueError(
-                "Select one solid, PartDesign Body or motion analysis first."
+                "Select one solid, native Assembly or motion analysis first."
             )
         panel = MotionPanel(selected)
         Gui.Control.showDialog(panel)
@@ -542,8 +628,8 @@ def open_analysis(selected):
         return None
 
 
-def open_example():
-    path = Path(__file__).parent / "Examples" / "Pendulum.FCStd"
+def _open_example(filename, selected_name):
+    path = Path(__file__).parent / "Examples" / filename
     document = App.openDocument(str(path))
     view = Gui.activeDocument().activeView()
     animated = view.isAnimationEnabled()
@@ -556,7 +642,16 @@ def open_example():
     finally:
         view.setAnimationEnabled(animated)
     Gui.Selection.clearSelection()
-    Gui.Selection.addSelection(document.getObject("Rod"))
+    Gui.Selection.addSelection(document.getObject(selected_name))
+
+
+def open_example():
+    _open_example("Pendulum.FCStd", "Rod")
+
+
+def open_assembly_example():
+    Gui.activateWorkbench("AssemblyWorkbench")
+    _open_example("DoublePendulum.FCStd", "Assembly")
 
 
 def install():
@@ -570,6 +665,7 @@ def install():
     action.triggered.connect(lambda: Gui.runCommand("Vinkulum_Motion"))
     menu.addAction(action)
     menu.addAction("Open pendulum example", open_example)
+    menu.addAction("Open double-pendulum assembly", open_assembly_example)
     from .static_host import StaticCommand
 
     Gui.addCommand("Vinkulum_Static", StaticCommand())

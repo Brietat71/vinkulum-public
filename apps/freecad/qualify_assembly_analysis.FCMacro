@@ -1,0 +1,377 @@
+"""Exercise actual native Assembly analyses, persistence, playback and cancellation.
+
+SPDX-License-Identifier: Apache-2.0
+Use an empty dedicated FreeCAD session; this recipe closes it on completion.
+"""
+
+import json
+import math
+import os
+import sys
+import traceback
+import time
+import zipfile
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide6.QtCore import QTimer
+from PySide6.QtWidgets import QApplication, QMenu
+
+root = Path(os.environ["VINKULUM_ASSEMBLY_ANALYSIS_CHECK"])
+root.mkdir(parents=True, exist_ok=False)
+report = {"status": "running", "checks": [], "freecad": App.Version()}
+state = {"finished": False, "owns_session": False}
+
+
+def check(message, condition):
+    assert condition, message
+    report["checks"].append(message)
+    record()
+
+
+def record():
+    (root / "report.json").write_text(json.dumps(report, indent=2) + "\n")
+
+
+def finish(error=None):
+    if state["finished"]:
+        return
+    state["finished"] = True
+    timer.stop()
+    panel = state.get("panel")
+    if panel is not None and panel.job is not None:
+        panel.job.cancel()
+        panel.job.process.waitForFinished(5000)
+    if panel is not None and not panel.closed:
+        panel.reject()
+    report["status"] = "failed" if error else "passed"
+    if error:
+        report["error"] = str(error)
+    record()
+    sys.excepthook = previous_excepthook
+    if not state["owns_session"]:
+        return
+    for name in list(App.listDocuments()):
+        App.closeDocument(name)
+    QApplication.instance().quit()
+
+
+def failed(kind, error, trace):
+    (root / "exception.log").write_text(
+        "".join(traceback.format_exception(kind, error, trace))
+    )
+    finish(error)
+
+
+previous_excepthook = sys.excepthook
+sys.excepthook = failed
+
+
+def show_analysis(obj):
+    panel = state["host"].open_analysis(obj)
+    assert panel is not None
+    state["panel"] = panel
+    return panel
+
+
+def start():
+    state["owns_session"] = not bool(App.listDocuments())
+    assert state["owns_session"], "Use an empty dedicated FreeCAD session"
+    from vinkulum_freecad import host, analysis, bridge
+
+    state.update(host=host, model=analysis, bridge=bridge)
+    addon = Path(host.__file__).parents[1]
+    report["installed_manifest"] = json.loads(
+        (addon / "extension-info.json").read_text()
+    )
+    for name, digest in report["installed_manifest"]["files_sha256"].items():
+        path = (
+            addon / name
+            if name in ("InitGui.py", "INSTALLATION.txt")
+            else Path(host.__file__).parent / name
+        )
+        assert bridge.sha(path.read_bytes()) == digest, name
+    Gui.activateWorkbench("AssemblyWorkbench")
+    source_archive = Path(os.environ["VINKULUM_ASSEMBLY_RECORD"])
+    with zipfile.ZipFile(source_archive) as archive:
+        (root / "source.FCStd").write_bytes(archive.read("record/assembly-2.FCStd"))
+    example = Path(host.__file__).parent / "Examples/DoublePendulum.FCStd"
+    check(
+        "Installed editable Assembly example matches the qualified source",
+        example.read_bytes() == (root / "source.FCStd").read_bytes(),
+    )
+    menu = Gui.getMainWindow().findChild(QMenu, "VinkulumMenu")
+    next(
+        action
+        for action in menu.actions()
+        if action.text() == "Open double-pendulum assembly"
+    ).trigger()
+    document = App.ActiveDocument
+    check(
+        "Native menu opens and selects the Assembly example",
+        Gui.Selection.getSelection() == [document.getObject("Assembly")],
+    )
+    assembly = document.getObject("Assembly")
+    motion = analysis.for_selection(assembly)
+    identity = motion.AnalysisId
+    document.undo()
+    check(
+        "Assembly analysis creation supports native undo",
+        not any(analysis.is_analysis(o) for o in document.Objects),
+    )
+    document.redo()
+    motion = next(o for o in document.Objects if analysis.is_analysis(o))
+    check(
+        "Native redo preserves the analysis UUID and Assembly link",
+        motion.AnalysisId == identity and motion.Source is assembly,
+    )
+    Gui.getMainWindow().resize(1440, 1000)
+    state.update(document=document, assembly=assembly, identity=identity)
+    panel = show_analysis(motion)
+    check(
+        "Assembly task obtains joints from the native model",
+        panel.assembly
+        and "Pivot" not in panel.property_fields
+        and "Axis" not in panel.property_fields,
+    )
+    panel.density.setValue(2700)
+    panel.duration.setValue(0.5)
+    panel.step.setValue(0.005)
+    panel.threads.setValue(2)
+    panel.output.setText(str(root / "runs"))
+    panel.run_button.click()
+    assert panel.job is not None, panel.status.text()
+    state["phase"] = "first"
+    timer.start(20)
+
+
+def inspect_playback(panel):
+    assert panel.result is not None, panel.status.text()
+    check(
+        "Actual Assembly calculation creates both native playback solids",
+        len(panel.preview_poses) == 2,
+    )
+    _, source_shapes = panel.adapter.snapshot(panel.source)
+    grounded = source_shapes[panel.request["source_state"]["grounded_name"]]
+    assert len(panel.preview_static) == 1
+    maximum = 0.0
+    for index in (0, len(panel.result["time_s"]) // 2, len(panel.result["time_s"]) - 1):
+        panel.slider.setValue(index)
+        assert (
+            math.dist(
+                list(panel.preview_static[0].Shape.Solids[0].CenterOfMass),
+                list(grounded.CenterOfMass),
+            )
+            < 1e-6
+        )
+        for body, (obj, _, _) in enumerate(panel.preview_poses):
+            maximum = max(
+                maximum,
+                math.dist(
+                    [v * 0.001 for v in obj.Shape.Solids[0].CenterOfMass],
+                    panel.result["position_m"][index][body],
+                ),
+            )
+    check("Both displayed centres match actual captured poses", maximum < 1e-9)
+    check(
+        "The grounded component remains visible at its captured world placement",
+        panel.preview_static[0].Visibility,
+    )
+    snapshot, _ = panel.adapter.snapshot(panel.source)
+    check(
+        "Playback leaves the source geometry and native joint frames unchanged",
+        state["bridge"].sha(state["bridge"].request_bytes(snapshot))
+        == panel.request["source_state_sha256"],
+    )
+    report.setdefault("display_errors_m", []).append(maximum)
+
+
+def tick_inner():
+    panel = state["panel"]
+    if state["phase"] in ("first", "second") and panel.job is not None:
+        return
+    if state["phase"] == "first":
+        inspect_playback(panel)
+        view = Gui.activeDocument().activeView()
+        view.setAnimationEnabled(False)
+        view.viewFront()
+        view.fitAll(1.2)
+        Gui.updateGui()
+        state["phase"] = "first_snapshot"
+        state["paint_started"] = time.monotonic()
+        return
+    elif state["phase"] == "first_snapshot":
+        if time.monotonic() - state["paint_started"] < 0.3:
+            return
+        assert (
+            QApplication.primaryScreen()
+            .grabWindow(Gui.getMainWindow().winId())
+            .save(str(root / "assembly-analysis.png"))
+        )
+        request = panel.request
+        state["body_ids"] = [body["body_id"] for body in request["bodies"]]
+        state["first_run_id"] = request["run_id"]
+        check(
+            "Captured project identity comes from the native analysis",
+            request["project_id"] == state["identity"],
+        )
+        report["first_capture"] = str(panel.directory)
+        state["last_capture"] = panel.analysis.LastCapture
+        document = state["document"]
+        document.saveAs(str(root / "analysis.FCStd"))
+        check(
+            "Saving removes every temporary body and restores the source Assembly",
+            panel.preview is None
+            and not panel.preview_poses
+            and state["assembly"].Visibility
+            and not any(
+                o.Name.startswith("VinkulumCaptured") for o in document.Objects
+            ),
+        )
+        panel.reject()
+        App.closeDocument(document.Name)
+        document = App.openDocument(str(root / "analysis.FCStd"))
+        motion = next(o for o in document.Objects if state["model"].is_analysis(o))
+        check(
+            "FCStd round trip preserves Assembly link, analysis identity and capture",
+            motion.Source.Name == "Assembly"
+            and motion.AnalysisId == state["identity"]
+            and motion.LastCapture == state["last_capture"],
+        )
+        check("Reopening the document starts no job", state["host"]._active_job is None)
+        state.update(document=document, assembly=motion.Source)
+        panel = show_analysis(motion)
+        interpreter = panel.interpreter.text()
+        panel.interpreter.setText("/not-an-engine")
+        panel.reopen_button.click()
+        check(
+            "Saved multi-body capture reopens without an engine",
+            panel.result is not None
+            and len(panel.preview_poses) == 2
+            and panel.job is None,
+        )
+        panel.interpreter.setText(interpreter)
+        panel.output.setText(str(root / "runs"))
+        panel.run_button.click()
+        assert panel.job is not None, panel.status.text()
+        state["phase"] = "second"
+    elif state["phase"] == "second":
+        inspect_playback(panel)
+        check(
+            "A second calculation preserves body identities but receives a fresh run UUID",
+            [b["body_id"] for b in panel.request["bodies"]] == state["body_ids"]
+            and panel.request["run_id"] != state["first_run_id"],
+        )
+        report["second_capture"] = str(panel.directory)
+        assembly = state["assembly"]
+        original = App.Placement(assembly.Placement)
+        changed = App.Placement(original)
+        changed.Base += App.Vector(10, 0, 0)
+        assembly.Placement = changed
+        panel.display_sample(1)
+        check(
+            "Moving the Assembly invalidates and removes all playback solids",
+            panel.preview is None and not panel.preview_poses and assembly.Visibility,
+        )
+        assembly.Placement = original
+        panel.reopen_capture()
+        assert panel.preview is not None, panel.status.text()
+        joint = state["document"].getObject("Elbow")
+        old = App.Placement(joint.Placement2)
+        changed = App.Placement(old)
+        changed.Base += App.Vector(1, 0, 0)
+        joint.Placement2 = changed
+        panel.display_sample(1)
+        check(
+            "Editing a native connector invalidates playback immediately",
+            panel.preview is None and not panel.preview_poses and assembly.Visibility,
+        )
+        joint.Placement2 = old
+        panel.reopen_capture()
+        assert panel.preview is not None, panel.status.text()
+        state["document"].removeObject(panel.preview_poses[0][0].Name)
+        check(
+            "Deleting one preview child removes the whole preview without orphan solids",
+            panel.preview is None
+            and not panel.preview_poses
+            and assembly.Visibility
+            and not any(
+                o.Name.startswith("VinkulumCaptured") for o in state["document"].Objects
+            ),
+        )
+        panel.reopen_capture()
+        assert panel.preview is not None, panel.status.text()
+        state["document"].removeObject(panel.preview_static[0].Name)
+        check(
+            "Deleting the fixed preview also removes all temporary solids",
+            panel.preview is None
+            and not panel.preview_poses
+            and not panel.preview_static
+            and assembly.Visibility
+            and not any(
+                o.Name.startswith("VinkulumCaptured") for o in state["document"].Objects
+            ),
+        )
+        motion = panel.analysis
+        motion.Source = state["document"].getObject("LowerDesign")
+        assert panel.closed
+        panel = show_analysis(motion)
+        check(
+            "Changing an analysis to a solid restores its explicit joint controls",
+            not panel.assembly
+            and "Pivot" in panel.property_fields
+            and "Hidden" not in motion.getEditorMode("Pivot"),
+        )
+        motion.Source = assembly
+        assert panel.closed
+        panel = show_analysis(motion)
+        check(
+            "Changing back to Assembly restores native-joint controls without losing the capture",
+            panel.assembly
+            and "Pivot" not in panel.property_fields
+            and "Hidden" in motion.getEditorMode("Pivot")
+            and motion.LastCapture,
+        )
+        panel.output.setText(str(root / "runs"))
+        barrier = root / "barrier-python"
+        barrier.write_text(
+            "#!/usr/bin/python3\nimport time\nfrom pathlib import Path\nPath("
+            + repr(str(root / "barrier-entered"))
+            + ").touch()\nwhile True: time.sleep(0.1)\n"
+        )
+        barrier.chmod(0o755)
+        panel.interpreter.setText(str(barrier))
+        panel.run_button.click()
+        assert panel.job is not None, panel.status.text()
+        state["phase"] = "barrier"
+    elif state["phase"] == "barrier":
+        if not (root / "barrier-entered").exists():
+            return
+        state["last_capture_before_close"] = panel.analysis.LastCapture
+        App.closeDocument(state["document"].Name)
+        state["phase"] = "closed"
+    elif state["phase"] == "closed":
+        if state["host"]._active_job is not None:
+            return
+        check(
+            "Closing the native Assembly document settles and releases its real worker",
+            panel.closed and panel.job is None,
+        )
+        finish()
+
+
+def tick():
+    if state.get("in_tick"):
+        return
+    state["in_tick"] = True
+    try:
+        tick_inner()
+    finally:
+        state["in_tick"] = False
+
+
+timer = QTimer(Gui.getMainWindow())
+timer.timeout.connect(tick)
+QTimer.singleShot(180000, lambda: finish("Qualification timeout"))
+QTimer.singleShot(800, start)

@@ -8,8 +8,8 @@
 sources, input/result FCStd files, STEP captures, raw mesh/CalculiX outputs, console
 logs, the task report, engine inventory, guardian test output and the existing
 Motion report from the **same byte-identical package**. Verify with
-`sha256sum -c SHA256SUMS`. The package manifest and provenance deliberately record
-an uncommitted development candidate, not a new official extension release.
+`sha256sum -c SHA256SUMS`. The package manifest identifies **0.1.0a3.dev1**. Its provenance deliberately
+records an uncommitted composition candidate, not a new official extension release.
 Local absolute paths record the experiment; they are not portable defaults.
 
 Runtime: FreeCAD 1.1.3, Qt 6, Python 3.11, host OCCT 7.8.1; separate Python 3.14.7
@@ -40,9 +40,18 @@ real Linux processes to check that the guardian propagates worker exit status an
 kills its own group when its parent disappears. They run in `ci/local.sh` without
 FreeCAD, CAD or solver dependencies.
 
-All eighteen existing native Motion checks also pass on the exact same installed
-package. Both final FreeCAD processes exit zero, and the task runner rejects Python
-tracebacks from native callbacks, including errors that FreeCAD catches internally.
+All eighteen existing native single-solid Motion checks and all twenty-six native
+Assembly Motion checks also pass on the exact same installed package. All three
+FreeCAD processes exit zero and all three native consoles contain no Python
+traceback. The static task runner also rejects Python tracebacks from callbacks
+that FreeCAD catches internally. The Assembly trajectories independently pass
+`verify_assembly_analysis.py`; their requests, native arrays, report and reference
+verification are retained under `assembly/` in the same archive.
+
+This final composition retains both the native Assembly menu/example and the new
+static task. It was requalified after merging the Assembly contribution and
+versioning the common package. The earlier isolated static-task qualification is
+preserved in repository history; this record covers the combined development build.
 
 Intermediate qualification exposed an invalid unit arithmetic expression in the
 test and an invalid integer conversion of a Qt button enum in the host. Both were

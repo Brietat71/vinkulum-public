@@ -30,7 +30,7 @@ Choose a directory where calculation captures should be saved. These two
 settings are remembered for later sessions. No calculation starts automatically.
 VINKULUM_FREECAD_PYTHON and VINKULUM_FREECAD_OUTPUT_ROOT can also supply them.
 
-Try the included example
+Try the included single-solid example
 ------------------------
 1. Vinkulum > Open pendulum example opens an editable PartDesign document.
 2. Select its Rod body, then Vinkulum > Motion analysis. This creates a Motion
@@ -57,6 +57,23 @@ it is normalised before transmission. Density uses kg/m3, time uses seconds.
 The worker recomputes STEP mass properties with OCCT 8 and compares volume,
 centre and full inertia against the FreeCAD capture before native simulation.
 
+Native Assembly workflow in development source builds
+-----------------------------------------------------
+Vinkulum > Open double-pendulum assembly opens and selects the included native
+Assembly. Open Motion analysis, choose the engine, set uniform density to
+2700 kg/m3, duration to 0.5 s and step to 0.005 s, then Run motion. Joint frames
+come from the Assembly's native Revolute joints; explicit pivot/axis fields
+belong to the single-solid workflow. Save and reopen the Motion object normally.
+The published 0.1.0a2 release predates this Assembly workflow.
+
+The temporary preview contains the moving solids and a fixed copy of the
+grounded component. Source geometry and joint frames remain unchanged. Saving,
+closing, changing the source or deleting any preview object removes all preview
+solids and restores source visibility. A changed native connector invalidates
+old playback. Repeated calculations preserve the analysis/component identities
+and receive distinct run IDs. Assembly captures contain a STEP for each moving
+body; keep every file in their calculation directory together.
+
 Cancellation, saving and reopening
 ---------------------------------
 One Vinkulum job can run at a time in this FreeCAD process. Engine threads are
@@ -80,9 +97,12 @@ Scope
 -----
 This first host covers one top-level rigid solid and one explicit revolute
 joint, starting from rest, with gravity -Z. Limit: 10 s and 2001 native samples.
-It does not yet convert FreeCAD Assembly constraints, support multi-body host
-models or expose CalculiX/Pinocchio controls in FreeCAD. The broader Vinkulum
-backend remains available separately. No general trajectory bound is claimed.
+Development source builds additionally support flat native Assemblies with
+one grounded solid and up to 16 moving single solids at one uniform density.
+Only Revolute joints without enabled limits are mapped. General Assembly
+constraints, nested assemblies, persistent face attachment, other joint types
+and Pinocchio controls remain outside the host qualification. The
+broader backend remains available separately. No general trajectory bound is claimed.
 The qualified FreeCAD host uses its own OCCT 7.8.1; the separate Vinkulum worker
 uses OCCT 8.0.1. STEP and SI-property checks are the boundary between them.
 Other host versions, macOS and Windows have not been qualified for this ZIP.
@@ -90,3 +110,20 @@ Other host versions, macOS and Windows have not been qualified for this ZIP.
 Original extension code and example model: Apache-2.0. See LICENSE and NOTICE.
 FreeCAD and external engines keep their own licences. extension-info.json
 identifies the exact source and packaged-file hashes.
+
+Native linear-static workflow in development 0.1.0a3.dev1
+--------------------------------------------------------
+Select a top-level solid, then Vinkulum > Static analysis. Select faces in the
+3D view and add fixed supports and pressure. Positive pressure acts inward;
+negative pressure pulls outward. Young modulus and pressure are displayed in
+MPa; mesh size in mm. Configure the separate engine Python, OCCT 8 Gmsh HXT,
+CalculiX executable and saved-run directory, then Run static analysis.
+Inputs and native displacement results persist in the FCStd document. Geometry
+changes require explicit boundary reselection. Input changes invalidate linked
+results; recomputation hides stale results and restores source visibility.
+Cancel or close the task/document to retire its process group. A guardian also
+stops the static group if FreeCAD disappears. Motion and statics share one job.
+This is linear isotropic small-strain statics with fixed supports and pressure,
+not contact, nonlinear material or a general FEM error certificate. See the
+source guide docs/FREECAD_STATIC_TASK.md for limits and retained qualification.
+The public 0.1.0a2 release does not contain this development workflow.

@@ -15,7 +15,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def alive(pid):
     path = Path(f"/proc/{pid}/stat")
-    return path.exists() and path.read_text().split()[2] != "Z"
+    try:
+        return path.read_text().split()[2] != "Z"
+    except FileNotFoundError:
+        return False
 
 
 @unittest.skipUnless(sys.platform == "linux", "Linux static guardian")
