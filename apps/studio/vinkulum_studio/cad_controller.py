@@ -2,22 +2,44 @@
 
 import hashlib
 import json
-import math
 import sys
 import tempfile
-from dataclasses import asdict, replace
+from dataclasses import asdict
 from pathlib import Path
 
-import numpy as np
-from PySide6.QtCore import QObject, QProcess, QProcessEnvironment, QTimer, Signal, Slot
+from PySide6.QtCore import (
+    QObject,
+    QProcess,
+    QProcessEnvironment,
+    QThread,
+    QTimer,
+    Signal,
+    Slot,
+)
 
-from .cad_history import CadRecipe
+from .cad_admission import CadAdmissionError, admit_cad_response
 from .cpu_scheduler import application_scheduler
-from .document import MAX_PROJECT_BYTES, Body
+from .document import Project
 from .engine_threads import thread_environment
 from .execution import ExecutionPlan
-from .model import finite_number, read_json, write_json
-from .sketch import Sketch
+from .model import finite_number, write_json
+
+
+class CadValidation(QThread):
+    def __init__(self, path, request, input_sha256, plan, code, project, parent):
+        super().__init__(parent)
+        self.arguments = (path, request, input_sha256, plan, code, project)
+        self.result, self.error, self.kind = None, None, None
+
+    def run(self):
+        try:
+            result = admit_cad_response(*self.arguments)
+            if not self.isInterruptionRequested():
+                self.result = result
+        except CadAdmissionError as error:
+            self.error, self.kind = str(error), error.kind
+        except (OSError, ValueError, TypeError, KeyError, RuntimeError) as error:
+            self.error, self.kind = str(error), "invalid_result"
 
 
 class CadController(QObject):
@@ -26,13 +48,18 @@ class CadController(QObject):
     busy_changed = Signal(bool)
     stage_changed = Signal(str)
 
-    def __init__(self, parent=None, *, scheduler=None):
+    def __init__(self, parent=None, *, scheduler=None, project=None):
         super().__init__(parent)
+        if project is not None and not isinstance(project, Project):
+            raise TypeError("CAD admission requires an immutable project snapshot.")
         self.scheduler = scheduler if scheduler is not None else application_scheduler()
         self._ticket = None
         self.process = None
         self.temporary = None
         self.last_result = None
+        self.last_admission = None
+        self.validation = None
+        self._context_project = project
         self.last_request = None
         self.last_log = ""
         self.failure_kind = None
@@ -124,7 +151,9 @@ class CadController(QObject):
         if self.process is not None:
             self._reason = reason
             self.timer.stop()
-            if self.process.state() == QProcess.ProcessState.NotRunning:
+            if self.validation is not None:
+                self.validation.requestInterruption()
+            elif self.process.state() == QProcess.ProcessState.NotRunning:
                 self._settle(self.process, reason, "CAD cancelled before execution.")
             else:
                 self.process.kill()
@@ -152,139 +181,73 @@ class CadController(QObject):
     def _finished(self, process, code, status):
         if process is None or process is not self.process:
             return
+        self.timer.stop()
         try:
             self._read_log()
-            if self._reason:
-                message = (
-                    "CAD timed out. The previous model is preserved."
-                    if self._reason == "timed_out"
-                    else "CAD cancelled. The previous model is preserved."
-                )
-                self._settle(process, self._reason, message)
-                return
-            if status == QProcess.ExitStatus.CrashExit:
-                self._settle(
-                    process,
-                    "crashed",
-                    "The CAD worker crashed. The previous model is preserved.",
-                )
-                return
-            path = Path(self.temporary.name) / "output.json"
-            result = read_json(path, MAX_PROJECT_BYTES) if path.is_file() else {}
-            if not isinstance(result, dict):
-                raise TypeError("Invalid CAD worker response.")
-            if result.get("status") == "failed":
-                self._settle(
-                    process,
-                    "operation_failed",
-                    "CAD operation failed: "
-                    + str(result.get("error", "No detail returned.")),
-                )
-                return
-            if code != 0:
-                self._settle(
-                    process,
-                    "worker_failed",
-                    f"CAD worker exited with code {code}. The previous model is preserved.",
-                )
-                return
-            if (
-                result.get("status") != "completed"
-                or result.get("request_sha256") != self._input_hash
-            ):
-                raise ValueError("CAD response does not match the captured operation.")
-            if "body" in result:
-                body = Body.from_dict(result["body"])
-                if body.cad is None:
-                    raise ValueError("The CAD worker returned no solid geometry.")
-                density = self.last_request.get("density", 7800)
-                if body.inertia_mode != "homogeneous" or not math.isclose(
-                    body.mass, body.cad.volume_m3 * density, rel_tol=1e-12, abs_tol=0
-                ):
-                    raise ValueError(
-                        "CAD mass properties do not match the captured density."
-                    )
-                operation = self.last_request.get("operation")
-                if operation == "extrude_sketch":
-                    features = body.cad.recipe.features if body.cad.recipe else ()
-                    if (
-                        len(features) != 1
-                        or features[0].kind != "extrude_sketch"
-                        or features[0].profile
-                        != Sketch.from_dict(self.last_request["profile"])
-                        or features[0].dimensions_mm
-                        != tuple(self.last_request["dimensions_mm"])
-                    ):
-                        raise ValueError(
-                            "The CAD worker changed the captured sketch or extrusion height."
-                        )
-                if (
-                    operation in ("regenerate", "fillet", "cut", "fuse", "common")
-                    and body.id != self.last_request["a"]["id"]
-                ):
-                    raise ValueError("The CAD worker changed the target body identity.")
-                if operation == "regenerate":
-                    expected = CadRecipe.from_dict(self.last_request["recipe"])
-                    if (
-                        body.cad.recipe is None
-                        or replace(
-                            body.cad.recipe, origin_in_body_m=expected.origin_in_body_m
-                        )
-                        != expected
-                    ):
-                        raise ValueError(
-                            "The CAD worker returned a different feature graph."
-                        )
-                    source = Body.from_dict(self.last_request["a"])
-                    if (
-                        body.name != source.name
-                        or body.orientation != source.orientation
-                    ):
-                        raise ValueError(
-                            "CAD regeneration changed the captured body frame."
-                        )
-                    expected_position = np.array(source.position) + np.array(
-                        source.orientation
-                    ).reshape(3, 3) @ (
-                        np.array(expected.origin_in_body_m)
-                        - body.cad.recipe.origin_in_body_m
-                    )
-                    tolerance = 1e-10 + 16 * np.spacing(
-                        np.maximum(np.abs(expected_position), np.abs(source.position))
-                    )
-                    if not np.all(
-                        np.abs(np.array(body.position) - expected_position) <= tolerance
-                    ):
-                        raise ValueError(
-                            "CAD regeneration changed the design frame's world origin."
-                        )
-            elif self.last_request.get("operation") == "export_step":
-                if not isinstance(result.get("step"), str) or not result[
-                    "step"
-                ].startswith("ISO-10303-21;"):
-                    raise ValueError("Invalid CAD STEP output.")
-            elif self.last_request.get("operation") != "self_check":
-                raise ValueError("The CAD worker returned no part.")
-            execution = result.get("execution")
-            if (
-                not isinstance(execution, dict)
-                or ExecutionPlan.from_dict(execution.get("allocation")) != self._plan
-            ):
-                raise ValueError("CAD response changed the captured CPU allocation.")
-            if execution.get("backend") != "occt-native" or any(
-                type(execution.get(key)) is not int
-                or execution[key] != self._plan.threads
-                for key in ("threads", "default_threads")
-            ):
-                raise ValueError(
-                    "CAD response does not identify the allocated native OCCT pool."
-                )
-        except (OSError, ValueError, TypeError, KeyError) as error:
+        except OSError as error:
             self._settle(process, "invalid_result", str(error))
             return
-        self.last_result = result
-        self._settle(process)
-        self.completed.emit(result)
+        if self._reason:
+            self._settle(
+                process, self._reason, "CAD stopped. The previous model is preserved."
+            )
+            return
+        if status == QProcess.ExitStatus.CrashExit:
+            self._settle(
+                process,
+                "crashed",
+                "The CAD worker crashed. The previous model is preserved.",
+            )
+            return
+        worker = CadValidation(
+            Path(self.temporary.name) / "output.json",
+            self.last_request,
+            self._input_hash,
+            self._plan,
+            code,
+            self._context_project,
+            self,
+        )
+        self.validation = worker
+        worker.finished.connect(self._reader_finished)
+        self.stage_changed.emit(
+            "Checking CAD geometry, mass properties and document attachments…"
+        )
+        if self.validation is not worker:
+            return
+        if self._reason:
+            self._validated(worker)
+        else:
+            worker.start()
+
+    @Slot()
+    def _reader_finished(self):
+        self._validated(self.sender())
+
+    def _validated(self, worker):
+        if worker is None or worker is not self.validation:
+            return
+        self.validation = None
+        worker.deleteLater()
+        if self._reason:
+            self._settle(
+                self.process,
+                self._reason,
+                "CAD validation cancelled. The previous model is preserved.",
+            )
+            return
+        if worker.result is None:
+            self._settle(
+                self.process,
+                worker.kind or "invalid_result",
+                worker.error or "No validated CAD response returned.",
+            )
+            return
+        admission = worker.result
+        self.last_admission = admission
+        self.last_result = admission.payload
+        self._settle(self.process)
+        self.completed.emit(admission.payload)
 
     def _settle(self, process, kind=None, message=""):
         if process is None or process is not self.process:
@@ -306,6 +269,14 @@ class CadController(QObject):
         process = self.process
         if process is not None:
             self.cancel()
+            if self.validation is not None:
+                worker = self.validation
+                if not worker.wait(2000):
+                    raise RuntimeError(
+                        "CAD validation is still stopping; keep its owner alive."
+                    )
+                self._validated(worker)
+                return
             process.waitForFinished(2000)
             if (
                 process is self.process

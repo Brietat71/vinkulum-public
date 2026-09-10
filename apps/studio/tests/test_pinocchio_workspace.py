@@ -310,6 +310,7 @@ class PinocchioWorkspace(unittest.TestCase):
             return_value=(str(result.directory / "result.json"), ""),
         ):
             window.open_result()
+            self.wait_until(lambda: not window.archive.busy)
         self.assertEqual(window.project.name, "Next mechanism")
         self.assertEqual(window.edited_state(), edited)
         self.assertEqual(window.result.state, captured)
@@ -327,6 +328,7 @@ class PinocchioWorkspace(unittest.TestCase):
             return_value=(str(invalid / "result.json"), ""),
         ):
             window.open_result()
+            self.wait_until(lambda: not window.archive.busy)
         self.assertIs(window.result, previous)
         self.assertIn("positive definite", window.status.text())
         with (
@@ -338,6 +340,7 @@ class PinocchioWorkspace(unittest.TestCase):
             ),
         ):
             window.open_input()
+            self.wait_until(lambda: not window.archive.busy)
         self.assertEqual(window.edited_state(), edited)
         with (
             patch.object(
@@ -348,6 +351,7 @@ class PinocchioWorkspace(unittest.TestCase):
             ),
         ):
             window.open_input()
+            self.wait_until(lambda: not window.archive.busy)
         self.assertEqual(window.project, self.project)
         self.assertEqual(window.edited_state(), captured)
 

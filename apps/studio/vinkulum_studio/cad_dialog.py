@@ -3,7 +3,7 @@
 from dataclasses import asdict
 from pathlib import Path
 
-from PySide6.QtCore import Signal
+from PySide6.QtCore import QTimer, Signal, Slot
 from PySide6.QtWidgets import (
     QComboBox,
     QDialog,
@@ -30,7 +30,7 @@ class CadDialog(QDialog):
         self.setWindowTitle("CAD design · OCCT 8 / build123d")
         self.setMinimumWidth(430)
         self.project = project
-        self.controller = CadController(self)
+        self.controller = CadController(self, project=project)
         self.controller.completed.connect(self._completed)
         self.controller.failed.connect(
             lambda kind, message: self.status.setText(message)
@@ -39,6 +39,8 @@ class CadDialog(QDialog):
         self.input_path = None
         self.output_path = None
         self.result_data = None
+        self.result_body = self.result_project = None
+        self._close_pending = None
         layout = QVBoxLayout(self)
         title = QLabel("Create a part or modify a solid")
         title.setObjectName("section_title")
@@ -118,6 +120,8 @@ class CadDialog(QDialog):
         return self.controller.process
 
     def _busy(self, busy):
+        if not busy and self._close_pending is not None:
+            QTimer.singleShot(0, self._finish_close)
         self.apply_button.setEnabled(not busy)
         for row in range(self.form.rowCount()):
             item = self.form.itemAt(row, QFormLayout.ItemRole.FieldRole)
@@ -262,7 +266,11 @@ class CadDialog(QDialog):
             self.status.setText(str(error))
 
     def _completed(self, result):
+        if self._close_pending is not None:
+            return
+        admission = self.controller.last_admission
         self.result_data = result
+        self.result_body, self.result_project = admission.body, admission.project
         self.completed.emit(result)
         self.accept()
 
@@ -277,5 +285,17 @@ class CadDialog(QDialog):
             )
 
     def reject(self):
+        self.done(QDialog.DialogCode.Rejected)
+
+    @Slot()
+    def _finish_close(self):
+        if self._close_pending is not None:
+            self.done(self._close_pending)
+
+    def done(self, result):
+        if self.controller.process is not None:
+            self._close_pending = QDialog.DialogCode.Rejected
+            self.controller.cancel()
+            return
         self.controller.shutdown()
-        super().reject()
+        super().done(result)

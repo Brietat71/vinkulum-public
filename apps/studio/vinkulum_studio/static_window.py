@@ -30,6 +30,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from .archive_controller import ArchiveController
 from .calculix import StaticStudy, load_static_result, load_study, study_document
 from .controls import NumberField
 from .finite_elements import POINT_COUNTS
@@ -74,9 +75,15 @@ class StaticWindow(QMainWindow):
         self._loading = False
         self._close_pending = False
         self.controller = StaticController(self)
+        self.archive = ArchiveController(self, scheduler=self.controller.scheduler)
         self._build()
         apply_theme(self, "dark")
-        self.controller.busy_changed.connect(self._busy)
+        self.controller.busy_changed.connect(self._update_busy)
+        self.archive.busy_changed.connect(self._update_busy)
+        self.archive.stage_changed.connect(self.status.setText)
+        self.archive.completed.connect(self._archive_loaded)
+        self.archive.problem.connect(self._archive_failed)
+        self.archive.cancelled.connect(self.status.setText)
         self.controller.stage_changed.connect(self.status.setText)
         self.controller.problem.connect(self.status.setText)
         self.controller.completed.connect(self._completed)
@@ -183,7 +190,7 @@ class StaticWindow(QMainWindow):
         self.run_button.clicked.connect(self.start)
         self.cancel_button = QPushButton("Cancel")
         self.cancel_button.setEnabled(False)
-        self.cancel_button.clicked.connect(lambda: self.controller.cancel())
+        self.cancel_button.clicked.connect(self.cancel_work)
         buttons.addWidget(self.run_button)
         buttons.addWidget(self.cancel_button)
         layout.addLayout(buttons)
@@ -348,36 +355,48 @@ class StaticWindow(QMainWindow):
         self._display(fit=True)
 
     def open_study(self):
+        if self.controller.process is not None or self.archive.busy:
+            return
         if not self._discard_allowed():
             return
         path, _ = QFileDialog.getOpenFileName(
             self, "Open finite-element study", "", "Static study (*.ccx.json *.json)"
         )
         if path:
-            try:
-                self.set_study(load_study(path), Path(path).stem)
-            except (OSError, ValueError, TypeError) as error:
-                self.status.setText(str(error))
+            self.archive.start(load_study, path, context=("study", Path(path).stem))
 
     def open_example(self):
         if self._discard_allowed():
             self.set_study(tension_example(), "Tension · analytic patch example")
 
     def open_result_dialog(self):
-        if self.controller.process is not None:
+        if self.controller.process is not None or self.archive.busy:
             return
         path, _ = QFileDialog.getOpenFileName(
             self, "Open archived CalculiX result", "", "Captured result (result.json)"
         )
         if not path:
             return
-        try:
-            result = load_static_result(path)
-        except (OSError, ValueError, TypeError) as error:
-            self.status.setText(f"Archive rejected: {error}")
+        self.archive.start(load_static_result, path, context=("result", None))
+
+    def _archive_failed(self, error):
+        self.status.setText(f"Archive rejected: {error}")
+
+    def _archive_loaded(self, result, context):
+        if self._close_pending:
+            return
+        if context[0] == "study":
+            self.set_study(result, context[1])
             return
         self.controller.last_result = result
         self._present_result(result, archived=True)
+
+    def cancel_work(self):
+        self.controller.cancel()
+        self.archive.cancel()
+
+    def _update_busy(self, *_args):
+        self._busy(self.controller.process is not None or self.archive.busy)
 
     def save_study(self):
         try:
@@ -401,6 +420,8 @@ class StaticWindow(QMainWindow):
             self.status.setText(str(error))
 
     def start(self):
+        if self.archive.busy:
+            return
         try:
             study = self.edited_study()
             root = Path(self.output.text()).expanduser() / (
@@ -629,11 +650,12 @@ class StaticWindow(QMainWindow):
         if not self._close_pending and not self._discard_allowed():
             event.ignore()
             return
-        if self.controller.process is not None:
+        if self.controller.process is not None or self.archive.busy:
             self._close_pending = True
-            self.controller.cancel("Window closed. Calculation stopped.")
+            self.cancel_work()
             event.ignore()
             return
+        self.archive.shutdown()
         self.controller.shutdown()
         self.viewport.shutdown()
         self.closed.emit()

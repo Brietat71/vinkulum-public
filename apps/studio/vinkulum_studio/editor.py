@@ -174,8 +174,12 @@ class EditorWindow(Workspace, QMainWindow):
                 body = capture()
                 if body is None:
                     return
-                self._mesh_window = MeshWindow(body, self, capture=capture, settings=self.settings)
-                self._mesh_window.closed.connect(lambda: setattr(self, "_mesh_window", None))
+                self._mesh_window = MeshWindow(
+                    body, self, capture=capture, settings=self.settings
+                )
+                self._mesh_window.closed.connect(
+                    lambda: setattr(self, "_mesh_window", None)
+                )
             self._mesh_window.show()
             self._mesh_window.raise_()
             self._mesh_window.activateWindow()
@@ -199,7 +203,6 @@ class EditorWindow(Workspace, QMainWindow):
             )
             return
         from .cad_dialog import CadDialog
-        from .document import replace_cad_body
         from .model import atomic_text
 
         dialog = CadDialog(self.project, self.selection, self)
@@ -215,12 +218,14 @@ class EditorWindow(Workspace, QMainWindow):
                     "Part exported to STEP with its world pose and millimetre units."
                 )
             else:
-                if self.project != captured:
+                if self.project is not captured:
                     raise ValueError(
                         "The document changed during the CAD operation; result not applied."
                     )
-                body = Body.from_dict(dialog.result_data["body"])
-                self._commit(replace_cad_body(self.project, body), fit=True)
+                body = dialog.result_body
+                if body is None or dialog.result_project is None:
+                    raise ValueError("No validated CAD document returned.")
+                self._commit(dialog.result_project, fit=True)
                 self.select_object(body.id)
                 self.status.setText(
                     "CAD solid added · mass and inertia computed from BREP in SI units."
@@ -234,7 +239,6 @@ class EditorWindow(Workspace, QMainWindow):
         if not self.apply_properties():
             return
         from .cad_history_dialog import CadHistoryDialog
-        from .document import replace_cad_body
 
         try:
             captured = self.project
@@ -244,11 +248,13 @@ class EditorWindow(Workspace, QMainWindow):
                 or dialog.result_body is None
             ):
                 return
-            if self.project != captured:
+            if self.project is not captured:
                 raise ValueError(
                     "The document changed during CAD editing; preview not applied."
                 )
-            self._commit(replace_cad_body(self.project, dialog.result_body), fit=True)
+            if dialog.result_project is None:
+                raise ValueError("No validated CAD document returned.")
+            self._commit(dialog.result_project, fit=True)
             self.select_object(dialog.result_body.id)
             self.status.setText(
                 "CAD features regenerated · mass, inertia and attachments updated."

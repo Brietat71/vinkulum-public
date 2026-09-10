@@ -2,7 +2,7 @@
 
 from dataclasses import asdict, replace
 
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QTimer, Slot
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import (
     QCheckBox,
@@ -24,7 +24,6 @@ from PySide6.QtWidgets import (
 from .cad_controller import CadController
 from .cad_history import PARAMETERS, recipe_for_body
 from .controls import NumberField, VectorField
-from .document import Body, replace_cad_body
 from .editor import euler_matrix, matrix_euler
 from .model import finite_number
 from .theme import apply_theme
@@ -40,11 +39,13 @@ class CadHistoryDialog(QDialog):
         self.project = project
         self.recipe = recipe_for_body(self.original)
         self.preview_body = self.result_body = None
+        self.preview_project = self.result_project = None
+        self._close_pending = None
         self._feature_id = None
         self._loading = False
         self._preview_signature = None
         self._preview_ok = False
-        self.controller = CadController(self)
+        self.controller = CadController(self, project=project)
         self.controller.completed.connect(self._completed)
         self.controller.failed.connect(self._failed)
         self.controller.busy_changed.connect(self._busy)
@@ -347,6 +348,8 @@ class CadHistoryDialog(QDialog):
             self._pending()
 
     def _busy(self, busy):
+        if not busy and self._close_pending is not None:
+            QTimer.singleShot(0, self._finish_close)
         self.tree.setEnabled(not busy)
         self.form.parentWidget().setEnabled(not busy)
         self.density.setEnabled(not busy)
@@ -354,15 +357,12 @@ class CadHistoryDialog(QDialog):
         self._pending()
 
     def _completed(self, result):
-        body = Body.from_dict(result["body"])
-        # Check whole-document budgets and rebased attachment data before
-        # enabling the final model transaction.
-        try:
-            replace_cad_body(self.project, body)
-        except (ValueError, TypeError) as error:
-            self._failed("invalid_result", str(error))
+        if self._close_pending is not None:
             return
+        admission = self.controller.last_admission
+        body = admission.body
         self.preview_body = body
+        self.preview_project = admission.project
         self._preview_signature = self._running_signature
         self._preview_ok = True
         self.mode.model().item(1).setEnabled(True)
@@ -391,7 +391,11 @@ class CadHistoryDialog(QDialog):
             if self.mode.currentIndex() == 1 and self.preview_body is not None
             else self.original
         )
-        project = replace_cad_body(self.project, body)
+        project = (
+            self.preview_project
+            if self.mode.currentIndex() == 1 and self.preview_project is not None
+            else self.project
+        )
         if not self.show_assembly.isChecked():
             project = replace(project, bodies=(body,), joints=(), loads=())
         self.viewport.set_project(project, fit=fit)
@@ -400,9 +404,19 @@ class CadHistoryDialog(QDialog):
         self._pending()
         if self.apply_button.isEnabled():
             self.result_body = self.preview_body
+            self.result_project = self.preview_project
             super().accept()
 
+    @Slot()
+    def _finish_close(self):
+        if self._close_pending is not None:
+            self.done(self._close_pending)
+
     def done(self, result):
+        if self.controller.process is not None:
+            self._close_pending = QDialog.DialogCode.Rejected
+            self.controller.cancel()
+            return
         self.controller.shutdown()
         self.viewport.close()
         super().done(result)

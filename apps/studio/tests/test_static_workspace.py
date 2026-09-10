@@ -190,6 +190,7 @@ class StaticWorkspace(unittest.TestCase):
             ),
         ):
             window.open_result_action.trigger()
+            self.wait_until(lambda: not window.archive.busy)
         self.assertEqual(window.edited_study(), pending)
         self.assertEqual(window.result[0], captured)
         self.assertEqual(window.result[1], expected)
@@ -213,6 +214,7 @@ class StaticWorkspace(unittest.TestCase):
             return_value=(str(damaged / "result.json"), ""),
         ):
             window.open_result_action.trigger()
+            self.wait_until(lambda: not window.archive.busy)
         self.assertIs(window.result, previous)
         self.assertEqual(window.edited_study(), pending)
         np.testing.assert_array_equal(window.viewport.display_positions, position)
