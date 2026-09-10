@@ -6,9 +6,10 @@ is a useful starting point. Larger projects should begin with a scoped proposal.
 
 These are proposed projects, not funded positions or scheduled commitments.
 
-Three scoped issues are already open: [an analytic STEP fixture (#1)](https://github.com/Brietat71/vinkulum-public/issues/1),
+Four scoped issues are already open: [an analytic STEP fixture (#1)](https://github.com/Brietat71/vinkulum-public/issues/1),
 [keyboard and high-DPI behaviour (#2)](https://github.com/Brietat71/vinkulum-public/issues/2),
-and [a CalculiX bending refinement study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4).
+[a CalculiX bending refinement study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4),
+and [applied-load derivatives for Pinocchio (#6)](https://github.com/Brietat71/vinkulum-public/issues/6).
 Each describes the expected deliverable and how to check it.
 
 | Project | Useful background | A reviewable first result |

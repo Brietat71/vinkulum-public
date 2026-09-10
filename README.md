@@ -69,6 +69,26 @@ face/edge references are still future work.
 
 </details>
 
+<details>
+<summary><strong>For numerical researchers: six tetrahedra, one analytic bending solution</strong></summary>
+
+![Studio 0.6.0.dev3: quadratic tetrahedra, amplified bending displacement and integration-point values](docs/assets/studio-tetra-bending.png)
+
+Run a six-element CalculiX study and compare its energy with an independent
+elasticity solution. Inspect the input deck, raw output and checks behind the
+plot. The source also checks curved tetrahedra using exact-arithmetic Bernstein
+bounds on the local Jacobian determinant. These bounds concern element geometry;
+solution accuracy is assessed separately.
+
+[Try the bending example](docs/STUDIO_TETRAHEDRA.md#try-a-complete-calculation) ·
+[Inspect the qualification](docs/bancs/studio-tetrahedra-060/README.md) ·
+[Contribute a convergence study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4)
+
+Requires **Studio 0.6.0.dev3 source**; the downloadable **0.5.0 Linux preview**
+predates tetrahedral studies.
+
+</details>
+
 ## What you can do today
 
 | Layer | Available in the source tree |
@@ -190,6 +210,7 @@ reference or a first contribution without needing to know the whole codebase.
 - **CAD:** [add a STEP part with independently known mass properties (#1)](https://github.com/Brietat71/vinkulum-public/issues/1).
 - **Desktop:** [qualify one keyboard and high-DPI workflow (#2)](https://github.com/Brietat71/vinkulum-public/issues/2).
 - **FEM:** [measure C3D8 bending convergence against an independent reference (#4)](https://github.com/Brietat71/vinkulum-public/issues/4).
+- **Dynamics:** [derive and qualify applied-load derivatives for Pinocchio (#6)](https://github.com/Brietat71/vinkulum-public/issues/6).
 
 If this direction matters to you, **star the repository**, share a real use case,
 or help reproduce a benchmark. The [share kit](docs/SHARE_VINKULUM.md) includes
