@@ -1,4 +1,4 @@
-"""Prepare the small, editable examples shipped alongside the Linux application."""
+"""Prepare the small, editable examples shipped with the desktop application."""
 
 import hashlib
 import json

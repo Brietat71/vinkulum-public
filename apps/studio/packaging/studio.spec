@@ -1,12 +1,21 @@
 from pathlib import Path
+from importlib.metadata import version
+import os
 import sys
+import tomllib
+from packaging.version import Version
 from PyInstaller.utils.hooks import collect_data_files, collect_dynamic_libs, collect_submodules, copy_metadata
 import OCP
 
 assert int(OCP.__version__.split('.')[0]) >= 8, 'OCCT 8 minimum required for Studio CAD'
 
 root = Path(SPECPATH).parents[2]
+studio_version = tomllib.loads((root / 'apps/studio/pyproject.toml').read_text())['project']['version']
+assert version('vinkulum-studio') == studio_version, 'Reinstall Studio before packaging'
 datas = collect_data_files('vinkulum')
+if sys.platform == 'darwin':
+    payload = Path(os.environ['VINKULUM_MACOS_PAYLOAD'])
+    datas += [(str(payload / 'Examples'), 'Examples'), (str(payload / 'build-info.json'), '.')]
 datas += [(str(Path(SPECPATH) / 'licenses'), 'licenses')]
 datas += [(str(root / 'ci' / 'patches'), 'licenses/cad-patches')]
 datas += copy_metadata('build123d', recursive=True)
@@ -25,5 +34,8 @@ exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name='Vinkulum Studio',
 coll = COLLECT(exe, a.binaries, a.datas, name='Vinkulum Studio')
 if sys.platform == 'darwin':
     app = BUNDLE(coll, name='Vinkulum Studio.app', bundle_identifier='org.vinkulum.studio',
-                 version='0.5.0', info_plist={'NSHighResolutionCapable': True,
-                 'LSMinimumSystemVersion': '14.0', 'CFBundleShortVersionString': '0.5.0'})
+                 version=Version(studio_version).base_version,
+                 info_plist={'NSHighResolutionCapable': True,
+                 'LSMinimumSystemVersion': '14.0',
+                 'CFBundleShortVersionString': Version(studio_version).base_version,
+                 'VinkulumStudioVersion': studio_version})

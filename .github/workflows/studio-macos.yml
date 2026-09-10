@@ -16,6 +16,7 @@ jobs:
     env:
       CARGO_BUILD_JOBS: '2'
       RAYON_NUM_THREADS: '2'
+      VINKULUM_STUDIO_CPUS: '2'
       OPENBLAS_NUM_THREADS: '1'
       OMP_NUM_THREADS: '1'
       MACOSX_DEPLOYMENT_TARGET: '14.0'
@@ -37,7 +38,7 @@ jobs:
           python ci/prepare_cad.py build/cad-sources
           python -m pip install dist/wheels/*.whl build/cad-sources/build123d-0.11.1 build/cad-sources/ocpsvg-0.6.0 './apps/studio[cad,test]'
       - name: Test native mechanics and desktop
-        timeout-minutes: 5
+        timeout-minutes: 15
         run: |
           python -m unittest vinkulum.test_charges_temporelles -v
           PY=$(command -v python) bash ci/studio.sh
@@ -47,5 +48,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          tag="studio-v0.5.0-macos-${GITHUB_RUN_NUMBER}"
-          gh release create "$tag" dist/macos/*.dmg dist/macos/SHA256SUMS dist/macos/check/bundle-check.json dist/macos/check/scene.png --target "$GITHUB_SHA" --prerelease --title "Vinkulum Studio 0.5.0 — Apple Silicon preview ${GITHUB_RUN_NUMBER}" --notes-file apps/studio/packaging/RELEASE.md
+          version=$(python -c 'import tomllib; print(tomllib.load(open("apps/studio/pyproject.toml", "rb"))["project"]["version"])')
+          tag="studio-v${version}-macos-${GITHUB_RUN_NUMBER}"
+          gh release create "$tag" dist/macos/*.dmg dist/macos/SHA256SUMS dist/macos/build-info.json dist/macos/check/*.json dist/macos/check/*.png --target "$GITHUB_SHA" --prerelease --title "Vinkulum Studio ${version} — Apple Silicon preview ${GITHUB_RUN_NUMBER}" --notes-file apps/studio/packaging/RELEASE-MACOS.md

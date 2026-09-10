@@ -270,7 +270,7 @@ class CadFeatureWorkspace(unittest.TestCase):
         self.addCleanup(dialog.reject)
         dialog.show()
         dialog.activateWindow()
-        QTest.qWait(80)
+        self.assertTrue(QTest.qWaitForWindowActive(dialog, 5000))
         self.edit(dialog.dimensions[0], "invalid")
         dialog.tree.setCurrentItem(dialog.tree.topLevelItem(1))
         self.assertIs(dialog.tree.currentItem(), dialog.tree.topLevelItem(0))
@@ -338,9 +338,14 @@ class CadFeatureWorkspace(unittest.TestCase):
         window.select_object(body.id)
         before = window.project
         driven = []
+        driver = QTimer(window)
+        driver.setInterval(10)
 
         def interact():
             dialog = QApplication.activeModalWidget()
+            if not isinstance(dialog, CadHistoryDialog):
+                return
+            driver.stop()
             try:
                 self.assertIsInstance(dialog, CadHistoryDialog)
                 self.edit(dialog.dimensions[0], 150)
@@ -359,13 +364,21 @@ class CadFeatureWorkspace(unittest.TestCase):
                     dialog.reject()
 
         window.activateWindow()
-        QTest.qWait(80)
-        QTimer.singleShot(50, interact)
-        QTest.keyClick(
-            window,
-            Qt.Key.Key_H,
-            Qt.KeyboardModifier.ControlModifier | Qt.KeyboardModifier.ShiftModifier,
-        )
+        self.assertTrue(QTest.qWaitForWindowActive(window, 5000))
+        driver.timeout.connect(interact)
+        try:
+            driver.start()
+            QTest.keyClick(
+                window,
+                Qt.Key.Key_H,
+                Qt.KeyboardModifier.ControlModifier | Qt.KeyboardModifier.ShiftModifier,
+            )
+            self.wait(lambda: bool(driven))
+        finally:
+            # Cocoa may dispatch the shortcut asynchronously. No callback may
+            # survive a failed shortcut and spill into the following test.
+            driver.stop()
+            driver.timeout.disconnect(interact)
         self.assertEqual(driven, [True])
         after = window.project
         self.assertEqual(after.revision, before.revision + 1)

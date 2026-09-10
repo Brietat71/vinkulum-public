@@ -57,6 +57,7 @@ def check_previews(editor, output, examples):
         return_value=(str(examples / "pinocchio/result.json"), "JSON"),
     ):
         articulated.open_result()
+    wait(lambda: not articulated.archive.busy, articulated.status.text)
     if articulated.result is None:
         raise RuntimeError(articulated.status.text())
     report = {
@@ -154,6 +155,7 @@ def check_previews(editor, output, examples):
         QFileDialog, "getOpenFileName", return_value=(str(result_path), "JSON")
     ):
         static.open_result_dialog()
+    wait(lambda: not static.archive.busy, static.status.text)
     if static.result is None:
         raise RuntimeError(static.status.text())
     assert static.result[1] == load_static_result(result_path)[1]
