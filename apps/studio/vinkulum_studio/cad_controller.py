@@ -14,6 +14,7 @@ from PySide6.QtCore import QObject, QProcess, QTimer, Signal
 from .cad_history import CadRecipe
 from .document import MAX_PROJECT_BYTES, Body
 from .model import finite_number, read_json, write_json
+from .sketch import Sketch
 
 
 class CadController(QObject):
@@ -154,6 +155,19 @@ class CadController(QObject):
                         "CAD mass properties do not match the captured density."
                     )
                 operation = self.last_request.get("operation")
+                if operation == "extrude_sketch":
+                    features = body.cad.recipe.features if body.cad.recipe else ()
+                    if (
+                        len(features) != 1
+                        or features[0].kind != "extrude_sketch"
+                        or features[0].profile
+                        != Sketch.from_dict(self.last_request["profile"])
+                        or features[0].dimensions_mm
+                        != tuple(self.last_request["dimensions_mm"])
+                    ):
+                        raise ValueError(
+                            "The CAD worker changed the captured sketch or extrusion height."
+                        )
                 if (
                     operation in ("regenerate", "fillet", "cut", "fuse", "common")
                     and body.id != self.last_request["a"]["id"]

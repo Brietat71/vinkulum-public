@@ -1,0 +1,32 @@
+{
+  "studio_version": "0.6.0a2.dev2",
+  "occt_version": "8.0.1.0",
+  "build123d_version": "0.11.1+vinkulum.occt8",
+  "source_width_mm": 80,
+  "edited_width_mm": 100,
+  "extrusion_height_mm": 10,
+  "mass_before_kg": 0.21839999999999996,
+  "mass_after_kg": 0.24960000000000004,
+  "volume_before_m3": 2.7999999999999993e-05,
+  "volume_after_m3": 3.2000000000000005e-05,
+  "point_identities_preserved": true,
+  "feature_identity_preserved": true,
+  "design_origin_preserved": true,
+  "preview_does_not_apply": true,
+  "one_document_undo_transaction": true,
+  "schema_4_reopened": true,
+  "degrees_of_freedom": 0,
+  "scope": "Closed line profiles with affine X/Y dimensions; not general curved sketches or persistent face naming.",
+  "pinocchio": {
+    "engine_version": "4.1.0",
+    "schema_4_capture_preserved": true,
+    "mass_matrix_reference_kg_m2": 0.0005564000000000001,
+    "gravity_effort_reference_N_m": -0.09092371137244647,
+    "com_position_reference_m": [
+      0.03713330171187109,
+      0.02125,
+      -0.002425598683861675
+    ],
+    "reference": "Independent two-cuboid integrals, fixed-base Y revolute joint at design origin, q=0.2 rad."
+  }
+}

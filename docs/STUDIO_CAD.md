@@ -2,14 +2,15 @@
 
 Studio 0.4.0 introduced solid modelling in the multibody editor; 0.4.1 translates
 the interface into English. The mechanics kernel remains **Vinkulum 0.19.0**.
-The **0.6.0.dev2 source version** adds [parametric solid features](STUDIO_CAD_HISTORY.md),
-regeneration previews and an undoable apply transaction. The published **0.5.0
-Linux archive** predates that feature editor.
+[Parametric solid features](STUDIO_CAD_HISTORY.md), regeneration previews and an
+undoable apply transaction are included in the **0.6.0a1 Linux alpha**.
+The current **0.6.0a2.dev2 source version** adds [constrained line sketches](STUDIO_SKETCH.md)
+and editable profile extrusions; that increment requires a source installation.
 
 ## Available workflow
 
 The **CAD** button and the Create menu open boxes, cylinders, spheres, XY
-rectangle/disc extrusions, subtraction, union, intersection, all-edge fillets
+rectangle/disc and constrained line-profile extrusions, subtraction, union, intersection, all-edge fillets
 and STEP import/export. Changes participate in document undo/redo. Boolean
 operations retain tool body B; it remains a mechanical body until removed.
 
@@ -17,7 +18,8 @@ Operations accept numerical parameters. New solids retain an immutable feature
 graph: edit an upstream dimension or placement, preview dependent operations,
 then explicitly apply the result. Imported and older solids start as captured
 BREP inputs; their old prose journals are not replayed as construction programs.
-Interactive constrained sketches, persistent face/edge selection, TNaming
+Sketches admit horizontal/vertical segments, fixed points and signed X/Y dimensions.
+Curves, nonlinear constraints, persistent face/edge selection, TNaming
 integration and multi-part STEP assemblies remain future work. The dialogs
 are modal; CAD runs in a separate process with cancellation and a 60-second limit.
 
@@ -61,9 +63,10 @@ identified in [third-party notices](../THIRD_PARTY_NOTICES.md).
   world positions and orientations.
 - The mechanical worker consumes the captured document, mass and SI tensor.
   It loads neither OCCT nor build123d and does not derive inertia from a mesh.
-- Parametric CAD projects use schema 3. Schema 2 BREP projects and schema 1
-  mechanisms remain readable. Projects without a feature graph keep their
-  earlier schema when saved; a feature graph cannot be written as schema 2.
+- Sketch extrusions use schema 4; earlier parametric CAD features use schema 3.
+  Schema 2 BREP projects and schema 1 mechanisms remain readable. Projects keep
+  their earlier schema when possible; a sketch cannot be written below schema 4
+  and a feature graph cannot be written below schema 3.
 
 Import accepts one valid solid, with at most 8 MB of STEP input. Captured data
 is limited to 2 MB of BREP and 30,000 vertices/triangles per part, and 4 MB of

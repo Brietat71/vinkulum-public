@@ -1,0 +1,11 @@
+test_deletion_requires_explicit_dependent_entities_and_cancel_keeps_input (test_sketch_workspace.SketchWorkspace.test_deletion_requires_explicit_dependent_entities_and_cancel_keeps_input) ... ok
+test_dimension_pick_edit_conflict_and_keyboard_undo_preserve_source (test_sketch_workspace.SketchWorkspace.test_dimension_pick_edit_conflict_and_keyboard_undo_preserve_source) ... ok
+test_draw_close_constrain_drag_and_revert_one_transaction (test_sketch_workspace.SketchWorkspace.test_draw_close_constrain_drag_and_revert_one_transaction) ... ok
+test_imported_profile_displays_solved_dimensions_without_mutating_input (test_sketch_workspace.SketchWorkspace.test_imported_profile_displays_solved_dimensions_without_mutating_input) ... ok
+test_invalid_pending_dimension_keeps_text_and_selection_until_corrected (test_sketch_workspace.SketchWorkspace.test_invalid_pending_dimension_keeps_text_and_selection_until_corrected) ... ok
+test_out_of_range_imported_dimensions_remain_inspectable_and_repairable (test_sketch_workspace.SketchWorkspace.test_out_of_range_imported_dimensions_remain_inspectable_and_repairable) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.697s
+
+OK

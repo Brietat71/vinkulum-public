@@ -21,8 +21,9 @@ from OCP.gp import gp_Trsf
 from OCP.TopoDS import TopoDS_Shape
 
 from .cad_data import CadGeometry
-from .cad_history import CadFeature, CadRecipe, recipe_for_body
+from .cad_history import CadFeature, CadRecipe, SketchExtrusion, recipe_for_body
 from .document import IDENTITY, Body, new_id
+from .sketch import Sketch
 
 if int(OCP.__version__.split(".")[0]) < 8:
     raise RuntimeError("OCCT 8 or later is required; OCCT 7 is not supported.")
@@ -63,6 +64,12 @@ def brep_text(shape):
     return buffer.getvalue().decode("ascii")
 
 
+def extrude_profile(profile, height):
+    points = [(x, y, 0) for x, y in profile.polygon()]
+    wire = bd.Wire.make_polygon(points, close=True)
+    return bd.extrude(bd.Face(wire), height)
+
+
 def regenerate_shape(recipe):
     """Evaluate a solid graph by stable input identity in its design frame [mm]."""
     shapes = {}
@@ -79,6 +86,8 @@ def regenerate_shape(recipe):
                 shape = bd.extrude(bd.Rectangle(*values[:2]), values[2])
             elif kind == "extrude_circle":
                 shape = bd.extrude(bd.Circle(values[0]), values[1])
+            elif kind == "extrude_sketch":
+                shape = extrude_profile(feature.profile, values[0])
             elif kind == "snapshot":
                 shape = read_brep(feature.brep_mm)
             elif kind == "fillet":
@@ -219,6 +228,17 @@ def execute(request):
             new_id(), Path(path).name[:128], "snapshot", brep_mm=brep_text(shape)
         )
         recipe = CadRecipe((feature,), feature.id)
+    elif operation == "extrude_sketch":
+        profile = Sketch.from_dict(request["profile"])
+        values = tuple(float(v) for v in request["dimensions_mm"])
+        feature = SketchExtrusion(
+            new_id(), name, operation, dimensions_mm=values, profile=profile
+        )
+        recipe = CadRecipe((feature,), feature.id)
+        shape = regenerate_shape(recipe)
+        position = tuple(
+            float(v) * 0.001 for v in request.get("position_mm", (0, 0, 0))
+        )
     elif operation in (
         "box",
         "cylinder",
@@ -320,8 +340,12 @@ def execute(request):
         shape = regenerate_shape(recipe)
     else:
         raise ValueError("Unknown CAD operation.")
-    record = {k: v for k, v in request.items() if k not in ("a", "b", "path", "recipe")}
-    if operation == "regenerate":
+    record = {
+        k: v
+        for k, v in request.items()
+        if k not in ("a", "b", "path", "recipe", "profile")
+    }
+    if operation in ("regenerate", "extrude_sketch"):
         record["recipe_sha256"] = recipe.fingerprint()
     if request.get("b"):
         record["tool_id"] = request["b"]["id"]

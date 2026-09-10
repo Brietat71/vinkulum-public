@@ -1,9 +1,18 @@
-# Vinkulum Studio 0.6.0a2.dev1 — CAD and mechanism analysis
+# Vinkulum Studio 0.6.0a2.dev2 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.19.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
+
+Source version **0.6.0a2.dev2** adds a [planar sketch editor](../../docs/STUDIO_SKETCH.md):
+draw closed line profiles, constrain horizontal/vertical segments and signed
+X/Y dimensions, then extrude them with OCCT 8. Sketch entities have stable UUIDs;
+upstream dimension edits regenerate the existing CAD feature graph. Decimal
+dimension consistency and remaining affine degrees of freedom are checked
+without an iterative geometry solver. Sketch-based projects use schema 4.
+Curves, angular/Euclidean-distance constraints and persistent face references
+remain outside this initial sketch domain.
 
 Source version **0.6.0a2.dev1** adds sampled boundary-direction symbols to the
 CAD study: open pressure arrows, solid force arrows and bars for constrained

@@ -49,6 +49,11 @@ feature editor changes parameters and names; operations are added through the
 existing CAD design dialog. It does not yet offer drag-to-reorder operations,
 feature suppression or arbitrary dependency rewiring.
 
+Source **0.6.0a2.dev2** adds [constrained line-profile extrusions](STUDIO_SKETCH.md).
+Select their **Edit sketch…** button to change the upstream dimensions before
+previewing the same feature graph. These projects require schema 4, including
+in a separately installed analysis worker; ordinary solid features retain schema 3.
+
 A boolean tool is a **captured solid input**, with its placement in the target
 part's design frame, source body UUID and source body fingerprint. Its geometry
 remains available if the original tool body is later moved or deleted. Editing
@@ -62,8 +67,8 @@ Their construction history cannot be recovered from a filename or a prose journa
 They can acquire new dependent operations, but a captured solid does not expose
 its unavailable original sketch dimensions.
 
-These are **whole-solid feature references**. Face/edge selection, constrained
-sketches, topology split/merge resolution and TNaming persistence are still
+These are **whole-solid feature references**. CAD face/edge selection,
+topology split/merge resolution and TNaming persistence are still
 unimplemented. This milestone does not satisfy the complete CAD-02–CAD-06
 topological-reference requirements of the engineering specification.
 
