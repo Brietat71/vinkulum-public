@@ -1,6 +1,6 @@
 # Linear static analysis inside FreeCAD
 
-Development **0.1.0a3.dev3** adds **Vinkulum → Static analysis…** to the current
+Development **0.1.0a3.dev4** adds **Vinkulum → Static analysis…** to the current
 FreeCAD workbench. It uses native document objects, face selection, properties
 and task controls. FreeCAD 1.1.3 / Qt 6 on Linux is the qualified host. It is not
 yet included in the public 0.1.0a2 extension release; build the development
@@ -17,8 +17,11 @@ directory. Keep the host and [OCCT 8 engine](FREECAD_ENGINE.md) interpreters sep
    collect several faces. This fixes all three translational components.
 4. Select the loaded face, enter **Pressure [MPa]** and click **Apply pressure to
    selected faces**. Positive pressure acts inward; negative pressure pulls outward.
-   Select a pressure condition in the list and use **Update selected pressure** to
-   edit it. Remove conditions with the button or the list's context menu.
+   Selecting a pressure condition loads its stored value in MPa; change the value
+   and click **Update selected pressure**. Selection is preserved through updates
+   and Undo. Right-click a pressure and choose **Edit pressure…** to focus its value.
+   The update action is disabled for supports or an empty selection. Remove
+   conditions with the button or the list's context menu.
 5. Configure the separate engine Python, an OCCT 8-enabled Gmsh HXT executable,
    CalculiX and an absolute output directory. These paths are user preferences.
 6. Click **Run static analysis**. Mesh generation and CalculiX run outside FreeCAD's
@@ -72,3 +75,6 @@ python3 ci/freecad_static.py --recipe static-task \
 The recipe creates and closes documents and exits FreeCAD. Use a dedicated process,
 never load it into a working session. It checks the FreeCAD exit status and rejects
 Python tracebacks in the native console in addition to checking its report.
+
+The [boundary editing record](bancs/freecad-boundary-edit-2026/README.md) checks
+selection, MPa values, Undo and the displayed context menu on development dev4.
