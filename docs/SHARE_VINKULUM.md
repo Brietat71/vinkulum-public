@@ -6,6 +6,19 @@ and an invitation to contribute something specific.
 
 Repository: [Brietat71/vinkulum-public](https://github.com/Brietat71/vinkulum-public)
 
+## Choose a demonstration for your audience
+
+| Audience | Show | Invite this contribution | Required version |
+|---|---|---|---|
+| CAD developers | [Machined plate, STEP export and SI mass properties](#a-demonstration-you-can-reproduce) | [An independent STEP fixture (#1)](https://github.com/Brietat71/vinkulum-public/issues/1) | Linux preview 0.5.0 |
+| Engineers and desktop developers | [A saved CalculiX result, inspected without the solver](#try-a-captured-finite-element-result) | [A keyboard/high-DPI workflow (#2)](https://github.com/Brietat71/vinkulum-public/issues/2) | Linux preview 0.5.0 |
+| FEM and numerical-analysis researchers | [Quadratic bending and exact local Jacobian bounds](#six-tetrahedra-and-an-independent-elasticity-solution) | [A bending convergence study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4) | Source 0.6.0.dev3 |
+| Dynamics and robotics researchers | [Captured Pinocchio operators](#a-research-demonstration-from-the-developing-source-version) | [Applied-load derivatives (#6)](https://github.com/Brietat71/vinkulum-public/issues/6) | Source 0.6.0.dev1 or newer |
+
+Keep the screenshot, version and contribution link together when sharing.
+The current Linux download is 0.5.0; source demonstrations require installing
+the developing version. Prefer the downloadable examples for a broad introduction.
+
 ## A demonstration you can reproduce
 
 Download the [Linux x86_64 preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.5.0-linux)
@@ -70,7 +83,7 @@ Suggested title: **Vinkulum: an open engineering workbench for CAD and inspectab
 > We are looking for contributors who enjoy making engineering tools reliable:
 > independent physical references, CAD regression parts, Qt interactions and
 > numerical verification. The README has real screenshots, runnable examples
-> and three scoped starting issues. It is early research software under
+> and four scoped starting issues. It is early research software under
 > Apache-2.0; each external engine keeps its own licence and assumptions.
 >
 > Source and download: https://github.com/Brietat71/vinkulum-public
@@ -119,6 +132,34 @@ Suggested technical introduction:
 > software, with concrete projects for CAD developers, dynamics researchers,
 > numerical analysts and Qt contributors. Explore the source and try a small
 > example: https://github.com/Brietat71/vinkulum-public
+
+## Six tetrahedra and an independent elasticity solution
+
+For a numerical-analysis audience, share the [actual bending capture](assets/studio-tetra-bending.png)
+with the [independent solution and convergence table](STUDIO_TETRAHEDRA.md).
+The [captured calculation](bancs/studio-tetrahedra-060/calculation) includes its
+study, input deck, solver log and raw output. In a **0.6.0.dev3 source installation**,
+use **Run → Linear statics · CalculiX… → Open result…** and select that folder's
+`result.json` to inspect it without running the engine. Recalculation requires `ccx`.
+
+Suggested research introduction:
+
+> Six quadratic tetrahedra can represent this particular pure-bending solution.
+> What should a simulation workbench let you inspect to verify that result?
+>
+> Vinkulum publishes the analytic field, a real CalculiX calculation and the
+> raw files behind its 3D display. The same reference exposes large energy
+> errors in coarse linear-tetrahedron meshes. The developing source also checks
+> curved tetrahedra with exact-arithmetic bounds on their local Jacobian
+> determinant. Geometry validity and solution accuracy have separate evidence.
+>
+> We welcome independent FEM references, adversarial meshes and numerical-analysis
+> contributions. This is an experimental Studio 0.6.0 source workflow; the
+> downloadable Linux preview is still 0.5.0. Example, limits and contribution tasks:
+> https://github.com/Brietat71/vinkulum-public
+
+This is a polynomial patch reference, not a general accuracy or speed comparison
+against other solvers. Preserve that distinction when shortening the introduction.
 
 ## Introduction for a technical community
 
