@@ -42,9 +42,13 @@ def face_nodes(kind):
         return TET_FACES
     if kind != "C3D10":
         raise ValueError("Unsupported solid element type.")
+    edge_index = {frozenset(edge): i + 4 for i, edge in enumerate(TET_EDGES)}
     return tuple(
         face
-        + tuple(4 + i for i, (a, b) in enumerate(TET_EDGES) if a in face and b in face)
+        + tuple(
+            edge_index[frozenset((face[a], face[b]))]
+            for a, b in ((0, 1), (1, 2), (2, 0))
+        )
         for face in TET_FACES
     )
 

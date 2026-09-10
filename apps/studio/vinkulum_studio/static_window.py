@@ -261,12 +261,9 @@ class StaticWindow(QMainWindow):
         if not np.isfinite(factor):
             raise ValueError("Load multiplier must be finite.")
         return replace(
-            self.study,
+            self.study.scaled_loads(factor),
             young_pa=self.young.value(),
             poisson=self.poisson.value(),
-            forces=tuple(
-                (r[0], *(float(v * factor) for v in r[1:])) for r in self.study.forces
-            ),
         )
 
     def _pending(self):
@@ -427,9 +424,15 @@ class StaticWindow(QMainWindow):
     def _present_result(self, result, *, archived=False):
         self.result = result
         study, report, root = result
+        transport = report.get("input_transport")
+        transport_note = (
+            f"\nInput conversion: max coordinate change {transport['coordinates_m']['max_absolute_change']:.3g} m; solver geometry rechecked."
+            if transport
+            else ""
+        )
         self.folder_button.setEnabled(True)
         self.result_summary.setText(
-            f"CalculiX {report['engine_version']} · captured input\n{len(study.nodes)} nodes · {len(study.elements)} elements\nE = {study.young_pa:.7g} Pa · ν = {study.poisson:.7g}\nElastic energy: {report['strain_energy_J']:.7g} J\nScientific status: NotAssessed\nNo discretisation-error certificate."
+            f"CalculiX {report['engine_version']} · captured input\n{len(study.nodes)} nodes · {len(study.elements)} elements\nE = {study.young_pa:.7g} Pa · ν = {study.poisson:.7g}\nElastic energy: {report['strain_energy_J']:.7g} J{transport_note}\nScientific status: NotAssessed\nNo discretisation-error certificate."
         )
         self.mode.setCurrentIndex(1)
         self._display(fit=True)
@@ -455,6 +458,8 @@ class StaticWindow(QMainWindow):
                     self.mode.setCurrentIndex(0)
                     return
                 study, report, _ = self.result
+                if report.get("schema") == 3:
+                    study = study.solver_study
                 self.viewport.set_study(study, report, scale=scale, fit=fit)
                 self.status.setText(
                     f"Captured displacement |u| in metres · displayed deformation ×{scale:.7g}. Table values are unscaled."
@@ -486,6 +491,8 @@ class StaticWindow(QMainWindow):
         captured = self.result if self.mode.currentIndex() == 1 else None
         if captured:
             study, report, _ = captured
+            if report.get("schema") == 3:
+                study = study.solver_study
         else:
             try:
                 study = self.edited_study()

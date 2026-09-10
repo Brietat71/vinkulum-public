@@ -12,18 +12,20 @@ import os
 import re
 import shutil
 import subprocess
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
+from functools import cached_property
 from pathlib import Path
 
 import numpy as np
 
+from .calculix_numbers import number_field, transported_number
 from .finite_elements import (
     NODE_COUNTS,
     POINT_COUNTS,
-    TET_EDGES,
-    face_nodes,
     integration_weights,
 )
+from .mesh_binding import MeshBinding
+from .mesh_data import FiniteMesh
 from .model import finite_number as finite
 from .model import read_json, write_json
 
@@ -41,6 +43,7 @@ class StaticStudy:
     young_pa: float
     poisson: float
     element_type: str = "C3D8"
+    mesh_binding: MeshBinding | None = None
 
     def __post_init__(self):
         for key in ("nodes", "elements", "fixed_dofs", "forces"):
@@ -102,50 +105,7 @@ class StaticStudy:
         if len({r[0] for r in self.forces}) != len(self.forces):
             raise ValueError("Combine forces applied to the same node before solving.")
         points = np.array(self.nodes, dtype=float)
-        faces, neighbours = {}, [set() for _ in self.elements]
-        if self.element_type == "C3D10":
-            corner_ids = {i for e in self.elements for i in e[:4]}
-            mid_ids = {i for e in self.elements for i in e[4:]}
-            if corner_ids & mid_ids:
-                raise ValueError(
-                    "A quadratic node cannot be both a corner and an edge node."
-                )
-            edges, midpoints = {}, {}
-            for element in self.elements:
-                for mid, (a, b) in zip(element[4:], TET_EDGES):
-                    key = tuple(sorted((element[a], element[b])))
-                    if (
-                        edges.setdefault(key, mid) != mid
-                        or midpoints.setdefault(mid, key) != key
-                    ):
-                        raise ValueError(
-                            "Nonconforming quadratic edge-node identities."
-                        )
-        for index, element in enumerate(self.elements):
-            p = points[np.array(element) - 1]
-            integration_weights(
-                self.element_type, tuple(tuple(float(v) for v in row) for row in p)
-            )
-            for face in face_nodes(self.element_type):
-                key = tuple(sorted(element[i] for i in face))
-                owners = faces.setdefault(key, [])
-                owners.append(index)
-                if len(owners) > 2:
-                    raise ValueError("A mesh face has more than two owners.")
-                if len(owners) == 2:
-                    left, right = owners
-                    neighbours[left].add(right)
-                    neighbours[right].add(left)
-        seen, pending = set(), [0]
-        while pending:
-            index = pending.pop()
-            if index not in seen:
-                seen.add(index)
-                pending.extend(neighbours[index] - seen)
-        if len(seen) != len(self.elements):
-            raise ValueError(
-                "Elements must form one connected mesh through shared faces."
-            )
+        FiniteMesh(self.nodes, self.elements, self.element_type)
         # Check removal of the six global rigid modes with dimensionless rows.
         centred = (points - points.mean(axis=0)) / np.ptp(points, axis=0).max()
         rows = []
@@ -158,11 +118,91 @@ class StaticStudy:
                 "Supports leave a rigid-body mode or are numerically ambiguous."
             )
 
-    def input_deck(self):
+        if self.mesh_binding is not None:
+            if not isinstance(self.mesh_binding, MeshBinding):
+                raise TypeError("A validated CAD mesh binding is required.")
+            self.mesh_binding.verify_study(self)
+
+    def scaled_loads(self, factor):
+        if not finite(factor):
+            raise ValueError("Load multiplier must be finite.")
+        if self.mesh_binding is not None:
+            binding = replace(
+                self.mesh_binding, load_factor=self.mesh_binding.load_factor * factor
+            )
+            return replace(self, forces=binding.arrays[1], mesh_binding=binding)
+        return replace(
+            self,
+            forces=tuple(
+                (r[0], *(float(v * factor) for v in r[1:])) for r in self.forces
+            ),
+        )
+
+    @cached_property
+    def solver_study(self):
+        """Revalidate the actual F20.0 inputs, preserving this requested study."""
+        nodes = tuple(tuple(map(transported_number, p)) for p in self.nodes)
+        forces = tuple((r[0], *map(transported_number, r[1:])) for r in self.forces)
+        young, poisson = map(transported_number, (self.young_pa, self.poisson))
+        if (nodes, forces, young, poisson) == (
+            self.nodes,
+            self.forces,
+            self.young_pa,
+            self.poisson,
+        ):
+            return self
+        # A derived solver mesh must pass the same geometry, material and rigid
+        # mode checks. Physical intent remains attached to the requested study.
+        return replace(
+            self,
+            nodes=nodes,
+            forces=forces,
+            young_pa=young,
+            poisson=poisson,
+            mesh_binding=None,
+        )
+
+    @cached_property
+    def input_transport(self):
+        actual = self.solver_study
+        data = asdict(actual)
+        data.pop("mesh_binding")
+
+        def changes(before, after):
+            pairs = list(zip(before, after, strict=True))
+            return {
+                "changed_values": sum(a != b for a, b in pairs),
+                "max_absolute_change": max((abs(a - b) for a, b in pairs), default=0.0),
+            }
+
+        return {
+            "format": "calculix-f20-v1",
+            "field_width": 20,
+            "max_rounding_ulps": 64,
+            "solver_study_sha256": hashlib.sha256(
+                json.dumps(
+                    data, sort_keys=True, separators=(",", ":"), allow_nan=False
+                ).encode()
+            ).hexdigest(),
+            "coordinates_m": changes(
+                (v for p in self.nodes for v in p), (v for p in actual.nodes for v in p)
+            ),
+            "forces_N": changes(
+                (v for r in self.forces for v in r[1:]),
+                (v for r in actual.forces for v in r[1:]),
+            ),
+            "young_Pa": changes((self.young_pa,), (actual.young_pa,)),
+            "poisson": changes((self.poisson,), (actual.poisson,)),
+        }
+
+    def input_deck(self, *, legacy=False):
+        if not legacy:
+            # Access before exporting so rounding cannot bypass admission.
+            _ = self.solver_study
+        field = (lambda v: format(float(v), ".17g")) if legacy else number_field
         lines = ["*HEADING", "Vinkulum linear statics, SI: m N Pa", "*NODE,NSET=ALLN"]
         lines += [
-            f"{i}," + ",".join(format(float(v), ".17g") for v in p)
-            for i, p in enumerate(self.nodes, 1)
+            f"{i}," + ",".join(field(v) for v in p) for i, p in enumerate(self.nodes, 1)
         ]
         lines += [f"*ELEMENT,TYPE={self.element_type},ELSET=ALLE"]
         lines += [
@@ -171,7 +211,7 @@ class StaticStudy:
         lines += [
             "*MATERIAL,NAME=ISOTROPIC",
             "*ELASTIC",
-            f"{self.young_pa:.17g},{self.poisson:.17g}",
+            f"{field(self.young_pa)},{field(self.poisson)}",
             "*SOLID SECTION,ELSET=ALLE,MATERIAL=ISOTROPIC",
             "*BOUNDARY",
         ]
@@ -180,7 +220,7 @@ class StaticStudy:
         if any(value != 0 for row in self.forces for value in row[1:]):
             lines += ["*CLOAD"]
             lines += [
-                f"{row[0]},{axis},{value:.17g}"
+                f"{row[0]},{axis},{field(value)}"
                 for row in self.forces
                 for axis, value in enumerate(row[1:], 1)
                 if value != 0
@@ -196,26 +236,45 @@ class StaticStudy:
 
 
 def study_document(study):
-    return {"format": "vinkulum-static-study", "schema": 2, "study": asdict(study)}
+    data = asdict(study)
+    if study.mesh_binding is None:
+        data.pop("mesh_binding")
+    return {
+        "format": "vinkulum-static-study",
+        "schema": 3 if study.mesh_binding else 2,
+        "study": data,
+    }
 
 
 def load_study(path):
-    data = read_json(path, max_bytes=4 * 1024 * 1024)
+    data = read_json(path, max_bytes=32 * 1024 * 1024)
     if (
         not isinstance(data, dict)
         or set(data) != {"format", "schema", "study"}
         or data["format"] != "vinkulum-static-study"
         or type(data["schema"]) is not int
-        or data["schema"] not in (1, 2)
+        or data["schema"] not in (1, 2, 3)
         or not isinstance(data["study"], dict)
     ):
         raise ValueError("Unsupported or incomplete static-study document.")
+    if data["schema"] < 3 and (
+        Path(path).stat().st_size > 4 * 1024 * 1024
+        or data["study"].get("mesh_binding") is not None
+    ):
+        raise ValueError(
+            "CAD mesh provenance requires static-study schema 3; earlier schemas retain their 4 MiB budget."
+        )
+    if data["schema"] == 3 and data["study"].get("mesh_binding") is None:
+        raise ValueError("Static-study schema 3 requires captured CAD mesh provenance.")
     if data["schema"] == 1 and data["study"].get("element_type", "C3D8") != "C3D8":
         raise ValueError("Tetrahedral elements require static-study schema 2.")
-    if data["schema"] == 2 and "element_type" not in data["study"]:
+    if data["schema"] >= 2 and "element_type" not in data["study"]:
         raise ValueError("Static-study schema 2 requires an explicit element type.")
+    parameters = dict(data["study"])
+    if parameters.get("mesh_binding") is not None:
+        parameters["mesh_binding"] = MeshBinding.from_dict(parameters["mesh_binding"])
     try:
-        return StaticStudy(**data["study"])
+        return StaticStudy(**parameters)
     except TypeError as exc:
         raise ValueError("Invalid or unknown static-study fields.") from exc
 
@@ -365,9 +424,9 @@ def prepare_run(study, directory, engine, engine_hash, version):
     """Capture inputs once, shared by synchronous CLI and direct Qt supervision."""
     if not isinstance(study, StaticStudy):
         raise TypeError("A validated StaticStudy is required.")
+    deck = study.input_deck()
     root = Path(directory).resolve()
     root.mkdir(parents=True, exist_ok=False)
-    deck = study.input_deck()
     (root / "study.inp").write_text(deck, encoding="ascii")
     write_json(
         root / "study.json",
@@ -384,7 +443,7 @@ def _read_bounded(path, limit=MAX_OUTPUT_BYTES):
     return raw
 
 
-def _result_contract(study=None):
+def _result_contract(study=None, *, transported=False):
     contract = {
         "format": "vinkulum-calculix-static",
         "schema": 1,
@@ -416,6 +475,14 @@ def _result_contract(study=None):
             stress_location=f"element integration points 1..{POINT_COUNTS[study.element_type]}, element-major order",
             limitations="Linear isotropic elasticity, C3D4/C3D10 or affine C3D8, zero supports, nodal loads. Local element checks do not certify global mesh injectivity or discretisation error. ASCII output is rounded.",
         )
+        if transported:
+            contract.update(
+                schema=3,
+                adapter_version="0.3.0",
+                input_transport=study.input_transport,
+            )
+            if study.mesh_binding is not None:
+                contract["mesh_binding_sha256"] = study.mesh_binding.sha256
     return contract
 
 
@@ -429,16 +496,18 @@ def finish_run(run, returncode):
     study, root, engine = run.study, run.root, run.engine
     if _read_bounded(root / "study.inp", 4 * 1024 * 1024) != run.deck.encode("ascii"):
         raise ValueError("CalculiX input deck changed during the calculation.")
+    if load_study(root / "study.json") != study:
+        raise ValueError("Captured study changed during the calculation.")
     log_path, dat_path = root / "solver.log", root / "study.dat"
     if not _successful_log(_read_bounded(log_path), returncode):
         raise RuntimeError(f"CalculiX did not complete; inspect {log_path}.")
     # Hash and parse the same captured bytes, even if a file changes afterwards.
     raw = _read_bounded(dat_path)
-    values = parse_dat(raw.decode("ascii"), study)
+    values = parse_dat(raw.decode("ascii"), study.solver_study)
     if hashlib.sha256(engine.read_bytes()).hexdigest() != run.engine_hash:
         raise RuntimeError("CalculiX executable changed during the calculation.")
     report = {
-        **_result_contract(study),
+        **_result_contract(study, transported=True),
         "engine_version": run.version,
         "engine_sha256": run.engine_hash,
         "input_sha256": hashlib.sha256(run.deck.encode("ascii")).hexdigest(),
@@ -463,12 +532,17 @@ def load_static_result(directory):
     if (
         not isinstance(report, dict)
         or type(report.get("schema")) is not int
-        or report["schema"] not in (1, 2)
+        or report["schema"] not in (1, 2, 3)
     ):
         raise ValueError("Unsupported CalculiX result schema.")
     if report["schema"] == 1 and study.element_type != "C3D8":
         raise ValueError("Legacy CalculiX results require C3D8.")
-    contract = _result_contract(study if report["schema"] == 2 else None)
+    if report["schema"] < 3 and study.mesh_binding is not None:
+        raise ValueError("Captured CAD mesh provenance and result schema disagree.")
+    transported = report["schema"] == 3
+    contract = _result_contract(
+        study if report["schema"] >= 2 else None, transported=transported
+    )
     value_keys = {
         "displacements",
         "external_forces",
@@ -499,14 +573,16 @@ def load_static_result(directory):
     deck = _read_bounded(root / "study.inp", 4 * 1024 * 1024)
     if hashlib.sha256(deck).hexdigest() != report[
         "input_sha256"
-    ] or deck != study.input_deck().encode("ascii"):
+    ] or deck != study.input_deck(legacy=not transported).encode("ascii"):
         raise ValueError("Archived input deck and captured study do not match.")
     if not _successful_log(_read_bounded(root / "solver.log")):
         raise ValueError("Archived log does not describe a completed calculation.")
     raw = _read_bounded(root / "study.dat")
     if hashlib.sha256(raw).hexdigest() != report["dat_sha256"]:
         raise ValueError("Archived raw CalculiX output fingerprint does not match.")
-    values = parse_dat(raw.decode("ascii"), study)
+    values = parse_dat(
+        raw.decode("ascii"), study.solver_study if transported else study
+    )
     for key, expected in values.items():
         actual = report[key]
         if key == "strain_energy_J":
