@@ -125,7 +125,9 @@ has 152 tests with no failures and 13 optional Pinocchio tests skipped. The
 capture used Studio 0.6.0a2.dev2, OCCT 8.0.1.0 and
 build123d 0.11.1+vinkulum.occt8. Coverage is one planar solid from this independent
 writer; exports from CAD vendors, curved surfaces and assemblies need their own
-fixtures.
+fixtures. The [extended analytic corpus](../analytic_step_corpus/README.md) now
+adds a curved eccentric bore and a solid with an enclosed void, with their own
+references and input-level counterexamples.
 
 Schema references used to write the original generator:
 [faceted BREP representation](https://www.steptools.com/docs/stp_aim/html/t_faceted_brep_shape_representation.html),
