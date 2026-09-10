@@ -31,6 +31,37 @@ paths, STEP files, raw mesh/solver evidence, source and result FCStd files, and 
 screenshot. It imposes a 270-second process timeout and cleans up its dedicated
 process group. This is test-runner cleanup, not an interactive job manager.
 
+## Native FEM inputs (development sources)
+
+Add `--native-inputs` to the runner command above to create and read a native
+`Fem::FemAnalysis`, `Fem::ConstraintFixed`, `Fem::ConstraintPressure` and one
+solid material. This mode uses the same STEP capture, worker and native result
+import. The input objects remain editable in FreeCAD and are retained in the
+saved FCStd documents. It adds no custom input form or published extension command.
+
+The source adapter `apps/freecad/native_static.py` exposes
+`capture(analysis, source, directory, mesh_size_mm=10, threads=2)` and
+`import_result(analysis, source, directory, request)`. A caller runs the existing
+`static_worker.py` between those two operations. The native input snapshot is
+included in the request identity; importing through this adapter rechecks it
+before adding any result objects. Geometry is still checked by the shared bridge.
+
+The supported analysis contains one global solid material, fixed face boundaries
+and uniform face pressures on one top-level solid. Young's modulus and density
+use FreeCAD's unit conversion; Poisson ratio is dimensionless. Positive native
+pressure is compressive; `Reversed` makes it tensile. Other analysis members,
+including solver objects, meshes, additional physics and material models, are
+refused explicitly. Use a dedicated input analysis for this development adapter.
+Time-dependent amplitudes, suppressed members and edge/vertex references are
+also refused. This adapter does not translate a complete existing solver setup.
+
+The qualification runs the original and rotated tensile bars, saves/reopens both
+native inputs and results, and rejects changed pressure magnitude/direction,
+changed modulus, edge references and enabled amplitudes before document mutation.
+Post-import result invalidation and an interactive job manager remain future work.
+Measured results and exact executed sources are retained in the
+[native-input qualification](bancs/freecad-native-fem-inputs-2026/README.md).
+
 ## What is checked
 
 The two references are a 120 × 20 × 15 mm bar with E = 210 GPa, Poisson ratio
@@ -66,8 +97,9 @@ The result is a snapshot linked to its source with the captured geometry hash.
 Geometry is rechecked on import, but editing it later does not automatically
 invalidate the already imported result. Preview hashes bind the request identity;
 they are not a cryptographic attestation of solver output against hostile edits.
-Interactive face selection, boundary-condition editing, progress/cancellation,
-post-import stale-result handling and FEM task-panel integration remain to be built.
+Native FEM face selection and boundary-condition objects can supply the development
+adapter above. Progress/cancellation, post-import stale-result handling and a
+complete interactive FEM execution workflow remain to be built.
 
 The [retained qualification](bancs/freecad-static-2026/README.md) records the measured
 errors, runtime versions and actual artifacts.
