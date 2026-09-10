@@ -79,7 +79,9 @@ The task displays pressure in MPa: positive acts inward, negative pulls outward.
 The example therefore contains **−2 MPa**. Selecting its row loads that value;
 enter a new value and click **Update selected pressure**. Right-click →
 **Edit pressure…** focuses the value field. Undo restores both the stored pressure
-and the selected row's displayed value. To try your own part,
+and the selected row's displayed value. With the boundary list focused, **Menu**
+or **Shift+F10** opens the context menu for the selected condition.
+To try your own part,
 select a top-level solid and open Static analysis; select faces in the 3D view
 before adding supports and pressure. The [static task guide](FREECAD_STATIC_TASK.md)
 covers units, executable requirements, persistence and scientific limits.

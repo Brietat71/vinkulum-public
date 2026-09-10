@@ -17,6 +17,23 @@ from .analysis import transaction
 from .static_job import StaticJob
 
 
+class BoundaryList(QtWidgets.QListWidget):
+    """Open keyboard context menus on the current boundary, independent of the mouse."""
+
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key.Key_Menu or (
+            event.key() == QtCore.Qt.Key.Key_F10
+            and event.modifiers() == QtCore.Qt.KeyboardModifier.ShiftModifier
+        ):
+            event.accept()
+            item = self.currentItem()
+            if item is not None:
+                self.scrollToItem(item)
+                self.customContextMenuRequested.emit(self.visualItemRect(item).center())
+            return
+        super().keyPressEvent(event)
+
+
 class StaticPanel:
     def __init__(self, selected):
         self.analysis = model.for_selection(selected)
@@ -55,7 +72,7 @@ class StaticPanel:
             )
             self.fields[name] = control
             fields.addRow(label, control)
-        self.boundaries = QtWidgets.QListWidget()
+        self.boundaries = BoundaryList()
         self.boundaries.setFixedHeight(80)
         self.boundaries.setContextMenuPolicy(
             QtCore.Qt.ContextMenuPolicy.CustomContextMenu

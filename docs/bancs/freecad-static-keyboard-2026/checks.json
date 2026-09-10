@@ -1,0 +1,23 @@
+{
+  "baseline": {
+    "exit_code": 1,
+    "expected": "Menu key fails to open selected pressure context menu"
+  },
+  "normal": {
+    "exit_code": 0,
+    "checks": 17
+  },
+  "scale2": {
+    "exit_code": 0,
+    "checks": 17,
+    "environment": {
+      "QT_SCALE_FACTOR": "2"
+    },
+    "limit": "Requested Qt scale recorded; the qualification did not assert the device pixel ratio."
+  },
+  "integrated": {
+    "base": "8485065a0bfe3fcfbdb2cf26b4908da8b5c4ce43",
+    "exit_code": 0,
+    "checks": 17
+  }
+}

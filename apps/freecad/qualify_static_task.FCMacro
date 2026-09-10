@@ -200,6 +200,21 @@ def launch_after_display():
     report["checks"].append(
         "native context-menu event and visible Edit pressure action"
     )
+    # Keyboard menus must use the selected row, even with the pointer elsewhere.
+    for key, modifiers in (
+        (QtCore.Qt.Key.Key_Menu, QtCore.Qt.KeyboardModifier.NoModifier),
+        (QtCore.Qt.Key.Key_F10, QtCore.Qt.KeyboardModifier.ShiftModifier),
+    ):
+        panel.boundaries.setFocus()
+        before = len(menu_checks)
+        QtCore.QTimer.singleShot(100, choose_pressure)
+        QtTest.QTest.keyClick(panel.boundaries, key, modifiers)
+        assert len(menu_checks) == before + 1
+        assert panel.selected_boundary().Kind == "Pressure"
+        assert panel.pressure.hasFocus() and panel.pressure.value() == -2
+    report["checks"].append(
+        "Menu and Shift+F10 open the selected pressure menu and focus its value"
+    )
     close_buttons = [
         box.button(QtWidgets.QDialogButtonBox.StandardButton.Close)
         for box in Gui.getMainWindow().findChildren(QtWidgets.QDialogButtonBox)
