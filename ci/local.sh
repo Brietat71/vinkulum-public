@@ -60,6 +60,9 @@ cargo test --release --example poutre_mixte -q
 etape "roue → $PY"
 VIRTUAL_ENV="$VINKULUM_VENV" "$MATURIN" develop "${INSTALL[@]}" --release --extras verification
 
+etape "référence analytique des captures FEM FreeCAD"
+"$PY" ci/test_freecad_static_reference.py
+
 etape "contrôles rapides (campagne parallèle)"
 "$PY" -m vinkulum.verification
 

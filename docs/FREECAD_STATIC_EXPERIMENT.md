@@ -52,6 +52,25 @@ A separate replay deliberately renumbers mesh surfaces and requires exactly
 unchanged support and load arrays. It rejects duplicate geometric matches,
 a displaced face and incorrect area coverage, and revalidates raw solver archives.
 
+## Replay the analytic reference with NumPy only
+
+```sh
+python3 ci/check_freecad_static_reference.py docs/bancs/freecad-static-2026/record.zip
+```
+
+This check needs only NumPy and the retained archive. It independently constructs
+both world frames with Rodrigues' formula, checks analytic box mass/full inertia,
+and compares every preview displacement, total energy and net reaction with the
+affine tension solution. It also checks request identity and captured STEP hashes.
+The declared budgets are unchanged: 10⁻¹⁰ m displacement, 5 × 10⁻⁶ relative
+energy and 5 × 10⁻⁶ of the 600 N reaction. Mandatory local CI runs this replay and
+counterexamples with reversed displacements, incorrect energy and reversed
+reactions. These finite but physically wrong results must fail independently.
+
+This is a numerical check of the recorded preview, not a replacement for the CAD
+mapping and raw CalculiX archive recheck above. It starts no solver, checks no new
+mesh and establishes no general FEM error bound.
+
 ## Limits
 
 One top-level solid; small-strain linear isotropic elasticity; quadratic tetrahedra;
