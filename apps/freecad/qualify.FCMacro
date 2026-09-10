@@ -1,0 +1,320 @@
+"""Actual FreeCAD GUI qualification of the isolated Vinkulum bridge prototype.
+
+SPDX-License-Identifier: Apache-2.0
+"""
+
+import json
+import math
+import os
+import platform
+import sys
+import time
+import traceback
+import uuid
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+import Part
+import Sketcher
+from PySide6.QtCore import QTimer
+from PySide6.QtWidgets import QApplication
+
+if App.listDocuments():
+    raise RuntimeError("Run this qualification in a fresh FreeCAD process")
+
+root = Path(os.environ["VINKULUM_FREECAD_CAPTURE"])
+root.mkdir(parents=True, exist_ok=False)
+sys.path.insert(0, os.environ["VINKULUM_FREECAD_PROTOTYPE"])
+import bridge
+
+report = {
+    "status": "running",
+    "freecad": App.Version(),
+    "freecad_python": sys.version,
+    "platform": platform.platform(),
+    "freecad_occt": Part.OCC_VERSION,
+    "source_sha256": {
+        name: bridge.sha(
+            (Path(os.environ["VINKULUM_FREECAD_PROTOTYPE"]) / name).read_bytes()
+        )
+        for name in ("bridge.py", "worker.py", "qualify.FCMacro")
+    },
+    "trials": [],
+}
+state = {"finished": False, "doc": None, "job": None, "trial": -1}
+cases = [(length, step) for length in (800, 1200) for step in (0.005, 0.0025)]
+heartbeat = QTimer(Gui.getMainWindow())
+heartbeat.setInterval(20)
+ticks = []
+heartbeat.timeout.connect(lambda: ticks.append(time.perf_counter()))
+animation = QTimer(Gui.getMainWindow())
+animation.setInterval(10)
+watchdog = QTimer(Gui.getMainWindow())
+watchdog.setSingleShot(True)
+
+
+def record():
+    (root / "report.json").write_text(
+        json.dumps(report, indent=2, allow_nan=False) + "\n"
+    )
+
+
+def finish(error=None):
+    if state["finished"]:
+        return
+    state["finished"] = True
+    heartbeat.stop()
+    animation.stop()
+    watchdog.stop()
+    job = state["job"]
+    if job is not None and job.process.state() != job.process.ProcessState.NotRunning:
+        job.process.kill()
+        job.process.waitForFinished(1000)
+    report["status"] = "failed" if error else "completed"
+    if error:
+        report["error"] = str(error)
+    report["heartbeat_intervals_ms"] = [
+        1000 * (b - a) for a, b in zip(ticks, ticks[1:])
+    ]
+    record()
+    if state["doc"] is not None:
+        App.closeDocument(state["doc"].Name)
+    QApplication.instance().quit()
+
+
+def caught(kind, error, trace):
+    (root / "exception.log").write_text(
+        "".join(traceback.format_exception(kind, error, trace))
+    )
+    finish(error)
+
+
+sys.excepthook = caught
+watchdog.timeout.connect(lambda: finish("FreeCAD qualification exceeded 120 seconds"))
+
+
+def screenshot(name):
+    Gui.updateGui()
+    window = Gui.getMainWindow()
+    assert (
+        QApplication.primaryScreen().grabWindow(window.winId()).save(str(root / name))
+    )
+
+
+def start():
+    try:
+        Gui.activateWorkbench("PartDesignWorkbench")
+        window = Gui.getMainWindow()
+        window.resize(1440, 950)
+        doc = state["doc"] = App.newDocument("VinkulumBridge")
+        body = state["source"] = doc.addObject("PartDesign::Body", "Rod")
+        body.Label = "Parametric pendulum · FreeCAD → Vinkulum"
+        sketch = body.newObject("Sketcher::SketchObject", "Section")
+        points = [(-10, -15), (10, -15), (10, 15), (-10, 15)]
+        for a, b in zip(points, points[1:] + points[:1]):
+            index = sketch.addGeometry(
+                Part.LineSegment(App.Vector(*a, 0), App.Vector(*b, 0)), False
+            )
+            sketch.addConstraint(Sketcher.Constraint("Block", index))
+        pad = state["pad"] = body.newObject("PartDesign::Pad", "Length")
+        pad.Profile = sketch
+        pad.Length = 800
+        body.Placement = App.Placement(
+            App.Vector(0, 0, 0), App.Rotation(App.Vector(0, 1, 0), 160)
+        )
+        doc.recompute()
+        sketch.Visibility = False
+        pad.Visibility = True
+        body.Visibility = True
+        body.ViewObject.ShapeColor = (0.72, 0.76, 0.83)
+        state["body_id"], state["project_id"] = str(uuid.uuid4()), str(uuid.uuid4())
+        Gui.activeDocument().activeView().viewFront()
+        Gui.activeDocument().activeView().fitAll()
+        heartbeat.start()
+        watchdog.start(120000)
+        next_trial()
+    except Exception as error:
+        caught(type(error), error, error.__traceback__)
+
+
+def next_trial():
+    state["trial"] += 1
+    if state["trial"] == len(cases):
+        negative_cases()
+        return
+    length, step = cases[state["trial"]]
+    source, doc = state["source"], state["doc"]
+    state["pad"].Length = length
+    doc.recompute()
+    source.Visibility = True
+    Gui.Selection.clearSelection()
+    Gui.Selection.addSelection(state["pad"])
+    Gui.activeDocument().activeView().fitAll()
+    folder = root / f"length-{length}-step-{step}"
+    request = bridge.capture(
+        source,
+        folder,
+        density=7800,
+        body_id=state["body_id"],
+        project_id=state["project_id"],
+        step=step,
+    )
+    doc.saveAs(str(folder / "source.FCStd"))
+    state.update(
+        folder=folder,
+        request=request,
+        started=time.perf_counter(),
+        tick_start=len(ticks),
+    )
+    screenshot(f"source-{state['trial']}.png")
+    job = bridge.Job(source, folder, request, os.environ["VINKULUM_FREECAD_PYTHON"])
+    state["job"] = job
+    job.failed.connect(finish)
+    job.completed.connect(calculated)
+    job.start()
+
+
+def calculated(result):
+    if state["finished"]:
+        return
+    source, doc = state["source"], state["doc"]
+    row = {
+        "length_mm": cases[state["trial"]][0],
+        "step_s": cases[state["trial"]][1],
+        "directory": state["folder"].name,
+        "calculation_s": time.perf_counter() - state["started"],
+        "heartbeat_ticks_during_calculation": len(ticks) - state["tick_start"],
+        "native_samples": len(result["time_s"]),
+        "replayed_samples": [],
+    }
+    assert row["heartbeat_ticks_during_calculation"] > 2
+    playback = doc.addObject("Part::Feature", "VinkulumPlayback")
+    playback.Label = "Captured Vinkulum motion (native samples)"
+    playback.Shape = source.Shape.copy()
+    playback.ViewObject.ShapeColor = (0.95, 0.57, 0.15)
+    source.Visibility = False
+    doc.recompute()
+    state.update(
+        result=result,
+        playback=playback,
+        original_placement=App.Placement(playback.Placement),
+        row=row,
+    )
+    count = len(result["time_s"])
+    state["frames"] = list(range(0, count, max(1, (count - 1) // 40)))
+    if state["frames"][-1] != count - 1:
+        state["frames"].append(count - 1)
+    state["frame"] = 0
+    Gui.Selection.clearSelection()
+    animation.start()
+
+
+def animate():
+    result = state["result"]
+    index = state["frames"][state["frame"]]
+    position, rotation = result["position_m"][index], result["rotation"][index]
+    bridge.set_pose(
+        state["playback"],
+        state["original_placement"],
+        state["request"]["properties_si"]["centre_m"],
+        position,
+        rotation,
+    )
+    centre = list(state["playback"].Shape.CenterOfMass)
+    error = max(abs(a * 1e-3 - b) for a, b in zip(centre, position))
+    assert error < 1e-9, (index, error)
+    assert (
+        bridge.signature(state["source"]) == state["request"]["source_geometry_sha256"]
+    )
+    state["row"]["replayed_samples"].append(
+        {"index": index, "time_s": result["time_s"][index], "centre_error_m": error}
+    )
+    Gui.updateGui()
+    if state["frame"] == len(state["frames"]) // 2:
+        screenshot(f"motion-{state['trial']}.png")
+    state["frame"] += 1
+    if state["frame"] < len(state["frames"]):
+        return
+    animation.stop()
+    state["doc"].removeObject(state["playback"].Name)
+    state["source"].Visibility = True
+    state["doc"].recompute()
+    report["trials"].append(state["row"])
+    record()
+    state["job"].deleteLater()
+    state["job"] = None
+    QTimer.singleShot(0, next_trial)
+
+
+def negative_cases():
+    source, pad = state["source"], state["pad"]
+    old = pad.Length.Value
+    pad.Length = old + 1
+    state["doc"].recompute()
+    try:
+        bridge.admit(source, state["folder"], state["request"])
+    except ValueError as error:
+        assert "Geometry changed" in str(error)
+        report["stale_geometry_rejected"] = True
+    else:
+        raise AssertionError("Stale geometry was admitted")
+    pad.Length = old
+    state["doc"].recompute()
+    # A parent placement can change world geometry without changing the local
+    # Shape BREP. Admission must capture both, including this inherited pose.
+    parent = state["doc"].addObject("App::Part", "MovedParent")
+    parent.addObject(source)
+    local_brep = source.Shape.exportBrepToString()
+    parent.Placement.Base = App.Vector(10, 0, 0)
+    state["doc"].recompute()
+    assert source.Shape.exportBrepToString() == local_brep
+    try:
+        bridge.admit(source, state["folder"], state["request"])
+    except ValueError as error:
+        assert "Geometry changed" in str(error)
+        report["moved_parent_rejected"] = True
+    else:
+        raise AssertionError("Changed world placement was admitted")
+    parent.removeObject(source)
+    state["doc"].removeObject(parent.Name)
+    state["doc"].recompute()
+    path = state["folder"] / "result/playback.json"
+    raw = path.read_bytes()
+    damaged = json.loads(raw)
+    damaged["rotation"][1][0] += 0.1
+    path.write_text(json.dumps(damaged))
+    try:
+        bridge.admit(source, state["folder"], state["request"])
+    except ValueError as error:
+        assert "rotation" in str(error)
+        report["corrupt_rotation_rejected"] = True
+    else:
+        raise AssertionError("Corrupt rotation was admitted")
+    finally:
+        path.write_bytes(raw)
+    request_path = state["folder"] / "request.json"
+    original_request = request_path.read_bytes()
+    changed = json.loads(original_request)
+    changed["density_kg_m3"] *= 2
+    changed_bytes = bridge.request_bytes(changed)
+    request_path.write_bytes(changed_bytes)
+    other_result = json.loads(raw)
+    other_result["request_sha256"] = bridge.sha(changed_bytes)
+    path.write_text(json.dumps(other_result))
+    try:
+        bridge.admit(source, state["folder"], state["request"])
+    except ValueError as error:
+        assert "Captured request changed" in str(error)
+        report["changed_request_rejected"] = True
+    else:
+        raise AssertionError("A result for a replaced request was admitted")
+    finally:
+        request_path.write_bytes(original_request)
+        path.write_bytes(raw)
+    bridge.admit(source, state["folder"], state["request"])
+    finish()
+
+
+animation.timeout.connect(animate)
+QTimer.singleShot(1500, start)
