@@ -6,6 +6,11 @@ is a useful starting point. Larger projects should begin with a scoped proposal.
 
 These are proposed projects, not funded positions or scheduled commitments.
 
+**Interface priority: [FreeCAD](FREECAD_INTEGRATION.md).** New modelling and
+analysis workflows belong in the [Vinkulum workbench](../apps/freecad/README.md).
+Standalone Studio UI development is set aside; existing solver contracts,
+physical references and tests remain useful to this integration.
+
 Scoped contribution briefs cover [an analytic STEP fixture (#1)](https://github.com/Brietat71/vinkulum-public/issues/1),
 [keyboard and high-DPI behaviour (#2)](https://github.com/Brietat71/vinkulum-public/issues/2),
 [a CalculiX bending refinement study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4),
@@ -14,6 +19,7 @@ Each records the deliverable, acceptance evidence and current status.
 
 | Project | Useful background | A reviewable first result |
 |---|---|---|
+| [FreeCAD mechanisms](FREECAD_INTEGRATION.md) | FreeCAD, Python, rigid-body dynamics | Two bodies and two explicit joints in a FreeCAD document, with a replayable capture and an independent reference |
 | [CAD regression corpus](../apps/studio/tests/fixtures/analytic_step_corpus/README.md) | CAD, mechanical design | Extend the three analytic parts with a redistributable vendor export or trimmed curved surface; include independent volume/inertia references and a failure case |
 | [Responsive CAD service](CAD_PROCESS_REUSE.md) | Python, processes, profiling | Extend the supervised service qualification to long edit sessions or packaged macOS/Windows builds; report memory, UI latency and interruption behaviour |
 | Rust mesh/data path | Rust, Python FFI, VTK | Profile a reproducible large model; improve a demonstrated bottleneck with numerical equivalence and memory measurements |
@@ -23,8 +29,8 @@ Each records the deliverable, acceptance evidence and current status.
 | MBDyn connector | Multibody simulation | Map a small mechanism, units, frames, solver version and result channels through an explicit adapter |
 | [CalculiX workflow](STUDIO_CAD_MESHING.md) | FEM, Python/Qt | Qualify a CAD-derived study under mesh refinement, with an independent reference and explicit locations for reported displacement/stress |
 | DUST connector | Aerodynamics | A minimal reproducible coupling contract and an uncoupled reference case first |
-| NeuralFoil workflow | Aerodynamics, Python | A traceable polar workflow, including model version and limits, connected to Studio |
-| Accessible desktop | Qt, UX | One keyboard-complete workflow, tested at normal and high DPI |
+| NeuralFoil workflow | Aerodynamics, Python | A traceable polar workflow, including model version and limits, connected to FreeCAD |
+| Accessible desktop | FreeCAD, Qt, UX | One keyboard-complete workbench workflow, tested at normal and high DPI |
 | Teach with Vinkulum | Teaching, technical writing | A runnable lab exercise with expected observations and a worked explanation |
 
 Start an [issue](https://github.com/Brietat71/vinkulum-public/issues/new) with:

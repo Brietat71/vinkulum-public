@@ -1,0 +1,298 @@
+"""Real FreeCAD/QProcess lifecycle probes for the installed workbench.
+
+SPDX-License-Identifier: Apache-2.0
+"""
+
+import json
+import os
+import sys
+import traceback
+import uuid
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide6.QtCore import QProcess, QTimer, Qt
+from PySide6.QtTest import QTest
+from PySide6.QtWidgets import QApplication, QMessageBox
+
+if App.listDocuments():
+    raise RuntimeError("Use a dedicated empty FreeCAD session")
+root = Path(os.environ["VINKULUM_FREECAD_CAPTURE"])
+root.mkdir(parents=True, exist_ok=False)
+report = {"status": "running", "cases": [], "freecad": App.Version()}
+state = {"index": -1, "finished": False, "doc_name": None, "job": None}
+cases = [
+    "failed_start",
+    "cancel_starting",
+    "cancel_running",
+    "delete_source",
+    "close_document",
+    "late_cancel",
+    "timeout",
+    "changed_source",
+    "success_after_cancellations",
+    "close_window",
+]
+timer = QTimer(Gui.getMainWindow())
+timer.setSingleShot(True)
+
+
+def record():
+    (root / "report.json").write_text(json.dumps(report, indent=2) + "\n")
+
+
+def failure(kind, error, trace):
+    if state["finished"]:
+        return
+    state["finished"] = True
+    timer.stop()
+    report["status"], report["error"] = "failed", str(error)
+    (root / "exception.log").write_text(
+        "".join(traceback.format_exception(kind, error, trace))
+    )
+    job = state["job"]
+    if job is not None and job.running:
+        job.cancel()
+    for name in list(App.listDocuments()):
+        App.closeDocument(name)
+    record()
+    QTimer.singleShot(500, QApplication.instance().quit)
+
+
+sys.excepthook = failure
+timer.timeout.connect(
+    lambda: failure(
+        RuntimeError, RuntimeError("Lifecycle qualification exceeded90s"), None
+    )
+)
+
+
+def wait(predicate, callback, job):
+    if state["finished"] or state["job"] is not job:
+        return
+    if predicate():
+        callback()
+    else:
+        QTimer.singleShot(10, lambda: wait(predicate, callback, job))
+
+
+def start():
+    Gui.activateWorkbench("VinkulumWorkbench")
+    import vinkulum_freecad as vk
+
+    state["vk"] = vk
+    report["installed_module"] = vk.__file__
+    report["installed_manifest"] = json.loads((vk.ROOT / "build-info.json").read_text())
+    assert "/Mod/Vinkulum/" in vk.__file__
+    next_case()
+
+
+def next_case():
+    if state["finished"]:
+        return
+    vk = state["vk"]
+    assert not vk.bridge._active_jobs
+    if state["doc_name"] in App.listDocuments():
+        App.closeDocument(state["doc_name"])
+    previous = state["job"]
+    if previous is not None:
+        previous.deleteLater()
+    state["index"] += 1
+    name = cases[state["index"]]
+    vk.example()
+    doc = App.ActiveDocument
+    source = Gui.Selection.getSelection()[0]
+    state["doc_name"] = doc.Name
+    directory = root / name
+    request = vk.bridge.capture(
+        source,
+        directory,
+        density=7800,
+        body_id=str(uuid.uuid4()),
+        project_id=str(uuid.uuid4()),
+        duration=0.1,
+        step=0.005,
+    )
+    stage = "after" if name == "late_cancel" else "before"
+    (directory / "gate.json").write_text(json.dumps({"stage": stage}))
+    interpreter = (
+        "/nonexistent/vinkulum-python"
+        if name == "failed_start"
+        else os.environ["VINKULUM_FREECAD_PYTHON"]
+    )
+    job = vk.bridge.Job(source, directory, request, interpreter)
+    job.process.setArguments(
+        [
+            str(
+                Path(os.environ["VINKULUM_FREECAD_QUALIFICATION"])
+                / "qualification_gate.py"
+            ),
+            str(vk.ROOT / "worker.py"),
+            str(directory),
+        ]
+    )
+    row = {"name": name, "signals": [], "pid": 0}
+    state.update(job=job, source=source, directory=directory, row=row)
+    for outcome in ("completed", "failed", "cancelled"):
+        getattr(job, outcome).connect(lambda value, kind=outcome: terminal(kind, value))
+    job.ended.connect(ended)
+    job.start()
+    if name == "cancel_starting":
+        job.cancel("Explicit starting-state cancellation")
+        job.cancel("Repeated cancellation")
+    elif name != "failed_start":
+        wait(
+            lambda: (directory / "entered.json").exists()
+            and job.process.state() == QProcess.ProcessState.Running,
+            reached_barrier,
+            job,
+        )
+
+
+def reached_barrier():
+    vk, job, row = state["vk"], state["job"], state["row"]
+    directory, source = state["directory"], state["source"]
+    entered = json.loads((directory / "entered.json").read_text())
+    assert job.process.state() == QProcess.ProcessState.Running, job.process.state()
+    assert entered["pid"] == job.process.processId()
+    row["pid"] = entered["pid"]
+    row["barrier"] = entered["stage"]
+    name = row["name"]
+    if name in ("cancel_running", "late_cancel"):
+        if name == "late_cancel":
+            assert (directory / "result/playback.json").is_file()
+            row["prepared_result_existed_before_cancel"] = True
+        job.cancel("Explicit running-state cancellation")
+        job.cancel("Repeated cancellation")
+    elif name == "delete_source":
+        source.Document.removeObject(source.Name)
+    elif name == "close_document":
+        App.closeDocument(state["doc_name"])
+    elif name == "timeout":
+        job.timer.start(1)
+    elif name == "changed_source":
+        source.Document.getObject("Longueur").Length = 900
+        source.Document.recompute()
+        (directory / "release").touch()
+    elif name == "success_after_cancellations":
+        # A second request must not bypass the one-calculation admission limit.
+        other = vk.bridge.Job(
+            source, directory, job.request, os.environ["VINKULUM_FREECAD_PYTHON"]
+        )
+        try:
+            other.start()
+        except RuntimeError:
+            row["concurrent_request_refused"] = True
+        else:
+            raise AssertionError("Concurrent request admitted")
+        other.deleteLater()
+        (directory / "release").touch()
+    elif name == "close_window":
+        source.Document.saveAs(str(root / "closing.FCStd"))
+        QTimer.singleShot(1000, inspect_close)
+        assert not Gui.getMainWindow().close()
+
+
+def inspect_close():
+    report["close_diagnostics"] = {
+        "quit_on_last_window": QApplication.instance().quitOnLastWindowClosed(),
+        "windows": [
+            {
+                "class": w.metaObject().className(),
+                "title": w.windowTitle(),
+                "visible": w.isVisible(),
+                "text": w.text() if isinstance(w, QMessageBox) else "",
+            }
+            for w in QApplication.topLevelWidgets()
+            if w.isVisible()
+        ],
+        "documents": list(App.listDocuments()),
+    }
+    QApplication.primaryScreen().grabWindow(0).save(str(root / "close-screen.png"))
+    dialogs = [
+        w
+        for w in QApplication.topLevelWidgets()
+        if isinstance(w, QMessageBox) and w.isVisible()
+    ]
+    assert len(dialogs) == 1 and "closing" in dialogs[0].text(), report[
+        "close_diagnostics"
+    ]
+    assert not state["vk"].bridge._active_jobs
+    report["native_save_prompt_after_worker_reaped"] = True
+    record()
+    QTest.mouseClick(
+        dialogs[0].button(QMessageBox.StandardButton.Cancel), Qt.MouseButton.LeftButton
+    )
+    QTimer.singleShot(50, retry_close)
+
+
+def retry_close():
+    assert Gui.getMainWindow().isVisible()
+    assert state["doc_name"] in App.listDocuments()
+    report["close_veto_kept_document"] = True
+    record()
+    QTimer.singleShot(100, save_and_close)
+    Gui.runCommand("Std_Quit")
+
+
+def save_and_close():
+    dialogs = [
+        w
+        for w in QApplication.topLevelWidgets()
+        if isinstance(w, QMessageBox) and w.isVisible()
+    ]
+    assert len(dialogs) == 1 and "closing" in dialogs[0].text()
+    report["native_save_chosen"] = True
+    record()
+    QTest.mouseClick(
+        dialogs[0].button(QMessageBox.StandardButton.Save), Qt.MouseButton.LeftButton
+    )
+
+
+def terminal(kind, value):
+    job, row = state["job"], state["row"]
+    assert job.process.state() == QProcess.ProcessState.NotRunning
+    row["signals"].append(kind)
+    if kind != "completed":
+        row["message"] = value
+
+
+def ended():
+    if state["finished"]:
+        return
+    job, row = state["job"], state["row"]
+    assert not job.running and not state["vk"].bridge._active_jobs
+    expected = (
+        "failed"
+        if row["name"] in ("failed_start", "timeout", "changed_source")
+        else (
+            "completed" if row["name"] == "success_after_cancellations" else "cancelled"
+        )
+    )
+    assert row["signals"] == [expected], row
+    assert not job.timer.isActive() and not job._observing
+    if row["name"] == "changed_source":
+        assert "Geometry changed" in row["message"]
+    row["child_reaped_before_notification"] = True
+    report["cases"].append(row)
+    record()
+    if row["name"] != "close_window":
+        QTimer.singleShot(0, next_case)
+
+
+def quitting():
+    if state["finished"]:
+        return
+    assert len(report["cases"]) == len(cases)
+    assert not state["vk"].bridge._active_jobs
+    state["finished"] = True
+    timer.stop()
+    report["status"] = "passed"
+    report["normal_freecad_close_after_worker_reaped"] = True
+    record()
+
+
+QApplication.instance().aboutToQuit.connect(quitting)
+timer.start(90000)
+QTimer.singleShot(500, start)

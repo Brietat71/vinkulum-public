@@ -6,29 +6,35 @@
 
 Vinkulum is an open engineering project bringing **CAD, multibody simulation
 and scientific verification** into a shared workflow. It combines a Rust
-mechanics kernel, a Python API and a native 3D desktop application — with the
+mechanics kernel, a Python API and a FreeCAD integration — with the
 ambition of becoming a home for the open solvers engineers and researchers rely on.
 
-[Get started](#get-started) · [Contribute](docs/CONTRIBUTOR_PROJECTS.md) ·
+**Interface development now targets FreeCAD.** The [Vinkulum workbench](apps/freecad/README.md)
+uses FreeCAD's modelling tools, document tree and task panel. Its first scope is
+one rigid solid with an explicit revolute joint, native dynamics and retained
+motion playback. The [integration direction](docs/FREECAD_INTEGRATION.md) identifies
+the remaining work. New interface development in standalone Studio is set aside.
+
+[Install the FreeCAD workbench](apps/freecad/README.md) · [Kernel setup](#get-started) · [Contribute](docs/CONTRIBUTOR_PROJECTS.md) ·
 [Discuss](https://github.com/Brietat71/vinkulum-public/discussions) ·
 [Share Vinkulum](docs/SHARE_VINKULUM.md) ·
 [Scientific guarantees](docs/CERTIFICATION_NOYAU.md) ·
 [Support the project](docs/FUNDING.md) · [Documentation technique en français](README.fr.md)
 
-**Try it:** [Apple Silicon DMG · 0.6.0a2.dev5](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a2.dev5-macos-9) ·
+**Earlier standalone Studio previews:** [Apple Silicon DMG · 0.6.0a2.dev5](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a2.dev5-macos-9) ·
 [Linux preview · 0.6.0a1](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux) ·
 [included examples in five minutes](apps/studio/packaging/EXAMPLES.md).
 **Studio is a research alpha.** CAD, the native kernel and saved CAD/FEM/Pinocchio
 examples are included. New Gmsh, CalculiX and Pinocchio computations use separate engines.
 
 <p align="center">
-  <img src="docs/assets/studio-cad-mesh.png" alt="Vinkulum Studio: a CAD plate meshed with quadratic tetrahedra, a clamped end, a top pressure load and editable face conditions" width="100%">
+  <img src="docs/bancs/freecad-workbench-2026/motion.png" alt="Vinkulum installed in FreeCAD: parametric pendulum, native calculation and retained motion in the task panel" width="100%">
 </p>
 
-*A real CAD-to-statics session: mesh the plate, pick its faces, add a clamp and
-pressure, then open CalculiX. The [captured example](docs/bancs/studio-cad-meshing-060/README.md)
-keeps the solid, conditions, input deck and raw output behind the display.
-The plate demonstrates the workflow; it is not a certified stress solution.*
+*The installed FreeCAD workbench plays a native Vinkulum trajectory on a captured
+copy of a PartDesign pendulum. The [qualification record](docs/bancs/freecad-workbench-2026/README.md)
+includes the installable archive, editable documents, three calculations,
+independent physical references and cancellation/closure checks.*
 
 <details>
 <summary><strong>New in source: draw a profile, change a dimension, rebuild the solid</strong></summary>

@@ -1,7 +1,10 @@
 # Vinkulum — documentation technique du noyau
 
-[Accueil du projet et Studio](README.md) · [Conception CAD](docs/STUDIO_CAD.md) ·
+[Accueil du projet](README.md) · [Atelier FreeCAD](apps/freecad/README.md) ·
 [Contribuer](docs/CONTRIBUTOR_PROJECTS.md)
+
+**FreeCAD est désormais l’interface prioritaire.** Le développement de l’interface
+maison de Studio est mis de côté ; voir la [direction d’intégration](docs/FREECAD_INTEGRATION.md).
 
 Cette référence conserve les résultats historiques avec leurs versions et limites.
 
