@@ -92,6 +92,11 @@ check rotations and centres of mass, booleans, fillets, STEP metre/millimetre
 conversion, BREP persistence, attachment rebasing, worker failure and the
 CAD → mechanics → Qt/VTK rendering workflow.
 
+The [CAD service experiment](CAD_SERVICE_EXPERIMENT.md) measures sequential
+process reuse against fresh workers, with independent mass/inertia references,
+memory counters and failure-recovery probes. It records the integration contract
+for a future service; the desktop still starts one process per CAD operation.
+
 **96 targeted upstream tests** pass for build123d 0.11.1's `test_bound_box`,
 `test_mass_properties`, `test_location` and `test_build_part`. This qualifies
 the tested paths rather than the whole build123d or OCCT API. `uv pip check`

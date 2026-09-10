@@ -15,7 +15,7 @@ Each records the deliverable, acceptance evidence and current status.
 | Project | Useful background | A reviewable first result |
 |---|---|---|
 | CAD regression corpus | CAD, mechanical design | Three redistributable STEP parts with known units, volume, inertia and failure cases |
-| Responsive CAD service | Python, processes, profiling | Measure a persistent worker against fresh processes; retain timeout, cancellation and recovery after an OCCT failure |
+| [Responsive CAD service](CAD_SERVICE_EXPERIMENT.md) | Python, processes, profiling | Extend the retained fresh/resident measurements into a supervised Qt service; preserve CPU admission, timeout, cancellation and recovery |
 | Rust mesh/data path | Rust, Python FFI, VTK | Profile a reproducible large model; improve a demonstrated bottleneck with numerical equivalence and memory measurements |
 | Mechanism validation | Dynamics, experimental mechanics | An analytic or published benchmark, convergence study and independent reference |
 | Verifiable numerics | Numerical analysis, exact arithmetic, Lean | A sharply stated guarantee, executable verifier and adversarial counterexamples |
