@@ -1,4 +1,4 @@
-Vinkulum for FreeCAD 0.1.0a1 — Linux research preview
+Vinkulum for FreeCAD 0.1.0a2 — Linux research preview
 
 This extension adds a Vinkulum menu and a native task panel to FreeCAD.
 Keep your usual FreeCAD workbench: no switch to a Vinkulum workbench is needed.
@@ -33,7 +33,8 @@ VINKULUM_FREECAD_PYTHON and VINKULUM_FREECAD_OUTPUT_ROOT can also supply them.
 Try the included example
 ------------------------
 1. Vinkulum > Open pendulum example opens an editable PartDesign document.
-2. Select its Rod body, then Vinkulum > Motion analysis.
+2. Select its Rod body, then Vinkulum > Motion analysis. This creates a Motion
+   object in the document tree. Selecting that body again reopens its analysis.
 3. Choose the engine environment and click Run motion. The defaults match the
    independent physical-pendulum reference: 7800 kg/m3, 2 s, a 5 ms native step,
    world-origin pivot and world-Y revolute axis, gravity toward -Z.
@@ -41,6 +42,15 @@ Try the included example
    is a temporary copy. The original feature graph and placement are retained.
 5. Close the task to return to ordinary modelling. Edit the pad, then calculate
    again. Geometry changed after capture is refused for old-motion playback.
+
+The Motion object stores its source link, density, pivot, axis, duration,
+native time step and thread budget in the .FCStd document. Save the document
+to retain them. Double-click Motion, or right-click > Edit motion analysis,
+to reopen its panel. Input edits support FreeCAD Undo/Redo and are also visible
+in the native property editor. Close leaves those edits in the document.
+Opening the panel does not round the stored values; calculations read the
+document directly. Native FCStd serialization retains FreeCAD's own precision.
+The executable path remains a local preference, outside the document.
 
 Pivot coordinates are world coordinates in mm. The axis is a direction vector;
 it is normalised before transmission. Density uses kg/m3, time uses seconds.
@@ -59,7 +69,12 @@ Each successful run keeps request.json, part.step, project.vinkulum.json,
 worker.log and result/ in its own folder. Keep that folder together.
 Open saved calculation reads it without starting the engine. The selected
 source solid must still match the captured geometry. The native .FCStd model
-and calculation captures remain separate files.
+and calculation captures remain separate files. Motion remembers the absolute
+path of its last successful or explicitly opened capture; Reopen last calculation
+loads it on demand. If the folder moved, use Open saved calculation to locate it.
+The document does not embed results or launch/replay anything when opened.
+Playback uses the captured inputs; edits to Motion configure the next run.
+Changing or deleting its source link closes the task and cancels its worker.
 
 Scope
 -----

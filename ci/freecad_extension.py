@@ -15,7 +15,7 @@ def qualify(freecad, engine_python, output, archive=None, recipe="extension"):
     root = Path(__file__).resolve().parents[1]
     output = output.absolute()
     output.mkdir(parents=True, exist_ok=False)
-    payload = output / "Vinkulum-FreeCAD-0.1.0a1.zip"
+    payload = output / "Vinkulum-FreeCAD.zip"
     if archive is None:
         subprocess.run(
             [sys.executable, str(root / "apps/freecad/package.py"), str(payload)],

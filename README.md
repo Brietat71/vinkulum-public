@@ -23,7 +23,7 @@ original geometry and placement.*
 
 ## Try it in FreeCAD
 
-**FreeCAD extension 0.1.0a1 · Kernel 0.20.0 · Linux first.**
+**FreeCAD extension 0.1.0a2 · Kernel 0.20.0 · Linux first.**
 
 1. [Install the extension and configure its separate engine](apps/freecad/README.md#install).
 2. Open **Vinkulum → Open pendulum example** in FreeCAD.
@@ -38,9 +38,14 @@ retire the job; stale geometry is refused for playback. Saving the FreeCAD file
 removes the temporary motion shape before serialization. Saved calculations
 reopen without running the engine.
 
+Motion analyses live in FreeCAD's document tree. Save their settings with the
+design, reopen them by double-click or right-click, and undo input edits using
+FreeCAD's normal controls. Each analysis remembers its last calculation folder
+for explicit replay; results remain external files.
+
 This is a research alpha. General FreeCAD Assembly conversion, multiple-body
 host models and FreeCAD controls for FEM and other engines remain upcoming work.
-The [qualification record](docs/bancs/freecad-extension-010/README.md) states
+The [document and lifecycle qualification](docs/bancs/freecad-analysis-010a2/README.md) states
 exactly which runtime, physical cases and lifecycle behaviours were exercised.
 
 The qualified Linux host is FreeCAD 1.1.3 / Qt 6. Its own OCCT 7.8.1 stays in
@@ -78,6 +83,7 @@ bounded guarantees. Passing a test or matching another solver does not certify
 arbitrary trajectories or models.
 
 - [FreeCAD extension: actual GUI, saved files, process lifecycle and frame transport](docs/bancs/freecad-extension-010/README.md)
+- [Persistent FreeCAD analyses: save/reopen, Undo/Redo and numeric precision](docs/bancs/freecad-analysis-010a2/README.md)
 - [Independent finite-section pendulum reference and four retained FreeCAD captures](docs/bancs/freecad-bridge-2026/README.md)
 - [Kernel guarantees and remaining obligations](docs/CERTIFICATION_NOYAU.md)
 - [Numerical benchmarks and historical comparisons](README.fr.md#résultats-mesurés-et-comparaison-externe)
