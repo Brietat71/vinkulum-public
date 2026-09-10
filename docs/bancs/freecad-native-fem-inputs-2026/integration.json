@@ -1,0 +1,9 @@
+{
+  "native_mode": "passed two cases; exit0",
+  "interactive_mode": "passed12checks; exit0",
+  "close_display_retries": 1,
+  "qualification_change": "Wait at most5s for a visible native Close button; actual accepted run needed1 extra100ms check after original400ms delay; same visibility/click assertions and numerical budgets",
+  "guardian_tests": "2passed",
+  "recipe_conflict": "native-inputs with static-task refused before output creation",
+  "producer_sources": "included and verified against execution hashes"
+}

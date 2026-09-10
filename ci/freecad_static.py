@@ -11,12 +11,15 @@ from pathlib import Path
 
 
 def qualify(args):
+    if args.native_inputs and args.recipe != "static":
+        raise ValueError("--native-inputs requires --recipe static.")
     root = Path(__file__).resolve().parents[1]
     output = args.output.absolute()
     output.mkdir(parents=True, exist_ok=False)
     sources = [
         "ci/freecad_static.py",
         "apps/freecad/static_bridge.py",
+        "apps/freecad/native_static.py",
         "apps/freecad/static_worker.py",
         "apps/freecad/qualify_static.FCMacro",
         "apps/freecad/bridge.py",
@@ -69,6 +72,7 @@ def qualify(args):
             "XDG_CONFIG_HOME": str(output / "config"),
             "XDG_DATA_HOME": str(output / "data"),
             "XDG_CACHE_HOME": str(output / "cache"),
+            "VINKULUM_STATIC_NATIVE_INPUTS": "1" if args.native_inputs else "0",
             "VINKULUM_STATIC_SOURCE": str(root),
             "VINKULUM_STATIC_CHECK": str(output),
             "VINKULUM_STATIC_PYTHON": str(args.engine_python.absolute()),
@@ -122,5 +126,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     for option in ("freecad", "engine-python", "gmsh", "ccx", "output"):
         parser.add_argument("--" + option, type=Path, required=True)
+    parser.add_argument("--native-inputs", action="store_true")
     parser.add_argument("--recipe", choices=("static", "static-task"), default="static")
     qualify(parser.parse_args())
