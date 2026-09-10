@@ -17,8 +17,9 @@ class SketchCanvas(QWidget):
     tool_changed = Signal(str)
     dimension_activated = Signal(str)
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, *, edit_guard=None):
         super().__init__(parent)
+        self.edit_guard = edit_guard
         self.setAccessibleName("Planar sketch canvas, millimetres")
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
         self.setMouseTracking(True)
@@ -142,6 +143,10 @@ class SketchCanvas(QWidget):
         if event.button() == Qt.MouseButton.MiddleButton:
             self._pan = (event.position(), self.center)
         elif event.button() == Qt.MouseButton.LeftButton:
+            # The inspector must accept its pending fields before a gesture starts.
+            if self.edit_guard is not None and not self.edit_guard():
+                event.accept()
+                return
             if self.tool == "polyline":
                 point, existing = self.target(event.position())
                 self.add_point.emit(point, existing)
