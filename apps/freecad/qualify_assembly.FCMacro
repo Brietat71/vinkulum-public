@@ -1,0 +1,421 @@
+"""Native Assembly → checked STEP → Vinkulum → FreeCAD sample playback.
+
+SPDX-License-Identifier: Apache-2.0
+Use an empty dedicated FreeCAD session. This recipe closes it on completion.
+"""
+
+import json
+import math
+import os
+import subprocess
+import sys
+import time
+import traceback
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+import Part
+import Sketcher
+import JointObject
+import UtilsAssembly
+from PySide6.QtCore import QTimer
+from PySide6.QtWidgets import QApplication, QTreeWidget
+
+root = Path(os.environ["VINKULUM_ASSEMBLY_CAPTURE"])
+root.mkdir(parents=True, exist_ok=False)
+report = {"status": "running", "trials": [], "freecad": App.Version()}
+state = {"trial": -1, "process": None, "finished": False}
+specs = [
+    (0, (0, 0, 0), 0.005),
+    (0, (0, 0, 0), 0.0025),
+    (17, (125, -75, 210), 0.005),
+    (17, (125, -75, 210), 0.0025),
+]
+
+
+def record():
+    (root / "report.json").write_text(json.dumps(report, indent=2) + "\n")
+
+
+def screenshot(name):
+    active = timer.isActive()
+    timer.stop()
+    view = Gui.activeDocument().activeView()
+    view.setAnimationEnabled(False)
+    view.viewFront()
+    view.fitAll(1.2)
+    for tree in Gui.getMainWindow().findChildren(QTreeWidget):
+        tree.expandToDepth(2)
+    Gui.updateGui()
+    assert (
+        QApplication.primaryScreen()
+        .grabWindow(Gui.getMainWindow().winId())
+        .save(str(root / name))
+    )
+    if active:
+        timer.start(20)
+
+
+def finish(error=None):
+    if state["finished"]:
+        return
+    state["finished"] = True
+    timer.stop()
+    p = state["process"]
+    if p is not None and p.poll() is None:
+        p.kill()
+        p.wait(timeout=5)
+    report["status"] = "failed" if error else "passed"
+    if error:
+        report["error"] = str(error)
+    record()
+    for name in list(App.listDocuments()):
+        App.closeDocument(name)
+    QApplication.instance().quit()
+
+
+def failed(kind, error, trace):
+    (root / "exception.log").write_text(
+        "".join(traceback.format_exception(kind, error, trace))
+    )
+    finish(error)
+
+
+sys.excepthook = failed
+
+
+def make_document():
+    doc = App.newDocument("NativeDoublePendulum")
+    assembly = doc.addObject("Assembly::AssemblyObject", "Assembly")
+    joints = assembly.newObject("Assembly::JointGroup", "Joints")
+    sources = doc.addObject("App::DocumentObjectGroup", "ParametricSources")
+    links = []
+    angles = (160, 205)
+    elbow = App.Rotation(App.Vector(0, 1, 0), 160).multVec(App.Vector(0, 0, 800))
+    for index, (name, length) in enumerate((("Upper", 800), ("Lower", 600))):
+        body = doc.addObject("PartDesign::Body", name + "Design")
+        sources.addObject(body)
+        profile = body.newObject("Sketcher::SketchObject", name + "Section")
+        points = [(-10, -15), (10, -15), (10, 15), (-10, 15)]
+        for a, b in zip(points, points[1:] + points[:1]):
+            edge = profile.addGeometry(
+                Part.LineSegment(App.Vector(*a, 0), App.Vector(*b, 0)), False
+            )
+            profile.addConstraint(Sketcher.Constraint("Block", edge))
+        pad = body.newObject("PartDesign::Pad", name + "Length")
+        pad.Profile, pad.Length = profile, length
+        doc.recompute()
+        profile.Visibility = False
+        link = assembly.newObject("App::Link", name)
+        link.setLink(body)
+        link.LinkPlacement = App.Placement(
+            App.Vector() if index == 0 else elbow,
+            App.Rotation(App.Vector(0, 1, 0), angles[index]),
+        )
+        body.Visibility = False
+        links.append(link)
+    base_source = doc.addObject("Part::Feature", "BaseDesign")
+    base_source.Shape = Part.makeBox(80, 60, 20, App.Vector(-40, -30, 0))
+    sources.addObject(base_source)
+    base = assembly.newObject("App::Link", "Base")
+    base.setLink(base_source)
+    base_source.Visibility = False
+    ground = joints.newObject("App::FeaturePython", "Ground")
+    JointObject.GroundedJoint(ground, base)
+    JointObject.ViewProviderGroundedJoint(ground.ViewObject)
+    for name, a, b, pivot in (
+        ("Shoulder", base, links[0], App.Vector()),
+        ("Elbow", links[0], links[1], elbow),
+    ):
+        joint = joints.newObject("App::FeaturePython", name)
+        JointObject.Joint(joint, 1)
+        JointObject.ViewProviderJoint(joint.ViewObject)
+        joint.Detach1 = joint.Detach2 = True
+        joint.Reference1, joint.Reference2 = (a, ["", ""]), (b, ["", ""])
+        world = App.Placement(
+            pivot, App.Rotation(App.Vector(0, 0, 1), App.Vector(0, 1, 0))
+        )
+        joint.Placement1 = (
+            UtilsAssembly.getGlobalPlacement(joint.Reference1).inverse().multiply(world)
+        )
+        joint.Placement2 = (
+            UtilsAssembly.getGlobalPlacement(joint.Reference2).inverse().multiply(world)
+        )
+    doc.recompute()
+    assembly.solve()
+    doc.recompute()
+    return doc, assembly
+
+
+def start():
+    assert not App.listDocuments(), "Use an empty dedicated FreeCAD session"
+    from vinkulum_freecad import assembly_capture, bridge
+
+    state["capture"], state["bridge"] = assembly_capture, bridge
+    addon = Path(assembly_capture.__file__).parents[1]
+    report["installed_manifest"] = json.loads(
+        (addon / "extension-info.json").read_text()
+    )
+    for name, digest in report["installed_manifest"]["files_sha256"].items():
+        path = (
+            addon / name
+            if name in ("InitGui.py", "INSTALLATION.txt")
+            else Path(assembly_capture.__file__).parent / name
+        )
+        assert bridge.sha(path.read_bytes()) == digest, name
+    report["installed_module"] = assembly_capture.__file__
+    Gui.activateWorkbench("AssemblyWorkbench")
+    doc, assembly = make_document()
+    state.update(doc=doc, assembly=assembly)
+    Gui.getMainWindow().resize(1440, 1000)
+    view = Gui.activeDocument().activeView()
+    view.setAnimationEnabled(False)
+    view.viewFront()
+    view.fitAll(1.2)
+    QTimer.singleShot(200, next_trial)
+
+
+def next_trial():
+    state["trial"] += 1
+    if state["trial"] == len(specs):
+        rejection_checks()
+        finish()
+        return
+    yaw, shift, step = specs[state["trial"]]
+    assembly = state["assembly"]
+    assembly.Placement = App.Placement(
+        App.Vector(*shift), App.Rotation(App.Vector(0, 0, 1), yaw)
+    )
+    state["doc"].recompute()
+    directory = root / f'trial-{state["trial"]}'
+    request = state["capture"].capture(
+        assembly, directory, density=2700, duration=0.5, step=step
+    )
+    state["request_bytes"] = state["bridge"].request_bytes(request)
+    state["directory"] = directory
+    state["doc"].saveAs(str(root / f'assembly-{state["trial"]}.FCStd'))
+    if state["trial"] == 0:
+        screenshot("native-assembly.png")
+    env = os.environ.copy()
+    for key in (
+        "PYTHONHOME",
+        "PYTHONPATH",
+        "LD_LIBRARY_PATH",
+        "QT_PLUGIN_PATH",
+        "QT_QPA_PLATFORM_PLUGIN_PATH",
+    ):
+        env.pop(key, None)
+    env.update(OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1")
+    state["log"] = (directory / "worker.log").open("wb")
+    worker = Path(state["capture"].__file__).with_name("assembly_worker.py")
+    state["process"] = subprocess.Popen(
+        [os.environ["VINKULUM_FREECAD_PYTHON"], str(worker), str(directory)],
+        cwd=directory,
+        env=env,
+        stdout=state["log"],
+        stderr=subprocess.STDOUT,
+    )
+    state["started"] = time.monotonic()
+    state["ticks"] = 0
+    state["phase"] = "worker"
+    timer.start(20)
+
+
+def tick():
+    if state["phase"] == "worker":
+        state["ticks"] += 1
+        code = state["process"].poll()
+        if code is None:
+            assert time.monotonic() - state["started"] < 60, "Worker timeout"
+            return
+        state["log"].close()
+        assert code == 0, (state["directory"] / "worker.log").read_text()
+        request = json.loads(state["request_bytes"])
+        result = state["capture"].admit(state["assembly"], state["directory"], request)
+        state["request"], state["result"] = request, result
+        state["source_signature"] = request["source_state_sha256"]
+        doc = App.newDocument("CapturedAssemblyMotion")
+        state["playback_doc"] = doc
+        state["copies"] = []
+        _, shapes = state["capture"].snapshot(state["assembly"])
+        for body in request["bodies"]:
+            obj = doc.addObject("Part::Feature", body["name"])
+            obj.Shape = shapes[body["name"]].copy()
+            obj.ViewObject.ShapeColor = (
+                (0.92, 0.58, 0.18) if body["name"] == "Upper" else (0.2, 0.55, 0.85)
+            )
+            state["copies"].append((obj, App.Placement(obj.Placement)))
+        doc.recompute()
+        view = Gui.getDocument(doc.Name).activeView()
+        view.setAnimationEnabled(False)
+        view.viewFront()
+        view.fitAll(1.2)
+        state["samples"] = sorted(
+            set(round(i * (len(result["time_s"]) - 1) / 40) for i in range(41))
+        )
+        state["replayed"] = []
+        state["phase"] = "playback"
+    elif state["phase"] == "playback":
+        if state["samples"]:
+            index = state["samples"].pop(0)
+            residual = 0
+            for b, (obj, placement) in enumerate(state["copies"]):
+                state["bridge"].set_pose(
+                    obj,
+                    placement,
+                    state["request"]["bodies"][b]["properties_si"]["centre_m"],
+                    state["result"]["position_m"][index][b],
+                    state["result"]["rotation"][index][b],
+                )
+                residual = max(
+                    residual,
+                    math.dist(
+                        [v * 0.001 for v in obj.Shape.Solids[0].CenterOfMass],
+                        state["result"]["position_m"][index][b],
+                    ),
+                )
+            assert residual < 1e-9, residual
+            state["replayed"].append({"sample": index, "centre_error_m": residual})
+            if state["trial"] == 0 and len(state["replayed"]) == 21:
+                screenshot("captured-motion.png")
+            return
+        timer.stop()
+        snapshot, _ = state["capture"].snapshot(state["assembly"])
+        assert (
+            state["bridge"].sha(state["bridge"].request_bytes(snapshot))
+            == state["source_signature"]
+        )
+        yaw, shift, step = specs[state["trial"]]
+        report["trials"].append(
+            {
+                "directory": state["directory"].name,
+                "yaw_deg": yaw,
+                "translation_mm": shift,
+                "step_s": step,
+                "heartbeat_ticks": state["ticks"],
+                "replayed_samples": state["replayed"],
+            }
+        )
+        record()
+        App.closeDocument(state["playback_doc"].Name)
+        QTimer.singleShot(0, next_trial)
+
+
+def rejection_checks():
+    capture, assembly, directory = (
+        state["capture"],
+        state["assembly"],
+        state["directory"],
+    )
+    request = json.loads(state["request_bytes"])
+    checks = {}
+
+    def reject(name, mutate, restore):
+        mutate()
+        try:
+            try:
+                capture.admit(assembly, directory, request)
+            except ValueError as error:
+                checks[name] = str(error)
+            else:
+                raise AssertionError("Altered assembly admitted: " + name)
+        finally:
+            restore()
+
+    joint = state["doc"].getObject("Elbow")
+    placement = App.Placement(joint.Placement2)
+    moved = App.Placement(placement)
+    moved.Base = placement.Base + App.Vector(1, 0, 0)
+    reject(
+        "displaced_joint_connector",
+        lambda: setattr(joint, "Placement2", moved),
+        lambda: setattr(joint, "Placement2", placement),
+    )
+    reject(
+        "unsupported_joint",
+        lambda: setattr(joint, "JointType", "Fixed"),
+        lambda: setattr(joint, "JointType", "Revolute"),
+    )
+    reject(
+        "unmapped_joint_limit",
+        lambda: setattr(joint, "EnableAngleMin", True),
+        lambda: setattr(joint, "EnableAngleMin", False),
+    )
+    reference = joint.Reference2
+    reject(
+        "missing_component_reference",
+        lambda: setattr(joint, "Reference2", None),
+        lambda: setattr(joint, "Reference2", reference),
+    )
+    original = App.Placement(assembly.Placement)
+    translated = App.Placement(original)
+    translated.Base = original.Base + App.Vector(10, 0, 0)
+    reject(
+        "moved_parent_assembly",
+        lambda: setattr(assembly, "Placement", translated),
+        lambda: setattr(assembly, "Placement", original),
+    )
+    ground = state["doc"].getObject("Ground")
+    base = ground.ObjectToGround
+    reject(
+        "changed_grounding",
+        lambda: setattr(ground, "ObjectToGround", state["doc"].getObject("Upper")),
+        lambda: setattr(ground, "ObjectToGround", base),
+    )
+    playback = directory / "result/playback.json"
+    raw = playback.read_bytes()
+    data = json.loads(raw)
+    data["rotation"][1][0][:3] = [-v for v in data["rotation"][1][0][:3]]
+    reject(
+        "improper_rotation",
+        lambda: playback.write_text(json.dumps(data)),
+        lambda: playback.write_bytes(raw),
+    )
+    data = json.loads(raw)
+    data["body_ids"].reverse()
+    reject(
+        "swapped_body_identity",
+        lambda: playback.write_text(json.dumps(data)),
+        lambda: playback.write_bytes(raw),
+    )
+    data = json.loads(raw)
+    data["time_s"][0] = False
+    reject(
+        "boolean_native_time",
+        lambda: playback.write_text(json.dumps(data)),
+        lambda: playback.write_bytes(raw),
+    )
+    path = directory / "request.json"
+    altered = json.loads(state["request_bytes"])
+    altered["density_kg_m3"] += 1
+    replacement = state["bridge"].request_bytes(altered)
+    forged = json.loads(raw)
+    forged["request_sha256"] = state["bridge"].sha(replacement)
+    reject(
+        "replaced_request_and_matching_result_hash",
+        lambda: (
+            path.write_bytes(replacement),
+            playback.write_text(json.dumps(forged)),
+        ),
+        lambda: (path.write_bytes(state["request_bytes"]), playback.write_bytes(raw)),
+    )
+    pad = state["doc"].getObject("UpperLength")
+    length = pad.Length.Value
+
+    def set_length(value):
+        pad.Length = value
+        state["doc"].recompute()
+
+    reject(
+        "changed_parametric_shape",
+        lambda: set_length(length + 10),
+        lambda: set_length(length),
+    )
+    report["rejections"] = checks
+
+
+timer = QTimer(Gui.getMainWindow())
+timer.timeout.connect(tick)
+QTimer.singleShot(180000, lambda: finish("Qualification timeout"))
+QTimer.singleShot(800, start)

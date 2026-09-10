@@ -88,6 +88,18 @@ source changes, frame transport and process lifecycle. The two existing
 [external-worker regressions](../studio/tests/test_freecad_bridge.py) continue
 to check the independent pendulum reference and rejection of corrupted mass.
 
+## Experimental native Assembly conversion
+
+The extension also includes a bounded native Assembly capture API and
+[executable double-pendulum qualification](../../docs/bancs/freecad-assembly-2026/README.md).
+It reads the existing Assembly workbench's linked solids, grounding and Revolute
+joints, checks all imported physical properties and replays actual multi-body
+samples in FreeCAD. The source Assembly remains editable and unchanged by playback.
+This conversion is available to the qualification recipe and Python API;
+selecting an Assembly in the Motion task is not yet implemented. Its supported
+scope and independent mechanics evidence are recorded separately from the
+single-solid release workflow.
+
 ## Retained transport prototype
 
 The [earlier four-run record](../../docs/bancs/freecad-bridge-2026/README.md)
