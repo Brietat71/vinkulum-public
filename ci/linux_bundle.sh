@@ -46,6 +46,7 @@ tar -xzf "$BUILD_DIR/$ARCHIVE" -C "$BUILD_DIR/extracted"
 cd "$BUILD_DIR/extracted"
 COMMAND=(env -u PYTHONPATH -u PYTHONHOME -u VIRTUAL_ENV
   XDG_CONFIG_HOME="$BUILD_DIR/config" QT_QPA_PLATFORM=xcb
+  VINKULUM_BUNDLE_CALCULIX=1
   "$BUILD_DIR/extracted/Vinkulum Studio/Vinkulum Studio")
 STARTUP=("${COMMAND[@]}" --startup-check "$BUILD_DIR/check")
 CHECK=("${COMMAND[@]}" --bundle-check "$BUILD_DIR/check")
@@ -64,6 +65,9 @@ with open(sys.argv[1]) as stream:
 assert report["status"] == "passed" and report["frozen"]
 assert report["machine"] == "x86_64"
 assert report["manifest"]["app_version"] == sys.argv[2]
+assert report["calculix"]["status"] == "passed"
+assert report["calculix"]["archive_reopened"]
+assert not report["calculix"]["bundled_engine"]
 from pathlib import Path
 startup = json.loads(Path(sys.argv[1]).with_name("startup-check.json").read_text())
 assert startup["status"] == "passed" and startup["frozen"]
@@ -74,6 +78,8 @@ cp "$BUILD_DIR/$ARCHIVE" "$VINKULUM_LINUX_OUT/"
 mkdir -p "$VINKULUM_LINUX_OUT/check"
 cp "$BUILD_DIR/check/bundle-check.json" "$BUILD_DIR/check/scene.png" "$VINKULUM_LINUX_OUT/check/"
 cp "$BUILD_DIR/check/startup-check.json" "$BUILD_DIR/check/startup-scene.png" "$VINKULUM_LINUX_OUT/check/"
+cp "$BUILD_DIR/check/static-scene.png" "$VINKULUM_LINUX_OUT/check/"
+cp -R "$BUILD_DIR/check/static" "$VINKULUM_LINUX_OUT/check/"
 cp "$APP/build-info.json" "$VINKULUM_LINUX_OUT/"
 cd "$VINKULUM_LINUX_OUT"
 sha256sum "$ARCHIVE" > SHA256SUMS

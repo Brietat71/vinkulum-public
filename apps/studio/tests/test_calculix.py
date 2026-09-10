@@ -1,6 +1,8 @@
 """Independent affine patch tests and failure paths for the optional FEM adapter."""
 
+import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -8,9 +10,16 @@ import tempfile
 import unittest
 from dataclasses import replace
 from pathlib import Path
+from unittest.mock import patch
 
 import numpy as np
-from vinkulum_studio.calculix import StaticStudy, load_study, parse_dat, run_static
+from vinkulum_studio.calculix import (
+    StaticStudy,
+    load_static_result,
+    load_study,
+    parse_dat,
+    run_static,
+)
 
 CCX = shutil.which("ccx")
 
@@ -187,6 +196,107 @@ class StaticContracts(unittest.TestCase):
 
 @unittest.skipUnless(CCX, "Install the separate CalculiX ccx executable")
 class CalculixReferences(unittest.TestCase):
+    def test_archive_moves_and_reopens_without_solver_or_writes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            study = specimen(cells=(2, 2, 2))
+            report = run_static(study, root / "original", executable=CCX)
+            moved = root / "moved archive"
+            shutil.copytree(root / "original", moved)
+            shutil.rmtree(root / "original")
+            before = {
+                p.name: (p.read_bytes(), p.stat().st_mtime_ns)
+                for p in moved.iterdir()
+                if p.is_file()
+            }
+            with (
+                patch.dict(os.environ, {"PATH": ""}),
+                patch(
+                    "subprocess.run",
+                    side_effect=AssertionError(
+                        "Archive reopening must not execute a process"
+                    ),
+                ),
+            ):
+                captured, reopened, location = load_static_result(moved / "result.json")
+            self.assertEqual(captured, study)
+            self.assertEqual(reopened, report)
+            self.assertEqual(location, moved.resolve())
+            after = {
+                p.name: (p.read_bytes(), p.stat().st_mtime_ns)
+                for p in moved.iterdir()
+                if p.is_file()
+            }
+            self.assertEqual(before, after)
+
+    def test_archive_rejects_contract_corruption_and_missing_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            original = root / "original"
+            study = specimen()
+            run_static(study, original, executable=CCX)
+            mutations = (
+                ("schema", lambda data: data.update(schema=True)),
+                ("thread_boolean", lambda data: data.update(requested_threads=True)),
+                ("units", lambda data: data["units"].update(displacements="mm")),
+                ("frame", lambda data: data.update(frame="local")),
+                ("status", lambda data: data.update(scientific_status="Certified")),
+                ("version", lambda data: data.update(engine_version={})),
+                ("identity", lambda data: data.update(engine_sha256="unknown")),
+                ("missing_channel", lambda data: data.pop("stress")),
+                ("added_field", lambda data: data.update(time=1)),
+                (
+                    "boolean_value",
+                    lambda data: data["displacements"][0].__setitem__(0, False),
+                ),
+                ("numeric_value", lambda data: data["stress"][0].__setitem__(0, 1.0)),
+                (
+                    "energy",
+                    lambda data: data.update(
+                        strain_energy_J=2 * data["strain_energy_J"]
+                    ),
+                ),
+            )
+            for name, mutate in mutations:
+                with self.subTest(mutation=name):
+                    copy = root / name
+                    shutil.copytree(original, copy)
+                    path = copy / "result.json"
+                    data = json.loads(path.read_text())
+                    mutate(data)
+                    path.write_text(json.dumps(data))
+                    with self.assertRaises(ValueError):
+                        load_static_result(copy)
+            for name in ("study.json", "study.inp", "study.dat", "solver.log"):
+                with self.subTest(missing=name):
+                    copy = root / ("missing_" + name)
+                    shutil.copytree(original, copy)
+                    (copy / name).unlink()
+                    with self.assertRaises(OSError):
+                        load_static_result(copy)
+            for name in ("study.inp", "study.dat"):
+                with self.subTest(modified=name):
+                    copy = root / ("modified_" + name)
+                    shutil.copytree(original, copy)
+                    path = copy / name
+                    path.write_bytes(path.read_bytes() + b"\n")
+                    with self.assertRaises(ValueError):
+                        load_static_result(copy)
+            # Valid hashes are not sufficient: reparse the captured raw tables.
+            copy = root / "rehashed_invalid_output"
+            shutil.copytree(original, copy)
+            raw = (
+                (copy / "study.dat")
+                .read_bytes()
+                .replace(b"displacements ", b"missing ", 1)
+            )
+            (copy / "study.dat").write_bytes(raw)
+            data = json.loads((copy / "result.json").read_text())
+            data["dat_sha256"] = hashlib.sha256(raw).hexdigest()
+            (copy / "result.json").write_text(json.dumps(data))
+            with self.assertRaisesRegex(ValueError, "displacements"):
+                load_static_result(copy)
+
     def test_world_axis_permutation_and_translation_preserve_physics(self):
         study = specimen(cells=(2, 2, 2))
         rotation = np.array(((0.0, -1.0, 0.0), (1.0, 0.0, 0.0), (0.0, 0.0, 1.0)))

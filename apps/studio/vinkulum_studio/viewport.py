@@ -226,15 +226,30 @@ class Viewport(QWidget):
             actor.GetProperty().SetEdgeColor(0.22, 0.29, 0.37)
             actor.GetProperty().SetEdgeVisibility(body.shape == "box")
             actor.SetUserMatrix(vtk_matrix(body.position, body.orientation))
-        extent = max(
-            (np.linalg.norm(b.position) + max(b.dimensions) for b in project.bodies),
-            default=1.0,
-        )
+        # Size annotation geometry from the assembly's span, not its distance
+        # from the world origin. Include remote attachment and load points.
+        physical_points = []
+        for body in project.bodies:
+            bounds = self._actors[body.id][0].GetBounds()
+            physical_points.extend((bounds[::2], bounds[1::2]))
+        attachments = [(j.a, j.pa) for j in project.joints]
+        attachments += [(j.b, j.pb) for j in project.joints]
+        attachments += [(load.body, load.point) for load in project.loads]
+        for reference, point in attachments:
+            if reference is None:
+                physical_points.append(point)
+            elif reference in self._poses:
+                position, rotation = self._poses[reference]
+                physical_points.append(
+                    np.array(position) + np.array(rotation).reshape(3, 3) @ point
+                )
+        extent = np.ptp(physical_points, axis=0).max() if physical_points else 1.0
         self._extent = max(0.1, float(extent))
         self._draw_grid()
         self._local_axes = vtkAxesActor()
         self._local_axes.AxisLabelsOff()
         self._local_axes.PickableOff()
+        self._local_axes.UseBoundsOff()
         self._local_axes.VisibilityOff()
         self.renderer.AddActor(self._local_axes)
         invalid = {d.object_id for d in project.diagnostics()}
@@ -370,6 +385,9 @@ class Viewport(QWidget):
         actor.SetMapper(mapper)
         actor.GetProperty().LightingOff()
         actor.PickableOff()
+        # A distant world-plane grid must not move the near clipping plane
+        # through the mechanism during fit, orbit or zoom.
+        actor.UseBoundsOff()
         actor.SetVisibility(self.grid_visible)
         self.renderer.AddActor(actor)
         self._grid_actor = actor
@@ -578,12 +596,26 @@ class Viewport(QWidget):
         if self._closed or self.dragging:
             return
         camera = self.renderer.GetActiveCamera()
-        if selection and self._selected in self._actors:
-            self.renderer.ResetCamera(self._actors[self._selected][0].GetBounds())
-        elif self._body_ids:
+        if self._project is not None:
+            objects = (
+                (self._actors[self._selected],)
+                if selection and self._selected in self._actors
+                else self._actors.values()
+            )
             bounds = [
-                self._actors[identifier][0].GetBounds() for identifier in self._body_ids
+                actor.GetBounds()
+                for actors in objects
+                for actor in actors
+                if actor.GetVisibility()
             ]
+            bounds = [
+                box
+                for box in bounds
+                if np.isfinite(box).all()
+                and all(box[i] <= box[i + 1] for i in (0, 2, 4))
+            ]
+            if not bounds:
+                return
             scene_bounds = tuple(
                 (min if index % 2 == 0 else max)(b[index] for b in bounds)
                 for index in range(6)

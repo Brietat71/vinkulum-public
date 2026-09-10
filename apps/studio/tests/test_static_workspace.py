@@ -16,7 +16,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage
 from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication, QFileDialog
-from vinkulum_studio.calculix import load_study
+from vinkulum_studio.calculix import load_study, run_static
 from vinkulum_studio.static_controller import StaticController
 from vinkulum_studio.static_window import tension_example
 
@@ -114,6 +114,72 @@ class StaticWorkspace(unittest.TestCase):
         with self.assertRaises(ProcessLookupError):
             os.kill(pid, 0)
         self.assertFalse((output / "result.json").exists())
+
+    @unittest.skipUnless(
+        shutil.which("ccx"), "Install the separate CalculiX executable"
+    )
+    def test_open_archive_keeps_edited_study_and_rejects_bad_archive_transactionally(
+        self,
+    ):
+        from vinkulum_studio.static_window import StaticWindow
+
+        source = self.root / "previous calculation"
+        captured = tension_example()
+        expected = run_static(captured, source)
+        window = StaticWindow()
+        window._discard_allowed = lambda: True
+        self.addCleanup(window.close)
+        window.show()
+        QTest.qWait(50)
+        current = replace(
+            captured, nodes=tuple((x + 4, y, z) for x, y, z in captured.nodes)
+        )
+        window.set_study(current, "Current edited study")
+        window.young.setText("1e9")
+        pending = window.edited_study()
+        with (
+            patch.object(
+                QFileDialog,
+                "getOpenFileName",
+                return_value=(str(source / "result.json"), ""),
+            ),
+            patch(
+                "vinkulum_studio.static_controller.identify_engine",
+                side_effect=AssertionError(
+                    "Archive viewing must not identify an executable"
+                ),
+            ),
+        ):
+            window.open_result_action.trigger()
+        self.assertEqual(window.edited_study(), pending)
+        self.assertEqual(window.result[0], captured)
+        self.assertEqual(window.result[1], expected)
+        self.assertIs(window.controller.last_result, window.result)
+        self.assertEqual(window.mode.currentIndex(), 1)
+        self.assertIn("Archived result loaded", window.status.text())
+        np.testing.assert_allclose(
+            window.viewport.display_positions,
+            np.array(captured.nodes) + np.array(expected["displacements"]),
+            rtol=1e-14,
+            atol=1e-16,
+        )
+        previous = window.result
+        position = window.viewport.display_positions.copy()
+        damaged = self.root / "damaged"
+        shutil.copytree(source, damaged)
+        (damaged / "study.dat").write_text("invalid")
+        with patch.object(
+            QFileDialog,
+            "getOpenFileName",
+            return_value=(str(damaged / "result.json"), ""),
+        ):
+            window.open_result_action.trigger()
+        self.assertIs(window.result, previous)
+        self.assertEqual(window.edited_study(), pending)
+        np.testing.assert_array_equal(window.viewport.display_positions, position)
+        self.assertIn("Archive rejected", window.status.text())
+        window.mode.setCurrentIndex(0)
+        np.testing.assert_array_equal(window.viewport.display_positions, current.nodes)
 
     @unittest.skipUnless(
         shutil.which("ccx"), "Install the separate CalculiX executable"

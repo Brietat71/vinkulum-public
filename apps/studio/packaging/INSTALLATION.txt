@@ -1,4 +1,4 @@
-Vinkulum Studio 0.4.2 — Apple Silicon, macOS 14 or later
+Vinkulum Studio 0.5.0 — Apple Silicon, macOS 14 or later
 
 Drag Vinkulum Studio into Applications, then launch it. Python, the native
 kernel, Qt and VTK are bundled; no local compilation is needed. This is

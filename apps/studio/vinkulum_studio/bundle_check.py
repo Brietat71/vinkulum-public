@@ -1,6 +1,7 @@
 """Exercise the installed application and its own worker, including native GL."""
 
 import json
+import os
 import platform
 import subprocess
 import sys
@@ -86,14 +87,55 @@ def main(directory, *, app=None, window=None):
         "machine": platform.machine(),
         "frozen": bool(getattr(sys, "frozen", False)),
         "cad": cad_report["cad_check"],
+        "calculix": {"status": "not_requested"},
     }
+    finished = False
 
     def finish(error=None):
+        nonlocal finished
+        if finished:
+            return
+        finished = True
         if error:
+            report["status"] = "failed"
             report["error"] = str(error)
         (output / "bundle-check.json").write_text(json.dumps(report, indent=2))
         window.close()
         app.exit(0 if report["status"] == "passed" else 1)
+
+    def static_completed(result):
+        import numpy as np
+
+        from .calculix import load_static_result
+
+        try:
+            study, values, directory = result
+            np.testing.assert_allclose(
+                values["strain_energy_J"], 1000**2 / (2 * 210e9 * 0.01), rtol=5e-7
+            )
+            np.testing.assert_allclose(
+                np.array(values["stress"])[:, 0], 100000, rtol=5e-7
+            )
+            reopened = load_static_result(directory)
+            assert reopened[0] == study and reopened[1] == values
+            static = window._static_window
+            static._auto_scale()
+            static.viewport.screenshot(output / "static-scene.png")
+            image_check = check_scene_image(output / "static-scene.png")
+            report["calculix"] = {
+                "status": "passed",
+                "engine_version": values["engine_version"],
+                "engine_sha256": values["engine_sha256"],
+                "input_sha256": values["input_sha256"],
+                "strain_energy_J": values["strain_energy_J"],
+                "archive_reopened": True,
+                "image_check": image_check,
+                "bundled_engine": False,
+            }
+            report["status"] = "passed"
+            QTimer.singleShot(0, finish)
+        except Exception as exc:  # noqa: BLE001 -- report failures raised inside the Qt callback.
+            finish(exc)
 
     def completed(result):
         try:
@@ -103,13 +145,24 @@ def main(directory, *, app=None, window=None):
             window.viewport.screenshot(output / "scene.png")
             image_check = check_scene_image(output / "scene.png")
             report.update(
-                status="passed",
                 samples=len(result.time),
                 image_check=image_check,
                 manifest=json.loads(result.manifest_json),
                 opengl=window.viewport.view.GetRenderWindow().ReportCapabilities(),
             )
-            QTimer.singleShot(0, finish)
+            if os.environ.get("VINKULUM_BUNDLE_CALCULIX") == "1":
+                window.open_static_study()
+                static = window._static_window
+                static._discard_allowed = lambda: True
+                static.output.setText(str(output / "static"))
+                static.controller.completed.connect(static_completed)
+                static.controller.problem.connect(finish)
+                static.start()
+                if static.controller.process is None:
+                    raise RuntimeError(static.status.text())
+            else:
+                report["status"] = "passed"
+                QTimer.singleShot(0, finish)
         except Exception as exc:  # noqa: BLE001 -- report failures raised inside the Qt callback.
             finish(exc)
 

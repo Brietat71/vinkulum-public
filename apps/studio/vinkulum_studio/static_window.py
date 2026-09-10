@@ -29,7 +29,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from .calculix import StaticStudy, load_study
+from .calculix import StaticStudy, load_static_result, load_study
 from .controls import NumberField
 from .model import write_json
 from .static_controller import StaticController
@@ -88,6 +88,9 @@ class StaticWindow(QMainWindow):
         self.open_action = QAction("Open study…", self)
         self.open_action.triggered.connect(self.open_study)
         toolbar.addAction(self.open_action)
+        self.open_result_action = QAction("Open result…", self)
+        self.open_result_action.triggered.connect(self.open_result_dialog)
+        toolbar.addAction(self.open_result_action)
         self.save_action = QAction("Save study…", self)
         self.save_action.triggered.connect(self.save_study)
         toolbar.addAction(self.save_action)
@@ -348,6 +351,22 @@ class StaticWindow(QMainWindow):
         if self._discard_allowed():
             self.set_study(tension_example(), "Tension · analytic patch example")
 
+    def open_result_dialog(self):
+        if self.controller.process is not None:
+            return
+        path, _ = QFileDialog.getOpenFileName(
+            self, "Open archived CalculiX result", "", "Captured result (result.json)"
+        )
+        if not path:
+            return
+        try:
+            result = load_static_result(path)
+        except (OSError, ValueError, TypeError) as error:
+            self.status.setText(f"Archive rejected: {error}")
+            return
+        self.controller.last_result = result
+        self._present_result(result, archived=True)
+
     def save_study(self):
         try:
             study = self.edited_study()
@@ -391,6 +410,7 @@ class StaticWindow(QMainWindow):
     def _busy(self, busy):
         for item in (
             self.open_action,
+            self.open_result_action,
             self.save_action,
             self.example_action,
             self.young,
@@ -405,6 +425,9 @@ class StaticWindow(QMainWindow):
         self.cancel_button.setEnabled(busy)
 
     def _completed(self, result):
+        self._present_result(result)
+
+    def _present_result(self, result, *, archived=False):
         self.result = result
         study, report, root = result
         self.folder_button.setEnabled(True)
@@ -414,7 +437,11 @@ class StaticWindow(QMainWindow):
         self.mode.setCurrentIndex(1)
         self._display(fit=True)
         self._pending()
-        self.status.setText(f"Completed. Result and diagnostics saved in {root}")
+        self.status.setText(
+            f"Archived result loaded. Study, raw output and stored values checked: {root}"
+            if archived
+            else f"Completed. Result and diagnostics saved in {root}"
+        )
 
     def _display(self, *args, fit=False):
         if self.study is None:

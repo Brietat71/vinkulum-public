@@ -2,7 +2,9 @@
 
 import os
 import unittest
+from dataclasses import replace
 
+import numpy as np
 from PySide6.QtCore import QPoint, Qt
 from PySide6.QtGui import QPaintEvent
 from PySide6.QtTest import QTest
@@ -18,6 +20,84 @@ class ViewportTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.app = QApplication.instance() or QApplication([])
+
+    def test_fit_includes_anchors_respects_visibility_and_world_translation(self):
+        from vinkulum_studio.viewport import Viewport
+
+        view = Viewport()
+        self.addCleanup(view.close)
+        view.resize(900, 650)
+        view.show()
+        QTest.qWait(50)
+
+        def visible(point):
+            view.renderer.SetWorldPoint(*point, 1.0)
+            view.renderer.WorldToDisplay()
+            x, y, depth = view.renderer.GetDisplayPoint()
+            width, height = view.view.GetRenderWindow().GetSize()
+            self.assertTrue(
+                5 < x < width - 5 and 5 < y < height - 5 and 0 < depth < 1,
+                (point, x, y, depth),
+            )
+
+        project = pendulum()
+        view.set_project(project, fit=True)
+        visible(project.bodies[0].position)
+        self.assertIsNone(project.joints[0].a)
+        visible(project.joints[0].pa)
+        extent = view._extent
+        distance = view.renderer.GetActiveCamera().GetDistance()
+        shift = np.array((1000.0, -2000.0, 3000.0))
+        moved = replace(
+            project,
+            bodies=tuple(
+                replace(body, position=tuple(np.array(body.position) + shift))
+                for body in project.bodies
+            ),
+            joints=tuple(
+                replace(
+                    joint,
+                    pa=tuple(np.array(joint.pa) + shift)
+                    if joint.a is None
+                    else joint.pa,
+                    pb=tuple(np.array(joint.pb) + shift)
+                    if joint.b is None
+                    else joint.pb,
+                )
+                for joint in project.joints
+            ),
+        )
+        view.set_project(moved, fit=True)
+        self.assertAlmostEqual(view._extent / extent, 1.0, places=9)
+        self.assertAlmostEqual(
+            view.renderer.GetActiveCamera().GetDistance() / distance, 1.0, places=8
+        )
+        visible(moved.bodies[0].position)
+        visible(moved.joints[0].pa)
+
+        far = Body(new_id(), "Hidden outlier", position=(100.0, 0.0, 0.0))
+        view.set_project(
+            replace(project, joints=(), bodies=(*project.bodies, far)), fit=True
+        )
+        view.set_object_visible(far.id, False)
+        view.fit_scene()
+        np.testing.assert_allclose(
+            view.renderer.GetActiveCamera().GetFocalPoint(),
+            project.bodies[0].position,
+            rtol=0,
+            atol=1e-5,
+        )
+
+        joint = replace(project.joints[0], pa=(-2.0, 0.0, 0.0), pb=(2.0, 0.0, 0.0))
+        view.set_project(replace(project, joints=(joint,)), fit=True)
+        view.select(joint.id)
+        view.fit_scene(selection=True)
+        visible(joint.pa)
+        body = project.bodies[0]
+        visible(
+            np.array(body.position)
+            + np.array(body.orientation).reshape(3, 3) @ joint.pb
+        )
 
     def test_scene_picking_manipulation_result_and_shutdown(self):
         from vinkulum_studio.viewport import Viewport, numpy_pose, vtk_matrix

@@ -6,6 +6,11 @@ is a useful starting point. Larger projects should begin with a scoped proposal.
 
 These are proposed projects, not funded positions or scheduled commitments.
 
+Three scoped issues are already open: [an analytic STEP fixture (#1)](https://github.com/Brietat71/vinkulum-public/issues/1),
+[keyboard and high-DPI behaviour (#2)](https://github.com/Brietat71/vinkulum-public/issues/2),
+and [a CalculiX bending refinement study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4).
+Each describes the expected deliverable and how to check it.
+
 | Project | Useful background | A reviewable first result |
 |---|---|---|
 | CAD regression corpus | CAD, mechanical design | Three redistributable STEP parts with known units, volume, inertia and failure cases |
@@ -15,7 +20,7 @@ These are proposed projects, not funded positions or scheduled commitments.
 | Verifiable numerics | Numerical analysis, exact arithmetic, Lean | A sharply stated guarantee, executable verifier and adversarial counterexamples |
 | [Pinocchio connector](PINOCCHIO_INTEGRATION.md) | Rigid-body dynamics, robotics, Python/C++ | A pinned Linux environment and a one-link adapter checked against analytic gravity torque and acceleration |
 | MBDyn connector | Multibody simulation | Map a small mechanism, units, frames, solver version and result channels through an explicit adapter |
-| [CalculiX workflow](CALCULIX_INTEGRATION.md) | FEM, Python/Qt | Extend the first static-study workspace with mesh/support selection or archived-result reopening; qualify mesh provenance before CAD meshing |
+| [CalculiX workflow](CALCULIX_INTEGRATION.md) | FEM, Python/Qt | Extend the static-study workspace with mesh/support selection and qualify mesh provenance before CAD meshing |
 | DUST connector | Aerodynamics | A minimal reproducible coupling contract and an uncoupled reference case first |
 | NeuralFoil workflow | Aerodynamics, Python | A traceable polar workflow, including model version and limits, connected to Studio |
 | Accessible desktop | Qt, UX | One keyboard-complete workflow, tested at normal and high DPI |

@@ -358,36 +358,20 @@ def prepare_run(study, directory, engine, engine_hash, version):
     return PreparedRun(study, root, engine, engine_hash, version, deck)
 
 
-def finish_run(run, returncode):
-    """Validate raw files and publish a result only after successful completion."""
-    study, root, engine = run.study, run.root, run.engine
-    if (root / "study.inp").read_bytes() != run.deck.encode("ascii"):
-        raise ValueError("CalculiX input deck changed during the calculation.")
-    log_path, dat_path = root / "solver.log", root / "study.dat"
-    if log_path.stat().st_size > MAX_OUTPUT_BYTES:
-        raise ValueError("CalculiX log exceeded the output budget.")
-    log_text = log_path.read_text(errors="replace")
-    if (
-        returncode != 0
-        or "Job finished" not in log_text
-        or "*ERROR" in log_text.upper()
-    ):
-        raise RuntimeError(f"CalculiX did not complete; inspect {log_path}.")
-    if not dat_path.is_file() or dat_path.stat().st_size > MAX_OUTPUT_BYTES:
-        raise ValueError("Missing or oversized CalculiX result.")
-    raw = dat_path.read_text(encoding="ascii")
-    values = parse_dat(raw, study)
-    if hashlib.sha256(engine.read_bytes()).hexdigest() != run.engine_hash:
-        raise RuntimeError("CalculiX executable changed during the calculation.")
-    report = {
+def _read_bounded(path, limit=MAX_OUTPUT_BYTES):
+    with Path(path).open("rb") as stream:
+        raw = stream.read(limit + 1)
+    if len(raw) > limit:
+        raise ValueError(f"CalculiX file exceeded its size budget: {Path(path).name}")
+    return raw
+
+
+def _result_contract():
+    return {
         "format": "vinkulum-calculix-static",
         "schema": 1,
         "engine": "CalculiX",
-        "engine_version": run.version,
         "adapter_version": "0.1.0",
-        "engine_sha256": run.engine_hash,
-        "input_sha256": hashlib.sha256(run.deck.encode("ascii")).hexdigest(),
-        "dat_sha256": hashlib.sha256(dat_path.read_bytes()).hexdigest(),
         "units": {
             "displacements": "m",
             "external_forces": "N",
@@ -403,10 +387,105 @@ def finish_run(run, returncode):
         "requested_threads": 1,
         "scientific_status": "NotAssessed",
         "limitations": "Linear isotropic elasticity, affine C3D8, zero supports, nodal loads. No general mesh or discretisation-error certification. ASCII output is rounded.",
+    }
+
+
+def _successful_log(raw, returncode=0):
+    text = raw.decode("utf-8", errors="replace")
+    return returncode == 0 and "Job finished" in text and "*ERROR" not in text.upper()
+
+
+def finish_run(run, returncode):
+    """Validate raw files and publish a result only after successful completion."""
+    study, root, engine = run.study, run.root, run.engine
+    if _read_bounded(root / "study.inp", 4 * 1024 * 1024) != run.deck.encode("ascii"):
+        raise ValueError("CalculiX input deck changed during the calculation.")
+    log_path, dat_path = root / "solver.log", root / "study.dat"
+    if not _successful_log(_read_bounded(log_path), returncode):
+        raise RuntimeError(f"CalculiX did not complete; inspect {log_path}.")
+    # Hash and parse the same captured bytes, even if a file changes afterwards.
+    raw = _read_bounded(dat_path)
+    values = parse_dat(raw.decode("ascii"), study)
+    if hashlib.sha256(engine.read_bytes()).hexdigest() != run.engine_hash:
+        raise RuntimeError("CalculiX executable changed during the calculation.")
+    report = {
+        **_result_contract(),
+        "engine_version": run.version,
+        "engine_sha256": run.engine_hash,
+        "input_sha256": hashlib.sha256(run.deck.encode("ascii")).hexdigest(),
+        "dat_sha256": hashlib.sha256(raw).hexdigest(),
         **values,
     }
     write_json(root / "result.json", report)
     return report
+
+
+def load_static_result(directory):
+    """Recheck an existing run without executing a solver or modifying its files.
+
+    Hashes and raw-data comparisons establish internal consistency, not the
+    authorship of an archive or the historical identity of its executable.
+    """
+    root = Path(directory).resolve()
+    if root.is_file() and root.name == "result.json":
+        root = root.parent
+    report = read_json(root / "result.json", MAX_OUTPUT_BYTES)
+    contract = _result_contract()
+    value_keys = {
+        "displacements",
+        "external_forces",
+        "reactions",
+        "stress",
+        "energy_density",
+        "strain_energy_J",
+    }
+    hash_keys = {"engine_sha256", "input_sha256", "dat_sha256"}
+    if not isinstance(report, dict) or set(report) != set(
+        contract
+    ) | value_keys | hash_keys | {"engine_version"}:
+        raise ValueError("Unsupported or incomplete CalculiX result document.")
+    for key, expected in contract.items():
+        if type(report[key]) is not type(expected) or report[key] != expected:
+            raise ValueError(f"Unsupported CalculiX result contract: {key}.")
+    if (
+        not isinstance(report["engine_version"], str)
+        or re.fullmatch(r"\d+(?:\.\d+)+", report["engine_version"]) is None
+    ):
+        raise ValueError("Invalid captured CalculiX version.")
+    for key in hash_keys:
+        if (
+            not isinstance(report[key], str)
+            or re.fullmatch(r"[0-9a-f]{64}", report[key]) is None
+        ):
+            raise ValueError(f"Invalid archive fingerprint: {key}.")
+    study = load_study(root / "study.json")
+    deck = _read_bounded(root / "study.inp", 4 * 1024 * 1024)
+    if hashlib.sha256(deck).hexdigest() != report[
+        "input_sha256"
+    ] or deck != study.input_deck().encode("ascii"):
+        raise ValueError("Archived input deck and captured study do not match.")
+    if not _successful_log(_read_bounded(root / "solver.log")):
+        raise ValueError("Archived log does not describe a completed calculation.")
+    raw = _read_bounded(root / "study.dat")
+    if hashlib.sha256(raw).hexdigest() != report["dat_sha256"]:
+        raise ValueError("Archived raw CalculiX output fingerprint does not match.")
+    values = parse_dat(raw.decode("ascii"), study)
+    for key, expected in values.items():
+        actual = report[key]
+        if key == "strain_energy_J":
+            if not finite(actual) or not math.isclose(
+                actual, expected, rel_tol=1e-12, abs_tol=0
+            ):
+                raise ValueError("Archived total energy disagrees with raw output.")
+        else:
+            if not isinstance(actual, list) or any(
+                not isinstance(row, list) or not all(finite(v) for v in row)
+                for row in actual
+            ):
+                raise ValueError(f"Invalid numeric archive channel: {key}.")
+            if not np.array_equal(actual, expected):
+                raise ValueError(f"Archived {key} values disagree with raw output.")
+    return study, report, root
 
 
 def run_static(study, directory, *, executable="ccx", timeout=60):

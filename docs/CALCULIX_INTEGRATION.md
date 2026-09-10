@@ -1,8 +1,8 @@
 # CalculiX integration — first linear statics adapter
 
-**Status: experimental Studio workspace and Python/CLI adapter on the
-`feat/calculix-static` branch.** It is not included in the Studio 0.4.2 maintenance
-binary. The native multibody kernel remains unchanged.
+**Status: experimental Studio 0.5.0 workspace and Python/CLI adapter.**
+CalculiX is a separate installed executable. Studio 0.4.2 and earlier binaries
+do not contain this workspace. The native multibody kernel remains unchanged.
 
 This first adapter generates a CalculiX input deck from a validated mesh study,
 runs an installed `ccx` executable and reads the final displacement, external
@@ -11,7 +11,7 @@ raw output, solver log and versioned result metadata.
 
 ## Studio workspace
 
-From a source installation of this branch, choose **Run → Linear statics ·
+In Studio 0.5.0, choose **Run → Linear statics ·
 CalculiX…** (`Alt+E`), or find the command in the command palette. The study
 opens in a separate native window and leaves the rigid-mechanism project intact.
 
@@ -38,11 +38,16 @@ opens in a separate native window and leaves the rigid-mechanism project intact.
 - Inspect displacement/reactions, supports/applied forces, integration-point
   stress/energy or captured provenance. Stress remains at integration points:
   this first workspace does not recover or colour an extrapolated nodal stress.
+- **Open result…** reopens a previously saved `result.json`, without launching
+  or requiring an installed solver. Keep its sibling `study.json`, `study.inp`,
+  `study.dat` and `solver.log` files together when moving a calculation. Opening
+  a result preserves current study edits; an invalid archive preserves both
+  those edits and the previous displayed result.
 
 The controller is asynchronous during version identification and solving. Final
 file validation and table preparation currently run on the GUI thread within
 the bounded adapter domain. Large-output responsiveness, interactive mesh and
-support editing, CAD meshing and result-archive reopening remain follow-up work.
+support editing and CAD meshing remain follow-up work.
 
 Reproduce a real screen capture and preserve the associated calculation:
 
@@ -53,7 +58,7 @@ xvfb-run -a -s '-screen 0 1600x1100x24' \
 
 ## Reproduce a study
 
-Install Studio from this branch in an editable Python 3.14 environment. Install
+For the CLI, install Studio in an editable Python 3.14 environment. Install
 CalculiX separately; on Ubuntu 24.04 its package is `calculix-ccx`. The local
 qualification used **CalculiX 2.21**, as reported by the actual executable.
 Other versions and macOS have not been qualified for this adapter.
@@ -86,6 +91,8 @@ plus explicit scale-dependent absolute tolerances for nominally zero channels.
 
 Python callers can use `load_study(path)` and `run_static(study, new_directory)`
 from `vinkulum_studio.calculix` without creating a Qt application.
+`load_static_result(directory_or_result_json)` checks and reopens an existing
+calculation without modifying it or executing a process.
 
 ## Supported contract
 
@@ -146,6 +153,21 @@ before and after execution. Original raw files remain available for inspection.
 The scientific status stays **`NotAssessed`**: these checks and patch references
 do not certify a general finite-element discretisation error.
 
+Archive reopening accepts the schema-1 / adapter-0.1.0 contract. It requires
+consistent units, frame and result locations, matches the input-deck fingerprint
+and its regeneration from the captured study, then checks the raw-output hash
+and reparses the CalculiX tables with the same force/moment/energy rules.
+Stored numeric channels must equal the reparsed values. Recomputed total energy
+permits a relative difference of `10⁻¹²` for floating-point aggregation; this is
+an archive consistency tolerance, not an error bound for the displacement.
+Files are read with fixed size budgets. The parser and fingerprint consume the
+same captured raw bytes, avoiding two reads of potentially different data.
+
+These checks establish consistency relative to the stored files. They do not
+authenticate an archive's author or prove that the recorded executable produced
+it. The executable's historical hash is retained as metadata; reopening does
+not verify or execute a local binary. No scientific status is upgraded.
+
 ## Qualification and next work
 
 Run the dedicated tests with an installed `ccx`:
@@ -161,15 +183,19 @@ geometry/material/supports, an inverted thin-element counterexample,
 incomplete/corrupted output, an unbalanced couple with zero resultant force,
 failed execution, timeout and protection of previous results. The public Linux
 CI installs `calculix-ccx` so these reference tests run against a real solver;
-local runs without `ccx` explicitly skip the three solver-dependent test methods.
+local runs without `ccx` explicitly skip the real-solver reference methods.
 
 The Qt tests verify termination of the actual solver process, timeout, protection
 of a previous result, the Studio menu entry, a real solve, changed-study versus
 captured-result identity, deformation scaling, unscaled CSV values and actual
 OpenGL output. These cover this first workflow, not arbitrary CAD-to-FEM use.
 
-The next integration steps are interactive mesh/support selection, archived
-result reopening and explicit CAD mesh provenance. Refinement studies for
+The archive tests also move a real calculation, reopen it without an available
+solver, check that its files remain unchanged, and reject altered values,
+units, missing files and invalid raw tables even after their hash is updated.
+
+The next integration steps are interactive mesh/support selection and explicit
+CAD mesh provenance. Refinement studies for
 bending and validated meshing should precede a broader element/geometry contract.
 
 CalculiX's [official project](https://www.calculix.de/) and
