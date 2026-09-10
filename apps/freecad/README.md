@@ -6,6 +6,10 @@ captures a selected solid, runs the existing mechanics backend in a separate
 process and displays native poses on a temporary copy. Development of Studio's
 custom GUI is paused.
 
+Opening the example now completes its initial view setup before queued document
+closures run. The [retained before/after regression](../../docs/bancs/freecad-example-close-2026/README.md)
+records the original native crash and the corrected installed extension.
+
 The first domain is one top-level rigid solid with one explicit revolute joint,
 starting from rest under gravity -Z. Pivot coordinates, axis, density, duration,
 time step and engine threads are explicit. Assembly conversion, multi-body host

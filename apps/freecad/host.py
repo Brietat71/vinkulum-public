@@ -470,8 +470,16 @@ class MotionCommand:
 def open_example():
     path = Path(__file__).parent / "Examples" / "Pendulum.FCStd"
     document = App.openDocument(str(path))
-    Gui.activeDocument().activeView().viewFront()
-    Gui.activeDocument().activeView().fitAll()
+    view = Gui.activeDocument().activeView()
+    animated = view.isAnimationEnabled()
+    view.setAnimationEnabled(False)
+    try:
+        view.viewFront()
+        # An explicit margin fits immediately. Animated fitting enters a nested
+        # event loop that can outlive this viewer if its document is closed.
+        view.fitAll(1.15)
+    finally:
+        view.setAnimationEnabled(animated)
     Gui.Selection.clearSelection()
     Gui.Selection.addSelection(document.getObject("Rod"))
 
