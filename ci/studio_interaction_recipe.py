@@ -42,6 +42,11 @@ profiler = cProfile.Profile()
 
 
 def measure(name, action):
+    from PySide6.QtGui import QAction
+
+    command = getattr(action, "__self__", None)
+    if isinstance(command, QAction):
+        assert command.isEnabled(), f"Cannot time a disabled command: {name}"
     entered = time.perf_counter()
     responsive = []
     QTimer.singleShot(0, lambda: responsive.append(time.perf_counter()))
@@ -66,6 +71,7 @@ try:
         measure("simulate-to-model", window.show_model_context)
     measure("open-articulated-again", window.commands["articulated"].trigger)
     measure("open-statics-first", window.commands["static_study"].trigger)
+    measure("statics-to-model", window.show_model_context)
     measure("open-statics-again", window.commands["static_study"].trigger)
     measure(
         "load-parametric-plate",
@@ -75,6 +81,7 @@ try:
     )
     window.select_object(window.project.bodies[0].id)
     measure("open-cad-study-first", window.commands["cad_study"].trigger)
+    measure("cad-study-to-model", window.show_model_context)
     measure("open-cad-study-again", window.commands["cad_study"].trigger)
     import vinkulum_studio
 

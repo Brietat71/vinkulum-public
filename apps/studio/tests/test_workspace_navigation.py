@@ -159,6 +159,9 @@ class WorkspaceNavigation(unittest.TestCase):
         self.click_browser("analysis:cad")
         mesh._study_ready(tension_example(), "open")
         self.assert_integrated(mesh._static_window)
+        self.assertTrue(w.commands["cad_study"].isEnabled())
+        w.commands["cad_study"].trigger()
+        self.assert_integrated(mesh)
 
     def test_hidden_model_panel_and_contextual_undo_survive_analysis_navigation(self):
         w = self.window

@@ -55,6 +55,8 @@ algorithms are unchanged. The dev6 worker reuse also remains available for CAD.
 
 ## Evidence and remaining work
 
+See [installed unified-window captures and qualification](bancs/studio-unified-dev7/README.md).
+
 Real Qt/OpenGL tests exercise selection, context actions, camera preservation,
 fractional wheel input and synthetic native pinch events. Mac Control-click and
 continuous pixel pan are also exercised through Qt events. Project navigation

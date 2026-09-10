@@ -176,6 +176,7 @@ class ProjectNavigation:
             for key in ("hide", "isolate", "show_all", "context_tools", "run", "stop"):
                 self.commands[key].setEnabled(False)
             self.commands["fit"].setEnabled(True)
+            self.commands["cad_study"].setEnabled(self._mesh_window is not None)
         else:
             for key in ("show_all", "context_tools"):
                 self.commands[key].setEnabled(True)

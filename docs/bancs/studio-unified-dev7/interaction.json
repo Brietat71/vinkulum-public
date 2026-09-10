@@ -1,0 +1,173 @@
+{
+  "boundary": "QAction/tab action to synchronous return and next event-loop opportunity; excludes time until the final frame is ready",
+  "platform": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "window_size": [
+    1280,
+    800
+  ],
+  "viewport_size": [
+    722,
+    640
+  ],
+  "frozen": false,
+  "packages": {
+    "vinkulum-studio": "0.6.0a2.dev7",
+    "vinkulum": "0.20.0",
+    "PySide6": "6.11.2",
+    "vtk": "9.7.0"
+  },
+  "application_modules_sha256": {
+    "__init__.py": "9c7921bc09eb456e90232cce16de37031954edb8852fbd400b0ac1b22aeab61e",
+    "__main__.py": "a50101110e565f0bab29261b7bb31bc01fab8c0cbcb0e752a2d4cf83199288d8",
+    "applied_loads.py": "a42ab545c82f783e169959bc607dec7e807a144c9f248e15e8b3f4a3458261b3",
+    "archive_controller.py": "409aab09ecdd49791b30b6569157040ca80b58b3ac2ee375cc69ea9812cd4e22",
+    "articulated.py": "418cb887364651bafabcace98ba0f7346b699a874de9befa93db6285b09de059",
+    "articulated_input.py": "d71abb2d507bd09802f0a4688972577ddae8a19f0774dba1e9b43e0d4d8d1720",
+    "articulated_result.py": "37fc174572fd788b64fda665d3ac6c77e4d3549e35ec3dc62370325cf7120631",
+    "articulated_window.py": "ee96b2c0499102f1ad15cc227fba4760cececf87bd542730fb21f720c88499ca",
+    "boundary_display.py": "990ab101e6a0c8c7f0fdb6e684d30a9d9816a91743c2015597cdf3ce5a6dc24f",
+    "boundary_view.py": "3ecedcd0db00a06fd9d4d607a0641386c9553fe5be977724cd88eb5ae8981926",
+    "bundle_check.py": "78a60cac503f9c77260cce6840da039eaca6ea54a392c26174c520e88835912c",
+    "bundle_previews.py": "e0a9f8494f3658d5ec71d9a6001fbe1e81c9cc971e94aedd8d5d71a2256a0476",
+    "cad.py": "cad41908fab0494cdbae7ffd6fcc4a961c4d7a7edebce9c96f0616184246ebf9",
+    "cad_admission.py": "4143be6cf4a3e2cb21378bc9e58a2fa9628bd0e51bb24ed211a868e621b412bb",
+    "cad_controller.py": "c6afd3b96b25eb512a47c853cc6a2b7819ff08f1707d64df56ecf5858bbb543e",
+    "cad_data.py": "1042f2b1a72ab78947f2761b0e85d4db11cfac454eefd03714d45008c0bdfebf",
+    "cad_dialog.py": "c608d1ad492c3dc499e0da4ca51b58895211de92a18700efe7205a5dee1a67de",
+    "cad_history.py": "982a94af85f1a0e7d75a149dd81f97a69402de66f2ccced65bb77208b7f398ec",
+    "cad_history_dialog.py": "d8255c36292c6badd21bc1fee49aaee61517778f3315da46d4a781c9d1aab0eb",
+    "cad_process_cache.py": "509de8d15306152ead244e2305ab286981f0d537beda29db45db7d4bb23b1133",
+    "cad_worker.py": "da96340eb14ca9726ce472dcba5e568b5e0727e60c9eaa37025687235d747e14",
+    "calculix.py": "241e9f804fc2a2ccceffe0dee209e379c1c8f65627bec6d9cd3114476d7949bb",
+    "calculix_numbers.py": "ff8a33c5cd017d933219a734d41cb767673ba0b04e60fcb0a8d8817edc4ad3d4",
+    "commands.py": "ccf370da728ef086ca714c4be5be0934c999a3162cc8e30e13afd97641e528a2",
+    "controller.py": "bb293fbbff6ee3d23ffa42f264f45ef2895bf258a21fcaa41b32235ee1790edc",
+    "controls.py": "fc7bd4d72036c9c239036b4a60d04a1f87ec96cadda57eaeb5024c62f1e29b34",
+    "cpu_scheduler.py": "24af539f60763a192b65d5bbc1984538f2d6eb3805c4ffe2d41e58a4e822ab2b",
+    "dialogs.py": "50ae34a6361f1b6c026f64f7c9a6f37d209a53c94b6c407ca178c99562502562",
+    "document.py": "0538ae756feb00251b42ea368f18d82e5b3442b7ec9a6a7bf209a0cd92a37d52",
+    "editor.py": "a9fca9ea08c41a3fa46dd22001e523d8734a87e953dc00e0c530bd3a75e7c925",
+    "engine_environment.py": "9610461f070d413c058bc1a1293319cd24c83932298d93b917a2c4d9a3e95c63",
+    "engine_threads.py": "a8c8d7fd89b64c796a9f66d89ad96cce45154068f6291b0c9180b04c4e038bd2",
+    "examples3d.py": "1286b54444172564e901ffebfad03d401fb6ceaba88fd0f835fa4b1161b62acb",
+    "execution.py": "da2c6b08ada24f47a5ff811d96381e8518af95f9d2498d61c5538f9737b98bba",
+    "finite_elements.py": "9e12b1ca1df59de5869ad2b0ba31cdeaadc2f6ca763150dbd49268c09c4111ba",
+    "labels.py": "77e6b678549b717c8eb2b3812501b5cfc103eb2def8c5d127a93bc83edf2fa4a",
+    "mechanism.py": "3ba1fbfd963e1e796bef13aa9f398e8cce1a47b2c96d332c618f82c76f695bd1",
+    "mesh_binding.py": "8e7008d53b95aa8254acdbcd674990bd562e7fa1749ebe5752bc6f6e30b5f598",
+    "mesh_data.py": "62e70223cdd9f4569c0fca4cd63b4cd9d8cf7c16c7d46fccf8bd137a020fa168",
+    "mesh_view.py": "f00762b59a93e00f851e7ac80715410ca95b72b938339dc7e35fc515f668de23",
+    "mesh_window.py": "ac5310bb6390273815d4f5bf278d9033e8121143888374c14bd121e007297458",
+    "meshing.py": "30a0c34b2b6ff1abf58f856ac6dc4219d11a8390710a9a13d2535e212d20ee30",
+    "meshing_controller.py": "7e18f6a04fc0fac2b1808f2488c1a711c58ecfd1a5600991310c748d60d3d2e6",
+    "model.py": "98cca6430a5e4c64e46071a83f673140931b71e8a34accc29a1baef459f87a99",
+    "pinocchio_backend.py": "c64a839bd7b4015e9beabdf842364c8467c94e64b61709c75cbc292f4a09aae6",
+    "pinocchio_controller.py": "f9e555cb21c26103dc9c1510e8b5c26d497968068e353a9a6a1e67e64cc128a3",
+    "project_navigation.py": "d1e6b18d5b6728c1f5cb03880137008af790d86bd5ec522df02a8f3f427bad47",
+    "render_interactor.py": "46fdb65f1e062ef0b3ae1d850276ee475dfe8c084dce6e1b1b095f38d650c567",
+    "run_archive.py": "c569609343a822aa174ff3aa84055018a80b6f07e8be49e5133a77915eabfcfd",
+    "series_view.py": "bc8082084bc00e84198a41a681bbb776933ad660d3b17db396f43e7bf7ad0c59",
+    "sketch.py": "aee8078517b4150608d54049ef6bebec6ee676a051150bfd91ab5381693a45d0",
+    "sketch_dialog.py": "b70a69d8b29471c21da99c702ee22d018410ee6cb6034e931fd4c9f8df967472",
+    "sketch_view.py": "9c5b70c8b8b9b246f23d591afee67bd32db5f321a43f90a412962c495cd55ca8",
+    "startup_check.py": "c5088994d5c5774e57bbbd85e8d1b93bd17b3c91d0e1faff58a23fefce4b39bb",
+    "static_controller.py": "fc04974d9241270304d5e855403d711571dbb928689aaa28da759e061eff5e00",
+    "static_view.py": "fb622f7be682037f0706eafd8f1868b4e3cbddc6ccc8785b950daa282f4ebe11",
+    "static_window.py": "1fb48ca261f0e8cf2c2050e5d6c8f3bc970143bdfb1ddd18d730544d6ea0a747",
+    "theme.py": "f217ac202c24d2f2ab947418987a830bc93d4c1a3da296a7f90733e7d3bc11b3",
+    "viewport.py": "2a6556f74d5b7de69b37a7ddaf4ad2f0c39526a3ba99b8c827f7447012172379",
+    "views.py": "699c60a9b7d11e90204182690b3013987dae082ba1caa6770c3e359a04f097ca",
+    "window.py": "ead46e35e598209b1070114f602b3276287b448bbb8bb8a8808340422da96a09",
+    "worker.py": "d69d0d25b30d835250ab46dd92a6f3bd7716162589547576ed4632e74392e667",
+    "workspace.py": "b25c25eb2354d5286e606fa714faae496b1987202a5f10bba6b4be64351a97fe"
+  },
+  "opengl": "server glx vendor string:  SGI\nserver glx version string:  1.4\nserver glx extensions:  GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_multisample GLX_EXT_create_context_es_profile GLX_EXT_create_context_es2_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_get_drawable_type GLX_EXT_libglvnd GLX_EXT_no_config_context GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_OML_swap_method GLX_SGI_make_current_read GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group \nclient glx vendor string:  Mesa Project and SGI\nclient glx version string:  1.4\nglx extensions:  GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read \nOpenGL vendor string:  Mesa\nOpenGL renderer string:  llvmpipe (LLVM 20.1.2, 256 bits)\nOpenGL version string:  4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.2\nOpenGL extensions:  \n  GL_3DFX_texture_compression_FXT1\n  GL_AMD_conservative_depth\n  GL_AMD_draw_buffers_blend\n  GL_AMD_gpu_shader_int64\n  GL_AMD_multi_draw_indirect\n  GL_AMD_pinned_memory\n  GL_AMD_query_buffer_object\n  GL_AMD_seamless_cubemap_per_texture\n  GL_AMD_shader_stencil_export\n  GL_AMD_shader_trinary_minmax\n  GL_AMD_texture_texture4\n  GL_AMD_vertex_shader_layer\n  GL_AMD_vertex_shader_viewport_index\n  GL_ANGLE_texture_compression_dxt3\n  GL_ANGLE_texture_compression_dxt5\n  GL_ARB_ES2_compatibility\n  GL_ARB_ES3_1_compatibility\n  GL_ARB_ES3_2_compatibility\n  GL_ARB_ES3_compatibility\n  GL_ARB_arrays_of_arrays\n  GL_ARB_base_instance\n  GL_ARB_blend_func_extended\n  GL_ARB_buffer_storage\n  GL_ARB_clear_buffer_object\n  GL_ARB_clear_texture\n  GL_ARB_clip_control\n  GL_ARB_compressed_texture_pixel_storage\n  GL_ARB_compute_shader\n  GL_ARB_conditional_render_inverted\n  GL_ARB_conservative_depth\n  GL_ARB_copy_buffer\n  GL_ARB_copy_image\n  GL_ARB_cull_distance\n  GL_ARB_debug_output\n  GL_ARB_depth_buffer_float\n  GL_ARB_depth_clamp\n  GL_ARB_derivative_control\n  GL_ARB_direct_state_access\n  GL_ARB_draw_buffers\n  GL_ARB_draw_buffers_blend\n  GL_ARB_draw_elements_base_vertex\n  GL_ARB_draw_indirect\n  GL_ARB_draw_instanced\n  GL_ARB_enhanced_layouts\n  GL_ARB_explicit_attrib_location\n  GL_ARB_explicit_uniform_location\n  GL_ARB_fragment_coord_conventions\n  GL_ARB_fragment_layer_viewport\n  GL_ARB_fragment_shader\n  GL_ARB_framebuffer_no_attachments\n  GL_ARB_framebuffer_object\n  GL_ARB_framebuffer_sRGB\n  GL_ARB_get_program_binary\n  GL_ARB_get_texture_sub_image\n  GL_ARB_gl_spirv\n  GL_ARB_gpu_shader5\n  GL_ARB_gpu_shader_fp64\n  GL_ARB_gpu_shader_int64\n  GL_ARB_half_float_pixel\n  GL_ARB_half_float_vertex\n  GL_ARB_indirect_parameters\n  GL_ARB_instanced_arrays\n  GL_ARB_internalformat_query\n  GL_ARB_internalformat_query2\n  GL_ARB_invalidate_subdata\n  GL_ARB_map_buffer_alignment\n  GL_ARB_map_buffer_range\n  GL_ARB_multi_bind\n  GL_ARB_multi_draw_indirect\n  GL_ARB_occlusion_query2\n  GL_ARB_parallel_shader_compile\n  GL_ARB_pipeline_statistics_query\n  GL_ARB_pixel_buffer_object\n  GL_ARB_point_sprite\n  GL_ARB_polygon_offset_clamp\n  GL_ARB_post_depth_coverage\n  GL_ARB_program_interface_query\n  GL_ARB_provoking_vertex\n  GL_ARB_query_buffer_object\n  GL_ARB_robust_buffer_access_behavior\n  GL_ARB_robustness\n  GL_ARB_sample_shading\n  GL_ARB_sampler_objects\n  GL_ARB_seamless_cube_map\n  GL_ARB_seamless_cubemap_per_texture\n  GL_ARB_separate_shader_objects\n  GL_ARB_shader_atomic_counter_ops\n  GL_ARB_shader_atomic_counters\n  GL_ARB_shader_ballot\n  GL_ARB_shader_bit_encoding\n  GL_ARB_shader_clock\n  GL_ARB_shader_draw_parameters\n  GL_ARB_shader_group_vote\n  GL_ARB_shader_image_load_store\n  GL_ARB_shader_image_size\n  GL_ARB_shader_objects\n  GL_ARB_shader_precision\n  GL_ARB_shader_stencil_export\n  GL_ARB_shader_storage_buffer_object\n  GL_ARB_shader_subroutine\n  GL_ARB_shader_texture_image_samples\n  GL_ARB_shader_texture_lod\n  GL_ARB_shader_viewport_layer_array\n  GL_ARB_shading_language_420pack\n  GL_ARB_shading_language_include\n  GL_ARB_shading_language_packing\n  GL_ARB_spirv_extensions\n  GL_ARB_stencil_texturing\n  GL_ARB_sync\n  GL_ARB_tessellation_shader\n  GL_ARB_texture_barrier\n  GL_ARB_texture_border_clamp\n  GL_ARB_texture_buffer_object\n  GL_ARB_texture_buffer_object_rgb32\n  GL_ARB_texture_buffer_range\n  GL_ARB_texture_compression_bptc\n  GL_ARB_texture_compression_rgtc\n  GL_ARB_texture_cube_map_array\n  GL_ARB_texture_filter_anisotropic\n  GL_ARB_texture_filter_minmax\n  GL_ARB_texture_float\n  GL_ARB_texture_gather\n  GL_ARB_texture_mirror_clamp_to_edge\n  GL_ARB_texture_multisample\n  GL_ARB_texture_non_power_of_two\n  GL_ARB_texture_query_levels\n  GL_ARB_texture_query_lod\n  GL_ARB_texture_rectangle\n  GL_ARB_texture_rg\n  GL_ARB_texture_rgb10_a2ui\n  GL_ARB_texture_stencil8\n  GL_ARB_texture_storage\n  GL_ARB_texture_storage_multisample\n  GL_ARB_texture_swizzle\n  GL_ARB_texture_view\n  GL_ARB_timer_query\n  GL_ARB_transform_feedback2\n  GL_ARB_transform_feedback3\n  GL_ARB_transform_feedback_instanced\n  GL_ARB_transform_feedback_overflow_query\n  GL_ARB_uniform_buffer_object\n  GL_ARB_vertex_array_bgra\n  GL_ARB_vertex_array_object\n  GL_ARB_vertex_attrib_64bit\n  GL_ARB_vertex_attrib_binding\n  GL_ARB_vertex_buffer_object\n  GL_ARB_vertex_shader\n  GL_ARB_vertex_type_10f_11f_11f_rev\n  GL_ARB_vertex_type_2_10_10_10_rev\n  GL_ARB_viewport_array\n  GL_ARM_shader_framebuffer_fetch_depth_stencil\n  GL_ATI_blend_equation_separate\n  GL_ATI_meminfo\n  GL_ATI_texture_float\n  GL_ATI_texture_mirror_once\n  GL_EXT_EGL_image_storage\n  GL_EXT_EGL_image_storage_compression\n  GL_EXT_EGL_sync\n  GL_EXT_abgr\n  GL_EXT_blend_equation_separate\n  GL_EXT_debug_label\n  GL_EXT_draw_buffers2\n  GL_EXT_draw_instanced\n  GL_EXT_framebuffer_blit\n  GL_EXT_framebuffer_multisample\n  GL_EXT_framebuffer_multisample_blit_scaled\n  GL_EXT_framebuffer_object\n  GL_EXT_framebuffer_sRGB\n  GL_EXT_memory_object\n  GL_EXT_memory_object_fd\n  GL_EXT_packed_depth_stencil\n  GL_EXT_packed_float\n  GL_EXT_pixel_buffer_object\n  GL_EXT_polygon_offset_clamp\n  GL_EXT_provoking_vertex\n  GL_EXT_shader_clock\n  GL_EXT_shader_framebuffer_fetch\n  GL_EXT_shader_framebuffer_fetch_non_coherent\n  GL_EXT_shader_image_load_formatted\n  GL_EXT_shader_integer_mix\n  GL_EXT_texture_array\n  GL_EXT_texture_compression_dxt1\n  GL_EXT_texture_compression_rgtc\n  GL_EXT_texture_compression_s3tc\n  GL_EXT_texture_filter_anisotropic\n  GL_EXT_texture_filter_minmax\n  GL_EXT_texture_integer\n  GL_EXT_texture_mirror_clamp\n  GL_EXT_texture_sRGB\n  GL_EXT_texture_sRGB_R8\n  GL_EXT_texture_sRGB_RG8\n  GL_EXT_texture_sRGB_decode\n  GL_EXT_texture_shadow_lod\n  GL_EXT_texture_shared_exponent\n  GL_EXT_texture_snorm\n  GL_EXT_texture_storage\n  GL_EXT_texture_swizzle\n  GL_EXT_timer_query\n  GL_EXT_transform_feedback\n  GL_EXT_vertex_array_bgra\n  GL_EXT_vertex_attrib_64bit\n  GL_IBM_multimode_draw_arrays\n  GL_INTEL_shader_atomic_float_minmax\n  GL_KHR_blend_equation_advanced\n  GL_KHR_blend_equation_advanced_coherent\n  GL_KHR_context_flush_control\n  GL_KHR_debug\n  GL_KHR_no_error\n  GL_KHR_parallel_shader_compile\n  GL_KHR_robust_buffer_access_behavior\n  GL_KHR_robustness\n  GL_KHR_texture_compression_astc_ldr\n  GL_KHR_texture_compression_astc_sliced_3d\n  GL_MESA_framebuffer_flip_y\n  GL_MESA_pack_invert\n  GL_MESA_shader_integer_functions\n  GL_MESA_texture_signed_rgba\n  GL_NVX_gpu_memory_info\n  GL_NV_alpha_to_coverage_dither_control\n  GL_NV_conditional_render\n  GL_NV_copy_image\n  GL_NV_depth_clamp\n  GL_NV_packed_depth_stencil\n  GL_NV_shader_atomic_float\n  GL_NV_texture_barrier\n  GL_OES_EGL_image\n  GL_OVR_multiview\n  GL_OVR_multiview2\n  GL_S3_s3tc\nX Extensions:  Generic Event Extension, SHAPE, MIT-SHM, XInputExtension, XTEST, BIG-REQUESTS, SYNC, XKEYBOARD, XC-MISC, SECURITY, XFIXES, RENDER, RANDR, XINERAMA, Composite, DAMAGE, MIT-SCREEN-SAVER, DOUBLE-BUFFER, RECORD, Present, X-Resource, XVideo, GLX\n",
+  "rows": [
+    {
+      "action": "open-articulated-first",
+      "synchronous_ms": 133.4663899615407,
+      "next_event_ms": 135.75035659596324
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 6.939881015568972,
+      "next_event_ms": 6.950670853257179
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 3.183745313435793,
+      "next_event_ms": 3.1999051570892334
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 4.7317082062363625,
+      "next_event_ms": 4.748630337417126
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 3.9983289316296577,
+      "next_event_ms": 4.019999876618385
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 5.5833919905126095,
+      "next_event_ms": 5.604693200439215
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 3.9678397588431835,
+      "next_event_ms": 4.001774825155735
+    },
+    {
+      "action": "model-to-simulate",
+      "synchronous_ms": 5.508629139512777,
+      "next_event_ms": 5.5291480384767056
+    },
+    {
+      "action": "simulate-to-model",
+      "synchronous_ms": 3.9168628863990307,
+      "next_event_ms": 3.938513807952404
+    },
+    {
+      "action": "open-articulated-again",
+      "synchronous_ms": 5.492408759891987,
+      "next_event_ms": 5.513268988579512
+    },
+    {
+      "action": "open-statics-first",
+      "synchronous_ms": 152.95415092259645,
+      "next_event_ms": 152.97160390764475
+    },
+    {
+      "action": "statics-to-model",
+      "synchronous_ms": 5.45867532491684,
+      "next_event_ms": 5.470137111842632
+    },
+    {
+      "action": "open-statics-again",
+      "synchronous_ms": 4.883256740868092,
+      "next_event_ms": 4.903875757008791
+    },
+    {
+      "action": "load-parametric-plate",
+      "synchronous_ms": 128.38346231728792,
+      "next_event_ms": 128.3977790735662
+    },
+    {
+      "action": "open-cad-study-first",
+      "synchronous_ms": 169.04592234641314,
+      "next_event_ms": 171.72690713778138
+    },
+    {
+      "action": "cad-study-to-model",
+      "synchronous_ms": 7.270080968737602,
+      "next_event_ms": 7.281742990016937
+    },
+    {
+      "action": "open-cad-study-again",
+      "synchronous_ms": 6.436310242861509,
+      "next_event_ms": 6.458152085542679
+    }
+  ]
+}
