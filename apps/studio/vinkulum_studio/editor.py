@@ -599,8 +599,17 @@ class EditorWindow(Workspace, QMainWindow):
                         body=self._value("body"), point=self._value("point", 3)
                     )
                 project = self.project.replace_object(replace(obj, **values))
+            applied_from_button = self.apply_button.hasFocus()
             self.history.commit(project)
             self._refresh()
+            if applied_from_button:
+                # The focused button was destroyed with the old form. Its new
+                # replacement is disabled until the next edit; resume at the
+                # first property instead of dropping keyboard focus entirely.
+                field = next(iter(self.fields.values()))
+                if isinstance(field, VectorField):
+                    field = field.components[0]
+                field.setFocus(Qt.FocusReason.TabFocusReason)
             self.status.setText("Properties applied to the document.")
             return True
         except (ValueError, TypeError) as exc:

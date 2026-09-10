@@ -1,0 +1,22 @@
+test_create_edit_undo_redo_save_at_normal_and_narrow_inspector (test_keyboard_cad.KeyboardCadRecipe.test_create_edit_undo_redo_save_at_normal_and_narrow_inspector) ... Tab route: 5 → primary
+Tab route: 6 → Mass [kg]
+Tab route: 1 → Position [m] · X
+Tab route: 7 → primary
+Tab route: 0 → Name
+Tab route: 10 → primary
+keyboard CAD: DPI=2.0 window=1280x860 inspector=420 requested=420 saved=keyboard-420.json
+Tab route: 16 → Position [m] · X
+Tab route: 5 → primary
+Tab route: 6 → Mass [kg]
+Tab route: 1 → Position [m] · X
+Tab route: 7 → primary
+Tab route: 0 → Name
+Tab route: 10 → primary
+keyboard CAD: DPI=2.0 window=1280x860 inspector=280 requested=280 saved=keyboard-280.json
+Tab route: 16 → Position [m] · X
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 14.157s
+
+OK

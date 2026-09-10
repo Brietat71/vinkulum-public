@@ -246,3 +246,9 @@ PY="$VIRTUAL_ENV/bin/python" bash ci/studio.sh
 Linux tests use a real Qt/X11/OpenGL context under Xvfb. On macOS, run from a
 desktop session with screen access. Human qualification is still needed for
 comfort, shortcuts and device-specific gestures on each platform.
+
+The [keyboard-only CAD qualification](../../docs/STUDIO_KEYBOARD.md) provides an
+exact Linux/X11 recipe at 100% and 200% scaling, including a narrow inspector,
+focus restoration, undo/redo and exact document saving. Run it separately with
+`PY="$VIRTUAL_ENV/bin/python" bash ci/studio_keyboard.sh /tmp/studio-keyboard`;
+Openbox and Xvfb are required for this desktop qualification.
