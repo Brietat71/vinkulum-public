@@ -8,6 +8,7 @@ from pathlib import Path
 
 import numpy as np
 
+from .applied_loads import ancestor_coordinates, world_load_derivative
 from .articulated import operator_conventions, state_vector, tree_links
 from .document import Law, Project, load_project, rotation
 from .model import finite_number, read_json
@@ -55,12 +56,15 @@ def load_operators(directory, *, expected_project=None, expected_state=None):
     report = read_json(root / "result.json", MAX_OPERATOR_BYTES)
     if not isinstance(report, dict):
         raise TypeError("A Pinocchio result object is required.")
+    schema = report.get("schema")
+    versions = {1: "0.1.0", 2: ADAPTER_VERSION}
+    if type(schema) is not int or schema not in versions:
+        raise ValueError("Unsupported Pinocchio result contract: schema.")
     for key, expected in {
         "format": "vinkulum-pinocchio-operators",
-        "schema": 1,
         "engine": "Pinocchio",
         "engine_version": PINOCCHIO_VERSION,
-        "adapter_version": ADAPTER_VERSION,
+        "adapter_version": versions[schema],
         "scientific_status": "NotAssessed",
     }.items():
         if type(report.get(key)) is not type(expected) or report[key] != expected:
@@ -216,6 +220,35 @@ def load_operators(directory, *, expected_project=None, expected_state=None):
         matrix = _array(value, (n, n), f"intrinsic derivative/{key}")
         if key == "acceleration":
             _close(matrix, mass, "acceleration derivative")
+    load_derivatives = {}
+    for channel in ("external_effort_derivatives", "loaded_inverse_derivatives"):
+        if schema == 1:
+            if channel in report:
+                raise ValueError("Schema 1 does not define applied-load derivatives.")
+            continue
+        values = report.get(channel)
+        if not isinstance(values, dict) or set(values) != set(derivatives):
+            raise ValueError(f"Missing {channel} channels.")
+        load_derivatives[channel] = {
+            key: _array(value, (n, n), f"{channel}/{key}")
+            for key, value in values.items()
+        }
+    if schema == 2:
+        external_derivatives = load_derivatives["external_effort_derivatives"]
+        for key in derivatives:
+            _close(
+                load_derivatives["loaded_inverse_derivatives"][key],
+                np.array(derivatives[key]) - external_derivatives[key],
+                f"loaded derivative/{key}",
+            )
+            if key != "q":
+                _close(
+                    external_derivatives[key],
+                    np.zeros((n, n)),
+                    f"external derivative/{key}",
+                    atol=0,
+                    rtol=0,
+                )
     captured_bodies = report.get("bodies")
     if not isinstance(captured_bodies, list) or len(captured_bodies) != len(
         project.bodies
@@ -269,6 +302,8 @@ def load_operators(directory, *, expected_project=None, expected_state=None):
     if not isinstance(load_values, list) or len(load_values) != len(project.loads):
         raise ValueError("Missing captured load values.")
     external = np.zeros(n)
+    external_dq = np.zeros((n, n))
+    paths = ancestor_coordinates(links)
     for load, value in zip(project.loads, load_values):
         if (
             not isinstance(value, dict)
@@ -288,7 +323,15 @@ def load_operators(directory, *, expected_project=None, expected_state=None):
         ):
             _close(_array(value.get(key), (3,), key), expected, key)
         external += point_J.T @ force + J[3:].T @ moment
+        if schema == 2:
+            external_dq += world_load_derivative(
+                point_J, J[3:], force, moment, paths[load.body]
+            )
     _close(channels["external_effort"], external, "applied world loads")
+    if schema == 2:
+        _close(
+            external_derivatives["q"], external_dq, "applied world load derivative/q"
+        )
     expected_energy = {
         "kinetic_energy_J": float(
             0.5 * vectors["velocity"] @ mass @ vectors["velocity"]
@@ -304,6 +347,6 @@ def load_operators(directory, *, expected_project=None, expected_state=None):
         if not finite_number(report.get(key)):
             raise ValueError(f"Missing or invalid {key}.")
         _close(report[key], value, key)
-    if report.get("conventions") != operator_conventions():
+    if report.get("conventions") != operator_conventions(schema):
         raise ValueError("Unsupported operator units, frames or derivative scope.")
     return OperatorResult(project, state, report, root, display_project)

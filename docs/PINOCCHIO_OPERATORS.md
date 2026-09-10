@@ -85,7 +85,7 @@ Start Studio from its usual CAD/GUI environment, then:
    (**Ctrl+Return**) computes both the effort needed for the requested acceleration
    and the acceleration produced by the entered effort. These are distinct
    operator evaluations, not an assertion that those two inputs satisfy dynamics.
-5. Inspect **Captured values**: joint response, mass matrix, intrinsic derivatives,
+5. Inspect **Captured values**: joint response, mass matrix, intrinsic and loaded derivatives,
    body kinematics and body Jacobians. Row/column units define matrix entries.
    Hover a value for its full precision or **Export table…** to CSV.
 
@@ -179,6 +179,13 @@ configuration derivative of applied world loads**. Subtracting `tau_external`
 from an inverse effort does not make those intrinsic derivatives derivatives
 of the complete loaded problem. `d tau_intrinsic / d a = M`.
 
+In current source, adapter 0.2.0 additionally reports `external_effort_derivatives` and
+`loaded_inverse_derivatives`, with loaded = intrinsic − external. The world
+force/free moment and load evaluation time are held fixed; the body-local
+application point is transported with its body. Original archives remain
+readable with their original intrinsic-only meaning. See the
+[derivation, independent references and schema-2 contract](PINOCCHIO_LOADS.md).
+
 Kinetic energy is `0.5 v.T M v`. Potential energy is
 `-sum(mass * gravity dot world centre-of-mass position)`; translating the world
 origin can change its additive constant.
@@ -255,5 +262,5 @@ publishes logs, exact source/wheel hashes and the actual application capture.
 Comparisons with native-kernel observables remain to be implemented.
 Trajectory simulation needs an explicit integrator and its own
 convergence/energy campaign. Closed loops, fixed-joint aggregation, floating
-bases, contact and derivatives of applied world loads require further work.
+bases, contact and configuration-dependent follower loads require further work.
 macOS and packaged-worker distribution have not been qualified.

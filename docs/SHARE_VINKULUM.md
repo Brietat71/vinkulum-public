@@ -139,10 +139,11 @@ Pinocchio… → Open result…**. Show the [actual workspace](assets/studio-pin
 and its [independent two-link Lagrange references](PINOCCHIO_OPERATORS.md).
 The example opens without the engine; recomputation uses its separate environment.
 
-A useful research contribution is to derive and qualify the configuration
-derivative of applied point loads. The existing intrinsic RNEA derivative must
-remain distinguished from the derivative of a loaded problem. This workspace
-is limited to fixed-base rigid trees and does not integrate Pinocchio trajectories.
+Current source adds [independently checked applied-load derivatives](PINOCCHIO_LOADS.md),
+with intrinsic, external and loaded channels kept distinct. Older saved results
+retain their intrinsic-only meaning. Further independent mechanism references
+are welcome. This workspace is limited to fixed-base rigid trees and does not
+integrate Pinocchio trajectories.
 
 These are draft introductions for maintainers and community members to adapt.
 This document does not mean they have been posted or sent anywhere.

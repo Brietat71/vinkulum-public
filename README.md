@@ -259,7 +259,7 @@ reference or a first contribution without needing to know the whole codebase.
 - **CAD:** [add a STEP part with independently known mass properties (#1)](https://github.com/Brietat71/vinkulum-public/issues/1).
 - **Desktop:** [qualify one keyboard and high-DPI workflow (#2)](https://github.com/Brietat71/vinkulum-public/issues/2).
 - **FEM:** [measure C3D8 bending convergence against an independent reference (#4)](https://github.com/Brietat71/vinkulum-public/issues/4).
-- **Dynamics:** [derive and qualify applied-load derivatives for Pinocchio (#6)](https://github.com/Brietat71/vinkulum-public/issues/6).
+- **Dynamics:** [extend the independent references for Pinocchio applied-load derivatives](docs/PINOCCHIO_LOADS.md).
 
 If this direction matters to you, **star the repository**, share a real use case,
 or help reproduce a benchmark. The [share kit](docs/SHARE_VINKULUM.md) includes

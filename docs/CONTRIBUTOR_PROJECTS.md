@@ -6,11 +6,11 @@ is a useful starting point. Larger projects should begin with a scoped proposal.
 
 These are proposed projects, not funded positions or scheduled commitments.
 
-Four scoped issues are already open: [an analytic STEP fixture (#1)](https://github.com/Brietat71/vinkulum-public/issues/1),
+Scoped contribution briefs cover [an analytic STEP fixture (#1)](https://github.com/Brietat71/vinkulum-public/issues/1),
 [keyboard and high-DPI behaviour (#2)](https://github.com/Brietat71/vinkulum-public/issues/2),
 [a CalculiX bending refinement study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4),
 and [applied-load derivatives for Pinocchio (#6)](https://github.com/Brietat71/vinkulum-public/issues/6).
-Each describes the expected deliverable and how to check it.
+Each records the deliverable, acceptance evidence and current status.
 
 | Project | Useful background | A reviewable first result |
 |---|---|---|
@@ -19,7 +19,7 @@ Each describes the expected deliverable and how to check it.
 | Rust mesh/data path | Rust, Python FFI, VTK | Profile a reproducible large model; improve a demonstrated bottleneck with numerical equivalence and memory measurements |
 | Mechanism validation | Dynamics, experimental mechanics | An analytic or published benchmark, convergence study and independent reference |
 | Verifiable numerics | Numerical analysis, exact arithmetic, Lean | A sharply stated guarantee, executable verifier and adversarial counterexamples |
-| [Pinocchio operators](PINOCCHIO_OPERATORS.md) | Rigid-body dynamics, robotics, Python/C++ | Derive the missing configuration derivative of applied point loads; implement and qualify it against an independent reference, retaining the intrinsic derivative channel |
+| [Pinocchio operators](PINOCCHIO_OPERATORS.md) | Rigid-body dynamics, robotics, Python/C++ | Extend independent references for captured operators and [applied-load derivatives](PINOCCHIO_LOADS.md), or compare supported observables with the native kernel |
 | MBDyn connector | Multibody simulation | Map a small mechanism, units, frames, solver version and result channels through an explicit adapter |
 | [CalculiX workflow](STUDIO_CAD_MESHING.md) | FEM, Python/Qt | Qualify a CAD-derived study under mesh refinement, with an independent reference and explicit locations for reported displacement/stress |
 | DUST connector | Aerodynamics | A minimal reproducible coupling contract and an uncoupled reference case first |

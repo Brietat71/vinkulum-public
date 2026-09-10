@@ -14,12 +14,13 @@ from pathlib import Path
 
 import numpy as np
 
+from .applied_loads import ancestor_coordinates, world_load_derivative
 from .articulated import operator_conventions, state_vector, tree_links
 from .document import load_project, save_project
 from .model import finite_number, read_json, write_json
 
 PINOCCHIO_VERSION = "4.1.0"
-ADAPTER_VERSION = "0.1.0"
+ADAPTER_VERSION = "0.2.0"
 STATE_KEYS = {"q", "velocity", "acceleration", "effort", "time_s"}
 
 
@@ -45,6 +46,7 @@ class ArticulatedModel:
     def __init__(self, project):
         self.project = project
         self.links = tree_links(project)
+        self.ancestor_coordinates = ancestor_coordinates(self.links)
         import pinocchio as pin
 
         if pin.__version__ != PINOCCHIO_VERSION:
@@ -154,6 +156,7 @@ class ArticulatedModel:
         data = model.createData()
         kinematics = self.kinematics(q)
         external = np.zeros(model.nv)
+        external_dq = np.zeros((model.nv, model.nv))
         load_values = []
         for load in self.project.loads:
             pose, jacobian = kinematics[load.body]
@@ -162,6 +165,13 @@ class ArticulatedModel:
             moment = np.array([law.value(time_s) for law in load.moment])
             point_jacobian = jacobian[:3] + np.cross(jacobian[3:].T, arm).T
             external += point_jacobian.T @ force + jacobian[3:].T @ moment
+            external_dq += world_load_derivative(
+                point_jacobian,
+                jacobian[3:],
+                force,
+                moment,
+                self.ancestor_coordinates[load.body],
+            )
             load_values.append(
                 {
                     "id": load.id,
@@ -209,7 +219,7 @@ class ArticulatedModel:
             )
         result = {
             "format": "vinkulum-pinocchio-operators",
-            "schema": 1,
+            "schema": 2,
             "engine": "Pinocchio",
             "engine_version": pin.__version__,
             "adapter_version": ADAPTER_VERSION,
@@ -245,6 +255,16 @@ class ArticulatedModel:
                 key: value.tolist()
                 for key, value in zip(("q", "velocity", "acceleration"), derivatives)
             },
+            "external_effort_derivatives": {
+                "q": external_dq.tolist(),
+                "velocity": np.zeros_like(external_dq).tolist(),
+                "acceleration": np.zeros_like(external_dq).tolist(),
+            },
+            "loaded_inverse_derivatives": {
+                "q": (derivatives[0] - external_dq).tolist(),
+                "velocity": derivatives[1].tolist(),
+                "acceleration": derivatives[2].tolist(),
+            },
             "kinetic_energy_J": float(0.5 * v @ mass @ v),
             "potential_energy_J": float(potential),
             "bodies": body_values,
@@ -279,6 +299,7 @@ def run_analysis(project, directory, state=None):
         name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
         for name in (
             "articulated.py",
+            "applied_loads.py",
             "pinocchio_backend.py",
             "document.py",
             "model.py",
