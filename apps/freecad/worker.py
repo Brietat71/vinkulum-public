@@ -12,33 +12,11 @@ from pathlib import Path
 import numpy as np
 
 
-def solve(directory):
+def import_body(request, step):
+    """Reimport a captured solid and check all SI properties against FreeCAD."""
     from vinkulum_studio.cad import execute
-    from vinkulum_studio.document import Body, Project, joint_at, save_project
-    from vinkulum_studio.engine_threads import configure_occt_threads
-    from vinkulum_studio.execution import ExecutionPlan
-    from vinkulum_studio.mechanism import MechanicalResult, simulate_project
-    from vinkulum_studio.model import read_json, write_json
+    from vinkulum_studio.document import Body
 
-    path = directory / "request.json"
-    request = read_json(path, 100_000)
-    if request["format"] != "vinkulum-freecad-prototype-1":
-        raise ValueError("Unsupported bridge request")
-    if str(uuid.UUID(request["run_id"])) != request["run_id"]:
-        raise ValueError("Invalid request identity")
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    step = directory / "part.step"
-    if step.stat().st_size > 8_000_000:
-        raise ValueError("STEP input exceeds the existing Studio import budget")
-    if hashlib.sha256(step.read_bytes()).hexdigest() != request["step_sha256"]:
-        raise ValueError("Captured STEP changed")
-    output = directory / "result"
-    output.mkdir(exist_ok=False)
-    threads = request.get("threads", 2)
-    if type(threads) is not int or not 1 <= threads <= 64:
-        raise ValueError("Invalid engine thread allocation")
-    plan = ExecutionPlan(threads, threads)
-    cad_runtime = configure_occt_threads(plan.threads)
     body = Body.from_dict(
         execute(
             {
@@ -63,6 +41,36 @@ def solve(directory):
         (body.inertia(), expected["inertia_kg_m2"], epsilon * body.mass * length**2),
     ):
         np.testing.assert_allclose(actual, target, atol=tolerance, rtol=0)
+    return body
+
+
+def solve(directory):
+    from vinkulum_studio.document import Project, joint_at, save_project
+    from vinkulum_studio.engine_threads import configure_occt_threads
+    from vinkulum_studio.execution import ExecutionPlan
+    from vinkulum_studio.mechanism import MechanicalResult, simulate_project
+    from vinkulum_studio.model import read_json, write_json
+
+    path = directory / "request.json"
+    request = read_json(path, 100_000)
+    if request["format"] != "vinkulum-freecad-prototype-1":
+        raise ValueError("Unsupported bridge request")
+    if str(uuid.UUID(request["run_id"])) != request["run_id"]:
+        raise ValueError("Invalid request identity")
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    step = directory / "part.step"
+    if step.stat().st_size > 8_000_000:
+        raise ValueError("STEP input exceeds the existing Studio import budget")
+    if hashlib.sha256(step.read_bytes()).hexdigest() != request["step_sha256"]:
+        raise ValueError("Captured STEP changed")
+    output = directory / "result"
+    output.mkdir(exist_ok=False)
+    threads = request.get("threads", 2)
+    if type(threads) is not int or not 1 <= threads <= 64:
+        raise ValueError("Invalid engine thread allocation")
+    plan = ExecutionPlan(threads, threads)
+    cad_runtime = configure_occt_threads(plan.threads)
+    body = import_body(request, step)
     project = Project(
         request["project_id"],
         request["label"],
@@ -107,6 +115,8 @@ def solve(directory):
 if __name__ == "__main__":
     try:
         solve(Path(sys.argv[1]).resolve())
-    except Exception as error:  # noqa: BLE001 - report native errors at the process/UI boundary
+    except (
+        Exception
+    ) as error:  # noqa: BLE001 - report native errors at the process/UI boundary
         print(f"{type(error).__name__}: {error}", file=sys.stderr)
         raise SystemExit(1)
