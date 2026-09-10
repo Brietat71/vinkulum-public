@@ -1,9 +1,16 @@
-# Vinkulum Studio 0.6.0a2.dev2 — CAD and mechanism analysis
+# Vinkulum Studio 0.6.0a2.dev3 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
-loads. Vinkulum 0.19.0 runs in a separate process; Studio displays its positions,
+loads. Vinkulum 0.20.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
+
+Source **0.6.0a2.dev3** adds explicit native CPU allocation. Choose
+**Run → Native dynamics CPU threads…** before a calculation. Native calculations
+across windows share an application CPU budget and wait when resources are busy;
+queued work can be cancelled. Worker results record the actual Rust pool size,
+and trajectory validation runs off the GUI thread. Set `VINKULUM_STUDIO_CPUS`
+before launch to constrain the budget. See the [scope, tests and measurements](../../docs/NATIVE_THREADING.md).
 
 Source version **0.6.0a2.dev2** adds a [planar sketch editor](../../docs/STUDIO_SKETCH.md):
 draw closed line profiles, constrain horizontal/vertical segments and signed
@@ -83,7 +90,7 @@ python -m vinkulum_studio
 
 The CAD source preparation requires `patch`. Versions, adaptations and limits
 are documented in [Studio CAD](../../docs/STUDIO_CAD.md).
-A kernel **0.19.0** wheel matching your Python and platform can replace
+A kernel **0.20.0** wheel matching your Python and platform can replace
 `pip install .`. Linux wheels do not work on macOS.
 
 On Ubuntu 24.04, install the desktop prerequisites with:

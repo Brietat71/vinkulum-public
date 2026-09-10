@@ -65,6 +65,9 @@ etape "contrôles rapides (campagne parallèle)"
 etape "charges temporelles et liaisons à deux repères : références indépendantes"
 "$PY" -m unittest vinkulum.test_charges_temporelles
 
+etape "pools CPU natifs : partage, concurrence et équivalence numérique"
+"$PY" -m unittest vinkulum.test_execution
+
 etape "régressions Python : noyau, analyses, campagnes et cinématique sigma"
 "$PY" -m unittest vinkulum.test_modes_creux vinkulum.test_certification_creuse vinkulum.test_certification vinkulum.test_certification_assemblage vinkulum.test_certification_quotient vinkulum.test_noyau vinkulum.test_assemblage vinkulum.test_analyses vinkulum.test_campagnes vinkulum.test_schema_lie vinkulum.test_operateurs vinkulum.test_reduction_ports vinkulum.test_reponses_groupees vinkulum.test_reduction_contrainte vinkulum.test_fiabilite_lisse vinkulum.test_validation
 

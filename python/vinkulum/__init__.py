@@ -12,7 +12,7 @@ import sys as _sys
 if _sys.version_info < (3, 14):
     raise ImportError("Vinkulum nécessite Python 3.14 ou plus ; recréez le venv.")
 
-from vinkulum._vinkulum import LB_TF, LB_TP, LB_TV, LB_TVL, Noyau
+from vinkulum._vinkulum import ExecutionPool, LB_TF, LB_TP, LB_TV, LB_TVL, Noyau
 
 try:                                    # la version vient du paquet installé,
     from importlib.metadata import version as _v   # jamais recopiée ici
@@ -38,7 +38,7 @@ def depot_docs():
     return r if os.path.exists(os.path.join(r, "Cargo.toml")) else None
 
 
-__all__ = ["Noyau", "demo", "depot_docs", "__version__", "LB_TP", "LB_TF", "LB_TV", "LB_TVL"]
+__all__ = ["Noyau", "ExecutionPool", "demo", "depot_docs", "__version__", "LB_TP", "LB_TF", "LB_TV", "LB_TVL"]
 
 
 def demo():

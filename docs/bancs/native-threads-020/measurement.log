@@ -1,0 +1,16 @@
+   1 bodies  1 threads  0.000359s  1.00x
+   1 bodies  2 threads  0.000393s  0.91x
+   1 bodies  4 threads  0.000309s  1.16x
+   1 bodies  8 threads  0.000343s  1.05x
+  64 bodies  1 threads  0.019430s  1.00x
+  64 bodies  2 threads  0.018856s  1.03x
+  64 bodies  4 threads  0.018190s  1.07x
+  64 bodies  8 threads  0.018060s  1.08x
+ 256 bodies  1 threads  0.385009s  1.00x
+ 256 bodies  2 threads  0.389851s  0.99x
+ 256 bodies  4 threads  0.380105s  1.01x
+ 256 bodies  8 threads  0.383994s  1.00x
+ 900 bodies  1 threads  0.172436s  1.00x
+ 900 bodies  2 threads  0.167929s  1.03x
+ 900 bodies  4 threads  0.151433s  1.14x
+ 900 bodies  8 threads  0.147510s  1.17x

@@ -9,6 +9,7 @@ from PySide6.QtWidgets import (
     QDoubleSpinBox,
     QFormLayout,
     QHBoxLayout,
+    QInputDialog,
     QLabel,
     QLineEdit,
     QMenu,
@@ -35,6 +36,15 @@ from .viewport import Viewport
 
 
 class Workspace:
+    def choose_native_threads(self):
+        threads, accepted = QInputDialog.getInt(
+            self, "Native dynamics CPU resources", "Threads per native calculation:",
+            self.controller.threads, 1, self.controller.scheduler.capacity,
+        )
+        if accepted:
+            self.controller.threads = threads
+            self.status.setText(f"Next native calculation: {threads} CPU threads.")
+
     def _action(self, key, label, slot, shortcut=None, *, design=False, tip=None):
         action = QAction(label, self)
         action.setObjectName(key)
@@ -76,6 +86,7 @@ class Workspace:
         analysis.addAction(self._action("cad_study", "Static study from CAD…", self.open_cad_study, "Ctrl+Shift+M", design=True))
         analysis.addAction(self._action("articulated", "Articulated operators · Pinocchio…", self.open_articulated_study, "Ctrl+Shift+P"))
         analysis.addSeparator()
+        analysis.addAction(self._action("native_cpus", "Native dynamics CPU threads…", self.choose_native_threads))
         for key, label, slot, shortcut in (
             ("new", "New project", self.new_project, QKeySequence.StandardKey.New),
             (

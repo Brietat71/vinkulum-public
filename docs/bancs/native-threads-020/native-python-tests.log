@@ -1,0 +1,9 @@
+test_all_time_integrators_accept_shared_pool (vinkulum.test_execution.ExecutionContracts.test_all_time_integrators_accept_shared_pool) ... ok
+test_concurrent_models_share_bounded_pool_and_failure_does_not_poison_it (vinkulum.test_execution.ExecutionContracts.test_concurrent_models_share_bounded_pool_and_failure_does_not_poison_it) ... ok
+test_parallel_assembly_keeps_same_state_iterations_and_constraints (vinkulum.test_execution.ExecutionContracts.test_parallel_assembly_keeps_same_state_iterations_and_constraints) ... ok
+test_strict_counts_and_model_ownership (vinkulum.test_execution.ExecutionContracts.test_strict_counts_and_model_ownership) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.321s
+
+OK

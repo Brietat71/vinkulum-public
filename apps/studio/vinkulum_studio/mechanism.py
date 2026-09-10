@@ -8,7 +8,7 @@ import math
 import platform
 import zipfile
 from dataclasses import asdict, dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import numpy as np
@@ -28,13 +28,13 @@ ARRAY_NAMES = {
 }
 
 
-def build_solver(project):
+def build_solver(project, executor=None):
     from vinkulum import Noyau
 
     issues = project.diagnostics()
     if issues:
         raise ValueError("\n".join(d.message for d in issues))
-    solver = Noyau(g=list(project.gravity))
+    solver = Noyau(g=list(project.gravity), executor=executor)
     indices = {}
     for body in project.bodies:
         indices[body.id] = solver.corps(
@@ -113,11 +113,11 @@ def joint_coordinates(project, positions, rotations):
     return coordinates
 
 
-def simulate_project(project, run_id, directory):
+def simulate_project(project, run_id, directory, execution=None):
     import vinkulum
     import vinkulum._vinkulum as native
 
-    solver = build_solver(project)
+    solver = build_solver(project, execution.executor() if execution else None)
     before = solver.etat()
     if project.joints:
         solver.assemble(t=0.0, tol=1e-12, iters=60, vitesses=True)
@@ -161,9 +161,11 @@ def simulate_project(project, run_id, directory):
             "python": platform.python_version(),
             "platform": platform.platform(),
             "machine": platform.machine(),
-            "completed_utc": datetime.now(timezone.utc).isoformat(),
+            "completed_utc": datetime.now(UTC).isoformat(),
             "method": "generalized-alpha / SO(3)",
             "rho_infinity": 0.9,
+            "threads": solver.execution_threads,
+            "execution": execution.manifest(solver) if execution else None,
             "units": {
                 "time": "s",
                 "position": "m",

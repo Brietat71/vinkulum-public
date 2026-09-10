@@ -60,6 +60,7 @@ mod certificat_vitesse;
 pub mod charges_temporelles;
 mod contraintes;
 mod equilibrage;
+pub mod execution;
 mod initialisation;
 mod moindres_carres;
 mod numerique;
@@ -5724,13 +5725,14 @@ struct BilanStatique {
 pub struct Noyau {
     mo: Modele,
     bilan_statique: Option<BilanStatique>,
+    executor: Option<execution::ExecutionPool>,
 }
 
 #[pymethods]
 impl Noyau {
     #[new]
-    #[pyo3(signature = (g = [0.0, 0.0, -9.80665]))]
-    fn new(g: [f64; 3]) -> PyResult<Self> {
+    #[pyo3(signature = (g = [0.0, 0.0, -9.80665], *, executor = None))]
+    fn new(g: [f64; 3], executor: Option<PyRef<'_, execution::ExecutionPool>>) -> PyResult<Self> {
         if g.iter().any(|x| !x.is_finite()) {
             // sondage du 7 sept. : une gravité NaN BLOQUAIT `simule` (SVD)
             return Err(pyo3::exceptions::PyValueError::new_err(format!(
@@ -5740,7 +5742,22 @@ impl Noyau {
         Ok(Noyau {
             mo: Modele::new(v3(g)),
             bilan_statique: None,
+            executor: executor.map(|pool| pool.clone()),
         })
+    }
+
+    /// Native worker count for integration; shared process Rayon pool by default.
+    #[getter]
+    fn execution_threads(&self) -> usize {
+        self.executor
+            .as_ref()
+            .map_or_else(rayon::current_num_threads, |pool| pool.threads())
+    }
+
+    /// Process-local executor identity; zero denotes the existing global Rayon pool.
+    #[getter]
+    fn execution_pool_id(&self) -> u64 {
+        self.executor.as_ref().map_or(0, |pool| pool.pool_id())
     }
 
     /// Corps rigide ; `j` = tenseur 3×3 en ligne (axes corps, au CdM), `rot` = R en ligne.
@@ -6733,8 +6750,12 @@ impl Noyau {
         t: Option<f64>,
     ) -> PyResult<Vec<(f64, f64, f64)>> {
         let mo = &self.mo;
-        py.detach(|| mo.modes_complexes(t.unwrap_or(mo.t), combien))
-            .map_err(pyo3::exceptions::PyRuntimeError::new_err)
+        py.detach(|| {
+            execution::run(self.executor.as_ref(), || {
+                mo.modes_complexes(t.unwrap_or(mo.t), combien)
+            })
+        })
+        .map_err(pyo3::exceptions::PyRuntimeError::new_err)
     }
 
     /// Toutes les racines mécaniques locales : [(réel, imaginaire)] en s⁻¹.
@@ -6744,8 +6765,12 @@ impl Noyau {
     /// Pour une trajectoire périodique, utiliser Floquet.
     #[pyo3(signature = (t = None))]
     fn spectre(&self, py: Python<'_>, t: Option<f64>) -> PyResult<Vec<(f64, f64)>> {
-        py.detach(|| self.mo.spectre(t.unwrap_or(self.mo.t)))
-            .map_err(pyo3::exceptions::PyRuntimeError::new_err)
+        py.detach(|| {
+            execution::run(self.executor.as_ref(), || {
+                self.mo.spectre(t.unwrap_or(self.mo.t))
+            })
+        })
+        .map_err(pyo3::exceptions::PyRuntimeError::new_err)
     }
 
     /// Bilan de la linéarisation mécanique locale, sans garantie de stabilité globale.
@@ -8269,8 +8294,9 @@ impl Noyau {
         // Python sur des Noyau indépendants tourne alors vraiment en
         // parallèle (mesuré 0,88× avant, GIL gardé). Rien de Python n'est
         // touché dans la boucle — la trajectoire est un Vec de f64.
+        let executor = self.executor.clone();
         let mo = &mut self.mo;
-        let res = py.detach(|| {
+        let mut run = || {
             mo.simule(t_end, h, rho, tol, newton_max, |t, mo| {
                 k += 1;
                 if k.is_multiple_of(tous) {
@@ -8295,6 +8321,10 @@ impl Noyau {
                     ));
                 }
             })
+        };
+        let res = py.detach(|| match executor {
+            Some(pool) => pool.install(run),
+            None => run(),
         });
         res.map_err(pyo3::exceptions::PyRuntimeError::new_err)?;
         Ok(traj)
@@ -8406,31 +8436,34 @@ impl Noyau {
         self.mo.e_ref = None;
         let mut traj = vec![];
         let mut kk = 0usize;
+        let executor = self.executor.clone();
         let mo = &mut self.mo;
         let res = py.detach(|| {
-            mo.simule_multi(t_end, h, k, &fast, rho, tol, newton_max, |t, mo| {
-                kk += 1;
-                if kk.is_multiple_of(tous) {
-                    traj.push((
-                        t,
-                        mo.corps.iter().map(|c| [c.r.x, c.r.y, c.r.z]).collect(),
-                        mo.corps
-                            .iter()
-                            .map(|c| {
-                                let mut a = [0.0; 9];
-                                for i in 0..3 {
-                                    for j in 0..3 {
-                                        a[3 * i + j] = c.rot[(i, j)];
+            execution::run(executor.as_ref(), || {
+                mo.simule_multi(t_end, h, k, &fast, rho, tol, newton_max, |t, mo| {
+                    kk += 1;
+                    if kk.is_multiple_of(tous) {
+                        traj.push((
+                            t,
+                            mo.corps.iter().map(|c| [c.r.x, c.r.y, c.r.z]).collect(),
+                            mo.corps
+                                .iter()
+                                .map(|c| {
+                                    let mut a = [0.0; 9];
+                                    for i in 0..3 {
+                                        for j in 0..3 {
+                                            a[3 * i + j] = c.rot[(i, j)];
+                                        }
                                     }
-                                }
-                                a
-                            })
-                            .collect(),
-                        mo.corps.iter().map(|c| [c.v.x, c.v.y, c.v.z]).collect(),
-                        mo.corps.iter().map(|c| [c.w.x, c.w.y, c.w.z]).collect(),
-                        mo.lam.iter().copied().collect(),
-                    ));
-                }
+                                    a
+                                })
+                                .collect(),
+                            mo.corps.iter().map(|c| [c.v.x, c.v.y, c.v.z]).collect(),
+                            mo.corps.iter().map(|c| [c.w.x, c.w.y, c.w.z]).collect(),
+                            mo.lam.iter().copied().collect(),
+                        ));
+                    }
+                })
             })
         });
         res.map_err(pyo3::exceptions::PyRuntimeError::new_err)?;
@@ -8475,31 +8508,34 @@ impl Noyau {
         }
         let mut traj = vec![];
         let mut k = 0usize;
+        let executor = self.executor.clone();
         let mo = &mut self.mo;
         let res = py.detach(|| {
-            mo.simule_em(t_end, h, |t, mo| {
-                k += 1;
-                if k.is_multiple_of(tous) {
-                    traj.push((
-                        t,
-                        mo.corps.iter().map(|c| [c.r.x, c.r.y, c.r.z]).collect(),
-                        mo.corps
-                            .iter()
-                            .map(|c| {
-                                let mut a = [0.0; 9];
-                                for i in 0..3 {
-                                    for j in 0..3 {
-                                        a[3 * i + j] = c.rot[(i, j)];
+            execution::run(executor.as_ref(), || {
+                mo.simule_em(t_end, h, |t, mo| {
+                    k += 1;
+                    if k.is_multiple_of(tous) {
+                        traj.push((
+                            t,
+                            mo.corps.iter().map(|c| [c.r.x, c.r.y, c.r.z]).collect(),
+                            mo.corps
+                                .iter()
+                                .map(|c| {
+                                    let mut a = [0.0; 9];
+                                    for i in 0..3 {
+                                        for j in 0..3 {
+                                            a[3 * i + j] = c.rot[(i, j)];
+                                        }
                                     }
-                                }
-                                a
-                            })
-                            .collect(),
-                        mo.corps.iter().map(|c| [c.v.x, c.v.y, c.v.z]).collect(),
-                        mo.corps.iter().map(|c| [c.w.x, c.w.y, c.w.z]).collect(),
-                        vec![],
-                    ));
-                }
+                                    a
+                                })
+                                .collect(),
+                            mo.corps.iter().map(|c| [c.v.x, c.v.y, c.v.z]).collect(),
+                            mo.corps.iter().map(|c| [c.w.x, c.w.y, c.w.z]).collect(),
+                            vec![],
+                        ));
+                    }
+                })
             })
         });
         res.map_err(pyo3::exceptions::PyRuntimeError::new_err)?;
@@ -8520,6 +8556,7 @@ impl Noyau {
             .verifie_options()
             .map_err(pyo3::exceptions::PyValueError::new_err)?;
         let mut mo = self.mo.clone();
+        let executor = self.executor.clone();
         let matrice = |m: &M3| {
             let mut out = [0.0; 9];
             for i in 0..3 {
@@ -8532,16 +8569,18 @@ impl Noyau {
         let inerties: Vec<_> = mo.corps.iter().map(|c| matrice(&c.j)).collect();
         let mut trace = vec![];
         py.detach(|| {
-            mo.simule_em_interne(t_end, h, |t, m, pis, _| {
-                trace.push((
-                    t,
-                    pis.iter().map(|p| [p.x, p.y, p.z]).collect::<Vec<_>>(),
-                    m.corps.iter().map(|c| matrice(&c.rot)).collect::<Vec<_>>(),
-                    m.corps
-                        .iter()
-                        .map(|c| [c.w.x, c.w.y, c.w.z])
-                        .collect::<Vec<_>>(),
-                ));
+            execution::run(executor.as_ref(), || {
+                mo.simule_em_interne(t_end, h, |t, m, pis, _| {
+                    trace.push((
+                        t,
+                        pis.iter().map(|p| [p.x, p.y, p.z]).collect::<Vec<_>>(),
+                        m.corps.iter().map(|c| matrice(&c.rot)).collect::<Vec<_>>(),
+                        m.corps
+                            .iter()
+                            .map(|c| [c.w.x, c.w.y, c.w.z])
+                            .collect::<Vec<_>>(),
+                    ));
+                })
             })
         })
         .map_err(pyo3::exceptions::PyRuntimeError::new_err)?;
@@ -9045,22 +9084,30 @@ impl Noyau {
     #[pyo3(signature = (t = 0.0, tol = 1e-12, iters = 60, vitesses = true))]
     fn assemble(
         &mut self,
+        py: Python<'_>,
         t: f64,
         tol: f64,
         iters: usize,
         vitesses: bool,
     ) -> PyResult<(f64, usize)> {
-        let sauve = Sauvegarde::new(&self.mo);
-        let resultat: Result<(f64, usize), String> = (|| {
-            let r = self.mo.assemble_interne(t, tol, iters)?;
-            if vitesses {
-                self.mo.projette_vitesse(t, tol)?;
-            }
-            Ok(r)
-        })();
-        if resultat.is_err() {
-            sauve.restaure(&mut self.mo);
-        }
+        let executor = self.executor.clone();
+        let mo = &mut self.mo;
+        let resultat = py.detach(|| {
+            execution::run(executor.as_ref(), || {
+                let sauve = Sauvegarde::new(mo);
+                let resultat = (|| {
+                    let r = mo.assemble_interne(t, tol, iters)?;
+                    if vitesses {
+                        mo.projette_vitesse(t, tol)?;
+                    }
+                    Ok::<_, String>(r)
+                })();
+                if resultat.is_err() {
+                    sauve.restaure(mo);
+                }
+                resultat
+            })
+        });
         resultat.map_err(pyo3::exceptions::PyValueError::new_err)
     }
 
@@ -9277,6 +9324,7 @@ impl Noyau {
 #[pymodule(gil_used = false)]
 fn _vinkulum(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<Noyau>()?;
+    m.add_class::<execution::ExecutionPool>()?;
     certificat::enregistrer(m)?;
     certificat_vitesse::enregistrer(m)?;
     // constantes de Leishman–Beddoes : lues par les bancs, jamais recopiées

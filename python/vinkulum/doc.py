@@ -58,7 +58,14 @@ def rendu():
     out += ["| méthode | ce qu'elle fait |", "|---|---|"]
     for nom, m in sorted(membres):
         out.append(f"| `{nom}` | {_resume(m.__doc__)} |")
-    out += ["", "## Les modules d'analyse", ""]
+    out += ["", "## Native CPU execution — `vinkulum.ExecutionPool`", "",
+            _vinkulum.ExecutionPool.__doc__.strip(), "",
+            "```python", "pool = vinkulum.ExecutionPool(4)",
+            "model = vinkulum.Noyau(executor=pool)", "```", "",
+            "`threads` and `pool_id` expose the pool size and process-local identity.",
+            "`Noyau.execution_threads` and `Noyau.execution_pool_id` expose its executor.",
+            "See [native threading](NATIVE_THREADING.md) for scope and guarantees.", "",
+            "## Les modules d'analyse", ""]
     for nm in _MODULES:
         try:
             mod = importlib.import_module(f"vinkulum.{nm}")
