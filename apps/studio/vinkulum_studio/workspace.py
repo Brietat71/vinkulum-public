@@ -72,7 +72,7 @@ class Workspace:
         view = self.menuBar().addMenu("&View")
         analysis = self.menuBar().addMenu("&Run")
         help_menu = self.menuBar().addMenu("&Help")
-        analysis.addAction(self._action("static_study", "Linear statics · CalculiX…", self.open_static_study, "Alt+E"))
+        analysis.addAction(self._action("static_study", "Linear statics · CalculiX…", self.open_static_study, "Ctrl+Shift+E"))
         analysis.addSeparator()
         for key, label, slot, shortcut in (
             ("new", "New project", self.new_project, QKeySequence.StandardKey.New),
@@ -109,7 +109,7 @@ class Workspace:
             edit.addAction(self._action(key, label, slot, shortcut, design=True))
         for shape, label, shortcut in (
             ("box", "Box", "Alt+B"),
-            ("cylinder", "Cylinder", "Alt+C"),
+            ("cylinder", "Cylinder", "Ctrl+Shift+C"),
             ("sphere", "Sphere", "Alt+S"),
         ):
             create.addAction(
@@ -136,7 +136,7 @@ class Workspace:
             )
         )
         create.addAction(
-            self._action("load", "Add load", self.add_load, "Alt+F", design=True)
+            self._action("load", "Add load", self.add_load, "Ctrl+Shift+F", design=True)
         )
         toolbar = self.addToolBar("Main tools")
         toolbar.setObjectName("main_tools")

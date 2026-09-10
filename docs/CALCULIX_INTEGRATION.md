@@ -12,7 +12,7 @@ raw output, solver log and versioned result metadata.
 ## Studio workspace
 
 In Studio 0.5.0, choose **Run → Linear statics ·
-CalculiX…** (`Alt+E`), or find the command in the command palette. The study
+CalculiX…** (`Ctrl+Shift+E`), or find the command in the command palette. The study
 opens in a separate native window and leaves the rigid-mechanism project intact.
 
 - Try the built-in one-element tension example, or **Open study…** to load the

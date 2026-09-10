@@ -20,6 +20,9 @@ Scene framing now includes visible joint and load symbols. Reference grids do
 not influence clipping, and glyph sizes remain stable when a mechanism is
 translated far from the world origin. No physical model is changed by framing.
 
+CalculiX (Ctrl+Shift+E), cylinder creation (Ctrl+Shift+C) and load creation
+(Ctrl+Shift+F) leave the English Edit, Create and File menu mnemonics available.
+
 The OCCT 8.0.1 / adapted build123d 0.11.1 CAD workflow provides primitives,
 extrusions, booleans, all-edge fillets and single-solid STEP exchange. BREP
 geometry supplies SI mass properties; a separate mesh supplies display geometry.

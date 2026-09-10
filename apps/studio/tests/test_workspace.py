@@ -77,6 +77,32 @@ class WorkspaceRecipe(unittest.TestCase):
             cancel.assert_not_called()
         palette.close()
 
+    def test_statics_shortcut_opens_window_and_commands_leave_menu_mnemonics_free(self):
+        window = self.make_window()
+        window.raise_()
+        window.activateWindow()
+        window.viewport.setFocus()
+        QTest.qWait(50)
+        QTest.keyClick(
+            window,
+            Qt.Key.Key_E,
+            Qt.KeyboardModifier.ControlModifier | Qt.KeyboardModifier.ShiftModifier,
+        )
+        QTest.qWait(100)
+        self.assertIsNotNone(window._static_window)
+        static = window._static_window
+        static._discard_allowed = lambda: True
+        self.assertTrue(static.isVisible())
+        static.close()
+        self.assertIsNone(window._static_window)
+        mnemonics = {
+            QKeySequence.mnemonic(action.text()).toString()
+            for action in window.menuBar().actions()
+        } - {""}
+        for name, action in window.commands.items():
+            for shortcut in action.shortcuts():
+                self.assertNotIn(shortcut.toString(), mnemonics, name)
+
     def test_vector_display_never_rounds_untouched_model_components(self):
         window = self.make_window()
         window.new_project()
