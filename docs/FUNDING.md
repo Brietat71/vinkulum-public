@@ -1,7 +1,8 @@
 # Help sustain Vinkulum
 
-Vinkulum is building an open engineering workbench: geometry, mechanics and
-inspectable results today; a broader home for scientific solvers over time.
+Vinkulum is building an open engineering environment inside FreeCAD: editable
+geometry, mechanics and inspectable results, with a broader home for scientific
+solvers over time.
 Sustaining that work requires protected maintainer time as well as contributors.
 
 We are interested in discussing support for specific, publicly reviewable
@@ -19,7 +20,7 @@ setup instructions. A verified payment link will be added after activation.
 | Area | Deliverable a supporter can inspect |
 |---|---|
 | Maintainer continuity | Time for implementation, reviews, releases and dependency maintenance |
-| Reliable desktop releases | Tested Linux/macOS packages and repeatable installation recipes |
+| Reliable FreeCAD delivery | A tested Linux extension, repeatable engine installation and a reproducible first-run example |
 | Solver integration | One connector with a documented model contract and reference comparisons |
 | Scientific validation | Open benchmark models, independently reproduced results and stated tolerances |
 | Research contributions | A scoped student/research project with agreed supervision and deliverables |

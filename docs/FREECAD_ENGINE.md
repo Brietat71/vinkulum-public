@@ -76,8 +76,10 @@ python3 ci/freecad_extension.py \
 
 The qualification opens and closes its own example documents and exits its
 dedicated FreeCAD process. See the [document and lifecycle record](bancs/freecad-analysis-010a2/README.md)
-for its scope. General Assembly conversion, FEM controls in FreeCAD and other
-operating systems remain future work.
+for its scope. That record covers the released single-solid path. The
+[development first-run guide](FREECAD_FIRST_RUN.md) describes the separately
+qualified native Assembly and linear-static tasks; other operating systems remain
+unqualified.
 
 The [fresh-installation qualification record](bancs/freecad-engine-setup-2026/README.md)
 contains the executed installer, runtime inventory and actual FreeCAD checks

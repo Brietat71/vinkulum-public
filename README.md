@@ -2,56 +2,65 @@
   <img src="docs/assets/vinkulum-banner.svg" alt="Vinkulum — open engineering. Design. Simulate. Verify." width="100%">
 </p>
 
-**Open mechanics, inside FreeCAD.**
+**Design in FreeCAD. Run open solvers. Keep the evidence.**
 
-Vinkulum combines a **Rust mechanics kernel**, a Python API and independently
-checkable numerical work. **FreeCAD is now the primary desktop interface.**
-Keep its modelling tools and feature tree; run Vinkulum in a separate process
-and inspect captured motion in the same FreeCAD document.
+Vinkulum brings a **Rust mechanics kernel** and open scientific engines into
+FreeCAD. Keep your editable CAD, native feature tree and familiar modelling
+controls. Run calculations in separate processes, then inspect motion or FEM
+results in the document.
 
-[Try the FreeCAD extension](apps/freecad/README.md#install) ·
+[First run in FreeCAD](docs/FREECAD_FIRST_RUN.md) ·
 [Contribute](docs/CONTRIBUTOR_PROJECTS.md) ·
 [Discuss](https://github.com/Brietat71/vinkulum-public/discussions) ·
 [Scientific guarantees](docs/CERTIFICATION_NOYAU.md) ·
 [Support the project](docs/FUNDING.md) · [Technical archive in French](README.fr.md)
 
-![The Vinkulum extension in the actual FreeCAD Linux interface](docs/bancs/freecad-extension-010/freecad-extension.png)
+| Rigid mechanisms | Linear static analysis |
+|---|---|
+| ![Native Assembly motion in FreeCAD](docs/bancs/freecad-assembly-analysis-2026/assembly-analysis.png) | ![Native FreeCAD static task and displacement result](docs/bancs/freecad-static-task-2026/static-task.png) |
+| Editable solids and native Revolute joints; inspect captured motion on temporary copies. | Pick faces, define fixed supports and pressure, then inspect native FEM displacements. |
 
-*An editable PartDesign pendulum, a native FreeCAD task panel, and a captured
-Vinkulum trajectory. The motion uses a temporary copy; the design keeps its
-original geometry and placement.*
+*Actual FreeCAD Linux sessions. These are development workflows; the released
+extension and development build have different scopes, detailed below.*
 
-## Try it in FreeCAD
+## Start with an editable example
 
-**FreeCAD extension 0.1.0a2 · Kernel 0.20.0 · Linux first.**
+**Released: FreeCAD extension 0.1.0a2. Development: 0.1.0a3.dev3. Kernel: 0.20.0. Linux first.**
 
-1. [Install the extension and configure its separate engine](apps/freecad/README.md#install).
-2. Open **Vinkulum → Open pendulum example** in FreeCAD.
-3. Select the body, open **Vinkulum → Motion analysis**, then run and inspect
-   the captured native samples. No Vinkulum workbench switch is required.
-4. Change the PartDesign pad, capture it again and compare the physical result.
+The [published 0.1.0a2 ZIP](https://github.com/Brietat71/vinkulum-public/releases/tag/freecad-v0.1.0a2)
+contains the single-solid pendulum workflow. Use a
+[development source build](docs/FREECAD_FIRST_RUN.md) for native Assemblies,
+linear statics and the new preconfigured static example. These source features
+are not in that released ZIP.
 
-The first extension covers **one rigid solid and one explicit revolute joint**,
-with configurable world pivot, axis, density, native step and CPU allocation.
-Calculations run outside FreeCAD's GUI process. Cancellation and document close
-retire the job; stale geometry is refused for playback. Saving the FreeCAD file
-removes the temporary motion shape before serialization. Saved calculations
-reopen without running the engine.
+1. Install the extension and its [separate engine](docs/FREECAD_ENGINE.md).
+2. Choose **Vinkulum → Open double-pendulum assembly**, then **Motion analysis…**
+   to calculate from native Revolute joints; or choose **Open static tension
+   example**, then **Static analysis…** for a bar with its supports and load ready.
+3. Choose the engine paths and run. Statics additionally needs OCCT 8-enabled
+   Gmsh HXT and CalculiX. Opening an example does not start a solver.
+4. Save the analysis with the design, change an input and compare a new capture.
+   The [first-run guide](docs/FREECAD_FIRST_RUN.md) gives an expected numerical
+   result and explains which files to keep.
 
-Motion analyses live in FreeCAD's document tree. Save their settings with the
-design, reopen them by double-click or right-click, and undo input edits using
-FreeCAD's normal controls. Each analysis remembers its last calculation folder
-for explicit replay; results remain external files.
+Motion analyses preserve the source design and use temporary playback copies.
+Static inputs and native FEM displacement results persist in the FCStd file.
+Boundary geometry is captured explicitly; changed geometry requires face
+reselection, and stale linked static results are hidden on recomputation.
+Cancellation retires the task's worker; the static job also owns its mesher and
+solver process group and watches for abrupt FreeCAD closure.
 
-This is a research alpha. General FreeCAD Assembly conversion, multiple-body
-host models and FreeCAD controls for FEM and other engines remain upcoming work.
-The [document and lifecycle qualification](docs/bancs/freecad-analysis-010a2/README.md) states
-exactly which runtime, physical cases and lifecycle behaviours were exercised.
+This is a **research alpha**. The qualified development paths are flat native
+Assemblies with Revolute joints and one uniform density, and one-solid linear
+isotropic statics with fixed supports and pressure. General topology persistence,
+nonlinear FEM, contact in the FreeCAD workflow and general trajectory/FE error
+bounds are not established. Every retained qualification states its scope.
 
+FreeCAD is the primary desktop interface; the custom Studio GUI is paused.
 The qualified Linux host is FreeCAD 1.1.3 / Qt 6. Its own OCCT 7.8.1 stays in
-its process. Vinkulum reimports the captured STEP with **OCCT 8.0.1** and checks
-volume, centre and the full inertia tensor against FreeCAD before calculating.
-The two Python environments keep separate native libraries.
+its process. Vinkulum reimports captured STEP with **OCCT 8.0.1** and checks
+volume, centre and the full inertia tensor before calculating. The two Python
+environments keep separate native libraries.
 
 ## One project, several scientific engines
 
@@ -59,12 +68,12 @@ The long-term goal is a common engineering environment for open mechanics,
 finite elements and other scientific engines. Each engine keeps its identity,
 licence, units, physical assumptions and reference cases.
 
-| Component | Available today | FreeCAD interface |
+| Component | Implemented backend | FreeCAD development interface |
 |---|---|---|
-| **Vinkulum** | Native Rust mechanics, Python API, captured rigid-body trajectories | First single-solid revolute workflow |
+| **Vinkulum** | Native Rust mechanics, Python API, captured rigid-body trajectories | Single-solid and native Assembly motion tasks |
 | **OCCT 8 + build123d** | STEP import, solid geometry and SI mass properties | Checked capture boundary with the FreeCAD host |
-| **CalculiX** | External linear-elasticity adapter: C3D4, admitted curved C3D10 and affine C3D8; captured results and references | Planned |
-| **Gmsh** | External OCCT 8 mesher and captured boundary conditions | Planned |
+| **CalculiX** | External linear-elasticity adapter: C3D4, admitted curved C3D10 and affine C3D8; captured results and references | Native one-solid static task: fixed supports, pressure and displacements |
+| **Gmsh** | External OCCT 8 mesher and captured boundary conditions | Meshing inside the static task |
 | **Pinocchio** | Fixed-base rigid-tree operators, derivatives and independent references through a separate worker | Planned |
 | **MBDyn** | Existing comparison work | Connector planned |
 | **DUST** | Future aerodynamic workflows | Planned |
@@ -83,6 +92,9 @@ bounded guarantees. Passing a test or matching another solver does not certify
 arbitrary trajectories or models.
 
 - [FreeCAD extension: actual GUI, saved files, process lifecycle and frame transport](docs/bancs/freecad-extension-010/README.md)
+- [Native Assembly analyses, editable examples and independent double-pendulum checks](docs/bancs/freecad-assembly-analysis-2026/README.md)
+- [Native static task, result persistence, stale inputs and process lifetime](docs/bancs/freecad-static-task-2026/README.md)
+- [First-run static example and repeatable opening/closing](docs/bancs/freecad-first-run-2026/README.md)
 - [Persistent FreeCAD analyses: save/reopen, Undo/Redo and numeric precision](docs/bancs/freecad-analysis-010a2/README.md)
 - [Independent finite-section pendulum reference and four retained FreeCAD captures](docs/bancs/freecad-bridge-2026/README.md)
 - [Kernel guarantees and remaining obligations](docs/CERTIFICATION_NOYAU.md)
@@ -114,10 +126,10 @@ Students, researchers, engineers and interested contributors can help with a
 failing physical example, a CAD regression, a numerical proof or a reproduced
 result. Useful priorities for the FreeCAD direction include:
 
-- Convert a small assembly with explicit units, frames and independent mechanics.
+- Extend a bounded assembly case with explicit units, frames and independent mechanics.
 - Exercise cancellation, save/reopen and source edits in real FreeCAD sessions.
 - Add a STEP solid with independently known mass properties.
-- Connect a supported CalculiX study to native FreeCAD controls.
+- Add a mesh-refinement study or improve the native static task with a reproducible user workflow.
 - Profile the capture/process boundary before proposing a performance change.
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) and the
