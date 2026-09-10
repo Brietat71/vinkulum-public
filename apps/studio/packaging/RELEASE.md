@@ -1,4 +1,9 @@
-Vinkulum Studio 0.4.1 — an English CAD and multibody workbench.
+Vinkulum Studio 0.4.2 — an English CAD and multibody workbench.
+
+This patch fixes normal startup with PySide6 6.11.2. Version 0.4.1 referenced
+an unavailable QLocale enum; its diagnostic mode bypassed that initialisation.
+Startup and bundle checks now enter through the same application/window setup
+as a normal launch, and the extracted Linux archive must pass both checks.
 
 The interface, installation guides and contribution guide are now in English.
 Saved joint and law identifiers remain compatible with existing projects.

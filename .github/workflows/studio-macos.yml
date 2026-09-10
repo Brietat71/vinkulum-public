@@ -47,5 +47,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          tag="studio-v0.4.1-macos-${GITHUB_RUN_NUMBER}"
-          gh release create "$tag" dist/macos/*.dmg dist/macos/SHA256SUMS dist/macos/check/bundle-check.json dist/macos/check/scene.png --target "$GITHUB_SHA" --prerelease --title "Vinkulum Studio 0.4.1 — Apple Silicon preview ${GITHUB_RUN_NUMBER}" --notes-file apps/studio/packaging/RELEASE.md
+          tag="studio-v0.4.2-macos-${GITHUB_RUN_NUMBER}"
+          gh release create "$tag" dist/macos/*.dmg dist/macos/SHA256SUMS dist/macos/check/bundle-check.json dist/macos/check/scene.png --target "$GITHUB_SHA" --prerelease --title "Vinkulum Studio 0.4.2 — Apple Silicon preview ${GITHUB_RUN_NUMBER}" --notes-file apps/studio/packaging/RELEASE.md

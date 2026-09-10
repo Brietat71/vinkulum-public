@@ -1,11 +1,12 @@
-# Vinkulum Studio 0.4.1 — CAD and 3D mechanism analysis
+# Vinkulum Studio 0.4.2 — CAD and 3D mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.19.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
 
-Studio 0.4.1 introduces an English interface and preserves the precision of
+Studio 0.4.2 fixes the normal launcher on PySide6 6.11.2 and qualifies startup
+through the actual application entry point. Version 0.4.1 introduced an English interface and preserved the precision of
 numerical fields and compatibility with existing project files. The CAD workflow
 introduced in 0.4.0 uses **OCCT 8.0.1** and an explicit adaptation of **build123d**.
 
@@ -76,7 +77,7 @@ native simulation, OpenGL rendering and version checks. Without a display it
 uses Xvfb. `dist/linux/` receives the verified archive, `SHA256SUMS`, build
 provenance and the `check/` report. Set `VINKULUM_LINUX_OUT` for another destination.
 
-Extract `Vinkulum-Studio-0.4.1-linux-x86_64.tar.gz`, then run
+Extract `Vinkulum-Studio-0.4.2-linux-x86_64.tar.gz`, then run
 `./Vinkulum\ Studio/Vinkulum\ Studio`. Keep `_internal` beside the executable.
 The qualified 0.4.0 baseline used Linux x86-64, glibc 2.39, X11 and Mesa OpenGL
 on Ubuntu 24.04; each new package must pass its own extracted-binary checks.

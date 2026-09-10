@@ -41,7 +41,7 @@ def check_scene_image(path):
     return {"nonblack_probes": visible, "total_probes": 100}
 
 
-def main(directory):
+def main(directory, *, app=None, window=None):
     import faulthandler
 
     # Covers Cocoa initialization too, before the Qt timer can run.
@@ -74,8 +74,8 @@ def main(directory):
         cad_report = json.loads(response.read_text())
         if cad_report.get("status") != "completed":
             raise RuntimeError(str(cad_report))
-    app = QApplication.instance() or QApplication([])
-    window = EditorWindow()
+    app = app or QApplication.instance() or QApplication([])
+    window = window or EditorWindow()
     window._discard_allowed = lambda: True
     project = replace(double_pendulum(), duration=0.1)
     window.history = History(project)
