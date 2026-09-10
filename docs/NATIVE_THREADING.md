@@ -88,15 +88,17 @@ joins its bounded result reader before destroying its objects.
 | Path | Current status | Next required increment |
 | --- | --- | --- |
 | Native dynamics | Explicit Rayon pools, CPU admission, off-GUI result admission | Tune scheduling using measured workload sizes; extend coverage to remaining heavy kernel APIs |
-| OCCT 8 / build123d | Isolated CAD process | Audit native operation-level parallelism and route the allocated CPU budget into supported OCCT operations |
-| Gmsh | Explicit mesher thread count | Join the common admission budget and verify effective engine concurrency |
-| CalculiX | Isolated worker with one-thread settings | Qualify threaded builds and sparse-solver behavior before increasing allocation |
+| OCCT 8 / build123d | Isolated CAD process, common admission and configured native OCCT pool | Extend the measured operation corpus beyond the retained Boolean plate |
+| Gmsh | Common admission, explicit HXT/OpenMP thread settings and captured allocation | Measure workloads large enough to exercise parallel tetrahedral insertion |
+| CalculiX | Common admission, bounded phase settings and captured log maxima | Extend numerical and concurrency qualification beyond the retained static cases |
 | Pinocchio | Isolated native worker; single captured-state analysis | Use native batch/state parallelism where independent work exists; thread count alone cannot parallelize one recursive solve |
-| GUI | Qt/VTK rendering on GUI thread; native-result validation moved out | Profile and migrate remaining expensive CAD/FEM/Pinocchio result admission |
+| GUI | Native, CAD, FEM and Pinocchio result admission off the GUI thread; stored analysis archive reads queued | Profile request serialization, ordinary project I/O and scene construction; account for GUI numerical backends |
 
 Process isolation and native multithreading solve different requirements.
-Until all engine adapters join admission, this budget covers **native dynamics**
-only. It must not be described as a global Studio CPU limit.
+Studio dev4 extends admission to the other implemented engines; dev5 includes
+stored analysis archive reads. See [engine allocation](ENGINE_CPU_ADMISSION.md)
+and [background admission](STUDIO_BACKGROUND_ADMISSION.md). The budget bounds
+admitted compute allocations, rather than every operating-system thread.
 
 ## Verification and measurement
 

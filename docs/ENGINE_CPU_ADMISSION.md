@@ -64,10 +64,14 @@ statics or articulated-analysis window during validation defers destruction
 until the reader finishes. The previous accepted result survives cancellation
 and validation failure.
 
-CAD response admission and some interactive archive-opening paths still run on
-the GUI thread. Moving those remaining checks and accounting for GUI numerical
-backends are follow-up work; this increment does not claim that all expensive
-Studio work has left the GUI thread.
+Studio `0.6.0a2.dev5` also moves CAD response admission, attachment-preserving
+document preparation and interactive CalculiX/Pinocchio archive reads off the
+GUI thread. Archive reads request one slot from the same scheduler; CAD checks
+retain their operation's existing allocation. See the
+[lifecycle contract and tests](STUDIO_BACKGROUND_ADMISSION.md).
+CAD request serialization, ordinary project file I/O, STEP export writing and
+VTK scene updates still have GUI-thread work. GUI numerical backends are not yet
+fully accounted for by the scheduler.
 
 [The engine tests](../apps/studio/tests/test_engine_threads.py) exercise real
 queued external processes, cancellation before launch, failure cleanup,

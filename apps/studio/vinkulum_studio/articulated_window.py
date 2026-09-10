@@ -33,12 +33,13 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from .archive_controller import ArchiveController
 from .articulated import state_vector, tree_links
+from .articulated_input import load_articulated_input
 from .articulated_result import load_operators
 from .controls import NumberField
-from .document import MAX_PROJECT_BYTES, Project
 from .examples3d import double_pendulum
-from .model import finite_number, read_json, write_json
+from .model import finite_number, write_json
 from .pinocchio_controller import PinocchioController
 from .theme import apply_theme
 from .viewport import Viewport
@@ -99,9 +100,15 @@ class ArticulatedWindow(QMainWindow):
         self._close_pending = False
         self._saved = None
         self.controller = PinocchioController(self)
+        self.archive = ArchiveController(self, scheduler=self.controller.scheduler)
         self._build()
         apply_theme(self, "dark")
-        self.controller.busy_changed.connect(self._busy)
+        self.controller.busy_changed.connect(self._update_busy)
+        self.archive.busy_changed.connect(self._update_busy)
+        self.archive.stage_changed.connect(self.status.setText)
+        self.archive.completed.connect(self._archive_loaded)
+        self.archive.problem.connect(self._archive_failed)
+        self.archive.cancelled.connect(self.status.setText)
         self.controller.stage_changed.connect(self.status.setText)
         self.controller.problem.connect(self.status.setText)
         self.controller.completed.connect(self._completed)
@@ -258,7 +265,7 @@ class ArticulatedWindow(QMainWindow):
         self.run_button = QPushButton("Evaluate state")
         self.run_button.clicked.connect(self.run_action.trigger)
         self.cancel_button = QPushButton("Cancel")
-        self.cancel_button.clicked.connect(lambda: self.controller.cancel())
+        self.cancel_button.clicked.connect(self.cancel_work)
         self.cancel_button.setEnabled(False)
         buttons.addWidget(self.run_button)
         buttons.addWidget(self.cancel_button)
@@ -402,6 +409,7 @@ class ArticulatedWindow(QMainWindow):
             and isinstance(signature[1], dict)
             and bool(self.interpreter.text().strip())
             and self.controller.process is None
+            and not self.archive.busy
         )
         self.run_action.setEnabled(ready)
         self.run_button.setEnabled(ready)
@@ -440,43 +448,13 @@ class ArticulatedWindow(QMainWindow):
             self.set_project(double_pendulum())
 
     def open_input(self):
+        if self.controller.process is not None or self.archive.busy:
+            return
         path, _ = QFileDialog.getOpenFileName(
             self, "Open articulated analysis input", "", "Articulated input (*.json)"
         )
-        if not path:
-            return
-        try:
-            data = read_json(path, MAX_PROJECT_BYTES)
-            if (
-                not isinstance(data, dict)
-                or set(data) != {"format", "schema", "project", "state"}
-                or data["format"] != "vinkulum-articulated-input"
-                or type(data["schema"]) is not int
-                or data["schema"] != 1
-            ):
-                raise ValueError("Unknown articulated input format.")
-            project = Project.from_dict(data["project"])
-            links = tree_links(project)
-            state = data["state"]
-            if not isinstance(state, dict) or set(state) != {
-                "q",
-                "velocity",
-                "acceleration",
-                "effort",
-                "time_s",
-            }:
-                raise ValueError("Incomplete articulated state.")
-            for key in ("q", "velocity", "acceleration", "effort"):
-                state_vector(state[key], links, key)
-            if (
-                not finite_number(state["time_s"])
-                or not 0 <= state["time_s"] <= project.duration
-            ):
-                raise ValueError("Invalid load time.")
-            if self._discard_allowed():
-                self.set_project(project, state)
-        except (OSError, ValueError, TypeError, KeyError) as error:
-            self.status.setText(str(error))
+        if path:
+            self.archive.start(load_articulated_input, path, context="input")
 
     def save_input(self):
         try:
@@ -503,7 +481,7 @@ class ArticulatedWindow(QMainWindow):
             self.status.setText(str(error))
 
     def open_result(self):
-        if self.controller.process is not None:
+        if self.controller.process is not None or self.archive.busy:
             return
         path, _ = QFileDialog.getOpenFileName(
             self,
@@ -512,18 +490,34 @@ class ArticulatedWindow(QMainWindow):
             "Captured result (result.json)",
         )
         if path:
-            try:
-                result = load_operators(path)
-            except (OSError, ValueError, TypeError, KeyError) as error:
-                self.status.setText(f"Result rejected: {error}")
-                return
-            self.controller.last_result = result
-            self._completed(result)
-            self.status.setText(
-                "Captured operators loaded and checked; current analysis inputs preserved."
-            )
+            self.archive.start(load_operators, path, context="result")
+
+    def _archive_failed(self, error):
+        self.status.setText(f"Result rejected: {error}")
+
+    def _archive_loaded(self, result, context):
+        if self._close_pending:
+            return
+        if context == "input":
+            if self._discard_allowed():
+                self.set_project(*result)
+            return
+        self.controller.last_result = result
+        self._completed(result)
+        self.status.setText(
+            "Captured operators loaded and checked; current analysis inputs preserved."
+        )
+
+    def cancel_work(self):
+        self.controller.cancel()
+        self.archive.cancel()
+
+    def _update_busy(self, *_args):
+        self._busy(self.controller.process is not None or self.archive.busy)
 
     def start(self):
+        if self.archive.busy:
+            return
         try:
             state = self.edited_state()
             directory = (
@@ -761,11 +755,12 @@ class ArticulatedWindow(QMainWindow):
         if not self._close_pending and not self._discard_allowed():
             event.ignore()
             return
-        if self.controller.process is not None:
+        if self.controller.process is not None or self.archive.busy:
             self._close_pending = True
-            self.controller.cancel("Window closed. Pinocchio analysis stopped.")
+            self.cancel_work()
             event.ignore()
             return
+        self.archive.shutdown()
         self.controller.shutdown()
         self.viewport.close()
         event.accept()

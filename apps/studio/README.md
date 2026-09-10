@@ -1,11 +1,16 @@
-# Vinkulum Studio 0.6.0a2.dev4 — CAD and mechanism analysis
+# Vinkulum Studio 0.6.0a2.dev5 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.20.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
 
-Source **0.6.0a2.dev4** shares CPU admission between native dynamics, OCCT CAD,
+Source **0.6.0a2.dev5** moves CAD response validation, document preparation and
+stored CalculiX/Pinocchio input and result reads to background threads. Cancelling
+or closing keeps the previous data and lets the active reader finish before its
+resources are released. See [background admission](../../docs/STUDIO_BACKGROUND_ADMISSION.md).
+
+Version **0.6.0a2.dev4** shares CPU admission between native dynamics, OCCT CAD,
 Gmsh, CalculiX and Pinocchio. Meshing offers parallel HXT; CalculiX captures its
 thread allocation in reopenable archives. Statics and articulated operator
 checks run off the GUI thread. See [engine execution](../../docs/ENGINE_CPU_ADMISSION.md)
