@@ -50,7 +50,22 @@ Edit an articulated state, evaluate dynamics operators and inspect mass matrices
 derivatives and Jacobians. The [captured example](examples/studio/articulated/double-pendulum/README.md)
 opens without the engine; recomputation uses a separate Pinocchio environment.
 The [guide](docs/PINOCCHIO_OPERATORS.md) includes independent Lagrange references.
-Source version **0.6.0.dev1** only; the **0.5.0 Linux download** predates this workspace.
+Introduced in source version **0.6.0.dev1**; the **0.5.0 Linux download** predates this workspace.
+
+</details>
+
+<details>
+<summary><strong>In the developing source: change a CAD dimension and regenerate the part</strong></summary>
+
+![Studio 0.6.0.dev2: a 150 mm plate regenerated from an editable feature graph](docs/assets/studio-cad-history.png)
+
+Change the stock length from **120 to 150 mm** and preview the dependent cut and
+fillets. The solid supplies the new mass and inertia; applying the preview is
+one undoable change. Try the [parametric plate](examples/studio/platine-parametrique.vinkulum.json)
+with the [editing guide](docs/STUDIO_CAD_HISTORY.md) and inspect the
+[installed-package checks](docs/bancs/studio-cad-history-060/README.md).
+This requires source version **0.6.0.dev2**. Constrained sketches and persistent
+face/edge references are still future work.
 
 </details>
 
@@ -58,7 +73,7 @@ Source version **0.6.0.dev1** only; the **0.5.0 Linux download** predates this w
 
 | Layer | Available in the source tree |
 |---|---|
-| **Design** | OCCT **8.0.1** and adapted **build123d**: primitives, extrusions, solid booleans, all-edge fillets and single-solid STEP import/export. Exact BREP geometry, SI mass properties and a separate display mesh. |
+| **Design** | OCCT **8.0.1** and adapted **build123d**: primitives, extrusions, solid booleans, all-edge fillets and single-solid STEP exchange. Edit upstream solid features, preview regeneration and apply one undoable change. BREP mass properties and display meshes remain distinct. |
 | **Model** | A Qt/VTK workbench for rigid mechanisms: bodies, joints, loads, numerical properties, 3D manipulation, undo/redo and project files. |
 | **Simulate** | The native Rust kernel computes in a separate process. Studio captures the model and settings associated with each run. |
 | **Linear statics** | An experimental CalculiX workspace loads a mesh study, edits material/load settings, runs a separate installed solver and inspects captured displacements, integration-point stresses and energy. Saved calculations can be reopened and checked. |
@@ -66,10 +81,10 @@ Source version **0.6.0.dev1** only; the **0.5.0 Linux download** predates this w
 | **Examine** | Animate results, inspect curves and samples, compare captured runs on their native time grids, and export with units and provenance. |
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
-**Kernel 0.19.0 · Studio source 0.6.0.dev1 · Linux release 0.5.0.** Research software under active development.
+**Kernel 0.19.0 · Studio source 0.6.0.dev2 · Linux release 0.5.0.** Research software under active development.
 Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
-workflow; interactive constrained sketches and a regenerating feature tree are
-future work. The complete kernel is not certified. Each guarantee has a stated
+workflow; interactive constrained sketches, persistent face/edge references and
+CAD-to-FEM meshing are future work. The complete kernel is not certified. Each guarantee has a stated
 domain and its own evidence. See the [CAD contract](docs/STUDIO_CAD.md),
 [Studio guide](apps/studio/README.md) and [kernel API](docs/API.md).
 
@@ -146,6 +161,7 @@ agreeing with another solver does not certify every trajectory.
 - [Kernel guarantees and remaining obligations](docs/CERTIFICATION_NOYAU.md)
 - [Numerical benchmarks and historical comparisons](README.fr.md#résultats-mesurés-et-comparaison-externe)
 - [CAD adaptation, analytic checks and upstream test subset](docs/STUDIO_CAD.md)
+- [Parametric CAD editing, previews and preserved design frames](docs/STUDIO_CAD_HISTORY.md)
 - [Studio interaction and rendering qualification](docs/STUDIO_GUI_2026.md)
 - [CalculiX statics contract and reproducible tension study](docs/CALCULIX_INTEGRATION.md)
 - [Pinocchio conversion, independent Lagrange references and captured-state workspace](docs/PINOCCHIO_OPERATORS.md)

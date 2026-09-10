@@ -2,6 +2,9 @@
 
 Studio 0.4.0 introduced solid modelling in the multibody editor; 0.4.1 translates
 the interface into English. The mechanics kernel remains **Vinkulum 0.19.0**.
+The **0.6.0.dev2 source version** adds [parametric solid features](STUDIO_CAD_HISTORY.md),
+regeneration previews and an undoable apply transaction. The published **0.5.0
+Linux archive** predates that feature editor.
 
 ## Available workflow
 
@@ -10,10 +13,13 @@ rectangle/disc extrusions, subtraction, union, intersection, all-edge fillets
 and STEP import/export. Changes participate in document undo/redo. Boolean
 operations retain tool body B; it remains a mechanical body until removed.
 
-Operations accept numerical parameters. Their journal records provenance;
-it is not yet a regenerating feature tree. Interactive constrained sketches,
-face/edge selection and multi-part STEP assemblies are future work. The dialog
-is modal; CAD runs in a separate process with cancellation and a 60-second limit.
+Operations accept numerical parameters. New solids retain an immutable feature
+graph: edit an upstream dimension or placement, preview dependent operations,
+then explicitly apply the result. Imported and older solids start as captured
+BREP inputs; their old prose journals are not replayed as construction programs.
+Interactive constrained sketches, persistent face/edge selection, TNaming
+integration and multi-part STEP assemblies remain future work. The dialogs
+are modal; CAD runs in a separate process with cancellation and a 60-second limit.
 
 ## Reproducible installation
 
@@ -55,12 +61,15 @@ identified in [third-party notices](../THIRD_PARTY_NOTICES.md).
   world positions and orientations.
 - The mechanical worker consumes the captured document, mass and SI tensor.
   It loads neither OCCT nor build123d and does not derive inertia from a mesh.
-- CAD projects use schema 2. Earlier projects remain readable; projects without
-  CAD continue to save as schema 1.
+- Parametric CAD projects use schema 3. Schema 2 BREP projects and schema 1
+  mechanisms remain readable. Projects without a feature graph keep their
+  earlier schema when saved; a feature graph cannot be written as schema 2.
 
 Import accepts one valid solid, with at most 8 MB of STEP input. Captured data
 is limited to 2 MB of BREP and 30,000 vertices/triangles per part, and 4 MB of
-BREP and 100,000 mesh elements per document. Rejection preserves the previous
+BREP, including captured recipe inputs, and 100,000 mesh elements per document.
+Feature graphs admit at most 100 nodes and 2 MB of captured input BREP.
+Rejection preserves the previous
 document. These bounds define the initial integration's scope.
 
 ## Qualification

@@ -302,11 +302,15 @@ class Project:
         ids = [o.id for o in (*self.bodies, *self.joints, *self.loads)]
         cad_parts = [b.cad for b in self.bodies if b.cad is not None]
         if (
-            sum(len(c.brep_mm) for c in cad_parts) > 4_000_000
+            sum(
+                len(c.brep_mm) + (c.recipe.embedded_brep_bytes if c.recipe else 0)
+                for c in cad_parts
+            )
+            > 4_000_000
             or sum(len(c.triangles) + len(c.vertices_m) for c in cad_parts) > 100_000
         ):
             raise ValueError(
-                "Document CAD budget exceeded (4 MB BREP, 100,000 mesh elements)."
+                "Document CAD budget exceeded (4 MB BREP including captured inputs, 100,000 mesh elements)."
             )
         if len(ids) != len(set(ids)):
             raise ValueError("Duplicate identities.")
@@ -482,11 +486,17 @@ def save_project(path, project):
     for body in data["bodies"]:
         if body["cad"] is None:
             del body["cad"]
+        elif body["cad"]["recipe"] is None:
+            del body["cad"]["recipe"]
     write_json(
         path,
         {
             "format": "vinkulum-studio-project",
-            "schema_version": 2
+            "schema_version": 3
+            if any(
+                b.cad is not None and b.cad.recipe is not None for b in project.bodies
+            )
+            else 2
             if any(b.cad is not None for b in project.bodies)
             else 1,
             "project": data,
@@ -501,10 +511,15 @@ def load_project(path):
         or set(data) != {"format", "schema_version", "project"}
         or data["format"] != "vinkulum-studio-project"
         or type(data["schema_version"]) is not int
-        or data["schema_version"] not in (1, 2)
+        or data["schema_version"] not in (1, 2, 3)
     ):
         raise ValueError("Unknown project format. Use G0 import for an older pendulum.")
-    return Project.from_dict(data["project"])
+    project = Project.from_dict(data["project"])
+    if data["schema_version"] < 3 and any(
+        b.cad and b.cad.recipe for b in project.bodies
+    ):
+        raise ValueError("Parametric CAD requires project schema 3.")
+    return project
 
 
 def pendulum(parameters=Parameters()):

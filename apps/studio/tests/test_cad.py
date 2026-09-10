@@ -222,7 +222,7 @@ class CadKernelRecipe(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "cad.json"
             save_project(path, p)
-            self.assertEqual(json.loads(path.read_text())["schema_version"], 2)
+            self.assertEqual(json.loads(path.read_text())["schema_version"], 3)
             self.assertEqual(load_project(path), p)
             invalid = asdict(body)
             invalid["cad"]["triangles"] = [[0, 1, 999999]] * 4

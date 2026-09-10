@@ -283,6 +283,7 @@ def run_analysis(project, directory, state=None):
             "document.py",
             "model.py",
             "cad_data.py",
+            "cad_history.py",
         )
     }
     result["project_sha256"] = hashlib.sha256(

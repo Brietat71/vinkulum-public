@@ -1,0 +1,16 @@
+test_cli_runs_outside_source_and_keeps_graphics_out_of_worker_imports (test_pinocchio.PinocchioReferences.test_cli_runs_outside_source_and_keeps_graphics_out_of_worker_imports) ... ok
+test_ground_on_side_b_and_independent_branches (test_pinocchio.PinocchioReferences.test_ground_on_side_b_and_independent_branches) ... ok
+test_mixed_revolute_prismatic_lagrange_reference (test_pinocchio.PinocchioReferences.test_mixed_revolute_prismatic_lagrange_reference) ... ok
+test_one_link_absolute_pose_full_inertia_and_scalar_matrix_shapes (test_pinocchio.PinocchioReferences.test_one_link_absolute_pose_full_inertia_and_scalar_matrix_shapes) ... ok
+test_prismatic_initial_coordinate_and_world_point_load (test_pinocchio.PinocchioReferences.test_prismatic_initial_coordinate_and_world_point_load) ... ok
+test_reversed_edges_preserve_declared_sign_and_document_order_independence (test_pinocchio.PinocchioReferences.test_reversed_edges_preserve_declared_sign_and_document_order_independence) ... ok
+test_snapshot_files_reject_overwrite_and_invalid_state (test_pinocchio.PinocchioReferences.test_snapshot_files_reject_overwrite_and_invalid_state) ... ok
+test_two_link_lagrange_operators_derivatives_and_kinematics (test_pinocchio.PinocchioReferences.test_two_link_lagrange_operators_derivatives_and_kinematics) ... ok
+test_world_load_virtual_work_and_intrinsic_derivatives_remain_explicit (test_pinocchio.PinocchioReferences.test_world_load_virtual_work_and_intrinsic_derivatives_remain_explicit) ... ok
+test_world_rotation_translation_and_full_body_inertia_reframing (test_pinocchio.PinocchioReferences.test_world_rotation_translation_and_full_body_inertia_reframing) ... ok
+test_loops_detached_unsupported_motion_and_bad_anchors_are_rejected (test_pinocchio.TreeAdmission.test_loops_detached_unsupported_motion_and_bad_anchors_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.884s
+
+OK
