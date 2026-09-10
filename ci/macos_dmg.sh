@@ -102,6 +102,7 @@ assert report["calculix"]["status"] == "not_requested"
 previews = report["source_previews"]
 for name in ("pinocchio_capture", "cad_history", "cad_mesh_capture", "quadratic_static_capture"):
     assert previews[name]["status"] == "passed", name
+assert previews["project_navigation"]["status"] == "passed"
 assert previews["example_files_unchanged"]
 assert previews["gmsh"]["status"] == "not_requested"
 startup = json.loads((checks / "startup-check.json").read_text())

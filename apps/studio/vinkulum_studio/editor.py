@@ -107,6 +107,8 @@ class EditorWindow(Workspace, QMainWindow):
         self._rendered_settings = None
         self._diagnostic_project = None
         self._diagnostic_cache = ()
+        self.analysis_pages = {}
+        self.active_analysis = None
         self._static_window = None
         self._mesh_window = None
         self._articulated_window = None
@@ -132,13 +134,11 @@ class EditorWindow(Workspace, QMainWindow):
         from .static_window import StaticWindow
 
         if self._static_window is None:
-            self._static_window = StaticWindow(self)
-            self._static_window.closed.connect(
-                lambda: setattr(self, "_static_window", None)
-            )
-        self._static_window.show()
-        self._static_window.raise_()
-        self._static_window.activateWindow()
+            if not self.apply_properties():
+                return
+            self._static_window = StaticWindow(self.project_pages, embedded=True)
+            self.register_analysis("static", self._static_window, "Linear statics", "_static_window")
+        self.activate_analysis("static")
 
     def open_articulated_study(self):
         from .articulated_window import ArticulatedWindow
@@ -151,14 +151,10 @@ class EditorWindow(Workspace, QMainWindow):
                 return self.project if self.apply_properties() else None
 
             self._articulated_window = ArticulatedWindow(
-                self.project, self, capture=capture, settings=self.settings
+                self.project, self.project_pages, capture=capture, settings=self.settings, embedded=True
             )
-            self._articulated_window.closed.connect(
-                lambda: setattr(self, "_articulated_window", None)
-            )
-        self._articulated_window.show()
-        self._articulated_window.raise_()
-        self._articulated_window.activateWindow()
+            self.register_analysis("articulated", self._articulated_window, "Articulated analysis", "_articulated_window")
+        self.activate_analysis("articulated")
 
     def open_cad_study(self):
         from .mesh_window import MeshWindow
@@ -177,14 +173,10 @@ class EditorWindow(Workspace, QMainWindow):
                 if body is None:
                     return
                 self._mesh_window = MeshWindow(
-                    body, self, capture=capture, settings=self.settings
+                    body, self.project_pages, capture=capture, settings=self.settings, embedded=True, study_host=self
                 )
-                self._mesh_window.closed.connect(
-                    lambda: setattr(self, "_mesh_window", None)
-                )
-            self._mesh_window.show()
-            self._mesh_window.raise_()
-            self._mesh_window.activateWindow()
+                self.register_analysis("cad", self._mesh_window, "CAD mesh & conditions", "_mesh_window")
+            self.activate_analysis("cad")
         except (ValueError, TypeError, RuntimeError) as error:
             self._problem(str(error))
 
@@ -335,6 +327,7 @@ class EditorWindow(Workspace, QMainWindow):
                     if obj.id == self.selection:
                         self.tree.setCurrentItem(item)
                 group.setExpanded(True)
+            self.sync_analysis_browser()
             self.tree.blockSignals(False)
             self._properties()
             settings = (self.project.duration, self.project.step)
@@ -633,6 +626,8 @@ class EditorWindow(Workspace, QMainWindow):
             return False
 
     def select_object(self, identifier):
+        if self.active_analysis is not None and not self.show_model_context():
+            return
         if self._refreshing or identifier == self.selection:
             return
         if not self.apply_properties():
@@ -1008,6 +1003,7 @@ class EditorWindow(Workspace, QMainWindow):
         self._saved = project
         self.mode.setCurrentIndex(0)
         self._refresh(fit=True)
+        self.show_model_context()
 
     def _discard_allowed(self):
         settings_changed = (self.duration.text(), self.step.text()) != (
@@ -1042,6 +1038,7 @@ class EditorWindow(Workspace, QMainWindow):
             self.selection = None
             self.mode.setCurrentIndex(0)
             self._refresh(fit=True)
+            self.show_model_context()
 
     def load_example(self, name):
         if name in EXAMPLES and self._discard_allowed():
@@ -1052,6 +1049,7 @@ class EditorWindow(Workspace, QMainWindow):
             self.selection = None
             self.mode.setCurrentIndex(0)
             self._refresh(fit=True)
+            self.show_model_context()
 
     def _file(self, save, caption, pattern, action):
         picker = QFileDialog.getSaveFileName if save else QFileDialog.getOpenFileName

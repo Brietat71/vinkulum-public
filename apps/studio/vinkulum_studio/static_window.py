@@ -38,7 +38,6 @@ from .model import write_json
 from .static_controller import StaticController
 from .static_view import StaticTable, StaticViewport
 from .theme import apply_theme
-from .workspace_link import add_workspace_return
 
 
 def tension_example():
@@ -65,11 +64,16 @@ def tension_example():
 class StaticWindow(QMainWindow):
     closed = Signal()
 
-    def __init__(self, parent=None):
-        super().__init__(parent, Qt.WindowType.Window)
+    def __init__(self, parent=None, *, embedded=False):
+        super().__init__(parent, Qt.WindowType.Widget if embedded else Qt.WindowType.Window)
+        # QMainWindow adds Window even when constructed with Widget (zero).
+        # Clear it before creating any native OpenGL child.
+        if embedded:
+            self.setWindowFlags(Qt.WindowType.Widget)
+        self.embedded = embedded
         self.setWindowTitle("Vinkulum Studio · Linear statics / CalculiX")
         self.resize(1380, 880)
-        self.setMinimumSize(1040, 720)
+        self.setMinimumSize(680, 480) if embedded else self.setMinimumSize(1040, 720)
         self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.study = None
         self.result = None
@@ -93,10 +97,10 @@ class StaticWindow(QMainWindow):
     def _build(self):
         self.setCorner(Qt.Corner.BottomLeftCorner, Qt.DockWidgetArea.LeftDockWidgetArea)
         toolbar = self.addToolBar("Static study")
-        add_workspace_return(self, toolbar)
         toolbar.setMovable(False)
-        toolbar.addWidget(QLabel("Vinkulum  /  Linear statics"))
-        toolbar.addSeparator()
+        if not self.embedded:
+            toolbar.addWidget(QLabel("Vinkulum  /  Linear statics"))
+            toolbar.addSeparator()
         self.open_action = QAction("Open study…", self)
         self.open_action.triggered.connect(self.open_study)
         toolbar.addAction(self.open_action)
@@ -229,7 +233,7 @@ class StaticWindow(QMainWindow):
         dock.setObjectName("static_study")
         dock.setWidget(scroll)
         dock.setMinimumWidth(290)
-        self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, dock)
+        self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea if self.embedded else Qt.DockWidgetArea.LeftDockWidgetArea, dock)
 
         output_panel = QWidget()
         out = QVBoxLayout(output_panel)
@@ -263,6 +267,7 @@ class StaticWindow(QMainWindow):
         self.provenance.setReadOnly(True)
         out.addWidget(self.provenance)
         values = QDockWidget("Values · world frame · unscaled", self)
+        self.values_dock = values
         values.setObjectName("static_values")
         values.setWidget(output_panel)
         self.addDockWidget(Qt.DockWidgetArea.BottomDockWidgetArea, values)
@@ -486,6 +491,8 @@ class StaticWindow(QMainWindow):
         )
 
     def _display(self, *args, fit=False):
+        if self.embedded:
+            self.values_dock.setVisible(self.result is not None and self.mode.currentIndex() == 1)
         if self.study is None:
             return
         try:

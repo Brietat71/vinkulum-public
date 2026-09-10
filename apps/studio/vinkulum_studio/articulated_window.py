@@ -42,7 +42,6 @@ from .examples3d import double_pendulum
 from .model import finite_number, write_json
 from .pinocchio_controller import PinocchioController
 from .theme import apply_theme
-from .workspace_link import add_workspace_return
 from .viewport import Viewport
 
 
@@ -84,12 +83,17 @@ class OperatorTable(QAbstractTableModel):
 class ArticulatedWindow(QMainWindow):
     closed = Signal()
 
-    def __init__(self, project, parent=None, *, capture=None, settings=None):
-        super().__init__(parent, Qt.WindowType.Window)
+    def __init__(self, project, parent=None, *, capture=None, settings=None, embedded=False):
+        super().__init__(parent, Qt.WindowType.Widget if embedded else Qt.WindowType.Window)
+        # QMainWindow adds Window even when constructed with Widget (zero).
+        # Clear it before creating any native OpenGL child.
+        if embedded:
+            self.setWindowFlags(Qt.WindowType.Widget)
+        self.embedded = embedded
         self.setWindowTitle("Vinkulum Studio · Articulated operators / Pinocchio")
         self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.resize(1440, 940)
-        self.setMinimumSize(1060, 740)
+        self.setMinimumSize(680, 480) if embedded else self.setMinimumSize(1060, 740)
         self.settings = (
             settings if settings is not None else QSettings("Vinkulum", "Studio")
         )
@@ -117,10 +121,10 @@ class ArticulatedWindow(QMainWindow):
 
     def _build(self):
         toolbar = self.addToolBar("Articulated analysis")
-        add_workspace_return(self, toolbar)
         toolbar.setMovable(False)
-        toolbar.addWidget(QLabel("Vinkulum  /  Articulated operators"))
-        toolbar.addSeparator()
+        if not self.embedded:
+            toolbar.addWidget(QLabel("Vinkulum  /  Articulated operators"))
+            toolbar.addSeparator()
         self.capture_action = toolbar.addAction(
             "Capture current model", self.capture_model
         )
@@ -291,7 +295,7 @@ class ArticulatedWindow(QMainWindow):
         dock = QDockWidget("Analysis · SI", self)
         dock.setWidget(panel)
         dock.setMinimumWidth(300)
-        self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, dock)
+        self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea if self.embedded else Qt.DockWidgetArea.LeftDockWidgetArea, dock)
         self.status = QLabel("Ready.")
         self.status.setWordWrap(True)
         self.statusBar().addWidget(self.status, 1)

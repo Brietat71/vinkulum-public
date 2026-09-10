@@ -137,13 +137,13 @@ engines. The shipped example reopens without running an engine.
 | **Model** | A Qt/VTK workbench for rigid mechanisms: bodies, joints, loads, numerical properties, 3D manipulation, undo/redo and project files. |
 | **Simulate** | The native Rust kernel computes in a separate process. Studio captures the model and settings associated with each run. |
 | **Linear statics** | Mesh a captured CAD solid with Gmsh / OCCT 8, select faces and add supports, pressure or total forces. Open the study in CalculiX, inspect displacement, integration-point stress and energy, and reopen saved calculations. |
-| **Articulated operators** | A Pinocchio analysis window edits a captured rigid-tree state and inspects dynamics operators, derivatives and body Jacobians. Separate optional worker; CSV export and engine-free result reopening. |
+| **Articulated operators** | An embedded Pinocchio analysis edits a captured rigid-tree state and inspects dynamics operators, derivatives and body Jacobians. Separate optional worker; CSV export and engine-free result reopening. |
 | **Examine** | Animate results, inspect curves and samples, compare captured runs on their native time grids, and export with units and provenance. |
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
 **Kernel 0.19.0 · Studio 0.6.0a1 · Linux x86-64 preview.** Research software under active development.
 Current source **Kernel 0.20.0 · Studio 0.6.0a2.dev7** adds
-[context actions and workspace navigation](docs/STUDIO_INTERACTION.md),
+[one project window and context actions](docs/STUDIO_INTERACTION.md),
 [supervised CAD process reuse](docs/CAD_PROCESS_REUSE.md),
 [shared engine CPU admission](docs/ENGINE_CPU_ADMISSION.md) and
 [background CAD and archive validation](docs/STUDIO_BACKGROUND_ADMISSION.md),

@@ -8,7 +8,10 @@ exact Studio version and source commit; build-info.json also lists dependencies.
 
 Right-click opens actions for the pointed object or the scene. Dragging orbits
 without changing selection; F frames without resetting the viewing direction.
-The Workspaces menu opens analyses, and Back retains the study for a quick return.
+The project browser keeps geometry, analyses and motion results in one window.
+Select an analysis to show its parameters; returning preserves its inputs and
+camera. CAD-to-statics preparation stays in the same window. Save targets the
+current mechanism or analysis; analysis files remain separate from mechanism JSON.
 Mac trackpad scrolling pans and pinching zooms. Scene updates are coalesced,
 and compatible CAD operations reuse one supervised worker with a short idle expiry.
 

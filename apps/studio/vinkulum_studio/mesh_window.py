@@ -47,7 +47,6 @@ from .meshing import HxtMeshRequest, MeshRequest, load_mesh
 from .meshing_controller import MeshingController
 from .model import finite_number, write_json
 from .theme import apply_theme
-from .workspace_link import add_workspace_return
 
 KIND_NAMES = {
     "support": "Support",
@@ -190,12 +189,18 @@ def mesh_presentation(solid, root=None):
 class MeshWindow(QMainWindow):
     closed = Signal()
 
-    def __init__(self, body, parent=None, *, capture=None, settings=None):
-        super().__init__(parent, Qt.WindowType.Window)
+    def __init__(self, body, parent=None, *, capture=None, settings=None, embedded=False, study_host=None):
+        super().__init__(parent, Qt.WindowType.Widget if embedded else Qt.WindowType.Window)
+        # QMainWindow adds Window even when constructed with Widget (zero).
+        # Clear it before creating any native OpenGL child.
+        if embedded:
+            self.setWindowFlags(Qt.WindowType.Widget)
+        self.embedded = embedded
         self.setWindowTitle("Vinkulum Studio · CAD to linear statics")
         self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.resize(1440, 900)
-        self.setMinimumSize(1100, 740)
+        self.setMinimumSize(680, 480) if embedded else self.setMinimumSize(1100, 740)
+        self.study_host = study_host
         self.capture, self.settings = capture, settings
         self.source, self.solid, self.mesh_root = None, None, None
         self.conditions, self.selected_faces = (), set()
@@ -229,7 +234,15 @@ class MeshWindow(QMainWindow):
         dock.setObjectName(name)
         dock.setWidget(scroll)
         dock.setMinimumWidth(width)
-        self.addDockWidget(side, dock)
+        if self.embedded:
+            previous = self.findChildren(QDockWidget, options=Qt.FindChildOption.FindDirectChildrenOnly)
+            self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, dock)
+            previous = [other for other in previous if other is not dock]
+            if previous:
+                self.tabifyDockWidget(previous[0], dock)
+                previous[0].raise_()
+        else:
+            self.addDockWidget(side, dock)
         return dock
 
     @staticmethod
@@ -240,12 +253,12 @@ class MeshWindow(QMainWindow):
 
     def _build(self):
         bar = self.addToolBar("CAD study")
-        add_workspace_return(self, bar)
         bar.setMovable(False)
         brand = QLabel("Vinkulum  /  CAD → Linear statics")
         brand.setObjectName("brand")
-        bar.addWidget(brand)
-        bar.addSeparator()
+        if not self.embedded:
+            bar.addWidget(brand)
+            bar.addSeparator()
         self.capture_action = QAction("Capture selected solid", self)
         self.capture_action.triggered.connect(self.capture_selected)
         self.capture_action.setEnabled(self.capture is not None)
@@ -445,7 +458,7 @@ class MeshWindow(QMainWindow):
         self.study_info = QLabel("Add supports and loads on the right.")
         self.study_info.setWordWrap(True)
         left.addWidget(self.study_info)
-        self.open_calculix = QPushButton("Open in CalculiX workspace")
+        self.open_calculix = QPushButton("Prepare linear statics")
         self.open_calculix.setObjectName("primary")
         self.open_calculix.clicked.connect(lambda: self.prepare_study("open"))
         self.save = QPushButton("Save CAD study…")
@@ -537,7 +550,7 @@ class MeshWindow(QMainWindow):
         explanation.setObjectName("muted")
         right.addWidget(explanation)
         right.addStretch(1)
-        self._dock(
+        self.faces_dock = self._dock(
             "Faces & conditions",
             "cad_mesh_faces",
             panel,
@@ -769,6 +782,8 @@ class MeshWindow(QMainWindow):
         self.selection_info.setText(
             f"{len(self.selected_faces)} selected / {len(self._face_items)} faces"
         )
+        if self.embedded and self.selected_faces:
+            self.faces_dock.raise_()
         self._update_busy()
 
     def _tree_selection(self):
@@ -803,7 +818,7 @@ class MeshWindow(QMainWindow):
         self._refresh_condition_display()
         supports = sum(c.kind == "support" for c in self.conditions)
         self.study_info.setText(
-            f"{supports} support(s) · {len(self.conditions) - supports} load(s)\nStudy and transported geometry are checked before opening the solver workspace."
+            f"{supports} support(s) · {len(self.conditions) - supports} load(s)\nStudy and transported geometry are checked before preparing the analysis."
         )
         self._update_busy()
 
@@ -951,16 +966,25 @@ class MeshWindow(QMainWindow):
         from .static_window import StaticWindow
 
         if self._static_window is None:
-            self._static_window = StaticWindow(self)
+            if self.study_host is not None:
+                self._static_window = StaticWindow(self.study_host.project_pages, embedded=True)
+                self.study_host.register_analysis("cad_static", self._static_window, "CAD linear statics")
+            else:
+                self._static_window = StaticWindow(self)
             self._static_window.closed.connect(
                 lambda: setattr(self, "_static_window", None)
             )
         self._static_window.set_study(study, self.source.name + " · captured CAD mesh")
-        self._static_window.show()
-        self._static_window.raise_()
-        self._static_window.activateWindow()
+        if self.study_host is not None:
+            # A background preparation must not take the user away from another task.
+            if self.study_host.active_analysis == "cad":
+                self.study_host.activate_analysis("cad_static")
+        else:
+            self._static_window.show()
+            self._static_window.raise_()
+            self._static_window.activateWindow()
         self.status.setText(
-            "Validated study opened in the CalculiX workspace. Save it to preserve the boundary conditions."
+            "Validated linear statics added to the project browser. Save it to preserve the boundary conditions."
         )
 
     def open_mesh(self):
@@ -1052,6 +1076,8 @@ class MeshWindow(QMainWindow):
         self.open_calculix.setEnabled(ready)
         self.undo_action.setEnabled(not busy and self.undo.canUndo())
         self.redo_action.setEnabled(not busy and self.undo.canRedo())
+        if self.study_host is not None:
+            self.study_host.sync_context_controls()
         if self._close_pending and not busy:
             QTimer.singleShot(0, self.close)
 

@@ -6,7 +6,7 @@ loads. Vinkulum 0.20.0 runs in a separate process; Studio displays its positions
 orientations, velocities and joint coordinates.
 
 Source **0.6.0a2.dev7** adds object actions on right-click, continuous camera
-navigation and a visible return path between analysis workspaces. Selection
+navigation and one project window with analyses in its persistent browser. Selection
 preserves the browser's state; switching Model/Simulate keeps the camera, and
 repeated scene updates share a final paint. See [interaction behaviour and its
 qualification](../../docs/STUDIO_INTERACTION.md). The downloadable Mac preview
@@ -174,10 +174,11 @@ provides graphics libraries and its OpenGL driver. See
 
 ## Workbench
 
-Three workspaces organise the interface: **Model**, **Simulate** and **Inspect**.
-The viewport occupies the main area. Browser, Inspector, diagnostics and results
-panels can be resized, detached and toggled in **View → Panels**. The launcher
-preserves the theme and layout. **Restore layout** restores the active workspace.
+Select geometry, a motion analysis or saved motion results in the persistent
+project browser. **+ Analysis** adds or selects CAD meshing, linear statics and
+articulated analysis inside the same main window. The right panel follows the
+selection; inputs and cameras survive navigation. The current mechanism and
+analysis inputs still save to separate files. See [interaction scope](../../docs/STUDIO_INTERACTION.md).
 
 - **Ctrl/Cmd+K** searches commands; **S** opens tools for the selection. File
   and editing shortcuts follow the platform.

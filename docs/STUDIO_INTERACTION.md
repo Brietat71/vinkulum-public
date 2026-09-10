@@ -1,4 +1,4 @@
-# Studio interaction and workspace transitions
+# Studio: one project window
 
 Studio 0.6.0a2.dev7 revises interaction after user testing of the dev5 Mac DMG
 identified missing context actions and slow transitions. This is an initial
@@ -11,12 +11,27 @@ same object commands. Result views retain their read-only document semantics.
 A click on empty space clears selection. A manipulator gesture stays separate
 from a selection click.
 
-F frames the selection and Shift+F frames all visible objects while retaining
-the viewing direction. Model/Simulate transitions retain the camera and browser
-state. The Workspaces button exposes CAD-to-statics, linear statics and articulated
-analysis. Back returns to the preceding window without closing the study. Opening
-that analysis again retains its inputs, camera and render context. Closing a
-window still uses its existing cancellation and unsaved-input rules.
+The project browser stays on the left. Select a body to edit its geometry and
+properties; select an entry under **Analyses** to show that analysis and its
+parameters in the same main window. **+ Analysis** adds or selects motion,
+CAD mesh and conditions, linear statics or articulated analysis. Motion results
+appear in the same browser after a calculation. There are no separate workshop
+windows or Back buttons in this path.
+
+An analysis view is created on first use and retained while selecting other
+items. Its pending inputs, captured results and camera survive navigation. The
+CAD-to-statics handoff also stays in the project window. Background completion
+never replaces an unrelated analysis being edited. Right-click an analysis to
+show or close it; closing retains the existing cancellation and unsaved-input guards.
+
+Save targets the displayed mechanism or analysis. Analysis inputs still use their
+own file formats: saving the mechanism JSON does **not** save every open analysis
+or its results. Results keep their captured inputs and provenance. Editing the
+mechanism does not silently update an analysis capture. Existing standalone CLI
+analysis entry points remain available.
+
+F frames the selection and Shift+F frames all visible objects in the active view
+while retaining the viewing direction. Motion/model navigation retains the camera.
 
 Mouse wheels support fractional steps. On macOS, continuous two-finger trackpad
 scrolling pans and a native pinch zooms. Secondary click or Control-click opens
@@ -38,23 +53,27 @@ algorithms are unchanged. The dev6 worker reuse also remains available for CAD.
 
 ## Evidence and remaining work
 
-Real Qt/OpenGL tests exercise the pointer transaction, context actions, camera
-preservation, fractional wheel input and synthetic native pinch events. Mac Control-click and continuous pixel pan are also exercised through Qt events. A separate
-workspace test edits an input, returns through the visible Back button and opens
-the same study again. Existing mechanics, CAD and archive checks remain required.
+Real Qt/OpenGL tests exercise selection, context actions, camera preservation,
+fractional wheel input and synthetic native pinch events. Mac Control-click and
+continuous pixel pan are also exercised through Qt events. Project navigation
+tests click browser entries, retain a modified material input and camera, save
+the active analysis, preserve a view during background refresh, and check the
+CAD-to-statics handoff and refusal to discard modified inputs. Embedded views
+must share the editor's top-level window and keep its browser visible.
 
-The first local Linux/X11 diagnostic measured the parametric plate open command's
-synchronous block at 286.9 ms before the changes and 100.1 ms after render
-coalescing. This is one diagnostic run, not a performance guarantee. First openings
-of the three analysis windows still took about 128–150 ms locally after the
-change; they need further work. Those figures do not establish Mac latency or
-first-frame latency. The raw recipe records its exact measurement boundary.
+The frozen application recipe checks the same embedding for saved Pinocchio,
+CAD mesh and static captures, and retains full-window screenshots. Native macOS
+qualification remains required for each DMG; Linux tests alone do not establish
+Mac latency or trackpad ergonomics.
 
-Native macOS qualification and an updated frozen DMG remain required before
-claiming that this increment resolves the user's Mac experience. Cold module
-construction and large ordinary project reads still contain GUI-thread work.
+The retained [initial Linux diagnostic](bancs/studio-interaction-dev7/README.md)
+is from the earlier interaction increment, before unified navigation. Its
+286.2 → 99.2 ms plate-command observation measures synchronous return only.
+It is neither a final-source benchmark nor a Mac speedup claim. The current
+`ci/studio_interaction_recipe.py` records installed source hashes, platform,
+OpenGL driver, cold openings and repeated transitions with explicit boundaries.
 
-Local installed dev7 validation passed with 189 executed tests and 21 optional
-skips (210 discovered), followed by the additional Mac input-mapping regression.
-All 63 installed application modules match the source bytes. The original
-viewport/manipulator, CAD transaction and stored-result checks remain in the suite.
+Cold view construction and large ordinary project reads still contain GUI-thread
+work. Each retained view has its own VTK context; this is a single user window,
+not a claim of one underlying renderer. This increment does not establish that
+the entire UX or arbitrary engineering models are qualified.

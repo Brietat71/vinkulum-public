@@ -42,7 +42,11 @@ def check_previews(editor, output, examples):
 
     def capture(window, name):
         delay(150)
-        if not window.screen().grabWindow(window.winId()).save(str(output / name)):
+        top = window.window()
+        assert top is editor and not window.isWindow(), "Analysis escaped the project window"
+        assert editor.tree.isVisible(), "Project browser disappeared"
+        assert editor.project_pages.currentWidget() is window
+        if not top.screen().grabWindow(top.winId()).save(str(output / name)):
             raise RuntimeError(f"Could not capture {name}.")
         path = output / (Path(name).stem + "-scene.png")
         window.viewport.screenshot(path)
@@ -67,6 +71,17 @@ def check_previews(editor, output, examples):
             "engine_executed": False,
             "image_check": capture(articulated, "pinocchio-workspace.png"),
         }
+    }
+    captured = articulated.result
+    camera = articulated.viewport.renderer.GetActiveCamera()
+    before_camera = camera.GetPosition(), camera.GetFocalPoint()
+    editor.show_model_context()
+    editor.activate_analysis("articulated")
+    assert editor._articulated_window is articulated and articulated.result is captured
+    assert (camera.GetPosition(), camera.GetFocalPoint()) == before_camera
+    report["project_navigation"] = {
+        "status": "passed", "one_top_level_project_window": True,
+        "persistent_browser": True, "retained_capture_and_camera": True,
     }
     articulated._discard_allowed = lambda: True
     if not articulated.close():

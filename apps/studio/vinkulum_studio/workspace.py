@@ -1,6 +1,6 @@
 """Dock workspace and discoverable commands for the mechanical editor."""
 
-from PySide6.QtCore import QSize, Qt, QTimer
+from PySide6.QtCore import QSize, Qt
 from PySide6.QtGui import QAction, QActionGroup, QKeySequence
 from PySide6.QtWidgets import (
     QAbstractItemView,
@@ -29,13 +29,14 @@ from .commands import CommandPalette, search_key
 from .controls import PATHS, line_icon
 from .document import Body
 from .examples3d import EXAMPLES
+from .project_navigation import ProjectNavigation
 from .run_archive import model_differences, series_keys
 from .series_view import SampleTableModel, SeriesView
 from .theme import apply_theme
 from .viewport import Viewport
 
 
-class Workspace:
+class Workspace(ProjectNavigation):
     def choose_native_threads(self):
         threads, accepted = QInputDialog.getInt(
             self, "Native dynamics CPU resources", "Threads per native calculation:",
@@ -98,7 +99,7 @@ class Workspace:
             (
                 "save",
                 "Save project…",
-                self.save_dialog,
+                self.save_current,
                 QKeySequence.StandardKey.Save,
             ),
             ("import", "Import G0 pendulum…", self.import_dialog, None),
@@ -114,8 +115,8 @@ class Workspace:
                 )
             )
         for key, label, slot, shortcut in (
-            ("undo", "Undo", self.undo, QKeySequence.StandardKey.Undo),
-            ("redo", "Redo", self.redo, QKeySequence.StandardKey.Redo),
+            ("undo", "Undo", self.undo_current, QKeySequence.StandardKey.Undo),
+            ("redo", "Redo", self.redo_current, QKeySequence.StandardKey.Redo),
             ("duplicate", "Duplicate selection", self.duplicate, "Ctrl+D"),
             ("delete", "Delete selection", self.delete, "Ctrl+Delete"),
         ):
@@ -160,13 +161,13 @@ class Workspace:
         brand.setObjectName("brand")
         toolbar.addWidget(brand)
         toolbar.addSeparator()
-        self.workspace_tabs = QTabBar()
+        self.workspace_tabs = QTabBar(self)
         self.workspace_tabs.setAccessibleName("Workspace")
         for label in ("Model", "Simulate", "Inspect"):
             self.workspace_tabs.addTab(label)
         self.workspace_tabs.setTabEnabled(2, False)
-        toolbar.addWidget(self.workspace_tabs)
-        toolbar.addSeparator()
+        # Retain the native display state internally; navigation lives in the browser.
+        self.workspace_tabs.hide()
         toolbar.setIconSize(QSize(20, 20))
         toolbar.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonIconOnly)
         for key in ("open", "save", "undo", "redo"):
@@ -189,10 +190,13 @@ class Workspace:
         example_button.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
         toolbar.addWidget(example_button)
         workspaces = QToolButton()
-        workspaces.setText("Workspaces")
-        workspaces.setAccessibleName("Open an analysis workspace")
-        workspaces.setToolTip("Open or return to an existing analysis; keep its edited inputs")
+        workspaces.setText("+ Analysis")
+        workspaces.setAccessibleName("Add or select an analysis")
+        workspaces.setToolTip("Analyses stay in the project browser")
         workspace_menu = QMenu(workspaces)
+        workspace_menu.addAction(self._action(
+            "native_analysis", "Motion analysis", lambda: self.activate_analysis("native")
+        ))
         for key in ("cad_study", "static_study", "articulated"):
             workspace_menu.addAction(self.commands[key])
         workspaces.setMenu(workspace_menu)
@@ -236,7 +240,7 @@ class Workspace:
         self.tree.setColumnWidth(0, 155)
         self.tree.currentItemChanged.connect(
             lambda current, previous: (
-                self.select_object(current.data(0, Qt.ItemDataRole.UserRole))
+                self.activate_browser_item(current)
                 if current
                 else None
             )
@@ -285,7 +289,7 @@ class Workspace:
         central = QWidget()
         layout = QVBoxLayout(central)
         layout.setContentsMargins(0, 0, 0, 0)
-        self.setCentralWidget(central)
+        self.initialize_project_pages(central)
         top = QHBoxLayout()
         top.setSpacing(4)
         layout.addLayout(top)
@@ -294,7 +298,8 @@ class Workspace:
         self.mode.addItems(["Design", "Calculation result"])
         self.mode.model().item(1).setEnabled(False)
         self.mode.currentIndexChanged.connect(self._mode_changed)
-        top.addWidget(self.mode)
+        self.mode.setParent(central)
+        self.mode.hide()
         self.scene_label = QLabel("3D scene · metres")
         self.scene_label.setObjectName("muted")
         top.addWidget(self.scene_label)
@@ -309,7 +314,7 @@ class Workspace:
             action = self._action(
                 "camera_" + direction,
                 label,
-                lambda checked=False, d=direction: self.viewport.camera(d),
+                lambda checked=False, d=direction: self.active_viewport().camera(d),
                 shortcut,
             )
             camera_menu.addAction(action)
@@ -317,7 +322,7 @@ class Workspace:
         fit = self._action(
             "fit",
             "Fit selection",
-            lambda: self.viewport.fit_scene(selection=True),
+            lambda: self.active_viewport().fit_scene(selection=True),
             "F",
         )
         camera_menu.addAction(fit)
@@ -330,7 +335,7 @@ class Workspace:
         self.viewport = Viewport()
         self.viewport.context_handler = self._scene_menu
         view.addAction(self._action(
-            "fit_all", "Fit all visible objects", self.viewport.fit_scene, "Shift+F"
+            "fit_all", "Fit all visible objects", lambda: self.active_viewport().fit_scene(), "Shift+F"
         ))
         camera_menu.addSeparator()
         for key, label, parallel in (
@@ -340,13 +345,13 @@ class Workspace:
             action = self._action(
                 key,
                 label,
-                lambda checked=False, p=parallel: self.viewport.set_parallel_projection(
+                lambda checked=False, p=parallel: self.active_viewport().set_parallel_projection(
                     p
                 ),
             )
             camera_menu.addAction(action)
             view.addAction(action)
-        grid = self._action("grid", "XY reference grid", self.viewport.set_grid_visible)
+        grid = self._action("grid", "XY reference grid", lambda visible: self.active_viewport().set_grid_visible(visible))
         grid.setCheckable(True)
         grid.setChecked(True)
         grid.setIcon(line_icon("grid"))
@@ -433,9 +438,9 @@ class Workspace:
         setup_layout.addStretch()
         self._dock(
             "analysis",
-            "Run · dynamics",
+            "Motion analysis",
             setup,
-            Qt.DockWidgetArea.LeftDockWidgetArea,
+            Qt.DockWidgetArea.RightDockWidgetArea,
         )
         analysis.addAction(self._action("run", "Run design", self.run, "Ctrl+Return"))
         analysis.addAction(self._action("stop", "Stop calculation", self.stop))
@@ -612,6 +617,9 @@ class Workspace:
                 self.restoreGeometry(self.settings.value("geometry"))
             if self.settings.contains("layout_v3"):
                 self.restoreState(self.settings.value("layout_v3"), 3)
+        self._presentation_context = (None, 0)
+        self._native_layouts = {}
+        self._native_layout_state = self.saveState(3)
 
     def switch_workspace(self, index):
         if index == 2:
@@ -625,14 +633,13 @@ class Workspace:
             self.pause()
             self.mode.setCurrentIndex(0)
         self.viewport.setMinimumHeight(210 if index == 2 else 300)
-        self.docks["analysis"].setVisible(index == 1)
-        self.docks["results"].setVisible(index == 2)
-        self.docks["diagnostics"].setVisible(index == 1)
+        self.sync_context_controls()
         if index == 2:
             self.docks["results"].raise_()
         elif index == 1:
             self.docks["diagnostics"].raise_()
         self.resizeDocks([self.docks["results"]], [285], Qt.Orientation.Vertical)
+        self.sync_context_controls()
 
     def show_commands(self):
         palette = CommandPalette(self.commands.values(), self)
@@ -652,6 +659,8 @@ class Workspace:
         self.theme_name = apply_theme(self, name)
         self.commands["theme_" + self.theme_name].setChecked(True)
         self.curve.set_theme(self.theme_name)
+        for page, _ in self.analysis_pages.values():
+            apply_theme(page, self.theme_name)
         color = self.palette().text().color().name()
         for key, action in self.commands.items():
             if key in PATHS:
@@ -676,6 +685,8 @@ class Workspace:
 
     def reset_workspace(self):
         self.restoreState(self._default_layout, 3)
+        self._native_layouts.clear()
+        self._presentation_context = None
         self.switch_workspace(self.workspace_tabs.currentIndex())
         self.resizeDocks(
             [self.docks["objects"], self.docks["inspector"]],
@@ -687,7 +698,7 @@ class Workspace:
     def save_workspace(self):
         if self.settings is not None:
             self.settings.setValue("geometry", self.saveGeometry())
-            self.settings.setValue("layout_v3", self.saveState(3))
+            self.settings.setValue("layout_v3", self._native_layout_state if self.active_analysis else self.saveState(3))
             self.settings.setValue("theme", self.theme_name)
             self.settings.sync()
 
@@ -718,7 +729,10 @@ class Workspace:
     def _tree_menu(self, point):
         item = self.tree.itemAt(point)
         identifier = item.data(0, Qt.ItemDataRole.UserRole) if item else None
-        self.select_object(identifier)
+        if item and str(identifier).startswith("analysis:"):
+            self.analysis_menu(identifier.removeprefix("analysis:"), self.tree.viewport().mapToGlobal(point))
+            return
+        self.activate_browser_item(item)
         self._object_menu(self.tree.viewport().mapToGlobal(point))
 
     def _scene_menu(self, identifier, global_point):
@@ -809,6 +823,8 @@ class Workspace:
         self.setWindowModified(modified)
         self.setWindowTitle(f"{self.project.name}[*] — Vinkulum Studio")
         result_mode = self.mode.currentIndex() == 1
+        for action in self._design_actions:
+            action.setEnabled(not result_mode and self.active_analysis is None)
         self.scene_label.setText(
             "Result · read only" if result_mode else "Design · metres"
         )
@@ -845,6 +861,8 @@ class Workspace:
         )
         for key in ("hide", "isolate", "fit"):
             self.commands[key].setEnabled(obj is not None)
+        self.sync_analysis_browser()
+        self.sync_context_controls()
 
     def _update_run_choices(self, selected_id):
         reference = self.compare_combo.currentData()

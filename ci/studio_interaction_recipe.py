@@ -62,8 +62,8 @@ def measure(name, action):
 try:
     measure("open-articulated-first", window.commands["articulated"].trigger)
     for i in range(4):
-        measure("model-to-simulate", lambda: window.workspace_tabs.setCurrentIndex(1))
-        measure("simulate-to-model", lambda: window.workspace_tabs.setCurrentIndex(0))
+        measure("model-to-simulate", lambda: window.activate_analysis("native"))
+        measure("simulate-to-model", window.show_model_context)
     measure("open-articulated-again", window.commands["articulated"].trigger)
     measure("open-statics-first", window.commands["static_study"].trigger)
     measure("open-statics-again", window.commands["static_study"].trigger)
@@ -98,13 +98,16 @@ try:
         "rows": rows,
     }
     output.write_text(json.dumps(report, indent=2))
-    for study in (
-        window._articulated_window,
-        window._static_window,
-        window._mesh_window,
-    ):
-        if study is not None:
-            study.hide()
+    for key in ("cad", "static", "articulated"):
+        window.activate_analysis(key)
+        QTest.qWait(100)
+        page = window.analysis_pages[key][0]
+        assert not page.isWindow() and page.window() is window
+        assert window.tree.isVisible()
+        assert window.screen().grabWindow(window.winId()).save(
+            str(output.with_name(output.stem + "-" + key + ".png"))
+        )
+    window.show_model_context()
     window.show()
     window.raise_()
     QTest.qWait(100)
