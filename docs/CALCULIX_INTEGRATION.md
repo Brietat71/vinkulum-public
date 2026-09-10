@@ -1,8 +1,9 @@
 # CalculiX integration — first linear statics adapter
 
 **Status: experimental Studio 0.5.0 workspace and Python/CLI adapter.**
-The developing **0.6.0.dev3 source** adds C3D4 and curved C3D10 studies;
-see the [tetrahedral extension and verification](STUDIO_TETRAHEDRA.md).
+The developing **0.6.0.dev4 source** adds a [CAD meshing and face-condition workspace](STUDIO_CAD_MESHING.md)
+and bounded decimal input transport, following the C3D4/curved C3D10 extension
+introduced in 0.6.0.dev3. See the [tetrahedral verification](STUDIO_TETRAHEDRA.md).
 CalculiX is a separate installed executable. Studio 0.4.2 and earlier binaries
 do not contain this workspace. The native multibody kernel remains unchanged.
 
@@ -48,8 +49,9 @@ opens in a separate native window and leaves the rigid-mechanism project intact.
 
 The controller is asynchronous during version identification and solving. Final
 file validation and table preparation currently run on the GUI thread within
-the bounded adapter domain. Large-output responsiveness, interactive mesh and
-support editing and CAD meshing remain follow-up work.
+the bounded adapter domain. The separate source-version CAD workspace now
+handles meshing, face-condition editing and study admission asynchronously.
+Large-output responsiveness in the result workspace remains follow-up work.
 
 Reproduce a real screen capture and preserve the associated calculation:
 
@@ -101,6 +103,8 @@ calculation without modifying it or executing a process.
 The JSON format is `vinkulum-static-study`. New source studies use schema 2,
 containing a `study` object: `nodes`, `elements`, `fixed_dofs`, `forces`,
 `young_pa`, `poisson` and `element_type`. Schema-1 C3D8 documents remain readable.
+CAD-derived studies use schema 3 and additionally carry a `mesh_binding` capture
+of the solid, mesh request, boundary groups and physical conditions.
 
 | Field | Meaning |
 |---|---|
@@ -123,14 +127,15 @@ These are numerical admission rules, not a proof that an arbitrary mesh is
 geometrically valid or well conditioned. Intersections between remote elements
 are not detected; nearly incompressible materials can exhibit locking.
 
-Budgets are 6,000 nodes, 5,000 elements, a 4 MiB input JSON document and 32 MiB
+Budgets are 6,000 nodes, 5,000 elements, a 4 MiB input JSON document (32 MiB for
+schema-3 CAD studies), and 32 MiB
 per output/log file. Solver and output limits are not OS memory limits or a
 security sandbox. The user chooses a trusted installed executable.
 
 The source extension has no mixed-family meshes, warped hexahedra, nonlinear materials, contact,
-nonzero prescribed displacements, MPCs, distributed-load cards, dynamics or
-automatic CAD meshing. Nodal loads can represent consistently integrated face
-tractions, as in the example.
+nonzero prescribed displacements, MPCs, distributed-load cards or dynamics.
+The CAD workspace converts selected face pressures or total forces into
+consistent nodal loads; it does not introduce a new CalculiX load-card family.
 
 ## Result meaning and verification
 
@@ -160,8 +165,10 @@ The scientific status stays **`NotAssessed`**: these checks and patch references
 do not certify a general finite-element discretisation error.
 
 Archive reopening accepts the legacy schema-1 / adapter-0.1.0 C3D8 contract and
-the new schema-2 / adapter-0.2.0 contract with explicit element type and
-integration-point count. It requires
+the schema-2 / adapter-0.2.0 contract with explicit element type and
+integration-point count. New runs use schema 3 / adapter 0.3.0, with the
+[actual numeric input transport](CALCULIX_NUMERIC_TRANSPORT.md) and optional
+CAD mesh binding. Reopening requires
 consistent units, frame and result locations, matches the input-deck fingerprint
 and its regeneration from the captured study, then checks the raw-output hash
 and reparses the CalculiX tables with the same force/moment/energy rules.
@@ -202,9 +209,9 @@ The archive tests also move a real calculation, reopen it without an available
 solver, check that its files remain unchanged, and reject altered values,
 units, missing files and invalid raw tables even after their hash is updated.
 
-The next integration steps are interactive mesh/support selection and explicit
-CAD mesh provenance. Refinement studies for
-bending and validated meshing should precede a broader element/geometry contract.
+The source-version CAD mesh/face workflow has its own
+[contract and qualification](STUDIO_CAD_MESHING.md). Refinement studies, broader
+material/support domains and large-output handling remain separate work.
 
 CalculiX's [official project](https://www.calculix.de/) and
 [upstream documentation](https://www.dhondt.de/) describe its much wider scope.

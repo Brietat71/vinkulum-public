@@ -21,7 +21,7 @@ Each describes the expected deliverable and how to check it.
 | Verifiable numerics | Numerical analysis, exact arithmetic, Lean | A sharply stated guarantee, executable verifier and adversarial counterexamples |
 | [Pinocchio operators](PINOCCHIO_OPERATORS.md) | Rigid-body dynamics, robotics, Python/C++ | Derive the missing configuration derivative of applied point loads; implement and qualify it against an independent reference, retaining the intrinsic derivative channel |
 | MBDyn connector | Multibody simulation | Map a small mechanism, units, frames, solver version and result channels through an explicit adapter |
-| [CalculiX workflow](CALCULIX_INTEGRATION.md) | FEM, Python/Qt | Extend the static-study workspace with mesh/support selection and qualify mesh provenance before CAD meshing |
+| [CalculiX workflow](STUDIO_CAD_MESHING.md) | FEM, Python/Qt | Qualify a CAD-derived study under mesh refinement, with an independent reference and explicit locations for reported displacement/stress |
 | DUST connector | Aerodynamics | A minimal reproducible coupling contract and an uncoupled reference case first |
 | NeuralFoil workflow | Aerodynamics, Python | A traceable polar workflow, including model version and limits, connected to Studio |
 | Accessible desktop | Qt, UX | One keyboard-complete workflow, tested at normal and high DPI |

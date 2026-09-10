@@ -58,6 +58,14 @@ et celles d'autres plateformes. Les notices sont conservées dans
 conservent les possibilités offertes par les auteurs ; le composant
 `r-efi` offre notamment MIT ou Apache-2.0, sans imposer le choix LGPL.
 
+The Studio 0.6.0.dev4 source adds an optional external Gmsh process for CAD
+meshing. The [pinned Linux build recipe](ci/build_mesher.py) uses unmodified
+Gmsh commit `91b4154a2ba9865335a548b1c146a38d0dea7141` and OCCT 8.0.1 commit
+`b8f597c677811d1f9f4d8a97f5ae2825c0353a42`. Gmsh retains its upstream GPL
+licence, exceptions and component notices; OCCT retains its LGPL licence and
+Open CASCADE exception. This change does not redistribute either executable.
+The [meshing guide](docs/STUDIO_CAD_MESHING.md) links their sources and scope.
+
 NumPy, SciPy et les outils optionnels sont installés séparément par le
 gestionnaire de paquets. Ils ne sont pas recopiés dans les sources Vinkulum
 et conservent les licences fournies par leurs distributions. Les solveurs

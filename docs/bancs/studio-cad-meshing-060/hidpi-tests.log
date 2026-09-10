@@ -1,0 +1,10 @@
+test_close_waits_for_background_checks_and_does_not_publish_after_cancel (test_mesh_workspace.MeshWorkspace.test_close_waits_for_background_checks_and_does_not_publish_after_cancel) ... ok
+test_condition_dialog_validates_and_keeps_identity_and_world_components (test_mesh_workspace.MeshWorkspace.test_condition_dialog_validates_and_keeps_identity_and_world_components) ... ok
+test_invalid_archive_is_transactional_and_new_source_clears_conditions (test_mesh_workspace.MeshWorkspace.test_invalid_archive_is_transactional_and_new_source_clears_conditions) ... ok
+test_real_face_pick_toggle_orbit_and_true_quadratic_edge_display (test_mesh_workspace.MeshWorkspace.test_real_face_pick_toggle_orbit_and_true_quadratic_edge_display) ... ok
+test_undo_save_reopen_multiplier_and_handoff_preserve_captured_intent (test_mesh_workspace.MeshWorkspace.test_undo_save_reopen_multiplier_and_handoff_preserve_captured_intent) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 6.156s
+
+OK

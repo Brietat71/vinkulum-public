@@ -73,6 +73,7 @@ class Workspace:
         analysis = self.menuBar().addMenu("&Run")
         help_menu = self.menuBar().addMenu("&Help")
         analysis.addAction(self._action("static_study", "Linear statics · CalculiX…", self.open_static_study, "Ctrl+Shift+E"))
+        analysis.addAction(self._action("cad_study", "Static study from CAD…", self.open_cad_study, "Ctrl+Shift+M", design=True))
         analysis.addAction(self._action("articulated", "Articulated operators · Pinocchio…", self.open_articulated_study, "Ctrl+Shift+P"))
         analysis.addSeparator()
         for key, label, slot, shortcut in (

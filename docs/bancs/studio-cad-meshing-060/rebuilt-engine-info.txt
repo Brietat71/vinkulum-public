@@ -1,0 +1,10 @@
+Version       : 5.0.0-git-91b4154
+License       : GNU General Public License
+Build OS      : Linux64-sdk
+Build date    : 20260910
+Build host    : NLDW6-3-11-11
+Build options : 64Bit ALGLIB[contrib] ANN[contrib] Bamg Blossom BoundaryLayers Cgns DIntegration Dlopen DomHex Eigen[contrib] Gmm[contrib] Hxt LinuxJoystick MathEx[contrib] Mesh Metis[contrib] Netgen Nii2mesh ONELAB ONELABMetamodel OpenCASCADE OpenCASCADE-CAF OpenMP OptHom Parser Plugins Post QuadMeshingTools QuadTri Solver TetGen/BR TinyXML2[contrib] Untangle Voro++[contrib] WinslowUntangler Zlib tinyobjloader
+OCC version   : 8.0.1
+Packaged by   : root
+Web site      : https://gmsh.info
+Issue tracker : https://gitlab.onelab.info/gmsh/gmsh/issues

@@ -89,6 +89,23 @@ predates tetrahedral studies.
 
 </details>
 
+<details>
+<summary><strong>In the developing source: take a CAD part into a finite-element study</strong></summary>
+
+![Studio 0.6.0.dev4: captured plate mesh, clamped end and top pressure](docs/assets/studio-cad-mesh.png)
+
+Generate a tetrahedral mesh with **Gmsh / OCCT 8**, pick its boundary faces in
+3D, add supports and pressure, and open the captured study in **CalculiX**.
+The [workflow guide](docs/STUDIO_CAD_MESHING.md) includes installation and limits;
+the [saved example](docs/bancs/studio-cad-meshing-060/README.md) includes the solid,
+mesh, physical conditions and raw calculation behind the display.
+
+Requires **Studio 0.6.0.dev4 source** and separate engines for new computations.
+The **0.5.0 Linux download** predates this workflow. The saved example can be
+reopened in the new workspace without running an engine.
+
+</details>
+
 ## What you can do today
 
 | Layer | Available in the source tree |
@@ -96,15 +113,16 @@ predates tetrahedral studies.
 | **Design** | OCCT **8.0.1** and adapted **build123d**: primitives, extrusions, solid booleans, all-edge fillets and single-solid STEP exchange. Edit upstream solid features, preview regeneration and apply one undoable change. BREP mass properties and display meshes remain distinct. |
 | **Model** | A Qt/VTK workbench for rigid mechanisms: bodies, joints, loads, numerical properties, 3D manipulation, undo/redo and project files. |
 | **Simulate** | The native Rust kernel computes in a separate process. Studio captures the model and settings associated with each run. |
-| **Linear statics** | An experimental CalculiX workspace loads a mesh study, edits material/load settings, runs a separate installed solver and inspects captured displacements, integration-point stresses and energy. Saved calculations can be reopened and checked. |
+| **Linear statics** | Mesh a captured CAD solid with Gmsh / OCCT 8, select faces and add supports, pressure or total forces. Open the study in CalculiX, inspect displacement, integration-point stress and energy, and reopen saved calculations. |
 | **Articulated operators** | A Pinocchio analysis window edits a captured rigid-tree state and inspects dynamics operators, derivatives and body Jacobians. Separate optional worker; CSV export and engine-free result reopening. |
 | **Examine** | Animate results, inspect curves and samples, compare captured runs on their native time grids, and export with units and provenance. |
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
-**Kernel 0.19.0 · Studio source 0.6.0.dev3 · Linux release 0.5.0.** Research software under active development.
+**Kernel 0.19.0 · Studio source 0.6.0.dev4 · Linux release 0.5.0.** Research software under active development.
 Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
-workflow; interactive constrained sketches, persistent face/edge references and
-CAD-to-FEM meshing are future work. The complete kernel is not certified. Each guarantee has a stated
+workflow; interactive constrained sketches and persistent face/edge references
+remain future work. The [CAD-to-FEM workspace](docs/STUDIO_CAD_MESHING.md) now captures
+tetrahedral meshes and face conditions for CalculiX. The complete kernel is not certified. Each guarantee has a stated
 domain and its own evidence. See the [CAD contract](docs/STUDIO_CAD.md),
 [Studio guide](apps/studio/README.md) and [kernel API](docs/API.md).
 
@@ -118,6 +136,7 @@ and physical assumptions.
 |---|---|---|
 | **Vinkulum** | General-purpose mechanics and verifiable numerical research | Native kernel; rigid-mechanism Studio adapter available |
 | **OCCT 8 + build123d** | Exact CAD and mass properties | Integrated; local compatibility patches and qualification corpus included |
+| **Gmsh** | Tetrahedral CAD meshing | Source workflow requires an external OCCT 8 build; captures boundary groups for supports, pressure and total forces |
 | **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Experimental workspace and CLI](docs/PINOCCHIO_OPERATORS.md) for fixed-base rigid trees, with independent references; separate Python environment, source workflow only |
 | **MBDyn** | Multibody workflows and independent reference calculations | Existing comparison work; Studio connector planned |
 | **CalculiX** | Finite-element workflows | [Experimental static-study workspace and CLI](docs/CALCULIX_INTEGRATION.md): C3D4, curved C3D10 and affine C3D8, cancellable solve, captured displacement and integration-point values; external executable required |
@@ -183,6 +202,7 @@ agreeing with another solver does not certify every trajectory.
 - [CAD adaptation, analytic checks and upstream test subset](docs/STUDIO_CAD.md)
 - [Parametric CAD editing, previews and preserved design frames](docs/STUDIO_CAD_HISTORY.md)
 - [Quadratic tetrahedra, analytic bending and exact local Jacobian bounds](docs/STUDIO_TETRAHEDRA.md)
+- [CAD meshing, 3D face selection and captured CalculiX studies](docs/STUDIO_CAD_MESHING.md)
 - [Studio interaction and rendering qualification](docs/STUDIO_GUI_2026.md)
 - [CalculiX statics contract and reproducible tension study](docs/CALCULIX_INTEGRATION.md)
 - [Pinocchio conversion, independent Lagrange references and captured-state workspace](docs/PINOCCHIO_OPERATORS.md)

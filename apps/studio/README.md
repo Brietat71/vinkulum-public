@@ -1,16 +1,22 @@
-# Vinkulum Studio 0.6.0.dev3 — CAD and mechanism analysis
+# Vinkulum Studio 0.6.0.dev4 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.19.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
 
-The **0.6.0.dev3 source version** extends CalculiX studies to linear and quadratic
+The **0.6.0.dev4 source version** adds the [CAD-to-statics workspace](../../docs/STUDIO_CAD_MESHING.md):
+generate an OCCT 8 / Gmsh mesh, select boundary faces in 3D, add supports,
+pressure or total forces, save the captured study and open CalculiX. Meshing and
+numerical admission run outside the GUI thread. The [input transport contract](../../docs/CALCULIX_NUMERIC_TRANSPORT.md)
+revalidates the geometry actually sent to the solver's 20-character numeric fields.
+
+The **0.6.0.dev3 source version** extended CalculiX studies to linear and quadratic
 tetrahedra, including curved C3D10 geometry. The
 [tetrahedral guide](../../docs/STUDIO_TETRAHEDRA.md) provides an independent
 bending reference and the exact local Jacobian-positivity check. This is the
-element contract needed for general CAD meshing; automatic CAD meshing is still
-unimplemented. The existing 0.5.0 binary accepts affine C3D8 studies only.
+element contract now used by the CAD meshing workspace. The existing 0.5.0
+binary accepts affine C3D8 studies only.
 
 The **0.6.0.dev2 source version** adds [editable solid features](../../docs/STUDIO_CAD_HISTORY.md):
 change an upstream dimension or placement, preview the regenerated part and apply
