@@ -86,6 +86,8 @@ contains the 49-test log and English demo recipe. Run the current suite with
 `bash ci/studio.sh` in the installed Studio CAD environment.
 
 Studio tests compare volumes and inertias with independent analytic formulas,
+including an [independently written STEP L bracket](../apps/studio/tests/fixtures/independent_step/README.md)
+with full rotated inertia and a deliberately incorrect unit declaration. They
 check rotations and centres of mass, booleans, fillets, STEP metre/millimetre
 conversion, BREP persistence, attachment rebasing, worker failure and the
 CAD → mechanics → Qt/VTK rendering workflow.
