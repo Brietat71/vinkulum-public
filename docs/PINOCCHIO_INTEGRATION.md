@@ -1,7 +1,10 @@
 # Pinocchio integration
 
-Status: planned connector, added to the target architecture on 10 September
-2026. Pinocchio is not yet installed, bundled or selectable in Studio.
+Status: experimental source adapter with a separate Linux Pinocchio 4.1.0
+environment. The [operator CLI and mathematical contract](PINOCCHIO_OPERATORS.md)
+are implemented and checked against independent references. The Studio GUI
+workflow, trajectory integrator and standalone distribution remain to be built.
+Pinocchio is not bundled or selectable in the published Studio 0.5.0 archive.
 
 ## Role in Vinkulum
 

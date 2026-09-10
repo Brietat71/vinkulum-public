@@ -65,7 +65,7 @@ and physical assumptions.
 |---|---|---|
 | **Vinkulum** | General-purpose mechanics and verifiable numerical research | Native kernel; rigid-mechanism Studio adapter available |
 | **OCCT 8 + build123d** | Exact CAD and mass properties | Integrated; local compatibility patches and qualification corpus included |
-| **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Connector planned](docs/PINOCCHIO_INTEGRATION.md); first target: qualified rigid trees |
+| **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Experimental operator CLI](docs/PINOCCHIO_OPERATORS.md) for fixed-base rigid trees, with independent references; separate Python environment, GUI workflow pending |
 | **MBDyn** | Multibody workflows and independent reference calculations | Existing comparison work; Studio connector planned |
 | **CalculiX** | Finite-element workflows | [Experimental static-study workspace and CLI](docs/CALCULIX_INTEGRATION.md): affine C3D8, cancellable solve, captured displacement and integration-point values; external executable required |
 | **DUST** | Aerodynamic workflows and future coupling | Planned |

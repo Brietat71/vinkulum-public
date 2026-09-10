@@ -18,7 +18,7 @@ Each describes the expected deliverable and how to check it.
 | Rust mesh/data path | Rust, Python FFI, VTK | Profile a reproducible large model; improve a demonstrated bottleneck with numerical equivalence and memory measurements |
 | Mechanism validation | Dynamics, experimental mechanics | An analytic or published benchmark, convergence study and independent reference |
 | Verifiable numerics | Numerical analysis, exact arithmetic, Lean | A sharply stated guarantee, executable verifier and adversarial counterexamples |
-| [Pinocchio connector](PINOCCHIO_INTEGRATION.md) | Rigid-body dynamics, robotics, Python/C++ | A pinned Linux environment and a one-link adapter checked against analytic gravity torque and acceleration |
+| [Pinocchio connector](PINOCCHIO_INTEGRATION.md) | Rigid-body dynamics, robotics, Python/C++ | Extend the checked operator CLI with supervised GUI execution, or qualify loaded-problem derivatives against an independent reference |
 | MBDyn connector | Multibody simulation | Map a small mechanism, units, frames, solver version and result channels through an explicit adapter |
 | [CalculiX workflow](CALCULIX_INTEGRATION.md) | FEM, Python/Qt | Extend the static-study workspace with mesh/support selection and qualify mesh provenance before CAD meshing |
 | DUST connector | Aerodynamics | A minimal reproducible coupling contract and an uncoupled reference case first |

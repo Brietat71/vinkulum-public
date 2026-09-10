@@ -297,7 +297,7 @@ class Project:
                 or not all(isinstance(v, kind) for v in objects)
             ):
                 raise ValueError(
-                    f"Collection {kind.__name__} invalide ou limite {limit} exceeded."
+                    f"Invalid {kind.__name__} collection or limit of {limit} exceeded."
                 )
         ids = [o.id for o in (*self.bodies, *self.joints, *self.loads)]
         cad_parts = [b.cad for b in self.bodies if b.cad is not None]
@@ -341,7 +341,7 @@ class Project:
             references = (obj.a, obj.b) if isinstance(obj, Joint) else (obj.body,)
             missing = [r for r in references if r is not None and r not in ids]
             for r in missing:
-                state = "deleted" if r in self.deleted else "introuvable"
+                state = "deleted" if r in self.deleted else "not found"
                 issues.append(Diagnostic(obj.id, f"Body {state} : {r}."))
             if missing or isinstance(obj, Load):
                 continue

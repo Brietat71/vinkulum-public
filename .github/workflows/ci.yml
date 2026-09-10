@@ -122,6 +122,14 @@ jobs:
           "$RUNNER_TEMP/roue-venv/bin/python" -c 'import OCP, build123d; assert int(OCP.__version__.split(".")[0]) >= 8'
           cd "$RUNNER_TEMP"
           PY="$RUNNER_TEMP/roue-venv/bin/python" bash "$GITHUB_WORKSPACE/ci/studio.sh" 2>&1 | tee "$RUNNER_TEMP/studio-3d.log"
+      - name: Qualify the separate Pinocchio worker
+        run: |
+          python -m venv "$RUNNER_TEMP/pinocchio-venv"
+          "$RUNNER_TEMP/pinocchio-venv/bin/python" -m pip install --only-binary=:all: -r ci/pinocchio-linux-requirements.txt dist/*.whl "$RUNNER_TEMP"/studio-dist/*.whl
+          "$RUNNER_TEMP/pinocchio-venv/bin/python" -m pip check
+          "$RUNNER_TEMP/pinocchio-venv/bin/python" -c 'import pinocchio; assert pinocchio.__version__ == "4.1.0"'
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/pinocchio-venv/bin/python" -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -p test_pinocchio.py -v 2>&1 | tee "$RUNNER_TEMP/pinocchio.log"
       - name: Conserver la recette Studio
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -133,5 +141,6 @@ jobs:
             ${{ runner.temp }}/studio-g0.png
             ${{ runner.temp }}/studio-3d*.png
             ${{ runner.temp }}/viewport-3d.png
+            ${{ runner.temp }}/pinocchio.log
           if-no-files-found: ignore
           retention-days: 14
