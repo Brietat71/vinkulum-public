@@ -179,6 +179,15 @@ in an open multibody workbench**.
 
 ## Make an introduction useful
 
+For a development update, show the [signed boundary-direction example](STUDIO_CAD_MESHING.md#boundary-direction-symbols):
+changing the multiplier from +1 to −1 reverses the pressure arrows while the
+support axes stay fixed. The screenshots come from the installed **0.6.0a2.dev1
+source wheel**; the downloadable Linux alpha remains **0.6.0a1**. A useful
+contribution is to reproduce the nine boundary-workspace tests on a different
+GPU or display scale and report the platform and failing image. Keep the
+directions' meaning explicit: these sampled arrows do not represent individual
+nodal forces or a converged stress solution.
+
 - For CAD users: share a reproducible part and ask for a difficult STEP example
   whose redistribution is permitted.
 - For researchers: share one reference case, its assumptions and a question

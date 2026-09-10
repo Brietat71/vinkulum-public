@@ -43,6 +43,46 @@ not presented as new finite elements.
 
 ![Calculated displacement of the captured plate study](assets/studio-cad-mesh-static.png)
 
+## Boundary-direction symbols
+
+**Source version 0.6.0a2.dev1; not included in the published 0.6.0a1 binary.**
+Enable **Symbols** above the viewport. Hide **Mesh edges** when the lines obscure
+conditions on a dense mesh. The shape of each symbol identifies its meaning:
+
+| Symbol | Meaning |
+|---|---|
+| Open arrow | Pressure direction at a sampled point on the captured face; positive pressure points inward. |
+| Solid arrow | Direction of the total-force vector in world coordinates. |
+| Bar with end caps | A constrained world displacement axis; a three-axis support has three bars. |
+
+![Source preview: outward pressure with multiplier -1 and a fixed end](bancs/studio-boundary-symbols-060/outward-pressure.png)
+
+*The same stored pressure of 100,000 Pa points outward with multiplier −1.
+The end support remains fixed. This is an unmodified capture of the installed
+development wheel; no external calculation is run when changing the symbols.*
+
+The condition list displays the **effective** pressure or force after applying
+the load multiplier. Hover over a condition for its stored values, multiplier,
+applied values and face IDs. A negative multiplier reverses load arrows; zero
+hides them. Supports remain fixed. Invalid or nonfinite multipliers, or loads
+whose multiplied values overflow, hide load symbols and disable saving and
+solver handoff until corrected. The captured physical conditions remain intact.
+
+Arrow scale is nominally 30 logical screen pixels perpendicular to the view;
+perspective and foreshortening still apply. Length does not encode magnitude.
+Symbols sample each condition, with at most 24 anchors. They are not individual
+nodal forces, a sum of overlapping conditions, or a pressure field on the deformed
+result. Normals follow the captured linear or quadratic mesh face, not the exact
+BREP. Geometry measurements and normal sampling run in the background worker.
+Symbols do not intercept face picking or change the camera's fit to the mesh.
+
+The [qualification record](bancs/studio-boundary-symbols-060/README.md) includes
+an analytic curved-face reference, actual OpenGL arrow-image checks, signed-load
+and keyboard interactions, zoom/resize tests and 200% display-scale checks.
+The pixel checks also verify that each symbol type remains distinguishable
+from its coloured face in the tested views; this is not a universal accessibility
+or graphics-driver qualification.
+
 ## Engines and local builds
 
 Studio does not load Gmsh libraries into the CAD or Qt process. It supervises

@@ -1,0 +1,855 @@
+{
+  "studio_version": "0.6.0a2.dev1",
+  "study_sha256": "8258ddd718e32db985495753986cefa0fbcc37e56b63c63caf2eed10ba7652e0",
+  "input_unchanged": true,
+  "nodes": 4084,
+  "elements": 2115,
+  "device_pixel_ratio": 1.0,
+  "cases": [
+    {
+      "name": "inward-pressure",
+      "load_factor": 1.0,
+      "conditions": [
+        {
+          "id": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "name": "Clamped end",
+          "kind": "support",
+          "surfaces": [
+            1
+          ],
+          "axes": [
+            1,
+            2,
+            3
+          ],
+          "values": [],
+          "applied_values": []
+        },
+        {
+          "id": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "name": "Top pressure",
+          "kind": "pressure",
+          "surfaces": [
+            11
+          ],
+          "axes": [],
+          "values": [
+            100000.0
+          ],
+          "applied_values": [
+            100000.0
+          ]
+        }
+      ],
+      "glyphs": [
+        {
+          "condition": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "surface": 1,
+          "kind": "support",
+          "point": [
+            -0.06000000000000001,
+            0.0039611618468434985,
+            -0.002503782413595082
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "condition": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "surface": 1,
+          "kind": "support",
+          "point": [
+            -0.06000000000000001,
+            0.0039611618468434985,
+            -0.002503782413595082
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "condition": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "surface": 1,
+          "kind": "support",
+          "point": [
+            -0.06000000000000001,
+            0.0039611618468434985,
+            -0.002503782413595082
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            0.0001816900879536014,
+            -1.2077450007168776e-05,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            -0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            -0.05607354517762225,
+            -0.031013001260882175,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            -0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            0.05613477342685647,
+            -0.031205043931829025,
+            0.01
+          ],
+          "normal": [
+            -0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            -0.053550742573346896,
+            0.03345827207835962,
+            0.01
+          ],
+          "normal": [
+            -0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            0.05350088564134537,
+            0.033733906073458775,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            -0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            0.014738105384482274,
+            -0.03384163862480703,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            -0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            0.014536190135193526,
+            0.03367004958156031,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            -0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            -0.04151401128535304,
+            0.0005072715480965966,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            -0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            -0.019459022941709616,
+            -0.03097421889942801,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            -0.0,
+            -0.0,
+            -1.0
+          ]
+        }
+      ],
+      "image": "inward-pressure.png",
+      "image_sha256": "403e42db30b7663f3e977a4b1106255f11265bd5e93b1adac9e2310740bba6f4"
+    },
+    {
+      "name": "outward-pressure",
+      "load_factor": -1.0,
+      "conditions": [
+        {
+          "id": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "name": "Clamped end",
+          "kind": "support",
+          "surfaces": [
+            1
+          ],
+          "axes": [
+            1,
+            2,
+            3
+          ],
+          "values": [],
+          "applied_values": []
+        },
+        {
+          "id": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "name": "Top pressure",
+          "kind": "pressure",
+          "surfaces": [
+            11
+          ],
+          "axes": [],
+          "values": [
+            100000.0
+          ],
+          "applied_values": [
+            -100000.0
+          ]
+        }
+      ],
+      "glyphs": [
+        {
+          "condition": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "surface": 1,
+          "kind": "support",
+          "point": [
+            -0.06000000000000001,
+            0.0039611618468434985,
+            -0.002503782413595082
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "condition": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "surface": 1,
+          "kind": "support",
+          "point": [
+            -0.06000000000000001,
+            0.0039611618468434985,
+            -0.002503782413595082
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "condition": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "surface": 1,
+          "kind": "support",
+          "point": [
+            -0.06000000000000001,
+            0.0039611618468434985,
+            -0.002503782413595082
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            0.0001816900879536014,
+            -1.2077450007168776e-05,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            -0.05607354517762225,
+            -0.031013001260882175,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            0.05613477342685647,
+            -0.031205043931829025,
+            0.01
+          ],
+          "normal": [
+            -0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            -0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            -0.053550742573346896,
+            0.03345827207835962,
+            0.01
+          ],
+          "normal": [
+            -0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            -0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            0.05350088564134537,
+            0.033733906073458775,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            0.014738105384482274,
+            -0.03384163862480703,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            0.014536190135193526,
+            0.03367004958156031,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            -0.04151401128535304,
+            0.0005072715480965966,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "pressure",
+          "point": [
+            -0.019459022941709616,
+            -0.03097421889942801,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "image": "outward-pressure.png",
+      "image_sha256": "d399c2e1e47aa9c208584931e97b133020e8be88f4d36baac93e8b9d9850d0e2"
+    },
+    {
+      "name": "world-force",
+      "load_factor": 1.0,
+      "conditions": [
+        {
+          "id": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "name": "Clamped end",
+          "kind": "support",
+          "surfaces": [
+            1
+          ],
+          "axes": [
+            1,
+            2,
+            3
+          ],
+          "values": [],
+          "applied_values": []
+        },
+        {
+          "id": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "name": "Upward resultant",
+          "kind": "total_force",
+          "surfaces": [
+            11
+          ],
+          "axes": [],
+          "values": [
+            0.0,
+            0.0,
+            120.0
+          ],
+          "applied_values": [
+            0.0,
+            0.0,
+            120.0
+          ]
+        }
+      ],
+      "glyphs": [
+        {
+          "condition": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "surface": 1,
+          "kind": "support",
+          "point": [
+            -0.06000000000000001,
+            0.0039611618468434985,
+            -0.002503782413595082
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "condition": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "surface": 1,
+          "kind": "support",
+          "point": [
+            -0.06000000000000001,
+            0.0039611618468434985,
+            -0.002503782413595082
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "condition": "0c5efac3-2744-494d-8634-6b6db90d82fd",
+          "surface": 1,
+          "kind": "support",
+          "point": [
+            -0.06000000000000001,
+            0.0039611618468434985,
+            -0.002503782413595082
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "total_force",
+          "point": [
+            0.0001816900879536014,
+            -1.2077450007168776e-05,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "total_force",
+          "point": [
+            -0.05607354517762225,
+            -0.031013001260882175,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "total_force",
+          "point": [
+            0.05613477342685647,
+            -0.031205043931829025,
+            0.01
+          ],
+          "normal": [
+            -0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "total_force",
+          "point": [
+            -0.053550742573346896,
+            0.03345827207835962,
+            0.01
+          ],
+          "normal": [
+            -0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "total_force",
+          "point": [
+            0.05350088564134537,
+            0.033733906073458775,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "total_force",
+          "point": [
+            0.014738105384482274,
+            -0.03384163862480703,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "total_force",
+          "point": [
+            0.014536190135193526,
+            0.03367004958156031,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "total_force",
+          "point": [
+            -0.04151401128535304,
+            0.0005072715480965966,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "condition": "3216e5ec-2ca3-4dcd-915b-21e8a9061069",
+          "surface": 11,
+          "kind": "total_force",
+          "point": [
+            -0.019459022941709616,
+            -0.03097421889942801,
+            0.01
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "direction": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "image": "world-force.png",
+      "image_sha256": "47ab9f4705769d567c8e2f58d9fa3e9d70f4a4742f9b18a63d857f3362f49177"
+    }
+  ],
+  "scope": "Sampled directions on the initial captured mesh; not nodal-force or stress validation."
+}

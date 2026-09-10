@@ -119,6 +119,8 @@ engines. The shipped example reopens without running an engine.
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
 **Kernel 0.19.0 · Studio 0.6.0a1 · Linux x86-64 preview.** Research software under active development.
+Current source **Studio 0.6.0a2.dev1** adds [3D pressure, force and support symbols](docs/STUDIO_CAD_MESHING.md#boundary-direction-symbols)
+with signed load values and zoom-aware sizing; this increment is not yet in the downloadable binary.
 Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
 workflow; interactive constrained sketches and persistent face/edge references
 remain future work. The [CAD-to-FEM workspace](docs/STUDIO_CAD_MESHING.md) now captures

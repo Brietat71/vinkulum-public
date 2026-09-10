@@ -18,6 +18,8 @@ from vtkmodules.vtkRenderingCore import (
     vtkPolyDataMapper,
 )
 
+from .boundary_display import boundary_glyphs
+from .boundary_view import BoundaryGlyphLayer
 from .viewport import Viewport, vtk_matrix
 
 SURFACE_COLORS = {
@@ -56,7 +58,10 @@ class MeshViewport(Viewport):
         self.actor.SetMapper(self.mapper)
         self.actor.GetProperty().EdgeVisibilityOff()
         self.actor.GetProperty().SetEdgeColor(0.12, 0.16, 0.22)
-        self.actor.GetProperty().SetSpecular(0.15)
+        self.actor.GetProperty().SetAmbient(0.16)
+        self.actor.GetProperty().SetDiffuse(0.40)
+        self.actor.GetProperty().SetSpecular(0.08)
+        self.actor.GetProperty().SetSpecularPower(30)
         self.renderer.AddActor(self.actor)
         self.edges_visible = True
         self.edge_mapper = vtkPolyDataMapper()
@@ -79,6 +84,8 @@ class MeshViewport(Viewport):
         self.picker.AddPickList(self.actor)
         self.view.setMouseTracking(True)
         self.view.installEventFilter(self)
+        self._frames = {}
+        self.glyph_layer = BoundaryGlyphLayer(self, SURFACE_COLORS)
 
     def _pick(self, interactor, event):
         # Base Viewport picks bodies on press; faces are selected on a click's
@@ -86,6 +93,9 @@ class MeshViewport(Viewport):
         pass
 
     def set_source(self, body):
+        self.glyph_layer.set_glyphs(())
+        self._frames = {}
+        self._face_kinds = {}
         points, cells = vtkPoints(), vtkCellArray()
         points.SetDataTypeToDouble()
         for point in body.cad.vertices_m:
@@ -111,7 +121,10 @@ class MeshViewport(Viewport):
         self._selected_faces.clear()
         self.camera("iso")
 
-    def set_solid(self, solid, *, fit=True):
+    def set_solid(self, solid, *, frames=None, fit=True):
+        self.glyph_layer.set_glyphs(())
+        self._frames = frames if frames is not None else {}
+        self._face_kinds = {}
         self.solid = solid
         self._hover = None
         self._cell_faces = []
@@ -177,7 +190,7 @@ class MeshViewport(Viewport):
         self._selected_faces = set(identifiers)
         self._recolor()
 
-    def set_conditions(self, conditions):
+    def set_conditions(self, conditions, load_factor=1.0):
         kinds = {}
         for condition in conditions:
             for identifier in condition.surfaces:
@@ -185,7 +198,15 @@ class MeshViewport(Viewport):
         self._face_kinds = {
             i: next(iter(v)) if len(v) == 1 else "multiple" for i, v in kinds.items()
         }
+        glyphs, invalid = boundary_glyphs(self._frames, conditions, load_factor)
+        self.glyph_layer.set_glyphs(glyphs)
         self._recolor()
+        return invalid
+
+    def shutdown(self):
+        if hasattr(self, "glyph_layer"):
+            self.glyph_layer.close()
+        super().shutdown()
 
     def _recolor(self):
         if not self._cell_faces:
