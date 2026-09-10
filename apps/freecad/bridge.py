@@ -4,6 +4,7 @@ SPDX-License-Identifier: Apache-2.0
 Loaded inside FreeCAD; never imports Studio, numpy or a second OCCT binding.
 """
 
+import copy
 import hashlib
 import json
 import math
@@ -37,12 +38,32 @@ def signature(source):
     )
 
 
-def capture(source, directory, *, density, body_id, project_id, duration=2, step=0.005):
-    """Capture one top-level solid, with a world-origin pivot about world Y."""
+def capture(
+    source,
+    directory,
+    *,
+    density,
+    body_id,
+    project_id,
+    duration=2,
+    step=0.005,
+    pivot_mm=(0, 0, 0),
+    axis_world=(0, 1, 0),
+    threads=2,
+):
+    """Capture one top-level solid and an explicit world-frame revolute joint."""
     if not math.isfinite(density) or density <= 0:
         raise ValueError("A finite positive density in kg/m³ is required")
     if not (0 < step <= duration <= 10 and math.ceil(duration / step) <= 2000):
         raise ValueError("Prototype limit: 10 seconds and 2001 native samples")
+    for vector in (pivot_mm, axis_world):
+        if len(vector) != 3 or not all(math.isfinite(v) for v in vector):
+            raise ValueError("The pivot and axis require three finite coordinates")
+    norm = math.hypot(*axis_world)
+    if norm < 1e-12:
+        raise ValueError("The revolute axis must be nonzero")
+    if type(threads) is not int or not 1 <= threads <= 64:
+        raise ValueError("Select between 1 and 64 engine threads")
     local = source.Placement.toMatrix()
     global_placement = source.getGlobalPlacement().toMatrix()
     if any(
@@ -80,8 +101,9 @@ def capture(source, directory, *, density, body_id, project_id, duration=2, step
             ],
         },
         "characteristic_length_m": shape.BoundBox.DiagonalLength * 1e-3,
-        "pivot_m": [0, 0, 0],
-        "axis_world": [0, 1, 0],
+        "pivot_m": [v * 1e-3 for v in pivot_mm],
+        "axis_world": [v / norm for v in axis_world],
+        "threads": threads,
         "duration_s": duration,
         "step_s": step,
     }
@@ -156,13 +178,17 @@ def admit(source, directory, request):
 class Job(QObject):
     completed = Signal(object)
     failed = Signal(str)
+    settled = Signal()
 
     def __init__(self, source, directory, request, interpreter, parent=None):
         super().__init__(parent or Gui.getMainWindow())
-        self.source, self.directory, self.request = source, Path(directory), request
+        self.source, self.directory = source, Path(directory)
+        self.request = copy.deepcopy(request)
         self.process = QProcess(self)
         self.diagnostics = bytearray()
         self.timed_out = False
+        self.cancelled = False
+        self.terminal = False
         environment = QProcessEnvironment.systemEnvironment()
         # The official AppImage exports PYTHONHOME for its own Python 3.11.
         # The explicitly selected Vinkulum interpreter must use its own runtime.
@@ -190,8 +216,33 @@ class Job(QObject):
         self.timer.timeout.connect(self._timeout)
 
     def start(self):
+        if self.terminal:
+            raise RuntimeError("A settled job cannot be restarted")
         self.timer.start(60000)
         self.process.start()
+
+    def cancel(self):
+        if self.terminal:
+            return
+        self.cancelled = True
+        self.timer.stop()
+        if self.process.state() == QProcess.ProcessState.NotRunning:
+            self._settle(error="Calculation cancelled")
+        else:
+            self.process.kill()
+
+    def _settle(self, *, error=None, result=None):
+        if self.terminal:
+            return
+        self.terminal = True
+        self.timer.stop()
+        try:
+            if error is not None:
+                self.failed.emit(error)
+            else:
+                self.completed.emit(result)
+        finally:
+            self.settled.emit()
 
     def _read(self):
         self.diagnostics.extend(bytes(self.process.readAllStandardOutput()))
@@ -199,29 +250,37 @@ class Job(QObject):
 
     def _error(self, error):
         if error == QProcess.ProcessError.FailedToStart:
-            self.timer.stop()
-            self.failed.emit(self.process.errorString())
+            self._settle(error=self.process.errorString())
 
     def _timeout(self):
         self.timed_out = True
         self.process.kill()
 
     def _finished(self, code, status):
+        if self.terminal:
+            return
         self.timer.stop()
         self._read()
-        (self.directory / "worker.log").write_bytes(self.diagnostics)
+        try:
+            (self.directory / "worker.log").write_bytes(self.diagnostics)
+        except OSError as error:
+            self._settle(error=f"Cannot retain worker diagnostics: {error}")
+            return
+        if self.cancelled:
+            self._settle(error="Calculation cancelled")
+            return
         if self.timed_out or code != 0 or status != QProcess.ExitStatus.NormalExit:
-            self.failed.emit(
-                "Worker failed or timed out: "
+            self._settle(
+                error="Worker failed or timed out: "
                 + self.diagnostics.decode(errors="replace")
             )
             return
         try:
             result = admit(self.source, self.directory, self.request)
-        except Exception as error:
-            self.failed.emit(str(error))
+        except Exception as error:  # noqa: BLE001 - report native errors at the process/UI boundary
+            self._settle(error=str(error))
             return
-        self.completed.emit(result)
+        self._settle(result=result)
 
 
 def set_pose(playback, original_placement, original_centre_m, position_m, rotation):
@@ -229,9 +288,9 @@ def set_pose(playback, original_placement, original_centre_m, position_m, rotati
     matrix = App.Matrix()
     for i in range(3):
         for j in range(3):
-            setattr(matrix, f"A{i+1}{j+1}", rotation[3 * i + j])
+            setattr(matrix, f"A{i + 1}{j + 1}", rotation[3 * i + j])
         offset = position_m[i] - sum(
             rotation[3 * i + j] * original_centre_m[j] for j in range(3)
         )
-        setattr(matrix, f"A{i+1}4", 1000 * offset)
+        setattr(matrix, f"A{i + 1}4", 1000 * offset)
     playback.Placement = App.Placement(matrix).multiply(original_placement)

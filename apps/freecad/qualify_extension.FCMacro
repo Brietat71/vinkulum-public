@@ -1,0 +1,293 @@
+"""Actual installed FreeCAD extension: calculation, playback and process lifecycle.
+
+SPDX-License-Identifier: Apache-2.0
+Run in an isolated fresh FreeCAD process; this recipe exits that process.
+"""
+
+import hashlib
+import json
+import os
+import sys
+import time
+import traceback
+import zipfile
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide6 import QtCore, QtTest, QtWidgets
+
+root = Path(os.environ["VINKULUM_FREECAD_EXTENSION_CHECK"])
+root.mkdir(parents=True, exist_ok=True)
+report = {"status": "running", "checks": []}
+state = {"phase": "start", "panel": None, "started": time.monotonic()}
+
+
+def finish(error=None):
+    timer.stop()
+    report["status"] = "failed" if error else "passed"
+    if error:
+        report["error"] = repr(error)
+        report["phase"] = state["phase"]
+    (root / "extension-check.json").write_text(json.dumps(report, indent=2) + "\n")
+    if state["panel"] is not None and not state["panel"].closed:
+        state["panel"].reject()
+
+    def quit_when_settled():
+        from vinkulum_freecad import host
+
+        if host._active_job is not None:
+            QtCore.QTimer.singleShot(20, quit_when_settled)
+            return
+        for name in tuple(App.listDocuments()):
+            App.closeDocument(name)
+        QtWidgets.QApplication.instance().quit()
+
+    quit_when_settled()
+
+
+def exception(kind, error, trace):
+    (root / "exception.log").write_text(
+        "".join(traceback.format_exception(kind, error, trace))
+    )
+    finish(error)
+
+
+sys.excepthook = exception
+
+
+def advance():
+    if time.monotonic() - state["started"] > 100:
+        raise AssertionError("Extension qualification timed out: " + state["phase"])
+    from vinkulum_freecad import bridge, host
+
+    phase = state["phase"]
+    if phase == "start":
+        assert not App.listDocuments(), "Use a fresh FreeCAD process"
+        assert host._installed
+        addon = Path(host.__file__).parents[1]
+        info = json.loads((addon / "extension-info.json").read_text())
+        for name, expected in info["files_sha256"].items():
+            path = (
+                addon / name
+                if name in ("InitGui.py", "INSTALLATION.txt")
+                else Path(host.__file__).parent / name
+            )
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, name
+        report["extension"] = info
+        report["freecad_version"] = App.Version()
+        report["freecad_python"] = sys.version
+        report["checks"].append(
+            "installed extension files match the packaged source manifest"
+        )
+        assert Gui.getMainWindow().findChild(QtWidgets.QMenu, "VinkulumMenu")
+        Gui.activateWorkbench("PartDesignWorkbench")
+        menu = Gui.getMainWindow().findChild(QtWidgets.QMenu, "VinkulumMenu")
+        assert menu.menuAction() in Gui.getMainWindow().menuBar().actions()
+        report["checks"].append("installed menu survives native workbench activation")
+        host.open_example()
+        Gui.getMainWindow().resize(1440, 1000)
+        source = host.selected_solid()
+        panel = host.MotionPanel(source)
+        state.update(panel=panel, source=source, signature=bridge.signature(source))
+        Gui.Control.showDialog(panel)
+        QtTest.QTest.mouseClick(panel.run_button, QtCore.Qt.MouseButton.LeftButton)
+        assert panel.job is not None, panel.status.text()
+        state["phase"] = "calculate"
+    elif phase == "calculate":
+        panel = state["panel"]
+        if panel.job is not None:
+            return
+        assert panel.result is not None, panel.status.text()
+        assert panel.result["manifest"]["threads"] == panel.threads.value()
+        report["kernel_version"] = panel.result["manifest"]["kernel_version"]
+        report["backend_manifest"] = panel.result["manifest"]
+        assert abs(panel.result["properties_si"]["mass_kg"] - 3.744) < 1e-10
+        state["captured"] = panel.result
+        state["directory"] = panel.directory
+        panel.slider.setValue(173)
+        expected = panel.result["position_m"][173]
+        actual = list(panel.preview.Shape.CenterOfMass)
+        assert max(abs(a * 1e-3 - b) for a, b in zip(actual, expected)) < 1e-9
+        assert bridge.signature(state["source"]) == state["signature"]
+        report["checks"].append(
+            "actual worker, thread allocation, mass, native pose and source preservation"
+        )
+        state["phase"] = "screenshot"
+    elif phase == "screenshot":
+        panel = state["panel"]
+        window = Gui.getMainWindow()
+        assert (
+            window.screen()
+            .grabWindow(window.winId())
+            .save(str(root / "freecad-extension.png"))
+        )
+        panel.reject()
+        panel = host.MotionPanel(state["source"])
+        state["panel"] = panel
+        Gui.Control.showDialog(panel)
+        panel.interpreter.setText("/not-an-installed-engine")
+        panel.load_capture(state["directory"])
+        assert panel.result is not None, panel.status.text()
+        assert panel.result["run_id"] == state["captured"]["run_id"]
+        report["checks"].append("saved capture reopens against current source")
+        panel.display_sample(5)
+        assert panel.preview is not None
+        saved = root / "saved-during-preview.FCStd"
+        panel.document.saveAs(str(saved))
+        assert panel.preview is None
+        assert state["source"].Visibility
+        with zipfile.ZipFile(saved) as archive:
+            assert b"VinkulumPlayback" not in archive.read("Document.xml")
+        report["checks"].append(
+            "native FreeCAD save omits the temporary motion shape and restores visibility"
+        )
+        old_name = panel.document_name
+        panel.reject()
+        App.closeDocument(old_name)
+        reopened = App.openDocument(str(saved))
+        state["source"] = reopened.getObject("Rod")
+        panel = host.MotionPanel(state["source"])
+        state["panel"] = panel
+        Gui.Control.showDialog(panel)
+        panel.load_capture(state["directory"])
+        assert panel.result is not None, panel.status.text()
+        assert panel.result["run_id"] == state["captured"]["run_id"]
+        report["checks"].append(
+            "closing and reopening the native FCStd design preserves capture admission"
+        )
+        state["source"].Placement.Base.x += 1
+        panel.slider.setValue(20)
+        assert panel.preview is None
+        assert "Geometry changed" in panel.status.text()
+        state["source"].Placement.Base.x -= 1
+        panel.document.recompute()
+        report["checks"].append("editing source placement refuses stale playback")
+        panel.interpreter.setText(os.environ["VINKULUM_FREECAD_PYTHON"])
+        transform = App.Placement(
+            App.Vector(250, -100, 500), App.Rotation(App.Vector(0, 0, 1), 90)
+        )
+        state["source"].Placement = transform.multiply(state["source"].Placement)
+        panel.document.recompute()
+        for field, value in zip(panel.pivot, (250, -100, 500)):
+            field.setValue(value)
+        for field, value in zip(panel.axis, (-1, 0, 0)):
+            field.setValue(value)
+        panel.threads.setValue(1)
+        panel.run()
+        assert panel.job is not None, panel.status.text()
+        state["phase"] = "transformed"
+    elif phase == "transformed":
+        panel = state["panel"]
+        if panel.job is not None:
+            return
+        assert panel.result["run_id"] != state["captured"]["run_id"], (
+            panel.status.text()
+        )
+        assert panel.result["manifest"]["threads"] == 1
+        assert panel.result["time_s"] == state["captured"]["time_s"]
+        error = max(
+            abs(a - b)
+            for old, new in zip(
+                state["captured"]["position_m"], panel.result["position_m"]
+            )
+            for a, b in zip(new, (-old[1] + 0.25, old[0] - 0.1, old[2] + 0.5))
+        )
+        assert error < 1e-8, error
+        report["transformed_position_error_m"] = error
+        q = ((0, -1, 0), (1, 0, 0), (0, 0, 1))
+        rotation_error = max(
+            abs(
+                new[3 * i + j]
+                - sum(
+                    q[i][a] * old[3 * a + b] * q[j][b]
+                    for a in range(3)
+                    for b in range(3)
+                )
+            )
+            for old, new in zip(state["captured"]["rotation"], panel.result["rotation"])
+            for i in range(3)
+            for j in range(3)
+        )
+        assert rotation_error < 1e-8, rotation_error
+        report["transformed_rotation_error"] = rotation_error
+        report["checks"].append(
+            "translated pivot and rotated hinge preserve the baseline trajectory with one engine thread"
+        )
+        state["captured"] = panel.result
+        invalid = root / "invalid-engine"
+        invalid.write_text("#!/a/nonexistent/interpreter\n")
+        invalid.chmod(0o755)
+        panel.interpreter.setText(str(invalid))
+        panel.run()
+        state["phase"] = "failed_start"
+    elif phase == "failed_start":
+        panel = state["panel"]
+        if host._active_job is not None:
+            return
+        assert panel.result["run_id"] == state["captured"]["run_id"]
+        assert "Calculating" not in panel.status.text()
+        report["checks"].append(
+            "failed process start releases admission and preserves previous capture"
+        )
+        panel.interpreter.setText(os.environ["VINKULUM_FREECAD_BARRIER_PYTHON"])
+        panel.run()
+        assert panel.job is not None, panel.status.text()
+        state["phase"] = "cancel"
+    elif phase == "cancel":
+        panel = state["panel"]
+        if not (root / "barrier-entered").exists():
+            return
+        assert panel.job is not None, panel.status.text()
+        if panel.job.process.state() == QtCore.QProcess.ProcessState.Starting:
+            return
+        assert panel.job.process.state() == QtCore.QProcess.ProcessState.Running, repr(
+            panel.job.process.state()
+        )
+        other = host.MotionPanel(state["source"])
+        other.run()
+        assert other.job is None
+        assert host._active_job is panel.job
+        assert "already active" in other.status.text()
+        other.dispose()
+        report["checks"].append(
+            "a second task cannot overtake the application-wide running job"
+        )
+        state["cancelled_job"] = panel.job
+        panel.cancel()
+        state["phase"] = "cancelled"
+    elif phase == "cancelled":
+        panel = state["panel"]
+        if host._active_job is not None:
+            return
+        assert panel.result["run_id"] == state["captured"]["run_id"]
+        assert "cancelled" in panel.status.text()
+        assert not (state["cancelled_job"].directory / "result/playback.json").exists()
+        report["checks"].append(
+            "real-process cancellation releases admission and preserves previous capture"
+        )
+        (root / "barrier-entered").unlink()
+        panel.run()
+        assert panel.job is not None, panel.status.text()
+        state["phase"] = "close_document"
+    elif phase == "close_document":
+        if not (root / "barrier-entered").exists():
+            return
+        panel = state["panel"]
+        App.closeDocument(panel.document_name)
+        assert panel.closed
+        state["phase"] = "document_closed"
+    elif phase == "document_closed":
+        if host._active_job is not None:
+            return
+        assert not App.listDocuments()
+        report["checks"].append(
+            "closing the source document cancels and settles its worker"
+        )
+        finish()
+
+
+timer = QtCore.QTimer(Gui.getMainWindow())
+timer.setInterval(100)
+timer.timeout.connect(advance)
+QtCore.QTimer.singleShot(1800, timer.start)

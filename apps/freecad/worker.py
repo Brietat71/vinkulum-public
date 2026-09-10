@@ -34,7 +34,10 @@ def solve(directory):
         raise ValueError("Captured STEP changed")
     output = directory / "result"
     output.mkdir(exist_ok=False)
-    plan = ExecutionPlan(2, 2)
+    threads = request.get("threads", 2)
+    if type(threads) is not int or not 1 <= threads <= 64:
+        raise ValueError("Invalid engine thread allocation")
+    plan = ExecutionPlan(threads, threads)
     cad_runtime = configure_occt_threads(plan.threads)
     body = Body.from_dict(
         execute(
@@ -104,6 +107,6 @@ def solve(directory):
 if __name__ == "__main__":
     try:
         solve(Path(sys.argv[1]).resolve())
-    except Exception as error:
+    except Exception as error:  # noqa: BLE001 - report native errors at the process/UI boundary
         print(f"{type(error).__name__}: {error}", file=sys.stderr)
         raise SystemExit(1)

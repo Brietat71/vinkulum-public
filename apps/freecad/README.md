@@ -1,17 +1,81 @@
-# FreeCAD → Vinkulum → FreeCAD: integration experiment
+# Vinkulum for FreeCAD 0.1.0a1
 
-This prototype tests using FreeCAD's existing parametric modelling interface
-with Vinkulum's mechanics engine in a separate process. It edits a PartDesign
-pad, captures its solid and physical properties, runs an explicit revolute
-mechanism, and displays the returned native poses on a separate copy in FreeCAD.
-The parametric source is unchanged by playback.
+FreeCAD is Vinkulum's primary desktop interface. The extension adds a **Vinkulum
+menu and native task panel** while keeping the current FreeCAD workbench. It
+captures a selected solid, runs the existing mechanics backend in a separate
+process and displays native poses on a temporary copy. Development of Studio's
+custom GUI is paused.
 
-The [retained qualification](../../docs/bancs/freecad-bridge-2026/README.md)
-contains four real desktop runs, editable `.FCStd` sources, STEP captures,
-reopenable Vinkulum projects, native trajectory archives, screenshots and an
-independent physical-pendulum reference. It is an executable feasibility
-experiment; an installable workbench and a dedicated application remain possible
-next interfaces for the same transport.
+The first domain is one top-level rigid solid with one explicit revolute joint,
+starting from rest under gravity -Z. Pivot coordinates, axis, density, duration,
+time step and engine threads are explicit. Assembly conversion, multi-body host
+models, FreeCAD FEM controls and other platforms remain future work.
+
+![Actual FreeCAD Linux extension](../../docs/bancs/freecad-extension-010/freecad-extension.png)
+
+## Install
+
+Use **FreeCAD 1.1.3 with Qt 6 on Linux** and the extension ZIP from the
+[public releases](https://github.com/Brietat71/vinkulum-public/releases).
+Close FreeCAD and extract the `Vinkulum` folder into its user `Mod` directory.
+The qualified Linux runtime uses `~/.local/share/FreeCAD/Mod`, or
+`$XDG_DATA_HOME/FreeCAD/Mod` when configured. Restart FreeCAD.
+`Vinkulum/Init.py` and `Vinkulum/InitGui.py` must be directly inside that folder.
+
+Prepare a separate Python environment with **Vinkulum 0.20, the Studio backend
+package and OCCT 8 CAD dependencies** using the [backend installation guide](../../docs/STUDIO_CAD.md).
+Choose that environment's Python in the task panel. The `vinkulum_studio` package
+currently supplies the headless CAD and mechanical adapters; the extension never
+opens its GUI. Do not install its native libraries inside FreeCAD's interpreter.
+The qualified FreeCAD host uses OCCT 7.8.1 and Python 3.11; the engine uses
+OCCT 8.0.1 and Python 3.14. Geometry and checked SI properties cross the process
+boundary.
+
+**Vinkulum → Open pendulum example** opens the included PartDesign model.
+Select its Rod body and open **Vinkulum → Motion analysis**. Configure the engine
+Python and the directory for saved calculations, then **Run motion**. The
+slider and **Play captured motion** use actual native samples without
+interpolating a new physical trajectory. The original design placement stays
+unchanged. See [complete installation and controls](INSTALLATION.txt).
+
+One job can run at a time in this FreeCAD process. Cancel and source-document
+close retire its worker. A failed start releases admission. Newer geometry
+invalidates old-motion playback. Saving the native `.FCStd` file stops playback,
+removes the temporary copy and restores the original visibility before writing.
+The `.FCStd` design and calculation folders remain separate files. A saved
+calculation can reopen without the engine when the selected source still
+matches its captured geometry.
+
+## Package and qualify
+
+Build a ZIP from reviewed, committed source:
+
+```sh
+python3 apps/freecad/package.py /tmp/Vinkulum-FreeCAD-0.1.0a1.zip --require-clean
+```
+
+The ZIP contains original extension code, the editable pendulum example,
+installation instructions and a source/hash manifest. It contains no FreeCAD,
+Python runtime or solver executable. Updating these Python extension files
+requires restarting FreeCAD, not rebuilding FreeCAD or the native kernel.
+
+[qualify_extension.FCMacro](qualify_extension.FCMacro) tests the actual installed
+extension in a fresh FreeCAD process with isolated user directories. The
+[retained extension record](../../docs/bancs/freecad-extension-010/README.md)
+contains the exact runtime, commands, outputs, screenshot and limits. It exercises
+real calculation, capture reopening without an engine, save-time preview removal,
+source changes, frame transport and process lifecycle. The two existing
+[external-worker regressions](../studio/tests/test_freecad_bridge.py) continue
+to check the independent pendulum reference and rejection of corrupted mass.
+
+## Retained transport prototype
+
+The [earlier four-run record](../../docs/bancs/freecad-bridge-2026/README.md)
+contains actual FreeCAD captures and an independent finite-section pendulum
+reference. Those retained scripts and observations describe the original
+world-origin/world-Y prototype. The extension builds on that boundary and adds
+native controls and lifecycle handling; it does not turn the limited reference
+into a general trajectory guarantee.
 
 ## Process and geometry contract
 
@@ -56,10 +120,11 @@ It does not write the motion into the original pad or its design placement.
 Replacing the input file also invalidates admission, even if a result carries
 the hash of that replacement: identity is checked against the original capture.
 
-The QProcess has a 60-second timeout and bounded diagnostic capture. This
-experiment exercises one job at a time in a dedicated FreeCAD process. A
-production host still needs application-wide CPU admission, ordinary workbench
-controls and complete close/cancel lifecycle qualification.
+The QProcess has a 60-second timeout and bounded diagnostic capture. The
+retained transport experiment exercised one job in a dedicated FreeCAD process.
+The extension now adds application-wide single-job admission and native
+close/cancel controls. Multi-body host scheduling and complete production
+lifecycle coverage remain outside the retained prototype's qualification.
 
 ## Reproduce
 
