@@ -1,4 +1,6 @@
-# Vinkulum for FreeCAD 0.1.0a2
+# Vinkulum for FreeCAD
+
+Published extension: **0.1.0a2**. Development source: **0.1.0a3.dev2**.
 
 FreeCAD is Vinkulum's primary desktop interface. The extension adds a **Vinkulum
 menu and native task panel** while keeping the current FreeCAD workbench. It
@@ -13,7 +15,7 @@ records the original native crash and the corrected installed extension.
 The published 0.1.0a2 release covers one top-level rigid solid with one explicit revolute joint,
 starting from rest under gravity -Z. Pivot coordinates, axis, density, duration,
 time step and engine threads are explicit. The development Assembly workflow
-is described below; general constraints, FreeCAD FEM controls and other
+and native linear-static task are described below. General constraints and other
 platforms remain outside the host qualification.
 
 ![Actual FreeCAD Linux extension](../../docs/bancs/freecad-extension-010/freecad-extension.png)
@@ -229,3 +231,9 @@ FreeCAD runtime remains available from its upstream project with its own licence
 A [source-only FreeCAD → CalculiX experiment](../../docs/FREECAD_STATIC_EXPERIMENT.md)
 checks captured boundary faces and imports native FEM results. It is a qualification
 prototype, not an additional command in the published extension.
+
+## Development: native linear static task
+
+The [static analysis task](../../docs/FREECAD_STATIC_TASK.md) adds native face
+selection, fixed supports, pressure, persistent inputs and asynchronous CalculiX
+results. This development workflow is not in the published 0.1.0a2 release ZIP.

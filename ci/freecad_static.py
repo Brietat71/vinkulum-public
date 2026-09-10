@@ -6,6 +6,7 @@ import json
 import os
 import signal
 import subprocess
+import zipfile
 from pathlib import Path
 
 
@@ -20,6 +21,22 @@ def qualify(args):
         "apps/freecad/qualify_static.FCMacro",
         "apps/freecad/bridge.py",
     ]
+    if args.recipe == "static-task":
+        sources += [
+            "apps/freecad/qualify_static_task.FCMacro",
+            "apps/freecad/static_host.py",
+            "apps/freecad/static_job.py",
+            "apps/freecad/static_guard.py",
+            "apps/freecad/static_analysis.py",
+            "apps/freecad/host.py",
+            "apps/freecad/package.py",
+        ]
+        payload = output / "Vinkulum-FreeCAD.zip"
+        subprocess.run(
+            ["python3", str(root / "apps/freecad/package.py"), str(payload)], check=True
+        )
+        with zipfile.ZipFile(payload) as archive:
+            archive.extractall(output / "data/FreeCAD/Mod")
     provenance = {
         "source_commit": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=root, text=True
@@ -60,7 +77,11 @@ def qualify(args):
     )
     command = [
         str(args.freecad.absolute()),
-        str(root / "apps/freecad/qualify_static.FCMacro"),
+        str(
+            root
+            / "apps/freecad"
+            / ("qualify_" + args.recipe.replace("-", "_") + ".FCMacro")
+        ),
     ]
     if not environment.get("DISPLAY"):
         command = ["xvfb-run", "-a", "-s", "-screen 0 1600x1100x24", *command]
@@ -75,7 +96,8 @@ def qualify(args):
         try:
             code = process.wait(timeout=270)
         finally:
-            # This dedicated process group also owns worker/mesher/solver children.
+            # Kill the dedicated host group. Static-job guardians detect its death
+            # and kill their separately owned worker/mesher/solver groups.
             try:
                 os.killpg(process.pid, signal.SIGKILL)
             except ProcessLookupError:
@@ -83,6 +105,12 @@ def qualify(args):
             process.wait(timeout=5)
     if code:
         raise RuntimeError(f"FreeCAD exited with {code}; inspect {output}")
+    if "Traceback (most recent call last)" in (output / "console.log").read_text(
+        errors="replace"
+    ):
+        raise RuntimeError(
+            f"Native Python callback failed; inspect {output / 'console.log'}"
+        )
     report = json.loads((output / "static-check.json").read_text())
     if report["status"] != "passed":
         raise RuntimeError(report)
@@ -93,4 +121,5 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     for option in ("freecad", "engine-python", "gmsh", "ccx", "output"):
         parser.add_argument("--" + option, type=Path, required=True)
+    parser.add_argument("--recipe", choices=("static", "static-task"), default="static")
     qualify(parser.parse_args())
