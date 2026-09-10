@@ -68,8 +68,8 @@ class MeshRequest:
             raise ValueError("Mesh size must be between 0.001 and 1,000,000 mm.")
         if type(self.order) is not int or self.order not in (1, 2):
             raise ValueError("Tetrahedron order must be 1 or 2.")
-        if type(self.threads) is not int or not 1 <= self.threads <= 8:
-            raise ValueError("The mesher requires 1–8 threads.")
+        if type(self.threads) is not int or self.threads < 1:
+            raise ValueError("The mesher requires a positive integer thread count.")
 
     @property
     def element_type(self):
@@ -77,6 +77,10 @@ class MeshRequest:
 
     @classmethod
     def from_dict(cls, data):
+        if isinstance(data, dict) and "algorithm" in data:
+            values = _fields(data, HxtMeshRequest)
+            values["body"] = Body.from_dict(values["body"])
+            return HxtMeshRequest(**values)
         data = _fields(data, cls)
         data["body"] = Body.from_dict(data["body"])
         return cls(**data)
@@ -109,6 +113,29 @@ Mesh.MshFileVersion = 2.2;
 Mesh.Binary = 0;
 Mesh.SaveAll = 0;
 """
+
+
+@dataclass(frozen=True)
+class HxtMeshRequest(MeshRequest):
+    """Parallel 3D Delaunay request; legacy requests retain their exact payload."""
+
+    algorithm: str = "hxt"
+
+    def __post_init__(self):
+        super().__post_init__()
+        if self.algorithm != "hxt":
+            raise ValueError("Unsupported parallel meshing algorithm.")
+
+    def geo_script(self):
+        return (
+            super()
+            .geo_script()
+            .replace(
+                "Mesh.Algorithm3D = 1;",
+                f"Mesh.Algorithm3D = 10;\nMesh.MaxNumThreads1D = {self.threads};\n"
+                f"Mesh.MaxNumThreads2D = {self.threads};\nMesh.MaxNumThreads3D = {self.threads};",
+            )
+        )
 
 
 @dataclass(frozen=True)
@@ -357,11 +384,17 @@ def identify_mesher(executable):
     return path, sha256(path.read_bytes())
 
 
-def parse_info(text):
+def parse_info(text, request=None):
     version = re.search(r"^Version\s*:\s*(\S+)", text, re.MULTILINE)
     occ = re.search(r"^OCC version\s*:\s*(\S+)", text, re.MULTILINE)
     if not version or not occ or int(occ[1].split(".")[0]) < 8:
         raise ValueError("Gmsh must report an OCCT 8 or newer geometry kernel (-info).")
+    if isinstance(request, HxtMeshRequest):
+        options = re.search(r"^Build options\s*:\s*(.+)$", text, re.MULTILINE)
+        if not options or not {"hxt", "openmp"} <= set(options[1].lower().split()):
+            raise ValueError(
+                "Parallel HXT meshing requires a Gmsh build with Hxt and OpenMP."
+            )
     return version[1], occ[1]
 
 
@@ -376,7 +409,7 @@ class PreparedMesh:
 
 
 def prepare_mesh(request, directory, executable, executable_sha256, info):
-    gmsh, occ = parse_info(info)
+    gmsh, occ = parse_info(info, request)
     root = Path(directory).resolve()
     root.mkdir(parents=True, exist_ok=False)
     write_json(root / "input.json", asdict(request))
@@ -426,9 +459,9 @@ def finish_mesh(run, returncode, *, publish=True, cancellation=None):
     return result
 
 
-def save_mesh_result(run, result):
+def save_mesh_result(run, result, *, filename="result.json"):
     write_json(
-        run.root / "result.json",
+        run.root / filename,
         {"format": "vinkulum-solid-mesh", "schema": 1, "result": asdict(result)},
     )
 
@@ -462,7 +495,7 @@ def load_mesh(directory):
         != json.loads(json.dumps(asdict(result.request)))
     ):
         raise ValueError("Captured CAD/meshing inputs are inconsistent.")
-    if parse_info(read_bounded(root / "engine-info.txt").decode()) != (
+    if parse_info(read_bounded(root / "engine-info.txt").decode(), result.request) != (
         result.gmsh_version,
         result.occ_version,
     ):
@@ -477,19 +510,38 @@ def run_mesh(request, directory, *, executable="gmsh", timeout=120):
     if not finite_number(timeout) or not 0 < timeout <= 600:
         raise ValueError("Meshing timeout must be between 0 and 600 seconds.")
     engine, identity = identify_mesher(executable)
+    from .engine_threads import process_environment
+
+    environment = process_environment(request.threads, engine="gmsh")
     probe = subprocess.run(
-        [str(engine), "-info"], capture_output=True, text=True, timeout=10, check=True
+        [str(engine), "-info"],
+        capture_output=True,
+        text=True,
+        timeout=10,
+        check=True,
+        env=environment,
     )
     run = prepare_mesh(
         request, directory, engine, identity, probe.stdout + probe.stderr
     )
     with (run.root / "mesher.log").open("wb") as log:
         process = subprocess.run(
-            [str(engine), "mesh.geo", "-3", "-format", "msh2", "-o", "mesh.msh"],
+            [
+                str(engine),
+                "-nt",
+                str(request.threads),
+                "mesh.geo",
+                "-3",
+                "-format",
+                "msh2",
+                "-o",
+                "mesh.msh",
+            ],
             cwd=run.root,
             stdout=log,
             stderr=subprocess.STDOUT,
             timeout=timeout,
             check=False,
+            env=environment,
         )
     return finish_mesh(run, process.returncode)

@@ -25,6 +25,7 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QPushButton,
     QScrollArea,
+    QSpinBox,
     QToolButton,
     QTreeWidget,
     QTreeWidgetItem,
@@ -42,7 +43,7 @@ from .mesh_binding import (
     surface_integrals,
 )
 from .mesh_view import SURFACE_COLORS, MeshViewport
-from .meshing import MeshRequest, load_mesh
+from .meshing import HxtMeshRequest, MeshRequest, load_mesh
 from .meshing_controller import MeshingController
 from .model import finite_number, write_json
 from .theme import apply_theme
@@ -382,6 +383,16 @@ class MeshWindow(QMainWindow):
         browse.clicked.connect(self.choose_engine)
         engine_row.addWidget(browse)
         advanced.addRow("Gmsh · OCCT 8 minimum", engine_row)
+        self.algorithm = QComboBox()
+        self.algorithm.addItem("HXT · parallel 3D", "hxt")
+        self.algorithm.addItem("Delaunay · legacy 3D", "delaunay")
+        self.algorithm.setAccessibleName("Volume meshing algorithm")
+        self.threads = QSpinBox()
+        self.threads.setRange(1, self.controller.scheduler.capacity)
+        self.threads.setValue(min(4, self.controller.scheduler.capacity))
+        self.threads.setAccessibleName("Meshing CPU threads")
+        advanced.addRow("3D algorithm", self.algorithm)
+        advanced.addRow("CPU threads", self.threads)
         advanced.addRow("Timeout [s]", self.timeout)
         advanced.addRow("Mesh capture directory", self.output)
         execution.hide()
@@ -619,8 +630,14 @@ class MeshWindow(QMainWindow):
         ):
             return
         try:
-            request = MeshRequest(
-                self.source, self.size.value(), self.order.currentData()
+            request_type = (
+                HxtMeshRequest if self.algorithm.currentData() == "hxt" else MeshRequest
+            )
+            request = request_type(
+                self.source,
+                self.size.value(),
+                self.order.currentData(),
+                self.threads.value(),
             )
             directory = Path(self.output.text()).expanduser() / str(uuid.uuid4())
             self.controller.start(
@@ -680,6 +697,14 @@ class MeshWindow(QMainWindow):
         )
         self.size.setText(repr(solid.request.size_mm))
         self.order.setCurrentIndex(self.order.findData(solid.request.order))
+        self.algorithm.setCurrentIndex(
+            self.algorithm.findData(
+                "hxt" if isinstance(solid.request, HxtMeshRequest) else "delaunay"
+            )
+        )
+        self.threads.setValue(
+            min(solid.request.threads, self.controller.scheduler.capacity)
+        )
         self.viewport.set_solid(solid, frames=frames)
         self._areas = areas
         self.faces.blockSignals(True)

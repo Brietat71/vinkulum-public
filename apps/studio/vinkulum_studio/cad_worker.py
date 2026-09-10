@@ -3,6 +3,7 @@
 import hashlib
 import sys
 import time
+from dataclasses import asdict
 from pathlib import Path
 
 from .document import MAX_PROJECT_BYTES
@@ -14,13 +15,19 @@ def main():
         raise SystemExit("Usage: cad_worker request.json response.json")
     try:
         start = time.perf_counter()
+        from .engine_threads import configure_occt_threads
+        from .execution import ExecutionPlan
+
+        request = read_json(sys.argv[1], MAX_PROJECT_BYTES)
+        plan = ExecutionPlan.from_dict(request["execution"])
+        runtime = configure_occt_threads(plan.threads)
         from .cad import execute
 
         imported = time.perf_counter()
-        request = read_json(sys.argv[1], MAX_PROJECT_BYTES)
         request_sha256 = hashlib.sha256(Path(sys.argv[1]).read_bytes()).hexdigest()
         loaded = time.perf_counter()
         result = execute(request)
+        result["execution"] = {"allocation": asdict(plan), **runtime}
         result["request_sha256"] = request_sha256
         result["timings_ms"] = {
             "import": 1000 * (imported - start),

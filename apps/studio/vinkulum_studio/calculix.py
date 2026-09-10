@@ -8,7 +8,6 @@ Node IDs are one-based; constrained axes are 1=X, 2=Y, 3=Z in the world frame.
 import hashlib
 import json
 import math
-import os
 import re
 import shutil
 import subprocess
@@ -418,12 +417,18 @@ class PreparedRun:
     engine_hash: str
     version: str
     deck: str
+    execution: object = None
 
 
-def prepare_run(study, directory, engine, engine_hash, version):
+def prepare_run(study, directory, engine, engine_hash, version, execution=None):
     """Capture inputs once, shared by synchronous CLI and direct Qt supervision."""
     if not isinstance(study, StaticStudy):
         raise TypeError("A validated StaticStudy is required.")
+    from .execution import ExecutionPlan
+
+    execution = execution if execution is not None else ExecutionPlan(1, 1)
+    if not isinstance(execution, ExecutionPlan):
+        raise TypeError("A captured CPU allocation is required.")
     deck = study.input_deck()
     root = Path(directory).resolve()
     root.mkdir(parents=True, exist_ok=False)
@@ -432,7 +437,11 @@ def prepare_run(study, directory, engine, engine_hash, version):
         root / "study.json",
         study_document(study),
     )
-    return PreparedRun(study, root, engine, engine_hash, version, deck)
+    write_json(
+        root / "execution.json",
+        {"threads": execution.threads, "budget": execution.budget},
+    )
+    return PreparedRun(study, root, engine, engine_hash, version, deck, execution)
 
 
 def _read_bounded(path, limit=MAX_OUTPUT_BYTES):
@@ -443,7 +452,7 @@ def _read_bounded(path, limit=MAX_OUTPUT_BYTES):
     return raw
 
 
-def _result_contract(study=None, *, transported=False):
+def _result_contract(study=None, *, transported=False, execution=None):
     contract = {
         "format": "vinkulum-calculix-static",
         "schema": 1,
@@ -483,6 +492,13 @@ def _result_contract(study=None, *, transported=False):
             )
             if study.mesh_binding is not None:
                 contract["mesh_binding_sha256"] = study.mesh_binding.sha256
+    if execution is not None:
+        contract.update(
+            schema=4,
+            adapter_version="0.4.0",
+            requested_threads=execution["allocation"]["threads"],
+            execution=execution,
+        )
     return contract
 
 
@@ -491,7 +507,7 @@ def _successful_log(raw, returncode=0):
     return returncode == 0 and "Job finished" in text and "*ERROR" not in text.upper()
 
 
-def finish_run(run, returncode):
+def finish_run(run, returncode, *, publish=True):
     """Validate raw files and publish a result only after successful completion."""
     study, root, engine = run.study, run.root, run.engine
     if _read_bounded(root / "study.inp", 4 * 1024 * 1024) != run.deck.encode("ascii"):
@@ -499,22 +515,30 @@ def finish_run(run, returncode):
     if load_study(root / "study.json") != study:
         raise ValueError("Captured study changed during the calculation.")
     log_path, dat_path = root / "solver.log", root / "study.dat"
-    if not _successful_log(_read_bounded(log_path), returncode):
+    log = _read_bounded(log_path)
+    if not _successful_log(log, returncode):
         raise RuntimeError(f"CalculiX did not complete; inspect {log_path}.")
     # Hash and parse the same captured bytes, even if a file changes afterwards.
     raw = _read_bounded(dat_path)
     values = parse_dat(raw.decode("ascii"), study.solver_study)
     if hashlib.sha256(engine.read_bytes()).hexdigest() != run.engine_hash:
         raise RuntimeError("CalculiX executable changed during the calculation.")
+    from .engine_threads import calculix_threads
+    from .execution import ExecutionPlan
+
+    if ExecutionPlan.from_dict(read_json(root / "execution.json")) != run.execution:
+        raise ValueError("Captured CalculiX CPU allocation changed during execution.")
+    execution = calculix_threads(log.decode("utf-8", errors="replace"), run.execution)
     report = {
-        **_result_contract(study, transported=True),
+        **_result_contract(study, transported=True, execution=execution),
         "engine_version": run.version,
         "engine_sha256": run.engine_hash,
         "input_sha256": hashlib.sha256(run.deck.encode("ascii")).hexdigest(),
         "dat_sha256": hashlib.sha256(raw).hexdigest(),
         **values,
     }
-    write_json(root / "result.json", report)
+    if publish:
+        write_json(root / "result.json", report)
     return report
 
 
@@ -532,16 +556,27 @@ def load_static_result(directory):
     if (
         not isinstance(report, dict)
         or type(report.get("schema")) is not int
-        or report["schema"] not in (1, 2, 3)
+        or report["schema"] not in (1, 2, 3, 4)
     ):
         raise ValueError("Unsupported CalculiX result schema.")
     if report["schema"] == 1 and study.element_type != "C3D8":
         raise ValueError("Legacy CalculiX results require C3D8.")
     if report["schema"] < 3 and study.mesh_binding is not None:
         raise ValueError("Captured CAD mesh provenance and result schema disagree.")
-    transported = report["schema"] == 3
+    transported = report["schema"] >= 3
+    execution = None
+    if report["schema"] == 4:
+        from .engine_threads import calculix_threads
+        from .execution import ExecutionPlan
+
+        plan = ExecutionPlan.from_dict(read_json(root / "execution.json"))
+        execution = calculix_threads(
+            _read_bounded(root / "solver.log").decode("utf-8", errors="replace"), plan
+        )
     contract = _result_contract(
-        study if report["schema"] >= 2 else None, transported=transported
+        study if report["schema"] >= 2 else None,
+        transported=transported,
+        execution=execution,
     )
     value_keys = {
         "displacements",
@@ -557,7 +592,9 @@ def load_static_result(directory):
     ) | value_keys | hash_keys | {"engine_version"}:
         raise ValueError("Unsupported or incomplete CalculiX result document.")
     for key, expected in contract.items():
-        if type(report[key]) is not type(expected) or report[key] != expected:
+        if type(report[key]) is not type(expected) or json.dumps(
+            report[key], sort_keys=True
+        ) != json.dumps(expected, sort_keys=True):
             raise ValueError(f"Unsupported CalculiX result contract: {key}.")
     if (
         not isinstance(report["engine_version"], str)
@@ -601,18 +638,33 @@ def load_static_result(directory):
     return study, report, root
 
 
-def run_static(study, directory, *, executable="ccx", timeout=60):
+def run_static(study, directory, *, executable="ccx", timeout=60, threads=1):
     """Run in a new directory. Keep the input, raw output and diagnostics on failure."""
     if not isinstance(study, StaticStudy):
         raise TypeError("A validated StaticStudy is required.")
     if not finite(timeout) or not 0 < timeout <= 300:
         raise ValueError("Timeout must be between 0 and 300 seconds.")
+    from .engine_threads import process_environment
+    from .execution import ExecutionPlan
+
+    plan = ExecutionPlan(threads, threads)
+    environment = process_environment(threads, engine="calculix")
     engine, engine_hash = identify_engine(executable)
     version_run = subprocess.run(
-        [str(engine), "-v"], capture_output=True, text=True, timeout=10, check=False
+        [str(engine), "-v"],
+        capture_output=True,
+        text=True,
+        timeout=10,
+        check=False,
+        env=environment,
     )
     run = prepare_run(
-        study, directory, engine, engine_hash, parse_version(version_run.stdout)
+        study,
+        directory,
+        engine,
+        engine_hash,
+        parse_version(version_run.stdout),
+        execution=plan,
     )
     with (run.root / "solver.log").open("wb") as log:
         result = subprocess.run(
@@ -622,12 +674,7 @@ def run_static(study, directory, *, executable="ccx", timeout=60):
             stderr=subprocess.STDOUT,
             timeout=timeout,
             check=False,
-            env={
-                **os.environ,
-                "OMP_NUM_THREADS": "1",
-                "CCX_NPROC_RESULTS": "1",
-                "CCX_NPROC_EQUATION_SOLVER": "1",
-            },
+            env=environment,
         )
     return finish_run(run, result.returncode)
 
@@ -642,6 +689,9 @@ def main():
     )
     parser.add_argument("--ccx", default="ccx", help="Installed CalculiX executable")
     parser.add_argument(
+        "--threads", type=int, default=1, help="Native CalculiX CPU allocation"
+    )
+    parser.add_argument(
         "--timeout",
         type=float,
         default=60,
@@ -654,6 +704,7 @@ def main():
             args.output,
             executable=args.ccx,
             timeout=args.timeout,
+            threads=args.threads,
         )
     except (
         ValueError,

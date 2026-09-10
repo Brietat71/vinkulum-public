@@ -138,6 +138,7 @@ class CadHistoryDialog(QDialog):
             "Edit an input feature, then preview the regenerated solid."
         )
         self.status.setWordWrap(True)
+        self.controller.stage_changed.connect(self.status.setText)
         layout.addWidget(self.status)
         buttons = QHBoxLayout()
         self.preview_button = QPushButton("Preview")

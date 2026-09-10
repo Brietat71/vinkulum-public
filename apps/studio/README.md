@@ -1,11 +1,17 @@
-# Vinkulum Studio 0.6.0a2.dev3 — CAD and mechanism analysis
+# Vinkulum Studio 0.6.0a2.dev4 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.20.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
 
-Source **0.6.0a2.dev3** adds explicit native CPU allocation. Choose
+Source **0.6.0a2.dev4** shares CPU admission between native dynamics, OCCT CAD,
+Gmsh, CalculiX and Pinocchio. Meshing offers parallel HXT; CalculiX captures its
+thread allocation in reopenable archives. Statics and articulated operator
+checks run off the GUI thread. See [engine execution](../../docs/ENGINE_CPU_ADMISSION.md)
+for supported paths, CPU controls and measurement limits.
+
+Version **0.6.0a2.dev3** introduced explicit native CPU allocation. Choose
 **Run → Native dynamics CPU threads…** before a calculation. Native calculations
 across windows share an application CPU budget and wait when resources are busy;
 queued work can be cancelled. Worker results record the actual Rust pool size,

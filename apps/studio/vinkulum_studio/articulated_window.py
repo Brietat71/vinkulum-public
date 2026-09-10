@@ -8,7 +8,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 import numpy as np
-from PySide6.QtCore import QAbstractTableModel, QSettings, Qt, Signal
+from PySide6.QtCore import QAbstractTableModel, QSettings, Qt, QTimer, Signal
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import (
     QComboBox,
@@ -96,6 +96,7 @@ class ArticulatedWindow(QMainWindow):
         self.result = None
         self.links = ()
         self._loading = False
+        self._close_pending = False
         self._saved = None
         self.controller = PinocchioController(self)
         self._build()
@@ -552,8 +553,12 @@ class ArticulatedWindow(QMainWindow):
         self.capture_action.setEnabled(not busy and self.capture is not None)
         self.cancel_button.setEnabled(busy)
         self._pending()
+        if not busy and self._close_pending:
+            QTimer.singleShot(0, self.close)
 
     def _completed(self, result):
+        if self._close_pending:
+            return
         self.result = result
         self.settings.setValue("pinocchio/interpreter", self.interpreter.text())
         self.settings.setValue("pinocchio/output", self.output.text())
@@ -727,7 +732,12 @@ class ArticulatedWindow(QMainWindow):
                 self.status.setText(str(error))
 
     def closeEvent(self, event):
-        if not self._discard_allowed():
+        if not self._close_pending and not self._discard_allowed():
+            event.ignore()
+            return
+        if self.controller.process is not None:
+            self._close_pending = True
+            self.controller.cancel("Window closed. Pinocchio analysis stopped.")
             event.ignore()
             return
         self.controller.shutdown()

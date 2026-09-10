@@ -1,0 +1,93 @@
+{
+  "wheel": "vinkulum_studio-0.6.0a2.dev4-py3-none-any.whl",
+  "wheel_sha256": "774a4e8c4473654fcc9c269923561cc3452d024b4f338694dca57ffafa9d1e83",
+  "module_count": 57,
+  "differences": [],
+  "launch_check": {
+    "status": "passed",
+    "platform": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "frozen": false,
+    "cad": {
+      "occt_version": "8.0.1.0",
+      "build123d_version": "0.11.1+vinkulum.occt8",
+      "volume_m3": 0.00011371681469282041,
+      "mass_kg": 0.8869911546039992,
+      "triangles": 352,
+      "step_round_trip": true
+    },
+    "cad_execution": {
+      "allocation": {
+        "threads": 1,
+        "budget": 1
+      },
+      "backend": "occt-native",
+      "threads": 1,
+      "default_threads": 1
+    },
+    "calculix": {
+      "status": "not_requested"
+    },
+    "samples": 21,
+    "image_check": {
+      "nonblack_probes": 100,
+      "total_probes": 100
+    },
+    "manifest": {
+      "app_version": "0.6.0a2.dev4",
+      "kernel_version": "0.20.0",
+      "kernel_sha256": "efac1081707b3f61f6d0b90a6cc6277937b9241fb603d6996ac21ed1638167cf",
+      "python": "3.14.7",
+      "platform": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+      "machine": "x86_64",
+      "completed_utc": "2026-09-10T11:07:30.834284+00:00",
+      "method": "generalized-alpha / SO(3)",
+      "rho_infinity": 0.9,
+      "threads": 2,
+      "execution": {
+        "threads": 2,
+        "budget": 2,
+        "backend": "rayon",
+        "pool_id": 1,
+        "worker_available_cpus": 64
+      },
+      "units": {
+        "time": "s",
+        "position": "m",
+        "rotation": "1",
+        "velocity": "m/s",
+        "angular_velocity": "rad/s"
+      },
+      "frame": "world; row-major body-to-world rotation matrices",
+      "initial_velocities": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "initial_angular_velocities": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "joint_angles": "principal angles [-pi,pi]; no turn-count inference",
+      "scientific_status": "NotAssessed",
+      "sampling": "native steps plus initialized state",
+      "limitations": "No trajectory error bound or checkpoint; rigid mechanisms only."
+    },
+    "opengl": "server glx vendor string:  SGI\nserver glx version string:  1.4\nserver glx extensions:  GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_multisample GLX_EXT_create_context_es_profile GLX_EXT_create_context_es2_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_get_drawable_type GLX_EXT_libglvnd GLX_EXT_no_config_context GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_OML_swap_method GLX_SGI_make_current_read GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group \nclient glx vendor string:  Mesa Project and SGI\nclient glx version string:  1.4\nglx extensions:  GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read \nOpenGL vendor string:  Mesa\nOpenGL renderer string:  llvmpipe (LLVM 20.1.2, 256 bits)\nOpenGL version string:  4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.2\nOpenGL extensions:  \n  GL_3DFX_texture_compression_FXT1\n  GL_AMD_conservative_depth\n  GL_AMD_draw_buffers_blend\n  GL_AMD_gpu_shader_int64\n  GL_AMD_multi_draw_indirect\n  GL_AMD_pinned_memory\n  GL_AMD_query_buffer_object\n  GL_AMD_seamless_cubemap_per_texture\n  GL_AMD_shader_stencil_export\n  GL_AMD_shader_trinary_minmax\n  GL_AMD_texture_texture4\n  GL_AMD_vertex_shader_layer\n  GL_AMD_vertex_shader_viewport_index\n  GL_ANGLE_texture_compression_dxt3\n  GL_ANGLE_texture_compression_dxt5\n  GL_ARB_ES2_compatibility\n  GL_ARB_ES3_1_compatibility\n  GL_ARB_ES3_2_compatibility\n  GL_ARB_ES3_compatibility\n  GL_ARB_arrays_of_arrays\n  GL_ARB_base_instance\n  GL_ARB_blend_func_extended\n  GL_ARB_buffer_storage\n  GL_ARB_clear_buffer_object\n  GL_ARB_clear_texture\n  GL_ARB_clip_control\n  GL_ARB_compressed_texture_pixel_storage\n  GL_ARB_compute_shader\n  GL_ARB_conditional_render_inverted\n  GL_ARB_conservative_depth\n  GL_ARB_copy_buffer\n  GL_ARB_copy_image\n  GL_ARB_cull_distance\n  GL_ARB_debug_output\n  GL_ARB_depth_buffer_float\n  GL_ARB_depth_clamp\n  GL_ARB_derivative_control\n  GL_ARB_direct_state_access\n  GL_ARB_draw_buffers\n  GL_ARB_draw_buffers_blend\n  GL_ARB_draw_elements_base_vertex\n  GL_ARB_draw_indirect\n  GL_ARB_draw_instanced\n  GL_ARB_enhanced_layouts\n  GL_ARB_explicit_attrib_location\n  GL_ARB_explicit_uniform_location\n  GL_ARB_fragment_coord_conventions\n  GL_ARB_fragment_layer_viewport\n  GL_ARB_fragment_shader\n  GL_ARB_framebuffer_no_attachments\n  GL_ARB_framebuffer_object\n  GL_ARB_framebuffer_sRGB\n  GL_ARB_get_program_binary\n  GL_ARB_get_texture_sub_image\n  GL_ARB_gl_spirv\n  GL_ARB_gpu_shader5\n  GL_ARB_gpu_shader_fp64\n  GL_ARB_gpu_shader_int64\n  GL_ARB_half_float_pixel\n  GL_ARB_half_float_vertex\n  GL_ARB_indirect_parameters\n  GL_ARB_instanced_arrays\n  GL_ARB_internalformat_query\n  GL_ARB_internalformat_query2\n  GL_ARB_invalidate_subdata\n  GL_ARB_map_buffer_alignment\n  GL_ARB_map_buffer_range\n  GL_ARB_multi_bind\n  GL_ARB_multi_draw_indirect\n  GL_ARB_occlusion_query2\n  GL_ARB_parallel_shader_compile\n  GL_ARB_pipeline_statistics_query\n  GL_ARB_pixel_buffer_object\n  GL_ARB_point_sprite\n  GL_ARB_polygon_offset_clamp\n  GL_ARB_post_depth_coverage\n  GL_ARB_program_interface_query\n  GL_ARB_provoking_vertex\n  GL_ARB_query_buffer_object\n  GL_ARB_robust_buffer_access_behavior\n  GL_ARB_robustness\n  GL_ARB_sample_shading\n  GL_ARB_sampler_objects\n  GL_ARB_seamless_cube_map\n  GL_ARB_seamless_cubemap_per_texture\n  GL_ARB_separate_shader_objects\n  GL_ARB_shader_atomic_counter_ops\n  GL_ARB_shader_atomic_counters\n  GL_ARB_shader_ballot\n  GL_ARB_shader_bit_encoding\n  GL_ARB_shader_clock\n  GL_ARB_shader_draw_parameters\n  GL_ARB_shader_group_vote\n  GL_ARB_shader_image_load_store\n  GL_ARB_shader_image_size\n  GL_ARB_shader_objects\n  GL_ARB_shader_precision\n  GL_ARB_shader_stencil_export\n  GL_ARB_shader_storage_buffer_object\n  GL_ARB_shader_subroutine\n  GL_ARB_shader_texture_image_samples\n  GL_ARB_shader_texture_lod\n  GL_ARB_shader_viewport_layer_array\n  GL_ARB_shading_language_420pack\n  GL_ARB_shading_language_include\n  GL_ARB_shading_language_packing\n  GL_ARB_spirv_extensions\n  GL_ARB_stencil_texturing\n  GL_ARB_sync\n  GL_ARB_tessellation_shader\n  GL_ARB_texture_barrier\n  GL_ARB_texture_border_clamp\n  GL_ARB_texture_buffer_object\n  GL_ARB_texture_buffer_object_rgb32\n  GL_ARB_texture_buffer_range\n  GL_ARB_texture_compression_bptc\n  GL_ARB_texture_compression_rgtc\n  GL_ARB_texture_cube_map_array\n  GL_ARB_texture_filter_anisotropic\n  GL_ARB_texture_filter_minmax\n  GL_ARB_texture_float\n  GL_ARB_texture_gather\n  GL_ARB_texture_mirror_clamp_to_edge\n  GL_ARB_texture_multisample\n  GL_ARB_texture_non_power_of_two\n  GL_ARB_texture_query_levels\n  GL_ARB_texture_query_lod\n  GL_ARB_texture_rectangle\n  GL_ARB_texture_rg\n  GL_ARB_texture_rgb10_a2ui\n  GL_ARB_texture_stencil8\n  GL_ARB_texture_storage\n  GL_ARB_texture_storage_multisample\n  GL_ARB_texture_swizzle\n  GL_ARB_texture_view\n  GL_ARB_timer_query\n  GL_ARB_transform_feedback2\n  GL_ARB_transform_feedback3\n  GL_ARB_transform_feedback_instanced\n  GL_ARB_transform_feedback_overflow_query\n  GL_ARB_uniform_buffer_object\n  GL_ARB_vertex_array_bgra\n  GL_ARB_vertex_array_object\n  GL_ARB_vertex_attrib_64bit\n  GL_ARB_vertex_attrib_binding\n  GL_ARB_vertex_buffer_object\n  GL_ARB_vertex_shader\n  GL_ARB_vertex_type_10f_11f_11f_rev\n  GL_ARB_vertex_type_2_10_10_10_rev\n  GL_ARB_viewport_array\n  GL_ARM_shader_framebuffer_fetch_depth_stencil\n  GL_ATI_blend_equation_separate\n  GL_ATI_meminfo\n  GL_ATI_texture_float\n  GL_ATI_texture_mirror_once\n  GL_EXT_EGL_image_storage\n  GL_EXT_EGL_image_storage_compression\n  GL_EXT_EGL_sync\n  GL_EXT_abgr\n  GL_EXT_blend_equation_separate\n  GL_EXT_debug_label\n  GL_EXT_draw_buffers2\n  GL_EXT_draw_instanced\n  GL_EXT_framebuffer_blit\n  GL_EXT_framebuffer_multisample\n  GL_EXT_framebuffer_multisample_blit_scaled\n  GL_EXT_framebuffer_object\n  GL_EXT_framebuffer_sRGB\n  GL_EXT_memory_object\n  GL_EXT_memory_object_fd\n  GL_EXT_packed_depth_stencil\n  GL_EXT_packed_float\n  GL_EXT_pixel_buffer_object\n  GL_EXT_polygon_offset_clamp\n  GL_EXT_provoking_vertex\n  GL_EXT_shader_clock\n  GL_EXT_shader_framebuffer_fetch\n  GL_EXT_shader_framebuffer_fetch_non_coherent\n  GL_EXT_shader_image_load_formatted\n  GL_EXT_shader_integer_mix\n  GL_EXT_texture_array\n  GL_EXT_texture_compression_dxt1\n  GL_EXT_texture_compression_rgtc\n  GL_EXT_texture_compression_s3tc\n  GL_EXT_texture_filter_anisotropic\n  GL_EXT_texture_filter_minmax\n  GL_EXT_texture_integer\n  GL_EXT_texture_mirror_clamp\n  GL_EXT_texture_sRGB\n  GL_EXT_texture_sRGB_R8\n  GL_EXT_texture_sRGB_RG8\n  GL_EXT_texture_sRGB_decode\n  GL_EXT_texture_shadow_lod\n  GL_EXT_texture_shared_exponent\n  GL_EXT_texture_snorm\n  GL_EXT_texture_storage\n  GL_EXT_texture_swizzle\n  GL_EXT_timer_query\n  GL_EXT_transform_feedback\n  GL_EXT_vertex_array_bgra\n  GL_EXT_vertex_attrib_64bit\n  GL_IBM_multimode_draw_arrays\n  GL_INTEL_shader_atomic_float_minmax\n  GL_KHR_blend_equation_advanced\n  GL_KHR_blend_equation_advanced_coherent\n  GL_KHR_context_flush_control\n  GL_KHR_debug\n  GL_KHR_no_error\n  GL_KHR_parallel_shader_compile\n  GL_KHR_robust_buffer_access_behavior\n  GL_KHR_robustness\n  GL_KHR_texture_compression_astc_ldr\n  GL_KHR_texture_compression_astc_sliced_3d\n  GL_MESA_framebuffer_flip_y\n  GL_MESA_pack_invert\n  GL_MESA_shader_integer_functions\n  GL_MESA_texture_signed_rgba\n  GL_NVX_gpu_memory_info\n  GL_NV_alpha_to_coverage_dither_control\n  GL_NV_conditional_render\n  GL_NV_copy_image\n  GL_NV_depth_clamp\n  GL_NV_packed_depth_stencil\n  GL_NV_shader_atomic_float\n  GL_NV_texture_barrier\n  GL_OES_EGL_image\n  GL_OVR_multiview\n  GL_OVR_multiview2\n  GL_S3_s3tc\nX Extensions:  Generic Event Extension, SHAPE, MIT-SHM, XInputExtension, XTEST, BIG-REQUESTS, SYNC, XKEYBOARD, XC-MISC, SECURITY, XFIXES, RENDER, RANDR, XINERAMA, Composite, DAMAGE, MIT-SCREEN-SAVER, DOUBLE-BUFFER, RECORD, Present, X-Resource, XVideo, GLX\n"
+  }
+}

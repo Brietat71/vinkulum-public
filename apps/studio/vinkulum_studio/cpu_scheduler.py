@@ -1,6 +1,6 @@
-"""Qt-thread CPU admission for native dynamics workers across Studio windows.
+"""Qt-thread CPU admission shared by native and external Studio engines.
 
-Tokens bound admitted compute workers, not all OS threads or external engines.
+Tokens bound admitted compute allocations, not every operating-system thread.
 Dispatch is deferred so signal handlers can cancel a job before its process starts.
 """
 

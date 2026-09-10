@@ -1,6 +1,8 @@
 """Physical load invariants and the retained three-mesh bending experiment."""
 
 import runpy
+import shutil
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -12,6 +14,17 @@ RECIPE = runpy.run_path(ROOT / "ci/studio_c3d8_refinement.py")
 
 
 class CantileverRefinement(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("ccx"), "Requires actual CalculiX")
+    def test_new_cpu_aware_archives_reopen_after_all_three_live_solves(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "refinement"
+            report = RECIPE["run"](root, "ccx")
+            with patch(
+                "subprocess.run",
+                side_effect=AssertionError("No solver during verification"),
+            ):
+                self.assertEqual(RECIPE["verify"](root), report)
+
     def test_uniform_end_traction_and_clamp_are_preserved_under_refinement(self):
         for cells in RECIPE["MESHES"]:
             with self.subTest(cells=cells):

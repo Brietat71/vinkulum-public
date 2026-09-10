@@ -1,5 +1,10 @@
 # Native multithreading
 
+Studio `0.6.0a2.dev4` extends this foundation with
+[shared engine CPU admission](ENGINE_CPU_ADMISSION.md). The native kernel API
+and the measurements below remain those of 0.20.0; the engine status table
+below records the preceding dev3 increment.
+
 **Source: kernel 0.20.0 / Studio 0.6.0a2.dev3.** Native parallel execution is an
 architecture requirement. The implementation below is the first explicit
 resource-management increment. The downloadable Studio 0.6.0a1 still contains
