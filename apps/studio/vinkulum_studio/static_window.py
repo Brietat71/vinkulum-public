@@ -200,12 +200,12 @@ class StaticWindow(QMainWindow):
         self.folder_button.setEnabled(False)
         self.folder_button.clicked.connect(self._open_folder)
         layout.addWidget(self.folder_button)
-        limits = QLabel(
+        self.limits = QLabel(
             "Linear isotropic elasticity · C3D4 / C3D10 / affine C3D8\nZero supports · nodal loads\nMesh import is independent of the CAD document."
         )
-        limits.setWordWrap(True)
-        limits.setObjectName("muted")
-        layout.addWidget(limits)
+        self.limits.setWordWrap(True)
+        self.limits.setObjectName("muted")
+        layout.addWidget(self.limits)
         layout.addStretch(1)
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
@@ -322,6 +322,14 @@ class StaticWindow(QMainWindow):
         self._loading = True
         self.study = study
         self.title.setText(name)
+        self.limits.setText(
+            "Linear isotropic elasticity · C3D4 / C3D10 / affine C3D8\nZero supports · nodal loads\n"
+            + (
+                "Captured CAD mesh and face conditions included."
+                if study.mesh_binding is not None
+                else "Mesh import is independent of the CAD document."
+            )
+        )
         self.mesh_info.setText(
             f"{len(study.nodes):,} nodes · {len(study.elements):,} {study.element_type} elements\n{len(study.fixed_dofs)} constrained DOFs · {len(study.forces)} loaded nodes"
         )

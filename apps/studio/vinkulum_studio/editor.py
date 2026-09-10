@@ -106,6 +106,7 @@ class EditorWindow(Workspace, QMainWindow):
         self._saved = self.history.current
         self._rendered_settings = None
         self._static_window = None
+        self._mesh_window = None
         self._articulated_window = None
         self.timer = QTimer(self)
         self.timer.setInterval(33)
@@ -155,6 +156,30 @@ class EditorWindow(Workspace, QMainWindow):
         self._articulated_window.show()
         self._articulated_window.raise_()
         self._articulated_window.activateWindow()
+
+    def open_cad_study(self):
+        from .mesh_window import MeshWindow
+
+        def capture():
+            if not self.apply_properties():
+                return None
+            body = self.object()
+            if not isinstance(body, Body) or body.cad is None:
+                raise ValueError("Select one CAD solid to create a static study.")
+            return body
+
+        try:
+            if self._mesh_window is None:
+                body = capture()
+                if body is None:
+                    return
+                self._mesh_window = MeshWindow(body, self, capture=capture, settings=self.settings)
+                self._mesh_window.closed.connect(lambda: setattr(self, "_mesh_window", None))
+            self._mesh_window.show()
+            self._mesh_window.raise_()
+            self._mesh_window.activateWindow()
+        except (ValueError, TypeError, RuntimeError) as error:
+            self._problem(str(error))
 
     def open_cad(self):
         if self.mode.currentIndex() != 0 or self.controller.process is not None:
@@ -1042,6 +1067,9 @@ class EditorWindow(Workspace, QMainWindow):
             event.ignore()
             return
         if self._static_window is not None and not self._static_window.close():
+            event.ignore()
+            return
+        if self._mesh_window is not None and not self._mesh_window.close():
             event.ignore()
             return
         if (

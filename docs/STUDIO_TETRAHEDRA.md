@@ -3,8 +3,8 @@
 **Studio 0.6.0.dev3 source; experimental.** The statics workspace now reads,
 calculates, displays and reopens studies using C3D4 or C3D10 tetrahedra, including
 curved quadratic geometry. Affine C3D8 studies remain supported. This extends
-the element contract needed for CAD meshing; it does not yet generate a volume
-mesh from the selected CAD body. The public **Studio 0.5.0 Linux binary** predates
+the element contract now used by the [0.6.0.dev4 CAD meshing workspace](STUDIO_CAD_MESHING.md).
+The public **Studio 0.5.0 Linux binary** predates
 this extension.
 
 The [installed-package qualification](bancs/studio-tetrahedra-060/README.md)
@@ -68,7 +68,8 @@ The local checker follows the Bernstein bounding principle described by
 Bernstein basis functions are nonnegative and sum to one on the reference
 simplex, so their coefficients bound the polynomial. Subdivision can tighten
 an inconclusive bound. Vinkulum's implementation uses exact integer arithmetic
-for the dyadic coordinates actually passed to the solver.
+for binary64 geometry. The [0.6.0.dev4 numeric transport](CALCULIX_NUMERIC_TRANSPORT.md)
+repeats admission on coordinates actually encoded in the solver input deck.
 
 The implementation constructs its cubic coefficients without a floating-point
 interpolation solve. Write the affine matrix as `J(λ) = Σ λi Ji`, where each
@@ -110,13 +111,13 @@ boundary integral, independent of the implementation's shape-gradient and
 volume-quadrature routines. Force, moment and work/energy balance checks remain
 active on real CalculiX output.
 
-New studies use schema 2 with an explicit `element_type`; captured results use
-schema 2 / adapter 0.2.0 and identify their integration-point count. Legacy
+The 0.6.0.dev3 studies use schema 2 with an explicit `element_type`; its captured
+results use schema 2 / adapter 0.2.0 and identify their integration-point count. Legacy
 schema-1 C3D8 studies and result folders remain readable. A tetrahedral study
 cannot be downgraded to schema 1. Results remain **NotAssessed**.
 
-Mixed-family meshes, warped C3D8 geometry, automatic CAD meshing, interactive
-support/traction selection, nonlinear materials, contact and discretisation
-error bounds remain separate work. In particular, the local Gmsh 4.12.1 binary
-reports OCC 7.6.3; it has not been adopted as the CAD meshing service under the
-project's OCCT 8 minimum requirement.
+Source version 0.6.0.dev4 uses result schema 3 for explicit numeric transport and
+study schema 3 for CAD mesh/face provenance. Mixed-family meshes, warped C3D8
+geometry, nonlinear materials, contact and discretisation-error bounds remain
+separate work. The CAD meshing service requires Gmsh built with OCCT 8 or newer;
+the local Gmsh 4.12.1 / OCC 7.6.3 binary is refused.
