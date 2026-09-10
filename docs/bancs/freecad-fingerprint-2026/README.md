@@ -36,8 +36,8 @@ zero and their native consoles contain no Python traceback.
 `record.zip` retains both exact installed ZIPs, producer hashes and executed
 sources, raw timing samples, BREP plates, FCStd inputs/results, STEP captures and
 mesh/solver evidence. Every packaged file has identical bytes across the two runs;
-ZIP container metadata need not be identical. Producer source hashes match the
-checkout. Verify `sha256sum -c SHA256SUMS` before extracting. Provenance deliberately
+ZIP container metadata need not be identical. Producer source hashes matched the
+checkout when recorded. Verify `sha256sum -c SHA256SUMS` before extracting. Provenance deliberately
 records an uncommitted candidate based on bf414f8b6b464605dccb058f84ceab278bd302227,
 not an official extension release.
 
@@ -83,3 +83,21 @@ Three supervision tests pass, covering real worker/grandchild termination, worke
 exit-code propagation and injected disappearance errors with a permission-error
 countercheck. The failed log and final test source/log are retained under `guardian/`.
 Both native qualifications were rerun after this test correction.
+
+## Composition with the standard FEM adapter
+
+After merging main 8485065, the shared runner preserves `static`, `static-task`
+and `static-fingerprint`. `--native-inputs` is accepted only for `static`; both
+incompatible combinations are refused before creating the output directory.
+
+All three actual FreeCAD recipes pass on the composition: four cost/equivalence
+cases, seventeen native task checks and two standard FEM input cases. All three
+processes exit zero without Python tracebacks. `integration-record.zip` retains
+all three runs and their exact producer sources/hashes. The two installed ZIPs
+have identical file contents; every extension file except its provenance manifest
+also matches the earlier qualified dev5 package. The runtime fingerprint change
+and the reopening limitation above are unchanged by this integration.
+
+The composition provenance records the uncommitted merge based on
+68eb5805ded2e72426a83723240336701cf961ca. No new official release is published by
+this record. The CLI merge resolution adds no new physics or acceptance tolerance.

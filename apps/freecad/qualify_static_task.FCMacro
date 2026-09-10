@@ -7,6 +7,7 @@ Dedicated empty FreeCAD process only; creates/closes documents and exits.
 import json
 import os
 import sys
+import time
 import traceback
 from pathlib import Path
 
@@ -190,6 +191,9 @@ def start():
 
 
 def launch_after_display():
+    if state["done"]:
+        return
+    deadline = state.setdefault("close_display_deadline", time.monotonic() + 5)
     panel = state["panel"]
     doc = panel.document
     assert Gui.Control.activeDialog(), "Native task closed unexpectedly"
@@ -232,6 +236,14 @@ def launch_after_display():
     close_buttons = [
         button for button in close_buttons if button and button.isVisible()
     ]
+    if not close_buttons and time.monotonic() < deadline:
+        state["close_display_retries"] = state.get("close_display_retries", 0) + 1
+        QtCore.QTimer.singleShot(100, launch_after_display)
+        return
+    report["close_display_retries"] = state.get("close_display_retries", 0)
+    if not close_buttons:
+        window = Gui.getMainWindow()
+        window.screen().grabWindow(window.winId()).save(str(root / "hidden-close.png"))
     assert len(close_buttons) == 1, [
         (b.text(), b.isVisible())
         for b in Gui.getMainWindow().findChildren(QtWidgets.QPushButton)

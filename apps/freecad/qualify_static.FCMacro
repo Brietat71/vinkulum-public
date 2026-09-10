@@ -19,6 +19,10 @@ root = Path(os.environ["VINKULUM_STATIC_CHECK"])
 sys.path.insert(0, str(source_root / "apps/freecad"))
 import bridge
 import static_bridge
+import native_static
+import ObjectsFem
+
+native_inputs = os.environ.get("VINKULUM_STATIC_NATIVE_INPUTS") == "1"
 
 report = {"status": "running", "cases": []}
 state = {"index": 0, "process": None, "done": False}
@@ -82,28 +86,51 @@ def start_case():
         assert (source.Shape.Faces[ref].CenterOfMass - target).Length < 1e-7
         refs.append(ref + 1)
     directory = root / f"case-{index}"
-    request = static_bridge.capture(
-        source,
-        directory,
-        [
-            {
-                "name": "Fixed end",
-                "kind": "support",
-                "faces": [refs[0]],
-                "axes": [1, 2, 3],
-            },
-            {
-                "name": "Axial traction",
-                "kind": "pressure",
-                "faces": [refs[1]],
-                "values": [-pressure],
-            },
-        ],
-        young_pa=young,
-        poisson=0.0,
-        mesh_size_mm=10,
-        threads=2,
-    )
+    if native_inputs:
+        analysis = ObjectsFem.makeAnalysis(document)
+        fixed = ObjectsFem.makeConstraintFixed(document)
+        fixed.References = [(source, (f"Face{refs[0]}",))]
+        load = ObjectsFem.makeConstraintPressure(document)
+        load.References = [(source, (f"Face{refs[1]}",))]
+        load.Pressure = "2 MPa"
+        load.Reversed = True
+        material = ObjectsFem.makeMaterialSolid(document)
+        material.Material = {
+            "Name": "Reference",
+            "YoungsModulus": "210 GPa",
+            "PoissonRatio": "0",
+            "Density": "7800 kg/m^3",
+        }
+        for obj in (fixed, load, material):
+            analysis.addObject(obj)
+        document.recompute()
+        request = native_static.capture(
+            analysis, source, directory, mesh_size_mm=10, threads=2
+        )
+        state.update(analysis=analysis, load=load, material=material)
+    else:
+        request = static_bridge.capture(
+            source,
+            directory,
+            [
+                {
+                    "name": "Fixed end",
+                    "kind": "support",
+                    "faces": [refs[0]],
+                    "axes": [1, 2, 3],
+                },
+                {
+                    "name": "Axial traction",
+                    "kind": "pressure",
+                    "faces": [refs[1]],
+                    "values": [-pressure],
+                },
+            ],
+            young_pa=young,
+            poisson=0.0,
+            mesh_size_mm=10,
+            threads=2,
+        )
     document.saveAs(str(directory / "source.FCStd"))
     process = QtCore.QProcess(Gui.getMainWindow())
     environment = QtCore.QProcessEnvironment.systemEnvironment()
@@ -148,9 +175,14 @@ def completed(code, status):
         state["directory"] / "worker.log"
     ).read_text()[-8000:]
     source, document, transform = state["source"], state["document"], state["transform"]
-    result, data = static_bridge.import_result(
-        source, state["directory"], state["request"]
-    )
+    if native_inputs:
+        result, data = native_static.import_result(
+            state["analysis"], source, state["directory"], state["request"]
+        )
+    else:
+        result, data = static_bridge.import_result(
+            source, state["directory"], state["request"]
+        )
     state["data"] = data
     inverse = transform.inverse()
     error = 0.0
@@ -209,6 +241,59 @@ def completed(code, status):
     assert len(document.Objects) == before
     source.Placement = placement
     case["changed_source_refused_before_document_mutation"] = True
+    if native_inputs:
+        probes = []
+        load, material = state["load"], state["material"]
+        original_material = dict(material.Material)
+
+        def refuse(change, restore, name):
+            change()
+            try:
+                native_static.import_result(
+                    state["analysis"], source, state["directory"], state["request"]
+                )
+            except ValueError:
+                pass
+            else:
+                raise AssertionError("Changed native input accepted: " + name)
+            finally:
+                restore()
+            assert len(document.Objects) == before
+            probes.append(name)
+
+        refuse(
+            lambda: setattr(load, "Pressure", "3 MPa"),
+            lambda: setattr(load, "Pressure", "2 MPa"),
+            "pressure magnitude",
+        )
+        refuse(
+            lambda: setattr(load, "Reversed", False),
+            lambda: setattr(load, "Reversed", True),
+            "pressure direction",
+        )
+        refuse(
+            lambda: setattr(
+                material, "Material", {**original_material, "YoungsModulus": "200 GPa"}
+            ),
+            lambda: setattr(material, "Material", original_material),
+            "material modulus",
+        )
+        original_references = load.References
+        refuse(
+            lambda: setattr(load, "References", [(source, ("Edge1",))]),
+            lambda: setattr(load, "References", original_references),
+            "edge reference",
+        )
+        refuse(
+            lambda: setattr(load, "EnableAmplitude", True),
+            lambda: setattr(load, "EnableAmplitude", False),
+            "time-dependent amplitude",
+        )
+        assert (
+            native_static.read_inputs(state["analysis"], source)
+            == state["request"]["native_fem_inputs"]
+        )
+        case["native_inputs_refused_before_document_mutation"] = probes
     if state["index"] == 0:
         QtCore.QTimer.singleShot(200, screenshot_and_continue)
     else:
@@ -238,6 +323,14 @@ def next_case():
     for value, reference in zip(result.DisplacementVectors, expected):
         assert (value - App.Vector(*(v * 1000 for v in reference))).Length < 1e-12
     report["cases"][-1]["native_fem_result_saved_and_reopened"] = True
+    if native_inputs:
+        assert (
+            native_static.read_inputs(
+                restored.getObject("Analysis"), restored.getObject("Bar")
+            )
+            == state["request"]["native_fem_inputs"]
+        )
+        report["cases"][-1]["native_inputs_saved_and_reopened"] = True
     App.closeDocument(restored.Name)
     state["index"] += 1
     QtCore.QTimer.singleShot(50, start_case)
