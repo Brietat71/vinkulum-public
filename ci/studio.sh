@@ -18,9 +18,9 @@ case "$(uname -s)" in
     ;;
   Darwin)
     export QT_QPA_PLATFORM=cocoa
-    # The test interpreter is not an app bundle; do not ask LaunchServices to
-    # transform the CI shell process into a foreground application.
-    export QT_MAC_DISABLE_FOREGROUND_APPLICATION_TRANSFORM=1
+    # Keyboard shortcuts require a foreground Cocoa application. Disabling
+    # Qt's normal activation policy leaves a plain interpreter without focus.
+    unset QT_MAC_DISABLE_FOREGROUND_APPLICATION_TRANSFORM
     "$PY" -X faulthandler "$VINKULUM_SOURCE_ROOT/ci/studio_test_runner.py" discover -s "$VINKULUM_SOURCE_ROOT/apps/studio/tests" -v
     ;;
   *) echo "Plateforme Studio non qualifiée." >&2; exit 1 ;;
