@@ -1,0 +1,139 @@
+"""Installed static fingerprint equivalence and local CAD cost measurement.
+
+SPDX-License-Identifier: Apache-2.0
+Dedicated empty FreeCAD process only. No solver is launched.
+"""
+
+import json
+import os
+import statistics
+import time
+import traceback
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+import Part
+from PySide6 import QtCore
+from vinkulum_freecad import bridge
+from vinkulum_freecad import static_analysis as model
+
+root = Path(os.environ["VINKULUM_STATIC_CHECK"])
+report = {"status": "running", "cases": []}
+
+
+def previous_signature(obj):
+    # Frozen dev4 expression: one outer geometry serialization, one in inputs().
+    return bridge.sha(
+        json.dumps(
+            {"geometry": bridge.signature(obj.Source), "inputs": model.inputs(obj)},
+            sort_keys=True,
+            allow_nan=False,
+        ).encode()
+    )
+
+
+def count_calls(function, analysis):
+    original, calls = bridge.signature, []
+
+    def measured(source):
+        calls.append(source.Name)
+        return original(source)
+
+    bridge.signature = measured
+    try:
+        function(analysis)
+        return len(calls)
+    finally:
+        bridge.signature = original
+
+
+def run():
+    try:
+        for side in (0, 4, 8, 16):
+            document = App.newDocument("FingerprintCost")
+            source = document.addObject("PartDesign::Feature", "Plate")
+            shape = Part.makeBox(180, 180, 10)
+            if side:
+                cutters = Part.makeCompound(
+                    [
+                        Part.makeCylinder(2, 10, App.Vector(5 + 10 * x, 5 + 10 * y, 0))
+                        for x in range(side)
+                        for y in range(side)
+                    ]
+                )
+                shape = shape.cut(cutters)
+            assert shape.isValid() and len(shape.Solids) == 1
+            source.Shape = shape
+            document.recompute()
+            analysis = model.create(source)
+            left = min(
+                range(len(shape.Faces)), key=lambda i: shape.Faces[i].CenterOfMass.x
+            )
+            right = max(
+                range(len(shape.Faces)), key=lambda i: shape.Faces[i].CenterOfMass.x
+            )
+            model.add_boundary(analysis, [f"Face{left + 1}"], "Fixed")
+            model.add_boundary(analysis, [f"Face{right + 1}"], "Pressure", -2e6)
+            old_count = count_calls(previous_signature, analysis)
+            new_count = count_calls(model.signature, analysis)
+            assert old_count == 2 and new_count == 1
+            expected = previous_signature(analysis)
+            assert model.signature(analysis) == expected
+            timings = {"previous": [], "current": []}
+            for repeat in range(9):
+                order = (("previous", previous_signature), ("current", model.signature))
+                for name, function in order if repeat % 2 == 0 else reversed(order):
+                    start = time.perf_counter()
+                    value = function(analysis)
+                    timings[name].append(time.perf_counter() - start)
+                    assert value == expected
+            analysis.YoungPa = 200e9
+            assert model.signature(analysis) == previous_signature(analysis) != expected
+            analysis.YoungPa = 210e9
+            analysis.Boundaries[1].PressurePa = -3e6
+            assert model.signature(analysis) == previous_signature(analysis) != expected
+            analysis.Boundaries[1].PressurePa = -2e6
+            placement = App.Placement(source.Placement)
+            source.Placement.Base.x += 1
+            for function in (previous_signature, model.signature):
+                try:
+                    function(analysis)
+                except ValueError as error:
+                    assert "Geometry changed" in str(error)
+                else:
+                    raise AssertionError(
+                        "Changed geometry accepted with old boundaries"
+                    )
+            source.Placement = placement
+            assert model.signature(analysis) == expected
+            shape.exportBrep(str(root / f"plate-{side * side}.brep"))
+            report["cases"].append(
+                {
+                    "holes": side * side,
+                    "faces": len(shape.Faces),
+                    "brep_bytes": len(shape.exportBrepToString()),
+                    "previous_serializations": old_count,
+                    "current_serializations": new_count,
+                    "equivalent_hashes": True,
+                    "material_and_pressure_changes_detected": True,
+                    "changed_geometry_refused_by_both": True,
+                    "timings_s": timings,
+                    "median_s": {
+                        name: statistics.median(values)
+                        for name, values in timings.items()
+                    },
+                }
+            )
+            App.closeDocument(document.Name)
+        report["status"] = "passed"
+    except Exception:  # noqa: BLE001 - preserve native qualification failures
+        report.update(status="failed", error=traceback.format_exc())
+    finally:
+        (root / "static-check.json").write_text(json.dumps(report, indent=2) + "\n")
+        for name in list(App.listDocuments()):
+            App.closeDocument(name)
+        QtCore.QTimer.singleShot(50, Gui.getMainWindow().close)
+
+
+QtCore.QTimer.singleShot(2000, run)
