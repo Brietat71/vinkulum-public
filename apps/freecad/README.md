@@ -28,7 +28,7 @@ The qualified Linux runtime uses `~/.local/share/FreeCAD/Mod`, or
 `Vinkulum/Init.py` and `Vinkulum/InitGui.py` must be directly inside that folder.
 
 Prepare a separate Python environment with **Vinkulum 0.20, the Studio backend
-package and OCCT 8 CAD dependencies** using the [backend installation guide](../../docs/STUDIO_CAD.md).
+package and OCCT 8 CAD dependencies** using the [dedicated Linux engine installer](../../docs/FREECAD_ENGINE.md).
 Choose that environment's Python in the task panel. The `vinkulum_studio` package
 currently supplies the headless CAD and mechanical adapters; the extension never
 opens its GUI. Do not install its native libraries inside FreeCAD's interpreter.
