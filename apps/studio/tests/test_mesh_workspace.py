@@ -236,7 +236,13 @@ class MeshWorkspace(unittest.TestCase):
         v.camera("iso")
         before = camera.GetPosition(), camera.GetFocalPoint(), camera.GetParallelScale()
         w._set_conditions((condition("total_force", (2,), values=(3e300, 4e300, 0.0)),))
-        v.fit_scene()
+        self.assertEqual(
+            before,
+            (camera.GetPosition(), camera.GetFocalPoint(), camera.GetParallelScale()),
+        )
+        # Compare fits from the same canonical direction. Repeated ResetCamera
+        # normalisation alone can move a component by one ULP on ARM64.
+        v.camera("iso")
         self.assertEqual(
             before,
             (camera.GetPosition(), camera.GetFocalPoint(), camera.GetParallelScale()),

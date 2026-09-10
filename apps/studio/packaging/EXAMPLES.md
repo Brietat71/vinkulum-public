@@ -1,6 +1,6 @@
 # Try Studio in five minutes
 
-The files in this folder travel with the Linux application. Work on a copy if
+The files in this folder travel with the application. Work on a copy if
 you want to preserve the original examples. The projects and captures are also
 available at https://github.com/Brietat71/vinkulum-public.
 

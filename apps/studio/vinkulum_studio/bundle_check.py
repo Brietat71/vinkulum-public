@@ -161,6 +161,8 @@ def main(directory, *, app=None, window=None):
             examples = (
                 Path(sys.executable).parent / "Examples"
                 if getattr(sys, "frozen", False) and sys.platform == "linux"
+                else Path(sys.executable).parents[1] / "Resources/Examples"
+                if getattr(sys, "frozen", False) and sys.platform == "darwin"
                 else Path(os.environ["VINKULUM_BUNDLE_EXAMPLES"])
                 if os.environ.get("VINKULUM_BUNDLE_EXAMPLES")
                 else None

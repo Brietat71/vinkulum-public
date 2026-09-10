@@ -1,10 +1,12 @@
-Vinkulum Studio 0.5.0 — Apple Silicon, macOS 14 or later
+Vinkulum Studio — Apple Silicon, macOS 14 or later
 
 Drag Vinkulum Studio into Applications, then launch it. Python, the native
-kernel, Qt and VTK are bundled; no local compilation is needed. This is
+kernel, Qt/VTK, OCCT 8 and adapted build123d are bundled; no local compilation is needed. This is
 experimental software; the complete mechanics kernel is not certified.
 Consult the accompanying macOS qualification report for the actual build.
-Linux qualification does not establish macOS compatibility.
+The release title and build-info.json identify the exact version and source.
+Copy Examples from the DMG to a writable folder; read Examples/README.md.
+Gmsh, CalculiX and Pinocchio remain external; saved captures open without them.
 
 The build uses ad-hoc signing, without a Developer ID certificate or Apple
 notarisation. macOS may refuse automatic opening and require explicit approval
