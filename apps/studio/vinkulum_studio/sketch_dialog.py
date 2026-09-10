@@ -129,7 +129,7 @@ class SketchDialog(QDialog):
         self.summary = QLabel()
         self.summary.setWordWrap(True)
         controls.addWidget(self.summary)
-        self.canvas = SketchCanvas()
+        self.canvas = SketchCanvas(edit_guard=self._flush)
         self.canvas.picked.connect(self._picked)
         self.canvas.add_point.connect(self.append_point)
         self.canvas.moved.connect(

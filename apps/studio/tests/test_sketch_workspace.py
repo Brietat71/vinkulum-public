@@ -8,7 +8,7 @@ from unittest.mock import patch
 from PySide6.QtCore import Qt
 from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication
-from vinkulum_studio.sketch import solve
+from vinkulum_studio.sketch import profile, solve
 from vinkulum_studio.sketch_dialog import SketchDialog
 
 
@@ -157,6 +157,75 @@ class SketchWorkspace(unittest.TestCase):
         w.canvas.setFocus()
         QTest.keyClick(w.canvas, Qt.Key.Key_Z, Qt.KeyboardModifier.ControlModifier)
         self.assertEqual(w.profile, saved)
+
+    def drag(self, start, end):
+        canvas = self.window.canvas
+        start, end = canvas.screen(start).toPoint(), canvas.screen(end).toPoint()
+        QTest.mousePress(canvas, Qt.MouseButton.LeftButton, pos=start)
+        QTest.mouseMove(canvas, end, 30)
+        QTest.mouseRelease(canvas, Qt.MouseButton.LeftButton, pos=end)
+
+    def test_drag_preserves_invalid_name_then_commits_corrected_fields_first(self):
+        w = self.window
+        w.preset(profile(((0, 0), (60, 0), (60, 40), (0, 40))))
+        first = w.profile.points[0]
+        self.choose("point", first.id)
+        self.text(w.name_field, " ")
+        before, selection, index = w.profile, w.selection, w.undo.index()
+        self.drag((60, 40), (80, 50))
+        self.assertEqual(w.profile, before)
+        self.assertEqual(w.selection, selection)
+        self.assertEqual(w.name_field.text(), " ")
+        self.assertTrue(w._pending_fields)
+        self.assertEqual(w.undo.index(), index)
+        self.assertIsNone(w.canvas.preview)
+        self.assertIsNone(w.canvas._drag)
+        self.assertIn("names", w.status.text())
+
+        self.text(w.name_field, "Origin")
+        self.drag((60, 40), (80, 50))
+        self.assertEqual(w.profile.points[0], replace(first, name="Origin"))
+        self.assertEqual(w.profile.points[2].xy_mm, (80, 50))
+        self.assertEqual(w.undo.index(), index + 2)
+        w.undo.undo()  # Undo the gesture, retaining the preceding field edit.
+        self.assertEqual(w.profile.points[2], before.points[2])
+        self.assertEqual(w.profile.points[0].name, "Origin")
+        w.undo.undo()
+        self.assertEqual(w.profile, before)
+
+    def test_drag_preserves_invalid_dimension_until_fields_are_reverted(self):
+        w = self.window
+        w.preset(profile(((0, 0), (60, 0), (60, 40), (0, 40))))
+        self.choose("edge", w.profile.edges[0].id)
+        self.add("distance_x")
+        before, selection, index = w.profile, w.selection, w.undo.index()
+        self.text(w.value_fields[0], "nan")
+        self.drag((60, 40), (80, 50))
+        self.assertEqual(w.profile, before)
+        self.assertEqual(w.selection, selection)
+        self.assertEqual(w.value_fields[0].text(), "nan")
+        self.assertTrue(w._pending_fields)
+        self.assertEqual(w.undo.index(), index)
+        self.assertIn("decimal", w.status.text())
+        QTest.mouseClick(w.revert_button, Qt.MouseButton.LeftButton)
+        self.drag((60, 40), (80, 50))
+        self.assertEqual(w.profile.points[2].xy_mm, (80, 50))
+        self.assertEqual(w.profile.constraints, before.constraints)
+        self.assertEqual(w.undo.index(), index + 1)
+
+    def test_drag_of_current_point_also_respects_invalid_coordinate(self):
+        w = self.window
+        w.preset(profile(((0, 0), (60, 0), (60, 40), (0, 40))))
+        point = w.profile.points[2]
+        self.choose("point", point.id)
+        self.text(w.value_fields[0], "nan")
+        before, selection, index = w.profile, w.selection, w.undo.index()
+        self.drag(point.xy_mm, (80, 50))
+        self.assertEqual(w.profile, before)
+        self.assertEqual(w.selection, selection)
+        self.assertEqual(w.value_fields[0].text(), "nan")
+        self.assertTrue(w._pending_fields)
+        self.assertEqual(w.undo.index(), index)
 
     def test_deletion_requires_explicit_dependent_entities_and_cancel_keeps_input(self):
         w = self.window
