@@ -16,10 +16,10 @@ one now per fingerprint call.
 
 | Through-holes | BREP faces | Previous median | Current median |
 | ---: | ---: | ---: | ---: |
-| 0 | 6 | 0.460 ms | 0.288 ms |
-| 16 | 22 | 2.145 ms | 1.259 ms |
-| 64 | 70 | 7.109 ms | 4.084 ms |
-| 256 | 262 | 27.339 ms | 15.592 ms |
+| 0 | 6 | 0.466 ms | 0.292 ms |
+| 16 | 22 | 2.167 ms | 1.270 ms |
+| 64 | 70 | 7.130 ms | 4.117 ms |
+| 256 | 262 | 27.214 ms | 15.513 ms |
 
 These are local fingerprint timings, excluding geometry creation, rendering,
 meshing and solver execution. They are not a general GUI latency bound or a
@@ -38,7 +38,7 @@ sources, raw timing samples, BREP plates, FCStd inputs/results, STEP captures an
 mesh/solver evidence. Every packaged file has identical bytes across the two runs;
 ZIP container metadata need not be identical. Producer source hashes match the
 checkout. Verify `sha256sum -c SHA256SUMS` before extracting. Provenance deliberately
-records an uncommitted candidate based on 24ec62ba9eb55077a1f3a90a99d65615bc432aaf,
+records an uncommitted candidate based on bf414f8b6b464605dccb058f84ceab278bd302227,
 not an official extension release.
 
 Runtime: FreeCAD 1.1.3 / Qt 6 / Python 3.11 / host OCCT 7.8.1 on Linux x86-64;
@@ -70,3 +70,16 @@ This demonstrates a representation difference; it is not a complete canonicaliza
 or migration solution. Copying the shape changes location representation further.
 No comparison tolerance or geometry guard was weakened. Future stable hashing must
 be tested separately across old documents and all users of the shared CAD bridge.
+
+## Process-observation regression
+
+The initial mandatory pre-push run stopped because a process disappeared after
+its `/proc/<pid>/stat` file was opened: Linux returned ESRCH (`ProcessLookupError`)
+rather than ENOENT. The test observer now treats exactly those two disappearance
+errors as dead processes; other errors still propagate. The native cancellation
+fixture uses the same rule. The production guardian is unchanged.
+
+Three supervision tests pass, covering real worker/grandchild termination, worker
+exit-code propagation and injected disappearance errors with a permission-error
+countercheck. The failed log and final test source/log are retained under `guardian/`.
+Both native qualifications were rerun after this test correction.

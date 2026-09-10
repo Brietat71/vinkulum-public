@@ -9,6 +9,7 @@ import tempfile
 import time
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,12 +18,23 @@ def alive(pid):
     path = Path(f"/proc/{pid}/stat")
     try:
         return path.read_text().split()[2] != "Z"
-    except FileNotFoundError:
+    except FileNotFoundError, ProcessLookupError:
         return False
 
 
 @unittest.skipUnless(sys.platform == "linux", "Linux static guardian")
 class GuardianTests(unittest.TestCase):
+    def test_proc_disappearance_is_dead_but_other_read_errors_propagate(self):
+        # Linux can return ESRCH after opening a proc file whose process exits.
+        for error in (FileNotFoundError(), ProcessLookupError()):
+            with patch.object(Path, "read_text", side_effect=error):
+                self.assertFalse(alive(12345))
+        with (
+            patch.object(Path, "read_text", side_effect=PermissionError()),
+            self.assertRaises(PermissionError),
+        ):
+            alive(12345)
+
     def test_parent_death_kills_worker_and_grandchild(self):
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary)

@@ -19,6 +19,6 @@
     "closed: worker and spawned child terminated, global slot released",
     "material edited during a real solve refuses late result import"
   ],
-  "maximum_displacement_error_m": 4.761904763739115e-13,
-  "heartbeat_ticks_during_solve": 151
+  "maximum_displacement_error_m": 4.761904763741438e-13,
+  "heartbeat_ticks_during_solve": 154
 }

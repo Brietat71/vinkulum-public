@@ -267,7 +267,10 @@ def launch_after_display():
 
 def alive(pid):
     path = Path(f"/proc/{pid}/stat")
-    return path.exists() and path.read_text().split()[2] != "Z"
+    try:
+        return path.read_text().split()[2] != "Z"
+    except (FileNotFoundError, ProcessLookupError):
+        return False
 
 
 def barrier(panel):
