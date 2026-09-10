@@ -257,6 +257,40 @@ class WorkspaceNavigation(unittest.TestCase):
         self.assert_integrated(page)
         self.assertIn("inputs were kept", mesh.status.text())
 
+    def test_native_completion_keeps_embedded_analysis_and_its_panels(self):
+        w = self.window
+        w.open_static_study()
+        page = w._static_window
+        page.young.setText("pending material")
+        camera = page.viewport.renderer.GetActiveCamera()
+        camera.Azimuth(25)
+        pose = camera.GetPosition(), camera.GetFocalPoint()
+        study = page.study
+        self.assertTrue(w.show_model_context())
+        w.duration.setText("0.1")
+        w.run()
+        self.assertIsNotNone(w.controller.process)
+        self.assertTrue(w.activate_analysis("static"))
+        deadline = time.monotonic() + 15
+        while w.controller.process is not None and time.monotonic() < deadline:
+            QTest.qWait(10)
+        self.assertIsNone(w.controller.process, "Native worker did not finish")
+        self.assertIsNotNone(w.result, w.status.text())
+        self.assert_integrated(page)
+        self.assertIs(page.study, study)
+        self.assertEqual(page.young.text(), "pending material")
+        self.assertEqual((camera.GetPosition(), camera.GetFocalPoint()), pose)
+        for key in ("inspector", "analysis", "diagnostics", "results"):
+            self.assertFalse(w.docks[key].isVisible(), key)
+        result = w.result
+        self.click_browser("analysis:result")
+        self.assertIs(w.result, result)
+        self.assertIs(w.project_pages.currentWidget(), w.model_page)
+        self.assertTrue(w.docks["results"].isVisible())
+        self.click_browser("analysis:static")
+        self.assert_integrated(page)
+        self.assertEqual(page.young.text(), "pending material")
+
     def test_context_close_honours_pending_analysis_guard(self):
         from PySide6.QtWidgets import QMessageBox
 

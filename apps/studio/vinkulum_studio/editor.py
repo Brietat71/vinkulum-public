@@ -870,7 +870,7 @@ class EditorWindow(Workspace, QMainWindow):
             self._refresh()
         self._frame(0)
         self._caption()
-        if self.mode.currentIndex() == 1:
+        if self.mode.currentIndex() == 1 and self.active_analysis is None:
             self.docks["results"].show()
             self.docks["results"].raise_()
         self.status.setText(
