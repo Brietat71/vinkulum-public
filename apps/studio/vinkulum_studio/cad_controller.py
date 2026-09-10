@@ -341,7 +341,16 @@ class CadController(QObject):
             )
             return
         if self.validation is not None:
-            return  # Acknowledgement already started the background reader.
+            # An acknowledgement may start admission before the process exits.
+            # NormalExit also covers nonzero Python/service failures; do not
+            # let their already-prepared document publish after the failure.
+            if code != 0:
+                self._fail(
+                    process,
+                    "worker_failed",
+                    f"CAD worker exited with code {code} during validation.",
+                )
+            return
         worker = CadValidation(
             Path(self.temporary.name) / "output.json",
             self.last_request,

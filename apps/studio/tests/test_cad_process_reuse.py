@@ -293,14 +293,22 @@ class CadProcessReuse(unittest.TestCase):
     def test_partial_extra_response_during_validation_is_rejected(self):
         self._validation_fault("extra")
 
+    def test_nonzero_exit_during_validation_discards_the_prepared_document(self):
+        self._validation_fault("error_exit")
+
     def _validation_fault(self, fault):
         from vinkulum_studio.cad_admission import admit_cad_response
 
         wrapper = None
-        if fault == "extra":
+        if fault in ("extra", "error_exit"):
+            action = (
+                'os.write(protocol, b"incomplete extra response")'
+                if fault == "extra"
+                else "os._exit(7)"
+            )
             wrapper = self.wrapper(
-                "extra",
-                """
+                fault,
+                f"""
                 import json, os, pathlib, threading, time
                 from vinkulum_studio import cad_worker
                 protocol = os.dup(1)
@@ -309,7 +317,7 @@ class CadProcessReuse(unittest.TestCase):
                     marker = pathlib.Path(__file__).with_suffix(".noise")
                     while not marker.exists():
                         time.sleep(.005)
-                    os.write(protocol, b"incomplete extra response")
+                    {action}
                 def evaluate(source, output, **kwargs):
                     code = original(source, output, **kwargs)
                     if json.loads(pathlib.Path(source).read_text())["dimensions_mm"][0] == 10:
@@ -347,11 +355,14 @@ class CadProcessReuse(unittest.TestCase):
             self.assertEqual(process.processId(), pid)
             if fault == "cancel":
                 controller.cancel()
-            elif fault == "extra":
+            elif fault in ("extra", "error_exit"):
                 wrapper.with_suffix(".noise").touch()
             else:
                 process.kill()
             self.wait(lambda: process.state() == QProcess.ProcessState.NotRunning)
+            if fault == "error_exit":
+                self.assertEqual(process.exitCode(), 7)
+                self.assertEqual(process.exitStatus(), QProcess.ExitStatus.NormalExit)
             self.assertEqual(self.scheduler.allocated, 2)
             self.assertTrue(temporary.exists())
             self.assertIs(controller.process, process)
@@ -361,9 +372,12 @@ class CadProcessReuse(unittest.TestCase):
             self.wait(lambda: controller.process is None)
         self.assertEqual(
             controller.failure_kind,
-            {"cancel": "cancelled", "death": "crashed", "extra": "invalid_result"}[
-                fault
-            ],
+            {
+                "cancel": "cancelled",
+                "death": "crashed",
+                "extra": "invalid_result",
+                "error_exit": "worker_failed",
+            }[fault],
         )
         self.assertIs(controller.last_result, previous)
         self.assertFalse(temporary.exists())

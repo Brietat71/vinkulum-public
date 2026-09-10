@@ -76,6 +76,10 @@ background reader introduced in dev5. The worker stays attached to its active
 controller throughout admission. Cancellation interrupts publication, kills the
 process, and waits for the reader before deleting files or releasing the lease.
 The retained idle state begins only after that reader has completed successfully.
+A nonzero normal process exit during admission also invalidates the prepared
+document. A regression uses a real OCCT result, pauses its admission, and exits
+the worker with code 7 before releasing the reader: no result is published,
+the previous accepted result survives, and resources are released after cleanup.
 
 A stale acknowledgement, extra protocol response, wrong transaction ID or
 invalid result kills the worker and preserves the previous accepted result.
