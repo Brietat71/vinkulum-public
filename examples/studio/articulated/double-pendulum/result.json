@@ -1,0 +1,307 @@
+{
+  "format": "vinkulum-pinocchio-operators",
+  "schema": 1,
+  "engine": "Pinocchio",
+  "engine_version": "4.1.0",
+  "adapter_version": "0.1.0",
+  "scientific_status": "NotAssessed",
+  "nq": 2,
+  "nv": 2,
+  "coordinate_order": [
+    {
+      "joint_id": "7ded29db-01da-47df-b4e7-98878a77bc66",
+      "name": "Revolute",
+      "kind": "pivot",
+      "parent_body": null,
+      "child_body": "e5c8e7cb-34e7-4d86-a1bc-6a004f98f6d8",
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "positive_direction": "B relative to A along joint A local +Z"
+    },
+    {
+      "joint_id": "1f10f4ea-81b6-4393-b538-6e4f7810a9e1",
+      "name": "Revolute",
+      "kind": "pivot",
+      "parent_body": "e5c8e7cb-34e7-4d86-a1bc-6a004f98f6d8",
+      "child_body": "cdca34df-ebf2-4e69-bc77-0aecab4d584c",
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "positive_direction": "B relative to A along joint A local +Z"
+    }
+  ],
+  "state": {
+    "q": [
+      0.2,
+      -0.3
+    ],
+    "velocity": [
+      0.1,
+      0.4
+    ],
+    "acceleration": [
+      0.7,
+      0.2
+    ],
+    "effort": [
+      0.9,
+      0.1
+    ],
+    "time_s": 0.0
+  },
+  "mass_matrix": [
+    [
+      2.551755918550215,
+      0.7758779592751073
+    ],
+    [
+      0.7758779592751073,
+      0.33363333333333345
+    ]
+  ],
+  "intrinsic_bias": [
+    -3.943576000861263,
+    0.7922307686360445
+  ],
+  "external_effort": [
+    0.0,
+    0.0
+  ],
+  "inverse_effort": [
+    -2.0021712660210924,
+    1.402072006795286
+  ],
+  "forward_acceleration": [
+    8.634217679804122,
+    -22.15405123982271
+  ],
+  "intrinsic_inverse_derivatives": {
+    "q": [
+      [
+        18.785769113687696,
+        4.359895557206412
+      ],
+      [
+        4.839282721566663,
+        4.680408969142356
+      ]
+    ],
+    "velocity": [
+      [
+        -0.18662422706711254,
+        -0.23328028383389066
+      ],
+      [
+        0.0466560567667781,
+        0.0
+      ]
+    ],
+    "acceleration": [
+      [
+        2.5517559185502146,
+        0.7758779592751072
+      ],
+      [
+        0.7758779592751072,
+        0.3336333333333334
+      ]
+    ]
+  },
+  "kinetic_energy_J": 0.07048456463042205,
+  "potential_energy_J": -18.7857691136877,
+  "bodies": [
+    {
+      "id": "e5c8e7cb-34e7-4d86-a1bc-6a004f98f6d8",
+      "name": "Upper arm",
+      "position_m": [
+        0.15899030074962184,
+        0.0,
+        -0.4740486096040624
+      ],
+      "body_to_world": [
+        [
+          0.9480972192081248,
+          0.0,
+          -0.3179806014992437
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.3179806014992437,
+          0.0,
+          0.9480972192081248
+        ]
+      ],
+      "jacobian": [
+        [
+          -0.4740486096040624,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -0.15899030074962184,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "velocity_world": [
+        -0.04740486096040625,
+        0.0,
+        -0.015899030074962184,
+        0.0,
+        0.1,
+        0.0
+      ]
+    },
+    {
+      "id": "cdca34df-ebf2-4e69-bc77-0aecab4d584c",
+      "name": "Lower arm",
+      "position_m": [
+        0.23743342526702313,
+        0.0,
+        -1.4415667242446728
+      ],
+      "body_to_world": [
+        [
+          0.9869390100730958,
+          0.0,
+          0.16109435246444104
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.16109435246444104,
+          0.0,
+          0.9869390100730958
+        ]
+      ],
+      "jacobian": [
+        [
+          -1.4415667242446728,
+          -0.49346950503654796
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -0.23743342526702313,
+          0.08054717623222055
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "velocity_world": [
+        -0.3415444744390865,
+        0.0,
+        0.008475527966185906,
+        0.0,
+        0.5,
+        0.0
+      ]
+    }
+  ],
+  "loads": [],
+  "checks": {
+    "inverse_residual": [
+      -1.3322676295501878e-15,
+      0.0
+    ],
+    "forward_effort_residual": [
+      -1.1102230246251565e-16,
+      -4.3021142204224816e-16
+    ],
+    "absolute_tolerance_effort_units": 1e-12,
+    "relative_tolerance": 1e-10
+  },
+  "conventions": {
+    "coordinates": "Absolute declared A-to-B coordinates; initial revolute values use principal angles, without turn-count inference.",
+    "jacobians": "At each body centre of mass, world-aligned axes; rows [vx, vy, vz, wx, wy, wz]. J @ velocity gives m/s and rad/s.",
+    "mass_matrix": "Entry (i,j) maps acceleration j to effort i; units follow the coordinate and effort units, including mixed revolute/prismatic coordinates.",
+    "derivatives": "Partial derivatives of intrinsic RNEA(q,v,a), including gravity. Excludes applied world loads and external_effort derivatives.",
+    "loads": "World force and free moment at a body-local application point, evaluated at state.time_s; external effort is J(point).T @ force + J(angular).T @ moment.",
+    "potential": "-sum(mass * gravity dot world centre-of-mass position); world translation may shift the zero of potential energy.",
+    "scope": "Single-state operators on a fixed-base rigid tree. No time integration, contact, imposed motion or closed-loop dynamics. Consistency checks are not general accuracy certificates."
+  },
+  "engine_files_sha256": {
+    "pin/cmeel.prefix/lib/python3.14/site-packages/pinocchio/pinocchio_pywrap_default.cpython-314-x86_64-linux-gnu.so": "9ad13e17a35ad4148a2def85c84ff401843ea525457a1b1595cecaab5825ed88",
+    "libpinocchio/cmeel.prefix/lib/libpinocchio_collision.so": "35925bb9bf693538156ac013496b457578246251a18323659f950400c2721328",
+    "libpinocchio/cmeel.prefix/lib/libpinocchio_default.so": "64dbb31cdb6efdefef6ede6da81c0a54c03241d32cdadaa3c4dfb13685dd113e",
+    "libpinocchio/cmeel.prefix/lib/libpinocchio_parsers.so": "8a04cab1566dcb1563f67e5db4922996b6fc0b8bff14164a2fc5ea742e34eeda",
+    "libpinocchio/cmeel.prefix/lib/libpinocchio_visualizers.so": "63c56f2ccea0a9291fe0d1c314d103ee945b51d41257726e5ae44593c8934e6f"
+  },
+  "adapter_files_sha256": {
+    "articulated.py": "2a7d057dddea24e78dfb23c1e81f3ccc5941efd9add6383b8528803625abc858",
+    "pinocchio_backend.py": "27c26b2b5158616b12d2e0a0a148054e863e532b0097b5802500c4fb8b6c658f",
+    "document.py": "5b0b92e1b9450c0a4410f297afdd3152d06e088048d0d4be11896d26c3801267",
+    "model.py": "98cca6430a5e4c64e46071a83f673140931b71e8a34accc29a1baef459f87a99",
+    "cad_data.py": "7baafef05068798819d02c21e0762e3febd6ffcf352e0a1919bc004d99b011d7"
+  },
+  "project_sha256": "645bed084f74b419761837089671a8faa7725b77f299e106ac03ca9ef0a51922",
+  "requested_state_sha256": "510a3d8b354169509bda4f87ee8516aad8c840bfb06ddfc149880108552e7cfc",
+  "environment": {
+    "PySide6": "6.11.2",
+    "PySide6_Addons": "6.11.2",
+    "PySide6_Essentials": "6.11.2",
+    "cmeel": "0.61.0",
+    "cmeel-assimp": "6.0.5",
+    "cmeel-boost": "1.90.0",
+    "cmeel-console-bridge": "1.0.2.3",
+    "cmeel-octomap": "1.10.0",
+    "cmeel-qhull": "8.0.2.1",
+    "cmeel-tinyxml2": "11.0.0",
+    "cmeel-urdfdom": "6.0.0",
+    "cmeel-zlib": "1.3.2",
+    "coal": "3.0.3",
+    "contourpy": "1.3.3",
+    "cycler": "0.12.1",
+    "eigenpy": "3.13.0",
+    "fonttools": "4.64.0",
+    "kiwisolver": "1.5.1",
+    "libcoal": "3.0.3",
+    "libpinocchio": "4.1.0",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.3",
+    "packaging": "26.3",
+    "pillow": "12.3.0",
+    "pin": "4.1.0",
+    "pyparsing": "3.3.2",
+    "python-dateutil": "2.9.0.post0",
+    "shiboken6": "6.11.2",
+    "six": "1.17.0",
+    "vinkulum": "0.19.0",
+    "vinkulum-studio": "0.6.0.dev1",
+    "vtk": "9.7.0"
+  },
+  "worker_python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "platform": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39"
+}

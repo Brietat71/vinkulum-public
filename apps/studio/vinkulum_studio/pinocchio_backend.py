@@ -14,7 +14,7 @@ from pathlib import Path
 
 import numpy as np
 
-from .articulated import state_vector, tree_links
+from .articulated import operator_conventions, state_vector, tree_links
 from .document import load_project, save_project
 from .model import finite_number, read_json, write_json
 
@@ -255,15 +255,7 @@ class ArticulatedModel:
                 "absolute_tolerance_effort_units": 1e-12,
                 "relative_tolerance": 1e-10,
             },
-            "conventions": {
-                "coordinates": "Absolute declared A-to-B coordinates; initial revolute values use principal angles, without turn-count inference.",
-                "jacobians": "At each body centre of mass, world-aligned axes; rows [vx, vy, vz, wx, wy, wz]. J @ velocity gives m/s and rad/s.",
-                "mass_matrix": "Entry (i,j) maps acceleration j to effort i; units follow the coordinate and effort units, including mixed revolute/prismatic coordinates.",
-                "derivatives": "Partial derivatives of intrinsic RNEA(q,v,a), including gravity. Excludes applied world loads and external_effort derivatives.",
-                "loads": "World force and free moment at a body-local application point, evaluated at state.time_s; external effort is J(point).T @ force + J(angular).T @ moment.",
-                "potential": "-sum(mass * gravity dot world centre-of-mass position); world translation may shift the zero of potential energy.",
-                "scope": "Single-state operators on a fixed-base rigid tree. No time integration, contact, imposed motion or closed-loop dynamics. Consistency checks are not general accuracy certificates.",
-            },
+            "conventions": operator_conventions(),
         }
         # Reject nonfinite channels before crossing the worker/JSON boundary.
         json.dumps(result, allow_nan=False)

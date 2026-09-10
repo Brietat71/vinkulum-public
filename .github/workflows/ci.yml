@@ -130,6 +130,14 @@ jobs:
           "$RUNNER_TEMP/pinocchio-venv/bin/python" -c 'import pinocchio; assert pinocchio.__version__ == "4.1.0"'
           cd "$RUNNER_TEMP"
           "$RUNNER_TEMP/pinocchio-venv/bin/python" -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -p test_pinocchio.py -v 2>&1 | tee "$RUNNER_TEMP/pinocchio.log"
+      - name: Qualify the desktop with the installed external Pinocchio worker
+        env:
+          VINKULUM_3D_TESTS: "1"
+          QT_QPA_PLATFORM: xcb
+          VINKULUM_PINOCCHIO_PYTHON: ${{ runner.temp }}/pinocchio-venv/bin/python
+        run: |
+          cd "$RUNNER_TEMP"
+          xvfb-run -a -s '-screen 0 1600x1100x24' "$RUNNER_TEMP/roue-venv/bin/python" -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -p test_pinocchio_workspace.py -v 2>&1 | tee "$RUNNER_TEMP/pinocchio-workspace.log"
       - name: Conserver la recette Studio
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -142,5 +150,6 @@ jobs:
             ${{ runner.temp }}/studio-3d*.png
             ${{ runner.temp }}/viewport-3d.png
             ${{ runner.temp }}/pinocchio.log
+            ${{ runner.temp }}/pinocchio-workspace.log
           if-no-files-found: ignore
           retention-days: 14

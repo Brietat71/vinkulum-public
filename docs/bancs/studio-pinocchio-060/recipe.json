@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "studio_version": "0.6.0.dev1",
+  "engine": "Pinocchio",
+  "engine_version": "4.1.0",
+  "state": {
+    "q": [
+      0.2,
+      -0.3
+    ],
+    "velocity": [
+      0.1,
+      0.4
+    ],
+    "acceleration": [
+      0.7,
+      0.2
+    ],
+    "effort": [
+      0.9,
+      0.1
+    ],
+    "time_s": 0.0
+  },
+  "nq": 2,
+  "nv": 2,
+  "scientific_status": "NotAssessed",
+  "project_sha256": "645bed084f74b419761837089671a8faa7725b77f299e106ac03ca9ef0a51922",
+  "run_directory": "runs/operators-266d7fa5bcb14a47/operators"
+}

@@ -97,6 +97,7 @@ def apply_theme(window, name):
         QTreeWidget::item, QListWidget::item { padding: 4px 3px; }
         QTreeWidget::item:selected, QListWidget::item:selected { background: %(hover)s; color: %(text)s; }
         QHeaderView { background: %(panel)s; }
+        QTableCornerButton::section { background: %(panel)s; border: 0; }
         QHeaderView::section { background: %(panel)s; color: %(muted)s; padding: 5px; border: 0; }
         QScrollArea { border: 0; }
         QTabWidget::pane { border: 1px solid %(border)s; }

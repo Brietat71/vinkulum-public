@@ -106,6 +106,7 @@ class EditorWindow(Workspace, QMainWindow):
         self._saved = self.history.current
         self._rendered_settings = None
         self._static_window = None
+        self._articulated_window = None
         self.timer = QTimer(self)
         self.timer.setInterval(33)
         self.timer.timeout.connect(self._tick)
@@ -128,10 +129,32 @@ class EditorWindow(Workspace, QMainWindow):
 
         if self._static_window is None:
             self._static_window = StaticWindow(self)
-            self._static_window.closed.connect(lambda: setattr(self, "_static_window", None))
+            self._static_window.closed.connect(
+                lambda: setattr(self, "_static_window", None)
+            )
         self._static_window.show()
         self._static_window.raise_()
         self._static_window.activateWindow()
+
+    def open_articulated_study(self):
+        from .articulated_window import ArticulatedWindow
+
+        if self._articulated_window is None:
+            if not self.apply_properties():
+                return
+
+            def capture():
+                return self.project if self.apply_properties() else None
+
+            self._articulated_window = ArticulatedWindow(
+                self.project, self, capture=capture, settings=self.settings
+            )
+            self._articulated_window.closed.connect(
+                lambda: setattr(self, "_articulated_window", None)
+            )
+        self._articulated_window.show()
+        self._articulated_window.raise_()
+        self._articulated_window.activateWindow()
 
     def open_cad(self):
         if self.mode.currentIndex() != 0 or self.controller.process is not None:
@@ -984,6 +1007,12 @@ class EditorWindow(Workspace, QMainWindow):
             event.ignore()
             return
         if self._static_window is not None and not self._static_window.close():
+            event.ignore()
+            return
+        if (
+            self._articulated_window is not None
+            and not self._articulated_window.close()
+        ):
             event.ignore()
             return
         self.pause()

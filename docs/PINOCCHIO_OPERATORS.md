@@ -2,8 +2,10 @@
 
 **Experimental source workflow.** The first adapter reads a Studio project and
 computes operators at one articulated state in a separate Python environment.
-It is not yet a Studio analysis window, a trajectory integrator or part of the
-published Studio 0.5.0 standalone archive. Results remain `NotAssessed`.
+Studio **0.6.0.dev1** adds an analysis window to edit that state, inspect matrices
+and body Jacobians, and reopen captured results without the engine. This source
+workflow is not in the published Studio 0.5.0 standalone archive. It does not
+integrate trajectories. Results remain `NotAssessed`.
 
 ## Install and run
 
@@ -63,6 +65,57 @@ are in metres and efforts in N. Velocity and acceleration divide the coordinate
 unit by seconds and seconds squared. Matrix entries can have mixed units: entry
 `M[i,j]` maps acceleration `j` to effort `i`. Do not label the entire matrix as
 kg or kg m² when the mechanism mixes revolute and prismatic joints.
+
+## Use the Studio workspace
+
+Start Studio from its usual CAD/GUI environment, then:
+
+1. Open **Examples → Double pendulum**, or prepare a supported mechanism.
+2. Open **Run → Articulated operators · Pinocchio…** (**Ctrl+Shift+P**).
+   Opening the window captures the editor's model. **Capture current model**
+   explicitly replaces analysis inputs; reopening the window preserves edits.
+3. Expand **Execution settings** and select the separate environment's
+   `.venv-pinocchio/bin/python`. Set a calculation folder and timeout if needed.
+   The **Evaluate state** command stays disabled until a worker path is supplied
+   and the mechanism/state are admissible. A bad executable or engine version
+   produces a diagnostic. `VINKULUM_PINOCCHIO_PYTHON` can prefill the worker path.
+4. Edit `q`, `v`, requested acceleration and actuator effort. **Evaluate state**
+   (**Ctrl+Return**) computes both the effort needed for the requested acceleration
+   and the acceleration produced by the entered effort. These are distinct
+   operator evaluations, not an assertion that those two inputs satisfy dynamics.
+5. Inspect **Captured values**: joint response, mass matrix, intrinsic derivatives,
+   body kinematics and body Jacobians. Row/column units define matrix entries.
+   Hover a value for its full precision or **Export table…** to CSV.
+
+![Studio 0.6.0.dev1 articulated workspace, captured two-link state and lower-body Jacobian](assets/studio-pinocchio.png)
+
+**Authored model** and **Captured state** select the source of the displayed
+geometry. Changing inputs preserves the previous result and explicitly marks
+the mismatch. Time-dependent force arrows use the captured load evaluation time.
+**Save input…** / **Open input…** retain both the model and articulated state.
+Unsaved edits, including invalid fields, require an explicit discard.
+
+The worker runs as a direct supervised subprocess, with timeout and cancellation;
+its environment excludes the GUI's Python paths and bundled library override.
+Inputs are disabled during execution. Cancellation or rejected output preserves
+the previous result and the run's diagnostic files.
+
+**Open result…** accepts a calculation's `operators/result.json` without an
+installed Pinocchio engine and preserves current analysis inputs. The reader
+rechecks input hashes, identities, units, finite dimensions, positive-definite
+mass, dynamics identities, joint-compatible returned poses, velocities, applied
+loads and energies. It does not rerun Pinocchio or independently rederive every
+derivative. A coherent fabricated archive could pass consistency checks: this
+is not producer authentication or a proof of general numerical correctness.
+
+To reproduce the actual screenshot and capture a calculation:
+
+```sh
+# Run using the Studio GUI environment after installing the separate worker.
+xvfb-run -a -s '-screen 0 1600x1100x24' \
+  python ci/studio_pinocchio_recipe.py /tmp/vinkulum-pinocchio-demo \
+  --python .venv-pinocchio/bin/python
+```
 
 ## Mechanical conversion
 
@@ -175,11 +228,30 @@ file hashes. Pinocchio file identities are compared before and after the run.
 These fingerprints identify files; they do not authenticate their publisher or
 constitute an operating-system execution sandbox.
 
+Five additional Qt/worker tests cover actual keyboard activation, cancellation,
+process termination, timeouts, unavailable workers, close vetoes, full-precision
+input/CSV round trips and engine-free result reopening. Corrupted identities,
+units, states, mass matrices and dynamics outputs are rejected. Run them from
+the Studio GUI environment with the separate worker selected:
+
+```sh
+VINKULUM_3D_TESTS=1 \
+VINKULUM_PINOCCHIO_PYTHON="$PWD/.venv-pinocchio/bin/python" \
+QT_QPA_PLATFORM=xcb xvfb-run -a -s '-screen 0 1600x1100x24' \
+  python -m unittest discover -s apps/studio/tests -p test_pinocchio_workspace.py -v
+```
+
+Public CI builds and installs the Studio wheel in both separate environments,
+runs the numerical references, then exercises the GUI with the external worker
+from outside the source directory. A second full desktop pass exercises Studio
+with CAD and without a Pinocchio engine in its process.
+The [local installed-package qualification](bancs/studio-pinocchio-060/README.md)
+publishes logs, exact source/wheel hashes and the actual application capture.
+
 ## Remaining integration work
 
-The GUI needs a supervised optional-worker controller, captured-state editing,
-operator/derivative inspection and comparisons with native-kernel observables.
-Trajectory simulation additionally needs an explicit integrator and its own
+Comparisons with native-kernel observables remain to be implemented.
+Trajectory simulation needs an explicit integrator and its own
 convergence/energy campaign. Closed loops, fixed-joint aggregation, floating
 bases, contact and derivatives of applied world loads require further work.
 macOS and packaged-worker distribution have not been qualified.

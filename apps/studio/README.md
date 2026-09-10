@@ -1,9 +1,15 @@
-# Vinkulum Studio 0.5.0 — CAD and 3D mechanism analysis
+# Vinkulum Studio 0.6.0.dev1 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.19.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
+
+The **0.6.0.dev1 source version** adds an **Articulated operators / Pinocchio**
+workspace: edit a captured state, run a separate Pinocchio 4.1 worker, inspect
+mass matrices, inverse/forward dynamics and Jacobians, export CSV, and reopen
+results without the engine. See the [installation and operator guide](../../docs/PINOCCHIO_OPERATORS.md).
+The published Linux standalone remains **0.5.0**, without this new workspace.
 
 Studio 0.5.0 adds an experimental **Linear statics / CalculiX** workspace,
 captured displacement/stress inspection, CSV export and checked reopening of
@@ -101,6 +107,9 @@ preserves the theme and layout. **Restore layout** restores the active workspace
 
 - **Ctrl/Cmd+K** searches commands; **S** opens tools for the selection. File
   and editing shortcuts follow the platform.
+- **Run → Articulated operators · Pinocchio…** (**Ctrl+Shift+P**) opens a
+  captured-state study. **Ctrl+Return** evaluates supported tree operators;
+  this workspace does not integrate a trajectory.
 - The XY reference grid fades towards its edges and can be hidden. **Views**
   provides perspective and orthographic projections. Joint rings and axes are
   symbols, not added mechanical volume; attachment lines appear on selection.
