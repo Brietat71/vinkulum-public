@@ -180,10 +180,14 @@ class Job(QObject):
     failed = Signal(str)
     settled = Signal()
 
-    def __init__(self, source, directory, request, interpreter, parent=None):
+    def __init__(
+        self, source, directory, request, interpreter, parent=None, *, adapter=None
+    ):
         super().__init__(parent or Gui.getMainWindow())
         self.source, self.directory = source, Path(directory)
         self.request = copy.deepcopy(request)
+        self.admit_result = adapter.admit if adapter is not None else admit
+        worker = "assembly_worker.py" if adapter is not None else "worker.py"
         self.process = QProcess(self)
         self.diagnostics = bytearray()
         self.timed_out = False
@@ -205,7 +209,7 @@ class Job(QObject):
         self.process.setProcessEnvironment(environment)
         self.process.setProgram(str(interpreter))
         self.process.setArguments(
-            [str(Path(__file__).with_name("worker.py")), str(self.directory)]
+            [str(Path(__file__).with_name(worker)), str(self.directory)]
         )
         self.process.setProcessChannelMode(QProcess.ProcessChannelMode.MergedChannels)
         self.process.readyReadStandardOutput.connect(self._read)
@@ -276,8 +280,10 @@ class Job(QObject):
             )
             return
         try:
-            result = admit(self.source, self.directory, self.request)
-        except Exception as error:  # noqa: BLE001 - report native errors at the process/UI boundary
+            result = self.admit_result(self.source, self.directory, self.request)
+        except (
+            Exception
+        ) as error:  # noqa: BLE001 - report native errors at the process/UI boundary
             self._settle(error=str(error))
             return
         self._settle(result=result)

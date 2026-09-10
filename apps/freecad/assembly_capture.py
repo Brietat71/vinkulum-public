@@ -133,17 +133,26 @@ def snapshot(assembly):
     return state, shapes
 
 
-def capture(assembly, directory, *, density=2700, duration=0.5, step=0.005, threads=2):
+def capture(
+    assembly,
+    directory,
+    *,
+    density=2700,
+    duration=0.5,
+    step=0.005,
+    threads=2,
+    project_id=None,
+):
     if not math.isfinite(density) or density <= 0:
         raise ValueError("A finite positive density is required")
     if not (0 < step <= duration <= 10 and math.ceil(duration / step) <= 2000):
         raise ValueError("Capture is limited to 10 seconds and 2001 native samples")
     if type(threads) is not int or not 1 <= threads <= 64:
         raise ValueError("Select between 1 and 64 engine threads")
+    project_id = str(uuid.uuid4()) if project_id is None else str(uuid.UUID(project_id))
     state, shapes = snapshot(assembly)
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=False)
-    project_id = str(uuid.uuid4())
     bodies = []
     ids = {state["grounded_name"]: None}
     for component in state["components"]:
@@ -151,7 +160,7 @@ def capture(assembly, directory, *, density=2700, duration=0.5, step=0.005, thre
         if name == state["grounded_name"]:
             continue
         shape = shapes[name]
-        body_id = str(uuid.uuid4())
+        body_id = str(uuid.uuid5(uuid.UUID(project_id), name))
         ids[name] = body_id
         step_file = body_id + ".step"
         shape.exportStep(str(directory / step_file))
