@@ -31,13 +31,14 @@ beyond a change of presentation.
 
 Work remains in progress. Studio 0.2.0 is the historical baseline before this
 redesign, not the current desktop release. The
-[public Linux 0.5.0 preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.5.0-linux)
-includes CAD, native dynamics, CalculiX studies and checked result reopening.
+[public Linux 0.6.0a1 preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux)
+includes editable CAD features, native dynamics, tetrahedral CalculiX studies,
+CAD meshing workspaces, Pinocchio operators and checked result reopening.
 Its extracted application was tested through both normal startup and actual
 result-opening interaction.
 
-The source subsequently adds the [Pinocchio operator workspace](PINOCCHIO_OPERATORS.md)
-and [parametric CAD feature editing](STUDIO_CAD_HISTORY.md). Their documentation
+Current source **0.6.0a2.dev2** subsequently adds [boundary-direction symbols](STUDIO_CAD_MESHING.md#boundary-direction-symbols)
+and the [constrained line sketch editor](STUDIO_SKETCH.md). Their documentation
 distinguishes source functionality from features in published binaries. Every
 requirement above must be checked against its actual evidence before declaring
 the overall upgrade complete.
@@ -155,6 +156,6 @@ restoration across multiple monitors and a current Apple Silicon package remain
 open. Each new source milestone needs its own extracted Linux application checks
 before it becomes a downloadable standalone release.
 
-Constrained sketches, persistent face/edge references, collaboration and broader
+Curved sketches, nonlinear dimensions, persistent face/edge references, collaboration and broader
 multiphysics workflows also remain substantive implementation work. These
 interaction records do not declare the full engineering-suite objective achieved.

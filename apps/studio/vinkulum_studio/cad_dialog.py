@@ -18,6 +18,8 @@ from PySide6.QtWidgets import (
 )
 
 from .cad_controller import CadController
+from .controls import NumberField
+from .sketch import bracket_profile
 
 
 class CadDialog(QDialog):
@@ -50,6 +52,7 @@ class CadDialog(QDialog):
             ("Sphere", "sphere"),
             ("Extrude · XY rectangle", "extrude_rectangle"),
             ("Extrude · XY disk", "extrude_circle"),
+            ("Extrude · dimensioned sketch", "extrude_sketch"),
             ("Subtract A − B", "cut"),
             ("Union A + B", "fuse"),
             ("Intersect A ∩ B", "common"),
@@ -75,6 +78,13 @@ class CadDialog(QDialog):
         self.dimensions = [self.number(v, 0.001, 1e6, " mm") for v in (100, 60, 20)]
         for label, field in zip(("Length", "Width", "Height"), self.dimensions):
             self.form.addRow(label, field)
+        self.profile = bracket_profile()
+        self.profile_button = QPushButton("Edit profile… · dimensioned bracket")
+        self.profile_button.clicked.connect(self.edit_profile)
+        self.form.addRow("XY sketch", self.profile_button)
+        self.sketch_height = NumberField(10.0)
+        self.sketch_height.setAccessibleName("Sketch extrusion height in millimetres")
+        self.form.addRow("Height [mm]", self.sketch_height)
         self.position = [self.number(0, -1e6, 1e6, " mm") for _ in range(3)]
         for axis, field in zip("XYZ", self.position):
             self.form.addRow("Position " + axis, field)
@@ -139,6 +149,7 @@ class CadDialog(QDialog):
             "cylinder",
             "extrude_rectangle",
             "extrude_circle",
+            "extrude_sketch",
         )
         labels = (
             ("Radius", "Height")
@@ -158,6 +169,8 @@ class CadDialog(QDialog):
                 self.form.labelForField(field).setText(labels[index])
         for field in self.position:
             self.form.setRowVisible(field, primitive)
+        self.form.setRowVisible(self.profile_button, operation == "extrude_sketch")
+        self.form.setRowVisible(self.sketch_height, operation == "extrude_sketch")
         self.form.setRowVisible(self.name, not edit)
         self.form.setRowVisible(self.a, edit)
         self.form.setRowVisible(self.b, operation in ("cut", "fuse", "common"))
@@ -175,6 +188,8 @@ class CadDialog(QDialog):
         self.explanation.setText(
             "Body B is retained. The result must be a single solid. Attachments keep their world positions."
             if operation in ("cut", "fuse", "common")
+            else "The dimensioned XY sketch is extruded toward +Z. Position locates its design origin; editing dimensions preserves that origin."
+            if operation == "extrude_sketch"
             else "XY profile extruded toward +Z. Position specifies the centre of the starting profile."
             if operation.startswith("extrude")
             else "OCCT reads STEP units. Import is limited to one solid part and 8 MB."
@@ -201,6 +216,9 @@ class CadDialog(QDialog):
             "position_mm": [f.value() for f in self.position],
             "radius_mm": self.radius.value(),
         }
+        if operation == "extrude_sketch":
+            result["profile"] = asdict(self.profile)
+            result["dimensions_mm"] = [self.sketch_height.value()]
         for key in ("a", "b"):
             body = next(
                 (
@@ -216,7 +234,11 @@ class CadDialog(QDialog):
     def start(self):
         if self.process is not None:
             return
-        request = self.request()
+        try:
+            request = self.request()
+        except (ValueError, TypeError) as error:
+            self.status.setText(str(error))
+            return
         operation = request["operation"]
         if operation == "import_step":
             path, _ = QFileDialog.getOpenFileName(
@@ -242,6 +264,16 @@ class CadDialog(QDialog):
         self.result_data = result
         self.completed.emit(result)
         self.accept()
+
+    def edit_profile(self):
+        from .sketch_dialog import SketchDialog
+
+        dialog = SketchDialog(self.profile, self)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            self.profile = dialog.profile
+            self.profile_button.setText(
+                f"Edit profile… · {len(self.profile.edges)} segments"
+            )
 
     def reject(self):
         self.controller.shutdown()

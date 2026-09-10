@@ -181,7 +181,7 @@ class EditorWindow(Workspace, QMainWindow):
         except (ValueError, TypeError, RuntimeError) as error:
             self._problem(str(error))
 
-    def open_cad(self):
+    def open_cad(self, operation=None):
         if self.mode.currentIndex() != 0 or self.controller.process is not None:
             return
         if not self.apply_properties():
@@ -202,6 +202,8 @@ class EditorWindow(Workspace, QMainWindow):
         from .model import atomic_text
 
         dialog = CadDialog(self.project, self.selection, self)
+        if isinstance(operation, str):
+            dialog.operation.setCurrentIndex(dialog.operation.findData(operation))
         captured = self.project
         if dialog.exec() != QDialog.DialogCode.Accepted or not dialog.result_data:
             return

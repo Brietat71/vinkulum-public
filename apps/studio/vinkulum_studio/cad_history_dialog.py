@@ -222,6 +222,10 @@ class CadHistoryDialog(QDialog):
             field.textEdited.connect(self._pending)
             self.form.addRow(label + " [mm]", field)
             self.dimensions.append(field)
+        if feature.kind == "extrude_sketch":
+            self.profile_button = QPushButton("Edit sketch…")
+            self.profile_button.clicked.connect(self.edit_profile)
+            self.form.addRow("XY profile", self.profile_button)
         self.position = self.rotation = None
         if not feature.inputs:
             self.position = VectorField(feature.position_mm, ("X", "Y", "Z"))
@@ -273,6 +277,21 @@ class CadHistoryDialog(QDialog):
                 else euler_matrix(angles)
             )
         return self.recipe.replace_feature(replace(feature, **changes))
+
+    def edit_profile(self):
+        from .sketch_dialog import SketchDialog
+
+        try:
+            recipe = self.edited_recipe()
+            feature = next(f for f in recipe.features if f.id == self._feature_id)
+            dialog = SketchDialog(feature.profile, self)
+            if dialog.exec() == QDialog.DialogCode.Accepted:
+                self.recipe = recipe.replace_feature(
+                    replace(feature, profile=dialog.profile)
+                )
+                self._pending()
+        except (ValueError, TypeError) as error:
+            self.status.setText(str(error))
 
     def _signature(self):
         recipe = self.edited_recipe()

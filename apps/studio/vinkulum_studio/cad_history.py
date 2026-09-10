@@ -8,6 +8,8 @@ from dataclasses import asdict, dataclass, fields, replace
 
 import numpy as np
 
+from .sketch import Sketch
+
 IDENTITY = (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)
 PARAMETERS = {
     "box": ("Length", "Width", "Height"),
@@ -15,6 +17,7 @@ PARAMETERS = {
     "sphere": ("Radius",),
     "extrude_rectangle": ("Length", "Width", "Height"),
     "extrude_circle": ("Radius", "Height"),
+    "extrude_sketch": ("Height",),
     "fillet": ("Radius",),
     "cut": (),
     "fuse": (),
@@ -65,6 +68,8 @@ class CadFeature:
             raise ValueError("A CAD feature name of 1–128 characters is required.")
         if self.kind not in PARAMETERS:
             raise ValueError("Unsupported CAD feature kind.")
+        if self.kind == "extrude_sketch" and not isinstance(self, SketchExtrusion):
+            raise ValueError("A sketch extrusion requires its persistent profile.")
         count = (
             2
             if self.kind in ("cut", "fuse", "common")
@@ -120,10 +125,30 @@ class CadFeature:
 
     @classmethod
     def from_dict(cls, data):
+        if (
+            cls is CadFeature
+            and isinstance(data, dict)
+            and data.get("kind") == "extrude_sketch"
+        ):
+            return SketchExtrusion.from_dict(data)
         data = _fields(data, cls)
         for key in ("inputs", "dimensions_mm", "position_mm", "orientation"):
             data[key] = tuple(data[key])
+        if cls is SketchExtrusion:
+            data["profile"] = Sketch.from_dict(data["profile"])
         return cls(**data)
+
+
+@dataclass(frozen=True)
+class SketchExtrusion(CadFeature):
+    profile: Sketch | None = None
+
+    def __post_init__(self):
+        super().__post_init__()
+        if self.kind != "extrude_sketch" or not isinstance(self.profile, Sketch):
+            raise ValueError(
+                "A sketch extrusion requires its persistent planar profile."
+            )
 
 
 @dataclass(frozen=True)
@@ -188,6 +213,12 @@ class CadRecipe:
     def fingerprint(self):
         data = asdict(self)
         data["features"] = sorted(data["features"], key=lambda f: f["id"])
+        profiles = {
+            f.id: f.profile for f in self.features if isinstance(f, SketchExtrusion)
+        }
+        for feature in data["features"]:
+            if feature["id"] in profiles:
+                feature["profile"] = profiles[feature["id"]].canonical()
         return hashlib.sha256(
             json.dumps(
                 data, sort_keys=True, separators=(",", ":"), allow_nan=False

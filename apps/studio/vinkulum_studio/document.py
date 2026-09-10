@@ -492,7 +492,9 @@ def save_project(path, project):
         path,
         {
             "format": "vinkulum-studio-project",
-            "schema_version": 3
+            "schema_version": 4
+            if has_sketches(project)
+            else 3
             if any(
                 b.cad is not None and b.cad.recipe is not None for b in project.bodies
             )
@@ -511,15 +513,26 @@ def load_project(path):
         or set(data) != {"format", "schema_version", "project"}
         or data["format"] != "vinkulum-studio-project"
         or type(data["schema_version"]) is not int
-        or data["schema_version"] not in (1, 2, 3)
+        or data["schema_version"] not in (1, 2, 3, 4)
     ):
         raise ValueError("Unknown project format. Use G0 import for an older pendulum.")
     project = Project.from_dict(data["project"])
+    if data["schema_version"] < 4 and has_sketches(project):
+        raise ValueError("Sketch-based CAD requires project schema 4.")
     if data["schema_version"] < 3 and any(
         b.cad and b.cad.recipe for b in project.bodies
     ):
         raise ValueError("Parametric CAD requires project schema 3.")
     return project
+
+
+def has_sketches(project):
+    return any(
+        feature.kind == "extrude_sketch"
+        for body in project.bodies
+        if body.cad and body.cad.recipe
+        for feature in body.cad.recipe.features
+    )
 
 
 def pendulum(parameters=Parameters()):

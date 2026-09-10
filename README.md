@@ -10,6 +10,7 @@ mechanics kernel, a Python API and a native 3D desktop application — with the
 ambition of becoming a home for the open solvers engineers and researchers rely on.
 
 [Get started](#get-started) · [Contribute](docs/CONTRIBUTOR_PROJECTS.md) ·
+[Discuss](https://github.com/Brietat71/vinkulum-public/discussions) ·
 [Share Vinkulum](docs/SHARE_VINKULUM.md) ·
 [Scientific guarantees](docs/CERTIFICATION_NOYAU.md) ·
 [Support the project](docs/FUNDING.md) · [Documentation technique en français](README.fr.md)
@@ -27,6 +28,25 @@ examples are included. New Gmsh, CalculiX and Pinocchio computations use separat
 pressure, then open CalculiX. The [captured example](docs/bancs/studio-cad-meshing-060/README.md)
 keeps the solid, conditions, input deck and raw output behind the display.
 The plate demonstrates the workflow; it is not a certified stress solution.*
+
+<details>
+<summary><strong>New in source: draw a profile, change a dimension, rebuild the solid</strong></summary>
+
+![Studio 0.6.0a2.dev2: a fully dimensioned line sketch edited to a width of 100 mm](docs/bancs/studio-sketch-060/sketch-100.png)
+
+Change the bracket width from **80 to 100 mm**. The sketch keeps its dimensional
+constraints, OCCT 8 regenerates the solid, and its mass changes from **218.4 to
+249.6 g**. Preview, apply and undo the complete change. Exact affine constraints
+expose remaining degrees of freedom and conflicting dimensions.
+
+[Try the sketch workflow](docs/STUDIO_SKETCH.md) ·
+[Inspect the saved projects and checks](docs/bancs/studio-sketch-060/README.md)
+
+Requires **0.6.0a2.dev2 from source**; the downloadable Linux alpha remains
+**0.6.0a1**. This first sketch domain covers closed line profiles with horizontal,
+vertical, fixed-point and signed X/Y dimensions.
+
+</details>
 
 <details>
 <summary><strong>See the new CalculiX workspace — a calculation you can reproduce</strong></summary>
@@ -65,8 +85,9 @@ fillets. The solid supplies the new mass and inertia; applying the preview is
 one undoable change. Try the [parametric plate](examples/studio/platine-parametrique.vinkulum.json)
 with the [editing guide](docs/STUDIO_CAD_HISTORY.md) and inspect the
 [installed-package checks](docs/bancs/studio-cad-history-060/README.md).
-Included in the **0.6.0a1 Linux preview**. Constrained sketches and persistent
-face/edge references are still future work.
+Included in the **0.6.0a1 Linux preview**. The current source adds the
+[constrained line sketch editor](docs/STUDIO_SKETCH.md); persistent CAD face/edge
+references remain future work.
 
 </details>
 
@@ -110,7 +131,7 @@ engines. The shipped example reopens without running an engine.
 
 | Layer | Available in the source tree |
 |---|---|
-| **Design** | OCCT **8.0.1** and adapted **build123d**: primitives, extrusions, solid booleans, all-edge fillets and single-solid STEP exchange. Edit upstream solid features, preview regeneration and apply one undoable change. BREP mass properties and display meshes remain distinct. |
+| **Design** | OCCT **8.0.1** and adapted **build123d**: constrained line sketches, extrusions, primitives, solid booleans, all-edge fillets and single-solid STEP exchange. Edit upstream dimensions, preview regeneration and apply one undoable change. BREP mass properties and display meshes remain distinct. |
 | **Model** | A Qt/VTK workbench for rigid mechanisms: bodies, joints, loads, numerical properties, 3D manipulation, undo/redo and project files. |
 | **Simulate** | The native Rust kernel computes in a separate process. Studio captures the model and settings associated with each run. |
 | **Linear statics** | Mesh a captured CAD solid with Gmsh / OCCT 8, select faces and add supports, pressure or total forces. Open the study in CalculiX, inspect displacement, integration-point stress and energy, and reopen saved calculations. |
@@ -119,10 +140,11 @@ engines. The shipped example reopens without running an engine.
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
 **Kernel 0.19.0 · Studio 0.6.0a1 · Linux x86-64 preview.** Research software under active development.
-Current source **Studio 0.6.0a2.dev1** adds [3D pressure, force and support symbols](docs/STUDIO_CAD_MESHING.md#boundary-direction-symbols)
-with signed load values and zoom-aware sizing; this increment is not yet in the downloadable binary.
+Current source **Studio 0.6.0a2.dev2** adds [interactive constrained line sketches](docs/STUDIO_SKETCH.md)
+alongside [3D pressure, force and support symbols](docs/STUDIO_CAD_MESHING.md#boundary-direction-symbols).
+These increments are not yet in the downloadable binary.
 Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
-workflow; interactive constrained sketches and persistent face/edge references
+workflow; curved sketches, nonlinear dimensions and persistent face/edge references
 remain future work. The [CAD-to-FEM workspace](docs/STUDIO_CAD_MESHING.md) now captures
 tetrahedral meshes and face conditions for CalculiX. The complete kernel is not certified. Each guarantee has a stated
 domain and its own evidence. See the [CAD contract](docs/STUDIO_CAD.md),

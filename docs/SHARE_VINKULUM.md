@@ -9,6 +9,10 @@ multibody dynamics and inspectable scientific results.
 [Try the included examples in five minutes](../apps/studio/packaging/EXAMPLES.md) ·
 [Contributor projects](CONTRIBUTOR_PROJECTS.md)
 
+Use [Discussions](https://github.com/Brietat71/vinkulum-public/discussions) for
+questions, research proposals and examples built with Vinkulum. Reproducible
+defects and agreed implementation tasks belong in Issues.
+
 ## Choose one demonstration
 
 | Audience | Show | Invite this contribution |
@@ -176,6 +180,33 @@ in an open multibody workbench**.
 > We would especially value small redistributable STEP parts with known mass
 > properties or a reproducible failure. Source, limits and the demonstration:
 > https://github.com/Brietat71/vinkulum-public
+
+## A source update for CAD and mathematics contributors
+
+Suggested title: **A dimension you can trace from sketch to solid**.
+
+> Vinkulum's current source adds a native line-sketch editor: draw a profile,
+> set horizontal/vertical constraints and signed X/Y dimensions, then extrude
+> it with OCCT 8. Change a bracket from 80 to 100 mm and inspect the regenerated
+> solid, mass and inertia. The affine constraint graph computes exact decimal
+> consistency, remaining degrees of freedom and a conflicting cycle when a
+> dimension cannot be satisfied.
+>
+> We would welcome reproducible sketch cases, improvements to the Qt interactions,
+> and research contributions on nonlinear constraints with explicit singularity
+> and branch handling. The current domain is closed line profiles; curves and
+> persistent CAD face naming remain open.
+>
+> Guide, actual captures and before/after projects:
+> https://github.com/Brietat71/vinkulum-public/blob/main/docs/STUDIO_SKETCH.md
+
+This is a **0.6.0a2.dev2 source update**. The downloadable Linux binary remains
+**0.6.0a1** and does not contain this editor. Pair the
+[actual sketch capture](bancs/studio-sketch-060/sketch-100.png) with the
+[regenerated solid](bancs/studio-sketch-060/extruded-bracket.png) and link the
+[qualified recipe](bancs/studio-sketch-060/README.md). For an initial contribution,
+the [desktop interaction issue (#2)](https://github.com/Brietat71/vinkulum-public/issues/2)
+can now also be reproduced in the sketch editor.
 
 ## Make an introduction useful
 
