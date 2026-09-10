@@ -2,6 +2,8 @@
 # Build locally with an environment containing the native kernel, Studio and PyInstaller.
 set -euo pipefail
 [[ "$(uname -sm)" == "Linux x86_64" ]] || { echo 'Linux x86_64 required.' >&2; exit 1; }
+: "${VINKULUM_BUNDLE_GMSH:?Select a Gmsh executable built with OCCT 8 or newer for qualification}"
+export VINKULUM_BUNDLE_GMSH
 VINKULUM_SOURCE_ROOT=$(cd "$(dirname "$0")/.." && pwd)
 cd "$VINKULUM_SOURCE_ROOT"
 PY=${PY:-python}
@@ -12,10 +14,19 @@ VINKULUM_LINUX_OUT=${VINKULUM_LINUX_OUT:-"$VINKULUM_SOURCE_ROOT/dist/linux"}
 mkdir -p "$VINKULUM_LINUX_OUT"
 VINKULUM_LINUX_OUT=$(cd "$VINKULUM_LINUX_OUT" && pwd)
 BUILD_DIR=$(mktemp -d /tmp/vinkulum-linux.XXXXXX)
-trap 'rm -rf -- "$BUILD_DIR"' EXIT
+cleanup() {
+  status=$?
+  if (( status == 0 )); then
+    rm -rf -- "$BUILD_DIR"
+  else
+    echo "Build or qualification failed; diagnostics preserved in $BUILD_DIR" >&2
+  fi
+}
+trap cleanup EXIT
 "$PY" -m PyInstaller --noconfirm --clean --distpath "$BUILD_DIR/dist" \
   --workpath "$BUILD_DIR/build" apps/studio/packaging/studio.spec
 APP="$BUILD_DIR/dist/Vinkulum Studio"
+"$PY" ci/studio_bundle_examples.py "$APP/Examples"
 cp apps/studio/packaging/INSTALLATION-LINUX.txt "$APP/INSTALLATION.txt"
 mkdir -p "$APP/Licences"
 cp -R apps/studio/packaging/licenses/. "$APP/Licences/"
@@ -68,6 +79,11 @@ assert report["manifest"]["app_version"] == sys.argv[2]
 assert report["calculix"]["status"] == "passed"
 assert report["calculix"]["archive_reopened"]
 assert not report["calculix"]["bundled_engine"]
+previews = report["source_previews"]
+for name in ("pinocchio_capture", "cad_history", "gmsh", "cad_mesh_capture", "quadratic_static_capture"):
+    assert previews[name]["status"] == "passed", name
+assert previews["example_files_unchanged"]
+assert previews["gmsh"]["archive_reopened"] and not previews["gmsh"]["bundled_engine"]
 from pathlib import Path
 startup = json.loads(Path(sys.argv[1]).with_name("startup-check.json").read_text())
 assert startup["status"] == "passed" and startup["frozen"]
@@ -80,6 +96,8 @@ cp "$BUILD_DIR/check/bundle-check.json" "$BUILD_DIR/check/scene.png" "$VINKULUM_
 cp "$BUILD_DIR/check/startup-check.json" "$BUILD_DIR/check/startup-scene.png" "$VINKULUM_LINUX_OUT/check/"
 cp "$BUILD_DIR/check/static-scene.png" "$VINKULUM_LINUX_OUT/check/"
 cp -R "$BUILD_DIR/check/static" "$VINKULUM_LINUX_OUT/check/"
+cp "$BUILD_DIR/check/"*-workspace*.png "$VINKULUM_LINUX_OUT/check/"
+cp -R "$BUILD_DIR/check/generated-mesh" "$VINKULUM_LINUX_OUT/check/"
 cp "$APP/build-info.json" "$VINKULUM_LINUX_OUT/"
 cd "$VINKULUM_LINUX_OUT"
 sha256sum "$ARCHIVE" > SHA256SUMS

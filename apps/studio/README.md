@@ -1,11 +1,11 @@
-# Vinkulum Studio 0.6.0.dev4 — CAD and mechanism analysis
+# Vinkulum Studio 0.6.0a1 — CAD and mechanism analysis
 
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.19.0 runs in a separate process; Studio displays its positions,
 orientations, velocities and joint coordinates.
 
-The **0.6.0.dev4 source version** adds the [CAD-to-statics workspace](../../docs/STUDIO_CAD_MESHING.md):
+Source version **0.6.0.dev4** introduced the [CAD-to-statics workspace](../../docs/STUDIO_CAD_MESHING.md):
 generate an OCCT 8 / Gmsh mesh, select boundary faces in 3D, add supports,
 pressure or total forces, save the captured study and open CalculiX. Meshing and
 numerical admission run outside the GUI thread. The [input transport contract](../../docs/CALCULIX_NUMERIC_TRANSPORT.md)
@@ -99,7 +99,9 @@ kernel, Studio CAD and PyInstaller:
 
 ```sh
 python -m pip install 'pyinstaller==6.22.2'
-PY=$(command -v python) bash ci/linux_bundle.sh
+# First build the external mesher with ci/build_mesher.py; see the CAD meshing guide.
+VINKULUM_BUNDLE_GMSH=/absolute/path/to/gmsh-install/bin/gmsh \
+  PY=$(command -v python) bash ci/linux_bundle.sh
 ```
 
 This runs locally. It builds, archives and extracts the application, then tests

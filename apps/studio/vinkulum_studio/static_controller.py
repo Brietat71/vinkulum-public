@@ -1,6 +1,6 @@
 """Direct, cancellable Qt supervision of the optional CalculiX executable."""
 
-from PySide6.QtCore import QObject, QProcess, QProcessEnvironment, QTimer, Signal
+from PySide6.QtCore import QObject, QProcess, QTimer, Signal
 
 from .calculix import (
     StaticStudy,
@@ -9,6 +9,7 @@ from .calculix import (
     parse_version,
     prepare_run,
 )
+from .engine_environment import external_engine_environment
 from .model import finite_number
 
 
@@ -48,7 +49,7 @@ class StaticController(QObject):
         process = QProcess(self)
         self.process, self._stage = process, stage
         process.setProcessChannelMode(QProcess.ProcessChannelMode.MergedChannels)
-        environment = QProcessEnvironment.systemEnvironment()
+        environment = external_engine_environment()
         for name in (
             "OMP_NUM_THREADS",
             "CCX_NPROC_RESULTS",

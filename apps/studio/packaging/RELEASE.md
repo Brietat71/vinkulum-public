@@ -1,46 +1,47 @@
-Vinkulum Studio 0.5.0 — CAD, mechanisms and a first CalculiX workspace.
+Vinkulum Studio 0.6.0a1 — a CAD part, its loads and the files behind the result.
 
-Open Run → Linear statics · CalculiX to load a mesh study, adjust its material
-and load multiplier, and calculate with a separately installed ccx executable.
-Inspect displacement colours, explicitly amplified deformation, reactions,
-integration-point stresses and strain energy. Export the captured values to CSV.
+This Linux alpha preview brings the developing 0.6 workspaces into one
+standalone application. Python, the native Vinkulum 0.19.0 kernel, Qt/VTK,
+OCCT 8.0.1 and the adapted build123d are included. No Python installation or
+compilation is needed to launch Studio, edit CAD or inspect the shipped examples.
 
-Each calculation keeps its mesh, settings, input deck, raw output and result
-metadata. Open result… rechecks an existing calculation without running the
-solver or replacing the study being edited. The checks compare hashes, raw
-values and equilibrium/energy balances. They establish internal consistency,
-not archive authorship or general finite-element accuracy.
+Start with Examples/README.md inside the extracted application folder:
 
-The initial CalculiX domain is linear isotropic elasticity on affine C3D8
-elements, with zero supports and nodal loads. CalculiX 2.21 is the qualified
-Linux executable; it is not bundled. CAD-to-FEM meshing, arbitrary elements,
-nonlinear materials and contact are future work. Results remain NotAssessed.
+- Edit the plate's stock length and regenerate its dependent cut and fillets.
+- Open a captured CAD mesh, select boundary faces in 3D, and edit supports,
+  inward pressure or a total force. Undo and redo preserve condition identity.
+- Inspect the saved quadratic-tetrahedron CalculiX result, including displacement,
+  integration-point stress, reactions, energy and the actual numerical inputs.
+- Open the two-link Pinocchio capture and inspect its mass matrix and body
+  Jacobians with explicit units, frames and derivative scope.
 
-Scene framing now includes visible joint and load symbols. Reference grids do
-not influence clipping, and glyph sizes remain stable when a mechanism is
-translated far from the world origin. No physical model is changed by framing.
+To compute a new CAD mesh, install Gmsh built with OCCT 8 or newer; the repository
+provides a pinned source-build recipe. New static calculations require the
+external ccx executable (qualified here with CalculiX 2.21). New Pinocchio
+operators require its documented separate Python environment. These three
+engines are not bundled. Saved captures open without executing them. Native
+Vinkulum simulation and the OCCT/build123d CAD worker are bundled.
 
-CalculiX (Ctrl+Shift+E), cylinder creation (Ctrl+Shift+C) and load creation
-(Ctrl+Shift+F) leave the English Edit, Create and File menu mnemonics available.
+The current statics domain is linear isotropic elasticity on admitted C3D4,
+curved C3D10 and affine C3D8 meshes. Mesh sizes are bounded. Face identities
+belong to a captured mesh; successful remeshing clears previous conditions.
+The plate is a workflow demonstration, not a certified stress solution. The
+separate tetrahedral pure-bending example has an independent analytic reference.
+Local Jacobian bounds, numerical input transport and balance checks have
+explicit domains. The complete application and arbitrary models are not certified.
 
-The OCCT 8.0.1 / adapted build123d 0.11.1 CAD workflow provides primitives,
-extrusions, booleans, all-edge fillets and single-solid STEP exchange. BREP
-geometry supplies SI mass properties; a separate mesh supplies display geometry.
-Interactive constrained sketches and a regenerating feature tree are future work.
+Packaging targets Linux x86-64, Ubuntu 24.04 / glibc 2.39, X11 and Mesa OpenGL.
+The system supplies its graphics driver and Qt/X11 platform libraries. Older
+glibc, ARM64 and native Wayland remain unqualified. See INSTALLATION.txt.
+The extracted archive must pass startup, rendering, CAD/STEP, feature
+regeneration, native dynamics, external Gmsh/OCCT 8 and CalculiX execution,
+and unchanged-file reopening of the delivered CAD/FEM/Pinocchio captures.
+The accompanying build-info.json and check reports identify the actual build.
+This Linux release does not qualify macOS or provide a new Apple Silicon DMG.
 
-Model, Simulate and Inspect workspaces provide a compact Inspector, 3D tools,
-a command palette and comparison of captured native-kernel runs. The interface
-is in English; several technical research reports remain in French. The native
-kernel remains Vinkulum 0.19.0. Pinocchio and further engine connectors are planned.
+Contributors: try an example and help with an independent CAD part, a desktop
+interaction check, FEM convergence or articulated-load derivatives. Concrete
+starting tasks: https://github.com/Brietat71/vinkulum-public/blob/main/docs/CONTRIBUTOR_PROJECTS.md
 
-Linux x86-64 / Ubuntu 24.04 / glibc 2.39 / X11 is the packaging target. The
-standalone archive includes Python, Qt, VTK and CAD. Its extracted executable
-must pass normal startup, rendering, CAD/STEP, native pendulum and external
-CalculiX checks. See the attached reports for the tested source and platform.
-These bounded checks do not certify the entire kernel or arbitrary models.
-
-The Apple Silicon packaging recipe is prepared; this Linux release does not
-qualify macOS and provides no new qualified DMG.
-
-Original code is Apache-2.0. Dependency licences and adaptation notices are
-included. Each external solver retains its own licence and physical assumptions.
+Original code is Apache-2.0. Dependency notices, licences and CAD adaptation
+patches are included; external engines retain their own licences and assumptions.

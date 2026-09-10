@@ -1,14 +1,14 @@
 """Supervise the optional Pinocchio Python worker without importing its engine."""
 
 import os
-import sys
 from pathlib import Path
 
-from PySide6.QtCore import QObject, QProcess, QProcessEnvironment, QTimer, Signal
+from PySide6.QtCore import QObject, QProcess, QTimer, Signal
 
 from .articulated import state_vector, tree_links
 from .articulated_result import load_operators
 from .document import save_project
+from .engine_environment import external_engine_environment
 from .model import finite_number, write_json
 
 
@@ -65,17 +65,7 @@ class PinocchioController(QObject):
         self._reason = None
         process = QProcess(self)
         self.process = process
-        environment = QProcessEnvironment.systemEnvironment()
-        for key in ("PYTHONPATH", "PYTHONHOME", "VIRTUAL_ENV"):
-            environment.remove(key)
-        if getattr(sys, "frozen", False):
-            # PyInstaller prepends its libraries for the GUI. The external
-            # interpreter must find its own NumPy/Pinocchio dependencies.
-            original = environment.value("LD_LIBRARY_PATH_ORIG")
-            if original:
-                environment.insert("LD_LIBRARY_PATH", original)
-            else:
-                environment.remove("LD_LIBRARY_PATH")
+        environment = external_engine_environment()
         for key in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
             environment.insert(key, "1")
         environment.insert("PYTHONUNBUFFERED", "1")

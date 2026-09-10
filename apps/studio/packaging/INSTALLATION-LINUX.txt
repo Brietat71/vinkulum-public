@@ -1,4 +1,4 @@
-Vinkulum Studio 0.5.0 — Linux x86-64
+Vinkulum Studio 0.6.0a1 — Linux x86-64
 
 Extract the archive, open a terminal in the extracted directory and run:
   ./Vinkulum\ Studio/Vinkulum\ Studio
@@ -8,15 +8,31 @@ Qt and VTK are bundled; no Python environment or compilation is needed on the
 destination machine. CAD includes OCCT 8.0.1 and build123d 0.11.1+vinkulum.occt8.
 The CAD button opens primitives, extrusions, booleans, fillets and STEP exchange.
 One solid per part; CAD projects retain the BREP and SI mass properties.
+Edit CAD features (Ctrl+Shift+H) regenerates a captured feature history.
+Start with Examples/README.md: editable CAD, captured face conditions, a
+quadratic-element calculation and Pinocchio operators are included.
 
 For the optional CalculiX workspace, install the external solver separately:
   sudo apt-get install calculix-ccx
 Open Run → Linear statics · CalculiX, then run the built-in tension example or
 load a study JSON. Open result… reopens a saved calculation without a solver.
 Keep result.json together with study.json, study.inp, study.dat and solver.log.
-The initial domain is linear elasticity on affine C3D8 elements, zero supports
-and nodal loads. CAD parts are not automatically meshed. CalculiX 2.21 is the
-qualified Linux version; its executable is not included in this archive.
+The domain is linear isotropic elasticity on affine C3D8, C3D4 and admitted
+curved C3D10 elements, with zero supports and nodal or face-based loads.
+CalculiX 2.21 is the qualified Linux version; its executable is not bundled.
+
+Run → Static study from CAD meshes a selected solid with an external Gmsh
+executable built with OCCT 8 or newer. Select boundary faces, add supports,
+pressure or total force, and open the captured study in CalculiX. Gmsh is not
+bundled; the repository provides ci/build_mesher.py with pinned OCCT/Gmsh
+sources. A system Gmsh built with older OCCT will be refused. Saved studies
+and results reopen without these executables. See Examples/README.md.
+
+Run → Articulated operators · Pinocchio opens captured mass matrices, body
+Jacobians and dynamics operators. Pinocchio is not bundled. Recalculation
+requires the separate Python environment documented in the repository:
+  https://github.com/Brietat71/vinkulum-public/blob/main/docs/PINOCCHIO_OPERATORS.md
+The initial domain is fixed-base rigid trees; this is not trajectory integration.
 
 The target platform is Linux x86-64, glibc 2.39 (Ubuntu 24.04), X11 and Mesa
 OpenGL. Consult check/bundle-check.json and build-info.json for this build's
@@ -34,7 +50,10 @@ To select XWayland explicitly:
 Optional standalone check, from a graphical session:
   ./Vinkulum\ Studio/Vinkulum\ Studio --bundle-check ./verification
 This runs a double pendulum and generates a report and 3D capture. It also
-checks a perforated CAD part and its STEP round-trip with OCCT 8. This
+checks a perforated CAD part and STEP round-trip with OCCT 8, CAD feature
+regeneration and the delivered CAD/mesh, FEM and operator captures. Set
+VINKULUM_BUNDLE_GMSH to a qualified executable to additionally generate a
+mesh, and VINKULUM_BUNDLE_CALCULIX=1 to calculate the tension example. This
 packaging check does not certify arbitrary mechanical trajectories.
 
 The English interface offers Model, Simulate and Inspect workspaces, light
