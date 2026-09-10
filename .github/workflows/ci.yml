@@ -130,6 +130,7 @@ jobs:
           "$RUNNER_TEMP/pinocchio-venv/bin/python" -c 'import pinocchio; assert pinocchio.__version__ == "4.1.0"'
           cd "$RUNNER_TEMP"
           "$RUNNER_TEMP/pinocchio-venv/bin/python" -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -p test_pinocchio.py -v 2>&1 | tee "$RUNNER_TEMP/pinocchio.log"
+          "$RUNNER_TEMP/pinocchio-venv/bin/python" -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -p test_applied_loads.py -v 2>&1 | tee -a "$RUNNER_TEMP/pinocchio.log"
       - name: Qualify the desktop with the installed external Pinocchio worker
         env:
           VINKULUM_3D_TESTS: "1"

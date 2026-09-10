@@ -1,0 +1,879 @@
+{
+  "format": "vinkulum-applied-load-qualification",
+  "schema": 1,
+  "environment": {
+    "pin": "4.1.0",
+    "libpinocchio": "4.1.0",
+    "eigenpy": "3.13.0",
+    "numpy": "2.5.3"
+  },
+  "python": "3.14.7 (main, Aug 14 2026, 15:35:28) [Clang 22.1.3 ]",
+  "platform": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+  "available_cpus": 64,
+  "affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+  ],
+  "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "source_sha256": {
+    "ci/qualify_applied_loads.py": "1f073e85a970fa961826000be53242f940483e1507a8b7945ff3c5858f3bcae5",
+    "apps/studio/tests/fixtures/applied_loads/reference.py": "a900f35e6c2841995a64f1c07f22b36d2345f5b5f0a29cfa96cc3e5b439993a3",
+    "apps/studio/vinkulum_studio/applied_loads.py": "a42ab545c82f783e169959bc607dec7e807a144c9f248e15e8b3f4a3458261b3",
+    "apps/studio/vinkulum_studio/articulated.py": "418cb887364651bafabcace98ba0f7346b699a874de9befa93db6285b09de059",
+    "apps/studio/vinkulum_studio/articulated_result.py": "37fc174572fd788b64fda665d3ac6c77e4d3549e35ec3dc62370325cf7120631",
+    "apps/studio/vinkulum_studio/pinocchio_backend.py": "c64a839bd7b4015e9beabdf842364c8467c94e64b61709c75cbc292f4a09aae6"
+  },
+  "references": [
+    {
+      "case": "spatial-force",
+      "state": {
+        "q": [
+          0.3,
+          -0.4
+        ],
+        "velocity": [
+          0.2,
+          -0.1
+        ],
+        "acceleration": [
+          0.7,
+          -0.3
+        ],
+        "time_s": 0.5
+      },
+      "coordinate_units": [
+        "rad",
+        "rad"
+      ],
+      "effort_units": [
+        "N m",
+        "N m"
+      ],
+      "analytic_external_effort": [
+        -0.45462263088694144,
+        -0.1394311389215332
+      ],
+      "analytic_external_derivative_q": [
+        [
+          -2.9924098864819344,
+          0.04313110559278545
+        ],
+        [
+          0.04313110559278545,
+          -2.8594257934843315
+        ]
+      ],
+      "analytic_max_abs_error": 4.440892098500626e-16,
+      "scaled_derivative_norm_2": 3.0051736569132155,
+      "scaled_derivative_condition_2": 1.0556833345780055,
+      "derivative_rank": 2,
+      "step_sweep": [
+        {
+          "step_coordinate_units": 0.01,
+          "external_max_abs_error": 4.987324873706456e-05,
+          "loaded_max_abs_error": 1.7785062646602512e-05
+        },
+        {
+          "step_coordinate_units": 0.001,
+          "external_max_abs_error": 4.987349595531043e-07,
+          "loaded_max_abs_error": 1.7785113559654064e-07
+        },
+        {
+          "step_coordinate_units": 0.0001,
+          "external_max_abs_error": 4.986806079188e-09,
+          "loaded_max_abs_error": 1.7788677197927427e-09
+        },
+        {
+          "step_coordinate_units": 1e-05,
+          "external_max_abs_error": 4.992228852529479e-11,
+          "loaded_max_abs_error": 8.803943685187221e-12
+        },
+        {
+          "step_coordinate_units": 1e-06,
+          "external_max_abs_error": 1.1759926366039508e-10,
+          "loaded_max_abs_error": 7.076383923276808e-11
+        },
+        {
+          "step_coordinate_units": 1e-07,
+          "external_max_abs_error": 1.131401639042906e-09,
+          "loaded_max_abs_error": 1.280047179363919e-09
+        },
+        {
+          "step_coordinate_units": 1e-08,
+          "external_max_abs_error": 4.280935606004732e-09,
+          "loaded_max_abs_error": 1.558338080798194e-08
+        }
+      ]
+    },
+    {
+      "case": "spatial-moment",
+      "state": {
+        "q": [
+          0.3,
+          -0.4
+        ],
+        "velocity": [
+          0.2,
+          -0.1
+        ],
+        "acceleration": [
+          0.7,
+          -0.3
+        ],
+        "time_s": 0.5
+      },
+      "coordinate_units": [
+        "rad",
+        "rad"
+      ],
+      "effort_units": [
+        "N m",
+        "N m"
+      ],
+      "analytic_external_effort": [
+        0.0,
+        3.841762686597414
+      ],
+      "analytic_external_derivative_q": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          12.419374358632878,
+          0.0
+        ]
+      ],
+      "analytic_max_abs_error": 0.0,
+      "scaled_derivative_norm_2": 12.419374358632878,
+      "scaled_derivative_condition_2": null,
+      "derivative_rank": 1,
+      "step_sweep": [
+        {
+          "step_coordinate_units": 0.01,
+          "external_max_abs_error": 0.00020698853771428105,
+          "loaded_max_abs_error": 0.00020407718304049638
+        },
+        {
+          "step_coordinate_units": 0.001,
+          "external_max_abs_error": 2.069895748135764e-06,
+          "loaded_max_abs_error": 2.040782142387343e-06
+        },
+        {
+          "step_coordinate_units": 0.0001,
+          "external_max_abs_error": 2.069760363099249e-08,
+          "loaded_max_abs_error": 2.040449942342093e-08
+        },
+        {
+          "step_coordinate_units": 1e-05,
+          "external_max_abs_error": 2.2509283326144214e-10,
+          "loaded_max_abs_error": 1.9844215159992018e-10
+        },
+        {
+          "step_coordinate_units": 1e-06,
+          "external_max_abs_error": 3.8052228035212465e-10,
+          "loaded_max_abs_error": 5.093028221381246e-10
+        },
+        {
+          "step_coordinate_units": 1e-07,
+          "external_max_abs_error": 8.246114902021873e-10,
+          "loaded_max_abs_error": 1.8415704516883125e-09
+        },
+        {
+          "step_coordinate_units": 1e-08,
+          "external_max_abs_error": 2.9690410130456257e-08,
+          "loaded_max_abs_error": 1.5650031937042286e-08
+        }
+      ]
+    },
+    {
+      "case": "spatial-wrench",
+      "state": {
+        "q": [
+          0.3,
+          -0.4
+        ],
+        "velocity": [
+          0.2,
+          -0.1
+        ],
+        "acceleration": [
+          0.7,
+          -0.3
+        ],
+        "time_s": 0.5
+      },
+      "coordinate_units": [
+        "rad",
+        "rad"
+      ],
+      "effort_units": [
+        "N m",
+        "N m"
+      ],
+      "analytic_external_effort": [
+        -0.45462263088694144,
+        3.702331547675881
+      ],
+      "analytic_external_derivative_q": [
+        [
+          -2.9924098864819344,
+          0.04313110559278545
+        ],
+        [
+          12.462505464225663,
+          -2.8594257934843315
+        ]
+      ],
+      "analytic_max_abs_error": 4.440892098500626e-16,
+      "scaled_derivative_norm_2": 13.117660872074062,
+      "scaled_derivative_condition_2": 21.4580250519553,
+      "derivative_rank": 2,
+      "step_sweep": [
+        {
+          "step_coordinate_units": 0.01,
+          "external_max_abs_error": 0.0002077073858828271,
+          "loaded_max_abs_error": 0.00020479603120904244
+        },
+        {
+          "step_coordinate_units": 0.001,
+          "external_max_abs_error": 2.077084163332188e-06,
+          "loaded_max_abs_error": 2.047970557583767e-06
+        },
+        {
+          "step_coordinate_units": 0.0001,
+          "external_max_abs_error": 2.076771288272994e-08,
+          "loaded_max_abs_error": 2.047904956725688e-08
+        },
+        {
+          "step_coordinate_units": 1e-05,
+          "external_max_abs_error": 2.1970691932438058e-10,
+          "loaded_max_abs_error": 2.1526069815536175e-10
+        },
+        {
+          "step_coordinate_units": 1e-06,
+          "external_max_abs_error": 3.973408269075662e-10,
+          "loaded_max_abs_error": 3.040767637685349e-10
+        },
+        {
+          "step_coordinate_units": 1e-07,
+          "external_max_abs_error": 1.071530877916338e-09,
+          "loaded_max_abs_error": 3.778048984770521e-09
+        },
+        {
+          "step_coordinate_units": 1e-08,
+          "external_max_abs_error": 3.659061142968767e-08,
+          "loaded_max_abs_error": 1.7623555947920977e-08
+        }
+      ]
+    },
+    {
+      "case": "mixed-wrench",
+      "state": {
+        "q": [
+          0.3,
+          -0.4
+        ],
+        "velocity": [
+          0.2,
+          -0.1
+        ],
+        "acceleration": [
+          0.7,
+          -0.3
+        ],
+        "time_s": 0.5
+      },
+      "coordinate_units": [
+        "rad",
+        "m"
+      ],
+      "effort_units": [
+        "N m",
+        "N"
+      ],
+      "analytic_external_effort": [
+        13.391816871053882,
+        1.0241123582671934
+      ],
+      "analytic_external_derivative_q": [
+        [
+          0.45451021942036174,
+          -3.4570498806994974
+        ],
+        [
+          -3.4570498806994974,
+          0.0
+        ]
+      ],
+      "analytic_max_abs_error": 1.6653345369377348e-16,
+      "scaled_derivative_norm_2": 3.691766440696674,
+      "scaled_derivative_condition_2": 1.1403998288529569,
+      "derivative_rank": 2,
+      "step_sweep": [
+        {
+          "step_coordinate_units": 0.01,
+          "external_max_abs_error": 5.7617209919591517e-05,
+          "loaded_max_abs_error": 5.7617209919591517e-05
+        },
+        {
+          "step_coordinate_units": 0.001,
+          "external_max_abs_error": 5.761748798072119e-07,
+          "loaded_max_abs_error": 5.761748798072119e-07
+        },
+        {
+          "step_coordinate_units": 0.0001,
+          "external_max_abs_error": 5.761940702342372e-09,
+          "loaded_max_abs_error": 5.761940702342372e-09
+        },
+        {
+          "step_coordinate_units": 1e-05,
+          "external_max_abs_error": 4.873346171052617e-11,
+          "loaded_max_abs_error": 5.439693140374402e-11
+        },
+        {
+          "step_coordinate_units": 1e-06,
+          "external_max_abs_error": 5.594356089488883e-10,
+          "loaded_max_abs_error": 8.537570650446469e-10
+        },
+        {
+          "step_coordinate_units": 1e-07,
+          "external_max_abs_error": 5.591610841015893e-09,
+          "loaded_max_abs_error": 5.591610674482439e-09
+        },
+        {
+          "step_coordinate_units": 1e-08,
+          "external_max_abs_error": 5.4507626412458876e-08,
+          "loaded_max_abs_error": 2.223888184715861e-08
+        }
+      ]
+    }
+  ],
+  "hessian_binding_probe": {
+    "axes": "[world motion component vx,vy,vz,wx,wy,wz; Jacobian column i; differentiated q_j] at body COM",
+    "q": [
+      0.3,
+      -0.4
+    ],
+    "body_centre_local_m": [
+      0.15,
+      -0.12,
+      0.2
+    ],
+    "raw_shape": [
+      6,
+      2,
+      2
+    ],
+    "raw_strides_bytes": [
+      32,
+      16,
+      8
+    ],
+    "raw": [
+      [
+        [
+          -0.0,
+          0.1863409541036743
+        ],
+        [
+          -0.1963260432482296,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.057583366053736616
+        ]
+      ],
+      [
+        [
+          0.017812622494960975,
+          0.0
+        ],
+        [
+          -0.29552020666133955,
+          0.955336489125606
+        ]
+      ],
+      [
+        [
+          -0.0,
+          0.057583366053736616
+        ],
+        [
+          0.017812622494960975,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -0.06027548063870263,
+          0.07170057540860159
+        ]
+      ],
+      [
+        [
+          -0.23178846804759035,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    ],
+    "expected": [
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.060275480638702646
+        ]
+      ],
+      [
+        [
+          0.1863409541036743,
+          0.05758336605373663
+        ],
+        [
+          0.05758336605373663,
+          0.07170057540860159
+        ]
+      ],
+      [
+        [
+          -0.1963260432482296,
+          0.01781262249496097
+        ],
+        [
+          0.01781262249496097,
+          -0.23178846804759037
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -0.29552020666133955,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.955336489125606,
+          0.0
+        ]
+      ]
+    ],
+    "raw_max_abs_error": 1.1871249571731963,
+    "unpacked_max_abs_error": 2.7755575615628914e-17,
+    "diagnostic_unpacking": "raw.ravel(order='C').reshape((6,nv,nv), order='F')",
+    "production_uses_binding_hessian": false
+  },
+  "timings": [
+    {
+      "coordinates": 2,
+      "loads": 1,
+      "operator_payload_bytes": 5356,
+      "captured_report_bytes": 9861,
+      "python_startup": {
+        "seconds": [
+          0.021746105048805475,
+          0.023189470171928406,
+          0.022385284770280123,
+          0.022262650076299906,
+          0.021087707951664925,
+          0.023427364882081747,
+          0.02166932774707675
+        ],
+        "median_s": 0.022262650076299906
+      },
+      "python_and_imports": {
+        "seconds": [
+          0.15320350602269173,
+          0.15496727405115962,
+          0.15932373004034162,
+          0.16605417896062136,
+          0.16093980567529798,
+          0.15735497092828155,
+          0.16774817276746035
+        ],
+        "median_s": 0.15932373004034162
+      },
+      "model_construction": {
+        "seconds": [
+          0.0009673666208982468,
+          0.0008367779664695263,
+          0.0008429191075265408,
+          0.0008321390487253666,
+          0.0008088639006018639,
+          0.0007406240329146385,
+          0.0005552498623728752
+        ],
+        "median_s": 0.0008321390487253666
+      },
+      "all_operators_including_derivatives_and_finite_json_check": {
+        "seconds": [
+          0.0009072022512555122,
+          0.0004572030156850815,
+          0.0004441882483661175,
+          0.00043288618326187134,
+          0.00041537312790751457,
+          0.0004270351491868496,
+          0.000414201058447361
+        ],
+        "median_s": 0.00043288618326187134
+      },
+      "load_derivatives_with_precomputed_jacobians": {
+        "seconds": [
+          0.00011591101065278053,
+          9.433971717953682e-05,
+          9.944010525941849e-05,
+          8.560391142964363e-05,
+          8.271820843219757e-05,
+          8.428096771240234e-05,
+          8.511310443282127e-05
+        ],
+        "median_s": 8.560391142964363e-05
+      },
+      "json_encoding": {
+        "seconds": [
+          8.550286293029785e-05,
+          6.798980757594109e-05,
+          5.867192521691322e-05,
+          5.578668788075447e-05,
+          5.438365042209625e-05,
+          5.37727028131485e-05,
+          5.3451862186193466e-05
+        ],
+        "median_s": 5.578668788075447e-05
+      },
+      "payload_file_write_without_fsync": {
+        "seconds": [
+          0.00010301638394594193,
+          0.00012586964294314384,
+          0.00018940074369311333,
+          0.00014019804075360298,
+          0.00012130197137594223,
+          0.00011857692152261734,
+          0.0001165228895843029
+        ],
+        "median_s": 0.00012130197137594223
+      },
+      "reader_validation": {
+        "seconds": [
+          0.005067864898592234,
+          0.004864035174250603,
+          0.004825852811336517,
+          0.004763142671436071,
+          0.004755518864840269,
+          0.004748625215142965,
+          0.004731222055852413
+        ],
+        "median_s": 0.004763142671436071
+      },
+      "full_cli_once_s": 0.3456551693379879
+    },
+    {
+      "coordinates": 16,
+      "loads": 2,
+      "operator_payload_bytes": 82451,
+      "captured_report_bytes": 130940,
+      "python_startup": {
+        "seconds": [
+          0.02306131599470973,
+          0.023563885129988194,
+          0.02210701396688819,
+          0.021996492985635996,
+          0.022305131889879704,
+          0.022044523619115353,
+          0.02142084389925003
+        ],
+        "median_s": 0.02210701396688819
+      },
+      "python_and_imports": {
+        "seconds": [
+          0.15561931766569614,
+          0.16557670664042234,
+          0.1673972629942,
+          0.15795926470309496,
+          0.16103014815598726,
+          0.15567557467147708,
+          0.1592685952782631
+        ],
+        "median_s": 0.1592685952782631
+      },
+      "model_construction": {
+        "seconds": [
+          0.0018983636982738972,
+          0.0017746081575751305,
+          0.0017540077678859234,
+          0.0017428169958293438,
+          0.001737015787512064,
+          0.001746234018355608,
+          0.0017842669039964676
+        ],
+        "median_s": 0.0017540077678859234
+      },
+      "all_operators_including_derivatives_and_finite_json_check": {
+        "seconds": [
+          0.003016397822648287,
+          0.003294799942523241,
+          0.004487968049943447,
+          0.004209436010569334,
+          0.0032103685662150383,
+          0.0035248990170657635,
+          0.003343242220580578
+        ],
+        "median_s": 0.003343242220580578
+      },
+      "load_derivatives_with_precomputed_jacobians": {
+        "seconds": [
+          0.00047331396490335464,
+          0.00037221983075141907,
+          0.00024068914353847504,
+          0.00024386495351791382,
+          0.00023589981719851494,
+          0.00023521902039647102,
+          0.00023024994879961014
+        ],
+        "median_s": 0.00024068914353847504
+      },
+      "json_encoding": {
+        "seconds": [
+          0.0018298430368304253,
+          0.0022878581658005714,
+          0.002788272686302662,
+          0.0027057048864662647,
+          0.0025307009927928448,
+          0.00216131703928113,
+          0.0014235167764127254
+        ],
+        "median_s": 0.0022878581658005714
+      },
+      "payload_file_write_without_fsync": {
+        "seconds": [
+          0.00012985803186893463,
+          0.00017096707597374916,
+          0.00038662785664200783,
+          0.0003582742065191269,
+          0.00035325484350323677,
+          0.0003546769730746746,
+          0.00035233190283179283
+        ],
+        "median_s": 0.00035325484350323677
+      },
+      "reader_validation": {
+        "seconds": [
+          0.011076785624027252,
+          0.011813253164291382,
+          0.008197390008717775,
+          0.007498415187001228,
+          0.0074591198936104774,
+          0.007494688034057617,
+          0.007526348810642958
+        ],
+        "median_s": 0.007526348810642958
+      },
+      "full_cli_once_s": 0.3521176166832447
+    },
+    {
+      "coordinates": 32,
+      "loads": 2,
+      "operator_payload_bytes": 286675,
+      "captured_report_bytes": 451516,
+      "python_startup": {
+        "seconds": [
+          0.023339586798101664,
+          0.023461509961634874,
+          0.021990081295371056,
+          0.021831787656992674,
+          0.022144524846225977,
+          0.021981615107506514,
+          0.02105140872299671
+        ],
+        "median_s": 0.021990081295371056
+      },
+      "python_and_imports": {
+        "seconds": [
+          0.15471076406538486,
+          0.16374814696609974,
+          0.1665899120271206,
+          0.1665353667922318,
+          0.16100756404921412,
+          0.16715984977781773,
+          0.1666901628486812
+        ],
+        "median_s": 0.1665353667922318
+      },
+      "model_construction": {
+        "seconds": [
+          0.0035769292153418064,
+          0.0034301578998565674,
+          0.003476917278021574,
+          0.003471718169748783,
+          0.003431851975619793,
+          0.003402234986424446,
+          0.0033853622153401375
+        ],
+        "median_s": 0.003431851975619793
+      },
+      "all_operators_including_derivatives_and_finite_json_check": {
+        "seconds": [
+          0.01758163422346115,
+          0.015015675686299801,
+          0.013180663343518972,
+          0.011054634116590023,
+          0.00662563880905509,
+          0.006633523851633072,
+          0.006587856914848089
+        ],
+        "median_s": 0.011054634116590023
+      },
+      "load_derivatives_with_precomputed_jacobians": {
+        "seconds": [
+          0.00030720606446266174,
+          0.00023501785472035408,
+          0.00022588111460208893,
+          0.0002224552445113659,
+          0.00023499922826886177,
+          0.00022392813116312027,
+          0.00021914904937148094
+        ],
+        "median_s": 0.00022588111460208893
+      },
+      "json_encoding": {
+        "seconds": [
+          0.005507152993232012,
+          0.005223702173680067,
+          0.0052087437361478806,
+          0.005228932946920395,
+          0.005212591029703617,
+          0.0051910001784563065,
+          0.005214233882725239
+        ],
+        "median_s": 0.005214233882725239
+      },
+      "payload_file_write_without_fsync": {
+        "seconds": [
+          0.0003352598287165165,
+          0.0004072273150086403,
+          0.00095797935500741,
+          0.0009415168315172195,
+          0.0009499429725110531,
+          0.0009406558237969875,
+          0.0009395740926265717
+        ],
+        "median_s": 0.0009406558237969875
+      },
+      "reader_validation": {
+        "seconds": [
+          0.01656846096739173,
+          0.01580824889242649,
+          0.01581284822896123,
+          0.015796195715665817,
+          0.01578045589849353,
+          0.016018470283597708,
+          0.015890195965766907
+        ],
+        "median_s": 0.01581284822896123
+      },
+      "full_cli_once_s": 0.36843740195035934
+    }
+  ]
+}

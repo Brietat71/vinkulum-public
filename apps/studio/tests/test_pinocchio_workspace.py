@@ -106,6 +106,7 @@ class PinocchioWorkspace(unittest.TestCase):
         ) as question:
             window.open_example()
         question.assert_called_once()
+
         self.assertEqual(window.state_fields["q"][0].text(), "invalid")
         with patch.object(
             QMessageBox, "question", return_value=QMessageBox.StandardButton.Discard
@@ -122,6 +123,54 @@ class PinocchioWorkspace(unittest.TestCase):
         ) as question:
             self.assertFalse(window.close())
         question.assert_called_once()
+
+    @unittest.skipUnless(
+        os.environ.get("VINKULUM_PINOCCHIO_PYTHON"),
+        "Set the separate qualified worker Python",
+    )
+    def test_loaded_derivative_tables_and_legacy_missing_channels(self):
+        window = self.window()
+        window.interpreter.setText(os.environ["VINKULUM_PINOCCHIO_PYTHON"])
+        window.output.setText(str(self.root / "new-derivatives"))
+        window.start()
+        self.wait_until(lambda: window.controller.process is None, seconds=30)
+        result = window.controller.last_result
+        self.assertIsNotNone(result)
+        for index, channel in (
+            (6, "external_effort_derivatives"),
+            (7, "loaded_inverse_derivatives"),
+        ):
+            window.channel.setCurrentIndex(index)
+            np.testing.assert_array_equal(
+                window.table.model().values, result.report[channel]["q"]
+            )
+            self.assertTrue(window.export_button.isEnabled())
+            self.assertIn("row effort / column coordinate", window.table_note.text())
+            self.assertIn("[rad]", window.table.model().headers[1])
+            path = self.root / f"{channel}.csv"
+            with patch.object(
+                QFileDialog, "getSaveFileName", return_value=(str(path), "CSV")
+            ):
+                window.export_table()
+            with path.open() as stream:
+                rows = list(csv.reader(stream))
+            np.testing.assert_array_equal(
+                [[float(value) for value in row[1:]] for row in rows[1:]],
+                result.report[channel]["q"],
+            )
+        old = (
+            Path(__file__).resolve().parents[3]
+            / "examples/studio/articulated/double-pendulum"
+        )
+        window._completed(load_operators(old))
+        for index in (6, 7):
+            window.channel.setCurrentIndex(index)
+            self.assertEqual(window.table.model().rowCount(), 0)
+            self.assertFalse(window.export_button.isEnabled())
+            self.assertIn("does not contain", window.table_note.text())
+        window.channel.setCurrentIndex(2)
+        self.assertEqual(window.table.model().rowCount(), 2)
+        self.assertTrue(window.export_button.isEnabled())
 
     def test_editor_shortcut_close_veto_and_real_cancel_button(self):
         from vinkulum_studio.editor import EditorWindow

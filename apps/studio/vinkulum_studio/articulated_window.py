@@ -161,6 +161,8 @@ class ArticulatedWindow(QMainWindow):
                 "Intrinsic dτ/dv",
                 "Body kinematics",
                 "Body Jacobian",
+                "External dτ/dq",
+                "Loaded inverse dτ/dq",
             )
         )
         self.channel.currentIndexChanged.connect(self._table)
@@ -271,7 +273,7 @@ class ArticulatedWindow(QMainWindow):
         self.result_summary.setWordWrap(True)
         controls.addWidget(self.result_summary)
         scope = QLabel(
-            "Single-state rigid-tree operators.\nRevolute and prismatic joints.\nWorld forces and moments.\nNo trajectory integration.\n\nIntrinsic derivatives exclude derivatives of applied world loads."
+            "Single-state rigid-tree operators.\nRevolute and prismatic joints.\nWorld forces and moments.\nNo trajectory integration.\n\nIntrinsic, applied-load and loaded inverse derivatives retain separate meanings."
         )
         scope.setObjectName("muted")
         scope.setWordWrap(True)
@@ -632,14 +634,18 @@ class ArticulatedWindow(QMainWindow):
                     ],
                 ]
             )
-        elif channel in (1, 2, 3):
-            variable = {1: "acceleration", 2: "q", 3: "velocity"}[channel]
+        elif channel in (1, 2, 3, 6, 7):
+            variable = {1: "acceleration", 2: "q", 3: "velocity", 6: "q", 7: "q"}[
+                channel
+            ]
             derivative = {
                 1: r["mass_matrix"],
                 2: r["intrinsic_inverse_derivatives"]["q"],
                 3: r["intrinsic_inverse_derivatives"]["velocity"],
+                6: r.get("external_effort_derivatives", {}).get("q"),
+                7: r.get("loaded_inverse_derivatives", {}).get("q"),
             }[channel]
-            suffix = {1: "/s²", 2: "", 3: "/s"}[channel]
+            suffix = {1: "/s²", 2: "", 3: "/s", 6: "", 7: ""}[channel]
             headers = (
                 "Joint · effort unit",
                 *[
@@ -647,8 +653,22 @@ class ArticulatedWindow(QMainWindow):
                     for i, entry in enumerate(order)
                 ],
             )
-            values = np.array(derivative)
+            values = (
+                np.array(derivative)
+                if derivative is not None
+                else np.empty((0, len(order)))
+            )
             note = f"Each entry maps {variable} in its column to effort in its row. Intrinsic RNEA includes gravity and excludes derivatives of applied world loads."
+            if channel in (6, 7):
+                scope = (
+                    "Applied world loads"
+                    if channel == 6
+                    else "Intrinsic inverse effort minus applied world loads"
+                )
+                note = f"{scope}: row effort / column coordinate, at fixed velocity, requested acceleration and load time. Free-moment derivatives need not be symmetric."
+                if derivative is None:
+                    names = []
+                    note = "This saved result does not contain applied-load derivatives. Evaluate its captured inputs with the current worker to obtain them."
         elif channel == 4:
             names = [body["name"] for body in r["bodies"]]
             headers = (
@@ -700,14 +720,20 @@ class ArticulatedWindow(QMainWindow):
             old.deleteLater()
         self.table.resizeColumnsToContents()
         self.table_note.setText(note)
-        self.export_button.setEnabled(True)
+        self.export_button.setEnabled(values.shape[0] > 0)
         self.provenance.setPlainText(
             json.dumps(
                 {
                     key: value
                     for key, value in r.items()
                     if key
-                    not in ("mass_matrix", "intrinsic_inverse_derivatives", "bodies")
+                    not in (
+                        "mass_matrix",
+                        "intrinsic_inverse_derivatives",
+                        "external_effort_derivatives",
+                        "loaded_inverse_derivatives",
+                        "bodies",
+                    )
                 },
                 indent=2,
             )

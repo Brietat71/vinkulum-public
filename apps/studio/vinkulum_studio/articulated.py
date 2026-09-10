@@ -113,9 +113,9 @@ def state_vector(value, links, name, *, initial=False):
     return np.array(vector(value, len(links), name))
 
 
-def operator_conventions():
-    """Canonical schema-1 result meanings shared by worker and reader."""
-    return {
+def operator_conventions(schema=2):
+    """Canonical result meanings; retain the original schema-1 vocabulary."""
+    result = {
         "coordinates": "Absolute declared A-to-B coordinates; initial revolute values use "
         "principal angles, without turn-count inference.",
         "jacobians": "At each body centre of mass, world-aligned axes; rows [vx, vy, vz, wx, "
@@ -134,3 +134,18 @@ def operator_conventions():
         "contact, imposed motion or closed-loop dynamics. Consistency checks are not "
         "general accuracy certificates.",
     }
+    if schema == 2:
+        result["external_derivatives"] = (
+            "external_effort_derivatives: row i is external effort i, column j is "
+            "the differentiated coordinate, velocity or acceleration j. "
+            "World force and free moment, body-local point and state.time_s are fixed. "
+            "Velocity and acceleration derivatives are zero; q derivatives of free "
+            "moments need not be symmetric. Entry units are row effort / column variable."
+        )
+        result["loaded_derivatives"] = (
+            "loaded_inverse_derivatives = intrinsic_inverse_derivatives - "
+            "external_effort_derivatives at the captured q, velocity, requested "
+            "acceleration and load time. Other state variables are held fixed. "
+            "Rows follow effort units; columns follow coordinate units, /s or /s²."
+        )
+    return result
