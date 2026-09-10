@@ -34,6 +34,9 @@ Pinocchio in the main test environment. Desktop composition tests used the
 already qualified separate Studio 0.6.0.dev2 / Pinocchio 4.1.0 worker.
 Its existing operator protocol was not changed here. See [studio-tests.log](studio-tests.log).
 
+The five mesh-workspace tests also passed with `QT_SCALE_FACTOR=2`, including
+real face picking at the doubled framebuffer scale. See [hidpi-tests.log](hidpi-tests.log).
+
 An additional [fresh-process archive test](saved-example-tests.log) checked the
 ZIP manifest, mesh/raw-data consistency, physical-condition identities and
 CalculiX result reopening. It removed the executable search path, prohibited
@@ -79,5 +82,12 @@ the current mesh budget and was refused; it was not silently coarsened.
 The [qualification manifest](qualification.json) records the final wheel,
 all 47 package modules, test logs and engine fingerprints. Source revisions for
 Gmsh and OCCT are pinned in the [build recipe](../../../ci/build_mesher.py).
-A fresh end-to-end rebuild of that script is still in progress; the GUI and
-numerical checks above used the completed local Gmsh/OCCT 8 build.
+The pinned script completed a fresh Linux build from clean source checkouts.
+A subsequent cached execution checked that generated files stay inside the
+chosen build directory. The [build manifest](mesher-build.json) records the
+source revisions and installed-file hashes; the [engine report](rebuilt-engine-info.txt)
+confirms OCCT 8.0.1. A separate [GUI recipe run](rebuilt-engine-recipe.json)
+then meshed the plate, applied its face conditions, ran CalculiX and reopened
+the result using this newly built executable. All three commands exited 0.
+The downloadable ZIP above retains the original qualified run. Different mesh
+connectivity between runs is recorded rather than treated as bitwise reproducibility.

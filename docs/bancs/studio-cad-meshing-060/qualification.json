@@ -80,5 +80,29 @@
     }
   },
   "delivery": "Source wheel qualification; no new standalone release",
-  "build_recipe": "Pinned commands from the qualified local engine build; a clean rebuild with ci/build_mesher.py is still running."
+  "build_recipe": {
+    "status": "passed",
+    "fresh_source_build_exit_code": 0,
+    "repeated_build_after_working_directory_fix_exit_code": 0,
+    "gui_mesh_and_calculix_recipe_exit_code": 0,
+    "manifest_sha256": "6b2a7fbf39f39b59c285571a51bba26888ef552e443ef175f97c5e4fbcc8e54e",
+    "info_sha256": "d47fd9f4e30d28b7234e2cdc59ca6244ad13526f0208de581239364a95999f6d",
+    "gui_recipe_sha256": "db327d7524ec2feafd0eccca9d0e13f491e2575d79e27e072c8e49cf81a2de0e",
+    "build_logs_sha256": {
+      "gmsh-build.log": "6621fa59d1df951225ad0c31625fd6fed438cca84fce46d6e3a32cb74ffda85d",
+      "gmsh-configure.log": "8a687d9334367677254dcc7bf0c35fab702ab8afa832db68af1c4bdcf5d22d2d",
+      "gmsh-install.log": "8ce06e7a9e970e0fc6e5be3d8de0d22ff59544ae128fa76df4c8562474cd55b5",
+      "occt-build.log": "25ffa74bb5dff0bd67cd8caff7a81f33025ec25b28e7a33208fda6de8bcc08cf",
+      "occt-configure.log": "54da857ca79487800807c9d851f77eee8301476615ba4f60d59992adde7ce9a2",
+      "occt-install.log": "ea03e204d72f075867cea6fa302a557694d2840fc1741725ab38ebf71cc82062"
+    },
+    "note": "Fresh Linux OCCT/Gmsh build from clean pinned source overrides, followed by a cached repeat with generators confined to the build root. The published ZIP retains the earlier qualified engine run; the new engine has its own report. No bitwise reproducibility or global solution-accuracy claim."
+  },
+  "hidpi_workspace_tests": {
+    "qt_scale_factor": 2,
+    "run": 5,
+    "passed": 5,
+    "exit_code": 0,
+    "log_sha256": "aa735e24ded29536ad191ad4065327b80b22d668774170a73bc47c8d542e11ee"
+  }
 }

@@ -31,6 +31,7 @@ def run(arguments, log):
         stream.flush()
         subprocess.run(
             list(map(str, arguments)),
+            cwd=log.parent,
             stdout=stream,
             stderr=subprocess.STDOUT,
             check=True,

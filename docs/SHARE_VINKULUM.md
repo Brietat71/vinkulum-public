@@ -13,6 +13,7 @@ Repository: [Brietat71/vinkulum-public](https://github.com/Brietat71/vinkulum-pu
 | CAD developers | [Machined plate, STEP export and SI mass properties](#a-demonstration-you-can-reproduce) | [An independent STEP fixture (#1)](https://github.com/Brietat71/vinkulum-public/issues/1) | Linux preview 0.5.0 |
 | Engineers and desktop developers | [A saved CalculiX result, inspected without the solver](#try-a-captured-finite-element-result) | [A keyboard/high-DPI workflow (#2)](https://github.com/Brietat71/vinkulum-public/issues/2) | Linux preview 0.5.0 |
 | FEM and numerical-analysis researchers | [Quadratic bending and exact local Jacobian bounds](#six-tetrahedra-and-an-independent-elasticity-solution) | [A bending convergence study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4) | Source 0.6.0.dev3 |
+| CAD/CAE integrators | [One part, its boundary conditions and its captured calculation](#from-a-cad-part-to-an-inspectable-calculation) | [A keyboard/high-DPI face-selection check (#2)](https://github.com/Brietat71/vinkulum-public/issues/2) | Source 0.6.0.dev4 |
 | Dynamics and robotics researchers | [Captured Pinocchio operators](#a-research-demonstration-from-the-developing-source-version) | [Applied-load derivatives (#6)](https://github.com/Brietat71/vinkulum-public/issues/6) | Source 0.6.0.dev1 or newer |
 
 Keep the screenshot, version and contribution link together when sharing.
@@ -160,6 +161,37 @@ Suggested research introduction:
 
 This is a polynomial patch reference, not a general accuracy or speed comparison
 against other solvers. Preserve that distinction when shortening the introduction.
+
+## From a CAD part to an inspectable calculation
+
+Show the [actual mesh workspace](assets/studio-cad-mesh.png) alongside the
+[calculated displacement](assets/studio-cad-mesh-static.png). The
+[downloadable capture](bancs/studio-cad-meshing-060/mesh-and-static-example.zip)
+keeps the solid, quadratic tetrahedra, face conditions, solver input and raw
+output together. Follow the [reopening instructions](bancs/studio-cad-meshing-060/README.md)
+in **Studio 0.6.0.dev4 source**; the Linux 0.5.0 binary predates this workflow.
+
+Suggested introduction for CAD/CAE developers:
+
+> A CAD part, a clamped face, a pressure load — and the files behind the result.
+>
+> Vinkulum's developing desktop now takes an OCCT 8 solid through Gmsh meshing,
+> 3D face selection and a CalculiX static study. Supports and loads remain
+> editable physical conditions. A saved calculation reopens without executing
+> either solver, including the captured inputs behind the displayed values.
+>
+> The repository includes a real perforated-plate example, screenshots and a
+> pinned OCCT 8/Gmsh build recipe. We are looking for CAD/CAE contributors to
+> challenge the face-selection workflow and add independent FEM references.
+> This is experimental linear statics; the example demonstrates a complete
+> workflow, with no general stress-accuracy or solver-performance claim.
+>
+> Source preview 0.6.0; downloadable Linux preview 0.5.0:
+> https://github.com/Brietat71/vinkulum-public
+
+Link the [desktop contribution task (#2)](https://github.com/Brietat71/vinkulum-public/issues/2)
+or [FEM convergence task (#4)](https://github.com/Brietat71/vinkulum-public/issues/4)
+to make the invitation actionable. This draft has not been posted externally.
 
 ## Introduction for a technical community
 
