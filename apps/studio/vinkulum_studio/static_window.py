@@ -3,7 +3,7 @@
 import csv
 import json
 import uuid
-from dataclasses import asdict, replace
+from dataclasses import replace
 from pathlib import Path
 
 import numpy as np
@@ -29,8 +29,9 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from .calculix import StaticStudy, load_static_result, load_study
+from .calculix import StaticStudy, load_static_result, load_study, study_document
 from .controls import NumberField
+from .finite_elements import POINT_COUNTS
 from .model import write_json
 from .static_controller import StaticController
 from .static_view import StaticTable, StaticViewport
@@ -200,7 +201,7 @@ class StaticWindow(QMainWindow):
         self.folder_button.clicked.connect(self._open_folder)
         layout.addWidget(self.folder_button)
         limits = QLabel(
-            "Linear isotropic elasticity · affine C3D8\nZero supports · nodal loads\nMesh import is independent of the CAD document."
+            "Linear isotropic elasticity · C3D4 / C3D10 / affine C3D8\nZero supports · nodal loads\nMesh import is independent of the CAD document."
         )
         limits.setWordWrap(True)
         limits.setObjectName("muted")
@@ -325,7 +326,7 @@ class StaticWindow(QMainWindow):
         self.study = study
         self.title.setText(name)
         self.mesh_info.setText(
-            f"{len(study.nodes):,} nodes · {len(study.elements):,} C3D8 elements\n{len(study.fixed_dofs)} constrained DOFs · {len(study.forces)} loaded nodes"
+            f"{len(study.nodes):,} nodes · {len(study.elements):,} {study.element_type} elements\n{len(study.fixed_dofs)} constrained DOFs · {len(study.forces)} loaded nodes"
         )
         self.young.setText(repr(study.young_pa))
         self.poisson.setText(repr(study.poisson))
@@ -379,11 +380,7 @@ class StaticWindow(QMainWindow):
             if path:
                 write_json(
                     path,
-                    {
-                        "format": "vinkulum-static-study",
-                        "schema": 1,
-                        "study": asdict(study),
-                    },
+                    study_document(study),
                 )
                 self.set_study(study, Path(path).stem)
                 self.status.setText(
@@ -527,8 +524,14 @@ class StaticWindow(QMainWindow):
             )
             rows = np.column_stack(
                 (
-                    np.repeat(np.arange(1, len(study.elements) + 1), 8),
-                    np.tile(np.arange(1, 9), len(study.elements)),
+                    np.repeat(
+                        np.arange(1, len(study.elements) + 1),
+                        POINT_COUNTS[study.element_type],
+                    ),
+                    np.tile(
+                        np.arange(1, POINT_COUNTS[study.element_type] + 1),
+                        len(study.elements),
+                    ),
                     report["stress"],
                     report["energy_density"],
                 )

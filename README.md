@@ -81,7 +81,7 @@ face/edge references are still future work.
 | **Examine** | Animate results, inspect curves and samples, compare captured runs on their native time grids, and export with units and provenance. |
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
-**Kernel 0.19.0 · Studio source 0.6.0.dev2 · Linux release 0.5.0.** Research software under active development.
+**Kernel 0.19.0 · Studio source 0.6.0.dev3 · Linux release 0.5.0.** Research software under active development.
 Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
 workflow; interactive constrained sketches, persistent face/edge references and
 CAD-to-FEM meshing are future work. The complete kernel is not certified. Each guarantee has a stated
@@ -100,7 +100,7 @@ and physical assumptions.
 | **OCCT 8 + build123d** | Exact CAD and mass properties | Integrated; local compatibility patches and qualification corpus included |
 | **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Experimental workspace and CLI](docs/PINOCCHIO_OPERATORS.md) for fixed-base rigid trees, with independent references; separate Python environment, source workflow only |
 | **MBDyn** | Multibody workflows and independent reference calculations | Existing comparison work; Studio connector planned |
-| **CalculiX** | Finite-element workflows | [Experimental static-study workspace and CLI](docs/CALCULIX_INTEGRATION.md): affine C3D8, cancellable solve, captured displacement and integration-point values; external executable required |
+| **CalculiX** | Finite-element workflows | [Experimental static-study workspace and CLI](docs/CALCULIX_INTEGRATION.md): C3D4, curved C3D10 and affine C3D8, cancellable solve, captured displacement and integration-point values; external executable required |
 | **DUST** | Aerodynamic workflows and future coupling | Planned |
 | **NeuralFoil** | Airfoil polar workflows | Used by optional validation tooling; Studio workflow planned |
 
@@ -162,6 +162,7 @@ agreeing with another solver does not certify every trajectory.
 - [Numerical benchmarks and historical comparisons](README.fr.md#résultats-mesurés-et-comparaison-externe)
 - [CAD adaptation, analytic checks and upstream test subset](docs/STUDIO_CAD.md)
 - [Parametric CAD editing, previews and preserved design frames](docs/STUDIO_CAD_HISTORY.md)
+- [Quadratic tetrahedra, analytic bending and exact local Jacobian bounds](docs/STUDIO_TETRAHEDRA.md)
 - [Studio interaction and rendering qualification](docs/STUDIO_GUI_2026.md)
 - [CalculiX statics contract and reproducible tension study](docs/CALCULIX_INTEGRATION.md)
 - [Pinocchio conversion, independent Lagrange references and captured-state workspace](docs/PINOCCHIO_OPERATORS.md)

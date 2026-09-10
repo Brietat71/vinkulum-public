@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "studio_version": "0.6.0.dev3",
+  "engine_version": "2.21",
+  "element_type": "C3D10",
+  "elements": 6,
+  "nodes": 27,
+  "integration_points_per_element": 4,
+  "calculation": "static-db2a05a237b24128",
+  "study_sha256": "b2d682081a36429ed924adec39b7df845cf236984325c893d17d8a4282609596",
+  "strain_energy_J": 0.0004761905249999999,
+  "reference_energy_J": 0.00047619047619047635,
+  "relative_energy_error": 1.0249999937705923e-07,
+  "display_deformation_multiplier": 41184.394635878576,
+  "scientific_status": "NotAssessed"
+}

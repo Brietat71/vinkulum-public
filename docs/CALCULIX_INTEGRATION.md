@@ -1,6 +1,8 @@
 # CalculiX integration — first linear statics adapter
 
 **Status: experimental Studio 0.5.0 workspace and Python/CLI adapter.**
+The developing **0.6.0.dev3 source** adds C3D4 and curved C3D10 studies;
+see the [tetrahedral extension and verification](STUDIO_TETRAHEDRA.md).
 CalculiX is a separate installed executable. Studio 0.4.2 and earlier binaries
 do not contain this workspace. The native multibody kernel remains unchanged.
 
@@ -96,18 +98,21 @@ calculation without modifying it or executing a process.
 
 ## Supported contract
 
-The JSON format is `vinkulum-static-study`, schema 1, containing a `study` object:
-`nodes`, `elements`, `fixed_dofs`, `forces`, `young_pa` and `poisson`.
+The JSON format is `vinkulum-static-study`. New source studies use schema 2,
+containing a `study` object: `nodes`, `elements`, `fixed_dofs`, `forces`,
+`young_pa`, `poisson` and `element_type`. Schema-1 C3D8 documents remain readable.
 
 | Field | Meaning |
 |---|---|
 | `nodes` | World X/Y/Z coordinates in metres; array position defines node ID 1..N |
-| `elements` | Eight node IDs in CalculiX C3D8 ordering; element IDs are 1..M |
+| `elements` | Node IDs in the declared CalculiX element ordering; element IDs are 1..M |
+| `element_type` | One family per study: C3D8 (affine), C3D4 or C3D10 (possibly curved); schema 1 implies C3D8 |
 | `fixed_dofs` | `(node_id, axis)` rows; axes 1/2/3 mean world X/Y/Z, prescribed displacement zero |
 | `forces` | `(node_id, Fx, Fy, Fz)` rows in newtons; combine loads on the same node first |
 | `young_pa`, `poisson` | One homogeneous, isotropic, linear elastic material; E > 0 and −1 < ν < 0.5 |
 
-Only affine hexahedra are accepted. The mesh must be connected through shared
+C3D8 geometry must be affine; tetrahedral rules are specified in the
+[extension guide](STUDIO_TETRAHEDRA.md). The mesh must be connected through shared
 faces, without repeated elements, unused nodes or faces with more than two
 owners. Inverted or degenerate elements and unresolved global rigid modes are
 rejected. The scaled determinant threshold is `10⁻¹²`; affine geometry is
@@ -122,7 +127,7 @@ Budgets are 6,000 nodes, 5,000 elements, a 4 MiB input JSON document and 32 MiB
 per output/log file. Solver and output limits are not OS memory limits or a
 security sandbox. The user chooses a trusted installed executable.
 
-This version has no tetrahedra, warped elements, nonlinear materials, contact,
+The source extension has no mixed-family meshes, warped hexahedra, nonlinear materials, contact,
 nonzero prescribed displacements, MPCs, distributed-load cards, dynamics or
 automatic CAD meshing. Nodal loads can represent consistently integrated face
 tractions, as in the example.
@@ -131,7 +136,8 @@ tractions, as in the example.
 
 `result.json` retains displacement in metres, forces and reactions in newtons,
 stress in pascals, energy density in J/m³ and total strain energy in joules.
-Stresses remain at the eight integration points of each element; they are not
+Stresses remain at the element's integration points (8 for C3D8, 1 for C3D4,
+4 for C3D10); they are not
 silently extrapolated or averaged at nodes. Component order is
 `xx, yy, zz, xy, xz, yz` in the world frame.
 
@@ -153,7 +159,9 @@ before and after execution. Original raw files remain available for inspection.
 The scientific status stays **`NotAssessed`**: these checks and patch references
 do not certify a general finite-element discretisation error.
 
-Archive reopening accepts the schema-1 / adapter-0.1.0 contract. It requires
+Archive reopening accepts the legacy schema-1 / adapter-0.1.0 C3D8 contract and
+the new schema-2 / adapter-0.2.0 contract with explicit element type and
+integration-point count. It requires
 consistent units, frame and result locations, matches the input-deck fingerprint
 and its regeneration from the captured study, then checks the raw-output hash
 and reparses the CalculiX tables with the same force/moment/energy rules.
