@@ -23,6 +23,20 @@ then obtain mass and inertia from the exact solid. The
 [example project](examples/studio/platine-percee.vinkulum.json) and
 [reproducible CAD recipe](ci/studio_cad_recipe.py) are included.*
 
+<details>
+<summary><strong>See the new CalculiX workspace — a calculation you can reproduce</strong></summary>
+
+![Studio 0.5.0: CalculiX tension specimen, displacement field and integration-point stress table](docs/assets/studio-static.png)
+
+A real 8-element tension calculation: a 1,000 N axial load, a displacement field
+in metres, and stress values at integration points. Displayed deformation is
+amplified; exported values retain their physical units. The
+[mesh study](examples/studio/fem/tension.ccx.json),
+[capture recipe](ci/studio_static_recipe.py) and
+[analytic reference](docs/CALCULIX_INTEGRATION.md#reproduce-a-study) are included.
+
+</details>
+
 ## What you can do today
 
 | Layer | Available in the source tree |
@@ -30,10 +44,11 @@ then obtain mass and inertia from the exact solid. The
 | **Design** | OCCT **8.0.1** and adapted **build123d**: primitives, extrusions, solid booleans, all-edge fillets and single-solid STEP import/export. Exact BREP geometry, SI mass properties and a separate display mesh. |
 | **Model** | A Qt/VTK workbench for rigid mechanisms: bodies, joints, loads, numerical properties, 3D manipulation, undo/redo and project files. |
 | **Simulate** | The native Rust kernel computes in a separate process. Studio captures the model and settings associated with each run. |
+| **Linear statics** | An experimental CalculiX workspace loads a mesh study, edits material/load settings, runs a separate installed solver and inspects captured displacements, integration-point stresses and energy. Saved calculations can be reopened and checked. |
 | **Examine** | Animate results, inspect curves and samples, compare captured runs on their native time grids, and export with units and provenance. |
 | **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
 
-**Kernel 0.19.0 · Studio 0.4.2 · Research software under active development.**
+**Kernel 0.19.0 · Studio 0.5.0 · Research software under active development.**
 Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
 workflow; interactive constrained sketches and a regenerating feature tree are
 future work. The complete kernel is not certified. Each guarantee has a stated
@@ -52,7 +67,7 @@ and physical assumptions.
 | **OCCT 8 + build123d** | Exact CAD and mass properties | Integrated; local compatibility patches and qualification corpus included |
 | **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Connector planned](docs/PINOCCHIO_INTEGRATION.md); first target: qualified rigid trees |
 | **MBDyn** | Multibody workflows and independent reference calculations | Existing comparison work; Studio connector planned |
-| **CalculiX** | Finite-element workflows | Planned |
+| **CalculiX** | Finite-element workflows | [Experimental static-study workspace and CLI](docs/CALCULIX_INTEGRATION.md): affine C3D8, cancellable solve, captured displacement and integration-point values; external executable required |
 | **DUST** | Aerodynamic workflows and future coupling | Planned |
 | **NeuralFoil** | Airfoil polar workflows | Used by optional validation tooling; Studio workflow planned |
 
@@ -63,9 +78,12 @@ this table are not part of the current desktop binary.
 ## Get started
 
 **Try the desktop without compiling:**
-[Studio 0.4.2 Linux preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.4.2-linux)
+[Studio 0.5.0 Linux preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.5.0-linux)
 includes the standalone archive, checksums and extracted-binary qualification.
 It targets Linux x86-64 / Ubuntu 24.04 / glibc 2.39 / X11.
+CalculiX calculations additionally require an installed `ccx` executable
+(`calculix-ccx` on Ubuntu 24.04). The [FEM guide](docs/CALCULIX_INTEGRATION.md)
+explains supported meshes, result meanings and the separation from CAD meshing.
 
 For development, use **Python 3.14**, Rust/Cargo, a C++17 compiler, a system
 linker and [uv](https://docs.astral.sh/uv/). Linux desktop prerequisites and the
@@ -111,6 +129,7 @@ agreeing with another solver does not certify every trajectory.
 - [Numerical benchmarks and historical comparisons](README.fr.md#résultats-mesurés-et-comparaison-externe)
 - [CAD adaptation, analytic checks and upstream test subset](docs/STUDIO_CAD.md)
 - [Studio interaction and rendering qualification](docs/STUDIO_GUI_2026.md)
+- [CalculiX statics contract and reproducible tension study](docs/CALCULIX_INTEGRATION.md)
 - [Lean proof workspace](preuves/README.md)
 
 Performance contributions start with a reproducible workload and a profile.
@@ -129,6 +148,12 @@ performance, Qt and teaching. Read [CONTRIBUTING.md](CONTRIBUTING.md), then
 [propose a scoped project](https://github.com/Brietat71/vinkulum-public/issues/new)
 or submit a reproducible fix. The issue forms help describe a bug, a scientific
 reference or a first contribution without needing to know the whole codebase.
+
+**Pick a concrete first contribution:**
+
+- **CAD:** [add a STEP part with independently known mass properties (#1)](https://github.com/Brietat71/vinkulum-public/issues/1).
+- **Desktop:** [qualify one keyboard and high-DPI workflow (#2)](https://github.com/Brietat71/vinkulum-public/issues/2).
+- **FEM:** [measure C3D8 bending convergence against an independent reference (#4)](https://github.com/Brietat71/vinkulum-public/issues/4).
 
 If this direction matters to you, **star the repository**, share a real use case,
 or help reproduce a benchmark. The [share kit](docs/SHARE_VINKULUM.md) includes

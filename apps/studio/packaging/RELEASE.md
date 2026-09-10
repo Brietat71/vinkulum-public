@@ -1,38 +1,46 @@
-Vinkulum Studio 0.4.2 — an English CAD and multibody workbench.
+Vinkulum Studio 0.5.0 — CAD, mechanisms and a first CalculiX workspace.
 
-This patch fixes normal startup with PySide6 6.11.2. Version 0.4.1 referenced
-an unavailable QLocale enum; its diagnostic mode bypassed that initialisation.
-Startup and bundle checks now enter through the same application/window setup
-as a normal launch, and the extracted Linux archive must pass both checks.
+Open Run → Linear statics · CalculiX to load a mesh study, adjust its material
+and load multiplier, and calculate with a separately installed ccx executable.
+Inspect displacement colours, explicitly amplified deformation, reactions,
+integration-point stresses and strain energy. Export the captured values to CSV.
 
-The interface, installation guides and contribution guide are now in English.
-Saved joint and law identifiers remain compatible with existing projects.
-Compact numerical fields preserve unedited values at full precision.
+Each calculation keeps its mesh, settings, input deck, raw output and result
+metadata. Open result… rechecks an existing calculation without running the
+solver or replacing the study being edited. The checks compare hashes, raw
+values and equilibrium/energy balances. They establish internal consistency,
+not archive authorship or general finite-element accuracy.
 
-The CAD workflow introduced in 0.4.0 uses OCCT 8.0.1 and adapted build123d
-0.11.1: primitives, extrusions, booleans, all-edge fillets and single-solid
-STEP exchange. Mass, centre of mass and inertia come from the BREP. Projects
-retain exact geometry and a separate display mesh. CAD runs in a separate
-process; a failed operation preserves the document. Interactive constrained
-sketches and a regenerating feature tree are future work.
+The initial CalculiX domain is linear isotropic elasticity on affine C3D8
+elements, with zero supports and nodal loads. CalculiX 2.21 is the qualified
+Linux executable; it is not bundled. CAD-to-FEM meshing, arbitrary elements,
+nonlinear materials and contact are future work. Results remain NotAssessed.
 
-Model, Simulate and Inspect workspaces provide a dense Inspector, X/Y/Z fields,
-selection/move/rotate tools, a command palette and comparison of captured runs
-on their native time grids. The kernel remains Vinkulum 0.19.0.
+Scene framing now includes visible joint and load symbols. Reference grids do
+not influence clipping, and glyph sizes remain stable when a mechanism is
+translated far from the world origin. No physical model is changed by framing.
 
-Standalone builds include Python 3.14, Qt/PySide6, VTK and CAD. Every distributed
-package must pass checks on its own extracted executable: CAD operations,
-STEP round-trip, native double-pendulum simulation, OpenGL rendering and version
-identification. Read the accompanying report for the actual tested platform;
-these checks do not establish general scientific certification.
+CalculiX (Ctrl+Shift+E), cylinder creation (Ctrl+Shift+C) and load creation
+(Ctrl+Shift+F) leave the English Edit, Create and File menu mnemonics available.
 
-Linux x86-64 on Ubuntu 24.04 / glibc 2.39 / X11 is the current packaging target.
-The Apple Silicon recipe is prepared; Linux qualification does not qualify
-macOS. Any attached DMG needs its own macOS report and instructions. Planned
-signing is ad hoc, without Apple notarisation.
+The OCCT 8.0.1 / adapted build123d 0.11.1 CAD workflow provides primitives,
+extrusions, booleans, all-edge fillets and single-solid STEP exchange. BREP
+geometry supplies SI mass properties; a separate mesh supplies display geometry.
+Interactive constrained sketches and a regenerating feature tree are future work.
 
-Pinocchio and future solver connectors remain roadmap work and are not bundled
-in this release. Several technical research reports remain in French.
+Model, Simulate and Inspect workspaces provide a compact Inspector, 3D tools,
+a command palette and comparison of captured native-kernel runs. The interface
+is in English; several technical research reports remain in French. The native
+kernel remains Vinkulum 0.19.0. Pinocchio and further engine connectors are planned.
 
-Original code is Apache-2.0; third-party licences and adaptation notices are
-included. The tag, commit and build provenance identify the distributed source.
+Linux x86-64 / Ubuntu 24.04 / glibc 2.39 / X11 is the packaging target. The
+standalone archive includes Python, Qt, VTK and CAD. Its extracted executable
+must pass normal startup, rendering, CAD/STEP, native pendulum and external
+CalculiX checks. See the attached reports for the tested source and platform.
+These bounded checks do not certify the entire kernel or arbitrary models.
+
+The Apple Silicon packaging recipe is prepared; this Linux release does not
+qualify macOS and provides no new qualified DMG.
+
+Original code is Apache-2.0. Dependency licences and adaptation notices are
+included. Each external solver retains its own licence and physical assumptions.

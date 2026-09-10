@@ -1,4 +1,4 @@
-Vinkulum Studio 0.4.2 — Linux x86-64
+Vinkulum Studio 0.5.0 — Linux x86-64
 
 Extract the archive, open a terminal in the extracted directory and run:
   ./Vinkulum\ Studio/Vinkulum\ Studio
@@ -8,6 +8,15 @@ Qt and VTK are bundled; no Python environment or compilation is needed on the
 destination machine. CAD includes OCCT 8.0.1 and build123d 0.11.1+vinkulum.occt8.
 The CAD button opens primitives, extrusions, booleans, fillets and STEP exchange.
 One solid per part; CAD projects retain the BREP and SI mass properties.
+
+For the optional CalculiX workspace, install the external solver separately:
+  sudo apt-get install calculix-ccx
+Open Run → Linear statics · CalculiX, then run the built-in tension example or
+load a study JSON. Open result… reopens a saved calculation without a solver.
+Keep result.json together with study.json, study.inp, study.dat and solver.log.
+The initial domain is linear elasticity on affine C3D8 elements, zero supports
+and nodal loads. CAD parts are not automatically meshed. CalculiX 2.21 is the
+qualified Linux version; its executable is not included in this archive.
 
 The target platform is Linux x86-64, glibc 2.39 (Ubuntu 24.04), X11 and Mesa
 OpenGL. Consult check/bundle-check.json and build-info.json for this build's

@@ -25,5 +25,5 @@ exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name='Vinkulum Studio',
 coll = COLLECT(exe, a.binaries, a.datas, name='Vinkulum Studio')
 if sys.platform == 'darwin':
     app = BUNDLE(coll, name='Vinkulum Studio.app', bundle_identifier='org.vinkulum.studio',
-                 version='0.4.2', info_plist={'NSHighResolutionCapable': True,
-                 'LSMinimumSystemVersion': '14.0', 'CFBundleShortVersionString': '0.4.2'})
+                 version='0.5.0', info_plist={'NSHighResolutionCapable': True,
+                 'LSMinimumSystemVersion': '14.0', 'CFBundleShortVersionString': '0.5.0'})

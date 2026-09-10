@@ -105,6 +105,7 @@ class EditorWindow(Workspace, QMainWindow):
         self._path = None
         self._saved = self.history.current
         self._rendered_settings = None
+        self._static_window = None
         self.timer = QTimer(self)
         self.timer.setInterval(33)
         self.timer.timeout.connect(self._tick)
@@ -121,6 +122,16 @@ class EditorWindow(Workspace, QMainWindow):
     @property
     def project(self):
         return self.history.current
+
+    def open_static_study(self):
+        from .static_window import StaticWindow
+
+        if self._static_window is None:
+            self._static_window = StaticWindow(self)
+            self._static_window.closed.connect(lambda: setattr(self, "_static_window", None))
+        self._static_window.show()
+        self._static_window.raise_()
+        self._static_window.activateWindow()
 
     def open_cad(self):
         if self.mode.currentIndex() != 0 or self.controller.process is not None:
@@ -970,6 +981,9 @@ class EditorWindow(Workspace, QMainWindow):
 
     def closeEvent(self, event):
         if not self._discard_allowed():
+            event.ignore()
+            return
+        if self._static_window is not None and not self._static_window.close():
             event.ignore()
             return
         self.pause()

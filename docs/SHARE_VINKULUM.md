@@ -8,7 +8,8 @@ Repository: [Brietat71/vinkulum-public](https://github.com/Brietat71/vinkulum-pu
 
 ## A demonstration you can reproduce
 
-Install Studio with CAD using the [guide](../apps/studio/README.md), then open
+Download the [Linux x86_64 preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.5.0-linux)
+or install Studio with CAD using the [guide](../apps/studio/README.md), then open
 [the machined plate project](../examples/studio/platine-percee.vinkulum.json).
 Inspect its dimensions, mass and inertia, or export the solid as STEP from the
 CAD dialog. Load the double-pendulum example separately to try simulation,
@@ -31,6 +32,49 @@ The [README screenshot](assets/studio-cad.png) is an actual application capture.
 Use it with a source link and state the Studio version. A screenshot demonstrates
 a workflow; it does not establish general solver accuracy.
 
+## Try a captured finite-element result
+
+The Studio 0.5.0 Linux release also provides
+[`Vinkulum-CalculiX-tension-example.zip`](https://github.com/Brietat71/vinkulum-public/releases/download/studio-v0.5.0-linux/Vinkulum-CalculiX-tension-example.zip).
+Extract it, open **Run → Linear statics · CalculiX…**, then **Open result…**
+and select its `calculation/result.json`. This inspection needs no installed
+CalculiX: the archive contains the mesh study, input deck, solver log and raw
+output required to recheck the stored values. Install `ccx` to run a new study.
+
+The [actual workspace capture](assets/studio-static.png) shows an eight-element
+tension specimen. Its expected axial stress is 100,000 Pa and elastic energy
+is approximately 0.000238095238 J. The
+[reference and assumptions](CALCULIX_INTEGRATION.md#reproduce-a-study) explain
+this limited patch test; it does not establish general FEM accuracy.
+
+To regenerate the demonstration in the source environment with `ccx` installed:
+
+```sh
+xvfb-run -a -s '-screen 0 1600x1100x24' \
+  python ci/studio_static_recipe.py /tmp/vinkulum-static-demo
+```
+
+Invite a concrete contribution alongside the demonstration:
+[a CAD fixture (#1)](https://github.com/Brietat71/vinkulum-public/issues/1),
+[a desktop interaction check (#2)](https://github.com/Brietat71/vinkulum-public/issues/2),
+or [a FEM convergence study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4).
+
+## A short announcement to adapt
+
+Suggested title: **Vinkulum: an open engineering workbench for CAD and inspectable simulation**.
+
+> Vinkulum brings OCCT 8 / build123d CAD, a Rust multibody kernel and a first
+> CalculiX workspace into a native 3D desktop. The Linux preview is ready to try;
+> a small saved FEM example can be inspected without installing the solver.
+>
+> We are looking for contributors who enjoy making engineering tools reliable:
+> independent physical references, CAD regression parts, Qt interactions and
+> numerical verification. The README has real screenshots, runnable examples
+> and three scoped starting issues. It is early research software under
+> Apache-2.0; each external engine keeps its own licence and assumptions.
+>
+> Source and download: https://github.com/Brietat71/vinkulum-public
+
 ## Short introduction
 
 > Vinkulum is an open engineering workbench combining OCCT 8 CAD, a Rust
@@ -52,8 +96,11 @@ a workflow; it does not establish general solver accuracy.
 >
 > We welcome redistributable CAD test parts, independent dynamics references,
 > help with keyboard/DPI behaviour, and carefully scoped solver adapters.
-> Pinocchio, CalculiX and other engines belong to the integration roadmap;
-> they are not selectable engines in the current desktop release.
+> Studio 0.5.0 also adds an experimental CalculiX statics workspace with
+> captured mesh studies, displacement display and checked result reopening.
+> Its first domain is affine C3D8 linear elasticity; it requires an installed
+> solver and does not automatically mesh CAD parts. Pinocchio and other engine
+> workflows remain integration work.
 >
 > This is research software. Numerical guarantees have explicit domains; the
 > complete kernel is not certified. The source, limits and contributor projects
