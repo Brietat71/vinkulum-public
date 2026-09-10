@@ -4,3 +4,5 @@ python/vinkulum/licences/** -text
 apps/studio/packaging/licenses/** -whitespace
 ci/patches/*.patch -whitespace
 docs/bancs/studio-cad-040/*-tests.txt -whitespace
+docs/bancs/studio-tetrahedra-060/calculation/*.dat -text -whitespace
+docs/bancs/studio-tetrahedra-060/calculation/solver.log -text -whitespace

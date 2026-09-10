@@ -25,6 +25,45 @@ from vinkulum_studio.static_window import tension_example
     os.environ.get("VINKULUM_3D_TESTS") == "1", "Requires a desktop OpenGL context"
 )
 class StaticWorkspace(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("ccx"), "Requires CalculiX")
+    def test_quadratic_curved_mesh_display_and_integration_point_table(self):
+        from test_tetrahedra import tetra_specimen
+        from vinkulum_studio.static_window import StaticWindow
+        from vtkmodules.vtkCommonDataModel import VTK_QUADRATIC_TETRA
+
+        study = tetra_specimen(curved=True, bending=True)
+        root = self.root / "curved-bending"
+        report = run_static(study, root)
+        window = StaticWindow()
+        self.addCleanup(window.close)
+        window.show()
+        window.set_study(study, "Curved quadratic tetrahedra")
+        self.assertIn("C3D10", window.mesh_info.text())
+        self.assertEqual(window.viewport.mesh.GetCellType(0), VTK_QUADRATIC_TETRA)
+        self.assertEqual(window.viewport.mesh.GetCell(0).GetNumberOfPoints(), 10)
+        window._present_result((study, report, root))
+        window.channels.setCurrentIndex(1)
+        self.assertEqual(window.table_model.rowCount(), 4 * len(study.elements))
+        np.testing.assert_array_equal(
+            window.table_model.rows[:, 1], np.tile(np.arange(1, 5), len(study.elements))
+        )
+        np.testing.assert_array_equal(window.table_model.rows[:, 2:8], report["stress"])
+        window.scale.setText("10000")
+        window._display(fit=True)
+        np.testing.assert_allclose(
+            window.viewport.display_positions,
+            np.array(study.nodes) + 10000 * np.array(report["displacements"]),
+            rtol=1e-14,
+        )
+        path = self.root / "tetra.ccx.json"
+        with patch.object(
+            QFileDialog, "getSaveFileName", return_value=(str(path), "JSON")
+        ):
+            window.save_study()
+        self.assertEqual(load_study(path), study)
+        window.mode.setCurrentIndex(1)
+        self.assertEqual(window.result[0], study)
+
     @classmethod
     def setUpClass(cls):
         cls.app = QApplication.instance() or QApplication([])

@@ -1,4 +1,4 @@
-"""Optional CalculiX linear statics adapter; SI, affine C3D8 meshes only.
+"""Optional CalculiX linear statics adapter; SI, C3D4/C3D10 and affine C3D8.
 
 CalculiX is an external executable. This module does not import its libraries,
 modify the multibody document or claim a bound on the finite-element error.
@@ -17,20 +17,19 @@ from pathlib import Path
 
 import numpy as np
 
+from .finite_elements import (
+    NODE_COUNTS,
+    POINT_COUNTS,
+    TET_EDGES,
+    face_nodes,
+    integration_weights,
+)
 from .model import finite_number as finite
 from .model import read_json, write_json
 
 MAX_NODES = 6000
 MAX_ELEMENTS = 5000
 MAX_OUTPUT_BYTES = 32 * 1024 * 1024
-FACES = (
-    (0, 1, 2, 3),
-    (4, 5, 6, 7),
-    (0, 1, 5, 4),
-    (1, 2, 6, 5),
-    (2, 3, 7, 6),
-    (3, 0, 4, 7),
-)
 
 
 @dataclass(frozen=True)
@@ -41,6 +40,7 @@ class StaticStudy:
     forces: tuple
     young_pa: float
     poisson: float
+    element_type: str = "C3D8"
 
     def __post_init__(self):
         for key in ("nodes", "elements", "fixed_dofs", "forces"):
@@ -50,12 +50,18 @@ class StaticStudy:
             ):
                 raise ValueError(f"{key}: expected rows of numbers.")
             object.__setattr__(self, key, tuple(tuple(r) for r in rows))
+        if (
+            not isinstance(self.element_type, str)
+            or self.element_type not in NODE_COUNTS
+        ):
+            raise ValueError("Supported solid elements are C3D4, C3D8 and C3D10.")
+        count = NODE_COUNTS[self.element_type]
         if not finite(self.young_pa) or self.young_pa <= 0:
             raise ValueError("Young modulus must be positive and finite, in Pa.")
         if not finite(self.poisson) or not -1 < self.poisson < 0.5:
             raise ValueError("Isotropic elasticity requires -1 < Poisson ratio < 0.5.")
         if (
-            not 8 <= len(self.nodes) <= MAX_NODES
+            not count <= len(self.nodes) <= MAX_NODES
             or not 1 <= len(self.elements) <= MAX_ELEMENTS
         ):
             raise ValueError("Static mesh budget exceeded or mesh empty.")
@@ -66,10 +72,12 @@ class StaticStudy:
         n = len(self.nodes)
         valid_node = lambda i: type(i) is int and 1 <= i <= n
         if any(
-            len(e) != 8 or len(set(e)) != 8 or not all(valid_node(i) for i in e)
+            len(e) != count or len(set(e)) != count or not all(valid_node(i) for i in e)
             for e in self.elements
         ):
-            raise ValueError("Each C3D8 element needs eight distinct valid node IDs.")
+            raise ValueError(
+                f"Each {self.element_type} element needs {count} distinct valid node IDs."
+            )
         if len({tuple(sorted(e)) for e in self.elements}) != len(self.elements):
             raise ValueError("Duplicate elements are not allowed.")
         if {i for e in self.elements for i in e} != set(range(1, n + 1)):
@@ -95,38 +103,30 @@ class StaticStudy:
             raise ValueError("Combine forces applied to the same node before solving.")
         points = np.array(self.nodes, dtype=float)
         faces, neighbours = {}, [set() for _ in self.elements]
+        if self.element_type == "C3D10":
+            corner_ids = {i for e in self.elements for i in e[:4]}
+            mid_ids = {i for e in self.elements for i in e[4:]}
+            if corner_ids & mid_ids:
+                raise ValueError(
+                    "A quadratic node cannot be both a corner and an edge node."
+                )
+            edges, midpoints = {}, {}
+            for element in self.elements:
+                for mid, (a, b) in zip(element[4:], TET_EDGES):
+                    key = tuple(sorted((element[a], element[b])))
+                    if (
+                        edges.setdefault(key, mid) != mid
+                        or midpoints.setdefault(mid, key) != key
+                    ):
+                        raise ValueError(
+                            "Nonconforming quadratic edge-node identities."
+                        )
         for index, element in enumerate(self.elements):
             p = points[np.array(element) - 1]
-            a, b, c = p[1] - p[0], p[3] - p[0], p[4] - p[0]
-            scale = max(np.linalg.norm(a), np.linalg.norm(b), np.linalg.norm(c))
-            expected = np.array(
-                (
-                    (0, 0, 0),
-                    (1, 0, 0),
-                    (1, 1, 0),
-                    (0, 1, 0),
-                    (0, 0, 1),
-                    (1, 0, 1),
-                    (1, 1, 1),
-                    (0, 1, 1),
-                )
+            integration_weights(
+                self.element_type, tuple(tuple(float(v) for v in row) for row in p)
             )
-            jac = np.column_stack((a, b, c)) / scale if scale > 0 else np.zeros((3, 3))
-            if not np.isfinite(jac).all() or np.linalg.det(jac) <= 1e-12:
-                raise ValueError(
-                    "An element is inverted, degenerate or too poorly scaled."
-                )
-            # Measure distortion in all element directions. A tolerance based
-            # on the longest edge alone can admit inversion of a thin element.
-            local_points = np.linalg.solve(jac, ((p - p[0]) / scale).T).T
-            if (
-                not np.isfinite(local_points).all()
-                or np.max(abs(local_points - expected)) > 1e-10
-            ):
-                raise ValueError(
-                    "The first adapter supports affine C3D8 elements only."
-                )
-            for face in FACES:
+            for face in face_nodes(self.element_type):
                 key = tuple(sorted(element[i] for i in face))
                 owners = faces.setdefault(key, [])
                 owners.append(index)
@@ -164,7 +164,7 @@ class StaticStudy:
             f"{i}," + ",".join(format(float(v), ".17g") for v in p)
             for i, p in enumerate(self.nodes, 1)
         ]
-        lines += ["*ELEMENT,TYPE=C3D8,ELSET=ALLE"]
+        lines += [f"*ELEMENT,TYPE={self.element_type},ELSET=ALLE"]
         lines += [
             f"{i}," + ",".join(map(str, e)) for i, e in enumerate(self.elements, 1)
         ]
@@ -195,6 +195,10 @@ class StaticStudy:
         return "\n".join(lines) + "\n"
 
 
+def study_document(study):
+    return {"format": "vinkulum-static-study", "schema": 2, "study": asdict(study)}
+
+
 def load_study(path):
     data = read_json(path, max_bytes=4 * 1024 * 1024)
     if (
@@ -202,10 +206,14 @@ def load_study(path):
         or set(data) != {"format", "schema", "study"}
         or data["format"] != "vinkulum-static-study"
         or type(data["schema"]) is not int
-        or data["schema"] != 1
+        or data["schema"] not in (1, 2)
         or not isinstance(data["study"], dict)
     ):
         raise ValueError("Unsupported or incomplete static-study document.")
+    if data["schema"] == 1 and data["study"].get("element_type", "C3D8") != "C3D8":
+        raise ValueError("Tetrahedral elements require static-study schema 2.")
+    if data["schema"] == 2 and "element_type" not in data["study"]:
+        raise ValueError("Static-study schema 2 requires an explicit element type.")
     try:
         return StaticStudy(**data["study"])
     except TypeError as exc:
@@ -215,15 +223,16 @@ def load_study(path):
 def parse_dat(text, study):
     """Accept exactly one complete final state; preserve integration-point stress."""
     tables = {}
+    points_per_element = POINT_COUNTS[study.element_type]
     specifications = (
         ("displacements", "displacements ", "ALLN", len(study.nodes), 4),
         ("external_forces", "forces ", "ALLN", len(study.nodes), 4),
-        ("stress", "stresses ", "ALLE", len(study.elements) * 8, 8),
+        ("stress", "stresses ", "ALLE", len(study.elements) * points_per_element, 8),
         (
             "energy_density",
             "internal energy density ",
             "ALLE",
-            len(study.elements) * 8,
+            len(study.elements) * points_per_element,
             3,
         ),
     )
@@ -258,7 +267,11 @@ def parse_dat(text, study):
             np.arange(1, row_count + 1)[:, None]
             if columns == 4
             else np.array(
-                [(e, p) for e in range(1, len(study.elements) + 1) for p in range(1, 9)]
+                [
+                    (e, p)
+                    for e in range(1, len(study.elements) + 1)
+                    for p in range(1, points_per_element + 1)
+                ]
             )
         )
         if not np.array_equal(identifiers, expected):
@@ -292,14 +305,19 @@ def parse_dat(text, study):
         raise ValueError("Calculated external moments do not balance.")
     if np.any(tables["energy_density"] < 0):
         raise ValueError("Negative elastic energy density.")
-    volumes = []
-    for element in study.elements:
-        p = points[np.array(element) - 1]
-        volumes.append(
-            np.linalg.det(np.column_stack((p[1] - p[0], p[3] - p[0], p[4] - p[0])))
+    weights = [
+        integration_weights(
+            study.element_type,
+            tuple(
+                tuple(float(v) for v in row) for row in points[np.array(element) - 1]
+            ),
         )
+        for element in study.elements
+    ]
     internal = float(
-        np.dot(volumes, tables["energy_density"].reshape(-1, 8).mean(axis=1))
+        np.sum(
+            np.array(weights) * tables["energy_density"].reshape(-1, points_per_element)
+        )
     )
     work = float(0.5 * np.sum(applied * tables["displacements"]))
     energy_scale = max(abs(internal), abs(work), np.finfo(float).tiny)
@@ -353,7 +371,7 @@ def prepare_run(study, directory, engine, engine_hash, version):
     (root / "study.inp").write_text(deck, encoding="ascii")
     write_json(
         root / "study.json",
-        {"format": "vinkulum-static-study", "schema": 1, "study": asdict(study)},
+        study_document(study),
     )
     return PreparedRun(study, root, engine, engine_hash, version, deck)
 
@@ -366,8 +384,8 @@ def _read_bounded(path, limit=MAX_OUTPUT_BYTES):
     return raw
 
 
-def _result_contract():
-    return {
+def _result_contract(study=None):
+    contract = {
         "format": "vinkulum-calculix-static",
         "schema": 1,
         "engine": "CalculiX",
@@ -389,6 +407,17 @@ def _result_contract():
         "limitations": "Linear isotropic elasticity, affine C3D8, zero supports, nodal loads. No general mesh or discretisation-error certification. ASCII output is rounded.",
     }
 
+    if study is not None:
+        contract.update(
+            schema=2,
+            adapter_version="0.2.0",
+            element_type=study.element_type,
+            integration_points_per_element=POINT_COUNTS[study.element_type],
+            stress_location=f"element integration points 1..{POINT_COUNTS[study.element_type]}, element-major order",
+            limitations="Linear isotropic elasticity, C3D4/C3D10 or affine C3D8, zero supports, nodal loads. Local element checks do not certify global mesh injectivity or discretisation error. ASCII output is rounded.",
+        )
+    return contract
+
 
 def _successful_log(raw, returncode=0):
     text = raw.decode("utf-8", errors="replace")
@@ -409,7 +438,7 @@ def finish_run(run, returncode):
     if hashlib.sha256(engine.read_bytes()).hexdigest() != run.engine_hash:
         raise RuntimeError("CalculiX executable changed during the calculation.")
     report = {
-        **_result_contract(),
+        **_result_contract(study),
         "engine_version": run.version,
         "engine_sha256": run.engine_hash,
         "input_sha256": hashlib.sha256(run.deck.encode("ascii")).hexdigest(),
@@ -430,7 +459,16 @@ def load_static_result(directory):
     if root.is_file() and root.name == "result.json":
         root = root.parent
     report = read_json(root / "result.json", MAX_OUTPUT_BYTES)
-    contract = _result_contract()
+    study = load_study(root / "study.json")
+    if (
+        not isinstance(report, dict)
+        or type(report.get("schema")) is not int
+        or report["schema"] not in (1, 2)
+    ):
+        raise ValueError("Unsupported CalculiX result schema.")
+    if report["schema"] == 1 and study.element_type != "C3D8":
+        raise ValueError("Legacy CalculiX results require C3D8.")
+    contract = _result_contract(study if report["schema"] == 2 else None)
     value_keys = {
         "displacements",
         "external_forces",
@@ -458,7 +496,6 @@ def load_static_result(directory):
             or re.fullmatch(r"[0-9a-f]{64}", report[key]) is None
         ):
             raise ValueError(f"Invalid archive fingerprint: {key}.")
-    study = load_study(root / "study.json")
     deck = _read_bounded(root / "study.inp", 4 * 1024 * 1024)
     if hashlib.sha256(deck).hexdigest() != report[
         "input_sha256"

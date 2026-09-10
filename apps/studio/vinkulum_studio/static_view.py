@@ -3,7 +3,12 @@
 import numpy as np
 from PySide6.QtCore import QAbstractTableModel, Qt
 from vtkmodules.vtkCommonCore import vtkDoubleArray, vtkLookupTable, vtkPoints
-from vtkmodules.vtkCommonDataModel import vtkHexahedron, vtkUnstructuredGrid
+from vtkmodules.vtkCommonDataModel import (
+    vtkHexahedron,
+    vtkQuadraticTetra,
+    vtkTetra,
+    vtkUnstructuredGrid,
+)
 from vtkmodules.vtkRenderingAnnotation import vtkScalarBarActor
 from vtkmodules.vtkRenderingCore import vtkActor, vtkDataSetMapper
 
@@ -110,7 +115,11 @@ class StaticViewport(Viewport):
         mesh = vtkUnstructuredGrid()
         mesh.SetPoints(points)
         for nodes in study.elements:
-            cell = vtkHexahedron()
+            cell = {
+                "C3D8": vtkHexahedron,
+                "C3D4": vtkTetra,
+                "C3D10": vtkQuadraticTetra,
+            }[study.element_type]()
             for i, identifier in enumerate(nodes):
                 cell.GetPointIds().SetId(i, identifier - 1)
             mesh.InsertNextCell(cell.GetCellType(), cell.GetPointIds())
