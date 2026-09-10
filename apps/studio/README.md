@@ -1,10 +1,5 @@
 # Vinkulum Studio 0.6.0a2.dev6 — CAD and mechanism analysis
 
-**New interface development now targets the [FreeCAD workbench](../freecad/README.md).**
-Standalone Studio UI development is set aside. Its existing engine adapters,
-data contracts and regression tests support the [FreeCAD integration](../../docs/FREECAD_INTEGRATION.md).
-The guide below documents the earlier standalone application.
-
 A local PySide6/VTK application for creating bodies and joints, manipulating
 geometry, editing numerical properties, and defining motion laws and time-varying
 loads. Vinkulum 0.20.0 runs in a separate process; Studio displays its positions,

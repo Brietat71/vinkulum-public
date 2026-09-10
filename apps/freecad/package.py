@@ -1,52 +1,61 @@
-"""Build the self-contained FreeCAD Mod archive. SPDX-License-Identifier: Apache-2.0"""
+"""Build the FreeCAD extension ZIP without bundling FreeCAD or a solver runtime."""
 
 import argparse
 import hashlib
 import json
+import subprocess
 import zipfile
 from pathlib import Path
 
+VERSION = "0.1.0a1"
 
-def package(destination):
-    root = Path(__file__).resolve().parent
-    names = (
-        "InitGui.py",
-        "vinkulum_freecad.py",
-        "bridge.py",
-        "worker.py",
-        "vinkulum.svg",
-    )
-    files = {name: (root / name).read_bytes() for name in names}
-    files["LICENSE"] = (root.parent.parent / "LICENSE").read_bytes()
-    files["INSTALL.txt"] = (
-        "Vinkulum for FreeCAD 0.1.0a1\n\n"
-        "Extract the Vinkulum directory into FreeCAD's user Mod directory and restart FreeCAD.\n"
-        "Select the Vinkulum workbench. Configure its external Vinkulum Python engine, then\n"
-        "create the parametric pendulum example and select Analyse.\n\n"
-        "Instructions and scope: https://github.com/Brietat71/vinkulum-public/tree/main/apps/freecad\n"
-        "Source modelling stays in FreeCAD. This first workbench supports one rigid solid\n"
-        "with one explicit world-frame revolute joint. Results retain their capture directory.\n"
-    ).encode()
-    manifest = {
-        "version": "0.1.0a1",
-        "sha256": {
-            name: hashlib.sha256(data).hexdigest() for name, data in files.items()
+
+def build(destination, require_clean=False):
+    source = Path(__file__).resolve().parent
+    root = source.parents[1]
+    dirty = bool(subprocess.check_output(["git", "status", "--porcelain"], cwd=root))
+    if require_clean and dirty:
+        raise ValueError("Commit the reviewed extension before a release build")
+    names = ("InitGui.py", "host.py", "bridge.py", "worker.py", "INSTALLATION.txt")
+    report = {
+        "extension_version": VERSION,
+        "source_commit": subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=root, text=True
+        ).strip(),
+        "source_dirty": dirty,
+        "files_sha256": {
+            name: hashlib.sha256((source / name).read_bytes()).hexdigest()
+            for name in names
         },
+        "runtime_scope": "FreeCAD 1.1.3 / Qt 6 on Linux; separate Vinkulum 0.20 / OCCT 8 Python environment",
     }
-    files["build-info.json"] = (json.dumps(manifest, indent=2) + "\n").encode()
-    destination = Path(destination)
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    with zipfile.ZipFile(destination, "x", compression=zipfile.ZIP_DEFLATED) as archive:
-        for name, data in sorted(files.items()):
-            info = zipfile.ZipInfo("Vinkulum/" + name, (2026, 9, 10, 0, 0, 0))
-            info.compress_type = zipfile.ZIP_DEFLATED
-            info.external_attr = 0o644 << 16
-            archive.writestr(info, data)
-    return destination
+    with zipfile.ZipFile(destination, "w", zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("Vinkulum/Init.py", '"""Vinkulum FreeCAD extension."""\n')
+        archive.write(source / "InitGui.py", "Vinkulum/InitGui.py")
+        archive.write(source / "INSTALLATION.txt", "Vinkulum/INSTALLATION.txt")
+        archive.writestr(
+            "Vinkulum/extension-info.json", json.dumps(report, indent=2) + "\n"
+        )
+        archive.writestr(
+            "Vinkulum/vinkulum_freecad/__init__.py",
+            f'"""FreeCAD host for Vinkulum."""\n__version__ = "{VERSION}"\n',
+        )
+        for name in ("host.py", "bridge.py", "worker.py"):
+            archive.write(source / name, "Vinkulum/vinkulum_freecad/" + name)
+        for name in ("LICENSE", "NOTICE"):
+            archive.write(root / name, "Vinkulum/" + name)
+        with zipfile.ZipFile(
+            root / "docs/bancs/freecad-bridge-2026/record.zip"
+        ) as record:
+            archive.writestr(
+                "Vinkulum/vinkulum_freecad/Examples/Pendulum.FCStd",
+                record.read("record/length-800-step-0.005/source.FCStd"),
+            )
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("destination", type=Path)
+    parser.add_argument("output", type=Path)
+    parser.add_argument("--require-clean", action="store_true")
     args = parser.parse_args()
-    print(package(args.destination))
+    build(args.output, args.require_clean)

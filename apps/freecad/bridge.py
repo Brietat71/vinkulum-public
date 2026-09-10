@@ -4,6 +4,7 @@ SPDX-License-Identifier: Apache-2.0
 Loaded inside FreeCAD; never imports Studio, numpy or a second OCCT binding.
 """
 
+import copy
 import hashlib
 import json
 import math
@@ -13,16 +14,7 @@ from pathlib import Path
 import FreeCAD as App
 import FreeCADGui as Gui
 import Part
-from PySide6.QtCore import (
-    QEvent,
-    QObject,
-    QProcess,
-    QProcessEnvironment,
-    QTimer,
-    Signal,
-)
-
-_active_jobs = set()
+from PySide6.QtCore import QObject, QProcess, QProcessEnvironment, QTimer, Signal
 
 
 def sha(data):
@@ -55,23 +47,23 @@ def capture(
     project_id,
     duration=2,
     step=0.005,
-    pivot_m=(0, 0, 0),
+    pivot_mm=(0, 0, 0),
     axis_world=(0, 1, 0),
+    threads=2,
 ):
     """Capture one top-level solid and an explicit world-frame revolute joint."""
     if not math.isfinite(density) or density <= 0:
         raise ValueError("A finite positive density in kg/m³ is required")
     if not (0 < step <= duration <= 10 and math.ceil(duration / step) <= 2000):
         raise ValueError("Prototype limit: 10 seconds and 2001 native samples")
-    if any(
-        len(vector) != 3
-        or not all(type(v) in (int, float) and math.isfinite(v) for v in vector)
-        for vector in (pivot_m, axis_world)
-    ):
-        raise ValueError("The pivot and axis require three finite world coordinates")
-    axis_length = math.hypot(*axis_world)
-    if axis_length == 0:
+    for vector in (pivot_mm, axis_world):
+        if len(vector) != 3 or not all(math.isfinite(v) for v in vector):
+            raise ValueError("The pivot and axis require three finite coordinates")
+    norm = math.hypot(*axis_world)
+    if norm < 1e-12:
         raise ValueError("The revolute axis must be nonzero")
+    if type(threads) is not int or not 1 <= threads <= 64:
+        raise ValueError("Select between 1 and 64 engine threads")
     local = source.Placement.toMatrix()
     global_placement = source.getGlobalPlacement().toMatrix()
     if any(
@@ -109,8 +101,9 @@ def capture(
             ],
         },
         "characteristic_length_m": shape.BoundBox.DiagonalLength * 1e-3,
-        "pivot_m": list(pivot_m),
-        "axis_world": [v / axis_length for v in axis_world],
+        "pivot_m": [v * 1e-3 for v in pivot_mm],
+        "axis_world": [v / norm for v in axis_world],
+        "threads": threads,
         "duration_s": duration,
         "step_s": step,
     }
@@ -120,18 +113,13 @@ def capture(
 
 def admit(source, directory, request):
     """Bind the result to its capture, reject stale geometry and malformed poses."""
+    captured = request_bytes(request)
+    if (directory / "request.json").read_bytes() != captured:
+        raise ValueError("Captured request changed during calculation")
     if signature(source) != request["source_geometry_sha256"]:
         raise ValueError(
             "Geometry changed during calculation; recapture before playback"
         )
-    return read_playback(directory, request)
-
-
-def read_playback(directory, request):
-    """Validate recorded poses against the immutable captured request."""
-    captured = request_bytes(request)
-    if (directory / "request.json").read_bytes() != captured:
-        raise ValueError("Captured request changed during calculation")
     path = directory / "result/playback.json"
     if path.stat().st_size > 2_000_000:
         raise ValueError("Playback exceeds the prototype budget")
@@ -190,19 +178,17 @@ def read_playback(directory, request):
 class Job(QObject):
     completed = Signal(object)
     failed = Signal(str)
-    cancelled = Signal(str)
-    ended = Signal()
+    settled = Signal()
 
     def __init__(self, source, directory, request, interpreter, parent=None):
         super().__init__(parent or Gui.getMainWindow())
         self.source, self.directory = source, Path(directory)
-        self._captured_request = request_bytes(request)
-        self.document_name, self.source_name = source.Document.Name, source.Name
-        self._started = self._terminal = self._observing = self._close_pending = False
-        self._cancel_reason = None
+        self.request = copy.deepcopy(request)
         self.process = QProcess(self)
         self.diagnostics = bytearray()
         self.timed_out = False
+        self.cancelled = False
+        self.terminal = False
         environment = QProcessEnvironment.systemEnvironment()
         # The official AppImage exports PYTHONHOME for its own Python 3.11.
         # The explicitly selected Vinkulum interpreter must use its own runtime.
@@ -225,63 +211,38 @@ class Job(QObject):
         self.process.readyReadStandardOutput.connect(self._read)
         self.process.finished.connect(self._finished)
         self.process.errorOccurred.connect(self._error)
-        self.process.started.connect(self._process_started)
         self.timer = QTimer(self)
         self.timer.setSingleShot(True)
         self.timer.timeout.connect(self._timeout)
 
     def start(self):
-        if self._started or self._terminal:
-            raise RuntimeError("Each capture can be calculated only once")
-        if _active_jobs:
-            raise RuntimeError(
-                "Another Vinkulum calculation is still stopping or running"
-            )
-        self._started = True
-        _active_jobs.add(self)
-        App.addDocumentObserver(self)
-        self._observing = True
-        Gui.getMainWindow().installEventFilter(self)
+        if self.terminal:
+            raise RuntimeError("A settled job cannot be restarted")
         self.timer.start(60000)
         self.process.start()
 
-    @property
-    def running(self):
-        return self._started and not self._terminal
-
-    @property
-    def request(self):
-        return json.loads(self._captured_request)
-
-    def cancel(self, reason="Calculation cancelled"):
-        if self._terminal:
+    def cancel(self):
+        if self.terminal:
             return
-        self._cancel_reason = self._cancel_reason or reason
+        self.cancelled = True
         self.timer.stop()
         if self.process.state() == QProcess.ProcessState.NotRunning:
-            self._settle("cancelled", self._cancel_reason)
+            self._settle(error="Calculation cancelled")
         else:
             self.process.kill()
 
-    def _process_started(self):
-        if self._cancel_reason is not None or self.timed_out:
-            self.process.kill()
-
-    def slotDeletedDocument(self, document):
-        if document.Name == self.document_name:
-            self.cancel("Source document closed")
-
-    def slotDeletedObject(self, obj):
-        if obj.Document.Name == self.document_name and obj.Name == self.source_name:
-            self.cancel("Source object deleted")
-
-    def eventFilter(self, watched, event):
-        if event.type() == QEvent.Type.Close and self.running:
-            self._close_pending = True
-            self.cancel("FreeCAD is closing")
-            event.ignore()
-            return True
-        return super().eventFilter(watched, event)
+    def _settle(self, *, error=None, result=None):
+        if self.terminal:
+            return
+        self.terminal = True
+        self.timer.stop()
+        try:
+            if error is not None:
+                self.failed.emit(error)
+            else:
+                self.completed.emit(result)
+        finally:
+            self.settled.emit()
 
     def _read(self):
         self.diagnostics.extend(bytes(self.process.readAllStandardOutput()))
@@ -289,61 +250,37 @@ class Job(QObject):
 
     def _error(self, error):
         if error == QProcess.ProcessError.FailedToStart:
-            if self._cancel_reason:
-                self._settle("cancelled", self._cancel_reason)
-            else:
-                self._settle("failed", self.process.errorString())
+            self._settle(error=self.process.errorString())
 
     def _timeout(self):
         self.timed_out = True
         self.process.kill()
 
     def _finished(self, code, status):
-        if self._terminal:
+        if self.terminal:
             return
-        self._read()
-        if self._cancel_reason:
-            self._settle("cancelled", self._cancel_reason)
-            return
-        if self.timed_out or code != 0 or status != QProcess.ExitStatus.NormalExit:
-            self._settle(
-                "failed",
-                "Worker failed or timed out: "
-                + self.diagnostics.decode(errors="replace"),
-            )
-            return
-        try:
-            result = admit(self.source, self.directory, self.request)
-        except Exception as error:
-            self._settle("failed", str(error))
-            return
-        self._settle("completed", result)
-
-    def _settle(self, kind, value):
-        if self._terminal:
-            return
-        # No terminal notification or new admission while the child is alive.
-        assert self.process.state() == QProcess.ProcessState.NotRunning
-        self._terminal = True
         self.timer.stop()
         self._read()
         try:
             (self.directory / "worker.log").write_bytes(self.diagnostics)
         except OSError as error:
-            if kind == "completed":
-                kind, value = "failed", str(error)
-        if self._observing:
-            App.removeDocumentObserver(self)
-            self._observing = False
-        window = Gui.getMainWindow()
-        window.removeEventFilter(self)
-        _active_jobs.discard(self)
-        getattr(self, kind).emit(value)
-        self.ended.emit()
-        if self._close_pending:
-            # Resume FreeCAD's ordinary quit command, including its save and
-            # task-dialog decisions, once the external process has stopped.
-            QTimer.singleShot(0, lambda: Gui.runCommand("Std_Quit"))
+            self._settle(error=f"Cannot retain worker diagnostics: {error}")
+            return
+        if self.cancelled:
+            self._settle(error="Calculation cancelled")
+            return
+        if self.timed_out or code != 0 or status != QProcess.ExitStatus.NormalExit:
+            self._settle(
+                error="Worker failed or timed out: "
+                + self.diagnostics.decode(errors="replace")
+            )
+            return
+        try:
+            result = admit(self.source, self.directory, self.request)
+        except Exception as error:  # noqa: BLE001 - report native errors at the process/UI boundary
+            self._settle(error=str(error))
+            return
+        self._settle(result=result)
 
 
 def set_pose(playback, original_placement, original_centre_m, position_m, rotation):
@@ -351,9 +288,9 @@ def set_pose(playback, original_placement, original_centre_m, position_m, rotati
     matrix = App.Matrix()
     for i in range(3):
         for j in range(3):
-            setattr(matrix, f"A{i+1}{j+1}", rotation[3 * i + j])
+            setattr(matrix, f"A{i + 1}{j + 1}", rotation[3 * i + j])
         offset = position_m[i] - sum(
             rotation[3 * i + j] * original_centre_m[j] for j in range(3)
         )
-        setattr(matrix, f"A{i+1}4", 1000 * offset)
+        setattr(matrix, f"A{i + 1}4", 1000 * offset)
     playback.Placement = App.Placement(matrix).multiply(original_placement)

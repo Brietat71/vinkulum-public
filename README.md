@@ -1,293 +1,133 @@
 <p align="center">
-  <img src="docs/assets/vinkulum-banner.svg" alt="Vinkulum — The open engineering workbench. Design. Simulate. Verify." width="100%">
+  <img src="docs/assets/vinkulum-banner.svg" alt="Vinkulum — open engineering. Design. Simulate. Verify." width="100%">
 </p>
 
-**Build the mechanism. Run the physics. Inspect the evidence.**
+**Open mechanics, inside FreeCAD.**
 
-Vinkulum is an open engineering project bringing **CAD, multibody simulation
-and scientific verification** into a shared workflow. It combines a Rust
-mechanics kernel, a Python API and a FreeCAD integration — with the
-ambition of becoming a home for the open solvers engineers and researchers rely on.
+Vinkulum combines a **Rust mechanics kernel**, a Python API and independently
+checkable numerical work. **FreeCAD is now the primary desktop interface.**
+Keep its modelling tools and feature tree; run Vinkulum in a separate process
+and inspect captured motion in the same FreeCAD document.
 
-**Interface development now targets FreeCAD.** The [Vinkulum workbench](apps/freecad/README.md)
-uses FreeCAD's modelling tools, document tree and task panel. Its first scope is
-one rigid solid with an explicit revolute joint, native dynamics and retained
-motion playback. The [integration direction](docs/FREECAD_INTEGRATION.md) identifies
-the remaining work. New interface development in standalone Studio is set aside.
-
-[Install the FreeCAD workbench](apps/freecad/README.md) · [Kernel setup](#get-started) · [Contribute](docs/CONTRIBUTOR_PROJECTS.md) ·
+[Try the FreeCAD extension](apps/freecad/README.md#install) ·
+[Contribute](docs/CONTRIBUTOR_PROJECTS.md) ·
 [Discuss](https://github.com/Brietat71/vinkulum-public/discussions) ·
-[Share Vinkulum](docs/SHARE_VINKULUM.md) ·
 [Scientific guarantees](docs/CERTIFICATION_NOYAU.md) ·
-[Support the project](docs/FUNDING.md) · [Documentation technique en français](README.fr.md)
+[Support the project](docs/FUNDING.md) · [Technical archive in French](README.fr.md)
 
-**Earlier standalone Studio previews:** [Apple Silicon DMG · 0.6.0a2.dev5](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a2.dev5-macos-9) ·
-[Linux preview · 0.6.0a1](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux) ·
-[included examples in five minutes](apps/studio/packaging/EXAMPLES.md).
-**Studio is a research alpha.** CAD, the native kernel and saved CAD/FEM/Pinocchio
-examples are included. New Gmsh, CalculiX and Pinocchio computations use separate engines.
+![The Vinkulum extension in the actual FreeCAD Linux interface](docs/bancs/freecad-extension-010/freecad-extension.png)
 
-<p align="center">
-  <img src="docs/bancs/freecad-workbench-2026/motion.png" alt="Vinkulum installed in FreeCAD: parametric pendulum, native calculation and retained motion in the task panel" width="100%">
-</p>
+*An editable PartDesign pendulum, a native FreeCAD task panel, and a captured
+Vinkulum trajectory. The motion uses a temporary copy; the design keeps its
+original geometry and placement.*
 
-*The installed FreeCAD workbench plays a native Vinkulum trajectory on a captured
-copy of a PartDesign pendulum. The [qualification record](docs/bancs/freecad-workbench-2026/README.md)
-includes the installable archive, editable documents, three calculations,
-independent physical references and cancellation/closure checks.*
+## Try it in FreeCAD
 
-<details>
-<summary><strong>New in source: draw a profile, change a dimension, rebuild the solid</strong></summary>
+**FreeCAD extension 0.1.0a1 · Kernel 0.20.0 · Linux first.**
 
-![Studio 0.6.0a2.dev2: a fully dimensioned line sketch edited to a width of 100 mm](docs/bancs/studio-sketch-060/sketch-100.png)
+1. [Install the extension and configure its separate engine](apps/freecad/README.md#install).
+2. Open **Vinkulum → Open pendulum example** in FreeCAD.
+3. Select the body, open **Vinkulum → Motion analysis**, then run and inspect
+   the captured native samples. No Vinkulum workbench switch is required.
+4. Change the PartDesign pad, capture it again and compare the physical result.
 
-Change the bracket width from **80 to 100 mm**. The sketch keeps its dimensional
-constraints, OCCT 8 regenerates the solid, and its mass changes from **218.4 to
-249.6 g**. Preview, apply and undo the complete change. Exact affine constraints
-expose remaining degrees of freedom and conflicting dimensions.
+The first extension covers **one rigid solid and one explicit revolute joint**,
+with configurable world pivot, axis, density, native step and CPU allocation.
+Calculations run outside FreeCAD's GUI process. Cancellation and document close
+retire the job; stale geometry is refused for playback. Saving the FreeCAD file
+removes the temporary motion shape before serialization. Saved calculations
+reopen without running the engine.
 
-[Try the sketch workflow](docs/STUDIO_SKETCH.md) ·
-[Inspect the saved projects and checks](docs/bancs/studio-sketch-060/README.md)
+This is a research alpha. General FreeCAD Assembly conversion, multiple-body
+host models and FreeCAD controls for FEM and other engines remain upcoming work.
+The [qualification record](docs/bancs/freecad-extension-010/README.md) states
+exactly which runtime, physical cases and lifecycle behaviours were exercised.
 
-Included in the **0.6.0a2.dev5 Apple Silicon DMG**, or install **0.6.0a2.dev2
-or later from source**; the downloadable Linux alpha remains **0.6.0a1**. This
-first sketch domain covers closed line profiles with horizontal,
-vertical, fixed-point and signed X/Y dimensions.
+The qualified Linux host is FreeCAD 1.1.3 / Qt 6. Its own OCCT 7.8.1 stays in
+its process. Vinkulum reimports the captured STEP with **OCCT 8.0.1** and checks
+volume, centre and the full inertia tensor against FreeCAD before calculating.
+The two Python environments keep separate native libraries.
 
-</details>
+## One project, several scientific engines
 
-<details>
-<summary><strong>See the new CalculiX workspace — a calculation you can reproduce</strong></summary>
+The long-term goal is a common engineering environment for open mechanics,
+finite elements and other scientific engines. Each engine keeps its identity,
+licence, units, physical assumptions and reference cases.
 
-![Studio 0.5.0: CalculiX tension specimen, displacement field and integration-point stress table](docs/assets/studio-static.png)
-
-A real 8-element tension calculation: a 1,000 N axial load, a displacement field
-in metres, and stress values at integration points. Displayed deformation is
-amplified; exported values retain their physical units. The
-[mesh study](examples/studio/fem/tension.ccx.json),
-[capture recipe](ci/studio_static_recipe.py) and
-[analytic reference](docs/CALCULIX_INTEGRATION.md#reproduce-a-study) are included.
-
-</details>
-
-<details>
-<summary><strong>Inspect Pinocchio operators behind a mechanism</strong></summary>
-
-![Studio 0.6.0.dev1: two-link captured state and body Jacobian with explicit units](docs/assets/studio-pinocchio.png)
-
-Edit an articulated state, evaluate dynamics operators and inspect mass matrices,
-derivatives and Jacobians. The [captured example](examples/studio/articulated/double-pendulum/README.md)
-opens without the engine; recomputation uses a separate Pinocchio environment.
-The [guide](docs/PINOCCHIO_OPERATORS.md) includes independent Lagrange references.
-Included in the **0.6.0a1 Linux preview**. The example opens without installing Pinocchio.
-
-</details>
-
-<details>
-<summary><strong>Change a CAD dimension and regenerate the part</strong></summary>
-
-![Studio 0.6.0.dev2: a 150 mm plate regenerated from an editable feature graph](docs/assets/studio-cad-history.png)
-
-Change the stock length from **120 to 150 mm** and preview the dependent cut and
-fillets. The solid supplies the new mass and inertia; applying the preview is
-one undoable change. Try the [parametric plate](examples/studio/platine-parametrique.vinkulum.json)
-with the [editing guide](docs/STUDIO_CAD_HISTORY.md) and inspect the
-[installed-package checks](docs/bancs/studio-cad-history-060/README.md).
-Included in the **0.6.0a1 Linux preview**. The current source adds the
-[constrained line sketch editor](docs/STUDIO_SKETCH.md); persistent CAD face/edge
-references remain future work.
-
-</details>
-
-<details>
-<summary><strong>For numerical researchers: six tetrahedra, one analytic bending solution</strong></summary>
-
-![Studio 0.6.0.dev3: quadratic tetrahedra, amplified bending displacement and integration-point values](docs/assets/studio-tetra-bending.png)
-
-Run a six-element CalculiX study and compare its energy with an independent
-elasticity solution. Inspect the input deck, raw output and checks behind the
-plot. The source also checks curved tetrahedra using exact-arithmetic Bernstein
-bounds on the local Jacobian determinant. These bounds concern element geometry;
-solution accuracy is assessed separately.
-
-[Try the bending example](docs/STUDIO_TETRAHEDRA.md#try-a-complete-calculation) ·
-[Inspect the qualification](docs/bancs/studio-tetrahedra-060/README.md) ·
-[Contribute a convergence study (#4)](https://github.com/Brietat71/vinkulum-public/issues/4)
-
-Included in the **0.6.0a1 Linux preview**, with the captured calculation in
-`Examples/tetra-bending`. Recalculation requires an installed `ccx`.
-
-</details>
-
-<details>
-<summary><strong>Inspect the calculation behind the CAD study</strong></summary>
-
-![Captured CalculiX plate result: displacement in metres, amplified deformation and raw-value table](docs/assets/studio-cad-mesh-static.png)
-
-Generate a tetrahedral mesh with **Gmsh / OCCT 8**, pick its boundary faces in
-3D, add supports and pressure, and open the captured study in **CalculiX**.
-The [workflow guide](docs/STUDIO_CAD_MESHING.md) includes installation and limits;
-the [saved example](docs/bancs/studio-cad-meshing-060/README.md) includes the solid,
-mesh, physical conditions and raw calculation behind the display.
-
-Included in the **0.6.0a1 Linux preview**. New computations require the separate
-engines. The shipped example reopens without running an engine.
-
-</details>
-
-## What you can do today
-
-| Layer | Available in the source tree |
-|---|---|
-| **Design** | OCCT **8.0.1** and adapted **build123d**: constrained line sketches, extrusions, primitives, solid booleans, all-edge fillets and single-solid STEP exchange. Edit upstream dimensions, preview regeneration and apply one undoable change. BREP mass properties and display meshes remain distinct. |
-| **Model** | A Qt/VTK workbench for rigid mechanisms: bodies, joints, loads, numerical properties, 3D manipulation, undo/redo and project files. |
-| **Simulate** | The native Rust kernel computes in a separate process. Studio captures the model and settings associated with each run. |
-| **Linear statics** | Mesh a captured CAD solid with Gmsh / OCCT 8, select faces and add supports, pressure or total forces. Open the study in CalculiX, inspect displacement, integration-point stress and energy, and reopen saved calculations. |
-| **Articulated operators** | A Pinocchio analysis window edits a captured rigid-tree state and inspects dynamics operators, derivatives and body Jacobians. Separate optional worker; CSV export and engine-free result reopening. |
-| **Examine** | Animate results, inspect curves and samples, compare captured runs on their native time grids, and export with units and provenance. |
-| **Research** | Use the broader Python kernel API for rigid/flexible mechanics, contact and analysis. Explore explicit numerical contracts, independent references and selected Lean proofs. |
-
-**Kernel 0.19.0 · Studio 0.6.0a1 · Linux x86-64 preview.** Research software under active development.
-Current source **Kernel 0.20.0 · Studio 0.6.0a2.dev6** adds
-[supervised CAD process reuse](docs/CAD_PROCESS_REUSE.md),
-[shared engine CPU admission](docs/ENGINE_CPU_ADMISSION.md) and
-[background CAD and archive validation](docs/STUDIO_BACKGROUND_ADMISSION.md),
-alongside [interactive constrained line sketches](docs/STUDIO_SKETCH.md)
-and [3D pressure, force and support symbols](docs/STUDIO_CAD_MESHING.md#boundary-direction-symbols).
-The **Apple Silicon DMG 0.6.0a2.dev5 / kernel 0.20.0** includes sketches, boundary
-symbols, native CPU admission and background validation. CAD process reuse
-remains a dev6 source feature; the Linux preview remains 0.6.0a1.
-Studio currently exposes a subset of the kernel. CAD is an initial solid-modelling
-workflow; curved sketches, nonlinear dimensions and persistent face/edge references
-remain future work. The [CAD-to-FEM workspace](docs/STUDIO_CAD_MESHING.md) now captures
-tetrahedral meshes and face conditions for CalculiX. The complete kernel is not certified. Each guarantee has a stated
-domain and its own evidence. See the [CAD contract](docs/STUDIO_CAD.md),
-[Studio guide](apps/studio/README.md) and [kernel API](docs/API.md).
-
-## One workbench, several scientific engines
-
-The long-term goal is a common place to prepare models, choose an appropriate
-engine and inspect traceable results. Each engine keeps its identity, licence
-and physical assumptions.
-
-| Component | Place in the project | Integration status |
+| Component | Available today | FreeCAD interface |
 |---|---|---|
-| **Vinkulum** | General-purpose mechanics and verifiable numerical research | Native kernel; rigid-mechanism Studio adapter available |
-| **OCCT 8 + build123d** | Exact CAD and mass properties | Integrated; local compatibility patches and qualification corpus included |
-| **Gmsh** | Tetrahedral CAD meshing | Requires an external OCCT 8 build; captures boundary groups for supports, pressure and total forces |
-| **Pinocchio** | Articulated-body algorithms, Jacobians and derivatives | [Experimental workspace and CLI](docs/PINOCCHIO_OPERATORS.md) for fixed-base rigid trees, with independent references; separate Python environment for recomputation |
-| **MBDyn** | Multibody workflows and independent reference calculations | Existing comparison work; Studio connector planned |
-| **CalculiX** | Finite-element workflows | [Experimental static-study workspace and CLI](docs/CALCULIX_INTEGRATION.md): C3D4, curved C3D10 and affine C3D8, cancellable solve, captured displacement and integration-point values; external executable required |
-| **DUST** | Aerodynamic workflows and future coupling | Planned |
-| **NeuralFoil** | Airfoil polar workflows | Used by optional validation tooling; Studio workflow planned |
+| **Vinkulum** | Native Rust mechanics, Python API, captured rigid-body trajectories | First single-solid revolute workflow |
+| **OCCT 8 + build123d** | STEP import, solid geometry and SI mass properties | Checked capture boundary with the FreeCAD host |
+| **CalculiX** | External linear-elasticity adapter: C3D4, admitted curved C3D10 and affine C3D8; captured results and references | Planned |
+| **Gmsh** | External OCCT 8 mesher and captured boundary conditions | Planned |
+| **Pinocchio** | Fixed-base rigid-tree operators, derivatives and independent references through a separate worker | Planned |
+| **MBDyn** | Existing comparison work | Connector planned |
+| **DUST** | Future aerodynamic workflows | Planned |
+| **NeuralFoil** | Optional validation tooling | Connector planned |
 
-A connector must establish units, frames, supported physics and reproducible
-reference cases before it becomes a selectable engine. Future integrations in
-this table are not part of the current desktop binary.
-
-## Get started
-
-**Try the desktop without compiling:**
-[Studio 0.6.0a2.dev5 Apple Silicon DMG](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a2.dev5-macos-9)
-targets macOS 14 or newer on ARM64. The mounted-and-copied app was checked for
-startup, native simulation, OCCT/STEP, CAD regeneration and saved result display.
-It has an ad-hoc signature without Apple notarisation.
-
-[Studio 0.6.0a1 Linux preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux)
-includes the standalone archive, checksums and extracted-binary qualification.
-It targets Linux x86-64 / Ubuntu 24.04 / glibc 2.39 / X11.
-CalculiX calculations additionally require an installed `ccx` executable
-(`calculix-ccx` on Ubuntu 24.04). The [FEM guide](docs/CALCULIX_INTEGRATION.md)
-explains supported meshes and result meanings. New CAD meshes require Gmsh
-built with OCCT 8 or newer; the [build recipe](docs/STUDIO_CAD_MESHING.md) is included.
-Start with `Examples/README.md` in the application folder to inspect the shipped
-CAD/FEM/Pinocchio captures without installing these external engines.
-
-For development, use **Python 3.14**, Rust/Cargo, a C++17 compiler, a system
-linker and [uv](https://docs.astral.sh/uv/). Linux desktop prerequisites and the
-standalone packaging recipe are in the [Studio guide](apps/studio/README.md).
-
-```bash
-git clone https://github.com/Brietat71/vinkulum-public.git
-cd vinkulum-public
-uv venv --python 3.14 .venv
-source .venv/bin/activate
-uv pip install 'maturin>=1.15,<2'
-maturin develop --uv --release --extras verification
-uv pip install -e './apps/studio[test]'
-python -m vinkulum_studio
-```
-
-To add CAD, install the reviewed OCCT 8 adaptations (`patch` is required):
-
-```bash
-python ci/prepare_cad.py build/cad-sources
-uv pip install build/cad-sources/build123d-0.11.1 \
-  build/cad-sources/ocpsvg-0.6.0 -e './apps/studio[cad,test]'
-python -m vinkulum_studio
-```
-
-After a Python/UI edit, restart Studio. Rebuild the native extension only after
-Rust changes; build a standalone archive when preparing a delivery.
-No Vinkulum package is currently published on PyPI. Check version and platform
-in the [public releases](https://github.com/Brietat71/vinkulum-public/releases):
-older binaries may predate the features shown in this source tree.
-
-Studio's interface, installation guide and contribution guide are in English.
-The technical archive and several research reports are still in French;
-translations with careful preservation of scientific claims are welcome.
+The broader kernel API includes work beyond the initial FreeCAD host. See the
+[kernel API](docs/API.md), [CalculiX contract](docs/CALCULIX_INTEGRATION.md),
+[CAD meshing guide](docs/STUDIO_CAD_MESHING.md) and
+[Pinocchio operators](docs/PINOCCHIO_OPERATORS.md). These backend capabilities
+are not all exposed by the first FreeCAD extension.
 
 ## Evidence you can inspect
 
-Vinkulum publishes the assumptions behind its results: units and frames,
-convergence studies, failure cases and bounded guarantees. Passing a test or
-agreeing with another solver does not certify every trajectory.
+Vinkulum publishes units, frames, convergence observations, failure cases and
+bounded guarantees. Passing a test or matching another solver does not certify
+arbitrary trajectories or models.
 
+- [FreeCAD extension: actual GUI, saved files, process lifecycle and frame transport](docs/bancs/freecad-extension-010/README.md)
+- [Independent finite-section pendulum reference and four retained FreeCAD captures](docs/bancs/freecad-bridge-2026/README.md)
 - [Kernel guarantees and remaining obligations](docs/CERTIFICATION_NOYAU.md)
 - [Numerical benchmarks and historical comparisons](README.fr.md#résultats-mesurés-et-comparaison-externe)
-- [CAD adaptation, analytic checks and upstream test subset](docs/STUDIO_CAD.md)
-- [Parametric CAD editing, previews and preserved design frames](docs/STUDIO_CAD_HISTORY.md)
+- [OCCT 8 adaptation and independent CAD properties](docs/STUDIO_CAD.md)
 - [Quadratic tetrahedra, analytic bending and exact local Jacobian bounds](docs/STUDIO_TETRAHEDRA.md)
-- [CAD meshing, 3D face selection and captured CalculiX studies](docs/STUDIO_CAD_MESHING.md)
-- [Studio interaction and rendering qualification](docs/STUDIO_GUI_2026.md)
-- [CalculiX statics contract and reproducible tension study](docs/CALCULIX_INTEGRATION.md)
-- [Pinocchio conversion, independent Lagrange references and captured-state workspace](docs/PINOCCHIO_OPERATORS.md)
 - [Lean proof workspace](preuves/README.md)
 
-Performance contributions start with a reproducible workload and a profile.
-Rust is welcome where it improves a measured bottleneck; comparisons must retain
-accuracy, account for transfer costs and report regressions as well as gains.
+Performance work starts with a reproducible workload and a profile. Rust and
+native multithreading belong where measurements justify them. Comparisons must
+retain accuracy and include transfer costs, memory use and regressions.
+
+## Development
+
+The [FreeCAD extension guide](apps/freecad/README.md) explains installation,
+engine configuration, packaging and the actual FreeCAD qualification recipe.
+The extension uses the existing CAD and mechanical adapter modules in the
+`vinkulum_studio` Python package, in a separate process. It never opens Studio's
+GUI. The engine environment needs Python 3.14, Vinkulum 0.20 and the
+[OCCT 8 CAD dependencies](docs/STUDIO_CAD.md).
+
+Development of the custom Studio GUI is paused. Its code and
+[previous desktop releases](https://github.com/Brietat71/vinkulum-public/releases)
+remain available for reproducibility; new interface work targets FreeCAD.
 
 ## Help build it
 
-There is room here for **students, researchers, engineers and curious builders**.
-A useful contribution can be a failing physical example, a CAD regression part,
-a better interaction, a numerical proof or an independently reproduced result.
+Students, researchers, engineers and interested contributors can help with a
+failing physical example, a CAD regression, a numerical proof or a reproduced
+result. Useful priorities for the FreeCAD direction include:
 
-The [contributor projects](docs/CONTRIBUTOR_PROJECTS.md) describe concrete first
-deliverables across dynamics, CAD, Pinocchio, other solver connectors, Rust
-performance, Qt and teaching. Read [CONTRIBUTING.md](CONTRIBUTING.md), then
-[propose a scoped project](https://github.com/Brietat71/vinkulum-public/issues/new)
-or submit a reproducible fix. The issue forms help describe a bug, a scientific
-reference or a first contribution without needing to know the whole codebase.
+- Convert a small assembly with explicit units, frames and independent mechanics.
+- Exercise cancellation, save/reopen and source edits in real FreeCAD sessions.
+- Add a STEP solid with independently known mass properties.
+- Connect a supported CalculiX study to native FreeCAD controls.
+- Profile the capture/process boundary before proposing a performance change.
 
-**Pick a concrete first contribution:**
+Read [CONTRIBUTING.md](CONTRIBUTING.md) and the
+[contributor projects](docs/CONTRIBUTOR_PROJECTS.md), then
+[propose a scoped contribution](https://github.com/Brietat71/vinkulum-public/issues/new).
+Several older desktop tasks refer to the paused Studio GUI; prefer FreeCAD
+for new interaction work.
 
-- **CAD:** [add a STEP part with independently known mass properties (#1)](https://github.com/Brietat71/vinkulum-public/issues/1).
-- **Desktop:** [qualify one keyboard and high-DPI workflow (#2)](https://github.com/Brietat71/vinkulum-public/issues/2).
-- **FEM:** [measure C3D8 bending convergence against an independent reference (#4)](https://github.com/Brietat71/vinkulum-public/issues/4).
-- **Dynamics:** [extend the independent references for Pinocchio applied-load derivatives](docs/PINOCCHIO_LOADS.md).
-
-If this direction matters to you, **star the repository**, share a real use case,
-or help reproduce a benchmark. The [share kit](docs/SHARE_VINKULUM.md) includes
-a runnable demonstration and short introductions you can adapt.
-For labs and organisations interested in funding
+If this direction matters to you, **star the repository**, share a real use case
+or help reproduce a benchmark. For labs and organisations interested in funding
 maintenance or a public milestone, see [Support Vinkulum](docs/FUNDING.md).
 
 ## Licence
 
-Original Vinkulum code is **[Apache-2.0](LICENSE)**. External libraries, solvers
-and models retain their own licences and attribution. See
-[third-party notices](THIRD_PARTY_NOTICES.md). The CAD compatibility patches are
-kept explicit so their provenance can be reviewed and useful changes can return
-upstream.
+Original Vinkulum code is **[Apache-2.0](LICENSE)**. FreeCAD, external libraries,
+solvers and models retain their own licences and attribution. See
+[third-party notices](THIRD_PARTY_NOTICES.md). Compatibility patches and reference
+cases remain explicit so their provenance can be reviewed and useful changes
+can return upstream.

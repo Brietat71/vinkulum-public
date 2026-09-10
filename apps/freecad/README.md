@@ -1,94 +1,85 @@
-# Vinkulum dans FreeCAD
+# Vinkulum for FreeCAD 0.1.0a1
 
-FreeCAD est désormais l’interface de référence pour les nouveaux développements.
-L’atelier Vinkulum utilise ses outils PartDesign, son arbre de document et son
-panneau de tâches. Le moteur mécanique reste dans un processus séparé.
+FreeCAD is Vinkulum's primary desktop interface. The extension adds a **Vinkulum
+menu and native task panel** while keeping the current FreeCAD workbench. It
+captures a selected solid, runs the existing mechanics backend in a separate
+process and displays native poses on a temporary copy. Development of Studio's
+custom GUI is paused.
 
-Cette première version couvre **une pièce rigide et un pivot fixé au monde**.
-Le panneau définit la masse volumique, la position du pivot en millimètres, son
-axe global X/Y/Z, la durée et le pas. Le calcul conserve la capture géométrique,
-les propriétés physiques en SI et les échantillons natifs du mouvement. La lecture
-anime une copie dédiée ; la pièce paramétrique reste éditable dans FreeCAD.
+Opening the example now completes its initial view setup before queued document
+closures run. The [retained before/after regression](../../docs/bancs/freecad-example-close-2026/README.md)
+records the original native crash and the corrected installed extension.
 
-## Installer l’atelier
+The first domain is one top-level rigid solid with one explicit revolute joint,
+starting from rest under gravity -Z. Pivot coordinates, axis, density, duration,
+time step and engine threads are explicit. Assembly conversion, multi-body host
+models, FreeCAD FEM controls and other platforms remain future work.
 
-Construire l’archive depuis ce dépôt avec un Python standard :
+![Actual FreeCAD Linux extension](../../docs/bancs/freecad-extension-010/freecad-extension.png)
+
+## Install
+
+Use **FreeCAD 1.1.3 with Qt 6 on Linux** and the extension ZIP from the
+[public releases](https://github.com/Brietat71/vinkulum-public/releases).
+Close FreeCAD and extract the `Vinkulum` folder into its user `Mod` directory.
+The qualified Linux runtime uses `~/.local/share/FreeCAD/Mod`, or
+`$XDG_DATA_HOME/FreeCAD/Mod` when configured. Restart FreeCAD.
+`Vinkulum/Init.py` and `Vinkulum/InitGui.py` must be directly inside that folder.
+
+Prepare a separate Python environment with **Vinkulum 0.20, the Studio backend
+package and OCCT 8 CAD dependencies** using the [backend installation guide](../../docs/STUDIO_CAD.md).
+Choose that environment's Python in the task panel. The `vinkulum_studio` package
+currently supplies the headless CAD and mechanical adapters; the extension never
+opens its GUI. Do not install its native libraries inside FreeCAD's interpreter.
+The qualified FreeCAD host uses OCCT 7.8.1 and Python 3.11; the engine uses
+OCCT 8.0.1 and Python 3.14. Geometry and checked SI properties cross the process
+boundary.
+
+**Vinkulum → Open pendulum example** opens the included PartDesign model.
+Select its Rod body and open **Vinkulum → Motion analysis**. Configure the engine
+Python and the directory for saved calculations, then **Run motion**. The
+slider and **Play captured motion** use actual native samples without
+interpolating a new physical trajectory. The original design placement stays
+unchanged. See [complete installation and controls](INSTALLATION.txt).
+
+One job can run at a time in this FreeCAD process. Cancel and source-document
+close retire its worker. A failed start releases admission. Newer geometry
+invalidates old-motion playback. Saving the native `.FCStd` file stops playback,
+removes the temporary copy and restores the original visibility before writing.
+The `.FCStd` design and calculation folders remain separate files. A saved
+calculation can reopen without the engine when the selected source still
+matches its captured geometry.
+
+## Package and qualify
+
+Build a ZIP from reviewed, committed source:
 
 ```sh
-python apps/freecad/package.py /tmp/Vinkulum-FreeCAD-0.1.0a1.zip
+python3 apps/freecad/package.py /tmp/Vinkulum-FreeCAD-0.1.0a1.zip --require-clean
 ```
 
-Dans la console Python de FreeCAD, `App.getUserAppDataDir()` donne le dossier
-utilisateur de cette installation. Extraire le dossier `Vinkulum` de l’archive
-dans son sous-dossier `Mod`, puis redémarrer FreeCAD. Choisir **Vinkulum** dans
-la liste des ateliers. L’archive contient le code de l’atelier, son icône, sa
-licence et les empreintes des fichiers.
+The ZIP contains original extension code, the editable pendulum example,
+installation instructions and a source/hash manifest. It contains no FreeCAD,
+Python runtime or solver executable. Updating these Python extension files
+requires restarting FreeCAD, not rebuilding FreeCAD or the native kernel.
 
-Le premier paquet nécessite un environnement moteur séparé, préparé avec les
-[dépendances CAO de Vinkulum](../../docs/STUDIO_CAD.md). Dans
-**Vinkulum → Configurer le moteur…**, sélectionner son exécutable Python et le
-dossier de conservation des calculs. Aucun lancement de l’interface Studio
-n’est nécessaire. Pour une installation automatisée,
-`VINKULUM_FREECAD_PYTHON` fournit la valeur initiale du chemin du moteur.
+[qualify_extension.FCMacro](qualify_extension.FCMacro) tests the actual installed
+extension in a fresh FreeCAD process with isolated user directories. The
+[retained extension record](../../docs/bancs/freecad-extension-010/README.md)
+contains the exact runtime, commands, outputs, screenshot and limits. It exercises
+real calculation, capture reopening without an engine, save-time preview removal,
+source changes, frame transport and process lifecycle. The two existing
+[external-worker regressions](../studio/tests/test_freecad_bridge.py) continue
+to check the independent pendulum reference and rejection of corrupted mass.
 
-## Premier calcul
+## Retained transport prototype
 
-1. **Vinkulum → Exemple : pendule paramétrique** crée une esquisse et une
-   extrusion PartDesign de 800 mm dans un nouveau document FreeCAD.
-2. Sélectionner le corps et choisir **Analyser la pièce sélectionnée…**.
-   Les valeurs initiales correspondent à une pièce de 20 × 30 mm, de masse
-   volumique 7800 kg/m³, avec un pivot à l’origine sur l’axe global Y.
-3. **Calculer**, puis **Lire le mouvement**. Le curseur sélectionne directement
-   les échantillons calculés ; les commandes de vue restent celles de FreeCAD.
-4. Fermer la tâche pour reprendre la modélisation. Modifier la longueur dans
-   FreeCAD et relancer une capture pour calculer cette nouvelle pièce.
-
-Chaque résultat devient une entrée dans l’arbre FreeCAD. Enregistrer le document
-avec la commande habituelle, puis sélectionner cette entrée après réouverture
-pour retrouver son mouvement sans relancer le moteur. La géométrie capturée est
-conservée dans le `.FCStd`, et reconstruite à partir de cette capture à la reprise.
-Les trajectoires et fichiers du calcul restent dans le dossier indiqué par la
-propriété `VinkulumDirectory` du résultat : ce dossier doit rester accessible à
-son emplacement. Le `.FCStd` seul ne constitue pas encore un paquet de transfert
-complet vers une autre machine.
-
-Un seul calcul Vinkulum est admis à la fois dans FreeCAD. Annuler, supprimer la
-pièce source ou fermer son document arrête le processus avant de notifier la fin.
-Un résultat antérieur reste disponible après annulation. Si la géométrie a changé
-pendant le calcul, son résultat est refusé et une nouvelle capture est nécessaire.
-
-## Qualification et suite
-
-La [qualification conservée de l’atelier](../../docs/bancs/freecad-workbench-2026/README.md)
-contient l’archive installable, trois calculs réels, les documents FreeCAD,
-les références indépendantes et les dix scénarios d’arrêt du moteur.
-
-Les recettes [qualify_workbench.FCMacro](qualify_workbench.FCMacro) et
-[qualify_lifecycle.FCMacro](qualify_lifecycle.FCMacro) s’exécutent dans une session
-FreeCAD dédiée sur l’archive installée. Elles couvrent le calcul et la lecture,
-l’enregistrement/réouverture et la durée de vie des processus. La
-[référence physique initiale](../../docs/bancs/freecad-bridge-2026/README.md)
-compare les propriétés et le mouvement à un pendule physique indépendant.
-
-Le premier environnement ciblé est FreeCAD 1.1.3 Linux x86-64, Python 3.11 et
-PySide6. La conversion des assemblages FreeCAD, les liaisons attachées aux faces,
-les corps multiples, les analyses FEM dans FreeCAD et la livraison macOS/Windows
-restent à qualifier. La [direction d’intégration](../../docs/FREECAD_INTEGRATION.md)
-décrit ces étapes.
-
-## Contrat et expérience de transport initiale
-
-This prototype tests using FreeCAD's existing parametric modelling interface
-with Vinkulum's mechanics engine in a separate process. It edits a PartDesign
-pad, captures its solid and physical properties, runs an explicit revolute
-mechanism, and displays the returned native poses on a separate copy in FreeCAD.
-The parametric source is unchanged by playback.
-
-The [retained qualification](../../docs/bancs/freecad-bridge-2026/README.md)
-contains four real desktop runs, editable `.FCStd` sources, STEP captures,
-reopenable Vinkulum projects, native trajectory archives, screenshots and an
-independent physical-pendulum reference. That initial feasibility experiment
-established the transport now used by the installable workbench above.
+The [earlier four-run record](../../docs/bancs/freecad-bridge-2026/README.md)
+contains actual FreeCAD captures and an independent finite-section pendulum
+reference. Those retained scripts and observations describe the original
+world-origin/world-Y prototype. The extension builds on that boundary and adds
+native controls and lifecycle handling; it does not turn the limited reference
+into a general trajectory guarantee.
 
 ## Process and geometry contract
 
@@ -119,10 +110,8 @@ OCCT 8 importer reads the STEP and recomputes all physical properties. Volume,
 mass, centre and every inertia component must agree with the FreeCAD capture
 within scale-dependent absolute budgets (`εV`, `εm`, `εL`, `εmL²`, `ε = 10⁻⁸`;
 L is the imported bounding-box diagonal). The normal mechanical adapter creates
-the explicitly captured world-frame revolute joint and validates the native
-trajectory archive. The initial experiment used the world origin and Y axis;
-the workbench exposes the pivot position and global X/Y/Z axes.
-The selected allocation is two threads; CAD import and
+the explicit world-origin, world-Y revolute joint and validates the native
+trajectory archive. The selected allocation is two threads; CAD import and
 mechanics run sequentially in this worker.
 
 FreeCAD receives JSON poses in metres and row-major body-to-world matrices.
@@ -135,13 +124,11 @@ It does not write the motion into the original pad or its design placement.
 Replacing the input file also invalidates admission, even if a result carries
 the hash of that replacement: identity is checked against the original capture.
 
-The QProcess has a 60-second timeout and bounded diagnostic capture. The workbench
-admits one Vinkulum job at a time per FreeCAD application and waits for the child
-to stop before reporting completion, cancellation or failure. Its qualification
-covers cancellation during startup, execution and after result preparation,
-source deletion, document/application closure, timeout and stale geometry.
-FreeCAD's ordinary save/cancel decision remains available when quitting.
-Scheduling a broader set of concurrent solver services remains future work.
+The QProcess has a 60-second timeout and bounded diagnostic capture. The
+retained transport experiment exercised one job in a dedicated FreeCAD process.
+The extension now adds application-wide single-job admission and native
+close/cancel controls. Multi-body host scheduling and complete production
+lifecycle coverage remain outside the retained prototype's qualification.
 
 ## Reproduce
 
