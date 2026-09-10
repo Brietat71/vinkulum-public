@@ -362,6 +362,14 @@ def tick():
         doc = App.openDocument(str(root / "result.FCStd"))
         obj = doc.getObject("VinkulumStatic")
         assert obj.Result.Mesh.FemMesh.NodeCount > 4
+        doc.recompute()
+        assert obj.ResultState == "Current capture", obj.ResultState
+        assert obj.SourceGeometryBrep and obj.SourcePlacement
+        assert all(row.FaceBreps for row in obj.Boundaries)
+        assert model.inputs(obj)["conditions"]
+        report["checks"].append(
+            "saved static result remains current after native source and boundary BREP restore"
+        )
         doc.removeObject(obj.Result.Mesh.Name)
         doc.recompute()
         assert obj.ResultState.startswith("Out of date")
@@ -377,7 +385,7 @@ def tick():
         assert obj.ResultState.startswith("Out of date"), obj.ResultState
         assert not obj.Result.Mesh.Visibility and obj.Source.Visibility
         report["checks"].append(
-            "saved native result reopens; material edit hides stale result without an open task"
+            "material edit hides a restored current result without an open task"
         )
         obj.Source.Length = obj.Source.Length.Value + 1
         doc.recompute()

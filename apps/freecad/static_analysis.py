@@ -6,6 +6,8 @@ SPDX-License-Identifier: Apache-2.0
 import json
 import math
 
+import Part
+
 from . import bridge
 from .analysis import transaction
 
@@ -80,6 +82,9 @@ def create(source):
             ("App::PropertyInteger", "Threads", 2),
             ("App::PropertyString", "LastCapture", ""),
             ("App::PropertyString", "CapturedInputsSha256", ""),
+            ("App::PropertyString", "SourceGeometrySha256", ""),
+            ("App::PropertyString", "SourceGeometryBrep", ""),
+            ("App::PropertyString", "SourcePlacement", ""),
             ("App::PropertyLink", "Result", None),
             ("App::PropertyString", "ResultState", "No result"),
             ("App::PropertyBool", "SourceHidden", False),
@@ -91,6 +96,9 @@ def create(source):
             "SchemaVersion",
             "LastCapture",
             "CapturedInputsSha256",
+            "SourceGeometrySha256",
+            "SourceGeometryBrep",
+            "SourcePlacement",
             "Result",
             "ResultState",
             "SourceHidden",
@@ -140,7 +148,24 @@ def add_boundary(obj, refs, kind, pressure_pa=0):
         for r in refs
     ):
         raise ValueError("Choose existing source faces.")
+    source = obj.Source
+    if obj.Boundaries:
+        if bridge.signature(
+            source
+        ) != obj.SourceGeometrySha256 and not _snapshot_matches(obj, source):
+            raise ValueError(
+                "Geometry changed: remove and reselect the boundary faces."
+            )
+    else:
+        snapshot = _source_snapshot(source)
+    face_breps = [
+        source.Shape.Faces[int(ref[4:]) - 1].exportBrepToString() for ref in refs
+    ]
     with transaction(obj.Document, "Add static boundary condition"):
+        if not obj.Boundaries:
+            obj.SourceGeometrySha256 = snapshot["sha256"]
+            obj.SourceGeometryBrep = snapshot["brep"]
+            obj.SourcePlacement = snapshot["placement"]
         row = obj.Document.addObject("App::FeaturePython", "VinkulumBoundary")
         row.Label = kind + " · " + ", ".join(refs)
         row.addProperty("App::PropertyLinkSub", "Faces", "Boundary")
@@ -150,9 +175,11 @@ def add_boundary(obj, refs, kind, pressure_pa=0):
         row.addProperty("App::PropertyFloat", "PressurePa", "Boundary")
         row.PressurePa = pressure_pa
         row.addProperty("App::PropertyString", "GeometrySha256", "Boundary")
-        row.GeometrySha256 = bridge.signature(obj.Source)
+        row.GeometrySha256 = obj.SourceGeometrySha256
+        row.addProperty("App::PropertyStringList", "FaceBreps", "Boundary")
+        row.FaceBreps = face_breps
         row.Proxy = Boundary()
-        for name in ("Faces", "Kind", "GeometrySha256"):
+        for name in ("Faces", "Kind", "GeometrySha256", "FaceBreps"):
             row.setEditorMode(name, 1)
         obj.Boundaries = [*obj.Boundaries, row]
     refresh_result(obj)
@@ -170,7 +197,12 @@ def _input_snapshot(obj):
     source = obj.Source
     if source is None or source.Document is not obj.Document:
         raise ValueError("Assign an existing solid in this document.")
-    digest = bridge.signature(source)
+    raw_digest = bridge.signature(source)
+    digest = getattr(obj, "SourceGeometrySha256", "")
+    if not digest:
+        digest = raw_digest
+    elif raw_digest != digest and not _snapshot_matches(obj, source):
+        raise ValueError("Geometry changed: remove and reselect the boundary faces.")
     conditions = []
     for row in obj.Boundaries:
         linked, refs = row.Faces
@@ -185,6 +217,10 @@ def _input_snapshot(obj):
             for r in refs
         ):
             raise ValueError("A boundary references a missing face.")
+        if raw_digest != digest and not _faces_match_snapshot(row, source, refs):
+            raise ValueError(
+                "Geometry changed: remove and reselect the boundary faces."
+            )
         condition = {"name": row.Label, "faces": [int(r[4:]) for r in refs]}
         if row.Kind == "Fixed":
             condition.update(kind="support", axes=[1, 2, 3])
@@ -214,6 +250,75 @@ def _input_snapshot(obj):
     }, digest
 
 
+def _source_snapshot(source):
+    brep = source.Shape.exportBrepToString()
+    return {
+        "sha256": _signature_from_brep(source, brep),
+        "brep": brep,
+        "placement": json.dumps(_placement_values(source), allow_nan=False),
+    }
+
+
+def _placement_values(source):
+    matrix = source.getGlobalPlacement().toMatrix()
+    return [getattr(matrix, f"A{i}{j}") for i in range(1, 5) for j in range(1, 5)]
+
+
+def _signature_from_brep(source, brep):
+    return bridge.sha(
+        brep.encode("ascii")
+        + json.dumps(_placement_values(source), allow_nan=False).encode("ascii")
+    )
+
+
+def _snapshot_matches(obj, source):
+    """Accept only an OCCT-equivalent source after serialization changed its BREP."""
+    brep = getattr(obj, "SourceGeometryBrep", "")
+    placement = getattr(obj, "SourcePlacement", "")
+    if not brep or not placement:
+        return False
+    try:
+        if json.loads(placement) != _placement_values(source):
+            return False
+        captured = Part.Shape()
+        captured.importBrepFromString(brep)
+        current = source.Shape
+        if not (
+            captured.isValid()
+            and current.isValid()
+            and len(captured.Solids) == len(current.Solids)
+            and len(captured.Faces) == len(current.Faces)
+            and len(captured.Edges) == len(current.Edges)
+            and len(captured.Vertexes) == len(current.Vertexes)
+        ):
+            return False
+        return (
+            captured.cut(current).Volume == 0.0 and current.cut(captured).Volume == 0.0
+        )
+    except (
+        Exception
+    ):  # noqa: BLE001 - malformed persisted snapshots are conservatively stale
+        return False
+
+
+def _faces_match_snapshot(row, source, refs):
+    face_breps = getattr(row, "FaceBreps", [])
+    if len(face_breps) != len(refs):
+        return False
+    try:
+        for ref, brep in zip(refs, face_breps):
+            captured = Part.Shape()
+            captured.importBrepFromString(brep)
+            current = source.Shape.Faces[int(ref[4:]) - 1]
+            if captured.cut(current).Area != 0.0 or current.cut(captured).Area != 0.0:
+                return False
+    except (
+        Exception
+    ):  # noqa: BLE001 - malformed persisted face snapshots are conservatively stale
+        return False
+    return True
+
+
 def signature(obj):
     arguments, digest = _input_snapshot(obj)
     return bridge.sha(
@@ -233,7 +338,9 @@ def refresh_result(obj):
         return
     try:
         current = bool(obj.Result.Mesh) and signature(obj) == obj.CapturedInputsSha256
-    except Exception:  # noqa: BLE001 - invalid or deleted native dependencies make results stale
+    except (
+        Exception
+    ):  # noqa: BLE001 - invalid or deleted native dependencies make results stale
         current = False
     value = "Current capture" if current else "Out of date — recalculate"
     if obj.ResultState != value:
