@@ -87,8 +87,10 @@ contains the 49-test log and English demo recipe. Run the current suite with
 
 Studio tests compare volumes and inertias with independent analytic formulas,
 including an [independently written STEP L bracket](../apps/studio/tests/fixtures/independent_step/README.md)
-with full rotated inertia and a deliberately incorrect unit declaration. They
-check rotations and centres of mass, booleans, fillets, STEP metre/millimetre
+and an [eccentric curved bore and enclosed void](../apps/studio/tests/fixtures/analytic_step_corpus/README.md).
+The three-part corpus checks full rotated inertia, metre/millimetre declarations,
+lost-cavity detection and rejection of disjoint solids through the real worker.
+Tests also check rotations and centres of mass, booleans, fillets, STEP metre/millimetre
 conversion, BREP persistence, attachment rebasing, worker failure and the
 CAD → mechanics → Qt/VTK rendering workflow.
 

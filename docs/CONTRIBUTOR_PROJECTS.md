@@ -14,7 +14,7 @@ Each records the deliverable, acceptance evidence and current status.
 
 | Project | Useful background | A reviewable first result |
 |---|---|---|
-| CAD regression corpus | CAD, mechanical design | Three redistributable STEP parts with known units, volume, inertia and failure cases |
+| [CAD regression corpus](../apps/studio/tests/fixtures/analytic_step_corpus/README.md) | CAD, mechanical design | Extend the three analytic parts with a redistributable vendor export or trimmed curved surface; include independent volume/inertia references and a failure case |
 | [Responsive CAD service](CAD_PROCESS_REUSE.md) | Python, processes, profiling | Extend the supervised service qualification to long edit sessions or packaged macOS/Windows builds; report memory, UI latency and interruption behaviour |
 | Rust mesh/data path | Rust, Python FFI, VTK | Profile a reproducible large model; improve a demonstrated bottleneck with numerical equivalence and memory measurements |
 | Mechanism validation | Dynamics, experimental mechanics | An analytic or published benchmark, convergence study and independent reference |
