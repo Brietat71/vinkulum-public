@@ -5,10 +5,11 @@ generated on Linux using `ci/studio_pinocchio_recipe.py` and the separate
 installed worker. It supplies the actual matrix values shown in the
 [workspace screenshot](../../../../docs/assets/studio-pinocchio.png).
 
-Start Studio **from the current source version**, open **Run → Articulated
+Start Studio **0.6.0a1** (Linux preview or current source), open **Run → Articulated
 operators · Pinocchio… → Open result…**, and select this folder's `result.json`.
-No installed Pinocchio engine is needed to inspect it. The public **0.5.0 Linux
-binary predates this workspace** and cannot open this operator result.
+No installed Pinocchio engine is needed to inspect it. The
+[Linux alpha](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux)
+ships these files in `Examples/pinocchio`. Earlier 0.5.0 binaries predate this workspace.
 
 The folder contains the captured Studio project, requested state and result.
 Keep the three JSON files together and unchanged: reopening checks their

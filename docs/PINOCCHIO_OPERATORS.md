@@ -1,11 +1,13 @@
 # Pinocchio operators on a captured Studio mechanism
 
-**Experimental source workflow.** The first adapter reads a Studio project and
+**Experimental articulated-state workflow.** The first adapter reads a Studio project and
 computes operators at one articulated state in a separate Python environment.
-Studio **0.6.0.dev1** adds an analysis window to edit that state, inspect matrices
-and body Jacobians, and reopen captured results without the engine. This source
-workflow is not in the published Studio 0.5.0 standalone archive. It does not
-integrate trajectories. Results remain `NotAssessed`.
+Studio **0.6.0.dev1** introduced an analysis window to edit that state, inspect
+matrices and body Jacobians, and reopen captured results without the engine.
+The [0.6.0a1 Linux preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux)
+includes the window and the example in `Examples/pinocchio`. Recalculation
+requires the separate environment below. This workspace does not integrate
+trajectories. Results remain `NotAssessed`.
 
 ## Install and run
 

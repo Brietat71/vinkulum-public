@@ -1,7 +1,7 @@
 # CalculiX integration — first linear statics adapter
 
-**Status: experimental Studio 0.5.0 workspace and Python/CLI adapter.**
-The developing **0.6.0.dev4 source** adds a [CAD meshing and face-condition workspace](STUDIO_CAD_MESHING.md)
+**Status: experimental Studio workspace and Python/CLI adapter.**
+Studio **0.6.0a1**, including the Linux preview, provides a [CAD meshing and face-condition workspace](STUDIO_CAD_MESHING.md)
 and bounded decimal input transport, following the C3D4/curved C3D10 extension
 introduced in 0.6.0.dev3. See the [tetrahedral verification](STUDIO_TETRAHEDRA.md).
 CalculiX is a separate installed executable. Studio 0.4.2 and earlier binaries
@@ -14,7 +14,7 @@ raw output, solver log and versioned result metadata.
 
 ## Studio workspace
 
-In Studio 0.5.0, choose **Run → Linear statics ·
+In Studio, choose **Run → Linear statics ·
 CalculiX…** (`Ctrl+Shift+E`), or find the command in the command palette. The study
 opens in a separate native window and leaves the rigid-mechanism project intact.
 

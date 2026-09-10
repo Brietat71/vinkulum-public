@@ -1,11 +1,12 @@
 # Tetrahedral CalculiX studies and curved-element checks
 
-**Studio 0.6.0.dev3 source; experimental.** The statics workspace now reads,
+**Experimental; introduced in Studio 0.6.0.dev3.** The statics workspace now reads,
 calculates, displays and reopens studies using C3D4 or C3D10 tetrahedra, including
 curved quadratic geometry. Affine C3D8 studies remain supported. This extends
 the element contract now used by the [0.6.0.dev4 CAD meshing workspace](STUDIO_CAD_MESHING.md).
-The public **Studio 0.5.0 Linux binary** predates
-this extension.
+The [Studio 0.6.0a1 Linux preview](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux)
+includes this workspace and the saved pure-bending calculation in
+`Examples/tetra-bending`. It can be inspected without an installed solver.
 
 The [installed-package qualification](bancs/studio-tetrahedra-060/README.md)
 contains the actual calculation, test log and source fingerprints.

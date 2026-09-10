@@ -1,9 +1,10 @@
 # Change a CAD dimension and inspect the regenerated part
 
-**Studio source 0.6.0.dev2.** Solid features can now be edited after creation.
-The existing [Studio 0.5.0 Linux release](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.5.0-linux)
-does not include this editor. Install the current source with the
-[qualified OCCT 8 / build123d environment](STUDIO_CAD.md#reproducible-installation).
+**Included in Studio 0.6.0a1; introduced in source 0.6.0.dev2.** Solid features
+can be edited after creation. The
+[Linux alpha](https://github.com/Brietat71/vinkulum-public/releases/tag/studio-v0.6.0a1-linux)
+includes OCCT 8 / build123d and the parametric plate. For a source installation,
+use the [qualified CAD environment](STUDIO_CAD.md#reproducible-installation).
 
 ## A complete editing transaction
 
