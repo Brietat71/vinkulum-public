@@ -210,8 +210,14 @@ solver, check that its files remain unchanged, and reject altered values,
 units, missing files and invalid raw tables even after their hash is updated.
 
 The source-version CAD mesh/face workflow has its own
-[contract and qualification](STUDIO_CAD_MESHING.md). Refinement studies, broader
+[contract and qualification](STUDIO_CAD_MESHING.md). Further refinement studies, broader
 material/support domains and large-output handling remain separate work.
+
+The [C3D8 cantilever refinement study](bancs/studio-c3d8-refinement-2026/README.md)
+compares three uniform meshes with explicit Euler–Bernoulli and Timoshenko
+estimates. It retains input decks, raw displacement/stress/energy output,
+equilibrium residuals and timings; the finest case remains 3.87% below the
+Euler–Bernoulli displacement and is not a certified 3D limit.
 
 CalculiX's [official project](https://www.calculix.de/) and
 [upstream documentation](https://www.dhondt.de/) describe its much wider scope.

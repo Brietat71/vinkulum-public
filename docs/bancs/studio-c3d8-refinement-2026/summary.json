@@ -1,0 +1,119 @@
+{
+  "problem": {
+    "length_m": 0.12,
+    "width_m": 0.012,
+    "height_m": 0.006,
+    "young_pa": 210000000000.0,
+    "poisson": 0.3,
+    "force_z_N": -1.0,
+    "shear_factor": 0.8333333333333334
+  },
+  "beam_reference": {
+    "area_m2": 7.2e-05,
+    "second_moment_y_m4": 2.16e-10,
+    "euler_bernoulli_uz_m": -1.2698412698412695e-05,
+    "timoshenko_uz_m": -1.27231746031746e-05,
+    "euler_bernoulli_energy_J": 6.3492063492063476e-06,
+    "timoshenko_energy_J": 6.3615873015873e-06
+  },
+  "platform": "Linux-6.8.0-137-generic-x86_64-with-glibc2.39",
+  "python": "3.14.7",
+  "cases": [
+    {
+      "cells": [
+        20,
+        2,
+        1
+      ],
+      "nodes": 126,
+      "elements": 40,
+      "total_dofs": 378,
+      "free_dofs": 360,
+      "loaded_end_uz_m": -8.204759000000001e-06,
+      "strain_energy_J": 4.102379523935997e-06,
+      "half_external_work_J": 4.1023795000000005e-06,
+      "force_residual_N": [
+        2.9470242356634314e-12,
+        -1.821817575462354e-11,
+        -2.474687121889474e-13
+      ],
+      "moment_residual_Nm": [
+        -6.663669182421783e-14,
+        -5.999860695077297e-09,
+        -4.58916430869575e-13
+      ],
+      "gap_to_euler_bernoulli_percent": -35.38752287499997,
+      "gap_to_timoshenko_percent": -35.513271994610484,
+      "solver_elapsed_s": 0.008776,
+      "engine_version": "2.21",
+      "requested_threads": 1,
+      "scientific_status": "NotAssessed",
+      "archive": "mesh-20-2-1.zip",
+      "adapter_elapsed_s": 0.047649886924773455
+    },
+    {
+      "cells": [
+        40,
+        4,
+        2
+      ],
+      "nodes": 615,
+      "elements": 320,
+      "total_dofs": 1845,
+      "free_dofs": 1800,
+      "loaded_end_uz_m": -1.11021075e-05,
+      "strain_energy_J": 5.551053429945152e-06,
+      "half_external_work_J": 5.55105375e-06,
+      "force_residual_N": [
+        1.1584436029864352e-12,
+        -2.0932308973427883e-14,
+        1.8001011893239993e-06
+      ],
+      "moment_residual_Nm": [
+        2.916606843192393e-14,
+        1.1991395916597508e-08,
+        -1.024635762573957e-14
+      ],
+      "gap_to_euler_bernoulli_percent": -12.57090343749997,
+      "gap_to_timoshenko_percent": -12.741058373671322,
+      "solver_elapsed_s": 0.045245,
+      "engine_version": "2.21",
+      "requested_threads": 1,
+      "scientific_status": "NotAssessed",
+      "archive": "mesh-40-4-2.zip",
+      "adapter_elapsed_s": 0.12870744382962584
+    },
+    {
+      "cells": [
+        80,
+        8,
+        4
+      ],
+      "nodes": 3645,
+      "elements": 2560,
+      "total_dofs": 10935,
+      "free_dofs": 10800,
+      "loaded_end_uz_m": -1.2207391249999999e-05,
+      "strain_energy_J": 6.103696466362501e-06,
+      "half_external_work_J": 6.103695625e-06,
+      "force_residual_N": [
+        -1.0610705767256125e-11,
+        9.294040992645822e-12,
+        1.0007009810034107e-07
+      ],
+      "moment_residual_Nm": [
+        -2.4740403275309505e-13,
+        2.9951087032612303e-09,
+        9.675636945374298e-13
+      ],
+      "gap_to_euler_bernoulli_percent": -3.866793906249988,
+      "gap_to_timoshenko_percent": -4.053888823045049,
+      "solver_elapsed_s": 0.436655,
+      "engine_version": "2.21",
+      "requested_threads": 1,
+      "scientific_status": "NotAssessed",
+      "archive": "mesh-80-8-4.zip",
+      "adapter_elapsed_s": 0.9990247008390725
+    }
+  ]
+}
