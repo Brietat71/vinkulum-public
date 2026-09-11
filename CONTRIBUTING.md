@@ -20,8 +20,9 @@ the expected result. Keep secrets and confidential models out of public reports.
 ## Develop and validate
 
 Follow the [root README](README.md) for the kernel or the
-[Studio guide](apps/studio/README.md) for the desktop application. Studio can run
-from editable Python sources; build standalone archives when preparing a delivery.
+[FreeCAD extension guide](apps/freecad/README.md) for the desktop interface.
+The standalone Studio GUI is retired. Its engine adapters remain maintained;
+new interface contributions and desktop deliveries target FreeCAD on Linux.
 
 ```sh
 PY="$VIRTUAL_ENV/bin/python" bash ci/studio.sh

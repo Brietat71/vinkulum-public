@@ -97,31 +97,24 @@ jobs:
           path: dist/*.whl
           if-no-files-found: error
           retention-days: 14
-      - name: Préparer le bureau de test Qt et OpenGL
+      - name: Install CalculiX and the reusable engine adapters
         run: |
           sudo apt-get update
-          sudo apt-get install -y calculix-ccx xvfb xauth libegl1 libgl1 libgl1-mesa-dri \
-            libfontconfig1 libfreetype6 libdbus-1-3 libglib2.0-0t64 \
-            libx11-6 libx11-xcb1 libxkbcommon0 libxkbcommon-x11-0 \
-            libxcb1 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0 \
-            libxcb-randr0 libxcb-render0 libxcb-render-util0 libxcb-shape0 \
-            libxcb-shm0 libxcb-sync1 libxcb-util1 libxcb-xfixes0 libxcb-xkb1
+          sudo apt-get install -y calculix-ccx libegl1 libgl1 libglib2.0-0t64
           command -v ccx
-      - name: Construire et vérifier Studio 3D hors du dépôt
-        env:
-          RAYON_NUM_THREADS: "2"
-          # Preserve the actual loader error if a platform plugin cannot start.
-          QT_DEBUG_PLUGINS: "1"
-          VINKULUM_STUDIO_SCREENSHOT: ${{ runner.temp }}/studio-g0.png
-          VINKULUM_EDITOR_SCREENSHOT: ${{ runner.temp }}/studio-3d.png
-          VINKULUM_3D_SCREENSHOT: ${{ runner.temp }}/viewport-3d.png
-        run: |
           python -m pip wheel --no-deps ./apps/studio --wheel-dir "$RUNNER_TEMP/studio-dist"
           python ci/prepare_cad.py "$RUNNER_TEMP/cad-sources"
           "$RUNNER_TEMP/roue-venv/bin/python" -m pip install "$RUNNER_TEMP"/studio-dist/*.whl "$RUNNER_TEMP/cad-sources/build123d-0.11.1" "$RUNNER_TEMP/cad-sources/ocpsvg-0.6.0" 'scipy==1.18.1'
           "$RUNNER_TEMP/roue-venv/bin/python" -c 'import OCP, build123d; assert int(OCP.__version__.split(".")[0]) >= 8'
+      - name: Verify installed engine adapters without the retired Studio GUI
+        env:
+          RAYON_NUM_THREADS: "2"
+          OPENBLAS_NUM_THREADS: "1"
+          OMP_NUM_THREADS: "1"
+          QT_QPA_PLATFORM: offscreen
+        run: |
           cd "$RUNNER_TEMP"
-          PY="$RUNNER_TEMP/roue-venv/bin/python" bash "$GITHUB_WORKSPACE/ci/studio.sh" 2>&1 | tee "$RUNNER_TEMP/studio-3d.log"
+          env -u VINKULUM_3D_TESTS "$RUNNER_TEMP/roue-venv/bin/python" -X faulthandler -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -v 2>&1 | tee "$RUNNER_TEMP/engine-adapters.log"
       - name: Qualify the separate Pinocchio worker
         run: |
           python -m venv "$RUNNER_TEMP/pinocchio-venv"
@@ -131,28 +124,14 @@ jobs:
           cd "$RUNNER_TEMP"
           "$RUNNER_TEMP/pinocchio-venv/bin/python" -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -p test_pinocchio.py -v 2>&1 | tee "$RUNNER_TEMP/pinocchio.log"
           "$RUNNER_TEMP/pinocchio-venv/bin/python" -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -p test_applied_loads.py -v 2>&1 | tee -a "$RUNNER_TEMP/pinocchio.log"
-      - name: Qualify the desktop with the installed external Pinocchio worker
-        env:
-          VINKULUM_3D_TESTS: "1"
-          QT_QPA_PLATFORM: xcb
-          VINKULUM_PINOCCHIO_PYTHON: ${{ runner.temp }}/pinocchio-venv/bin/python
-        run: |
-          cd "$RUNNER_TEMP"
-          xvfb-run -a -s '-screen 0 1600x1100x24' "$RUNNER_TEMP/roue-venv/bin/python" -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -p test_pinocchio_workspace.py -v 2>&1 | tee "$RUNNER_TEMP/pinocchio-workspace.log"
-          xvfb-run -a -s '-screen 0 1600x1100x24' "$RUNNER_TEMP/roue-venv/bin/python" -m unittest discover -s "$GITHUB_WORKSPACE/apps/studio/tests" -p test_cad_history_workspace.py -k parametric -v 2>&1 | tee "$RUNNER_TEMP/cad-pinocchio.log"
-      - name: Conserver la recette Studio
+      - name: Retain engine adapter verification
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: studio-3d
+          name: engine-adapters
           path: |
             ${{ runner.temp }}/studio-dist/*.whl
-            ${{ runner.temp }}/studio-3d.log
-            ${{ runner.temp }}/studio-g0.png
-            ${{ runner.temp }}/studio-3d*.png
-            ${{ runner.temp }}/viewport-3d.png
+            ${{ runner.temp }}/engine-adapters.log
             ${{ runner.temp }}/pinocchio.log
-            ${{ runner.temp }}/pinocchio-workspace.log
-            ${{ runner.temp }}/cad-pinocchio.log
           if-no-files-found: ignore
           retention-days: 14

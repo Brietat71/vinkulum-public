@@ -56,7 +56,7 @@ isotropic statics with fixed supports and pressure. General topology persistence
 nonlinear FEM, contact in the FreeCAD workflow and general trajectory/FE error
 bounds are not established. Every retained qualification states its scope.
 
-FreeCAD is the primary desktop interface; the custom Studio GUI is paused.
+FreeCAD is the primary desktop interface; the custom Studio GUI is retired.
 The qualified Linux host is FreeCAD 1.1.3 / Qt 6. Its own OCCT 7.8.1 stays in
 its process. Vinkulum reimports captured STEP with **OCCT 8.0.1** and checks
 volume, centre and the full inertia tensor before calculating. The two Python
@@ -116,7 +116,7 @@ The extension uses the existing CAD and mechanical adapter modules in the
 GUI. The engine environment needs Python 3.14, Vinkulum 0.20 and the
 [OCCT 8 CAD dependencies](docs/STUDIO_CAD.md).
 
-Development of the custom Studio GUI is paused. Its code and
+Development of the custom Studio GUI is retired. Its code and
 [previous desktop releases](https://github.com/Brietat71/vinkulum-public/releases)
 remain available for reproducibility; new interface work targets FreeCAD.
 
@@ -135,7 +135,7 @@ result. Useful priorities for the FreeCAD direction include:
 Read [CONTRIBUTING.md](CONTRIBUTING.md) and the
 [contributor projects](docs/CONTRIBUTOR_PROJECTS.md), then
 [propose a scoped contribution](https://github.com/Brietat71/vinkulum-public/issues/new).
-Several older desktop tasks refer to the paused Studio GUI; prefer FreeCAD
+Several older desktop tasks refer to the retired Studio GUI; prefer FreeCAD
 for new interaction work.
 
 If this direction matters to you, **star the repository**, share a real use case
