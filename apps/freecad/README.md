@@ -1,12 +1,17 @@
 # Vinkulum for FreeCAD
 
-Published extension: **0.1.0a2**. Development source: **0.1.0a3.dev6**.
+Published extension: **0.1.0a2**. Development source: **0.1.0a3.dev7**.
 
 FreeCAD is Vinkulum's primary desktop interface. The extension adds a **Vinkulum
 menu and native task panel** while keeping the current FreeCAD workbench. It
 captures a selected solid, runs the existing mechanics backend in a separate
 process and displays native poses on a temporary copy. Development of Studio's
-custom GUI is paused.
+custom GUI has ended; no new standalone Studio releases are planned.
+
+Development 0.1.0a3.dev7 fixes [single-solid compound capture](../../docs/FREECAD_COMPOUND_CAPTURE.md)
+for motion and statics. Boolean results and nested singleton containers retain
+their source geometry and face references while mass properties are read from
+the contained solid. Extra geometry is rejected explicitly.
 
 Opening the example now completes its initial view setup before queued document
 closures run. The [retained before/after regression](../../docs/bancs/freecad-example-close-2026/README.md)

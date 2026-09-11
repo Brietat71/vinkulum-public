@@ -111,7 +111,7 @@ Original extension code and example model: Apache-2.0. See LICENSE and NOTICE.
 FreeCAD and external engines keep their own licences. extension-info.json
 identifies the exact source and packaged-file hashes.
 
-Native linear-static workflow in development 0.1.0a3.dev6
+Native linear-static workflow in development 0.1.0a3.dev7
 --------------------------------------------------------
 Select a top-level solid, then Vinkulum > Static analysis. Select faces in the
 3D view and add fixed supports and pressure. Positive pressure acts inward;

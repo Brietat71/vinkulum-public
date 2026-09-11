@@ -29,6 +29,21 @@ def matrix_values(matrix):
     return [getattr(matrix, f"A{i}{j}") for i in range(1, 4) for j in range(1, 4)]
 
 
+def single_solid(shape):
+    """Unwrap containers without silently discarding extra geometry."""
+    if not shape.isValid():
+        raise ValueError("One valid positive-volume solid is required")
+    solid = shape
+    while solid.ShapeType in ("Compound", "CompSolid"):
+        children = solid.childShapes()
+        if len(children) != 1:
+            raise ValueError("One solid without additional geometry is required")
+        solid = children[0]
+    if solid.ShapeType != "Solid" or solid.Volume <= 0:
+        raise ValueError("One valid positive-volume solid is required")
+    return solid
+
+
 def signature(source):
     placement = source.getGlobalPlacement().toMatrix()
     pose = [getattr(placement, f"A{i}{j}") for i in range(1, 5) for j in range(1, 5)]
@@ -73,13 +88,12 @@ def capture(
     ):
         raise ValueError("Select a top-level solid or PartDesign Body")
     shape = source.Shape
-    if not shape.isValid() or len(shape.Solids) != 1 or shape.Volume <= 0:
-        raise ValueError("The prototype requires one valid positive-volume solid")
+    solid = single_solid(shape)
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=False)
     step_path = directory / "part.step"
     shape.exportStep(str(step_path))
-    centre = list(shape.CenterOfMass)
+    centre = list(solid.CenterOfMass)
     request = {
         "format": "vinkulum-freecad-prototype-1",
         "run_id": str(uuid.uuid4()),
@@ -93,11 +107,11 @@ def capture(
         "freecad_occt": Part.OCC_VERSION,
         "density_kg_m3": density,
         "properties_si": {
-            "volume_m3": shape.Volume * 1e-9,
-            "mass_kg": density * shape.Volume * 1e-9,
+            "volume_m3": solid.Volume * 1e-9,
+            "mass_kg": density * solid.Volume * 1e-9,
             "centre_m": [v * 1e-3 for v in centre],
             "inertia_kg_m2": [
-                v * density * 1e-15 for v in matrix_values(shape.MatrixOfInertia)
+                v * density * 1e-15 for v in matrix_values(solid.MatrixOfInertia)
             ],
         },
         "characteristic_length_m": shape.BoundBox.DiagonalLength * 1e-3,
@@ -281,9 +295,7 @@ class Job(QObject):
             return
         try:
             result = self.admit_result(self.source, self.directory, self.request)
-        except (
-            Exception
-        ) as error:  # noqa: BLE001 - report native errors at the process/UI boundary
+        except Exception as error:  # noqa: BLE001 - report native errors at the process/UI boundary
             self._settle(error=str(error))
             return
         self._settle(result=result)

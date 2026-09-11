@@ -20,6 +20,7 @@ report = {'status': 'running', 'checks': []}
 state = {'panel': None, 'done': False, 'beats': 0}
 pressure, young = 2e6, 210e9
 rotated = os.environ.get('VINKULUM_STATIC_ROTATED') == '1'
+compound = os.environ.get('VINKULUM_STATIC_COMPOUND') == '1'
 rotation = App.Rotation(App.Vector(0,0,1),37).multiply(App.Rotation(App.Vector(1,0,0),23)) if rotated else App.Rotation()
 origin = App.Vector(123,-41,78) if rotated else App.Vector()
 axis = rotation.multVec(App.Vector(0,0,1))
@@ -42,7 +43,12 @@ sys.excepthook = exception
 
 def start():
     doc = App.newDocument('CurvedStatic')
-    source = doc.addObject('Part::Cylinder','Rod'); source.Radius = 10; source.Height = 30
+    cylinder = doc.addObject('Part::Cylinder','Cylinder'); cylinder.Radius = 10; cylinder.Height = 30
+    if compound:
+        source = doc.addObject('Part::Compound','Rod'); source.Links = [cylinder]
+        cylinder.Visibility = False
+    else:
+        source = cylinder
     doc.recompute()
     obj = model.create(source); obj.YoungPa = young; obj.Poisson = 0; obj.MeshSizeMm = 5
     faces = source.Shape.Faces
@@ -84,7 +90,7 @@ def poll():
     error = max(displacement_error(p,u) for p,u in zip(data['nodes_m'],data['displacements_m']))
     assert error < 1e-10, error
     assert state['beats'] > 5
-    report.update(maximum_displacement_error_m=error, heartbeat_ticks=state['beats'], rotated=rotated)
+    report.update(maximum_displacement_error_m=error, heartbeat_ticks=state['beats'], rotated=rotated, compound=compound)
     report['checks'].append('native cylinder solve agrees with uniaxial nu=0 displacement reference')
     original = model.signature(obj); obj.Source.Shape.tessellate(0.05)
     assert model.signature(obj) == original
@@ -96,7 +102,8 @@ def poll():
     assert obj.ResultState == 'Current capture', obj.ResultState
     assert model.signature(obj) == obj.CapturedInputsSha256 == original
     report['checks'].append('real curved result remains current after tessellation and save/reopen')
-    obj.Source.Height = obj.Source.Height.Value + 1e-10; doc.recompute(); model.refresh_result(obj)
+    cylinder = obj.Source.Links[0] if compound else obj.Source
+    cylinder.Height = cylinder.Height.Value + 1e-10; doc.recompute(); model.refresh_result(obj)
     assert obj.ResultState.startswith('Out of date')
     assert not obj.Result.Mesh.Visibility and obj.Source.Visibility
     report['checks'].append('tiny height change invalidates and hides the saved curved result')
