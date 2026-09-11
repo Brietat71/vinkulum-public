@@ -1,7 +1,7 @@
 # Your first Vinkulum calculation in FreeCAD
 
 The published **0.1.0a2** extension contains the single-solid pendulum workflow.
-Development **0.1.0a3.dev6** includes native Assembly motion, a linear-static task and
+Development **0.1.0a3.dev7** includes native Assembly motion, a linear-static task and
 a preconfigured tension example. Use a source checkout containing this guide for
 the development features; they are not in the released 0.1.0a2 ZIP.
 

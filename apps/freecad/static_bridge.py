@@ -32,8 +32,7 @@ def capture(
 ):
     geometry_fingerprint.signature(source, fingerprint_kind)
     shape = source.Shape
-    if not shape.isValid() or len(shape.Solids) != 1 or shape.Volume <= 0:
-        raise ValueError("Select one valid solid.")
+    solid = bridge.single_solid(shape)
     local, world = source.Placement.toMatrix(), source.getGlobalPlacement().toMatrix()
     if any(
         abs(getattr(local, f"A{i}{j}") - getattr(world, f"A{i}{j}")) > 1e-12
@@ -77,11 +76,11 @@ def capture(
         "step_sha256": bridge.sha((directory / "part.step").read_bytes()),
         "density_kg_m3": density,
         "properties_si": {
-            "volume_m3": shape.Volume * 1e-9,
-            "mass_kg": shape.Volume * density * 1e-9,
-            "centre_m": [v * 1e-3 for v in shape.CenterOfMass],
+            "volume_m3": solid.Volume * 1e-9,
+            "mass_kg": solid.Volume * density * 1e-9,
+            "centre_m": [v * 1e-3 for v in solid.CenterOfMass],
             "inertia_kg_m2": [
-                v * density * 1e-15 for v in bridge.matrix_values(shape.MatrixOfInertia)
+                v * density * 1e-15 for v in bridge.matrix_values(solid.MatrixOfInertia)
             ],
         },
         "young_pa": young_pa,

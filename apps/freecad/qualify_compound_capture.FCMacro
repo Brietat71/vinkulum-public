@@ -1,0 +1,97 @@
+"""Native single-solid wrapper capture, checked against signed analytic masses."""
+import json
+import math
+import os
+import traceback
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+import Part
+from PySide6 import QtCore
+
+from vinkulum_freecad import bridge, geometry_fingerprint, static_bridge
+
+root = Path(os.environ['VINKULUM_STATIC_CHECK'])
+
+report = {'status': 'running', 'checks': [], 'captures': []}
+
+def reference(rotation, translation):
+    # Volumes in mm³ and centroidal volume moments in mm⁵, independent of OCCT.
+    v = 120 * 80 * 10
+    pieces = [(v, [60, 40, 5], [v*(80**2+10**2)/12, v*(120**2+10**2)/12, v*(120**2+80**2)/12])]
+    v = -math.pi * 3**2 * 10
+    for x in (15, 40, 65, 90):
+        pieces.append((v, [x, 10, 5], [v*(3*3**2+10**2)/12]*2 + [v*3**2/2]))
+    volume = sum(p[0] for p in pieces)
+    centre = [sum(v*c[i] for v,c,_ in pieces)/volume for i in range(3)]
+    inertia = [[0.0]*3 for _ in range(3)]
+    for v,c,diag in pieces:
+        d = [c[i]-centre[i] for i in range(3)]
+        for i in range(3):
+            for j in range(3):
+                inertia[i][j] += (diag[i] if i==j else 0) + v*((sum(t*t for t in d) if i==j else 0)-d[i]*d[j])
+    rotated = [[sum(rotation[i][k]*inertia[k][l]*rotation[j][l] for k in range(3) for l in range(3)) for j in range(3)] for i in range(3)]
+    return {'volume_m3':volume*1e-9, 'mass_kg':volume*7800e-9,
+            'centre_m':[(sum(rotation[i][j]*centre[j] for j in range(3))+translation[i])*1e-3 for i in range(3)],
+            'inertia_kg_m2':[v*7800e-15 for row in rotated for v in row]}
+
+def check(actual, expected):
+    for key, value in expected.items():
+        a = actual[key] if isinstance(value,list) else [actual[key]]
+        e = value if isinstance(value,list) else [value]
+        assert len(a)==len(e)
+        for x,y in zip(a,e):
+            assert math.isclose(x,y,rel_tol=1e-9,abs_tol=1e-13), (key,x,y)
+
+def run():
+    try:
+        assert not App.listDocuments()
+        doc = App.newDocument('CompoundCapture')
+        shape = Part.makeBox(120,80,10)
+        for x in (15,40,65,90):
+            shape = shape.cut(Part.makeCylinder(3,10,App.Vector(x,10,0)))
+        assert shape.ShapeType=='Compound' and len(shape.Solids)==1
+        solid = shape.Solids[0]
+        angle, tilt = math.radians(37), math.radians(23)
+        c,s,u,v = math.cos(angle),math.sin(angle),math.cos(tilt),math.sin(tilt)
+        rotation = [[c,-s*u,s*v],[s,c*u,-c*v],[0,v,u]]
+        identity = [[1,0,0],[0,1,0],[0,0,1]]
+        for name, candidate, moved in [('solid',solid,False),('boolean',shape,False),('nested',Part.makeCompound([Part.makeCompound([solid])]),False),('placed',Part.makeCompound([shape]),True)]:
+            obj=doc.addObject('PartDesign::Feature',name); obj.Shape=candidate
+            if moved:
+                obj.Placement=App.Placement(App.Vector(13,-7,29), App.Rotation(App.Vector(0,0,1),37).multiply(App.Rotation(App.Vector(1,0,0),23)))
+            doc.recompute()
+            before=geometry_fingerprint.signature(obj,geometry_fingerprint.CURRENT)
+            expected=reference(rotation if moved else identity,[13,-7,29] if moved else [0,0,0])
+            for mode in ('motion','static'):
+                path=root/f'{name}-{mode}'
+                if mode=='motion':
+                    req=bridge.capture(obj,path,density=7800,body_id='1bd840c3-3f52-4499-bfc1-791fa178ae42',project_id='9a33aef8-8b3e-4ddf-9412-280be292e340',duration=0.02,step=0.005)
+                else:
+                    req=static_bridge.capture(obj,path,[{'kind':'fixed','faces':[1]}],young_pa=210e9,poisson=0.3,mesh_size_mm=5,fingerprint_kind=geometry_fingerprint.CURRENT)
+                    assert req['faces'][0]['source_reference']==f'{obj.Name}.Face1'
+                check(req['properties_si'],expected)
+                assert geometry_fingerprint.signature(obj,geometry_fingerprint.CURRENT)==before
+                report['checks'].append(f'{name}/{mode}: analytic volume, mass, centre, full inertia, unchanged source')
+                report['captures'].append(str(path))
+        for name, bad in [('face',Part.makeCompound([solid,Part.makePlane(5,5)])),('edge',Part.makeCompound([solid,Part.makeLine(App.Vector(),App.Vector(5,0,0))])),('vertex',Part.makeCompound([solid,Part.Vertex(App.Vector(300,0,0))])),('two',Part.makeCompound([solid,Part.makeBox(2,2,2,App.Vector(300,0,0))]))]:
+            obj=doc.addObject('PartDesign::Feature','Bad'+name); obj.Shape=bad; doc.recompute()
+            for mode in ('motion','static'):
+                path=root/f'reject-{name}-{mode}'
+                try:
+                    if mode=='motion': bridge.capture(obj,path,density=7800,body_id='bad',project_id='bad')
+                    else: static_bridge.capture(obj,path,[{'kind':'fixed','faces':[1]}],young_pa=210e9,poisson=0.3,mesh_size_mm=5)
+                except ValueError: pass
+                else: raise AssertionError(f'Accepted extra geometry: {name}/{mode}')
+                assert not path.exists()
+                report['checks'].append(f'{name}/{mode}: refused before capture directory creation')
+        doc.saveAs(str(root/'sources.FCStd'))
+        report['status']='passed'
+    except Exception:
+        report.update(status='failed',error=traceback.format_exc())
+    finally:
+        (root/'static-check.json').write_text(json.dumps(report,indent=2)+'\n')
+        for name in list(App.listDocuments()): App.closeDocument(name)
+        QtCore.QTimer.singleShot(50,Gui.getMainWindow().close)
+QtCore.QTimer.singleShot(2000,run)
