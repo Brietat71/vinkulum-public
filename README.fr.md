@@ -1,9 +1,14 @@
 # Vinkulum — documentation technique du noyau
 
-[Accueil du projet et Studio](README.md) · [Conception CAD](docs/STUDIO_CAD.md) ·
+[Accueil du projet](README.md) · [Démarrer dans FreeCAD](docs/FREECAD_FIRST_RUN.md) ·
 [Contribuer](docs/CONTRIBUTOR_PROJECTS.md)
 
 Cette référence conserve les résultats historiques avec leurs versions et limites.
+**L'interface maison Vinkulum Studio est abandonnée. FreeCAD sous Linux est
+l'interface de référence pour les nouveaux développements et livraisons.**
+Le code et les recettes de l'ancienne GUI restent archivés pour reproduire les
+résultats historiques. Ses adaptateurs de calcul utilisés par FreeCAD restent
+maintenus ; aucune nouvelle fonctionnalité ni livraison de la GUI Studio n'est prévue.
 
 Vinkulum est un moteur de simulation mécanique écrit en **Rust**, piloté par
 une **API Python**. Il calcule les mouvements, les équilibres, les réactions
@@ -14,14 +19,14 @@ industrielles, structures et mécanismes aéronautiques. FRELON, un projet
 d'hélicoptère nano-UAV, est son premier cas d'application ; les modèles
 aérodynamiques prolongent ce socle mécanique.
 
-**Version courante : 0.19.0** · Python **3.14 ou plus** · Phase **alpha** ·
+**Version courante du noyau : 0.20.0** · Python **3.14 ou plus** · Phase **alpha** ·
 [Apache-2.0](LICENSE), avec [licences tierces distinctes](THIRD_PARTY_NOTICES.md).
 
 Première publication publique des sources : voir le [dossier d'ouverture](docs/PUBLICATION_PUBLIQUE.md).
 Le noyau entier n'est pas certifié ; les garanties et limites sont précisées
 ci-dessous. Aucun paquet n'est publié sur PyPI.
 
-[Notes de version](docs/VERSION_0.19.0.md) ·
+[Versions et fonctionnalités actuelles](README.md) ·
 [Certification : garanties et obligations](docs/CERTIFICATION_NOYAU.md) ·
 [Référence d'API](docs/API.md) ·
 [Objectif et travaux du noyau](docs/OBJECTIF_MBDYN.md) ·
@@ -29,12 +34,13 @@ ci-dessous. Aucun paquet n'est publié sur PyPI.
 
 ## Démarrer
 
-Un [éditeur de mécanismes rigides 3D](apps/studio/README.md) est disponible
-dans le paquet optionnel **Vinkulum Studio 0.4.0** : CAD OCCT 8/build123d, primitives, liaisons,
-manipulation et saisie numérique, charges temporelles, calcul séparé, animation,
-courbes et export. Voir sa [qualification et ses limites](docs/STUDIO_3D.md).
+Pour l'interface graphique, suivre le [premier lancement dans FreeCAD](docs/FREECAD_FIRST_RUN.md)
+et installer son [moteur de calcul séparé](docs/FREECAD_ENGINE.md). La conception
+reste dans le document FreeCAD ; les calculs s'exécutent dans des processus séparés.
+Le guide distingue l'extension publiée des fonctionnalités de développement et
+précise leurs limites de qualification.
 Le [cahier des charges v1.1](outputs/Cahier_des_charges_suite_ingenierie_Vinkulum.md)
-décrit aussi les lots futurs de la suite généraliste ; ils ne sont pas tous livrés par Studio.
+décrit aussi les lots futurs de la suite généraliste ; ils ne sont pas tous livrés.
 
 Les commandes suivantes s'exécutent dans un clone du dépôt, sous un shell
 Bash, avec **Python 3.14+, Rust/Cargo, un compilateur C++17 et un éditeur de liens
