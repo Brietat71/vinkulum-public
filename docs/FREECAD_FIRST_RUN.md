@@ -1,14 +1,20 @@
 # Your first Vinkulum calculation in FreeCAD
 
 The published **0.1.0a2** extension contains the single-solid pendulum workflow.
-Development **0.1.0a3.dev5** adds native Assembly motion, a linear-static task and
+Development **0.1.0a3.dev6** includes native Assembly motion, a linear-static task and
 a preconfigured tension example. Use a source checkout containing this guide for
 the development features; they are not in the released 0.1.0a2 ZIP.
 
 ## Install the extension and engine
 
-The qualified desktop is **FreeCAD 1.1.3 / Qt 6 on Linux x86-64**. From the
-repository root, create the extension ZIP:
+The qualified desktop is **FreeCAD 1.1.3 / Qt 6 on Linux x86-64**. For the
+current static workflow, use the host rebuilt with both the BREP stream and
+placement persistence patches in the [host build recipe](FREECAD_GEOMETRY_IDENTITY.md#reproduce-the-qualified-host-build-on-linux).
+The standard FreeCAD distribution does not contain these fixes. Without them,
+an unchanged static result can become stale after save/reopen. The extension
+ZIP does not patch FreeCAD.
+
+From the repository root, create the extension ZIP:
 
 ```sh
 python3 apps/freecad/package.py /tmp/Vinkulum-FreeCAD.zip
@@ -21,7 +27,9 @@ is `~/.local/share/FreeCAD/Mod`; with a custom XDG setup it is
 folder. Restart FreeCAD. This packages Python extension files; it does not rebuild
 FreeCAD or the Rust kernel.
 
-Prepare the separate engine using the [Linux installation guide](FREECAD_ENGINE.md).
+Prepare a fresh **0.6.1.dev2** adapter environment using the
+[Linux installation guide](FREECAD_ENGINE.md). Earlier engines lack the CAD
+face-witness contract required by the current static worker.
 Use the virtual environment's Python path printed by that installer. FreeCAD keeps
 its own Python and OCCT; install no second OCCT binding into its embedded console.
 The engine installer does not supply the external Gmsh or CalculiX executables.

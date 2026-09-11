@@ -1,6 +1,6 @@
 # Linear static analysis inside FreeCAD
 
-Development **0.1.0a3.dev5** adds **Vinkulum → Static analysis…** to the current
+Development **0.1.0a3.dev6** includes **Vinkulum → Static analysis…** to the current
 FreeCAD workbench. It uses native document objects, face selection, properties
 and task controls. FreeCAD 1.1.3 / Qt 6 on Linux is the qualified host. It is not
 yet included in the public 0.1.0a2 extension release; build the development
@@ -88,3 +88,12 @@ but a fresh geometry check marks their capture stale even without a physical edi
 The [retained counterexample](bancs/freecad-fingerprint-2026/README.md#separate-pre-existing-reopening-limitation)
 occurs in both dev4 and dev5. A stored “Current capture” label alone is not proof
 that a reopened result passes the current geometry checks.
+
+## Current engine and host requirements
+
+This development task requires adapter **0.6.1.dev2** in a fresh
+[engine environment](FREECAD_ENGINE.md). Qualified save/reopen persistence uses
+FreeCAD 1.1.3 with both the supplied BREP stream and placement patches; see the
+[host build recipe and identity contract](FREECAD_GEOMETRY_IDENTITY.md).
+The standard host and older engine installations do not provide this qualified
+combination. Published extension 0.1.0a2 does not contain the static task.
