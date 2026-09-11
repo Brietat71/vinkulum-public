@@ -96,6 +96,7 @@ def qualify(freecad, engine_python, output, archive=None, recipe="extension"):
             "extension": "extension-check.json",
             "example-close": "example-close/report.json",
             "assembly-analysis": "assembly-analysis/report.json",
+            "assembly-geometry": "assembly-geometry.json",
         }[recipe]
     )
     report = json.loads(report_path.read_text())
@@ -112,7 +113,7 @@ if __name__ == "__main__":
     parser.add_argument("--archive", type=Path)
     parser.add_argument(
         "--recipe",
-        choices=("extension", "example-close", "assembly-analysis"),
+        choices=("extension", "example-close", "assembly-analysis", "assembly-geometry"),
         default="extension",
     )
     args = parser.parse_args()
