@@ -46,6 +46,7 @@ etape() { printf '\n══ %s\n' "$*"; }
 etape "isolation du hook Git : checkout et worktree"
 "$PY" ci/test_pre_push.py
 "$PY" ci/test_freecad_engine.py
+"$PY" ci/test_freecad_host.py
 "$PY" ci/test_freecad_static_guard.py
 
 etape "format et lint"

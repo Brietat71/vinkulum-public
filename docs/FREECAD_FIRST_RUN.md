@@ -9,7 +9,7 @@ the development features; they are not in the released 0.1.0a2 ZIP.
 
 The qualified desktop is **FreeCAD 1.1.3 / Qt 6 on Linux x86-64**. For the
 current static workflow, use the host rebuilt with both the BREP stream and
-placement persistence patches in the [host build recipe](FREECAD_GEOMETRY_IDENTITY.md#reproduce-the-qualified-host-build-on-linux).
+placement persistence patches in the [automated host build recipe](FREECAD_HOST.md).
 The standard FreeCAD distribution does not contain these fixes. Without them,
 an unchanged static result can become stale after save/reopen. The extension
 ZIP does not patch FreeCAD.
