@@ -113,7 +113,8 @@ The [FreeCAD extension guide](apps/freecad/README.md) explains installation,
 engine configuration, packaging and the actual FreeCAD qualification recipe.
 The extension uses the existing CAD and mechanical adapter modules in the
 `vinkulum_studio` Python package, in a separate process. It never opens Studio's
-GUI. The engine environment needs Python 3.14, Vinkulum 0.20 and the
+GUI. New engine installations omit Qt and VTK; FreeCAD supplies its own GUI.
+The engine environment needs Python 3.14, Vinkulum 0.20 and the
 [OCCT 8 CAD dependencies](docs/STUDIO_CAD.md).
 
 Development of the custom Studio GUI is retired. Its code and

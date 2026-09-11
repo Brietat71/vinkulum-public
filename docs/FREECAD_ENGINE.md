@@ -1,3 +1,9 @@
+> The maintained adapter package (0.6.1.dev1) no longer requires PySide6 or VTK.
+> A new engine installation checks that neither is importable. FreeCAD keeps
+> its own Qt in the host process. Existing engine environments are not modified;
+> create a new environment to benefit from the smaller dependency set.
+> See the [installed engine qualification](bancs/freecad-headless-engine-2026/README.md).
+
 # Install the separate FreeCAD engine on Linux
 
 The FreeCAD extension sends captured geometry to a separate Python process.

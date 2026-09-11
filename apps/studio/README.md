@@ -4,6 +4,10 @@ The standalone Vinkulum Studio GUI is retired. Interface development and new
 desktop deliveries target [FreeCAD on Linux](../freecad/README.md). There are no
 planned Studio GUI features or new standalone Studio releases.
 
+Adapter package **0.6.1.dev1** installs without Qt or VTK. These dependencies
+are confined to the `legacy-desktop` extra for reproducing archived GUI work.
+This is an adapter packaging version, not a new Studio desktop release.
+
 The `vinkulum_studio` package remains in use: FreeCAD workers depend on its CAD,
 meshing and solver adapters. These backend modules and their scientific tests
 continue to be maintained. The old GUI source, recipes and qualification records

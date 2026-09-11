@@ -4,15 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vinkulum-studio"
-version = "0.6.0a2.dev6"
-description = "Open 3D CAD and multibody workbench for the Vinkulum kernel"
+version = "0.6.1.dev1"
+description = "CAD and scientific engine adapters for Vinkulum and FreeCAD"
 readme = "README.md"
 requires-python = ">=3.14"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
-dependencies = ["vinkulum==0.20.0", "PySide6==6.11.2", "vtk==9.7.0"]
+dependencies = ["vinkulum==0.20.0"]
 
 [project.optional-dependencies]
+legacy-desktop = ["PySide6==6.11.2", "vtk==9.7.0"]
 test = ["scipy==1.18.1"]
 cad = [
     "cadquery-ocp-novtk==8.0.1.0.0",
