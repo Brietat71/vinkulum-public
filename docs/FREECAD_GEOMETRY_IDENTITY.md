@@ -42,6 +42,12 @@ out of date; the fingerprint must not mask this geometry change to preserve it.
 
 ## Reproduce the qualified host build on Linux
 
+The [automated host recipe](FREECAD_HOST.md) performs the pinned clone, patch
+checks, locked SDK installation and build, and writes a launcher and provenance
+record. Its full build, resume and native qualification are retained in the
+[host build evidence](bancs/freecad-host-build-2026/README.md). The manual steps
+below document the same upstream source and patch requirements.
+
 Prerequisite: Pixi 0.80.0, Git, and enough space for the full isolated SDK/build.
 The qualified Linux x86-64 Pixi executable SHA-256 is
 `387a2d3052e656f61ccf735e6750255451366f45635a2da09116b1f8394b2837`.
