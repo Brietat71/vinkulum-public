@@ -135,6 +135,14 @@ def install(destination, python="3.14"):
         )
         report["runtime"] = json.loads((destination / "runtime.json").read_text())
         run(
+            "Verify installed engine adapters without Qt or VTK",
+            [
+                str(interpreter),
+                str(root / "ci/verify_engine_headless.py"),
+                str(destination / "headless.json"),
+            ],
+        )
+        run(
             "Check actual mechanics against the independent pendulum and reject corrupted mass",
             [
                 str(interpreter),
