@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vinkulum-studio"
-version = "0.6.1.dev1"
+version = "0.6.1.dev2"
 description = "CAD and scientific engine adapters for Vinkulum and FreeCAD"
 readme = "README.md"
 requires-python = ">=3.14"

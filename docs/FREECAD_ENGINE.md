@@ -1,4 +1,4 @@
-> The maintained adapter package (0.6.1.dev1) no longer requires PySide6 or VTK.
+> The maintained adapter package (development 0.6.1.dev2) no longer requires PySide6 or VTK.
 > A new engine installation checks that neither is importable. FreeCAD keeps
 > its own Qt in the host process. Existing engine environments are not modified;
 > create a new environment to benefit from the smaller dependency set.
@@ -32,9 +32,9 @@ existing interpreter instead of asking `uv` to provide Python 3.14.
 The command creates `venv`, checks the upstream build123d and ocpsvg source
 SHA-256 hashes, applies the repository's reviewed OCCT 8 adaptations, and builds
 and installs the native kernel and backend adapters from this checkout.
-Dependency constraints remain enforced. The existing adapter distribution still
-declares Qt and VTK dependencies, so they are installed even though FreeCAD does
-not use the old GUI. This is not yet a minimal headless distribution.
+Dependency constraints remain enforced. The engine installation omits Qt and
+VTK and checks that neither is importable. The optional `legacy-desktop` extra
+exists only for reproducing archived Studio work.
 
 Before reporting success, it checks installed dependencies, imports OCCT 8 and
 the kernel, runs an actual mechanics calculation against the independent pendulum
@@ -90,3 +90,8 @@ unqualified.
 The [fresh-installation qualification record](bancs/freecad-engine-setup-2026/README.md)
 contains the executed installer, runtime inventory and actual FreeCAD checks
 against the newly created environment.
+
+The development static workflow in extension 0.1.0a3.dev6 requires adapter
+0.6.1.dev2 for captured CAD face witnesses. Create a fresh engine environment;
+older installations do not provide this contract. See the explicit
+[geometry persistence requirements and patched FreeCAD host recipe](FREECAD_GEOMETRY_IDENTITY.md).

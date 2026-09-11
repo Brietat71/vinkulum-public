@@ -1,0 +1,52 @@
+diff --git a/src/App/PropertyGeo.cpp b/src/App/PropertyGeo.cpp
+index 270dfd2..762d9dc 100644
+--- a/src/App/PropertyGeo.cpp
++++ b/src/App/PropertyGeo.cpp
+@@ -20,6 +20,8 @@
+  *                                                                         *
+  ***************************************************************************/
+ 
++#include <limits>
++
+ #include <Base/MatrixPy.h>
+ #include <Base/PlacementPy.h>
+ #include <Base/Reader.h>
+@@ -833,6 +835,17 @@ void PropertyPlacement::setPyObject(PyObject* value)
+ 
+ void PropertyPlacement::Save(Base::Writer& writer) const
+ {
++    // Preserve every binary64 component across a decimal round trip.
++    auto& stream = writer.Stream();
++    struct RestoreFormat {
++        std::ostream& stream;
++        std::ios::fmtflags flags;
++        std::streamsize precision;
++        ~RestoreFormat() { stream.flags(flags); stream.precision(precision); }
++    } restore {stream, stream.flags(), stream.precision()};
++    stream.unsetf(std::ios::floatfield);
++    stream.precision(std::numeric_limits<double>::max_digits10);
++
+     // clang-format off
+     writer.Stream() << writer.ind() << "<PropertyPlacement";
+     writer.Stream() << " Px=\"" << _cPos.getPosition().x << "\""
+@@ -880,6 +893,20 @@ void PropertyPlacement::Restore(Base::XMLReader& reader)
+                                          reader.getAttribute<double>("Q3")));
+     }
+ 
++    // Save persists both the quaternion and the user-facing axis/angle.
++    // Reconstructing the quaternion from that axis/angle changes low bits.
++    // Restore the stored components without renormalization while retaining
++    // the raw axis/angle above (including the user's chosen full turns).
++    if (reader.hasAttribute("Q0") && reader.hasAttribute("Q1")
++        && reader.hasAttribute("Q2") && reader.hasAttribute("Q3")) {
++        Rotation rotation = _cPos.getRotation();
++        rotation[0] = reader.getAttribute<double>("Q0");
++        rotation[1] = reader.getAttribute<double>("Q1");
++        rotation[2] = reader.getAttribute<double>("Q2");
++        rotation[3] = reader.getAttribute<double>("Q3");
++        _cPos.setRotation(rotation);
++    }
++
+     hasSetValue();
+ }
+ 

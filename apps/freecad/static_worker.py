@@ -16,8 +16,18 @@ from vinkulum_studio.calculix import load_static_result, run_static
 from vinkulum_studio.document import Body
 from vinkulum_studio.engine_threads import configure_occt_threads
 from vinkulum_studio.mesh_binding import MeshBinding, MeshCondition, surface_integrals
-from vinkulum_studio.meshing import HxtMeshRequest, load_mesh, run_mesh
+from vinkulum_studio.meshing import (
+    CadWitnessMeshRequest,
+    checked_cad_witnesses,
+    load_mesh,
+    run_mesh,
+)
 from vinkulum_studio.model import read_json, write_json
+
+if __package__:
+    from . import cad_face_witness
+else:
+    import cad_face_witness
 
 
 def checked_step(path, expected):
@@ -81,7 +91,7 @@ def import_faces(root, request, length_m):
     return faces
 
 
-def match_faces(solid, faces, captures):
+def match_faces(solid, faces, captures, witness_directory):
     """Use trimmed geometry membership and area coverage, never CAD/Gmsh indices."""
     points = np.array(solid.mesh.nodes)
     length = float(np.linalg.norm(solid.request.body.dimensions))
@@ -122,21 +132,28 @@ def match_faces(solid, faces, captures):
                 area += sum(weights)
                 moment += np.array(weights) @ p
         reference = captures[index]
-        if abs(area / reference["area_m2"] - 1) > 1e-6:
+        cad_area, cad_centre = cad_face_witness.coverage(
+            solid, witness_directory, selected, faces[index]
+        )
+        if abs(cad_area / reference["area_m2"] - 1) > 1e-6:
             raise ValueError(
-                "Mapped mesh area does not cover the captured face within 1e-6 relative error."
+                "Mesher CAD area does not cover the captured face within 1e-6 relative error."
             )
-        if (
-            np.linalg.norm(moment / area - np.array(reference["centre_m"]))
-            > 1e-6 * length
-        ):
-            raise ValueError("Mapped mesh centroid disagrees with the captured face.")
+        if np.linalg.norm(cad_centre - np.array(reference["centre_m"])) > 1e-6 * length:
+            raise ValueError("Mesher CAD centroid disagrees with the captured face.")
         evidence.append(
             {
                 "source_reference": reference["source_reference"],
                 "mesh_surfaces": selected,
                 "mesh_area_m2": area,
                 "captured_area_m2": reference["area_m2"],
+                "mesher_cad_area_m2": cad_area,
+                "mesh_relative_area_error": area / cad_area - 1,
+                "mesh_centroid_m": list(moment / area),
+                "cad_coverage_relative_budget": 1e-6,
+                "cad_witness_sha256": {
+                    str(i): dict(solid.cad_faces)[i] for i in selected
+                },
                 "point_distance_budget_mm": tolerance_mm,
             }
         )
@@ -177,18 +194,20 @@ def solve(root, gmsh, ccx):
     body = import_body(root, request)
     faces = import_faces(root, request, float(np.linalg.norm(body.dimensions)))
     run_mesh(
-        HxtMeshRequest(body, request["mesh_size_mm"], threads=threads),
+        CadWitnessMeshRequest(body, request["mesh_size_mm"], threads=threads),
         root / "mesh",
         executable=gmsh,
     )
     solid, _ = load_mesh(root / "mesh")
-    mapping, evidence = match_faces(solid, faces, request["faces"])
+    mapping, evidence = match_faces(solid, faces, request["faces"], root / "mesh")
     binding = binding_for(solid, mapping, request)
     study = binding.study(request["young_pa"], request["poisson"])
     run_static(study, root / "static", executable=ccx, threads=threads)
     admitted, result, _ = load_static_result(root / "static")
     if (root / "request.json").read_bytes() != raw:
         raise ValueError("Captured request changed during calculation.")
+    if checked_cad_witnesses(root / "mesh", solid.surfaces) != solid.cad_faces:
+        raise ValueError("CAD witnesses changed during calculation.")
     preview = {
         "format": "vinkulum-freecad-static-preview-1",
         "run_id": request["run_id"],

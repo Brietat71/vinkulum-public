@@ -75,6 +75,11 @@ def run():
             )
             model.add_boundary(analysis, [f"Face{left + 1}"], "Fixed")
             model.add_boundary(analysis, [f"Face{right + 1}"], "Pressure", -2e6)
+            # Exercise the retained schema-1 reader with its original row hashes.
+            analysis.SchemaVersion = 1
+            analysis.removeProperty("GeometryFingerprintKind")
+            for row in analysis.Boundaries:
+                row.GeometrySha256 = bridge.signature(source)
             old_count = count_calls(previous_signature, analysis)
             new_count = count_calls(model.signature, analysis)
             assert old_count == 2 and new_count == 1

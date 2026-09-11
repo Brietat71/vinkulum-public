@@ -1,0 +1,60 @@
+"""Exact placement persistence across repeated native FCStd round trips.
+
+SPDX-License-Identifier: Apache-2.0
+Run with ci/freecad_static.py --recipe static-pose in an isolated host.
+"""
+import json
+import os
+import traceback
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide6 import QtCore
+
+root = Path(os.environ['VINKULUM_STATIC_CHECK'])
+report = {'status': 'running', 'checks': []}
+
+def snapshot(obj):
+    placement = obj.Placement
+    rotation = placement.Rotation
+    matrix = obj.getGlobalPlacement().toMatrix()
+    return {
+        'position': list(placement.Base), 'quaternion': list(rotation.Q),
+        'axis': list(rotation.RawAxis), 'angle': rotation.Angle,
+        'world_matrix': [getattr(matrix, f'A{i}{j}') for i in range(1,5) for j in range(1,5)],
+    }
+
+def run():
+    try:
+        doc = App.newDocument('PosePersistence')
+        group = doc.addObject('App::Part','Parent')
+        group.Placement = App.Placement(App.Vector(13,-7,29), App.Rotation(App.Vector(2,3,1),41))
+        rotations = [App.Rotation(), App.Rotation(App.Vector(0,0,1),37).multiply(App.Rotation(App.Vector(1,0,0),23))]
+        rotations += [App.Rotation(App.Vector(1,2,-3),angle) for angle in (1e-10,23,180,359.9,360,450,720,-37)]
+        rotations += [App.Rotation(0.1,0.2,0.3,0.4),App.Rotation(App.Vector(2,-1,4),App.Vector(-3,7,2))]
+        names=[]
+        for i,rotation in enumerate(rotations):
+            obj=doc.addObject('PartDesign::Feature',f'Pose{i}')
+            group.addObject(obj)
+            obj.Placement=App.Placement(App.Vector(123+i,-41,78),rotation)
+            names.append(obj.Name)
+        doc.recompute()
+        expected={name:snapshot(doc.getObject(name)) for name in names}
+        (root/'before.json').write_text(json.dumps(expected,indent=2)+'\n')
+        for cycle in range(3):
+            path=root/f'cycle-{cycle}.FCStd'; doc.saveAs(str(path)); App.closeDocument(doc.Name)
+            doc=App.openDocument(str(path)); doc.recompute()
+            actual={name:snapshot(doc.getObject(name)) for name in names}
+            (root/f'after-{cycle}.json').write_text(json.dumps(actual,indent=2)+'\n')
+            for name in names:
+                assert actual[name] == expected[name], (cycle,name)
+                report['checks'].append(f'cycle {cycle}: {name} exact local and composed world placement')
+        report['status']='passed'
+    except Exception:
+        report.update(status='failed',error=traceback.format_exc())
+    finally:
+        (root/'static-check.json').write_text(json.dumps(report,indent=2)+'\n')
+        for name in list(App.listDocuments()): App.closeDocument(name)
+        QtCore.QTimer.singleShot(50,Gui.getMainWindow().close)
+QtCore.QTimer.singleShot(2000,run)

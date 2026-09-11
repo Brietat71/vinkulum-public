@@ -77,6 +77,10 @@ class MeshRequest:
 
     @classmethod
     def from_dict(cls, data):
+        if isinstance(data, dict) and "cad_face_witnesses" in data:
+            values = _fields(data, CadWitnessMeshRequest)
+            values["body"] = Body.from_dict(values["body"])
+            return CadWitnessMeshRequest(**values)
         if isinstance(data, dict) and "algorithm" in data:
             values = _fields(data, HxtMeshRequest)
             values["body"] = Body.from_dict(values["body"])
@@ -139,6 +143,34 @@ class HxtMeshRequest(MeshRequest):
 
 
 @dataclass(frozen=True)
+class CadWitnessMeshRequest(HxtMeshRequest):
+    """Export CAD witnesses in the same Gmsh process that generates the mesh."""
+
+    cad_face_witnesses: str = "occt-brep-witness-1"
+
+    def __post_init__(self):
+        super().__post_init__()
+        if self.cad_face_witnesses != "occt-brep-witness-1":
+            raise ValueError("Unsupported CAD face witness format.")
+
+    def geo_script(self):
+        return (
+            super().geo_script()
+            + """Geometry.OCCExportOnlyVisible = 1;
+Mesh.Format = 10;
+Hide { Volume{:}; Surface{:}; Curve{:}; Point{:}; }
+For i In {0:#s()-1}
+  Show { Surface{s(i)}; }
+  Save Sprintf("cad-face-%g.brep", s(i));
+  Hide { Surface{s(i)}; }
+EndFor
+Show { Volume{:}; Surface{:}; Curve{:}; Point{:}; }
+Mesh.Format = 1;
+"""
+        )
+
+
+@dataclass(frozen=True)
 class MeshSurface:
     id: int
     name: str
@@ -182,6 +214,10 @@ class MeshedSolid:
             raise TypeError(
                 "Captured geometry and a validated volume mesh are required."
             )
+        if isinstance(self.request, CadWitnessMeshRequest) and not hasattr(
+            self, "cad_faces"
+        ):
+            raise ValueError("CAD witness payload is missing.")
         if self.mesh.element_type != self.request.element_type:
             raise ValueError("Mesh element family differs from the captured request.")
         if (
@@ -231,15 +267,57 @@ class MeshedSolid:
 
     @classmethod
     def from_dict(cls, data):
-        data = _fields(data, cls)
+        kind = (
+            CadWitnessMeshedSolid
+            if isinstance(data, dict) and "cad_faces" in data
+            else cls
+        )
+        data = _fields(data, kind)
         data["request"] = MeshRequest.from_dict(data["request"])
         data["mesh"] = FiniteMesh(**_fields(data["mesh"], FiniteMesh))
         data["surfaces"] = tuple(MeshSurface.from_dict(s) for s in data["surfaces"])
-        return cls(**data)
+        return kind(**data)
 
     @property
     def sha256(self):
         return fingerprint(asdict(self))
+
+
+@dataclass(frozen=True)
+class CadWitnessMeshedSolid(MeshedSolid):
+    cad_faces: tuple
+
+    def __post_init__(self):
+        super().__post_init__()
+        if not isinstance(self.request, CadWitnessMeshRequest):
+            raise TypeError("CAD witnesses require a captured witness request.")
+        rows = tuple(tuple(row) for row in self.cad_faces)
+        if any(len(row) != 2 or type(row[0]) is not int for row in rows):
+            raise ValueError("Invalid CAD face witness record.")
+        if [row[0] for row in rows] != sorted(surface.id for surface in self.surfaces):
+            raise ValueError("CAD witnesses must cover each mesh surface exactly once.")
+        for _, digest in rows:
+            _hash(digest)
+        object.__setattr__(self, "cad_faces", rows)
+
+
+def checked_cad_witnesses(root, surfaces):
+    expected = {f"cad-face-{surface.id}.brep" for surface in surfaces}
+    if {p.name for p in root.glob("cad-face-*.brep")} != expected:
+        raise ValueError("CAD face witness files differ from the mesh surface set.")
+    total = 0
+    rows = []
+    for surface in sorted(surfaces, key=lambda item: item.id):
+        raw = read_bounded(root / f"cad-face-{surface.id}.brep")
+        total += len(raw)
+        if not raw.startswith(
+            (b"\nCASCADE Topology V", b"DBRep_DrawableShape\n\nCASCADE Topology V")
+        ):
+            raise ValueError("CAD witness is not an ASCII OCCT BREP export.")
+        if total > MAX_MESH_BYTES:
+            raise ValueError("CAD face witnesses exceed the capture budget.")
+        rows.append((surface.id, sha256(raw)))
+    return tuple(rows)
 
 
 def parse_msh(raw, request, cancellation=None):
@@ -441,7 +519,17 @@ def finish_mesh(run, returncode, *, publish=True, cancellation=None):
         raise ValueError("The meshing executable changed during execution.")
     raw = read_bounded(run.root / "mesh.msh")
     mesh, surfaces = parse_msh(raw, run.request, cancellation)
-    result = MeshedSolid(
+    kind = (
+        CadWitnessMeshedSolid
+        if isinstance(run.request, CadWitnessMeshRequest)
+        else MeshedSolid
+    )
+    extra = (
+        {"cad_faces": checked_cad_witnesses(run.root, surfaces)}
+        if kind is CadWitnessMeshedSolid
+        else {}
+    )
+    result = kind(
         run.request,
         mesh,
         surfaces,
@@ -451,6 +539,7 @@ def finish_mesh(run, returncode, *, publish=True, cancellation=None):
         fingerprint(asdict(run.request)),
         sha256(raw),
         sha256(log),
+        **extra,
     )
     if cancellation is not None and cancellation():
         raise InterruptedError("Mesh validation cancelled.")
@@ -503,6 +592,11 @@ def load_mesh(directory):
     mesh, surfaces = parse_msh(raw, result.request)
     if mesh != result.mesh or surfaces != result.surfaces:
         raise ValueError("Mesh payload does not reproduce the raw mesher output.")
+    if (
+        isinstance(result, CadWitnessMeshedSolid)
+        and checked_cad_witnesses(root, surfaces) != result.cad_faces
+    ):
+        raise ValueError("Captured CAD face witness fingerprint does not match.")
     return result, root
 
 

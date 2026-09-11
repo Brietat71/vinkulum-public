@@ -1,0 +1,18 @@
+--- a/src/Mod/Part/App/TopoShape.cpp
++++ b/src/Mod/Part/App/TopoShape.cpp
+@@ -943,6 +943,15 @@
+ 
+ void TopoShape::exportBrep(std::ostream& out) const
+ {
++    // A document ZIP stream can retain std::fixed from XML serialization.
++    // BREP precision denotes significant digits, not decimal places.
++    struct RestoreFlags {
++        std::ostream& stream;
++        std::ios::fmtflags flags;
++        ~RestoreFlags() { stream.flags(flags); }
++    } restore {out, out.flags()};
++    out.unsetf(std::ios::floatfield);
++
+     // See TopTools_FormatVersion of OCCT 7.6
+     enum
+     {

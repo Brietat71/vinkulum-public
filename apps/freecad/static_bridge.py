@@ -11,9 +11,10 @@ import uuid
 from pathlib import Path
 
 if __package__:
-    from . import bridge
+    from . import bridge, geometry_fingerprint
 else:
     import bridge
+    import geometry_fingerprint
 import FreeCAD as App
 
 
@@ -27,7 +28,9 @@ def capture(
     mesh_size_mm,
     density=7800.0,
     threads=2,
+    fingerprint_kind=geometry_fingerprint.LEGACY,
 ):
+    geometry_fingerprint.signature(source, fingerprint_kind)
     shape = source.Shape
     if not shape.isValid() or len(shape.Solids) != 1 or shape.Volume <= 0:
         raise ValueError("Select one valid solid.")
@@ -67,7 +70,10 @@ def capture(
         "run_id": str(uuid.uuid4()),
         "body_id": str(uuid.uuid4()),
         "label": source.Label,
-        "source_geometry_sha256": bridge.signature(source),
+        "source_geometry_sha256": geometry_fingerprint.signature(
+            source, fingerprint_kind
+        ),
+        "geometry_fingerprint_kind": fingerprint_kind,
         "step_sha256": bridge.sha((directory / "part.step").read_bytes()),
         "density_kg_m3": density,
         "properties_si": {
@@ -102,7 +108,13 @@ def import_result(source, directory, request):
     import ObjectsFem
 
     directory = Path(directory)
-    if bridge.signature(source) != request["source_geometry_sha256"]:
+    if (
+        geometry_fingerprint.signature(
+            source,
+            request.get("geometry_fingerprint_kind", geometry_fingerprint.LEGACY),
+        )
+        != request["source_geometry_sha256"]
+    ):
         raise ValueError("Source geometry changed; recapture before importing results.")
     raw = (directory / "request.json").read_bytes()
     if raw != bridge.request_bytes(request):
