@@ -13,7 +13,7 @@ import FreeCAD as App
 import Part
 import UtilsAssembly
 
-from .bridge import matrix_values, request_bytes, sha
+from .bridge import matrix_values, request_bytes, sha, single_solid
 
 
 def world_shape(component):
@@ -23,9 +23,10 @@ def world_shape(component):
     shape.Placement = world.multiply(component.Placement.inverse()).multiply(
         shape.Placement
     )
-    if not shape.isValid() or len(shape.Solids) != 1 or shape.Volume <= 0:
-        raise ValueError(f"{component.Label}: one valid positive-volume solid required")
-    return shape.Solids[0]
+    try:
+        return single_solid(shape)
+    except ValueError as error:
+        raise ValueError(f"{component.Label}: {error}") from error
 
 
 def _frame(placement):

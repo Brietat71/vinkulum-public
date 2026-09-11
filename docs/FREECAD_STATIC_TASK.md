@@ -1,6 +1,6 @@
 # Linear static analysis inside FreeCAD
 
-Development **0.1.0a3.dev7** includes **Vinkulum → Static analysis…** to the current
+Development **0.1.0a3.dev8** includes **Vinkulum → Static analysis…** to the current
 FreeCAD workbench. It uses native document objects, face selection, properties
 and task controls. FreeCAD 1.1.3 / Qt 6 on Linux is the qualified host. It is not
 yet included in the public 0.1.0a2 extension release; build the development

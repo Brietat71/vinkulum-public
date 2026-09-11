@@ -1,0 +1,120 @@
+"""Installed Assembly geometry admission and independent rigid mass references.
+
+SPDX-License-Identifier: Apache-2.0
+Run with ci/freecad_extension.py --recipe assembly-geometry in an isolated host.
+"""
+import hashlib
+import json
+import math
+import os
+import traceback
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+import Part
+from PySide6.QtCore import QTimer
+
+root = Path(os.environ['VINKULUM_FREECAD_EXTENSION_CHECK'])
+report = {'status': 'running', 'checks': [], 'freecad': App.Version()}
+owns_session = False
+
+
+def run():
+    global owns_session
+    try:
+        assert not App.listDocuments()
+        owns_session = True
+        Gui.activateWorkbench('AssemblyWorkbench')
+        from vinkulum_freecad import assembly_capture, geometry_fingerprint, host
+        addon = Path(host.__file__).parent.parent
+        report['installed_manifest'] = json.loads((addon/'extension-info.json').read_text())
+        report['recipe_sha256'] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+        for name in ('assembly_capture.py', 'bridge.py'):
+            assert hashlib.sha256((Path(host.__file__).parent/name).read_bytes()).hexdigest() == report['installed_manifest']['files_sha256'][name]
+        doc = App.newDocument('AssemblyGeometry')
+        parent = doc.addObject('App::Part', 'Container')
+        parent.Placement = App.Placement(App.Vector(13,-7,29), App.Rotation(App.Vector(0,0,1),37))
+        component_pose = App.Placement(App.Vector(2,3,5), App.Rotation(App.Vector(1,0,0),23))
+        # Analytic Rz(37) Rx(23), centre and centroidal volume moments in mm.
+        c,s,u,v = math.cos(math.radians(37)),math.sin(math.radians(37)),math.cos(math.radians(23)),math.sin(math.radians(23))
+        rotation = [[c,-s*u,s*v],[s,c*u,-c*v],[0,v,u]]
+        translation = [13+2*c-3*s,-7+2*s+3*c,34]
+        centre = [sum(rotation[i][j]*[5,10,15][j] for j in range(3))+translation[i] for i in range(3)]
+        diagonal = [6000*(20**2+30**2)/12,6000*(10**2+30**2)/12,6000*(10**2+20**2)/12]
+        inertia = [sum(rotation[i][k]*diagonal[k]*rotation[j][k] for k in range(3)) for i in range(3) for j in range(3)]
+        def signature(obj):
+            return geometry_fingerprint.normalize(obj.Shape.exportBrepToString()), list(obj.Placement.Matrix.A)
+        solid = Part.makeBox(10,20,30)
+        shapes = [('solid',solid),('singleton',Part.makeCompound([solid])),('nested',Part.makeCompound([Part.makeCompound([solid])]))]
+        for linked in (False, True):
+            for label, shape in shapes:
+                source = doc.addObject('PartDesign::Feature','Source'); source.Shape = shape
+                if linked:
+                    obj = doc.addObject('App::Link','Component'); obj.setLink(source)
+                else:
+                    obj = source
+                parent.addObject(obj); obj.Placement = component_pose; doc.recompute()
+                before = signature(obj),signature(source),list(parent.Placement.Matrix.A)
+                captured = assembly_capture.world_shape(obj)
+                actual = list(captured.CenterOfMass)+assembly_capture.matrix_values(captured.MatrixOfInertia)
+                for x,y in zip(actual,centre+inertia):
+                    assert math.isclose(x,y,rel_tol=1e-10,abs_tol=1e-8),(label,linked,x,y)
+                assert math.isclose(captured.Volume,6000,rel_tol=1e-12)
+                assert before == (signature(obj),signature(source),list(parent.Placement.Matrix.A))
+                report['checks'].append(f'{label}, link={linked}: analytic world centre/inertia and unchanged source')
+                parent.removeObject(obj)
+        extras = [('face',Part.makePlane(5,5)),('edge',Part.makeLine(App.Vector(100,0,0),App.Vector(110,0,0))),('vertex',Part.Vertex(App.Vector(100,0,0))),('solid',Part.makeBox(2,2,2,App.Vector(100,0,0)))]
+        for linked in (False,True):
+            for label, extra in extras:
+                source = doc.addObject('PartDesign::Feature','RejectedSource'); source.Shape = Part.makeCompound([solid,extra])
+                if linked:
+                    obj = doc.addObject('App::Link','RejectedLink'); obj.setLink(source)
+                else: obj = source
+                obj.Label = 'Extra '+label; parent.addObject(obj); obj.Placement=component_pose; doc.recompute()
+                before=signature(obj),signature(source)
+                try: assembly_capture.world_shape(obj)
+                except ValueError as error: assert obj.Label in str(error)
+                else: raise AssertionError(f'Accepted extra {label}, link={linked}')
+                assert before==(signature(obj),signature(source))
+                report['checks'].append(f'extra {label}, link={linked}: refused without source mutation')
+                parent.removeObject(obj)
+        doc.saveAs(str(root/'geometry.FCStd')); App.closeDocument(doc.Name)
+        # Exercise rejection through the real Assembly snapshot/capture boundary.
+        doc=App.openDocument(str(Path(host.__file__).parent/'Examples/DoublePendulum.FCStd'))
+        doc.recompute()
+        assembly=doc.getObject('Assembly'); baseline,initial_shapes=assembly_capture.snapshot(assembly)
+        for name,shape in initial_shapes.items(): (root/('before-'+name+'.brep')).write_text(shape.exportBrepToString())
+        repeated=assembly_capture.snapshot(assembly)[0]
+        (root/'repeated.json').write_text(json.dumps(repeated,indent=2))
+        assert repeated==baseline
+        report['checks'].append('repeated snapshot without a source edit is identical')
+        base=doc.getObject('BaseDesign'); original=base.Shape.copy()
+        base.Shape=Part.makeCompound([original,Part.Vertex(App.Vector(500,0,0))]); doc.recompute()
+        destination=root/'rejected-capture'
+        try: assembly_capture.capture(assembly,destination)
+        except ValueError as error: report['capture_error']=str(error)
+        else: raise AssertionError('Assembly capture silently ignored extra ground geometry')
+        assert not destination.exists()
+        report['checks'].append('full native Assembly capture refuses extra ground geometry before creating files')
+        base.Shape=original;doc.recompute()
+        restored,restored_shapes=assembly_capture.snapshot(assembly)
+        for name,shape in restored_shapes.items(): (root/('after-'+name+'.brep')).write_text(shape.exportBrepToString())
+        (root/'baseline.json').write_text(json.dumps(baseline,indent=2))
+        (root/'restored.json').write_text(json.dumps(restored,indent=2))
+        before_base=next(c for c in baseline['components'] if c['name']==baseline['grounded_name'])
+        after_base=next(c for c in restored['components'] if c['name']==restored['grounded_name'])
+        assert after_base==before_base
+        assembly_capture.capture(assembly,root/'restored-capture',duration=0.02,step=0.005)
+        report['checks'].append('restoring ground geometry admits a new full Assembly capture')
+        report['snapshot_changed_by_native_recompute']=restored!=baseline
+        report['status']='passed'
+    except Exception:
+        report.update(status='failed',error=traceback.format_exc())
+    finally:
+        (root/'assembly-geometry.json').write_text(json.dumps(report,indent=2)+'\n')
+        if owns_session:
+            for name in list(App.listDocuments()): App.closeDocument(name)
+            QTimer.singleShot(50,Gui.getMainWindow().close)
+
+QTimer.singleShot(2000,run)
