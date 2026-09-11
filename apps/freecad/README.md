@@ -1,12 +1,15 @@
 # Vinkulum for FreeCAD
 
-Published extension: **0.1.0a2**. Development source: **0.1.0a3.dev8**.
+Published extension: **0.1.0a2**. Development source: **0.1.0a3.dev9**.
 
 FreeCAD is Vinkulum's primary desktop interface. The extension adds a **Vinkulum
 menu and native task panel** while keeping the current FreeCAD workbench. It
 captures a selected solid, runs the existing mechanics backend in a separate
 process and displays native poses on a temporary copy. Development of Studio's
 custom GUI has ended; no new standalone Studio releases are planned.
+
+Development 0.1.0a3.dev9 reuses the validated Assembly snapshot when creating
+playback copies. See the [native checks and measurement limits](../../docs/FREECAD_PLAYBACK_SNAPSHOT.md).
 
 Development 0.1.0a3.dev8 extends [explicit geometry admission to Assembly components](../../docs/FREECAD_ASSEMBLY_GEOMETRY.md),
 including native links. Extra non-solid geometry is refused instead of silently

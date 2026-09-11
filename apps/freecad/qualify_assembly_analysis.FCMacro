@@ -81,6 +81,7 @@ def start():
     from vinkulum_freecad import host, analysis, bridge
 
     state.update(host=host, model=analysis, bridge=bridge)
+    report["recipe_sha256"] = bridge.sha(Path(__file__).read_bytes())
     addon = Path(host.__file__).parents[1]
     report["installed_manifest"] = json.loads(
         (addon / "extension-info.json").read_text()
@@ -148,6 +149,39 @@ def start():
 
 def inspect_playback(panel):
     assert panel.result is not None, panel.status.text()
+    original_snapshot = panel.adapter.snapshot
+    calls = []
+
+    def measured_snapshot(source):
+        started = time.perf_counter()
+        try:
+            return original_snapshot(source)
+        finally:
+            calls.append(time.perf_counter() - started)
+
+    for dirty in (True, False):
+        calls.clear()
+        panel.remove_preview()
+        panel.geometry_dirty = dirty
+        panel.adapter.snapshot = measured_snapshot
+        started = time.perf_counter()
+        try:
+            panel.display_sample(0)
+        finally:
+            panel.adapter.snapshot = original_snapshot
+        report.setdefault("playback_snapshot_measurements", []).append(
+            {
+                "initial_geometry_dirty": dirty,
+                "calls": len(calls),
+                "snapshot_seconds": list(calls),
+                "display_seconds": time.perf_counter() - started,
+            }
+        )
+        check(
+            "Creating Assembly playback takes one validated source snapshot "
+            f"(dirty={dirty})",
+            len(calls) == 1 and len(panel.preview_poses) == 2,
+        )
     check(
         "Actual Assembly calculation creates both native playback solids",
         len(panel.preview_poses) == 2,

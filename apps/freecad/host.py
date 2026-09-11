@@ -429,9 +429,10 @@ class MotionPanel:
         if self.closed or self.result is None:
             return
         try:
-            if self.geometry_dirty:
+            shapes = None
+            if self.geometry_dirty or (self.assembly and self.preview is None):
                 if self.assembly:
-                    snapshot, _ = self.adapter.snapshot(self.source)
+                    snapshot, shapes = self.adapter.snapshot(self.source)
                     current = bridge.sha(bridge.request_bytes(snapshot))
                     expected = self.request["source_state_sha256"]
                 else:
@@ -447,7 +448,8 @@ class MotionPanel:
                     self.preview = self.document.addObject(
                         "App::DocumentObjectGroup", "VinkulumPlayback"
                     )
-                    _, shapes = self.adapter.snapshot(self.source)
+                    # Use the shapes from the identity check in this invocation.
+                    # No geometry cache survives a frame or a document edit.
                     ground_name = self.request["source_state"]["grounded_name"]
                     ground = self.document.addObject(
                         "Part::Feature", "VinkulumCapturedBase"
