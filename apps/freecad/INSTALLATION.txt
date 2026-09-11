@@ -111,7 +111,7 @@ Original extension code and example model: Apache-2.0. See LICENSE and NOTICE.
 FreeCAD and external engines keep their own licences. extension-info.json
 identifies the exact source and packaged-file hashes.
 
-Native linear-static workflow in development 0.1.0a3.dev5
+Native linear-static workflow in development 0.1.0a3.dev6
 --------------------------------------------------------
 Select a top-level solid, then Vinkulum > Static analysis. Select faces in the
 3D view and add fixed supports and pressure. Positive pressure acts inward;
@@ -128,7 +128,7 @@ not contact, nonlinear material or a general FEM error certificate. See the
 source guide docs/FREECAD_STATIC_TASK.md for limits and retained qualification.
 The public 0.1.0a2 release does not contain this development workflow.
 
-In development 0.1.0a3.dev5, Vinkulum > Open static tension example creates
+In development 0.1.0a3.dev6, Vinkulum > Open static tension example creates
 an editable bar with its material, support and pressure ready. It selects the
 Static object without changing workbench or starting a solver. Open Static
 analysis, configure the external executables, then Run static analysis. See

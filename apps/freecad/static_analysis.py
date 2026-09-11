@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 import json
 import math
 
-from . import bridge
+from . import bridge, geometry_fingerprint
 from .analysis import transaction
 
 
@@ -71,7 +71,12 @@ def create(source):
         obj = source.Document.addObject("App::FeaturePython", "VinkulumStatic")
         obj.Label = "Static · " + source.Label
         for kind, name, value in (
-            ("App::PropertyInteger", "SchemaVersion", 1),
+            ("App::PropertyInteger", "SchemaVersion", 2),
+            (
+                "App::PropertyString",
+                "GeometryFingerprintKind",
+                geometry_fingerprint.CURRENT,
+            ),
             ("App::PropertyLink", "Source", source),
             ("App::PropertyLinkList", "Boundaries", []),
             ("App::PropertyFloat", "YoungPa", 210e9),
@@ -89,6 +94,7 @@ def create(source):
             setattr(obj, name, value)
         for name in (
             "SchemaVersion",
+            "GeometryFingerprintKind",
             "LastCapture",
             "CapturedInputsSha256",
             "Result",
@@ -132,6 +138,17 @@ def selected_faces(obj, selection):
     return refs
 
 
+def fingerprint_kind(obj):
+    if obj.SchemaVersion == 1:
+        return geometry_fingerprint.LEGACY
+    if (
+        obj.SchemaVersion == 2
+        and getattr(obj, "GeometryFingerprintKind", "") == geometry_fingerprint.CURRENT
+    ):
+        return geometry_fingerprint.CURRENT
+    raise ValueError("Unsupported static analysis document schema or fingerprint.")
+
+
 def add_boundary(obj, refs, kind, pressure_pa=0):
     if kind not in ("Fixed", "Pressure") or not math.isfinite(pressure_pa):
         raise ValueError("Choose a fixed support or finite pressure.")
@@ -140,7 +157,17 @@ def add_boundary(obj, refs, kind, pressure_pa=0):
         for r in refs
     ):
         raise ValueError("Choose existing source faces.")
+    fingerprint_kind(obj)
     with transaction(obj.Document, "Add static boundary condition"):
+        if obj.SchemaVersion == 1 and not obj.Boundaries:
+            if "GeometryFingerprintKind" not in obj.PropertiesList:
+                obj.addProperty(
+                    "App::PropertyString", "GeometryFingerprintKind", "Vinkulum"
+                )
+            obj.GeometryFingerprintKind = geometry_fingerprint.CURRENT
+            obj.setEditorMode("GeometryFingerprintKind", 1)
+            obj.SchemaVersion = 2
+            obj.CapturedInputsSha256 = ""
         row = obj.Document.addObject("App::FeaturePython", "VinkulumBoundary")
         row.Label = kind + " · " + ", ".join(refs)
         row.addProperty("App::PropertyLinkSub", "Faces", "Boundary")
@@ -150,7 +177,9 @@ def add_boundary(obj, refs, kind, pressure_pa=0):
         row.addProperty("App::PropertyFloat", "PressurePa", "Boundary")
         row.PressurePa = pressure_pa
         row.addProperty("App::PropertyString", "GeometrySha256", "Boundary")
-        row.GeometrySha256 = bridge.signature(obj.Source)
+        row.GeometrySha256 = geometry_fingerprint.signature(
+            obj.Source, fingerprint_kind(obj)
+        )
         row.Proxy = Boundary()
         for name in ("Faces", "Kind", "GeometrySha256"):
             row.setEditorMode(name, 1)
@@ -165,12 +194,13 @@ def inputs(obj):
 
 def _input_snapshot(obj):
     """Validate inputs against one freshly serialized geometry, without caching."""
-    if not is_analysis(obj) or obj.SchemaVersion != 1:
+    if not is_analysis(obj):
         raise ValueError("Unsupported static analysis document schema.")
     source = obj.Source
     if source is None or source.Document is not obj.Document:
         raise ValueError("Assign an existing solid in this document.")
-    digest = bridge.signature(source)
+    kind = fingerprint_kind(obj)
+    digest = geometry_fingerprint.signature(source, kind)
     conditions = []
     for row in obj.Boundaries:
         linked, refs = row.Faces
@@ -211,6 +241,7 @@ def _input_snapshot(obj):
         "poisson": obj.Poisson,
         "mesh_size_mm": obj.MeshSizeMm,
         "threads": obj.Threads,
+        **({"fingerprint_kind": kind} if obj.SchemaVersion == 2 else {}),
     }, digest
 
 

@@ -161,31 +161,34 @@ def start():
     from vinkulum_freecad import bridge
     from vinkulum_freecad import static_analysis as model
 
+    from vinkulum_freecad import geometry_fingerprint
+
+    kind = model.fingerprint_kind(panel.analysis)
     expected = bridge.sha(
         json.dumps(
             {
-                "geometry": bridge.signature(panel.source),
+                "geometry": geometry_fingerprint.signature(panel.source, kind),
                 "inputs": model.inputs(panel.analysis),
             },
             sort_keys=True,
             allow_nan=False,
         ).encode()
     )
-    original = bridge.signature
+    original = geometry_fingerprint.signature
     calls = []
 
-    def measured(source):
+    def measured(source, version):
         calls.append(source.Name)
-        return original(source)
+        return original(source, version)
 
-    bridge.signature = measured
+    geometry_fingerprint.signature = measured
     try:
         assert model.signature(panel.analysis) == expected
         assert calls == [panel.source.Name]
     finally:
-        bridge.signature = original
+        geometry_fingerprint.signature = original
     report["checks"].append(
-        "unchanged static fingerprint with one fresh geometry serialization"
+        "versioned static fingerprint with one fresh geometry fingerprint"
     )
     QtCore.QTimer.singleShot(400, launch_after_display)
 

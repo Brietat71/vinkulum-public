@@ -1,6 +1,6 @@
 # Vinkulum for FreeCAD
 
-Published extension: **0.1.0a2**. Development source: **0.1.0a3.dev5**.
+Published extension: **0.1.0a2**. Development source: **0.1.0a3.dev6**.
 
 FreeCAD is Vinkulum's primary desktop interface. The extension adds a **Vinkulum
 menu and native task panel** while keeping the current FreeCAD workbench. It
@@ -241,3 +241,6 @@ results. This development workflow is not in the published 0.1.0a2 release ZIP.
 Start with the [first-run guide](../../docs/FREECAD_FIRST_RUN.md): it covers the
 editable Assembly and preconfigured static example, engine setup and an expected
 numerical result.
+
+Development static result persistence requires the two qualified FreeCAD host patches.
+See [geometry identity, host requirements and retained evidence](../../docs/FREECAD_GEOMETRY_IDENTITY.md).

@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "mapping": {
+    "0": [
+      2
+    ],
+    "1": [
+      3
+    ]
+  },
+  "face_mapping": [
+    {
+      "source_reference": "Rod.Face2",
+      "mesh_surfaces": [
+        2
+      ],
+      "mesh_area_m2": 0.00031414377167038364,
+      "captured_area_m2": 0.0003141592653589793,
+      "mesher_cad_area_m2": 0.00031415926535898,
+      "mesh_relative_area_error": -4.931794253681954e-05,
+      "mesh_centroid_m": [
+        -3.2650781332121315e-19,
+        -2.2118271224985407e-19,
+        3.469446951953614e-18
+      ],
+      "cad_coverage_relative_budget": 1e-06,
+      "cad_witness_sha256": {
+        "2": "1c2e5344760cf5048df356d06f5c1a5310cf59153da2b1c0f15fc2144a76ba50"
+      },
+      "point_distance_budget_mm": 1e-06
+    },
+    {
+      "source_reference": "Rod.Face3",
+      "mesh_surfaces": [
+        3
+      ],
+      "mesh_area_m2": 0.0003141437716703837,
+      "captured_area_m2": 0.0003141592653589793,
+      "mesher_cad_area_m2": 0.00031415926535898,
+      "mesh_relative_area_error": -4.931794253659749e-05,
+      "mesh_centroid_m": [
+        -1.2639012128563087e-19,
+        -2.3171522235698995e-19,
+        0.030000000000000002
+      ],
+      "cad_coverage_relative_budget": 1e-06,
+      "cad_witness_sha256": {
+        "3": "e1e2d11b5a78311a3c3fff5ad53e397a5ed1aec9daeb55a0cf6f395a47670a31"
+      },
+      "point_distance_budget_mm": 1e-06
+    }
+  ]
+}

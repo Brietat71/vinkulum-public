@@ -1,0 +1,48 @@
+"""Reopen an existing result in an independent FreeCAD process.
+
+SPDX-License-Identifier: Apache-2.0
+Never saves over the input document or changes its capture files.
+"""
+import hashlib
+import json
+import os
+import traceback
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide6 import QtCore
+from vinkulum_freecad import static_analysis as model
+
+root = Path(os.environ['VINKULUM_STATIC_CHECK'])
+source = Path(os.environ['VINKULUM_STATIC_RESULT_FILE'])
+report = {'status':'running','checks':[]}
+
+def run():
+    try:
+        digest = hashlib.sha256(source.read_bytes()).hexdigest()
+        doc = App.openDocument(str(source))
+        obj = doc.getObject('VinkulumStatic')
+        assert obj is not None and obj.Result is not None
+        model.refresh_result(obj)
+        assert obj.ResultState == 'Current capture', obj.ResultState
+        assert model.signature(obj) == obj.CapturedInputsSha256
+        report['checks'].append('independent process admits the existing captured result')
+        doc.recompute(); obj.Source.Shape.tessellate(0.05); model.refresh_result(obj)
+        assert obj.ResultState == 'Current capture'
+        report['checks'].append('recompute and tessellation retain current result')
+        placement = obj.Source.Placement
+        placement.Base.x += 1e-10
+        obj.Source.Placement = placement; doc.recompute(); model.refresh_result(obj)
+        assert obj.ResultState.startswith('Out of date')
+        assert not obj.Result.Mesh.Visibility and obj.Source.Visibility
+        report['checks'].append('tiny translation invalidates result and hides its mesh')
+        assert hashlib.sha256(source.read_bytes()).hexdigest() == digest
+        report.update(status='passed', input_sha256=digest)
+    except Exception:
+        report.update(status='failed',error=traceback.format_exc())
+    finally:
+        (root/'static-check.json').write_text(json.dumps(report,indent=2)+'\n')
+        for name in list(App.listDocuments()): App.closeDocument(name)
+        QtCore.QTimer.singleShot(50,Gui.getMainWindow().close)
+QtCore.QTimer.singleShot(2000,run)

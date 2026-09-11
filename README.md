@@ -25,7 +25,7 @@ extension and development build have different scopes, detailed below.*
 
 ## Start with an editable example
 
-**Released: FreeCAD extension 0.1.0a2. Development: 0.1.0a3.dev5. Kernel: 0.20.0. Linux first.**
+**Released: FreeCAD extension 0.1.0a2. Development: 0.1.0a3.dev6. Kernel: 0.20.0. Linux first.**
 
 The [published 0.1.0a2 ZIP](https://github.com/Brietat71/vinkulum-public/releases/tag/freecad-v0.1.0a2)
 contains the single-solid pendulum workflow. Use a
@@ -150,3 +150,6 @@ solvers and models retain their own licences and attribution. See
 [third-party notices](THIRD_PARTY_NOTICES.md). Compatibility patches and reference
 cases remain explicit so their provenance can be reviewed and useful changes
 can return upstream.
+
+Development static result persistence requires the two qualified FreeCAD host patches.
+See [geometry identity, host requirements and retained evidence](docs/FREECAD_GEOMETRY_IDENTITY.md).

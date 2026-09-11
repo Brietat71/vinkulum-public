@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "checks": [
+    "identity: whole",
+    "identity: partition",
+    "identity: reversed partition",
+    "identity: missing half",
+    "identity: duplicated half",
+    "identity: overlap",
+    "identity: wrong plane",
+    "identity: outside",
+    "rotated/translated: whole",
+    "rotated/translated: partition",
+    "rotated/translated: reversed partition",
+    "rotated/translated: missing half",
+    "rotated/translated: duplicated half",
+    "rotated/translated: overlap",
+    "rotated/translated: wrong plane",
+    "rotated/translated: outside"
+  ]
+}

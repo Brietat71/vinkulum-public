@@ -11,6 +11,10 @@ from pathlib import Path
 
 
 def qualify(args):
+    if args.recipe == "static-reopen" and args.result_file is None:
+        raise ValueError("--recipe static-reopen requires --result-file.")
+    if args.rotated and args.recipe != "static-curved-result":
+        raise ValueError("--rotated requires --recipe static-curved-result.")
     if args.native_inputs and args.recipe != "static":
         raise ValueError("--native-inputs requires --recipe static.")
     root = Path(__file__).resolve().parents[1]
@@ -21,10 +25,19 @@ def qualify(args):
         "apps/freecad/static_bridge.py",
         "apps/freecad/native_static.py",
         "apps/freecad/static_worker.py",
+        "apps/freecad/cad_face_witness.py",
         "apps/freecad/qualify_static.FCMacro",
         "apps/freecad/bridge.py",
+        "apps/freecad/geometry_fingerprint.py",
     ]
-    if args.recipe in ("static-task", "static-fingerprint"):
+    if args.recipe in (
+        "static-task",
+        "static-fingerprint",
+        "static-identity",
+        "static-pose",
+        "static-reopen",
+        "static-curved-result",
+    ):
         sources += [
             "apps/freecad/qualify_static_task.FCMacro",
             "apps/freecad/static_host.py",
@@ -37,6 +50,14 @@ def qualify(args):
         ]
         if args.recipe == "static-fingerprint":
             sources.append("apps/freecad/qualify_static_fingerprint.FCMacro")
+        if args.recipe == "static-reopen":
+            sources.append("apps/freecad/qualify_static_reopen.FCMacro")
+        if args.recipe == "static-pose":
+            sources.append("apps/freecad/qualify_static_pose.FCMacro")
+        if args.recipe == "static-identity":
+            sources.append("apps/freecad/qualify_static_identity.FCMacro")
+        if args.recipe == "static-curved-result":
+            sources.append("apps/freecad/qualify_static_curved_result.FCMacro")
         payload = output / "Vinkulum-FreeCAD.zip"
         subprocess.run(
             ["python3", str(root / "apps/freecad/package.py"), str(payload)], check=True
@@ -74,6 +95,8 @@ def qualify(args):
             "XDG_CONFIG_HOME": str(output / "config"),
             "XDG_DATA_HOME": str(output / "data"),
             "XDG_CACHE_HOME": str(output / "cache"),
+            "VINKULUM_STATIC_RESULT_FILE": str(args.result_file.absolute()) if args.result_file else "",
+            "VINKULUM_STATIC_ROTATED": "1" if args.rotated else "0",
             "VINKULUM_STATIC_NATIVE_INPUTS": "1" if args.native_inputs else "0",
             "VINKULUM_STATIC_SOURCE": str(root),
             "VINKULUM_STATIC_CHECK": str(output),
@@ -129,9 +152,19 @@ if __name__ == "__main__":
     for option in ("freecad", "engine-python", "gmsh", "ccx", "output"):
         parser.add_argument("--" + option, type=Path, required=True)
     parser.add_argument("--native-inputs", action="store_true")
+    parser.add_argument("--rotated", action="store_true")
+    parser.add_argument("--result-file", type=Path)
     parser.add_argument(
         "--recipe",
-        choices=("static", "static-task", "static-fingerprint"),
+        choices=(
+            "static",
+            "static-task",
+            "static-fingerprint",
+            "static-identity",
+            "static-pose",
+            "static-reopen",
+            "static-curved-result",
+        ),
         default="static",
     )
     qualify(parser.parse_args())

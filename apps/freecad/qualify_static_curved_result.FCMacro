@@ -1,0 +1,106 @@
+"""Real curved-solid static solve, analytical displacement and result persistence.
+
+SPDX-License-Identifier: Apache-2.0
+Dedicated FreeCAD process and isolated profile only.
+"""
+import json
+import os
+import sys
+import traceback
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide6 import QtCore
+from vinkulum_freecad import static_analysis as model, static_host, geometry_fingerprint as fp
+import Part
+
+root = Path(os.environ['VINKULUM_STATIC_CHECK'])
+report = {'status': 'running', 'checks': []}
+state = {'panel': None, 'done': False, 'beats': 0}
+pressure, young = 2e6, 210e9
+rotated = os.environ.get('VINKULUM_STATIC_ROTATED') == '1'
+rotation = App.Rotation(App.Vector(0,0,1),37).multiply(App.Rotation(App.Vector(1,0,0),23)) if rotated else App.Rotation()
+origin = App.Vector(123,-41,78) if rotated else App.Vector()
+axis = rotation.multVec(App.Vector(0,0,1))
+
+def finish(error=None):
+    if state['done']: return
+    state['done'] = True
+    timer.stop()
+    report['status'] = 'failed' if error else 'passed'
+    if error: report['error'] = str(error)
+    if state['panel'] is not None and not state['panel'].closed: state['panel'].reject()
+    (root/'static-check.json').write_text(json.dumps(report, indent=2)+'\n')
+    for name in list(App.listDocuments()): App.closeDocument(name)
+    QtCore.QTimer.singleShot(50, Gui.getMainWindow().close)
+
+def exception(kind, error, trace):
+    (root/'exception.log').write_text(''.join(traceback.format_exception(kind,error,trace)))
+    finish(error or 'Assertion failed; see exception.log')
+sys.excepthook = exception
+
+def start():
+    doc = App.newDocument('CurvedStatic')
+    source = doc.addObject('Part::Cylinder','Rod'); source.Radius = 10; source.Height = 30
+    doc.recompute()
+    obj = model.create(source); obj.YoungPa = young; obj.Poisson = 0; obj.MeshSizeMm = 5
+    faces = source.Shape.Faces
+    bottom = min(range(len(faces)), key=lambda i: faces[i].CenterOfMass.z)
+    top = max(range(len(faces)), key=lambda i: faces[i].CenterOfMass.z)
+    source.Placement = App.Placement(origin, rotation); doc.recompute()
+    model.add_boundary(obj,[f'Face{bottom+1}'],'Fixed')
+    model.add_boundary(obj,[f'Face{top+1}'],'Pressure',-pressure)
+    panel = static_host.open_analysis(obj); assert panel is not None
+    state['panel'] = panel
+    for key,value in {'EnginePython':os.environ['VINKULUM_STATIC_PYTHON'],'Gmsh':os.environ['VINKULUM_STATIC_GMSH'],'Calculix':os.environ['VINKULUM_STATIC_CCX'],'OutputRoot':str(root/'captures')}.items():
+        panel.paths[key].setText(value)
+    panel.run(); assert panel.job is not None, panel.status.text()
+    timer.start(50)
+
+def retain_identity(obj, label):
+    shape = Part.Shape(obj.Source.Shape); shape.Placement = App.Placement()
+    (root/(label+'.brep')).write_text(fp.normalize(shape.cleaned().exportBrepToString()))
+    matrix = obj.Source.getGlobalPlacement().toMatrix()
+    try: analysis = model.signature(obj)
+    except ValueError as error: analysis = {'error':str(error)}
+    (root/(label+'.json')).write_text(json.dumps({
+        'geometry': fp.signature(obj.Source), 'analysis': analysis,
+        'pose': [getattr(matrix, f'A{i}{j}') for i in range(1,5) for j in range(1,5)],
+    }, indent=2)+'\n')
+
+def poll():
+    state['beats'] += 1
+    panel = state['panel']
+    if panel.job is not None: return
+    obj = panel.analysis
+    assert obj.Result is not None, panel.status.text()
+    assert obj.ResultState == 'Current capture', obj.ResultState
+    data = json.loads((Path(obj.LastCapture)/'preview.json').read_text())
+    def displacement_error(p,u):
+        relative = App.Vector(*p) - origin * 0.001
+        expected = axis * (pressure / young * relative.dot(axis))
+        return (App.Vector(*u) - expected).Length
+    error = max(displacement_error(p,u) for p,u in zip(data['nodes_m'],data['displacements_m']))
+    assert error < 1e-10, error
+    assert state['beats'] > 5
+    report.update(maximum_displacement_error_m=error, heartbeat_ticks=state['beats'], rotated=rotated)
+    report['checks'].append('native cylinder solve agrees with uniaxial nu=0 displacement reference')
+    original = model.signature(obj); obj.Source.Shape.tessellate(0.05)
+    assert model.signature(obj) == original
+    doc = obj.Document; panel.reject(); doc.recompute()
+    retain_identity(obj, 'before-save')
+    path = root/'result.FCStd'; doc.saveAs(str(path)); App.closeDocument(doc.Name)
+    doc = App.openDocument(str(path)); obj = doc.getObject('VinkulumStatic'); model.refresh_result(obj)
+    retain_identity(obj, 'after-reopen')
+    assert obj.ResultState == 'Current capture', obj.ResultState
+    assert model.signature(obj) == obj.CapturedInputsSha256 == original
+    report['checks'].append('real curved result remains current after tessellation and save/reopen')
+    obj.Source.Height = obj.Source.Height.Value + 1e-10; doc.recompute(); model.refresh_result(obj)
+    assert obj.ResultState.startswith('Out of date')
+    assert not obj.Result.Mesh.Visibility and obj.Source.Visibility
+    report['checks'].append('tiny height change invalidates and hides the saved curved result')
+    finish()
+
+timer = QtCore.QTimer(); timer.timeout.connect(poll)
+QtCore.QTimer.singleShot(2000,start)

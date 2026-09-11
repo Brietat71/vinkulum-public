@@ -7,7 +7,7 @@ import subprocess
 import zipfile
 from pathlib import Path
 
-VERSION = "0.1.0a3.dev5"
+VERSION = "0.1.0a3.dev6"
 
 
 def build(destination, require_clean=False):
@@ -20,6 +20,7 @@ def build(destination, require_clean=False):
         "host.py",
         "analysis.py",
         "bridge.py",
+        "geometry_fingerprint.py",
         "worker.py",
         "assembly_capture.py",
         "assembly_worker.py",
@@ -30,6 +31,7 @@ def build(destination, require_clean=False):
         "static_job.py",
         "static_guard.py",
         "static_worker.py",
+        "cad_face_witness.py",
     )
     names = ("InitGui.py", *modules, "INSTALLATION.txt")
     examples = {}

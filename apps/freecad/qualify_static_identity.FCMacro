@@ -1,0 +1,107 @@
+"""Native versioned identity and legacy migration; requires qualified host persistence.
+
+SPDX-License-Identifier: Apache-2.0
+Dedicated empty FreeCAD process only. No solver is launched.
+"""
+import json
+import os
+import re
+import traceback
+import zipfile
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+import Part
+from PySide6 import QtCore
+from vinkulum_freecad import bridge, geometry_fingerprint as fp
+from vinkulum_freecad import static_analysis as model
+
+root = Path(os.environ['VINKULUM_STATIC_CHECK'])
+report = {'status': 'running', 'checks': []}
+
+def check(name, value):
+    report['checks'].append({'name': name, 'passed': bool(value)})
+    assert value, name
+
+def rejected(name, function):
+    try:
+        function()
+    except ValueError:
+        check(name, True)
+    else:
+        raise AssertionError(name)
+
+def run():
+    try:
+        box = Part.makeBox(30, 20, 15)
+        text = box.exportBrepToString()
+        normalized = fp.normalize(text)
+        table = text.index('TShapes ')
+        zero = re.search(r'(?<!\S)0(?!\S)', text[:table])
+        assert zero is not None
+        signed = text[:zero.start()] + '-0' + text[zero.end():]
+        check('geometry signed zero normalized', fp.normalize(signed) == normalized)
+        nonzero = text[:zero.start()] + '1e-30' + text[zero.end():]
+        check('tiny nonzero geometry retained', fp.normalize(nonzero) != normalized)
+        link = re.search(r'(?m)^([+-])([0-9]+ [0-9]+)', text[table:])
+        assert link is not None
+        position = table + link.start(1)
+        reversed_link = text[:position] + ('-' if text[position] == '+' else '+') + text[position+1:]
+        check('topology link orientation retained', fp.normalize(reversed_link) != normalized)
+        marker = re.search(r'\n([01]{7})\n', text)
+        assert marker is not None
+        for bit in range(7):
+            position = marker.start(1) + bit
+            mutated = text[:position] + ('1' if text[position] == '0' else '0') + text[position+1:]
+            check(f'only Checked bit may be ignored: bit {bit}', (fp.normalize(mutated) == normalized) == (bit == 2))
+        rejected('unknown BREP version', lambda: fp.normalize(text.replace('Topology V1', 'Topology V2', 1)))
+        rejected('truncated topology record', lambda: fp.normalize(text[:marker.start(1)+3]))
+        rejected('wrong topology count', lambda: fp.normalize(re.sub(r'TShapes [0-9]+', 'TShapes 999999', text, count=1)))
+        for kind, shape in [('cylinder', Part.makeCylinder(10, 30)), ('sphere', Part.makeSphere(10)), ('torus', Part.makeTorus(20, 5)), ('fillet', box.makeFillet(1, box.Edges))]:
+            doc = App.newDocument('Identity')
+            source = doc.addObject('PartDesign::Feature', 'Solid'); source.Shape = shape
+            source.Placement = App.Placement(App.Vector(23,54,-18), App.Rotation(App.Vector(1,2,3),37))
+            doc.recompute(); before = source.Shape.exportBrepToString(); digest = fp.signature(source)
+            check(kind+' fingerprint leaves source unchanged', source.Shape.exportBrepToString() == before)
+            source.Shape.tessellate(0.05)
+            check(kind+' render stable', fp.signature(source) == digest)
+            path = root/(kind+'.FCStd'); doc.saveAs(str(path)); App.closeDocument(doc.Name)
+            doc = App.openDocument(str(path)); source = doc.getObject('Solid')
+            check(kind+' reopen stable', fp.signature(source) == digest)
+            changed = Part.Shape(source.Shape); changed.reverse(); source.Shape = changed
+            check(kind+' orientation reversal detected', fp.signature(source) != digest)
+            App.closeDocument(doc.Name)
+        archive = Path(os.environ['VINKULUM_STATIC_SOURCE'])/'docs/bancs/freecad-static-keyboard-2026/record.zip'
+        with zipfile.ZipFile(archive) as z:
+            (root/'legacy.FCStd').write_bytes(z.read('normal/result.FCStd'))
+        doc = App.openDocument(str(root/'legacy.FCStd')); doc.UndoMode = 1
+        obj = doc.getObject('VinkulumStatic'); old_capture = obj.CapturedInputsSha256; old_result = obj.Result
+        check('real legacy schema retained', obj.SchemaVersion == 1 and model.fingerprint_kind(obj) == fp.LEGACY)
+        check('legacy digest unchanged', fp.signature(obj.Source, fp.LEGACY) == bridge.signature(obj.Source))
+        with model.transaction(doc, 'Reselect legacy faces'):
+            rows = list(obj.Boundaries); obj.Boundaries = []
+            for row in rows: doc.removeObject(row.Name)
+        model.add_boundary(obj, ['Face1'], 'Fixed')
+        check('migration clears captured inputs', obj.SchemaVersion == 2 and obj.CapturedInputsSha256 == '')
+        doc.undo()
+        check('migration undo restores schema and capture', obj.SchemaVersion == 1 and obj.CapturedInputsSha256 == old_capture and not obj.Boundaries and 'GeometryFingerprintKind' not in obj.PropertiesList)
+        model.refresh_result(obj)
+        check('undo with missing conditions cannot promote old result', obj.ResultState.startswith('Out of date'))
+        doc.redo()
+        check('migration redo restores versioned state', obj.SchemaVersion == 2 and obj.GeometryFingerprintKind == fp.CURRENT and obj.CapturedInputsSha256 == '' and len(obj.Boundaries) == 1)
+        model.add_boundary(obj, ['Face2'], 'Pressure', -2e6)
+        check('migration keeps historical result stale', obj.Result is old_result and obj.ResultState.startswith('Out of date') and len(model.inputs(obj)['conditions']) == 2)
+        obj.GeometryFingerprintKind = 'unknown'
+        rejected('unknown analysis fingerprint', lambda: model.inputs(obj))
+        obj.SchemaVersion = 99
+        rejected('unknown analysis schema', lambda: model.inputs(obj))
+        rejected('unknown capture fingerprint', lambda: fp.signature(obj.Source, 'unknown'))
+        report['status'] = 'passed'
+    except Exception:
+        report.update(status='failed', error=traceback.format_exc())
+    finally:
+        (root/'static-check.json').write_text(json.dumps(report, indent=2)+'\n')
+        for name in list(App.listDocuments()): App.closeDocument(name)
+        QtCore.QTimer.singleShot(50, Gui.getMainWindow().close)
+QtCore.QTimer.singleShot(2000, run)
